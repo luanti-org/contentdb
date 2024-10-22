@@ -1,7 +1,7 @@
 title: Privacy Policy
 ---
 
-Last Updated: 2024-04-30
+Last Updated: 2026-05-26
 ([View updates](https://github.com/luanti-org/contentdb/commits/master/app/flatpages/privacy_policy.md))
 
 ## What Information is Collected
@@ -14,7 +14,7 @@ Last Updated: 2024-04-30
 	* Page URL
 	* Platform and Operating System
 * Preferred language/locale. This defaults to the browser's locale, but can be changed by the user
-* Whether an IP address has downloaded a particular package in the last 14 days
+* View/download counters: Whether an IP address has downloaded or viewed a particular package in the last 14 days
 
 **With an account:**
 
@@ -42,12 +42,12 @@ Please avoid giving other personal information as we do not want it.
 * Passwords are used to authenticate the user.
 * The audit log is used to record actions that may be harmful.
 * Preferred language/locale is used to translate emails and the ContentDB interface.
-* Requests (such as downloads) are used for aggregated statistics and for
+* Requests (such as package views and downloads) are used for aggregated statistics and for
   calculating the popularity of packages. For example, download counts are shown
-  for each package and release and there are also download graphs available for
+  for each package and release and there are also view and download graphs available for
   each package.
-* Whether an IP address has downloaded a package or release is cached to prevent
-  downloads from being counted multiple times per IP address, but this
+* Whether an IP address has viewed or downloaded a package or release is cached to prevent
+  view or downloads from being counted multiple times per IP address, but this
   information is deleted after 14 days.
 * IP addresses are used to monitor and combat abuse.
 * Other information is displayed as part of ContentDB's service.
