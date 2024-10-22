@@ -228,6 +228,16 @@ async function load_data() {
 		};
 		new Chart(ctx, config);
 	}
+
+	{
+		const ctx = document.getElementById("chart-views").getContext("2d");
+		const data = {
+			datasets: [
+				{ label: "Luanti", data: getData(json.views_minetest) },
+			],
+		};
+		setup_chart(ctx, data, annotations);
+	}
 }
 
 
