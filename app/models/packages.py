@@ -1071,8 +1071,7 @@ class MinetestRelease(db.Model):
 		if version:
 			parts = version.strip().split(".")
 			if len(parts) >= 2:
-				major_minor = parts[0] + "." + parts[1]
-				query = MinetestRelease.query.filter(MinetestRelease.name.like("{}%".format(major_minor)))
+				query = MinetestRelease.query.filter(func.replace(MinetestRelease.name, "-dev", "") == "{}.{}".format(parts[0], parts[1]))
 				if protocol_num:
 					query = query.filter_by(protocol=protocol_num)
 
