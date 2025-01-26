@@ -113,9 +113,10 @@ def package_view_client(package: Package):
 
 	formspec_version = get_int_or_abort(request.args["formspec_version"])
 	include_images = is_yes(request.args.get("include_images", "true"))
-	html = render_markdown(data["long_description"])
 	page_url = package.get_url("packages.view", absolute=True)
-	data["long_description"] = html_to_minetest(html, page_url, formspec_version, include_images)
+	if data["long_description"] is not None:
+		html = render_markdown(data["long_description"])
+		data["long_description"] = html_to_minetest(html, page_url, formspec_version, include_images)
 
 	data["info_hypertext"] = package_info_as_hypertext(package, formspec_version)
 
@@ -150,7 +151,7 @@ def package_view_client_reviews(package: Package):
 def package_hypertext(package):
 	formspec_version = get_int_or_abort(request.args["formspec_version"])
 	include_images = is_yes(request.args.get("include_images", "true"))
-	html = render_markdown(package.desc)
+	html = render_markdown(package.desc if package.desc else "")
 	page_url = package.get_url("packages.view", absolute=True)
 	return jsonify(html_to_minetest(html, page_url, formspec_version, include_images))
 
