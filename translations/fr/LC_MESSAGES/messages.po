@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2024-11-17 12:00+0000\n"
-"Last-Translator: Tancrède <tancrede.meulien@gmail.com>\n"
+"PO-Revision-Date: 2024-12-19 02:52+0000\n"
+"Last-Translator: Tanavit MINETEST <tanavit@posto.ovh>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/minetest/"
 "contentdb/fr/>\n"
 "Language: fr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.9.2-dev\n"
 "Generated-By: Babel 2.15.0\n"
 
 #: app/__init__.py:156
@@ -353,7 +353,7 @@ msgstr " . Jam / Jeux 2022"
 #: app/_translations.py:100
 msgctxt "tags"
 msgid "Entries to the 2022 Minetest Game Jam "
-msgstr ""
+msgstr "Entrées du Game Jam de Minetest 2022 "
 
 #. NOTE: tags: title for jam_game_2023
 #: app/_translations.py:102
@@ -365,7 +365,7 @@ msgstr "Game Jam 2023"
 #: app/_translations.py:104
 msgctxt "tags"
 msgid "Entries to the 2023 Minetest Game Jam "
-msgstr ""
+msgstr "Entrées du Game Jam de Minetest 2023 "
 
 #. NOTE: tags: title for jam_game_2024
 #: app/_translations.py:106
@@ -1912,7 +1912,7 @@ msgstr "Écrivez des évaluations plus utiles pour obtenir une médaille."
 #: app/blueprints/users/profile.py:138
 #, python-format
 msgid "You are in place %(place)s."
-msgstr "Vous êtes à la %(place)s. place."
+msgstr "Vous êtes à la %(place)sième place."
 
 #: app/blueprints/users/profile.py:188
 #, python-format
@@ -2167,7 +2167,7 @@ msgstr ""
 
 #: app/logic/releases.py:41
 msgid "A release with this name already exists"
-msgstr ""
+msgstr "Une publication de même nom existe déjà"
 
 #: app/logic/releases.py:80
 msgid "Invalid commit hash; it must be a 40 character long base16 string"
@@ -2259,30 +2259,30 @@ msgstr "Packs de textures"
 
 #: app/models/packages.py:87
 msgid "Top mod"
-msgstr ""
+msgstr "Mod favori"
 
 #: app/models/packages.py:89
 msgid "Top game"
-msgstr ""
+msgstr "Jeu favori"
 
 #: app/models/packages.py:91
 msgid "Top texture pack"
-msgstr ""
+msgstr "Paquet de texture favori"
 
 #: app/models/packages.py:94
 #, python-format
 msgid "Top %(place)d mod"
-msgstr "Top %(place)d mod"
+msgstr "Mod favori en %(place)dième place"
 
 #: app/models/packages.py:96
 #, python-format
 msgid "Top %(place)d game"
-msgstr ""
+msgstr "Jeu favori en %(place)dième place"
 
 #: app/models/packages.py:98
 #, python-format
 msgid "Top %(place)d texture pack"
-msgstr ""
+msgstr "Paquet de texture favori en %(place)dième place"
 
 #: app/models/packages.py:102
 #, python-format
@@ -2406,7 +2406,6 @@ msgid "Banned"
 msgstr "Banni"
 
 #: app/models/users.py:48
-#, fuzzy
 msgid "Not Joined"
 msgstr "Non inscrit"
 
@@ -2424,7 +2423,7 @@ msgstr "Membre de confiance"
 
 #: app/models/users.py:56
 msgid "Approver"
-msgstr ""
+msgstr "Approbateur"
 
 #: app/models/users.py:58
 msgid "Editor"
@@ -2446,12 +2445,12 @@ msgstr "Admin"
 #. NOTE: PACKAGE_EDIT notification type
 #: app/models/users.py:440
 msgid "Package Edit"
-msgstr ""
+msgstr "Modification de paquet"
 
 #. NOTE: PACKAGE_APPROVAL notification type
 #: app/models/users.py:443
 msgid "Package Approval"
-msgstr ""
+msgstr "Approbation de paquet"
 
 #. NOTE: NEW_THREAD notification type
 #: app/models/users.py:446 app/templates/threads/list.html:12
@@ -2462,7 +2461,7 @@ msgstr "Nouveau fil"
 #. NOTE: NEW_REVIEW notification type
 #: app/models/users.py:449
 msgid "New Review"
-msgstr ""
+msgstr "Nouvel avis"
 
 #. NOTE: THREAD_REPLY notification type
 #: app/models/users.py:452
@@ -2530,21 +2529,22 @@ msgid "This is an Other notification."
 msgstr "Ceci est une notification Autre."
 
 #: app/models/users.py:502
-#, fuzzy
 msgid "When another user edits your packages, releases, etc."
-msgstr "Quand un autre utilisateur édite vos paquets, sorties, etc."
+msgstr "Quand un autre utilisateur édite vos paquets, publications, etc."
 
 #: app/models/users.py:504
 msgid "Notifications from editors related to the package approval process."
 msgstr ""
+"Notification des éditeurs relatives au processus d'approbation de paquet."
 
 #: app/models/users.py:506
+#, fuzzy
 msgid "When a thread is created on your package."
-msgstr ""
+msgstr "Quand une discussion est créée sur votre paquet"
 
 #: app/models/users.py:508
 msgid "When a user posts a review on your package."
-msgstr ""
+msgstr "Quand un utilisateur publie un avis sur votre paquet."
 
 #: app/models/users.py:510
 msgid "When someone replies to a thread you're watching."
@@ -2556,7 +2556,7 @@ msgstr "Envoyé par un robot - par exemple des notifications de mise à jour."
 
 #: app/models/users.py:514
 msgid "When your package's maintainers change."
-msgstr ""
+msgstr "Quand les responsables de votre paquet changent."
 
 #: app/models/users.py:516
 msgid "For editors: Important alerts."
@@ -2798,17 +2798,17 @@ msgstr "Récemment mis à jour"
 
 #: app/templates/index.html:130 app/templates/index.html:136
 msgid "Top Games"
-msgstr "Top des Jeux"
+msgstr "Jeux populaires"
 
 #: app/templates/index.html:141 app/templates/index.html:147
 #: app/templates/packages/game_hub.html:58
 msgid "Top Mods"
-msgstr "Top des Mods"
+msgstr "Mods populaires"
 
 #: app/templates/index.html:152 app/templates/index.html:158
 #: app/templates/packages/game_hub.html:65
 msgid "Top Texture Packs"
-msgstr "Top des Packs de textures"
+msgstr "Paquets de textures populaires"
 
 #: app/templates/index.html:164
 msgid "Search by Tags"
@@ -3138,7 +3138,7 @@ msgstr ""
 
 #: app/templates/donate/index.html:89
 msgid "Top packages"
-msgstr "Top des paquets"
+msgstr "Paquets populaires"
 
 #: app/templates/donate/index.html:93
 #, python-format
@@ -3732,12 +3732,16 @@ msgid ""
 "Titles must be globally unique. For example, what's the name of your "
 "application?"
 msgstr ""
+"Les titres doivent être globalement uniques. Par exemple, quel est le nom de "
+"votre application ?"
 
 #: app/templates/oauth/create_edit.html:68
 msgid ""
 "Shown to users when you request access to their account. For example, "
 "what does your application do?"
 msgstr ""
+"Montré aux utilisateurs quant vous sollicitez un accès à leur compte. Par "
+"exemple, que fait votre application ?"
 
 #: app/templates/oauth/create_edit.html:70
 msgid "Where will you store your client_secret?"
@@ -3763,13 +3767,15 @@ msgstr "Aucune application créée"
 #: app/templates/packages/advanced_search.html:13
 msgid "Use shift to select multiple. Leave selection empty to match any type."
 msgstr ""
+"Utilisez Maj pour sélectionner plusieurs objets. Videz la sélection pour "
+"faire correspondre à tout type."
 
 #: app/templates/packages/advanced_search.html:14
 #: app/templates/packages/advanced_search.html:19
 #: app/templates/packages/advanced_search.html:20
 #: app/templates/packages/advanced_search.html:21
 msgid "Use shift to select multiple."
-msgstr ""
+msgstr "Utilisez Maj pour sélectionner plusieurs objets."
 
 #: app/templates/packages/advanced_search.html:17
 msgid "Tags and Content Warnings"
@@ -3883,6 +3889,9 @@ msgid ""
 "anywhere in the short description. It is unnecessary and wastes "
 "characters."
 msgstr ""
+"Astuce : n'insérez pas <i>Minetest</i>, <i>mod</i>, or <i>modpack</i>  où "
+"que ce soit dans une description courte. Ce n'est pas nécessaire et cela "
+"gaspille de la place."
 
 #: app/templates/packages/create_edit.html:88
 msgid ""
@@ -4065,19 +4074,17 @@ msgid "Detected from dependencies"
 msgstr "Détecté à partir des dépendances"
 
 #: app/templates/packages/game_support.html:49
-#, fuzzy
 msgid "Overridden on ContentDB"
 msgstr "Remplacé sur ContentDB"
 
 #: app/templates/packages/game_support.html:68
-#, fuzzy
 msgid "Unknown. Please either add supported games or check 'Supports all games'"
 msgstr ""
-"Inconnu. Veuillez ajouter des jeux compatibles ou cocher \"Compatible "
-"avec tous les jeux\""
+"Inconnu. Veuillez ajouter les jeux compatibles ou cocher "
+"\"Compatible avec tous les jeux\""
 
 #: app/templates/packages/game_support.html:75
-#, fuzzy, python-format
+#, python-format
 msgid "Generated %(conf)s lines"
 msgstr "%(conf)s lignes générées"
 
@@ -4118,7 +4125,6 @@ msgstr ""
 "compatible avec tout les jeux."
 
 #: app/templates/packages/game_support.html:111
-#, fuzzy
 msgid "Overrides"
 msgstr "Remplace"
 
@@ -4132,13 +4138,13 @@ msgstr ""
 "%(conf)s, mais vous pouvez les ajouter ici en attendant."
 
 #: app/templates/packages/game_support.html:116
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Adding to %(conf)s allows users who install outside ContentDB to benefit "
 "as well."
 msgstr ""
-"Les ajouter à %(conf)s permet aux utilisateurs qui installent en dehors "
-"de ContentDB d'en bénéficier aussi."
+"Les ajouter à %(conf)s permet aux utilisateurs qui installent en dehors de "
+"ContentDB d'en bénéficier aussi."
 
 #: app/templates/packages/game_support.html:119
 #: app/templates/packages/game_support.html:120
@@ -4252,7 +4258,7 @@ msgstr "Modifier la version"
 #: app/templates/packages/release_edit.html:15
 #: app/templates/packages/release_new.html:42
 msgid "Release short name. Eg: 1.0.0 or 2018-05-28"
-msgstr ""
+msgstr "Nom abrégé de la publication : par exemple 1.0.0 ou 2012-05-28"
 
 #: app/templates/packages/release_edit.html:16
 #: app/templates/packages/release_new.html:43
@@ -4394,7 +4400,7 @@ msgstr "1. Nommer la version"
 
 #: app/templates/packages/release_new.html:43
 msgid "Same as name"
-msgstr ""
+msgstr "Identique au nom"
 
 #: app/templates/packages/release_new.html:46
 msgid "2. Set the content"
@@ -4747,22 +4753,22 @@ msgid "Download (.csv)"
 msgstr "Télécharger (.csv)"
 
 #: app/templates/packages/translation.html:18
-#, fuzzy
 msgid ""
 "To provide translations for your package, you need to create .tr files "
 "and upload a new release."
 msgstr ""
-"Pour fournir une traduction pour votre paquet, vous devez créer un "
-"fichier .tr et mettre en ligne une nouvelle version."
+"Pour fournir une traduction pour votre paquet, vous devez créer un fichier "
+".tr et mettre en ligne une nouvelle publication."
 
 #: app/templates/packages/translation.html:19
 msgid ""
 "For information on how to do this, see the modding book chapter and "
 "lua_api.md"
 msgstr ""
+"Pour des informations quant à comment faire ceci, consultez le chapitre du "
+"\"modding book\" et le fichier \"lua_api.md\""
 
 #: app/templates/packages/translation.html:23
-#, fuzzy
 msgid "Translation - Luanti Modding Book"
 msgstr "Traduction - Manuel des Mods Luanti"
 
@@ -4799,7 +4805,6 @@ msgid "With games, you also need to name the textdomain in game.conf:"
 msgstr "Pour les jeux vous devez aussi nommer le textdomain dans game.conf :"
 
 #: app/templates/packages/translation.html:106
-#, fuzzy
 msgid "Replace mymod with the name of mod / textdomain you chose."
 msgstr "Remplacer mymod avec le nom du mod / textdomain choisi."
 
@@ -4848,9 +4853,9 @@ msgstr ""
 "notification jusqu'à ce qu'il soit marqué comme étant à jour."
 
 #: app/templates/packages/view.html:22 app/templates/packages/view.html:25
-#, python-format
+#, fuzzy, python-format
 msgid "%(title)s releases"
-msgstr ""
+msgstr "Publications %(title)s"
 
 #: app/templates/packages/view.html:49
 msgid "Download"
@@ -4917,9 +4922,8 @@ msgid "Translate"
 msgstr "Traduire"
 
 #: app/templates/packages/view.html:304
-#, fuzzy
 msgid "Thumbnail for video"
-msgstr "Aperçu d'une vidéo"
+msgstr "Vignette d'une vidéo"
 
 #: app/templates/packages/view.html:321
 msgid "Awaiting review"
@@ -4952,7 +4956,7 @@ msgstr "Voir le contenu de ce jeu"
 #: app/templates/packages/view.html:398
 #, python-format
 msgid "Release notes for %(title)s"
-msgstr ""
+msgstr "Notes de publication pour %(title)s"
 
 #: app/templates/packages/view.html:411
 msgid "Favorite"
@@ -5336,8 +5340,9 @@ msgstr "Paquets ne supportant pas %(rel)s"
 #: app/templates/todo/mtver_support.html:17 app/templates/todo/outdated.html:12
 #: app/templates/todo/outdated.html:16 app/templates/todo/screenshots.html:12
 #: app/templates/todo/screenshots.html:16
+#, fuzzy
 msgid "Minetest-Mods org only"
-msgstr ""
+msgstr "Minetest-Mods org seulement"
 
 #: app/templates/todo/mtver_support.html:25 app/templates/todo/outdated.html:24
 #: app/templates/todo/screenshots.html:24
@@ -5886,9 +5891,8 @@ msgid "Email Address"
 msgstr "Adresse e-mail"
 
 #: app/templates/users/modtools.html:116
-#, fuzzy
 msgid "Pending email verifications"
-msgstr "Vérifications email en attente"
+msgstr "Vérifications de courriel en attente"
 
 #: app/templates/users/profile.html:20
 msgid "Profile picture"
@@ -6133,7 +6137,6 @@ msgid "'%(query)s' - Search Package Releases"
 msgstr "'%(query)s' - Recherche dans les versions des paquets"
 
 #: app/utils/flask.py:159
-#, fuzzy
 msgid "All time"
 msgstr "Tout le temps"
 
@@ -6151,7 +6154,7 @@ msgstr "Ces 90 derniers jours"
 
 #: app/utils/flask.py:163
 msgid "Year to date"
-msgstr ""
+msgstr "Année courante"
 
 #: app/utils/flask.py:164
 msgid "Last year"
@@ -6179,7 +6182,7 @@ msgstr "Dépendances optionnelles"
 
 #: app/utils/minetest_hypertext.py:340
 msgid "No reviews available."
-msgstr ""
+msgstr "Aucun avis disponible."
 
 #: app/utils/user.py:51
 msgid "You have a lot of notifications, you should either read or clear them"
