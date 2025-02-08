@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2024-08-14 22:09+0000\n"
+"PO-Revision-Date: 2025-02-08 22:00+0000\n"
 "Last-Translator: ninjum <ninhum@gmx.com>\n"
+"Language-Team: Galician <https://hosted.weblate.org/projects/minetest/"
+"contentdb/gl/>\n"
 "Language: gl\n"
-"Language-Team: Galician "
-"<https://hosted.weblate.org/projects/minetest/contentdb/gl/>\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10-dev\n"
 "Generated-By: Babel 2.15.0\n"
 
 #: app/__init__.py:156
@@ -102,55 +103,58 @@ msgstr ""
 #: app/_translations.py:28
 msgctxt "tags"
 msgid "Building"
-msgstr ""
+msgstr "Construíndo"
 
 #. NOTE: tags: description for building
 #: app/_translations.py:30
 msgctxt "tags"
 msgid "Focuses on building, such as adding new materials or nodes"
-msgstr ""
+msgstr "Céntrase na construción, como engadir novos materiais ou nós"
 
 #. NOTE: tags: title for building_mechanics
 #: app/_translations.py:32
 msgctxt "tags"
 msgid "Building Mechanics and Tools"
-msgstr ""
+msgstr "Mecánica e ferramentas da construción"
 
 #. NOTE: tags: description for building_mechanics
 #: app/_translations.py:34
 msgctxt "tags"
 msgid "Adds game mechanics or tools that change how players build."
 msgstr ""
+"Engade mecánicas de xogo ou ferramentas que trocan a forma en que os "
+"xogadores constrúen."
 
 #. NOTE: tags: title for chat
 #: app/_translations.py:36
 msgctxt "tags"
 msgid "Chat / Commands"
-msgstr ""
+msgstr "Chat / Comandos"
 
 #. NOTE: tags: description for chat
 #: app/_translations.py:38
 msgctxt "tags"
 msgid "Focus on player chat/communication or console interaction."
 msgstr ""
+"Centrado no chat/comunicación dos xogadores ou na interacción coa consola."
 
 #. NOTE: tags: title for commerce
 #: app/_translations.py:40
 msgctxt "tags"
 msgid "Commerce / Economy"
-msgstr ""
+msgstr "Comercio / Economía"
 
 #. NOTE: tags: description for commerce
 #: app/_translations.py:42
 msgctxt "tags"
 msgid "Related to economies, money, and trading"
-msgstr ""
+msgstr "Relacionado coas economías, o diñeiro e o comercio"
 
 #. NOTE: tags: title for complex_installation
 #: app/_translations.py:44
 msgctxt "tags"
 msgid "Complex installation"
-msgstr ""
+msgstr "Instalación complexa"
 
 #. NOTE: tags: description for complex_installation
 #: app/_translations.py:46
@@ -159,6 +163,8 @@ msgid ""
 "Requires futher installation steps, such as installing LuaRocks or "
 "editing the trusted mod setting"
 msgstr ""
+"Require máis pasos de instalación, como instalar LuaRocks ou editar a "
+"configuración do mod de confianza"
 
 #. NOTE: tags: title for crafting
 #: app/_translations.py:48
@@ -176,7 +182,7 @@ msgstr "Grandes cambios na mecánica de fabricación do xogo"
 #: app/_translations.py:52
 msgctxt "tags"
 msgid "Creative"
-msgstr ""
+msgstr "Creativo"
 
 #. NOTE: tags: description for creative
 #: app/_translations.py:54
@@ -186,12 +192,16 @@ msgid ""
 "content only available through a creative inventory, or provides tools "
 "that facilitate ingame creation and doesn't add difficulty or scarcity"
 msgstr ""
+"Escrito especificamente ou exclusivamente para o uso no modo creativo. "
+"Engade contido só dispoñible a través dun inventario creativo, ou "
+"proporciona ferramentas que facilitan a creación dentro do xogo e non engade "
+"dificultade ou escaseza"
 
 #. NOTE: tags: title for custom_mapgen
 #: app/_translations.py:56
 msgctxt "tags"
 msgid "Custom mapgen"
-msgstr ""
+msgstr "Xerador de mapas personalizado"
 
 #. NOTE: tags: description for custom_mapgen
 #: app/_translations.py:58
@@ -200,18 +210,21 @@ msgid ""
 "Contains a completely custom mapgen implemented in Lua, usually requires "
 "worlds to be set to the 'singlenode' mapgen."
 msgstr ""
+"Contén un xerador de mapas completamente personalizado implementado en Lua, "
+"que normalmente require que os mundos estean configurados co xerador de "
+"mapas 'singlenode'."
 
 #. NOTE: tags: title for decorative
 #: app/_translations.py:60
 msgctxt "tags"
 msgid "Decorative"
-msgstr ""
+msgstr "Decorativo"
 
 #. NOTE: tags: description for decorative
 #: app/_translations.py:62
 msgctxt "tags"
 msgid "Adds nodes with no other purpose than for use in building"
-msgstr ""
+msgstr "Engade nós sen outro propósito que non sexa o uso na construción"
 
 #. NOTE: tags: title for developer_tools
 #: app/_translations.py:64
@@ -229,19 +242,20 @@ msgstr "Ferramentas para desenvolvedores de xogos e modificacións"
 #: app/_translations.py:68
 msgctxt "tags"
 msgid "Education"
-msgstr ""
+msgstr "Educación"
 
 #. NOTE: tags: description for education
 #: app/_translations.py:70
 msgctxt "tags"
 msgid "Either has educational value, or is a tool to help teachers "
 msgstr ""
+"Ou ten valor educativo, ou é unha ferramenta para axudar ao profesorado. "
 
 #. NOTE: tags: title for environment
 #: app/_translations.py:72
 msgctxt "tags"
 msgid "Environment / Weather"
-msgstr ""
+msgstr "Medio ambiente / Tempo"
 
 #. NOTE: tags: description for environment
 #: app/_translations.py:74
@@ -250,18 +264,20 @@ msgid ""
 "Improves the world, adding weather, ambient sounds, or other environment "
 "mechanics"
 msgstr ""
+"Mellora o mundo, engadindo clima, sons ambientais ou outras mecánicas "
+"ambientais"
 
 #. NOTE: tags: title for food
 #: app/_translations.py:76
 msgctxt "tags"
 msgid "Food / Drinks"
-msgstr ""
+msgstr "Comida/Bebidas"
 
 #. NOTE: tags: title for gui
 #: app/_translations.py:78
 msgctxt "tags"
 msgid "GUI"
-msgstr ""
+msgstr "Interface gráfica de usuario (GUI)"
 
 #. NOTE: tags: description for gui
 #: app/_translations.py:80
@@ -270,18 +286,20 @@ msgid ""
 "For content whose main utility or features are provided within a GUI, on-"
 "screen menu, or similar"
 msgstr ""
+"Para contidos cuxa utilidade ou funcións principais se proporcionan nunha "
+"Interface gráfica de usuario, un menú en pantalla ou similar"
 
 #. NOTE: tags: title for hud
 #: app/_translations.py:82
 msgctxt "tags"
 msgid "HUD"
-msgstr ""
+msgstr "HUD"
 
 #. NOTE: tags: description for hud
 #: app/_translations.py:84
 msgctxt "tags"
 msgid "For mods that grant the player extra information in the HUD"
-msgstr ""
+msgstr "Para modificacións que outorgan ao xogador información adicional no HUD"
 
 #. NOTE: tags: title for inventory
 #: app/_translations.py:86
@@ -306,6 +324,8 @@ msgstr ""
 msgctxt "tags"
 msgid "For mods created for the Discord \"Combat\" modding event in 2020"
 msgstr ""
+"Para modificacións creadas para o evento de modificación \"Combat\" de "
+"Discord en 2020"
 
 #. NOTE: tags: title for jam_game_2021
 #: app/_translations.py:94
@@ -6599,4 +6619,3 @@ msgstr ""
 
 #~ msgid "Luanti-Mods org only"
 #~ msgstr ""
-
