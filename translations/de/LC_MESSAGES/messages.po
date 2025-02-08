@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2024-10-17 00:17+0000\n"
+"PO-Revision-Date: 2024-12-06 21:06+0000\n"
 "Last-Translator: Wuzzy <Wuzzy@disroot.org>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/minetest/"
+"contentdb/de/>\n"
 "Language: de\n"
-"Language-Team: German "
-"<https://hosted.weblate.org/projects/minetest/contentdb/de/>\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.9-dev\n"
 "Generated-By: Babel 2.15.0\n"
 
 #: app/__init__.py:156
@@ -364,13 +365,13 @@ msgstr "Einträge für den 2023 Minetest Game Jam "
 #: app/_translations.py:106
 msgctxt "tags"
 msgid "Jam / Game 2024"
-msgstr ""
+msgstr "Jam / Game 2024"
 
 #. NOTE: tags: description for jam_game_2024
 #: app/_translations.py:108
 msgctxt "tags"
 msgid "Entries to the 2024 Luanti Game Jam"
-msgstr ""
+msgstr "Einträge für den 2024 Luanti Game Jam"
 
 #. NOTE: tags: title for jam_weekly_2021
 #: app/_translations.py:110
@@ -2176,7 +2177,7 @@ msgstr ""
 
 #: app/logic/releases.py:41
 msgid "A release with this name already exists"
-msgstr ""
+msgstr "Ein Release mit diesem Namen existiert bereits"
 
 #: app/logic/releases.py:80
 msgid "Invalid commit hash; it must be a 40 character long base16 string"
@@ -4011,8 +4012,8 @@ msgstr "Falls leer, wird stattdessen die Spenden-URL des Autoren benutzt."
 #: app/templates/packages/create_edit.html:145
 msgid "How can users translate your package? ie: weblate URL or a help page"
 msgstr ""
-"Wie können Benutzer Ihr Paket übersetzen? Z.B. Weblate-URL oder eine "
-"HIlfe-Seite"
+"Wie können Benutzer Ihr Paket übersetzen? Z.B. Weblate-URL oder eine Hilfe-"
+"Seite"
 
 #: app/templates/packages/create_edit.html:150
 msgid ""
@@ -4108,7 +4109,7 @@ msgstr ""
 #: app/templates/packages/game_support.html:75
 #, python-format
 msgid "Generated %(conf)s lines"
-msgstr "%(conf)s Zeilen generiert"
+msgstr "Generierte „%(conf)s“-Zeilen"
 
 #: app/templates/packages/game_support.html:89
 msgid ""
@@ -4124,7 +4125,7 @@ msgid ""
 "unless excluded by unsupported_games."
 msgstr ""
 "Wenn angekreuzt, wird dies angeben, dass dieses Paket alle Spiele "
-"unterstüten sollte, außer die, die von unsupported_games ausgeschlossen "
+"unterstützen sollte, außer die, die von unsupported_games ausgeschlossen "
 "wurden."
 
 #: app/templates/packages/game_support.html:97
@@ -6858,4 +6859,3 @@ msgstr ""
 
 #~ msgid "Luanti-Mods org only"
 #~ msgstr "Nur Luanti-Mods-Org"
-
