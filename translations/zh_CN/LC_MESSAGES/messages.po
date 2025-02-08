@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2024-07-31 23:32+0000\n"
-"Last-Translator: y5nw <y5nw@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2025-01-18 06:27+0000\n"
+"Last-Translator: Poesty Li <poesty7450@gmail.com>\n"
+"Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
+"projects/minetest/contentdb/zh_Hans/>\n"
 "Language: zh_CN\n"
-"Language-Team: Chinese (Simplified) "
-"<https://hosted.weblate.org/projects/minetest/contentdb/zh_Hans/>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.10-dev\n"
 "Generated-By: Babel 2.15.0\n"
 
 #: app/__init__.py:156
@@ -31,65 +32,61 @@ msgstr "您被封号了。"
 #: app/_translations.py:6
 msgctxt "tags"
 msgid "128px+"
-msgstr ""
+msgstr "128px+"
 
 #. NOTE: tags: description for 128px
 #: app/_translations.py:8
-#, fuzzy
 msgctxt "tags"
 msgid "For 128px or higher texture packs"
-msgstr "顶级材质包"
+msgstr "适用于 128px 或更高的材质包"
 
 #. NOTE: tags: title for 16px
 #: app/_translations.py:10
 msgctxt "tags"
 msgid "16px"
-msgstr ""
+msgstr "16px"
 
 #. NOTE: tags: description for 16px
 #: app/_translations.py:12
-#, fuzzy
 msgctxt "tags"
 msgid "For 16px texture packs"
-msgstr "16px 材质包"
+msgstr "适用于 16px 材质包"
 
 #. NOTE: tags: title for 32px
 #: app/_translations.py:14
 msgctxt "tags"
 msgid "32px"
-msgstr ""
+msgstr "32px"
 
 #. NOTE: tags: description for 32px
 #: app/_translations.py:16
-#, fuzzy
 msgctxt "tags"
 msgid "For 32px texture packs"
-msgstr "32px 材质包"
+msgstr "适用于 32px 材质包"
 
 #. NOTE: tags: title for 64px
 #: app/_translations.py:18
 msgctxt "tags"
 msgid "64px"
-msgstr ""
+msgstr "64px"
 
 #. NOTE: tags: description for 64px
 #: app/_translations.py:20
-#, fuzzy
 msgctxt "tags"
 msgid "For 64px texture packs"
-msgstr "64px 材质包"
+msgstr "适用于 64px 材质包"
 
 #. NOTE: tags: title for adventure__rpg
 #: app/_translations.py:22
 msgctxt "tags"
 msgid "Adventure / RPG"
-msgstr ""
+msgstr "冒险 / RPG"
 
 #. NOTE: tags: title for april_fools
 #: app/_translations.py:24
 msgctxt "tags"
 msgid "Joke"
-msgstr ""
+msgstr "笑话"
 
 #. NOTE: tags: description for april_fools
 #: app/_translations.py:26
@@ -97,89 +94,84 @@ msgctxt "tags"
 msgid ""
 "For humorous content, meant as a novelty or joke, not to be taken "
 "seriously, and that is not meant to be used seriously or long-term."
-msgstr ""
+msgstr "用于幽默内容，意图作为新奇或笑话，不应被认真对待，且不应被长期使用。"
 
 #. NOTE: tags: title for building
 #: app/_translations.py:28
 msgctxt "tags"
 msgid "Building"
-msgstr ""
+msgstr "建筑"
 
 #. NOTE: tags: description for building
 #: app/_translations.py:30
 msgctxt "tags"
 msgid "Focuses on building, such as adding new materials or nodes"
-msgstr ""
+msgstr "专注于建筑，例如添加新材料或节点"
 
 #. NOTE: tags: title for building_mechanics
 #: app/_translations.py:32
 msgctxt "tags"
 msgid "Building Mechanics and Tools"
-msgstr ""
+msgstr "建筑机制和工具"
 
 #. NOTE: tags: description for building_mechanics
 #: app/_translations.py:34
 msgctxt "tags"
 msgid "Adds game mechanics or tools that change how players build."
-msgstr ""
+msgstr "添加改变玩家建造方式的游戏机制或工具。"
 
 #. NOTE: tags: title for chat
 #: app/_translations.py:36
 msgctxt "tags"
 msgid "Chat / Commands"
-msgstr ""
+msgstr "聊天 / 命令"
 
 #. NOTE: tags: description for chat
 #: app/_translations.py:38
 msgctxt "tags"
 msgid "Focus on player chat/communication or console interaction."
-msgstr ""
+msgstr "专注于玩家聊天/沟通或控制台互动。"
 
 #. NOTE: tags: title for commerce
 #: app/_translations.py:40
 msgctxt "tags"
 msgid "Commerce / Economy"
-msgstr ""
+msgstr "商业 / 经济"
 
 #. NOTE: tags: description for commerce
 #: app/_translations.py:42
 msgctxt "tags"
 msgid "Related to economies, money, and trading"
-msgstr ""
+msgstr "与经济、货币和交易相关"
 
 #. NOTE: tags: title for complex_installation
 #: app/_translations.py:44
-#, fuzzy
 msgctxt "tags"
 msgid "Complex installation"
-msgstr "文档"
+msgstr "安装复杂"
 
 #. NOTE: tags: description for complex_installation
 #: app/_translations.py:46
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "Requires futher installation steps, such as installing LuaRocks or "
 "editing the trusted mod setting"
-msgstr "需要额外的安装步骤，比如安装 LuaRocks 或更改受信任的 Mod 列表"
+msgstr "需要额外的安装步骤，比如安装 LuaRocks 或更改受信任的模组列表"
 
 #. NOTE: tags: title for crafting
 #: app/_translations.py:48
-#, fuzzy
 msgctxt "tags"
 msgid "Crafting"
-msgstr "合成"
+msgstr "制作"
 
 #. NOTE: tags: description for crafting
 #: app/_translations.py:50
-#, fuzzy
 msgctxt "tags"
 msgid "Big changes to crafting gameplay"
-msgstr "修改游戏的合成功能"
+msgstr "制作游戏玩法大变样"
 
 #. NOTE: tags: title for creative
 #: app/_translations.py:52
-#, fuzzy
 msgctxt "tags"
 msgid "Creative"
 msgstr "创造模式"
@@ -191,27 +183,26 @@ msgid ""
 "Written specifically or exclusively for use in creative mode. Adds "
 "content only available through a creative inventory, or provides tools "
 "that facilitate ingame creation and doesn't add difficulty or scarcity"
-msgstr ""
+msgstr "专门或仅供在创造模式中使用。只添加通过创造模式物品栏可获得的内容，或提供促进"
+"游戏内创作的工具，并且不增加困难或稀缺性"
 
 #. NOTE: tags: title for custom_mapgen
 #: app/_translations.py:56
-#, fuzzy
 msgctxt "tags"
 msgid "Custom mapgen"
-msgstr "存储空间"
+msgstr "自定义地图生成器"
 
 #. NOTE: tags: description for custom_mapgen
 #: app/_translations.py:58
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "Contains a completely custom mapgen implemented in Lua, usually requires "
 "worlds to be set to the 'singlenode' mapgen."
-msgstr "原创、使用 Lua 实现的地图生成器，一般要求创建世界时使用“singlenode\"地图生成器。"
+msgstr "包含用 Lua 实现的完全自定义的地图生成器，通常需要将世界设置为“单节点 "
+"”地图生成器。"
 
 #. NOTE: tags: title for decorative
 #: app/_translations.py:60
-#, fuzzy
 msgctxt "tags"
 msgid "Decorative"
 msgstr "装饰"
@@ -220,7 +211,7 @@ msgstr "装饰"
 #: app/_translations.py:62
 msgctxt "tags"
 msgid "Adds nodes with no other purpose than for use in building"
-msgstr ""
+msgstr "添加单纯用于建筑的节点"
 
 #. NOTE: tags: title for developer_tools
 #: app/_translations.py:64
@@ -232,27 +223,25 @@ msgstr "开发者工具"
 #: app/_translations.py:66
 msgctxt "tags"
 msgid "Tools for game and mod developers"
-msgstr ""
+msgstr "为游戏和模组开发者提供的工具"
 
 #. NOTE: tags: title for education
 #: app/_translations.py:68
-#, fuzzy
 msgctxt "tags"
 msgid "Education"
 msgstr "教育"
 
 #. NOTE: tags: description for education
 #: app/_translations.py:70
-#, fuzzy
 msgctxt "tags"
 msgid "Either has educational value, or is a tool to help teachers "
-msgstr "有教育意义或对教师有帮助。 "
+msgstr "有教育意义或对教师有帮助 "
 
 #. NOTE: tags: title for environment
 #: app/_translations.py:72
 msgctxt "tags"
 msgid "Environment / Weather"
-msgstr ""
+msgstr "环境 / 天气"
 
 #. NOTE: tags: description for environment
 #: app/_translations.py:74
@@ -260,19 +249,19 @@ msgctxt "tags"
 msgid ""
 "Improves the world, adding weather, ambient sounds, or other environment "
 "mechanics"
-msgstr ""
+msgstr "改善世界，添加天气、环境音效或其他环境机制"
 
 #. NOTE: tags: title for food
 #: app/_translations.py:76
 msgctxt "tags"
 msgid "Food / Drinks"
-msgstr ""
+msgstr "食物 / 饮料"
 
 #. NOTE: tags: title for gui
 #: app/_translations.py:78
 msgctxt "tags"
 msgid "GUI"
-msgstr ""
+msgstr "图形用户界面"
 
 #. NOTE: tags: description for gui
 #: app/_translations.py:80
@@ -280,19 +269,19 @@ msgctxt "tags"
 msgid ""
 "For content whose main utility or features are provided within a GUI, on-"
 "screen menu, or similar"
-msgstr ""
+msgstr "用于主要功能或特性在图形用户界面、屏幕菜单或类似内容中的内容"
 
 #. NOTE: tags: title for hud
 #: app/_translations.py:82
 msgctxt "tags"
 msgid "HUD"
-msgstr ""
+msgstr "HUD"
 
 #. NOTE: tags: description for hud
 #: app/_translations.py:84
 msgctxt "tags"
 msgid "For mods that grant the player extra information in the HUD"
-msgstr ""
+msgstr "用于提供额外信息给玩家 HUD 的模组"
 
 #. NOTE: tags: title for inventory
 #: app/_translations.py:86
@@ -302,7 +291,6 @@ msgstr "物品栏"
 
 #. NOTE: tags: description for inventory
 #: app/_translations.py:88
-#, fuzzy
 msgctxt "tags"
 msgid "Changes the inventory GUI"
 msgstr "修改物品栏界面"
@@ -311,37 +299,37 @@ msgstr "修改物品栏界面"
 #: app/_translations.py:90
 msgctxt "tags"
 msgid "Jam / Combat 2020"
-msgstr ""
+msgstr "Jam / 战斗 2020"
 
 #. NOTE: tags: description for jam_combat_mod
 #: app/_translations.py:92
 msgctxt "tags"
 msgid "For mods created for the Discord \"Combat\" modding event in 2020"
-msgstr ""
+msgstr "为 2020 年 Discord \"战斗\" 模组活动创建的模组"
 
 #. NOTE: tags: title for jam_game_2021
 #: app/_translations.py:94
 msgctxt "tags"
 msgid "Jam / Game 2021"
-msgstr ""
+msgstr "Jam / 游戏 2021"
 
 #. NOTE: tags: description for jam_game_2021
 #: app/_translations.py:96
 msgctxt "tags"
 msgid "Entries to the 2021 Minetest Game Jam"
-msgstr ""
+msgstr "2021 年 Minetest 游戏创作大赛的参赛作品"
 
 #. NOTE: tags: title for jam_game_2022
 #: app/_translations.py:98
 msgctxt "tags"
 msgid " Jam / Game 2022"
-msgstr ""
+msgstr " Jam / 游戏 2022"
 
 #. NOTE: tags: description for jam_game_2022
 #: app/_translations.py:100
 msgctxt "tags"
 msgid "Entries to the 2022 Minetest Game Jam "
-msgstr ""
+msgstr "2022 年 Minetest 游戏创作大赛的参赛作品 "
 
 #. NOTE: tags: title for jam_game_2023
 #: app/_translations.py:102
@@ -353,25 +341,25 @@ msgstr "果酱 / 子游戏 2023"
 #: app/_translations.py:104
 msgctxt "tags"
 msgid "Entries to the 2023 Minetest Game Jam "
-msgstr ""
+msgstr "2023 年 Minetest 游戏创作大赛的参赛作品 "
 
 #. NOTE: tags: title for jam_game_2024
 #: app/_translations.py:106
 msgctxt "tags"
 msgid "Jam / Game 2024"
-msgstr ""
+msgstr "Jam / 游戏 2024"
 
 #. NOTE: tags: description for jam_game_2024
 #: app/_translations.py:108
 msgctxt "tags"
 msgid "Entries to the 2024 Luanti Game Jam"
-msgstr ""
+msgstr "2024 年 Luanti 游戏创作大赛的参赛作品"
 
 #. NOTE: tags: title for jam_weekly_2021
 #: app/_translations.py:110
 msgctxt "tags"
 msgid "Jam / Weekly Challenges 2021"
-msgstr ""
+msgstr "Jam / 每周挑战 2021"
 
 #. NOTE: tags: description for jam_weekly_2021
 #: app/_translations.py:112
@@ -379,62 +367,58 @@ msgctxt "tags"
 msgid ""
 "For mods created for the Discord \"Weekly Challenges\" modding event in "
 "2021"
-msgstr ""
+msgstr "为 2021 年 Discord \"每周挑战\" 模组活动创建的模组"
 
 #. NOTE: tags: title for less_than_px
 #: app/_translations.py:114
 msgctxt "tags"
 msgid "<16px"
-msgstr ""
+msgstr "&lt;16px"
 
 #. NOTE: tags: description for less_than_px
 #: app/_translations.py:116
 msgctxt "tags"
 msgid "Less than 16px"
-msgstr ""
+msgstr "小于 16px"
 
 #. NOTE: tags: title for library
 #: app/_translations.py:118
-#, fuzzy
 msgctxt "tags"
 msgid "API / Library"
 msgstr "API / 库"
 
 #. NOTE: tags: description for library
 #: app/_translations.py:120
-#, fuzzy
 msgctxt "tags"
 msgid "Primarily adds an API for other mods to use"
-msgstr "为其他 Mod 提供 API"
+msgstr "主要添加了 API 供其他模组使用"
 
 #. NOTE: tags: title for magic
 #: app/_translations.py:122
 msgctxt "tags"
 msgid "Magic / Enchanting"
-msgstr ""
+msgstr "魔法 / 附魔"
 
 #. NOTE: tags: title for mapgen
 #: app/_translations.py:124
 msgctxt "tags"
 msgid "Mapgen / Biomes / Decoration"
-msgstr ""
+msgstr "地图生成 / 生物群落 / 装饰"
 
 #. NOTE: tags: description for mapgen
 #: app/_translations.py:126
 msgctxt "tags"
 msgid "New mapgen or changes mapgen"
-msgstr ""
+msgstr "新的地图生成或改变地图生成"
 
 #. NOTE: tags: title for mini-game
 #: app/_translations.py:128
-#, fuzzy
 msgctxt "tags"
 msgid "Mini-game"
 msgstr "小游戏"
 
 #. NOTE: tags: description for mini-game
 #: app/_translations.py:130
-#, fuzzy
 msgctxt "tags"
 msgid "Adds a mini-game to be played within Luanti"
 msgstr "为 Luanti 添加小游戏"
@@ -443,43 +427,43 @@ msgstr "为 Luanti 添加小游戏"
 #: app/_translations.py:132
 msgctxt "tags"
 msgid "Mobs / Animals / NPCs"
-msgstr ""
+msgstr "生物 / 动物 / NPC"
 
 #. NOTE: tags: description for mobs
 #: app/_translations.py:134
 msgctxt "tags"
 msgid "Adds mobs, animals, and non-player characters"
-msgstr ""
+msgstr "添加生物、动物和非玩家角色"
 
 #. NOTE: tags: title for mtg
 #: app/_translations.py:136
 msgctxt "tags"
 msgid "Minetest Game improved"
-msgstr ""
+msgstr "改进的 Minetest 游戏"
 
 #. NOTE: tags: description for mtg
 #: app/_translations.py:138
 msgctxt "tags"
 msgid "Forks of Minetest Game"
-msgstr ""
+msgstr "Minetest 游戏的分支"
 
 #. NOTE: tags: title for multiplayer
 #: app/_translations.py:140
 msgctxt "tags"
 msgid "Multiplayer-focused"
-msgstr ""
+msgstr "专注于多人游戏"
 
 #. NOTE: tags: description for multiplayer
 #: app/_translations.py:142
 msgctxt "tags"
 msgid "Can/should only be used in multiplayer"
-msgstr ""
+msgstr "仅能/应仅在多人游戏中使用"
 
 #. NOTE: tags: title for oneofakind__original
 #: app/_translations.py:144
 msgctxt "tags"
 msgid "One-of-a-kind / Original"
-msgstr ""
+msgstr "独一无二 / 原创"
 
 #. NOTE: tags: description for oneofakind__original
 #: app/_translations.py:146
@@ -487,25 +471,25 @@ msgctxt "tags"
 msgid ""
 "For games and such that are of their own kind, distinct and original in "
 "nature to others of the same category."
-msgstr ""
+msgstr "针对那些在性质上与同类其他作品不同并且独特的游戏及其相关内容。"
 
 #. NOTE: tags: title for plants_and_farming
 #: app/_translations.py:148
 msgctxt "tags"
 msgid "Plants and Farming"
-msgstr ""
+msgstr "植物和农业"
 
 #. NOTE: tags: description for plants_and_farming
 #: app/_translations.py:150
 msgctxt "tags"
 msgid "Adds new plants or other farmable resources."
-msgstr ""
+msgstr "增加新的植物或其他可耕种资源。"
 
 #. NOTE: tags: title for player_effects
 #: app/_translations.py:152
 msgctxt "tags"
 msgid "Player Effects / Power Ups"
-msgstr ""
+msgstr "玩家效果 / 增益"
 
 #. NOTE: tags: description for player_effects
 #: app/_translations.py:154
@@ -513,25 +497,25 @@ msgctxt "tags"
 msgid ""
 "For content that changes player effects, including physics, for example: "
 "speed, jump height or gravity."
-msgstr ""
+msgstr "针对改变玩家效果的内容，包括物理属性，例如：速度、跳跃高度或重力。"
 
 #. NOTE: tags: title for puzzle
 #: app/_translations.py:156
 msgctxt "tags"
 msgid "Puzzle"
-msgstr ""
+msgstr "难题"
 
 #. NOTE: tags: description for puzzle
 #: app/_translations.py:158
 msgctxt "tags"
 msgid "Focus on puzzle solving instead of combat"
-msgstr ""
+msgstr "专注于解谜，而非战斗"
 
 #. NOTE: tags: title for pve
 #: app/_translations.py:160
 msgctxt "tags"
 msgid "Player vs Environment (PvE)"
-msgstr ""
+msgstr "玩家对环境（PvE）"
 
 #. NOTE: tags: description for pve
 #: app/_translations.py:162
@@ -539,7 +523,7 @@ msgctxt "tags"
 msgid ""
 "For content designed for one or more players that focus on combat against"
 " the world, mobs, or NPCs."
-msgstr ""
+msgstr "针对一个或多个玩家设计的内容，专注于与世界、生物或NPC的战斗。"
 
 #. NOTE: tags: title for pvp
 #: app/_translations.py:164
@@ -551,52 +535,49 @@ msgstr "真人对抗 (PvP)"
 #: app/_translations.py:166
 msgctxt "tags"
 msgid "Designed to be played competitively against other players"
-msgstr ""
+msgstr "设计为与其他玩家进行竞争性游玩"
 
 #. NOTE: tags: title for seasonal
 #: app/_translations.py:168
-#, fuzzy
 msgctxt "tags"
 msgid "Seasonal"
 msgstr "季节性"
 
 #. NOTE: tags: description for seasonal
 #: app/_translations.py:170
-#, fuzzy
 msgctxt "tags"
 msgid "For content generally themed around a certain season or holiday"
-msgstr "新增内容主要适用于部分季节或节日"
+msgstr "新增内容主要适用于某个季节或节日"
 
 #. NOTE: tags: title for server_tools
 #: app/_translations.py:172
-#, fuzzy
 msgctxt "tags"
 msgid "Server Moderation and Tools"
-msgstr "版主工具"
+msgstr "服务器管理和工具"
 
 #. NOTE: tags: description for server_tools
 #: app/_translations.py:174
 msgctxt "tags"
 msgid "Helps with server maintenance and moderation"
-msgstr ""
+msgstr "有助于服务器维护和管理"
 
 #. NOTE: tags: title for shooter
 #: app/_translations.py:176
 msgctxt "tags"
 msgid "Shooter"
-msgstr ""
+msgstr "射击游戏"
 
 #. NOTE: tags: description for shooter
 #: app/_translations.py:178
 msgctxt "tags"
 msgid "First person shooters (FPS) and more"
-msgstr ""
+msgstr "第一人称射击（FPS）等"
 
 #. NOTE: tags: title for simulation
 #: app/_translations.py:180
 msgctxt "tags"
 msgid "Sims"
-msgstr ""
+msgstr "模拟游戏"
 
 #. NOTE: tags: description for simulation
 #: app/_translations.py:182
@@ -604,25 +585,25 @@ msgctxt "tags"
 msgid ""
 "Mods and games that aim to simulate real life activity. Similar to "
 "SimCity/The Sims/OpenTTD/etc."
-msgstr ""
+msgstr "旨在模拟现实生活活动的模组和游戏。类似于模拟城市/模拟人生/开放运输模拟等。"
 
 #. NOTE: tags: title for singleplayer
 #: app/_translations.py:184
 msgctxt "tags"
 msgid "Singleplayer-focused"
-msgstr ""
+msgstr "单人游戏为主"
 
 #. NOTE: tags: description for singleplayer
 #: app/_translations.py:186
 msgctxt "tags"
 msgid "Content that can be played alone"
-msgstr ""
+msgstr "可以单独进行的内容"
 
 #. NOTE: tags: title for skins
 #: app/_translations.py:188
 msgctxt "tags"
 msgid "Player customization / Skins"
-msgstr ""
+msgstr "玩家自定义 / 皮肤"
 
 #. NOTE: tags: description for skins
 #: app/_translations.py:190
@@ -630,30 +611,28 @@ msgctxt "tags"
 msgid ""
 "Allows the player to customize their character by changing the texture or"
 " adding accessories."
-msgstr ""
+msgstr "允许玩家通过更改纹理或添加配饰来定制他们的角色。"
 
 #. NOTE: tags: title for sound_music
 #: app/_translations.py:192
 msgctxt "tags"
 msgid "Sounds / Music"
-msgstr ""
+msgstr "声音 / 音乐"
 
 #. NOTE: tags: description for sound_music
 #: app/_translations.py:194
 msgctxt "tags"
 msgid "Focuses on or adds new sounds or musical things"
-msgstr ""
+msgstr "专注于或添加新的声音或音乐内容"
 
 #. NOTE: tags: title for sports
 #: app/_translations.py:196
-#, fuzzy
 msgctxt "tags"
 msgid "Sports"
-msgstr "举报"
+msgstr "运动"
 
 #. NOTE: tags: title for storage
 #: app/_translations.py:198
-#, fuzzy
 msgctxt "tags"
 msgid "Storage"
 msgstr "存储空间"
@@ -662,13 +641,13 @@ msgstr "存储空间"
 #: app/_translations.py:200
 msgctxt "tags"
 msgid "Adds or improves item storage mechanics"
-msgstr ""
+msgstr "增加或改进物品存储机制"
 
 #. NOTE: tags: title for strategy_rts
 #: app/_translations.py:202
 msgctxt "tags"
 msgid "Strategy / RTS"
-msgstr ""
+msgstr "策略 / 即时战略"
 
 #. NOTE: tags: description for strategy_rts
 #: app/_translations.py:204
@@ -676,13 +655,13 @@ msgctxt "tags"
 msgid ""
 "Games and mods with a heavy strategy component, whether real-time or "
 "turn-based"
-msgstr ""
+msgstr "具有重策略成分的游戏和模组，无论是实时还是回合制"
 
 #. NOTE: tags: title for survival
 #: app/_translations.py:206
 msgctxt "tags"
 msgid "Survival"
-msgstr ""
+msgstr "生存"
 
 #. NOTE: tags: description for survival
 #: app/_translations.py:208
@@ -690,35 +669,35 @@ msgctxt "tags"
 msgid ""
 "Written specifically for survival gameplay with a focus on game-balance, "
 "difficulty level, or resources available through crafting, mining, ..."
-msgstr ""
+msgstr "专门为生存类游戏编写，重点关注游戏平衡、难度等级或通过制造、采矿等可用的资源"
+"。"
 
 #. NOTE: tags: title for technology
 #: app/_translations.py:210
 msgctxt "tags"
 msgid "Machines / Electronics"
-msgstr ""
+msgstr "机器 / 电子设备"
 
 #. NOTE: tags: description for technology
 #: app/_translations.py:212
 msgctxt "tags"
 msgid "Adds machines useful in automation, tubes, or power."
-msgstr ""
+msgstr "增加在自动化、管道或电力方面有用的机器。"
 
 #. NOTE: tags: title for tools
 #: app/_translations.py:214
 msgctxt "tags"
 msgid "Tools / Weapons / Armor"
-msgstr ""
+msgstr "工具 / 武器 / 盔甲"
 
 #. NOTE: tags: description for tools
 #: app/_translations.py:216
 msgctxt "tags"
 msgid "Adds or changes tools, weapons, and armor"
-msgstr ""
+msgstr "增加或更改工具、武器和盔甲"
 
 #. NOTE: tags: title for transport
 #: app/_translations.py:218
-#, fuzzy
 msgctxt "tags"
 msgid "Transport"
 msgstr "交通与运输"
@@ -729,108 +708,103 @@ msgctxt "tags"
 msgid ""
 "Adds or changes transportation methods. Includes teleportation, vehicles,"
 " ridable mobs, transport infrastructure and thematic content"
-msgstr ""
+msgstr "增加或更改交通方式。包括传送、车辆、可骑生物、运输基础设施和主题内容"
 
 #. NOTE: tags: title for world_tools
 #: app/_translations.py:222
 msgctxt "tags"
 msgid "World Maintenance and Tools"
-msgstr ""
+msgstr "世界维护和工具"
 
 #. NOTE: tags: description for world_tools
 #: app/_translations.py:224
 msgctxt "tags"
 msgid "Tools to manage the world"
-msgstr ""
+msgstr "管理世界的工具"
 
 #. NOTE: content_warnings: title for alcohol_tobacco
 #: app/_translations.py:226
 msgctxt "content_warnings"
 msgid "Alcohol / Tobacco"
-msgstr ""
+msgstr "酒精 / 烟草"
 
 #. NOTE: content_warnings: description for alcohol_tobacco
 #: app/_translations.py:228
 msgctxt "content_warnings"
 msgid "Contains alcohol and/or tobacco"
-msgstr ""
+msgstr "包含酒精和/或烟草"
 
 #. NOTE: content_warnings: title for bad_language
 #: app/_translations.py:230
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Bad Language"
-msgstr "语言"
+msgstr "不良语言"
 
 #. NOTE: content_warnings: description for bad_language
 #: app/_translations.py:232
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Contains swearing"
-msgstr "内容警告"
+msgstr "包含脏话"
 
 #. NOTE: content_warnings: title for drugs
 #: app/_translations.py:234
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Drugs"
-msgstr "规则"
+msgstr "毒品"
 
 #. NOTE: content_warnings: description for drugs
 #: app/_translations.py:236
 msgctxt "content_warnings"
 msgid "Contains recreational drugs other than alcohol or tobacco"
-msgstr ""
+msgstr "包含酒精或烟草以外的娱乐性药物"
 
 #. NOTE: content_warnings: title for gambling
 #: app/_translations.py:238
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Gambling"
-msgstr "管理员"
+msgstr "赌博"
 
 #. NOTE: content_warnings: description for gambling
 #: app/_translations.py:240
 msgctxt "content_warnings"
 msgid "Games of chance, gambling games, etc"
-msgstr ""
+msgstr "机会游戏，赌博游戏等"
 
 #. NOTE: content_warnings: title for gore
 #: app/_translations.py:242
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Gore"
-msgstr "更多"
+msgstr "暴力图像"
 
 #. NOTE: content_warnings: description for gore
 #: app/_translations.py:244
 msgctxt "content_warnings"
 msgid "Blood, etc"
-msgstr ""
+msgstr "血腥等"
 
 #. NOTE: content_warnings: title for horror
 #: app/_translations.py:246
 msgctxt "content_warnings"
 msgid "Fear / Horror"
-msgstr ""
+msgstr "恐惧 / 恐怖"
 
 #. NOTE: content_warnings: description for horror
 #: app/_translations.py:248
 msgctxt "content_warnings"
 msgid "Shocking and scary content. May scare young children"
-msgstr ""
+msgstr "震撼和恐怖的内容。可能会吓到幼儿"
 
 #. NOTE: content_warnings: title for violence
 #: app/_translations.py:250
 msgctxt "content_warnings"
 msgid "Violence"
-msgstr ""
+msgstr "暴力"
 
 #. NOTE: content_warnings: description for violence
 #: app/_translations.py:252
 msgctxt "content_warnings"
 msgid "Non-cartoon violence. May be towards fantasy or  human-like characters"
-msgstr ""
+msgstr "非卡通式暴力。可能对幻想或人形角色造成伤害"
 
 #: app/querybuilder.py:60 app/templates/admin/languages/list.html:27
 #: app/templates/admin/tags/list.html:34
@@ -956,17 +930,17 @@ msgstr "欢迎来到寻找 Luanti Mod，子游戏，材质包的最佳圣地"
 #: app/blueprints/feeds/__init__.py:70 app/templates/base.html:29
 #: app/templates/base.html:36
 msgid "ContentDB new packages"
-msgstr ""
+msgstr "ContentDB 新包"
 
 #: app/blueprints/feeds/__init__.py:98 app/templates/base.html:31
 #: app/templates/base.html:38
 msgid "ContentDB package updates"
-msgstr ""
+msgstr "ContentDB 包更新"
 
 #: app/blueprints/feeds/__init__.py:107 app/templates/base.html:27
 #: app/templates/base.html:34
 msgid "ContentDB all"
-msgstr ""
+msgstr "ContentDB 全部"
 
 #: app/blueprints/oauth/__init__.py:169 app/templates/admin/tags/list.html:26
 #: app/templates/admin/warnings/list.html:24
@@ -984,7 +958,7 @@ msgstr "应用类型"
 
 #: app/blueprints/oauth/__init__.py:198
 msgid "An OAuth client with that title already exists. Please choose a new title."
-msgstr ""
+msgstr "已有一个具有该标题的 OAuth 客户端。请选一个新标题。"
 
 #: app/blueprints/oauth/__init__.py:262
 msgid "Revoked all user tokens"
@@ -1045,15 +1019,15 @@ msgstr "支持的游戏"
 
 #: app/blueprints/packages/advanced_search.py:39
 msgid "Android Default"
-msgstr ""
+msgstr "Android 默认"
 
 #: app/blueprints/packages/advanced_search.py:40
 msgid "Desktop Default"
-msgstr ""
+msgstr "桌面默认"
 
 #: app/blueprints/packages/advanced_search.py:41
 msgid "Non-free"
-msgstr ""
+msgstr "非自由"
 
 #: app/blueprints/packages/advanced_search.py:42 app/models/packages.py:630
 #: app/templates/packages/view.html:170
@@ -1063,16 +1037,15 @@ msgstr "未完工"
 #. NOTE: Package maintenance state
 #: app/blueprints/packages/advanced_search.py:43 app/models/packages.py:170
 msgid "Deprecated"
-msgstr ""
+msgstr "已弃用"
 
 #: app/blueprints/packages/advanced_search.py:44
-#, fuzzy
 msgid "All content warnings"
 msgstr "所有内容警告"
 
 #: app/blueprints/packages/advanced_search.py:53
 msgid "Query"
-msgstr ""
+msgstr "查询"
 
 #: app/blueprints/packages/advanced_search.py:54
 #: app/blueprints/packages/packages.py:231 app/templates/packages/view.html:616
@@ -1104,7 +1077,6 @@ msgid "License"
 msgstr "许可证"
 
 #: app/blueprints/packages/advanced_search.py:67
-#, fuzzy
 msgid "Supports Game"
 msgstr "支持的子游戏"
 
@@ -1130,20 +1102,19 @@ msgstr "语言"
 
 #: app/blueprints/packages/advanced_search.py:76
 msgid "Hide Tags and Content Warnings"
-msgstr ""
+msgstr "隐藏标签和内容警告"
 
 #: app/blueprints/packages/advanced_search.py:77
 msgid "Luanti Version"
 msgstr "Luanti 版本"
 
 #: app/blueprints/packages/advanced_search.py:81
-#, fuzzy
 msgid "Sort by"
 msgstr "排序方式"
 
 #: app/blueprints/packages/advanced_search.py:85
 msgid "Package score"
-msgstr ""
+msgstr "包评分"
 
 #: app/blueprints/packages/advanced_search.py:86 app/templates/index.html:78
 #: app/templates/packages/reviews_list.html:4
@@ -1158,34 +1129,30 @@ msgid "Downloads"
 msgstr "下载"
 
 #: app/blueprints/packages/advanced_search.py:88
-#, fuzzy
 msgid "Created At"
 msgstr "创建时间"
 
 #: app/blueprints/packages/advanced_search.py:89
-#, fuzzy
 msgid "Approved At"
 msgstr "审核通过时间"
 
 #: app/blueprints/packages/advanced_search.py:90
 msgid "Last Release"
-msgstr ""
+msgstr "最后发布"
 
 #: app/blueprints/packages/advanced_search.py:92
-#, fuzzy
 msgid "Order"
 msgstr "顺序"
 
 #: app/blueprints/packages/advanced_search.py:93
 msgid "Descending"
-msgstr ""
+msgstr "降序"
 
 #: app/blueprints/packages/advanced_search.py:94
 msgid "Ascending"
-msgstr ""
+msgstr "升序"
 
 #: app/blueprints/packages/advanced_search.py:96
-#, fuzzy
 msgid "Random order"
 msgstr "随机排序"
 
@@ -1308,7 +1275,7 @@ msgid ""
 msgstr "请在同意帖中留言，让编辑人员知道您做出的更改"
 
 #: app/blueprints/packages/packages.py:490
-#, fuzzy, python-format
+#, python-format
 msgid "Set state to %(state)s"
 msgstr "将状态设为 %(state)s"
 
@@ -1367,7 +1334,7 @@ msgstr "Mod（包）需要至少包含一个Mod。请创建发行版"
 #: app/blueprints/packages/releases.py:57
 #: app/blueprints/packages/releases.py:72
 msgid "Release Notes"
-msgstr ""
+msgstr "发布说明"
 
 #: app/blueprints/packages/releases.py:59
 msgid "Method"
@@ -1784,7 +1751,6 @@ msgid "User has already been claimed"
 msgstr "用户已被认领"
 
 #: app/blueprints/users/claim.py:50
-#, fuzzy
 msgid ""
 "Unable to get GitHub username for user. Make sure the forum account "
 "exists."
@@ -1794,7 +1760,7 @@ msgstr "无法获取用户的 GitHub 用户名。请确认这个论坛账户存�
 msgid ""
 "A ContentDB user with that name already exists. Please contact an admin "
 "to link to your forum account"
-msgstr ""
+msgstr "已存在一个名为该名称的 ContentDB 用户。请联系管理员以关联您的论坛账户"
 
 #: app/blueprints/users/claim.py:75
 msgid "That user has already been claimed!"
@@ -1929,14 +1895,13 @@ msgstr "有用户已经占有该名称"
 
 #: app/blueprints/users/settings.py:264
 msgid "Removed GitHub account"
-msgstr ""
+msgstr "已移除 GitHub 账户"
 
 #: app/blueprints/users/settings.py:266
-#, fuzzy
 msgid ""
 "You need to add an email address and password before you can remove your "
 "GitHub account"
-msgstr "您需要先添加邮箱地址才能移除 GitHub 账号"
+msgstr "您需要先添加邮箱地址和密码才能移除 GitHub 账号"
 
 #: app/blueprints/users/settings.py:279
 msgid "Users with moderator rank or above cannot be deleted"
@@ -1971,7 +1936,7 @@ msgid "Linked GitHub to account"
 msgstr "已绑定GitHub账号"
 
 #: app/blueprints/vcs/github.py:90
-#, fuzzy, python-format
+#, python-format
 msgid "GitHub account is already associated with another user: %(username)s"
 msgstr "这个 GitHub 账号已经与另一个用户关联：%(username)s"
 
@@ -2079,9 +2044,8 @@ msgid "You don't have permission to change the package name"
 msgstr "你没有权限重命名软件包"
 
 #: app/logic/packages.py:140
-#, fuzzy
 msgid "You cannot change package type once approved"
-msgstr "这个包已经通过审核。您不能再修改它的类型。"
+msgstr "这个包已经通过审核，你不能再修改它的类型"
 
 #: app/logic/releases.py:33
 msgid "You don't have permission to make releases"
@@ -2095,7 +2059,7 @@ msgstr "您在过去 5 分钟内为软件包创建了太多发行版，请稍候
 
 #: app/logic/releases.py:41
 msgid "A release with this name already exists"
-msgstr ""
+msgstr "已存在一个具有此名称的发布"
 
 #: app/logic/releases.py:80
 msgid "Invalid commit hash; it must be a 40 character long base16 string"
@@ -2134,20 +2098,19 @@ msgid "An account already exists for that username but hasn't been claimed yet."
 msgstr "该用户名已存在账户，但尚未被认领。"
 
 #: app/logic/users.py:29
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Unable to create an account as the username is already taken. If you "
 "meant to log in, you need to connect %(provider)s to your account first"
-msgstr "这个用户已存在，您不能使用这个用户名创建新账户。如果您想登录，请先关联%(provider)s。"
+msgstr "由于用户名已被注册，因此无法创建账号。如果您想登录，请先关联 %(provider)s"
 
 #: app/logic/users.py:33
 msgid "That username/display name is already in use, please choose another."
 msgstr "该用户名/显示名称已被使用，请选择另一个名称。"
 
 #: app/logic/users.py:40
-#, fuzzy
 msgid "Unable to create an account as the username was used in the past."
-msgstr "这个用户名以前被使用过。您不能使用这个用户名创建新账户。"
+msgstr "这个用户名以前被使用过，不能使用这个用户名创建新账户。"
 
 #: app/models/packages.py:69
 msgid "Mod"
@@ -2177,106 +2140,106 @@ msgstr "材质包"
 
 #: app/models/packages.py:87
 msgid "Top mod"
-msgstr ""
+msgstr "热门模组"
 
 #: app/models/packages.py:89
 msgid "Top game"
-msgstr ""
+msgstr "热门游戏"
 
 #: app/models/packages.py:91
 msgid "Top texture pack"
-msgstr ""
+msgstr "热门材质包"
 
 #: app/models/packages.py:94
 #, python-format
 msgid "Top %(place)d mod"
-msgstr ""
+msgstr "热门 %(place)d 模组"
 
 #: app/models/packages.py:96
 #, python-format
 msgid "Top %(place)d game"
-msgstr ""
+msgstr "热门 %(place)d 游戏"
 
 #: app/models/packages.py:98
 #, python-format
 msgid "Top %(place)d texture pack"
-msgstr ""
+msgstr "热门 %(place)d 材质包"
 
 #: app/models/packages.py:102
 #, python-format
 msgid "%(display_name)s has a mod placed at #%(place)d."
-msgstr ""
+msgstr "%(display_name)s 的模组排在 #%(place)d。"
 
 #: app/models/packages.py:105
 #, python-format
 msgid "%(display_name)s has a game placed at #%(place)d."
-msgstr ""
+msgstr "%(display_name)s 的游戏排在 #%(place)d。"
 
 #: app/models/packages.py:108
 #, python-format
 msgid "%(display_name)s has a texture pack placed at #%(place)d."
-msgstr ""
+msgstr "%(display_name)s 的材质包排在 #%(place)d。"
 
 #: app/models/packages.py:114
 msgid "Do you recommend this mod?"
-msgstr ""
+msgstr "您推荐这个模组吗？"
 
 #: app/models/packages.py:116
 msgid "Do you recommend this game?"
-msgstr ""
+msgstr "您推荐这个游戏吗？"
 
 #: app/models/packages.py:118
 msgid "Do you recommend this texture pack?"
-msgstr ""
+msgstr "您推荐这个材质包吗？"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:155 app/models/packages.py:173
 msgid "Looking for Maintainer"
-msgstr ""
+msgstr "寻找维护者"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:158
 msgid "Beta"
-msgstr ""
+msgstr "测试版"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:161
 msgid "Actively Developed"
-msgstr ""
+msgstr "积极开发中"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:164
 msgid "Maintenance Only"
-msgstr ""
+msgstr "仅维护"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:167
 msgid "As-is"
-msgstr ""
+msgstr "按原样"
 
 #: app/models/packages.py:177
 msgid "Under active development, and may break worlds/things without warning"
-msgstr ""
+msgstr "正在积极开发中，可能会在没有警告的情况下破坏世界/事物"
 
 #: app/models/packages.py:179
 msgid "Fully playable, but with some breakages/changes expected"
-msgstr ""
+msgstr "完全可玩，但预计会有一些损坏/更改"
 
 #: app/models/packages.py:181
 msgid "Finished, with bug fixes being made as needed"
-msgstr ""
+msgstr "已完成，按需进行错误修复"
 
 #: app/models/packages.py:183
 msgid ""
 "Finished, the maintainer doesn't intend to continue working on it or "
 "provide support"
-msgstr ""
+msgstr "已完成，维护者不打算继续工作或提供支持"
 
 #: app/models/packages.py:185
 msgid ""
 "The maintainer doesn't recommend this package. See the description for "
 "more info"
-msgstr ""
+msgstr "维护者不推荐此包。有关更多信息，请参见说明"
 
 #: app/models/packages.py:231
 msgid "Submit for Approval"
@@ -2301,59 +2264,54 @@ msgstr "删除"
 #: app/models/packages.py:1385
 #, python-format
 msgid "New commit %(hash)s found on the Git repo."
-msgstr ""
+msgstr "在 Git 仓库中发现新提交 %(hash)s。"
 
 #: app/models/packages.py:1389
 #, python-format
 msgid "The last release was commit %(hash)s"
-msgstr ""
+msgstr "最后一次发布是提交 %(hash)s"
 
 #: app/models/packages.py:1395
 #, python-format
 msgid "New tag %(tag_name)s found on the Git repo."
-msgstr ""
+msgstr "在 Git 仓库中发现新标签 %(tag_name)s。"
 
 #: app/models/users.py:46
-#, fuzzy
 msgid "Banned"
 msgstr "被封禁"
 
 #: app/models/users.py:48
 msgid "Not Joined"
-msgstr ""
+msgstr "未加入"
 
 #: app/models/users.py:50
-#, fuzzy
 msgid "New Member"
 msgstr "新成员"
 
 #: app/models/users.py:52
-#, fuzzy
 msgid "Member"
 msgstr "成员"
 
 #: app/models/users.py:54
-#, fuzzy
 msgid "Trusted Member"
 msgstr "受信任的成员"
 
 #: app/models/users.py:56
-#, fuzzy
 msgid "Approver"
 msgstr "审批者"
 
 #: app/models/users.py:58
 msgid "Editor"
-msgstr ""
+msgstr "编辑"
 
 #. NOTE: BOT notification type
 #: app/models/users.py:60 app/models/users.py:455
 msgid "Bot"
-msgstr ""
+msgstr "机器人"
 
 #: app/models/users.py:62
 msgid "Moderator"
-msgstr ""
+msgstr "版主"
 
 #: app/models/users.py:64 app/templates/base.html:178
 msgid "Admin"
@@ -2362,12 +2320,12 @@ msgstr "管理员"
 #. NOTE: PACKAGE_EDIT notification type
 #: app/models/users.py:440
 msgid "Package Edit"
-msgstr ""
+msgstr "包编辑"
 
 #. NOTE: PACKAGE_APPROVAL notification type
 #: app/models/users.py:443
 msgid "Package Approval"
-msgstr ""
+msgstr "包审批"
 
 #. NOTE: NEW_THREAD notification type
 #: app/models/users.py:446 app/templates/threads/list.html:12
@@ -2377,14 +2335,13 @@ msgstr "新贴子"
 
 #. NOTE: NEW_REVIEW notification type
 #: app/models/users.py:449
-#, fuzzy
 msgid "New Review"
 msgstr "新评测"
 
 #. NOTE: THREAD_REPLY notification type
 #: app/models/users.py:452
 msgid "Thread Reply"
-msgstr ""
+msgstr "主题回复"
 
 #. NOTE: MAINTAINER notification type
 #: app/models/users.py:458 app/templates/macros/threads.html:27
@@ -2394,97 +2351,97 @@ msgstr "维护者"
 #. NOTE: EDITOR_ALERT notification type
 #: app/models/users.py:461
 msgid "Editor Alert"
-msgstr ""
+msgstr "编辑者警报"
 
 #. NOTE: EDITOR_MISC notification type
 #: app/models/users.py:464
 msgid "Editor Misc"
-msgstr ""
+msgstr "编辑杂项"
 
 #. NOTE: OTHER notification type
 #: app/models/users.py:467
 msgid "Other"
-msgstr ""
+msgstr "其他"
 
 #: app/models/users.py:477
 msgid "This is a Package Edit notification."
-msgstr ""
+msgstr "这是一个包编辑通知。"
 
 #: app/models/users.py:479
 msgid "This is a Package Approval notification."
-msgstr ""
+msgstr "这是一个包审批通知。"
 
 #: app/models/users.py:481
 msgid "This is a New Thread notification."
-msgstr ""
+msgstr "这是一个新主题通知。"
 
 #: app/models/users.py:483
 msgid "This is a New Review notification."
-msgstr ""
+msgstr "这是一个新评论通知。"
 
 #: app/models/users.py:485
 msgid "This is a Thread Reply notification."
-msgstr ""
+msgstr "这是一个主题回复通知。"
 
 #: app/models/users.py:487
 msgid "This is a Bot notification."
-msgstr ""
+msgstr "这是一个机器人通知。"
 
 #: app/models/users.py:489
 msgid "This is a Maintainer change notification."
-msgstr ""
+msgstr "这是一个维护者变更通知。"
 
 #: app/models/users.py:491
 msgid "This is an Editor Alert notification."
-msgstr ""
+msgstr "这是一个编辑器警报通知。"
 
 #: app/models/users.py:493
 msgid "This is an Editor Misc notification."
-msgstr ""
+msgstr "这是一个编辑杂项通知。"
 
 #: app/models/users.py:495
 msgid "This is an Other notification."
-msgstr ""
+msgstr "这是一个其他通知。"
 
 #: app/models/users.py:502
 msgid "When another user edits your packages, releases, etc."
-msgstr ""
+msgstr "当其他用户编辑您的包、发布等。"
 
 #: app/models/users.py:504
 msgid "Notifications from editors related to the package approval process."
-msgstr ""
+msgstr "来自编辑者的与包审批流程相关的通知。"
 
 #: app/models/users.py:506
 msgid "When a thread is created on your package."
-msgstr ""
+msgstr "当您的包上创建一个主题时。"
 
 #: app/models/users.py:508
 msgid "When a user posts a review on your package."
-msgstr ""
+msgstr "当用户对您的包发布评论时。"
 
 #: app/models/users.py:510
 msgid "When someone replies to a thread you're watching."
-msgstr ""
+msgstr "当有人回复您正在关注的主题时。"
 
 #: app/models/users.py:512
 msgid "From a bot - for example, update notifications."
-msgstr ""
+msgstr "来自机器人的通知，例如更新通知。"
 
 #: app/models/users.py:514
 msgid "When your package's maintainers change."
-msgstr ""
+msgstr "当您的包的维护者更改时。"
 
 #: app/models/users.py:516
 msgid "For editors: Important alerts."
-msgstr ""
+msgstr "编辑者：重要警报。"
 
 #: app/models/users.py:518
 msgid "For editors: Minor notifications, including new threads."
-msgstr ""
+msgstr "编辑者：次要通知，包括新主题。"
 
 #: app/models/users.py:520
 msgid "Minor notifications not important enough for a dedicated category."
-msgstr ""
+msgstr "不够重要以至于需要单独类别的次要通知。"
 
 #: app/tasks/emails.py:122
 msgid ""
@@ -2625,7 +2582,7 @@ msgstr "API"
 
 #: app/templates/base.html:266
 msgid "RSS / Feeds"
-msgstr ""
+msgstr "RSS / 订阅源"
 
 #: app/templates/base.html:267 app/templates/users/register.html:40
 msgid "Privacy Policy"
@@ -2637,7 +2594,7 @@ msgstr "举报 / DMCA"
 
 #: app/templates/base.html:271 app/templates/packages/advanced_search.html:4
 msgid "Advanced Search"
-msgstr ""
+msgstr "高级搜索"
 
 #: app/templates/base.html:272
 msgid "User List"
@@ -2655,7 +2612,7 @@ msgstr "作品集"
 
 #: app/templates/base.html:275 app/templates/donate/index.html:4
 msgid "Support Creators"
-msgstr ""
+msgstr "支持创作者"
 
 #: app/templates/base.html:276
 msgid "Translate Packages"
@@ -2676,7 +2633,7 @@ msgstr "隐藏非自由软件包"
 #: app/templates/base.html:290
 #, python-format
 msgid "Our privacy policy has been updated (%(date)s)"
-msgstr ""
+msgstr "我们的隐私政策已更新 (%(date)s)"
 
 #: app/templates/index.html:4
 msgid "Welcome"
@@ -3006,13 +2963,13 @@ msgstr "支持 ContentDB"
 msgid ""
 "You can donate to rubenwardy to cover ContentDB's costs and support "
 "future development."
-msgstr ""
+msgstr "您可以向 rubenwardy 捐款，以覆盖 ContentDB 的费用并支持未来的发展。"
 
 #: app/templates/donate/index.html:67
 msgid ""
 "For more information about the cost of ContentDB and what rubenwardy "
 "does, see his donation page:"
-msgstr ""
+msgstr "有关 ContentDB 的费用和 rubenwardy 所做工作的更多信息，请查看他的捐赠页面："
 
 #: app/templates/donate/index.html:73
 msgid "Based on your reviews / favorites"
@@ -3278,11 +3235,11 @@ msgstr "发表评测"
 
 #: app/templates/macros/reviews.html:193
 msgid "Report an issue"
-msgstr ""
+msgstr "报告问题"
 
 #: app/templates/macros/reviews.html:197
 msgid "Ask a question"
-msgstr ""
+msgstr "提问"
 
 #: app/templates/macros/stats.html:15 app/templates/macros/stats.html:20
 #, python-format
@@ -3582,13 +3539,13 @@ msgstr "授权 URL 示例"
 msgid ""
 "Titles must be globally unique. For example, what's the name of your "
 "application?"
-msgstr ""
+msgstr "标题必须是全球唯一的。例如，您的应用程序叫什么名字？"
 
 #: app/templates/oauth/create_edit.html:68
 msgid ""
 "Shown to users when you request access to their account. For example, "
 "what does your application do?"
-msgstr ""
+msgstr "在您请求访问用户帐户时向用户显示。例如，您的应用程序有什么功能？"
 
 #: app/templates/oauth/create_edit.html:70
 msgid "Where will you store your client_secret?"
@@ -3613,7 +3570,7 @@ msgstr "没有应用程序被创建"
 
 #: app/templates/packages/advanced_search.html:13
 msgid "Use shift to select multiple. Leave selection empty to match any type."
-msgstr ""
+msgstr "使用 shift 选择多个。留空选择以匹配任何类型。"
 
 #: app/templates/packages/advanced_search.html:14
 #: app/templates/packages/advanced_search.html:19
@@ -3624,14 +3581,13 @@ msgstr "您可以通过按 Shift 键来选择多个项目。"
 
 #: app/templates/packages/advanced_search.html:17
 msgid "Tags and Content Warnings"
-msgstr ""
+msgstr "标签和内容警告"
 
 #: app/templates/packages/advanced_search.html:23
 msgid "Compatibility"
-msgstr ""
+msgstr "兼容性"
 
 #: app/templates/packages/advanced_search.html:28
-#, fuzzy
 msgid "Sorting"
 msgstr "排序"
 
@@ -3703,11 +3659,10 @@ msgid "Read more"
 msgstr "阅读更多"
 
 #: app/templates/packages/create_edit.html:49
-#, fuzzy
 msgid ""
 "You can include a .cdb.json file in your package to update these details "
 "automatically."
-msgstr "您可以通过添加名为 .cdb.json 的文件来自动更新这些信息。"
+msgstr "您可以通过在包里添加名为 .cdb.json 的文件来自动更新这些详细信息。"
 
 #: app/templates/packages/create_edit.html:55
 msgid ""
@@ -3727,7 +3682,8 @@ msgid ""
 "Tip: Don't include <i>Minetest</i>, <i>mod</i>, or <i>modpack</i> "
 "anywhere in the short description. It is unnecessary and wastes "
 "characters."
-msgstr ""
+msgstr "提示：在简短描述中不要包含 <i>Minetest</i>、<i>mod</i> 或 "
+"<i>modpack</i>。这是不必要的，会浪费字符。"
 
 #: app/templates/packages/create_edit.html:88
 msgid ""
@@ -4049,12 +4005,12 @@ msgstr "编辑发行版"
 #: app/templates/packages/release_edit.html:15
 #: app/templates/packages/release_new.html:42
 msgid "Release short name. Eg: 1.0.0 or 2018-05-28"
-msgstr ""
+msgstr "发布简短名称。例如：1.0.0 或 2018-05-28"
 
 #: app/templates/packages/release_edit.html:16
 #: app/templates/packages/release_new.html:43
 msgid "Human-readable name. Eg: 1.0.0 - The Trains Update"
-msgstr ""
+msgstr "人类可读的名称。例如：1.0.0 - 火车更新"
 
 #: app/templates/packages/release_edit.html:35
 #: app/templates/packages/release_view.html:35
@@ -4173,7 +4129,7 @@ msgstr "1. 命名发行版"
 
 #: app/templates/packages/release_new.html:43
 msgid "Same as name"
-msgstr ""
+msgstr "与名称相同"
 
 #: app/templates/packages/release_new.html:46
 msgid "2. Set the content"
@@ -4300,13 +4256,13 @@ msgstr "消除%(title)s"
 
 #: app/templates/packages/remove.html:12
 msgid "Change maintenance state"
-msgstr ""
+msgstr "更改维护状态"
 
 #: app/templates/packages/remove.html:14
 msgid ""
 "As an alternative to removing your package, you may wish to change the "
 "maintenance state."
-msgstr ""
+msgstr "作为删除包的替代办法，您可能希望更改维护状态。"
 
 #: app/templates/packages/remove.html:38
 msgid ""
@@ -4318,6 +4274,9 @@ msgid ""
 "\t\t\tlater point. ContentDB staff can restore removed packages, if "
 "needed."
 msgstr ""
+"为避免数据丢失，您无法永久删除包。您可以从 ContentDB "
+"中移除它们，这将导致它们对任何用户不可见。被移除的包可能会在后期被永久删除。"
+"ContentDB 员工可以在必要时恢复被移除的包。"
 
 #: app/templates/packages/remove.html:46
 msgid ""
@@ -4329,11 +4288,11 @@ msgstr ""
 
 #: app/templates/packages/remove.html:51
 msgid "You don't need to delete a package just to change something."
-msgstr ""
+msgstr "您无需仅仅为了更改某些内容而删除包。"
 
 #: app/templates/packages/remove.html:52
 msgid "Click 'Edit' at the top right of the package page."
-msgstr ""
+msgstr "请点击包页面右上角的“编辑”。"
 
 #: app/templates/packages/remove.html:60
 msgid "and"
@@ -4363,7 +4322,7 @@ msgstr "发表对%(title)s（作者:%(author)s）的评测"
 
 #: app/templates/packages/review_create_edit.html:20
 msgid "Please make sure you read ContentDB's <a href='/rules/'>rules</a>"
-msgstr ""
+msgstr "请确保您已阅读 ContentDB 的 <a href=\"/rules/\">规则</a>"
 
 #: app/templates/packages/review_create_edit.html:25
 #: app/templates/threads/new.html:16
@@ -4373,7 +4332,7 @@ msgstr "发现错误？在 <a href='%(url)s'> 问题跟踪器 </a> 上发布。"
 
 #: app/templates/packages/review_create_edit.html:55
 msgid "What language are you writing your review in?"
-msgstr ""
+msgstr "您在什么语言中编写评论？"
 
 #: app/templates/packages/review_create_edit.html:68
 msgid "Delete review."
@@ -4498,7 +4457,7 @@ msgstr "下载（.csv）"
 msgid ""
 "To provide translations for your package, you need to create .tr files "
 "and upload a new release."
-msgstr ""
+msgstr "要为您的包提供翻译，您需要创建 .tr 文件并上传一个新版本。"
 
 #: app/templates/packages/translation.html:19
 msgid ""
@@ -4536,11 +4495,11 @@ msgstr "要快速添加对 ContentDB 软件包翻译的支持，请在 %(locatio
 
 #: app/templates/packages/translation.html:102
 msgid "With games, you also need to name the textdomain in game.conf:"
-msgstr ""
+msgstr "对于游戏，您还需要在 game.conf 中命名文本域："
 
 #: app/templates/packages/translation.html:106
 msgid "Replace mymod with the name of mod / textdomain you chose."
-msgstr ""
+msgstr "用您选择的模组 / 文本域名称替换 mymod。"
 
 #: app/templates/packages/update_config.html:4
 #: app/templates/packages/update_config.html:9
@@ -4580,7 +4539,7 @@ msgstr "一旦软件包被标记为过期，你就不会再收到通知，直到
 #: app/templates/packages/view.html:22 app/templates/packages/view.html:25
 #, python-format
 msgid "%(title)s releases"
-msgstr ""
+msgstr "%(title)s 发布"
 
 #: app/templates/packages/view.html:49
 msgid "Download"
@@ -4645,7 +4604,7 @@ msgstr "翻译"
 
 #: app/templates/packages/view.html:304
 msgid "Thumbnail for video"
-msgstr ""
+msgstr "视频缩略图"
 
 #: app/templates/packages/view.html:321
 msgid "Awaiting review"
@@ -4678,7 +4637,7 @@ msgstr "查看子游戏内容"
 #: app/templates/packages/view.html:398
 #, python-format
 msgid "Release notes for %(title)s"
-msgstr ""
+msgstr "%(title)s 的发布说明"
 
 #: app/templates/packages/view.html:411
 msgid "Favorite"
@@ -4903,16 +4862,16 @@ msgstr "加上审核者和编辑"
 
 #: app/templates/threads/view.html:136
 msgid "Is this review outdated?"
-msgstr ""
+msgstr "此评论是否过时？"
 
 #: app/templates/threads/view.html:137
 msgid "For example, does it complain about issues you've already fixed?"
-msgstr ""
+msgstr "例如，它是否抱怨您已经修复的问题？"
 
 #: app/templates/threads/view.html:138
 #, python-format
 msgid "You can report outdated reviews by clicking %(flag)s on the review."
-msgstr ""
+msgstr "您可以通过点击 %(flag)s 来报告过时的评论。"
 
 #: app/templates/todo/editor.html:4 app/templates/todo/todo_base.html:17
 msgid "Editor Work Queue"
@@ -5038,7 +4997,7 @@ msgstr "软件包不支持%(rel)s"
 #: app/templates/todo/outdated.html:16 app/templates/todo/screenshots.html:12
 #: app/templates/todo/screenshots.html:16
 msgid "Minetest-Mods org only"
-msgstr ""
+msgstr "仅限 Minetest-Mods 组织"
 
 #: app/templates/todo/mtver_support.html:25 app/templates/todo/outdated.html:24
 #: app/templates/todo/screenshots.html:24
@@ -5243,7 +5202,7 @@ msgstr "查看ContentDB的GitHub权限"
 
 #: app/templates/users/account.html:65
 msgid "Disconnect"
-msgstr ""
+msgstr "断开连接"
 
 #: app/templates/users/account.html:70
 msgid "Link Github"
@@ -5267,7 +5226,7 @@ msgstr "用户还不能使用帐户删除和停用。"
 
 #: app/templates/users/account.html:88
 msgid "Please raise a report to request account deletion."
-msgstr ""
+msgstr "请提交报告以请求删除账号。"
 
 #: app/templates/users/account.html:95
 msgid "Recent Account Actions"
@@ -5293,6 +5252,8 @@ msgid ""
 "Note: protonmail is unsupported by ContentDB. <a "
 "href='https://forum.luanti.org/viewtopic.php?t=30709'>More info</a>."
 msgstr ""
+"注意：protonmail 不受 ContentDB 支持。 <a href="
+"\"https://forum.luanti.org/viewtopic.php?t=30709\">更多信息</a>."
 
 #: app/templates/users/change_set_password.html:27
 #: app/templates/users/register.html:30
@@ -5395,14 +5356,13 @@ msgid "Verification token"
 msgstr "验证令牌"
 
 #: app/templates/users/claim_forums.html:71
-#, fuzzy
 msgid ""
 "Go to <a "
 "href='https://forum.luanti.org/ucp.php?i=profile&mode=signature'>User "
 "Control Panel &gt; Profile &gt; Edit signature</a>"
 msgstr ""
-"前往<a "
-"href='https://forum.luanti.org/ucp.php?i=profile&mode=signature'>用户控制面板/个人信息/编辑签名</a>"
+"前往<a href=\"https://forum.luanti.org/ucp.php?i=profile&amp;mode=signature\""
+">用户控制面板 &gt; 个人信息 &gt; 编辑签名</a>"
 
 #: app/templates/users/claim_forums.html:75
 msgid "Paste this into your signature:"
@@ -5556,7 +5516,7 @@ msgstr "电子邮件地址"
 
 #: app/templates/users/modtools.html:116
 msgid "Pending email verifications"
-msgstr ""
+msgstr "待验证的电子邮件"
 
 #: app/templates/users/profile.html:20
 msgid "Profile picture"
@@ -5638,7 +5598,7 @@ msgstr "从论坛导入"
 
 #: app/templates/users/profile_edit.html:33
 msgid "Remove profile picture"
-msgstr ""
+msgstr "移除个人资料图片"
 
 #: app/templates/users/profile_edit.html:51
 msgid ""
@@ -5806,15 +5766,15 @@ msgstr "去年"
 
 #: app/utils/minetest_hypertext.py:108
 msgid "(view table in browser)"
-msgstr ""
+msgstr "（在浏览器中查看表格）"
 
 #: app/utils/minetest_hypertext.py:139
 msgid "Image"
-msgstr ""
+msgstr "图片"
 
 #: app/utils/minetest_hypertext.py:259
 msgid "none"
-msgstr ""
+msgstr "无"
 
 #: app/utils/minetest_hypertext.py:280
 msgid "Unsupported Games"
@@ -5826,7 +5786,7 @@ msgstr "可选择的依赖关系"
 
 #: app/utils/minetest_hypertext.py:340
 msgid "No reviews available."
-msgstr ""
+msgstr "没有可用的评论。"
 
 #: app/utils/user.py:51
 msgid "You have a lot of notifications, you should either read or clear them"
@@ -6717,4 +6677,3 @@ msgstr "请考虑启用电子邮件通知，您可以自定义发送的数量"
 
 #~ msgid "Luanti-Mods org only"
 #~ msgstr "仅限Luanti-Mods org"
-
