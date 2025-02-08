@@ -8,20 +8,21 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2022-03-20 15:57+0000\n"
-"Last-Translator: DeadManWalking <deadmanwalkingto@gmail.com>\n"
+"PO-Revision-Date: 2024-11-24 16:00+0000\n"
+"Last-Translator: Vasilis Sarantidis <bilsarantidis@gmail.com>\n"
+"Language-Team: Greek <https://hosted.weblate.org/projects/minetest/contentdb/"
+"el/>\n"
 "Language: el\n"
-"Language-Team: Greek "
-"<https://hosted.weblate.org/projects/minetest/contentdb/el/>\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.9-dev\n"
 "Generated-By: Babel 2.15.0\n"
 
 #: app/__init__.py:156
 msgid "Banned:"
-msgstr ""
+msgstr "Αποκλεισμένοι:"
 
 #: app/__init__.py:158
 msgid "You have been banned."
@@ -29,9 +30,10 @@ msgstr "Έχετε αποκλειστεί."
 
 #. NOTE: tags: title for 128px
 #: app/_translations.py:6
+#, fuzzy
 msgctxt "tags"
 msgid "128px+"
-msgstr ""
+msgstr "128 πίξελ+"
 
 #. NOTE: tags: description for 128px
 #: app/_translations.py:8
@@ -79,13 +81,13 @@ msgstr ""
 #: app/_translations.py:22
 msgctxt "tags"
 msgid "Adventure / RPG"
-msgstr ""
+msgstr "Περιπέτεια/Παιχνίδι Ρόλων"
 
 #. NOTE: tags: title for april_fools
 #: app/_translations.py:24
 msgctxt "tags"
 msgid "Joke"
-msgstr ""
+msgstr "Αστείο"
 
 #. NOTE: tags: description for april_fools
 #: app/_translations.py:26
@@ -94,12 +96,14 @@ msgid ""
 "For humorous content, meant as a novelty or joke, not to be taken "
 "seriously, and that is not meant to be used seriously or long-term."
 msgstr ""
+"Για χιουμοριστικό περιεχόμενο, δημιουργημένο για κωμικούς σκοπούς, όχι να "
+"παρθεί σοβαρά ή να χρησιμοποιηθεί σοβαρά και μακροπρόθεσμα."
 
 #. NOTE: tags: title for building
 #: app/_translations.py:28
 msgctxt "tags"
 msgid "Building"
-msgstr ""
+msgstr "Κτίσμα"
 
 #. NOTE: tags: description for building
 #: app/_translations.py:30
@@ -135,39 +139,43 @@ msgstr ""
 #: app/_translations.py:40
 msgctxt "tags"
 msgid "Commerce / Economy"
-msgstr ""
+msgstr "Εμπόριο / Οικονομία"
 
 #. NOTE: tags: description for commerce
 #: app/_translations.py:42
 msgctxt "tags"
 msgid "Related to economies, money, and trading"
-msgstr ""
+msgstr "Σχετικό με οικονομικά, χρήματα και εμπορικές συναλλαγές"
 
 #. NOTE: tags: title for complex_installation
 #: app/_translations.py:44
 msgctxt "tags"
 msgid "Complex installation"
-msgstr ""
+msgstr "Περίπλοκη εγκατάσταση"
 
 #. NOTE: tags: description for complex_installation
 #: app/_translations.py:46
+#, fuzzy
 msgctxt "tags"
 msgid ""
 "Requires futher installation steps, such as installing LuaRocks or "
 "editing the trusted mod setting"
 msgstr ""
+"Απαιτεί περεταίρω βήματα εγκατάστασης, όπως την εγκατάσταση του LuaRocks ή "
+"την επεξεργασία της έμπιστης ρύθμισης της αλλαγής"
 
 #. NOTE: tags: title for crafting
 #: app/_translations.py:48
 msgctxt "tags"
 msgid "Crafting"
-msgstr ""
+msgstr "Κατασκευή"
 
 #. NOTE: tags: description for crafting
 #: app/_translations.py:50
+#, fuzzy
 msgctxt "tags"
 msgid "Big changes to crafting gameplay"
-msgstr ""
+msgstr "Μεγάλες αλλαγές στον τρόπο παιχνιδιού με κατασκευή"
 
 #. NOTE: tags: title for creative
 #: app/_translations.py:52
@@ -202,10 +210,9 @@ msgstr ""
 
 #. NOTE: tags: title for decorative
 #: app/_translations.py:60
-#, fuzzy
 msgctxt "tags"
 msgid "Decorative"
-msgstr "Απενεργοποίηση"
+msgstr "Διακοσμητικό"
 
 #. NOTE: tags: description for decorative
 #: app/_translations.py:62
@@ -256,13 +263,13 @@ msgstr ""
 #: app/_translations.py:76
 msgctxt "tags"
 msgid "Food / Drinks"
-msgstr ""
+msgstr "Φαγητό / Ποτά"
 
 #. NOTE: tags: title for gui
 #: app/_translations.py:78
 msgctxt "tags"
 msgid "GUI"
-msgstr ""
+msgstr "GUI"
 
 #. NOTE: tags: description for gui
 #: app/_translations.py:80
@@ -294,7 +301,7 @@ msgstr ""
 #: app/_translations.py:88
 msgctxt "tags"
 msgid "Changes the inventory GUI"
-msgstr ""
+msgstr "Αλλάζει την γραφική αναπαράσταση του inventory"
 
 #. NOTE: tags: title for jam_combat_mod
 #: app/_translations.py:90
@@ -307,6 +314,8 @@ msgstr ""
 msgctxt "tags"
 msgid "For mods created for the Discord \"Combat\" modding event in 2020"
 msgstr ""
+"Για τροποποιήσεις που φτιάχτηκαν για τη διοργάνωση \"Combat\" modding του "
+"2020 στο Disord"
 
 #. NOTE: tags: title for jam_game_2021
 #: app/_translations.py:94
@@ -318,7 +327,7 @@ msgstr ""
 #: app/_translations.py:96
 msgctxt "tags"
 msgid "Entries to the 2021 Minetest Game Jam"
-msgstr ""
+msgstr "Συμμετοχές στον διαγωνισμό Minetest Game Jam του 2021"
 
 #. NOTE: tags: title for jam_game_2022
 #: app/_translations.py:98
@@ -396,9 +405,10 @@ msgstr ""
 
 #. NOTE: tags: title for magic
 #: app/_translations.py:122
+#, fuzzy
 msgctxt "tags"
 msgid "Magic / Enchanting"
-msgstr ""
+msgstr "Μαγεία"
 
 #. NOTE: tags: title for mapgen
 #: app/_translations.py:124
@@ -414,58 +424,57 @@ msgstr ""
 
 #. NOTE: tags: title for mini-game
 #: app/_translations.py:128
-#, fuzzy
 msgctxt "tags"
 msgid "Mini-game"
-msgstr "Όνομα"
+msgstr "Μίνι-Παιχνίδι"
 
 #. NOTE: tags: description for mini-game
 #: app/_translations.py:130
 msgctxt "tags"
 msgid "Adds a mini-game to be played within Luanti"
-msgstr ""
+msgstr "Προσθέτει ένα μίνι-παιχνίδι που παίζεται στο Luanti"
 
 #. NOTE: tags: title for mobs
 #: app/_translations.py:132
 msgctxt "tags"
 msgid "Mobs / Animals / NPCs"
-msgstr ""
+msgstr "Πλάσματα / Ζώα/ NPC"
 
 #. NOTE: tags: description for mobs
 #: app/_translations.py:134
 msgctxt "tags"
 msgid "Adds mobs, animals, and non-player characters"
-msgstr ""
+msgstr "Προσθέτει πλάσματα, ζώα και μη-ελεγχόμενους χαρακτήρες"
 
 #. NOTE: tags: title for mtg
 #: app/_translations.py:136
 msgctxt "tags"
 msgid "Minetest Game improved"
-msgstr ""
+msgstr "Το παιχνίδι Minetest βελτιώθηκε"
 
 #. NOTE: tags: description for mtg
 #: app/_translations.py:138
 msgctxt "tags"
 msgid "Forks of Minetest Game"
-msgstr ""
+msgstr "Διακλαδώσεις για το παιχνίδι Minetest"
 
 #. NOTE: tags: title for multiplayer
 #: app/_translations.py:140
 msgctxt "tags"
 msgid "Multiplayer-focused"
-msgstr ""
+msgstr "Επικεντρωμένο στο Multiplayer"
 
 #. NOTE: tags: description for multiplayer
 #: app/_translations.py:142
 msgctxt "tags"
 msgid "Can/should only be used in multiplayer"
-msgstr ""
+msgstr "Μπορεί/πρέπει να χρησιμοποιείται μόνο στο multiplayer"
 
 #. NOTE: tags: title for oneofakind__original
 #: app/_translations.py:144
 msgctxt "tags"
 msgid "One-of-a-kind / Original"
-msgstr ""
+msgstr "Μοναδικό"
 
 #. NOTE: tags: description for oneofakind__original
 #: app/_translations.py:146
@@ -479,13 +488,13 @@ msgstr ""
 #: app/_translations.py:148
 msgctxt "tags"
 msgid "Plants and Farming"
-msgstr ""
+msgstr "Φυτά και καλλιέργεια"
 
 #. NOTE: tags: description for plants_and_farming
 #: app/_translations.py:150
 msgctxt "tags"
 msgid "Adds new plants or other farmable resources."
-msgstr ""
+msgstr "Προσθέτει νέα φυτά ή καλλιεργήσιμες πρώτες ύλες."
 
 #. NOTE: tags: title for player_effects
 #: app/_translations.py:152
@@ -541,10 +550,9 @@ msgstr ""
 
 #. NOTE: tags: title for seasonal
 #: app/_translations.py:168
-#, fuzzy
 msgctxt "tags"
 msgid "Seasonal"
-msgstr "Αιτία"
+msgstr "Εποχικό"
 
 #. NOTE: tags: description for seasonal
 #: app/_translations.py:170
@@ -6606,4 +6614,3 @@ msgstr ""
 
 #~ msgid "Luanti-Mods org only"
 #~ msgstr ""
-
