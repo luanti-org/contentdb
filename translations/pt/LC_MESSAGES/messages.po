@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2024-08-20 11:09+0000\n"
-"Last-Translator: José Douglas <josedouglas20002014@gmail.com>\n"
+"PO-Revision-Date: 2024-12-06 21:06+0000\n"
+"Last-Translator: ats <athos2256@gmail.com>\n"
+"Language-Team: Portuguese <https://hosted.weblate.org/projects/minetest/"
+"contentdb/pt/>\n"
 "Language: pt\n"
-"Language-Team: Portuguese "
-"<https://hosted.weblate.org/projects/minetest/contentdb/pt/>\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.9-dev\n"
 "Generated-By: Babel 2.15.0\n"
 
 #: app/__init__.py:156
@@ -31,53 +32,49 @@ msgstr "Você foi banido."
 #: app/_translations.py:6
 msgctxt "tags"
 msgid "128px+"
-msgstr ""
+msgstr "128px+"
 
 #. NOTE: tags: description for 128px
 #: app/_translations.py:8
-#, fuzzy
 msgctxt "tags"
 msgid "For 128px or higher texture packs"
-msgstr "Melhores Pacotes de Texturas"
+msgstr "Para pacotes de textura com 128px ou mais"
 
 #. NOTE: tags: title for 16px
 #: app/_translations.py:10
 msgctxt "tags"
 msgid "16px"
-msgstr ""
+msgstr "16px"
 
 #. NOTE: tags: description for 16px
 #: app/_translations.py:12
-#, fuzzy
 msgctxt "tags"
 msgid "For 16px texture packs"
-msgstr "Melhores Pacotes de Texturas"
+msgstr "Para pacotes de textura de 16px"
 
 #. NOTE: tags: title for 32px
 #: app/_translations.py:14
 msgctxt "tags"
 msgid "32px"
-msgstr ""
+msgstr "32px"
 
 #. NOTE: tags: description for 32px
 #: app/_translations.py:16
-#, fuzzy
 msgctxt "tags"
 msgid "For 32px texture packs"
-msgstr "Melhores Pacotes de Texturas"
+msgstr "Para pacotes de textura de 32px"
 
 #. NOTE: tags: title for 64px
 #: app/_translations.py:18
 msgctxt "tags"
 msgid "64px"
-msgstr ""
+msgstr "64px"
 
 #. NOTE: tags: description for 64px
 #: app/_translations.py:20
-#, fuzzy
 msgctxt "tags"
 msgid "For 64px texture packs"
-msgstr "Melhores Pacotes de Texturas"
+msgstr "Para pacotes de textura de 64px"
 
 #. NOTE: tags: title for adventure__rpg
 #: app/_translations.py:22
@@ -89,7 +86,7 @@ msgstr "Aventura / RPG"
 #: app/_translations.py:24
 msgctxt "tags"
 msgid "Joke"
-msgstr ""
+msgstr "1º de abril"
 
 #. NOTE: tags: description for april_fools
 #: app/_translations.py:26
@@ -98,24 +95,26 @@ msgid ""
 "For humorous content, meant as a novelty or joke, not to be taken "
 "seriously, and that is not meant to be used seriously or long-term."
 msgstr ""
+"Para conteúdo satírico, como piadas ou memes, feitos para não se levar a "
+"sério."
 
 #. NOTE: tags: title for building
 #: app/_translations.py:28
 msgctxt "tags"
 msgid "Building"
-msgstr ""
+msgstr "Construção"
 
 #. NOTE: tags: description for building
 #: app/_translations.py:30
 msgctxt "tags"
 msgid "Focuses on building, such as adding new materials or nodes"
-msgstr ""
+msgstr "Foco em construções, como adicionar novos materiais ou nodes"
 
 #. NOTE: tags: title for building_mechanics
 #: app/_translations.py:32
 msgctxt "tags"
 msgid "Building Mechanics and Tools"
-msgstr ""
+msgstr "Construir engenhos e ferramentas"
 
 #. NOTE: tags: description for building_mechanics
 #: app/_translations.py:34
@@ -231,22 +230,21 @@ msgstr "Ferramentas para desenvolvedores de jogos e mods"
 
 #. NOTE: tags: title for education
 #: app/_translations.py:68
-#, fuzzy
 msgctxt "tags"
 msgid "Education"
-msgstr "Ação"
+msgstr "Educação"
 
 #. NOTE: tags: description for education
 #: app/_translations.py:70
 msgctxt "tags"
 msgid "Either has educational value, or is a tool to help teachers "
-msgstr ""
+msgstr "Tem foco educacional ou é uma ferramenta para ajudar professores "
 
 #. NOTE: tags: title for environment
 #: app/_translations.py:72
 msgctxt "tags"
 msgid "Environment / Weather"
-msgstr ""
+msgstr "Ambiente / Clima"
 
 #. NOTE: tags: description for environment
 #: app/_translations.py:74
@@ -254,19 +252,19 @@ msgctxt "tags"
 msgid ""
 "Improves the world, adding weather, ambient sounds, or other environment "
 "mechanics"
-msgstr ""
+msgstr "Melhora o mundo, adicionando clima, sons ambientes, ou outras coisas"
 
 #. NOTE: tags: title for food
 #: app/_translations.py:76
 msgctxt "tags"
 msgid "Food / Drinks"
-msgstr ""
+msgstr "Comida / Bebidas"
 
 #. NOTE: tags: title for gui
 #: app/_translations.py:78
 msgctxt "tags"
 msgid "GUI"
-msgstr ""
+msgstr "GUI"
 
 #. NOTE: tags: description for gui
 #: app/_translations.py:80
@@ -275,18 +273,19 @@ msgid ""
 "For content whose main utility or features are provided within a GUI, on-"
 "screen menu, or similar"
 msgstr ""
+"Para conteúdos que modificam ou adicionam interfaces ou menus dentro do jogo"
 
 #. NOTE: tags: title for hud
 #: app/_translations.py:82
 msgctxt "tags"
 msgid "HUD"
-msgstr ""
+msgstr "HUD"
 
 #. NOTE: tags: description for hud
 #: app/_translations.py:84
 msgctxt "tags"
 msgid "For mods that grant the player extra information in the HUD"
-msgstr ""
+msgstr "Mods que mostram mais informações na HUD do jogo"
 
 #. NOTE: tags: title for inventory
 #: app/_translations.py:86
@@ -304,67 +303,67 @@ msgstr "Altera a GUI do inventário"
 #: app/_translations.py:90
 msgctxt "tags"
 msgid "Jam / Combat 2020"
-msgstr ""
+msgstr "Game jam de 2020"
 
 #. NOTE: tags: description for jam_combat_mod
 #: app/_translations.py:92
 msgctxt "tags"
 msgid "For mods created for the Discord \"Combat\" modding event in 2020"
-msgstr ""
+msgstr "Mods criados para a game jam do discord com tema \"combate\" em 2020"
 
 #. NOTE: tags: title for jam_game_2021
 #: app/_translations.py:94
 msgctxt "tags"
 msgid "Jam / Game 2021"
-msgstr ""
+msgstr "Game jam de 2021"
 
 #. NOTE: tags: description for jam_game_2021
 #: app/_translations.py:96
 msgctxt "tags"
 msgid "Entries to the 2021 Minetest Game Jam"
-msgstr ""
+msgstr "Jogos da Game jam 2021"
 
 #. NOTE: tags: title for jam_game_2022
 #: app/_translations.py:98
 msgctxt "tags"
 msgid " Jam / Game 2022"
-msgstr ""
+msgstr " Game Jam 2022"
 
 #. NOTE: tags: description for jam_game_2022
 #: app/_translations.py:100
 msgctxt "tags"
 msgid "Entries to the 2022 Minetest Game Jam "
-msgstr ""
+msgstr "Jogos da Game jam 2022 "
 
 #. NOTE: tags: title for jam_game_2023
 #: app/_translations.py:102
 msgctxt "tags"
 msgid "Jam / Game 2023"
-msgstr ""
+msgstr "Game jam 2023"
 
 #. NOTE: tags: description for jam_game_2023
 #: app/_translations.py:104
 msgctxt "tags"
 msgid "Entries to the 2023 Minetest Game Jam "
-msgstr ""
+msgstr "Jogos da Game jam 2023 "
 
 #. NOTE: tags: title for jam_game_2024
 #: app/_translations.py:106
 msgctxt "tags"
 msgid "Jam / Game 2024"
-msgstr ""
+msgstr "Game Jam 2024"
 
 #. NOTE: tags: description for jam_game_2024
 #: app/_translations.py:108
 msgctxt "tags"
 msgid "Entries to the 2024 Luanti Game Jam"
-msgstr ""
+msgstr "Jogos da Game jam 2024"
 
 #. NOTE: tags: title for jam_weekly_2021
 #: app/_translations.py:110
 msgctxt "tags"
 msgid "Jam / Weekly Challenges 2021"
-msgstr ""
+msgstr "Jam / desafios semanais de 2021"
 
 #. NOTE: tags: description for jam_weekly_2021
 #: app/_translations.py:112
@@ -372,37 +371,37 @@ msgctxt "tags"
 msgid ""
 "For mods created for the Discord \"Weekly Challenges\" modding event in "
 "2021"
-msgstr ""
+msgstr "Mods criados para o evento de \"Desafios Semanais\" em 2021"
 
 #. NOTE: tags: title for less_than_px
 #: app/_translations.py:114
 msgctxt "tags"
 msgid "<16px"
-msgstr ""
+msgstr "Menor que 16px"
 
 #. NOTE: tags: description for less_than_px
 #: app/_translations.py:116
 msgctxt "tags"
 msgid "Less than 16px"
-msgstr ""
+msgstr "Menos que 16px"
 
 #. NOTE: tags: title for library
 #: app/_translations.py:118
 msgctxt "tags"
 msgid "API / Library"
-msgstr ""
+msgstr "API / Biblioteca"
 
 #. NOTE: tags: description for library
 #: app/_translations.py:120
 msgctxt "tags"
 msgid "Primarily adds an API for other mods to use"
-msgstr ""
+msgstr "Que adiciona uma API para outros mods usarem"
 
 #. NOTE: tags: title for magic
 #: app/_translations.py:122
 msgctxt "tags"
 msgid "Magic / Enchanting"
-msgstr ""
+msgstr "Magia / Encatamento"
 
 #. NOTE: tags: title for mapgen
 #: app/_translations.py:124
@@ -418,58 +417,57 @@ msgstr "Nova mapgen ou mudanças no mapgen"
 
 #. NOTE: tags: title for mini-game
 #: app/_translations.py:128
-#, fuzzy
 msgctxt "tags"
 msgid "Mini-game"
-msgstr "Nome"
+msgstr "Mini-Game"
 
 #. NOTE: tags: description for mini-game
 #: app/_translations.py:130
 msgctxt "tags"
 msgid "Adds a mini-game to be played within Luanti"
-msgstr ""
+msgstr "Adiciona um mini-game para ser jogado dentro do jogo"
 
 #. NOTE: tags: title for mobs
 #: app/_translations.py:132
 msgctxt "tags"
 msgid "Mobs / Animals / NPCs"
-msgstr ""
+msgstr "Mobs / Animais / NPCs"
 
 #. NOTE: tags: description for mobs
 #: app/_translations.py:134
 msgctxt "tags"
 msgid "Adds mobs, animals, and non-player characters"
-msgstr ""
+msgstr "Adiciona mobs, animais, e personagens não jogáveis (NPCs)"
 
 #. NOTE: tags: title for mtg
 #: app/_translations.py:136
 msgctxt "tags"
 msgid "Minetest Game improved"
-msgstr ""
+msgstr "Minetest melhorado"
 
 #. NOTE: tags: description for mtg
 #: app/_translations.py:138
 msgctxt "tags"
 msgid "Forks of Minetest Game"
-msgstr ""
+msgstr "Forks do Minetest Game"
 
 #. NOTE: tags: title for multiplayer
 #: app/_translations.py:140
 msgctxt "tags"
 msgid "Multiplayer-focused"
-msgstr ""
+msgstr "Foco em multiplayer"
 
 #. NOTE: tags: description for multiplayer
 #: app/_translations.py:142
 msgctxt "tags"
 msgid "Can/should only be used in multiplayer"
-msgstr ""
+msgstr "Que só pode ser usado no multiplayer"
 
 #. NOTE: tags: title for oneofakind__original
 #: app/_translations.py:144
 msgctxt "tags"
 msgid "One-of-a-kind / Original"
-msgstr ""
+msgstr "Único / Original"
 
 #. NOTE: tags: description for oneofakind__original
 #: app/_translations.py:146
@@ -477,7 +475,7 @@ msgctxt "tags"
 msgid ""
 "For games and such that are of their own kind, distinct and original in "
 "nature to others of the same category."
-msgstr ""
+msgstr "Jogos que são únicos e originais, sem uma classificação própria."
 
 #. NOTE: tags: title for plants_and_farming
 #: app/_translations.py:148
@@ -967,7 +965,7 @@ msgstr "Descrição"
 
 #: app/blueprints/oauth/__init__.py:170
 msgid "Redirect URL"
-msgstr "Redirecionar URL"
+msgstr "URL de redirecionamento"
 
 #: app/blueprints/oauth/__init__.py:171
 msgid "App Type"
@@ -1022,7 +1020,7 @@ msgstr "Estatísticas"
 
 #: app/blueprints/packages/__init__.py:67 app/templates/packages/share.html:4
 msgid "Share and Badges"
-msgstr "Partilhar e Selos"
+msgstr "Vezes compartilhadas e Distintivos"
 
 #: app/blueprints/packages/__init__.py:72
 msgid "Remove / Unpublish"
@@ -1324,11 +1322,13 @@ msgstr "Você não é um mantenedor"
 
 #: app/blueprints/packages/packages.py:613
 msgid "Package owners cannot remove themselves as maintainers"
-msgstr "Donos de pacotes não podem remover a si mesmos como mantedores"
+msgstr ""
+"você não pode retirar você mesmo da lista de mantenedores, pois você é o "
+"dono deste pacote."
 
 #: app/blueprints/packages/packages.py:645
 msgid "Author Name"
-msgstr "Nome do Autor"
+msgstr "nome do autor"
 
 #: app/blueprints/packages/packages.py:732
 msgid "Enable support detection based on dependencies (recommended)"
@@ -1349,14 +1349,14 @@ msgstr "Suporta todos os jogos (a menos que indicado) / é independente de jogos
 #: app/blueprints/packages/packages.py:751
 msgid "You need at least one release before you can edit game support"
 msgstr ""
-"Precisa de pelo menos 1 lançamento antes de poder editar o suporte de "
-"jogos"
+"Você precisa de pelo menos um pacote lançado para editar a lista de jogos "
+"suportados."
 
 #: app/blueprints/packages/packages.py:755
 msgid "Mod(pack) needs to contain at least one mod. Please create a new release"
 msgstr ""
-"(Pacotes de) mods precisam conter ao menos um mod. Por favor, crie um "
-"novo lançamento"
+"O Modpack a ser lançado precisa de pelo menos 1 mod. Por favor, coloque um "
+"novo."
 
 #: app/blueprints/packages/releases.py:57
 #: app/blueprints/packages/releases.py:72
@@ -1371,11 +1371,11 @@ msgstr "Método"
 #: app/blueprints/packages/releases.py:61
 #: app/blueprints/packages/screenshots.py:35
 msgid "File Upload"
-msgstr "Upload de ficheiro"
+msgstr "Upload do arquivo"
 
 #: app/blueprints/packages/releases.py:60
 msgid "Git reference (ie: commit hash, branch, or tag)"
-msgstr "Referência Git (ou seja: commit_hash, branch ou tag)"
+msgstr "Referência Git (Exemplos: Commit hash, branch ou tag)"
 
 #: app/blueprints/packages/releases.py:62
 #: app/blueprints/packages/releases.py:77
@@ -1410,7 +1410,7 @@ msgstr "Importar do Git"
 
 #: app/blueprints/packages/releases.py:98
 msgid "Upload .zip file"
-msgstr "Upload de ficheiro .zip"
+msgstr "Upload arquivo .zip"
 
 #: app/blueprints/packages/releases.py:216
 msgid "Set Min"
@@ -1422,7 +1422,7 @@ msgstr "Definir Máximo"
 
 #: app/blueprints/packages/releases.py:222
 msgid "Only change values previously set as none"
-msgstr "Altere apenas os valores definidos anteriormente como nenhum"
+msgstr "Apenas muda valores anteriormente definidos a \"nenhum\"."
 
 #: app/blueprints/packages/releases.py:223
 msgid "Update"
@@ -1452,7 +1452,7 @@ msgstr "Ação"
 
 #: app/blueprints/packages/releases.py:281
 msgid "Send notification and mark as outdated"
-msgstr "Enviar notificação e marcar como desatualizado"
+msgstr "Mandar notificação e marcar como \"descontinuado/ultrapassado\""
 
 #: app/blueprints/packages/releases.py:281 app/logic/package_approval.py:104
 msgid "Create release"
@@ -1469,16 +1469,17 @@ msgstr "Desabilitar Automação"
 #: app/blueprints/packages/releases.py:323
 msgid "Please add a Git repository URL in order to set up automatic releases"
 msgstr ""
-"Por favor, adicione uma URL de repositório Git para configurar "
-"lançamentos automáticos"
+"Por favor, adicione a URL de um repositório Git para automatizar os "
+"lançamentos do pacote (assim, eles serão ser enviados para o ContentDB "
+"automaticamente.)"
 
 #: app/blueprints/packages/releases.py:339
 msgid "Deleted update configuration"
-msgstr "Configuração de atualização deletada"
+msgstr "Configuração de Update deletada"
 
 #: app/blueprints/packages/releases.py:347
 msgid "Now, please create an initial release"
-msgstr "Por favor, crie um lançamento inicial"
+msgstr "Agora, crie por favor um lançamento inicial para o pacote."
 
 #: app/blueprints/packages/reviews.py:60 app/blueprints/threads/__init__.py:181
 #: app/blueprints/threads/__init__.py:182
@@ -1507,40 +1508,40 @@ msgstr "Não"
 
 #: app/blueprints/packages/reviews.py:71
 msgid "You can't review your own package!"
-msgstr "Não pode fazer review dos seus pacotes!"
+msgstr "Você não pode fazer uma review de seu próprio pacote!"
 
 #: app/blueprints/packages/reviews.py:81
 msgid ""
 "You've reviewed too many packages recently. Please wait before trying "
 "again, and consider making your reviews more detailed"
 msgstr ""
-"Fez review de muitos pacotes recentemente. Por favor, espere antes de "
-"tentar novamente e considere fazer reviews mais detalhadas"
+"Você fez review de muitos pacotes recentemente. Por favor, espere para "
+"tentar novamente, e considere fazer suas reviews um tanto mais detalhadas."
 
 #: app/blueprints/packages/reviews.py:94 app/blueprints/threads/__init__.py:207
 #: app/blueprints/threads/__init__.py:240
 #: app/blueprints/threads/__init__.py:335 app/blueprints/users/settings.py:114
 #: app/logic/packages.py:131
 msgid "Linking to blocked sites is not allowed"
-msgstr "Linkar para sites bloqueados não é permitido"
+msgstr "Anexar links de sites bloqueados não é permitido"
 
 #: app/blueprints/packages/reviews.py:199
 msgid "You can't vote on the reviews on your own package!"
-msgstr "Não pode votar em reviews dos seus pacotes!"
+msgstr "Você não pode votar em reviews de seus próprios pacotes!"
 
 #: app/blueprints/packages/reviews.py:206
 msgid "You can't vote on your own reviews!"
-msgstr "Não pode votar nas suas reviews!"
+msgstr "Você não pode votar em suas próprias reviews."
 
 #: app/blueprints/packages/screenshots.py:34
 #: app/blueprints/packages/screenshots.py:40
 msgid "Title/Caption"
-msgstr "Título/Legenda"
+msgstr "Título/Descrição pequena"
 
 #: app/blueprints/packages/screenshots.py:46
 #: app/templates/packages/screenshots.html:110
 msgid "Cover Image"
-msgstr "Imagem de capa"
+msgstr "Imagem de thumbnail"
 
 #: app/blueprints/report/__init__.py:34 app/templates/users/modtools.html:79
 msgid "Message"
@@ -1551,19 +1552,19 @@ msgstr "Mensagem"
 #: app/templates/report/index.html:10 app/templates/users/account.html:91
 #: app/templates/users/profile.html:37
 msgid "Report"
-msgstr "Reportar"
+msgstr "Reportar/Denunciar"
 
 #: app/blueprints/threads/__init__.py:71
 msgid "Already subscribed!"
-msgstr "Já inscrito!"
+msgstr "Já está inscrito!"
 
 #: app/blueprints/threads/__init__.py:73
 msgid "Subscribed to thread"
-msgstr "Inscrito para thread"
+msgstr "Inscrito na thread"
 
 #: app/blueprints/threads/__init__.py:88
 msgid "Unsubscribed!"
-msgstr "Não inscrito!"
+msgstr "Saiu/está fora da thread"
 
 #: app/blueprints/threads/__init__.py:92
 msgid "Already not subscribed!"
@@ -1575,86 +1576,86 @@ msgstr "Thread bloqueada"
 
 #: app/blueprints/threads/__init__.py:113
 msgid "Unlocked thread"
-msgstr "Thread desbloqueada"
+msgstr "Thread livre"
 
 #: app/blueprints/threads/__init__.py:162
 msgid "Cannot delete thread opening post!"
-msgstr "Não é possível apagar a postagem de abertura do tópico!"
+msgstr "Você não pode deletar a thread de abertura!"
 
 #: app/blueprints/threads/__init__.py:236
 msgid "Please wait before commenting again"
-msgstr "Por favor, espere antes de comentar de novo"
+msgstr "Por favor, espere um pouco para comentar novamente."
 
 #: app/blueprints/threads/__init__.py:285
 #: app/templates/macros/package_approval.html:56
 msgid "Open Thread"
-msgstr "Abrir tópico"
+msgstr "Thread aberta"
 
 #: app/blueprints/threads/__init__.py:310
 msgid "Unable to create thread!"
-msgstr "Incapaz de criar tópico!"
+msgstr "Impossível criar threads!"
 
 #: app/blueprints/threads/__init__.py:316
 msgid "An approval thread already exists! Consider replying there instead"
-msgstr "Já existe um tópico de aprovação. Considere responder!"
+msgstr "A thread de aprovação do pacote já existe, considere responder lá."
 
 #: app/blueprints/threads/__init__.py:320
 msgid "Please wait before opening another thread"
-msgstr "Por favor, espere antes de abrir outro tópico"
+msgstr "Por favor, espere um pouco antes de criar outra thread."
 
 #: app/blueprints/todo/user.py:193
 #: app/templates/collections/package_add_to.html:46
 msgid "Done"
-msgstr "Concluído"
+msgstr "Pronto"
 
 #: app/blueprints/users/account.py:36 app/templates/users/login.html:15
 msgid "Username or email"
-msgstr "Nome de utilizador ou e-mail"
+msgstr "Nome de usuário ou email"
 
 #: app/blueprints/users/account.py:37 app/blueprints/users/account.py:105
 #: app/templates/users/account.html:14 app/templates/users/login.html:16
 #: app/templates/users/modtools.html:52
 msgid "Password"
-msgstr "Palavra-passe"
+msgstr "Senha"
 
 #: app/blueprints/users/account.py:38 app/blueprints/zipgrep/__init__.py:37
 msgid "Remember me"
-msgstr "Lembre-me"
+msgstr "Lembre de mim na próxima vez que eu entrar no site"
 
 #: app/blueprints/users/account.py:39 app/templates/base.html:190
 #: app/templates/donate/index.html:85 app/templates/users/login.html:4
 msgid "Sign in"
-msgstr "Registar-se"
+msgstr "Entrar"
 
 #: app/blueprints/users/account.py:45
 msgid "Incorrect email or password"
-msgstr "E-mail ou palavra-passe incorretos"
+msgstr "Email ou senha incorretos."
 
 #: app/blueprints/users/account.py:52
 #, python-format
 msgid "User %(username)s does not exist"
-msgstr "Utilizador %(username)s não existe"
+msgstr "O usuário %(username)s não existe"
 
 #: app/blueprints/users/account.py:55
 msgid "Incorrect password. Did you set one?"
-msgstr "Palavra-passe incorreta. Configurou uma?"
+msgstr "Senha incorreta. você definiu uma?"
 
 #: app/blueprints/users/account.py:58
 msgid "You need to confirm the registration email"
-msgstr "Precisa confirmar o e-mail de cadastro"
+msgstr "Você precisa de confirmar o email de registro"
 
 #: app/blueprints/users/account.py:66
 msgid "Login failed"
-msgstr "Login falhou"
+msgstr "O Login falhou"
 
 #: app/blueprints/users/account.py:100 app/blueprints/users/settings.py:76
 msgid "Display Name"
-msgstr "Nome mostrado"
+msgstr "Nome que será exibido"
 
 #: app/blueprints/users/account.py:101 app/blueprints/users/settings.py:324
 #: app/templates/users/list.html:18
 msgid "Username"
-msgstr "Utilizador"
+msgstr "Nome de usuário"
 
 #: app/blueprints/users/account.py:102
 msgid ""
@@ -6556,4 +6557,3 @@ msgstr ""
 
 #~ msgid "Luanti-Mods org only"
 #~ msgstr ""
-
