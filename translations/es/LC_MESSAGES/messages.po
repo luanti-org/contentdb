@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2024-11-09 23:00+0000\n"
-"Last-Translator: chocomint <silentxe1@gmail.com>\n"
+"PO-Revision-Date: 2024-12-01 22:00+0000\n"
+"Last-Translator: Jorge Rodríguez <mr.jrodriguez05@gmail.com>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/minetest/"
+"contentdb/es/>\n"
 "Language: es\n"
-"Language-Team: Spanish "
-"<https://hosted.weblate.org/projects/minetest/contentdb/es/>\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.9-dev\n"
 "Generated-By: Babel 2.15.0\n"
 
 #: app/__init__.py:156
@@ -366,13 +367,13 @@ msgstr "Entradas para el Minetest Game Jam 2023 "
 #: app/_translations.py:106
 msgctxt "tags"
 msgid "Jam / Game 2024"
-msgstr ""
+msgstr "Jam / Juego 2024"
 
 #. NOTE: tags: description for jam_game_2024
 #: app/_translations.py:108
 msgctxt "tags"
 msgid "Entries to the 2024 Luanti Game Jam"
-msgstr ""
+msgstr "Entradas para el Luanti Game Jam 2024"
 
 #. NOTE: tags: title for jam_weekly_2021
 #: app/_translations.py:110
@@ -2152,7 +2153,7 @@ msgstr ""
 
 #: app/logic/releases.py:41
 msgid "A release with this name already exists"
-msgstr ""
+msgstr "Ya existe un lanzamiento con este nombre"
 
 #: app/logic/releases.py:80
 msgid "Invalid commit hash; it must be a 40 character long base16 string"
@@ -5601,6 +5602,8 @@ msgid ""
 "Note: protonmail is unsupported by ContentDB. <a "
 "href='https://forum.luanti.org/viewtopic.php?t=30709'>More info</a>."
 msgstr ""
+"Nota: ContentDB no soporta protonmail. <a href=\"https://forum.luanti.org/"
+"viewtopic.php?t=30709\">Más información</a>."
 
 #: app/templates/users/change_set_password.html:27
 #: app/templates/users/register.html:30
@@ -5693,6 +5696,8 @@ msgid ""
 "Log into the forum and <a "
 "href='https://forum.luanti.org/ucp.php?i=173'>do that here</a>."
 msgstr ""
+"Inicia sesión en el foro y <a href=\"https://forum.luanti.org/ucp.php?i=173\""
+">hazlo aquí</a>."
 
 #: app/templates/users/claim_forums.html:47
 msgid "Next: log in with GitHub"
@@ -5712,6 +5717,8 @@ msgid ""
 "href='https://forum.luanti.org/ucp.php?i=profile&mode=signature'>User "
 "Control Panel &gt; Profile &gt; Edit signature</a>"
 msgstr ""
+"Dirígete a <a href=\"https://forum.luanti.org/ucp.php?i=profile&amp;mode="
+"signature\">User Control Panel &gt; Profile &gt; Edit signature</a>"
 
 #: app/templates/users/claim_forums.html:75
 msgid "Paste this into your signature:"
@@ -6855,4 +6862,3 @@ msgstr ""
 #~ "href=\"https://forum.luanti.org/ucp.php?i=profile&amp;mode=signature\">Panel"
 #~ " de control del usuario&gt; Perfil "
 #~ "&gt; Editar firma&gt;</a>"
-
