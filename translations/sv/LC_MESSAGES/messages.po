@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2024-06-09 10:38+0000\n"
+"PO-Revision-Date: 2024-11-24 16:00+0000\n"
 "Last-Translator: ROllerozxa <rollerozxa@voxelmanip.se>\n"
+"Language-Team: Swedish <https://hosted.weblate.org/projects/minetest/"
+"contentdb/sv/>\n"
 "Language: sv\n"
-"Language-Team: Swedish "
-"<https://hosted.weblate.org/projects/minetest/contentdb/sv/>\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.9-dev\n"
 "Generated-By: Babel 2.15.0\n"
 
 #: app/__init__.py:156
@@ -29,117 +30,101 @@ msgstr "Du har blivit bannad."
 
 #. NOTE: tags: title for 128px
 #: app/_translations.py:6
-#, fuzzy
 msgctxt "tags"
 msgid "128px+"
 msgstr "128px+"
 
 #. NOTE: tags: description for 128px
 #: app/_translations.py:8
-#, fuzzy
 msgctxt "tags"
 msgid "For 128px or higher texture packs"
 msgstr "För 128px eller högre texturpaket"
 
 #. NOTE: tags: title for 16px
 #: app/_translations.py:10
-#, fuzzy
 msgctxt "tags"
 msgid "16px"
 msgstr "16px"
 
 #. NOTE: tags: description for 16px
 #: app/_translations.py:12
-#, fuzzy
 msgctxt "tags"
 msgid "For 16px texture packs"
 msgstr "För 16px-texturpaket"
 
 #. NOTE: tags: title for 32px
 #: app/_translations.py:14
-#, fuzzy
 msgctxt "tags"
 msgid "32px"
 msgstr "32px"
 
 #. NOTE: tags: description for 32px
 #: app/_translations.py:16
-#, fuzzy
 msgctxt "tags"
 msgid "For 32px texture packs"
 msgstr "För 32px-texturpaket"
 
 #. NOTE: tags: title for 64px
 #: app/_translations.py:18
-#, fuzzy
 msgctxt "tags"
 msgid "64px"
 msgstr "64px"
 
 #. NOTE: tags: description for 64px
 #: app/_translations.py:20
-#, fuzzy
 msgctxt "tags"
 msgid "For 64px texture packs"
-msgstr "För 64px-texturepaket"
+msgstr "För 64px-texturpaket"
 
 #. NOTE: tags: title for adventure__rpg
 #: app/_translations.py:22
-#, fuzzy
 msgctxt "tags"
 msgid "Adventure / RPG"
 msgstr "Äventyr / RPG"
 
 #. NOTE: tags: title for april_fools
 #: app/_translations.py:24
-#, fuzzy
 msgctxt "tags"
 msgid "Joke"
 msgstr "Skämt"
 
 #. NOTE: tags: description for april_fools
 #: app/_translations.py:26
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "For humorous content, meant as a novelty or joke, not to be taken "
 "seriously, and that is not meant to be used seriously or long-term."
 msgstr ""
-"För humoristiskt innehåll, avsett som en kul grej eller ett skämt, som "
-"inte ska tas på allvar och som inte är avsett att användas seriöst eller "
+"För humoristiskt innehåll, avsett som en kul grej eller ett skämt, som inte "
+"ska tas på allvar och som inte är avsett att användas seriöst eller "
 "långsiktigt."
 
 #. NOTE: tags: title for building
 #: app/_translations.py:28
-#, fuzzy
 msgctxt "tags"
 msgid "Building"
 msgstr "Byggning"
 
 #. NOTE: tags: description for building
 #: app/_translations.py:30
-#, fuzzy
 msgctxt "tags"
 msgid "Focuses on building, such as adding new materials or nodes"
 msgstr "Fokuserar på byggning, som att lägga till nya material eller noder"
 
 #. NOTE: tags: title for building_mechanics
 #: app/_translations.py:32
-#, fuzzy
 msgctxt "tags"
 msgid "Building Mechanics and Tools"
 msgstr "Byggmekaniker och verktyg"
 
 #. NOTE: tags: description for building_mechanics
 #: app/_translations.py:34
-#, fuzzy
 msgctxt "tags"
 msgid "Adds game mechanics or tools that change how players build."
 msgstr "Lägger till spelmekaniker eller verktyg som ändrar hur spelare bygger."
 
 #. NOTE: tags: title for chat
 #: app/_translations.py:36
-#, fuzzy
 msgctxt "tags"
 msgid "Chat / Commands"
 msgstr "Chatt / Kommandon"
@@ -148,25 +133,22 @@ msgstr "Chatt / Kommandon"
 #: app/_translations.py:38
 msgctxt "tags"
 msgid "Focus on player chat/communication or console interaction."
-msgstr ""
+msgstr "Fokus på spelchatt/kommunicering eller konsolinteraktion."
 
 #. NOTE: tags: title for commerce
 #: app/_translations.py:40
-#, fuzzy
 msgctxt "tags"
 msgid "Commerce / Economy"
 msgstr "Handel / Ekonomi"
 
 #. NOTE: tags: description for commerce
 #: app/_translations.py:42
-#, fuzzy
 msgctxt "tags"
 msgid "Related to economies, money, and trading"
 msgstr "Relaterad till ekonomier, pengar och handel"
 
 #. NOTE: tags: title for complex_installation
 #: app/_translations.py:44
-#, fuzzy
 msgctxt "tags"
 msgid "Complex installation"
 msgstr "Komplex installation"
@@ -178,113 +160,100 @@ msgid ""
 "Requires futher installation steps, such as installing LuaRocks or "
 "editing the trusted mod setting"
 msgstr ""
+"Kräver ytterligare installationssteg, som att installera Luarocks eller att "
+"redigera inställningen för pålitna moddar"
 
 #. NOTE: tags: title for crafting
 #: app/_translations.py:48
-#, fuzzy
 msgctxt "tags"
 msgid "Crafting"
 msgstr "Skapning"
 
 #. NOTE: tags: description for crafting
 #: app/_translations.py:50
-#, fuzzy
 msgctxt "tags"
 msgid "Big changes to crafting gameplay"
 msgstr "Stora ändringar för skapnings-gameplay"
 
 #. NOTE: tags: title for creative
 #: app/_translations.py:52
-#, fuzzy
 msgctxt "tags"
 msgid "Creative"
 msgstr "Kreativ"
 
 #. NOTE: tags: description for creative
 #: app/_translations.py:54
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "Written specifically or exclusively for use in creative mode. Adds "
 "content only available through a creative inventory, or provides tools "
 "that facilitate ingame creation and doesn't add difficulty or scarcity"
 msgstr ""
-"Skrivet specifikt för användning i kreativt läge. Lägger till innehåll "
-"som endast är tillgängligt i kreativt läge eller tillhandahåller verktyg "
-"som underlättar skapande i spelet och inte ökar svårighetsgraden"
+"Skrivet specifikt för användning i kreativt läge. Lägger till innehåll som "
+"endast är tillgängligt i kreativt läge eller tillhandahåller verktyg som "
+"underlättar skapande i spelet och inte ökar svårighetsgraden"
 
 #. NOTE: tags: title for custom_mapgen
 #: app/_translations.py:56
-#, fuzzy
 msgctxt "tags"
 msgid "Custom mapgen"
 msgstr "Anpassad mapgen"
 
 #. NOTE: tags: description for custom_mapgen
 #: app/_translations.py:58
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "Contains a completely custom mapgen implemented in Lua, usually requires "
 "worlds to be set to the 'singlenode' mapgen."
 msgstr ""
-"Innehåller en helt anpassad mapgen implementerad i Lua, kräver vanligtvis"
-" att världar ställs in på ”singlenode”-mapgen."
+"Innehåller en helt anpassad mapgen implementerad i Lua, kräver vanligtvis "
+"att världar ställs in på ”singlenode”-mapgen."
 
 #. NOTE: tags: title for decorative
 #: app/_translations.py:60
-#, fuzzy
 msgctxt "tags"
 msgid "Decorative"
 msgstr "Dekorativt"
 
 #. NOTE: tags: description for decorative
 #: app/_translations.py:62
-#, fuzzy
 msgctxt "tags"
 msgid "Adds nodes with no other purpose than for use in building"
 msgstr "Lägger till noder för inget annat syfte än för att bygga"
 
 #. NOTE: tags: title for developer_tools
 #: app/_translations.py:64
-#, fuzzy
 msgctxt "tags"
 msgid "Developer Tools"
 msgstr "Utvecklarverktyg"
 
 #. NOTE: tags: description for developer_tools
 #: app/_translations.py:66
-#, fuzzy
 msgctxt "tags"
 msgid "Tools for game and mod developers"
 msgstr "Verktyg för spel- och moddutvecklare"
 
 #. NOTE: tags: title for education
 #: app/_translations.py:68
-#, fuzzy
 msgctxt "tags"
 msgid "Education"
 msgstr "Utbildning"
 
 #. NOTE: tags: description for education
 #: app/_translations.py:70
-#, fuzzy
 msgctxt "tags"
 msgid "Either has educational value, or is a tool to help teachers "
 msgstr ""
-"Antingen har pedagogiskt värde, eller är ett verktyg för att hjälpa "
-"lärare "
+"Antingen har pedagogiskt värde, eller är ett verktyg för att hjälpa lärare "
 
 #. NOTE: tags: title for environment
 #: app/_translations.py:72
-#, fuzzy
 msgctxt "tags"
 msgid "Environment / Weather"
 msgstr "Miljö / Väder"
 
 #. NOTE: tags: description for environment
 #: app/_translations.py:74
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "Improves the world, adding weather, ambient sounds, or other environment "
@@ -293,14 +262,12 @@ msgstr "Förbättrar världen, lägger till väder, ljud eller andra miljömekan
 
 #. NOTE: tags: title for food
 #: app/_translations.py:76
-#, fuzzy
 msgctxt "tags"
 msgid "Food / Drinks"
 msgstr "Mat / Dryck"
 
 #. NOTE: tags: title for gui
 #: app/_translations.py:78
-#, fuzzy
 msgctxt "tags"
 msgid "GUI"
 msgstr "GUI"
@@ -312,52 +279,47 @@ msgid ""
 "For content whose main utility or features are provided within a GUI, on-"
 "screen menu, or similar"
 msgstr ""
+"För innehåll vars huvudsakliga användningsområde eller funktioner "
+"tillhandahålls inom en GUI, på en skärmeny eller liknande"
 
 #. NOTE: tags: title for hud
 #: app/_translations.py:82
-#, fuzzy
 msgctxt "tags"
 msgid "HUD"
 msgstr "HUD"
 
 #. NOTE: tags: description for hud
 #: app/_translations.py:84
-#, fuzzy
 msgctxt "tags"
 msgid "For mods that grant the player extra information in the HUD"
 msgstr "För moddar som ger spelaren extra information i HUD"
 
 #. NOTE: tags: title for inventory
 #: app/_translations.py:86
-#, fuzzy
 msgctxt "tags"
 msgid "Inventory"
 msgstr "Lagring"
 
 #. NOTE: tags: description for inventory
 #: app/_translations.py:88
-#, fuzzy
 msgctxt "tags"
 msgid "Changes the inventory GUI"
 msgstr "Ändrar lagrings-GUI:n"
 
 #. NOTE: tags: title for jam_combat_mod
 #: app/_translations.py:90
-#, fuzzy
 msgctxt "tags"
 msgid "Jam / Combat 2020"
 msgstr "Jam / Combat 2020"
 
 #. NOTE: tags: description for jam_combat_mod
 #: app/_translations.py:92
-#, fuzzy
 msgctxt "tags"
 msgid "For mods created for the Discord \"Combat\" modding event in 2020"
 msgstr "För moddar som skapats för Discord:ens \"Combat\"-moddingevent 2020"
 
 #. NOTE: tags: title for jam_game_2021
 #: app/_translations.py:94
-#, fuzzy
 msgctxt "tags"
 msgid "Jam / Game 2021"
 msgstr "Jam / Game 2021"
@@ -366,11 +328,10 @@ msgstr "Jam / Game 2021"
 #: app/_translations.py:96
 msgctxt "tags"
 msgid "Entries to the 2021 Minetest Game Jam"
-msgstr ""
+msgstr "Inlägg till 2021 års Minetest Game Jam"
 
 #. NOTE: tags: title for jam_game_2022
 #: app/_translations.py:98
-#, fuzzy
 msgctxt "tags"
 msgid " Jam / Game 2022"
 msgstr " Jam / Game 2022"
@@ -379,11 +340,10 @@ msgstr " Jam / Game 2022"
 #: app/_translations.py:100
 msgctxt "tags"
 msgid "Entries to the 2022 Minetest Game Jam "
-msgstr ""
+msgstr "Inlägg till 2022 års Minetest Game Jam "
 
 #. NOTE: tags: title for jam_game_2023
 #: app/_translations.py:102
-#, fuzzy
 msgctxt "tags"
 msgid "Jam / Game 2023"
 msgstr "Jam / Game 2023"
@@ -392,104 +352,91 @@ msgstr "Jam / Game 2023"
 #: app/_translations.py:104
 msgctxt "tags"
 msgid "Entries to the 2023 Minetest Game Jam "
-msgstr ""
+msgstr "Inlägg till 2023 års Minetest Game Jam "
 
 #. NOTE: tags: title for jam_game_2024
 #: app/_translations.py:106
 msgctxt "tags"
 msgid "Jam / Game 2024"
-msgstr ""
+msgstr "Jam / Spel 2024"
 
 #. NOTE: tags: description for jam_game_2024
 #: app/_translations.py:108
 msgctxt "tags"
 msgid "Entries to the 2024 Luanti Game Jam"
-msgstr ""
+msgstr "Inlägg till 2024 års Luanti Game Jam"
 
 #. NOTE: tags: title for jam_weekly_2021
 #: app/_translations.py:110
-#, fuzzy
 msgctxt "tags"
 msgid "Jam / Weekly Challenges 2021"
 msgstr "Jam / Weekly Challenges 2021"
 
 #. NOTE: tags: description for jam_weekly_2021
 #: app/_translations.py:112
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "For mods created for the Discord \"Weekly Challenges\" modding event in "
 "2021"
 msgstr ""
-"För moddar skapade för Discordens \"Weekly Challenges\"-moddingevent i "
-"2021"
+"För moddar skapade för Discordens \"Weekly Challenges\"-moddingevent i 2021"
 
 #. NOTE: tags: title for less_than_px
 #: app/_translations.py:114
-#, fuzzy
 msgctxt "tags"
 msgid "<16px"
 msgstr "&lt;16px"
 
 #. NOTE: tags: description for less_than_px
 #: app/_translations.py:116
-#, fuzzy
 msgctxt "tags"
 msgid "Less than 16px"
-msgstr "Mindre än 16px"
+msgstr "Texturpaket som är mindre än 16px"
 
 #. NOTE: tags: title for library
 #: app/_translations.py:118
-#, fuzzy
 msgctxt "tags"
 msgid "API / Library"
 msgstr "API:er / Bibliotek"
 
 #. NOTE: tags: description for library
 #: app/_translations.py:120
-#, fuzzy
 msgctxt "tags"
 msgid "Primarily adds an API for other mods to use"
 msgstr "Lägger primärt till API:er för andra moddar att använda"
 
 #. NOTE: tags: title for magic
 #: app/_translations.py:122
-#, fuzzy
 msgctxt "tags"
 msgid "Magic / Enchanting"
 msgstr "Magi / Förtrollning"
 
 #. NOTE: tags: title for mapgen
 #: app/_translations.py:124
-#, fuzzy
 msgctxt "tags"
 msgid "Mapgen / Biomes / Decoration"
 msgstr "Mapgen / Biomer / Dekoration"
 
 #. NOTE: tags: description for mapgen
 #: app/_translations.py:126
-#, fuzzy
 msgctxt "tags"
 msgid "New mapgen or changes mapgen"
 msgstr "Ny mapgen eller ändrar mapgen"
 
 #. NOTE: tags: title for mini-game
 #: app/_translations.py:128
-#, fuzzy
 msgctxt "tags"
 msgid "Mini-game"
 msgstr "Minispel"
 
 #. NOTE: tags: description for mini-game
 #: app/_translations.py:130
-#, fuzzy
 msgctxt "tags"
 msgid "Adds a mini-game to be played within Luanti"
 msgstr "Lägger till ett minispel för att spelas inuti Luanti"
 
 #. NOTE: tags: title for mobs
 #: app/_translations.py:132
-#, fuzzy
 msgctxt "tags"
 msgid "Mobs / Animals / NPCs"
 msgstr "Mobs / Djur / NPCs"
@@ -498,76 +445,68 @@ msgstr "Mobs / Djur / NPCs"
 #: app/_translations.py:134
 msgctxt "tags"
 msgid "Adds mobs, animals, and non-player characters"
-msgstr ""
+msgstr "Lägger till mobbar, djur och icke-spelbara karaktärer"
 
 #. NOTE: tags: title for mtg
 #: app/_translations.py:136
 msgctxt "tags"
 msgid "Minetest Game improved"
-msgstr ""
+msgstr "Minetest Game men förbättrad"
 
 #. NOTE: tags: description for mtg
 #: app/_translations.py:138
 msgctxt "tags"
 msgid "Forks of Minetest Game"
-msgstr ""
+msgstr "Gafflar av Minetest Game"
 
 #. NOTE: tags: title for multiplayer
 #: app/_translations.py:140
-#, fuzzy
 msgctxt "tags"
 msgid "Multiplayer-focused"
 msgstr "Flerspelarfokuserat"
 
 #. NOTE: tags: description for multiplayer
 #: app/_translations.py:142
-#, fuzzy
 msgctxt "tags"
 msgid "Can/should only be used in multiplayer"
 msgstr "Kan/borde bara användas i flerspelarläge"
 
 #. NOTE: tags: title for oneofakind__original
 #: app/_translations.py:144
-#, fuzzy
 msgctxt "tags"
 msgid "One-of-a-kind / Original"
 msgstr "Originellt"
 
 #. NOTE: tags: description for oneofakind__original
 #: app/_translations.py:146
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "For games and such that are of their own kind, distinct and original in "
 "nature to others of the same category."
 msgstr ""
-"För spel och sådant som är unikt, distinkt och originellt jämfört med "
-"andra i sin kategori."
+"För spel och sådant som är unikt, distinkt och originellt jämfört med andra "
+"i sin kategori."
 
 #. NOTE: tags: title for plants_and_farming
 #: app/_translations.py:148
-#, fuzzy
 msgctxt "tags"
 msgid "Plants and Farming"
 msgstr "Växter och odling"
 
 #. NOTE: tags: description for plants_and_farming
 #: app/_translations.py:150
-#, fuzzy
 msgctxt "tags"
 msgid "Adds new plants or other farmable resources."
 msgstr "Lägger till nya växter eller andra jordbruksresurser."
 
 #. NOTE: tags: title for player_effects
 #: app/_translations.py:152
-#, fuzzy
 msgctxt "tags"
 msgid "Player Effects / Power Ups"
 msgstr "Spelareffekter / Power-ups"
 
 #. NOTE: tags: description for player_effects
 #: app/_translations.py:154
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "For content that changes player effects, including physics, for example: "
@@ -578,28 +517,24 @@ msgstr ""
 
 #. NOTE: tags: title for puzzle
 #: app/_translations.py:156
-#, fuzzy
 msgctxt "tags"
 msgid "Puzzle"
 msgstr "Pussel"
 
 #. NOTE: tags: description for puzzle
 #: app/_translations.py:158
-#, fuzzy
 msgctxt "tags"
 msgid "Focus on puzzle solving instead of combat"
 msgstr "Fokus på att lösa pussel istället för strid"
 
 #. NOTE: tags: title for pve
 #: app/_translations.py:160
-#, fuzzy
 msgctxt "tags"
 msgid "Player vs Environment (PvE)"
 msgstr "Spelare vs mljö (PvE)"
 
 #. NOTE: tags: description for pve
 #: app/_translations.py:162
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "For content designed for one or more players that focus on combat against"
@@ -610,63 +545,54 @@ msgstr ""
 
 #. NOTE: tags: title for pvp
 #: app/_translations.py:164
-#, fuzzy
 msgctxt "tags"
 msgid "Player vs Player (PvP)"
 msgstr "Spelare vs spelare (PvP)"
 
 #. NOTE: tags: description for pvp
 #: app/_translations.py:166
-#, fuzzy
 msgctxt "tags"
 msgid "Designed to be played competitively against other players"
 msgstr "Designad för att spelas konkurrenskraftigt mot andra spelare"
 
 #. NOTE: tags: title for seasonal
 #: app/_translations.py:168
-#, fuzzy
 msgctxt "tags"
 msgid "Seasonal"
 msgstr "Högtidligt"
 
 #. NOTE: tags: description for seasonal
 #: app/_translations.py:170
-#, fuzzy
 msgctxt "tags"
 msgid "For content generally themed around a certain season or holiday"
 msgstr "För innehåll som följer en viss säsong eller högtid som tema"
 
 #. NOTE: tags: title for server_tools
 #: app/_translations.py:172
-#, fuzzy
 msgctxt "tags"
 msgid "Server Moderation and Tools"
 msgstr "Servermoderering och verktyg"
 
 #. NOTE: tags: description for server_tools
 #: app/_translations.py:174
-#, fuzzy
 msgctxt "tags"
 msgid "Helps with server maintenance and moderation"
 msgstr "Hjälper med serverunderhållning och moderering"
 
 #. NOTE: tags: title for shooter
 #: app/_translations.py:176
-#, fuzzy
 msgctxt "tags"
 msgid "Shooter"
 msgstr "Skjutare"
 
 #. NOTE: tags: description for shooter
 #: app/_translations.py:178
-#, fuzzy
 msgctxt "tags"
 msgid "First person shooters (FPS) and more"
 msgstr "First person shooters (FPS) och mer"
 
 #. NOTE: tags: title for simulation
 #: app/_translations.py:180
-#, fuzzy
 msgctxt "tags"
 msgid "Sims"
 msgstr "Simulationer"
@@ -678,84 +604,75 @@ msgid ""
 "Mods and games that aim to simulate real life activity. Similar to "
 "SimCity/The Sims/OpenTTD/etc."
 msgstr ""
+"Moddar och spel som syftar till att simulera verkliga aktiviteter. Likt "
+"SimCity/The Sims/OpenTTD/etc."
 
 #. NOTE: tags: title for singleplayer
 #: app/_translations.py:184
-#, fuzzy
 msgctxt "tags"
 msgid "Singleplayer-focused"
 msgstr "Enspelarsfokuserat"
 
 #. NOTE: tags: description for singleplayer
 #: app/_translations.py:186
-#, fuzzy
 msgctxt "tags"
 msgid "Content that can be played alone"
 msgstr "Innehåll som kan spelas ensamt"
 
 #. NOTE: tags: title for skins
 #: app/_translations.py:188
-#, fuzzy
 msgctxt "tags"
 msgid "Player customization / Skins"
 msgstr "Spelaranpassning / Skins"
 
 #. NOTE: tags: description for skins
 #: app/_translations.py:190
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "Allows the player to customize their character by changing the texture or"
 " adding accessories."
 msgstr ""
-"Tillåter spelaren att anpassa sin karaktär genom att ändra texturen eller"
-" lägga till tillbehör."
+"Tillåter spelaren att anpassa sin karaktär genom att ändra texturen eller "
+"lägga till tillbehör."
 
 #. NOTE: tags: title for sound_music
 #: app/_translations.py:192
-#, fuzzy
 msgctxt "tags"
 msgid "Sounds / Music"
 msgstr "Ljud / Musik"
 
 #. NOTE: tags: description for sound_music
 #: app/_translations.py:194
-#, fuzzy
 msgctxt "tags"
 msgid "Focuses on or adds new sounds or musical things"
 msgstr "Fokuserar på eller lägger till nya ljud eller musikaliska saker"
 
 #. NOTE: tags: title for sports
 #: app/_translations.py:196
-#, fuzzy
 msgctxt "tags"
 msgid "Sports"
 msgstr "Sport"
 
 #. NOTE: tags: title for storage
 #: app/_translations.py:198
-#, fuzzy
 msgctxt "tags"
 msgid "Storage"
-msgstr "Lagring"
+msgstr "Förvaring"
 
 #. NOTE: tags: description for storage
 #: app/_translations.py:200
-#, fuzzy
 msgctxt "tags"
 msgid "Adds or improves item storage mechanics"
 msgstr "Lägger till eller förbättrar lagringsmekaniker"
 
 #. NOTE: tags: title for strategy_rts
 #: app/_translations.py:202
-#, fuzzy
 msgctxt "tags"
 msgid "Strategy / RTS"
 msgstr "Strategi / RTS"
 
 #. NOTE: tags: description for strategy_rts
 #: app/_translations.py:204
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "Games and mods with a heavy strategy component, whether real-time or "
@@ -766,177 +683,152 @@ msgstr ""
 
 #. NOTE: tags: title for survival
 #: app/_translations.py:206
-#, fuzzy
 msgctxt "tags"
 msgid "Survival"
 msgstr "Överlevnad"
 
 #. NOTE: tags: description for survival
 #: app/_translations.py:208
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "Written specifically for survival gameplay with a focus on game-balance, "
 "difficulty level, or resources available through crafting, mining, ..."
 msgstr ""
 "Skriven specifikt för överlevnadsgameplay med ett fokus på spelbalans, "
-"svårighetsgrad eller resurser tillgängliga genom skapning, gruvbrytning, "
-"..."
+"svårighetsgrad eller resurser tillgängliga genom skapning, gruvbrytning, ..."
 
 #. NOTE: tags: title for technology
 #: app/_translations.py:210
-#, fuzzy
 msgctxt "tags"
 msgid "Machines / Electronics"
 msgstr "Maskiner / Elektronik"
 
 #. NOTE: tags: description for technology
 #: app/_translations.py:212
-#, fuzzy
 msgctxt "tags"
 msgid "Adds machines useful in automation, tubes, or power."
 msgstr "Lägger till maskiner som är användbara i automation, rör eller kraft."
 
 #. NOTE: tags: title for tools
 #: app/_translations.py:214
-#, fuzzy
 msgctxt "tags"
 msgid "Tools / Weapons / Armor"
 msgstr "Verktyg / Vapen / Rustning"
 
 #. NOTE: tags: description for tools
 #: app/_translations.py:216
-#, fuzzy
 msgctxt "tags"
 msgid "Adds or changes tools, weapons, and armor"
 msgstr "Lägger till eller ändrar verktyg, vapen och rustningar"
 
 #. NOTE: tags: title for transport
 #: app/_translations.py:218
-#, fuzzy
 msgctxt "tags"
 msgid "Transport"
 msgstr "Transport"
 
 #. NOTE: tags: description for transport
 #: app/_translations.py:220
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "Adds or changes transportation methods. Includes teleportation, vehicles,"
 " ridable mobs, transport infrastructure and thematic content"
 msgstr ""
-"Lägger till eller ändrar transportmetoder. Inkluderar teleportation, "
-"fordon, ridbara mobs, transportinfrastruktur och tematiskt innehåll"
+"Lägger till eller ändrar transportmetoder. Inkluderar teleportation, fordon, "
+"ridbara mobs, transportinfrastruktur och tematiskt innehåll"
 
 #. NOTE: tags: title for world_tools
 #: app/_translations.py:222
-#, fuzzy
 msgctxt "tags"
 msgid "World Maintenance and Tools"
 msgstr "Världunderhållning och verktyg"
 
 #. NOTE: tags: description for world_tools
 #: app/_translations.py:224
-#, fuzzy
 msgctxt "tags"
 msgid "Tools to manage the world"
 msgstr "Verktyg för att hantera världen"
 
 #. NOTE: content_warnings: title for alcohol_tobacco
 #: app/_translations.py:226
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Alcohol / Tobacco"
 msgstr "Alkohol / Tobak"
 
 #. NOTE: content_warnings: description for alcohol_tobacco
 #: app/_translations.py:228
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Contains alcohol and/or tobacco"
 msgstr "Innehåller alkohol och/eller tobak"
 
 #. NOTE: content_warnings: title for bad_language
 #: app/_translations.py:230
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Bad Language"
 msgstr "Fult språk"
 
 #. NOTE: content_warnings: description for bad_language
 #: app/_translations.py:232
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Contains swearing"
 msgstr "Innehåller svordomar"
 
 #. NOTE: content_warnings: title for drugs
 #: app/_translations.py:234
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Drugs"
 msgstr "Droger"
 
 #. NOTE: content_warnings: description for drugs
 #: app/_translations.py:236
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Contains recreational drugs other than alcohol or tobacco"
-msgstr "Innehåller alkohol och/eller tobak"
+msgstr "Innehåller droger annat än alkohol och tobak"
 
 #. NOTE: content_warnings: title for gambling
 #: app/_translations.py:238
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Gambling"
 msgstr "Hasardspel"
 
 #. NOTE: content_warnings: description for gambling
 #: app/_translations.py:240
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Games of chance, gambling games, etc"
 msgstr "Spel av chans, hasardspel, mm."
 
 #. NOTE: content_warnings: title for gore
 #: app/_translations.py:242
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Gore"
 msgstr "Gore"
 
 #. NOTE: content_warnings: description for gore
 #: app/_translations.py:244
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Blood, etc"
 msgstr "Blod, mm"
 
 #. NOTE: content_warnings: title for horror
 #: app/_translations.py:246
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Fear / Horror"
 msgstr "Skräck"
 
 #. NOTE: content_warnings: description for horror
 #: app/_translations.py:248
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Shocking and scary content. May scare young children"
 msgstr "Chockande och skrämmande innehåll. Kan skrämma små barn"
 
 #. NOTE: content_warnings: title for violence
 #: app/_translations.py:250
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Violence"
 msgstr "Våld"
 
 #. NOTE: content_warnings: description for violence
 #: app/_translations.py:252
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Non-cartoon violence. May be towards fantasy or  human-like characters"
 msgstr "Icke-tecknat våld. Kan vara mot fantasy- eller mänskliga karaktärer"
@@ -1067,17 +959,17 @@ msgstr ""
 #: app/blueprints/feeds/__init__.py:70 app/templates/base.html:29
 #: app/templates/base.html:36
 msgid "ContentDB new packages"
-msgstr ""
+msgstr "Nya paket på ContentDB"
 
 #: app/blueprints/feeds/__init__.py:98 app/templates/base.html:31
 #: app/templates/base.html:38
 msgid "ContentDB package updates"
-msgstr ""
+msgstr "Paketuppdateringar på ContentDB"
 
 #: app/blueprints/feeds/__init__.py:107 app/templates/base.html:27
 #: app/templates/base.html:34
 msgid "ContentDB all"
-msgstr ""
+msgstr "Allt på ContentDB"
 
 #: app/blueprints/oauth/__init__.py:169 app/templates/admin/tags/list.html:26
 #: app/templates/admin/warnings/list.html:24
@@ -1096,6 +988,7 @@ msgstr "App-typ"
 #: app/blueprints/oauth/__init__.py:198
 msgid "An OAuth client with that title already exists. Please choose a new title."
 msgstr ""
+"En OAuth-klient med den titeln finns redan. Vänligen välj en annan titel."
 
 #: app/blueprints/oauth/__init__.py:262
 msgid "Revoked all user tokens"
@@ -1156,15 +1049,15 @@ msgstr "Stödda spel"
 
 #: app/blueprints/packages/advanced_search.py:39
 msgid "Android Default"
-msgstr ""
+msgstr "Standard för Android"
 
 #: app/blueprints/packages/advanced_search.py:40
 msgid "Desktop Default"
-msgstr ""
+msgstr "Standard för skrivbord"
 
 #: app/blueprints/packages/advanced_search.py:41
 msgid "Non-free"
-msgstr ""
+msgstr "Icke-fri"
 
 #: app/blueprints/packages/advanced_search.py:42 app/models/packages.py:630
 #: app/templates/packages/view.html:170
@@ -1174,15 +1067,15 @@ msgstr "Under arbete"
 #. NOTE: Package maintenance state
 #: app/blueprints/packages/advanced_search.py:43 app/models/packages.py:170
 msgid "Deprecated"
-msgstr ""
+msgstr "Deprecated"
 
 #: app/blueprints/packages/advanced_search.py:44
 msgid "All content warnings"
-msgstr ""
+msgstr "Alla innehållsvarningar"
 
 #: app/blueprints/packages/advanced_search.py:53
 msgid "Query"
-msgstr ""
+msgstr "Förfrågan"
 
 #: app/blueprints/packages/advanced_search.py:54
 #: app/blueprints/packages/packages.py:231 app/templates/packages/view.html:616
@@ -1215,7 +1108,7 @@ msgstr "Licens"
 
 #: app/blueprints/packages/advanced_search.py:67
 msgid "Supports Game"
-msgstr ""
+msgstr "Stöder spel"
 
 #: app/blueprints/packages/advanced_search.py:71
 #: app/templates/admin/storage.html:39
@@ -1239,19 +1132,19 @@ msgstr "Språk"
 
 #: app/blueprints/packages/advanced_search.py:76
 msgid "Hide Tags and Content Warnings"
-msgstr ""
+msgstr "Göm taggar och innehållsvarningar"
 
 #: app/blueprints/packages/advanced_search.py:77
 msgid "Luanti Version"
-msgstr ""
+msgstr "Luantiversion"
 
 #: app/blueprints/packages/advanced_search.py:81
 msgid "Sort by"
-msgstr ""
+msgstr "Sortera efter"
 
 #: app/blueprints/packages/advanced_search.py:85
 msgid "Package score"
-msgstr ""
+msgstr "Paketpoäng"
 
 #: app/blueprints/packages/advanced_search.py:86 app/templates/index.html:78
 #: app/templates/packages/reviews_list.html:4
@@ -1267,31 +1160,31 @@ msgstr "Nerladdningar"
 
 #: app/blueprints/packages/advanced_search.py:88
 msgid "Created At"
-msgstr ""
+msgstr "Skapningsdatum"
 
 #: app/blueprints/packages/advanced_search.py:89
 msgid "Approved At"
-msgstr ""
+msgstr "Godkänningsdatum"
 
 #: app/blueprints/packages/advanced_search.py:90
 msgid "Last Release"
-msgstr ""
+msgstr "Senaste utgivning"
 
 #: app/blueprints/packages/advanced_search.py:92
 msgid "Order"
-msgstr ""
+msgstr "Ordning"
 
 #: app/blueprints/packages/advanced_search.py:93
 msgid "Descending"
-msgstr ""
+msgstr "Fallande"
 
 #: app/blueprints/packages/advanced_search.py:94
 msgid "Ascending"
-msgstr ""
+msgstr "Stigande"
 
 #: app/blueprints/packages/advanced_search.py:96
 msgid "Random order"
-msgstr ""
+msgstr "Slumpmässig ordning"
 
 #: app/blueprints/packages/packages.py:216
 msgid "No download available."
@@ -1420,7 +1313,7 @@ msgstr ""
 #: app/blueprints/packages/packages.py:490
 #, python-format
 msgid "Set state to %(state)s"
-msgstr ""
+msgstr "Ställ in tillstånd till %(state)s"
 
 #: app/blueprints/packages/packages.py:520
 msgid "Deleted package"
@@ -1479,7 +1372,7 @@ msgstr ""
 #: app/blueprints/packages/releases.py:57
 #: app/blueprints/packages/releases.py:72
 msgid "Release Notes"
-msgstr ""
+msgstr "Utgivningsanteckningar"
 
 #: app/blueprints/packages/releases.py:59
 msgid "Method"
@@ -1914,12 +1807,16 @@ msgid ""
 "Unable to get GitHub username for user. Make sure the forum account "
 "exists."
 msgstr ""
+"Kunde inte få GitHub-användarnamn för användare. Se till att forumkontot "
+"existerar."
 
 #: app/blueprints/users/claim.py:66
 msgid ""
 "A ContentDB user with that name already exists. Please contact an admin "
 "to link to your forum account"
 msgstr ""
+"En ContentDB-användare med det namnet finns redan. Vänligen kontakta en "
+"admin för att länka ditt forumkonto"
 
 #: app/blueprints/users/claim.py:75
 msgid "That user has already been claimed!"
@@ -2216,7 +2113,7 @@ msgstr "Du har inte behörighet att ändra paketnamnet"
 
 #: app/logic/packages.py:140
 msgid "You cannot change package type once approved"
-msgstr ""
+msgstr "Du kan inte ändra pakettyp när det har godkänts"
 
 #: app/logic/releases.py:33
 msgid "You don't have permission to make releases"
@@ -2232,7 +2129,7 @@ msgstr ""
 
 #: app/logic/releases.py:41
 msgid "A release with this name already exists"
-msgstr ""
+msgstr "En utgivning med det namnet finns redan"
 
 #: app/logic/releases.py:80
 msgid "Invalid commit hash; it must be a 40 character long base16 string"
@@ -2320,106 +2217,108 @@ msgstr "Texturpaket"
 
 #: app/models/packages.py:87
 msgid "Top mod"
-msgstr ""
+msgstr "Topp-modd"
 
 #: app/models/packages.py:89
 msgid "Top game"
-msgstr ""
+msgstr "Topp-spel"
 
 #: app/models/packages.py:91
 msgid "Top texture pack"
-msgstr ""
+msgstr "Topp-texturpaket"
 
 #: app/models/packages.py:94
 #, python-format
 msgid "Top %(place)d mod"
-msgstr ""
+msgstr "Topp-%(place)d modd"
 
 #: app/models/packages.py:96
 #, python-format
 msgid "Top %(place)d game"
-msgstr ""
+msgstr "Topp-%(place)d spel"
 
 #: app/models/packages.py:98
 #, python-format
 msgid "Top %(place)d texture pack"
-msgstr ""
+msgstr "Topp-%(place)d texturpaket"
 
 #: app/models/packages.py:102
 #, python-format
 msgid "%(display_name)s has a mod placed at #%(place)d."
-msgstr ""
+msgstr "%(display_name)s har en modd placerad på #%(place)d."
 
 #: app/models/packages.py:105
 #, python-format
 msgid "%(display_name)s has a game placed at #%(place)d."
-msgstr ""
+msgstr "%(display_name)s har ett spel placerad på #%(place)d."
 
 #: app/models/packages.py:108
 #, python-format
 msgid "%(display_name)s has a texture pack placed at #%(place)d."
-msgstr ""
+msgstr "%(display_name)s har ett texturpaket placerad på #%(place)d."
 
 #: app/models/packages.py:114
 msgid "Do you recommend this mod?"
-msgstr ""
+msgstr "Rekommenderar du denna modd?"
 
 #: app/models/packages.py:116
 msgid "Do you recommend this game?"
-msgstr ""
+msgstr "Rekommenderar du det här spelet?"
 
 #: app/models/packages.py:118
 msgid "Do you recommend this texture pack?"
-msgstr ""
+msgstr "Rekommenderar du det här texturpaketet?"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:155 app/models/packages.py:173
 msgid "Looking for Maintainer"
-msgstr ""
+msgstr "Söker underhållare"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:158
 msgid "Beta"
-msgstr ""
+msgstr "Beta"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:161
 msgid "Actively Developed"
-msgstr ""
+msgstr "Aktivt utvecklad"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:164
 msgid "Maintenance Only"
-msgstr ""
+msgstr "Endast underhåll"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:167
 msgid "As-is"
-msgstr ""
+msgstr "As-is"
 
 #: app/models/packages.py:177
 msgid "Under active development, and may break worlds/things without warning"
-msgstr ""
+msgstr "Under aktiv utveckling och kan förstöra världar/saker utan varning"
 
 #: app/models/packages.py:179
 msgid "Fully playable, but with some breakages/changes expected"
-msgstr ""
+msgstr "Fullt spelbar, men vissa brytningar/förändringar förväntas"
 
 #: app/models/packages.py:181
 msgid "Finished, with bug fixes being made as needed"
-msgstr ""
+msgstr "Färdig, med buggfixar som görs efter behov"
 
 #: app/models/packages.py:183
 msgid ""
 "Finished, the maintainer doesn't intend to continue working on it or "
 "provide support"
 msgstr ""
+"Färdig, underhållaren tänker inte fortsätta arbeta på den eller ge support"
 
 #: app/models/packages.py:185
 msgid ""
 "The maintainer doesn't recommend this package. See the description for "
 "more info"
 msgstr ""
+"Underhållaren rekommenderar inte detta paket. Se beskrivningen för mer info"
 
 #: app/models/packages.py:231
 msgid "Submit for Approval"
@@ -2444,54 +2343,54 @@ msgstr "Ta bort"
 #: app/models/packages.py:1385
 #, python-format
 msgid "New commit %(hash)s found on the Git repo."
-msgstr ""
+msgstr "Ny commit %(hash)s finns på Git-repo:t."
 
 #: app/models/packages.py:1389
 #, python-format
 msgid "The last release was commit %(hash)s"
-msgstr ""
+msgstr "Den sista utgivningen var commit %(hash)s"
 
 #: app/models/packages.py:1395
 #, python-format
 msgid "New tag %(tag_name)s found on the Git repo."
-msgstr ""
+msgstr "Ny tagg %(tag_name)s finns på Git-repo:t."
 
 #: app/models/users.py:46
 msgid "Banned"
-msgstr ""
+msgstr "Bannlyst"
 
 #: app/models/users.py:48
 msgid "Not Joined"
-msgstr ""
+msgstr "Inte registrerad"
 
 #: app/models/users.py:50
 msgid "New Member"
-msgstr ""
+msgstr "Ny medlem"
 
 #: app/models/users.py:52
 msgid "Member"
-msgstr ""
+msgstr "Medlem"
 
 #: app/models/users.py:54
 msgid "Trusted Member"
-msgstr ""
+msgstr "Betrodd medlem"
 
 #: app/models/users.py:56
 msgid "Approver"
-msgstr ""
+msgstr "Godkännare"
 
 #: app/models/users.py:58
 msgid "Editor"
-msgstr ""
+msgstr "Redaktör"
 
 #. NOTE: BOT notification type
 #: app/models/users.py:60 app/models/users.py:455
 msgid "Bot"
-msgstr ""
+msgstr "Bott"
 
 #: app/models/users.py:62
 msgid "Moderator"
-msgstr ""
+msgstr "Moderator"
 
 #: app/models/users.py:64 app/templates/base.html:178
 msgid "Admin"
@@ -2500,12 +2399,12 @@ msgstr "Administration"
 #. NOTE: PACKAGE_EDIT notification type
 #: app/models/users.py:440
 msgid "Package Edit"
-msgstr ""
+msgstr "Paketredigering"
 
 #. NOTE: PACKAGE_APPROVAL notification type
 #: app/models/users.py:443
 msgid "Package Approval"
-msgstr ""
+msgstr "Paketgodkänannde"
 
 #. NOTE: NEW_THREAD notification type
 #: app/models/users.py:446 app/templates/threads/list.html:12
@@ -2516,12 +2415,12 @@ msgstr "Ny tråd"
 #. NOTE: NEW_REVIEW notification type
 #: app/models/users.py:449
 msgid "New Review"
-msgstr ""
+msgstr "Ny recension"
 
 #. NOTE: THREAD_REPLY notification type
 #: app/models/users.py:452
 msgid "Thread Reply"
-msgstr ""
+msgstr "Trådsvar"
 
 #. NOTE: MAINTAINER notification type
 #: app/models/users.py:458 app/templates/macros/threads.html:27
@@ -2531,21 +2430,21 @@ msgstr "Underhållare"
 #. NOTE: EDITOR_ALERT notification type
 #: app/models/users.py:461
 msgid "Editor Alert"
-msgstr ""
+msgstr "Redaktörnotis"
 
 #. NOTE: EDITOR_MISC notification type
 #: app/models/users.py:464
 msgid "Editor Misc"
-msgstr ""
+msgstr "Redaktör misc."
 
 #. NOTE: OTHER notification type
 #: app/models/users.py:467
 msgid "Other"
-msgstr ""
+msgstr "Annat"
 
 #: app/models/users.py:477
 msgid "This is a Package Edit notification."
-msgstr ""
+msgstr "Detta är ett paketredigeringsmeddelande."
 
 #: app/models/users.py:479
 msgid "This is a Package Approval notification."
@@ -2768,7 +2667,7 @@ msgstr "API"
 
 #: app/templates/base.html:266
 msgid "RSS / Feeds"
-msgstr ""
+msgstr "RSS / Flöden"
 
 #: app/templates/base.html:267 app/templates/users/register.html:40
 msgid "Privacy Policy"
@@ -2780,7 +2679,7 @@ msgstr "Anmäl / DMCA"
 
 #: app/templates/base.html:271 app/templates/packages/advanced_search.html:4
 msgid "Advanced Search"
-msgstr ""
+msgstr "Avancerad sök"
 
 #: app/templates/base.html:272
 msgid "User List"
@@ -3162,7 +3061,6 @@ msgstr ""
 "stödja framtida utveckling."
 
 #: app/templates/donate/index.html:67
-#, fuzzy
 msgid ""
 "For more information about the cost of ContentDB and what rubenwardy "
 "does, see his donation page:"
@@ -3915,6 +3813,8 @@ msgid ""
 "anywhere in the short description. It is unnecessary and wastes "
 "characters."
 msgstr ""
+"Tips: Inkludera inte <i>Minetest</i>, <i>mod</i> eller <i>modpack</i> "
+"någonstans i den korta beskrivningen, detta är onödigt."
 
 #: app/templates/packages/create_edit.html:88
 msgid ""
@@ -4923,7 +4823,7 @@ msgstr "Översätt"
 
 #: app/templates/packages/view.html:304
 msgid "Thumbnail for video"
-msgstr ""
+msgstr "Tumnagel för video"
 
 #: app/templates/packages/view.html:321
 msgid "Awaiting review"
@@ -4956,7 +4856,7 @@ msgstr "Visa innehåll för spel"
 #: app/templates/packages/view.html:398
 #, python-format
 msgid "Release notes for %(title)s"
-msgstr ""
+msgstr "Utgivningsanteckningar för %(title)s"
 
 #: app/templates/packages/view.html:411
 msgid "Favorite"
@@ -5328,7 +5228,7 @@ msgstr "Paket som inte stöder %(rel)s"
 #: app/templates/todo/outdated.html:16 app/templates/todo/screenshots.html:12
 #: app/templates/todo/screenshots.html:16
 msgid "Minetest-Mods org only"
-msgstr ""
+msgstr "Minetest-Mods endast"
 
 #: app/templates/todo/mtver_support.html:25 app/templates/todo/outdated.html:24
 #: app/templates/todo/screenshots.html:24
@@ -5566,7 +5466,7 @@ msgstr "Kontoborttagning och deaktivering är inte tillgängliga för användare
 
 #: app/templates/users/account.html:88
 msgid "Please raise a report to request account deletion."
-msgstr ""
+msgstr "Vänligen gör en anmälan för att be om kontoborttagning (på engelska)."
 
 #: app/templates/users/account.html:95
 msgid "Recent Account Actions"
@@ -5594,6 +5494,8 @@ msgid ""
 "Note: protonmail is unsupported by ContentDB. <a "
 "href='https://forum.luanti.org/viewtopic.php?t=30709'>More info</a>."
 msgstr ""
+"Notera: Protonmail stöds inte av ContentDB. <a href=\"https://forum.luanti."
+"org/viewtopic.php?t=30709\">Mer info</a>."
 
 #: app/templates/users/change_set_password.html:27
 #: app/templates/users/register.html:30
@@ -5704,15 +5606,13 @@ msgid "Verification token"
 msgstr "Verifieringstoken"
 
 #: app/templates/users/claim_forums.html:71
-#, fuzzy
 msgid ""
 "Go to <a "
 "href='https://forum.luanti.org/ucp.php?i=profile&mode=signature'>User "
 "Control Panel &gt; Profile &gt; Edit signature</a>"
 msgstr ""
-"Gå till <a "
-"href=\"https://forum.luanti.org/ucp.php?i=profile&amp;mode=signature\">User"
-" Control Panel &gt; Profile &gt; Edit signature</a>"
+"Gå till <a href=\"https://forum.luanti.org/ucp.php?i=profile&amp;mode="
+"signature\">User Control Panel &gt; Profile &gt; Edit signature</a>"
 
 #: app/templates/users/claim_forums.html:75
 msgid "Paste this into your signature:"
@@ -6161,7 +6061,7 @@ msgstr "Valfria beroenden"
 
 #: app/utils/minetest_hypertext.py:340
 msgid "No reviews available."
-msgstr ""
+msgstr "Inga recensioner tillgängliga."
 
 #: app/utils/user.py:51
 msgid "You have a lot of notifications, you should either read or clear them"
@@ -6679,4 +6579,3 @@ msgstr ""
 
 #~ msgid "Luanti-Mods org only"
 #~ msgstr "Endast Luanti-Mods org"
-
