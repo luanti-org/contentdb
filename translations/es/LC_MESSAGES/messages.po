@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2024-12-01 22:00+0000\n"
-"Last-Translator: Jorge Rodríguez <mr.jrodriguez05@gmail.com>\n"
+"PO-Revision-Date: 2025-01-24 03:06+0000\n"
+"Last-Translator: Miguel <mp0187595@tutamail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/minetest/"
 "contentdb/es/>\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 "Generated-By: Babel 2.15.0\n"
 
 #: app/__init__.py:156
@@ -557,7 +557,7 @@ msgstr ""
 #: app/_translations.py:164
 msgctxt "tags"
 msgid "Player vs Player (PvP)"
-msgstr "Jugador contra jugador (PvP)"
+msgstr "Jugador contra jugador (JcJ)"
 
 #. NOTE: tags: description for pvp
 #: app/_translations.py:166
@@ -675,7 +675,7 @@ msgstr "Almacenamiento"
 #: app/_translations.py:200
 msgctxt "tags"
 msgid "Adds or improves item storage mechanics"
-msgstr "Agrega o mejora la mecánica de almacenamiento de objetos"
+msgstr "Agrega o mejora la mecánica de almacenamiento de ítems"
 
 #. NOTE: tags: title for strategy_rts
 #: app/_translations.py:202
