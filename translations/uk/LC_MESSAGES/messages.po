@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2024-11-22 02:04+0000\n"
-"Last-Translator: Oleg <bauyrakoleg@gmail.com>\n"
+"PO-Revision-Date: 2025-02-06 11:01+0000\n"
+"Last-Translator: Тарас Арт <fromkaniv@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/minetest/"
 "contentdb/uk/>\n"
 "Language: uk\n"
@@ -18,12 +18,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 "Generated-By: Babel 2.15.0\n"
 
 #: app/__init__.py:156
 msgid "Banned:"
-msgstr "Заборонено:"
+msgstr "Забанено:"
 
 #: app/__init__.py:158
 msgid "You have been banned."
@@ -37,61 +37,57 @@ msgstr "128пікс+"
 
 #. NOTE: tags: description for 128px
 #: app/_translations.py:8
-#, fuzzy
 msgctxt "tags"
 msgid "For 128px or higher texture packs"
-msgstr "Найкращі пакети текстур"
+msgstr "128пікс або вище"
 
 #. NOTE: tags: title for 16px
 #: app/_translations.py:10
 msgctxt "tags"
 msgid "16px"
-msgstr ""
+msgstr "16пікс"
 
 #. NOTE: tags: description for 16px
 #: app/_translations.py:12
-#, fuzzy
 msgctxt "tags"
 msgid "For 16px texture packs"
-msgstr "Найкращі пакети текстур"
+msgstr "Для 16пікс текстурпаків"
 
 #. NOTE: tags: title for 32px
 #: app/_translations.py:14
 msgctxt "tags"
 msgid "32px"
-msgstr ""
+msgstr "32пікс"
 
 #. NOTE: tags: description for 32px
 #: app/_translations.py:16
-#, fuzzy
 msgctxt "tags"
 msgid "For 32px texture packs"
-msgstr "Найкращі пакети текстур"
+msgstr "Для 32пікс текстурпаків"
 
 #. NOTE: tags: title for 64px
 #: app/_translations.py:18
 msgctxt "tags"
 msgid "64px"
-msgstr ""
+msgstr "64пікс"
 
 #. NOTE: tags: description for 64px
 #: app/_translations.py:20
-#, fuzzy
 msgctxt "tags"
 msgid "For 64px texture packs"
-msgstr "Найкращі пакети текстур"
+msgstr "Для 64пікс текстурпаків"
 
 #. NOTE: tags: title for adventure__rpg
 #: app/_translations.py:22
 msgctxt "tags"
 msgid "Adventure / RPG"
-msgstr ""
+msgstr "Пригоди / RPG (Role-Playing Game - рольова гра)"
 
 #. NOTE: tags: title for april_fools
 #: app/_translations.py:24
 msgctxt "tags"
 msgid "Joke"
-msgstr ""
+msgstr "Жарт"
 
 #. NOTE: tags: description for april_fools
 #: app/_translations.py:26
@@ -100,61 +96,65 @@ msgid ""
 "For humorous content, meant as a novelty or joke, not to be taken "
 "seriously, and that is not meant to be used seriously or long-term."
 msgstr ""
+"Для гумористичного контенту, призначеного як новинка або жарт, який не слід "
+"сприймати серйозно, і який не призначений для серйозного або довгострокового "
+"використання."
 
 #. NOTE: tags: title for building
 #: app/_translations.py:28
 msgctxt "tags"
 msgid "Building"
-msgstr ""
+msgstr "Будівництво"
 
 #. NOTE: tags: description for building
 #: app/_translations.py:30
 msgctxt "tags"
 msgid "Focuses on building, such as adding new materials or nodes"
-msgstr ""
+msgstr "Зосереджено на будівництві, наприклад, додає нові матеріали або блоки"
 
 #. NOTE: tags: title for building_mechanics
 #: app/_translations.py:32
 msgctxt "tags"
 msgid "Building Mechanics and Tools"
-msgstr ""
+msgstr "Механіки та інструменти будівництва"
 
 #. NOTE: tags: description for building_mechanics
 #: app/_translations.py:34
 msgctxt "tags"
 msgid "Adds game mechanics or tools that change how players build."
 msgstr ""
+"Додає ігрові механіки або інструменти, які змінюють спосіб будівництва для "
+"гравців."
 
 #. NOTE: tags: title for chat
 #: app/_translations.py:36
 msgctxt "tags"
 msgid "Chat / Commands"
-msgstr ""
+msgstr "Чат / Команди"
 
 #. NOTE: tags: description for chat
 #: app/_translations.py:38
 msgctxt "tags"
 msgid "Focus on player chat/communication or console interaction."
-msgstr ""
+msgstr "Зосереджено на чаті/спілкуванні гравців або взаємодії з консоллю."
 
 #. NOTE: tags: title for commerce
 #: app/_translations.py:40
 msgctxt "tags"
 msgid "Commerce / Economy"
-msgstr ""
+msgstr "Комерція / Економіка"
 
 #. NOTE: tags: description for commerce
 #: app/_translations.py:42
 msgctxt "tags"
 msgid "Related to economies, money, and trading"
-msgstr ""
+msgstr "Пов'язано з економікою, грошима та торгівлею"
 
 #. NOTE: tags: title for complex_installation
 #: app/_translations.py:44
-#, fuzzy
 msgctxt "tags"
 msgid "Complex installation"
-msgstr "Документація"
+msgstr "Комплексне встановлення"
 
 #. NOTE: tags: description for complex_installation
 #: app/_translations.py:46
@@ -163,26 +163,26 @@ msgid ""
 "Requires futher installation steps, such as installing LuaRocks or "
 "editing the trusted mod setting"
 msgstr ""
+"Потребує додаткових кроків встановлення, таких як встановлення LuaRocks або "
+"редагування налаштувань довірених модів"
 
 #. NOTE: tags: title for crafting
 #: app/_translations.py:48
-#, fuzzy
 msgctxt "tags"
 msgid "Crafting"
-msgstr "Оцінка"
+msgstr "Крафтинг"
 
 #. NOTE: tags: description for crafting
 #: app/_translations.py:50
 msgctxt "tags"
 msgid "Big changes to crafting gameplay"
-msgstr ""
+msgstr "Значні зміни в ігровому процесі крафтингу"
 
 #. NOTE: tags: title for creative
 #: app/_translations.py:52
-#, fuzzy
 msgctxt "tags"
 msgid "Creative"
-msgstr "Створити"
+msgstr "Творчий режим"
 
 #. NOTE: tags: description for creative
 #: app/_translations.py:54
@@ -192,13 +192,15 @@ msgid ""
 "content only available through a creative inventory, or provides tools "
 "that facilitate ingame creation and doesn't add difficulty or scarcity"
 msgstr ""
+"Написано спеціально або виключно для використання в творчому режимі. Додає "
+"контент, доступний лише через творчий інвентар, або надає інструменти, які "
+"полегшують створення в грі, і не додає складності чи дефіциту"
 
 #. NOTE: tags: title for custom_mapgen
 #: app/_translations.py:56
-#, fuzzy
 msgctxt "tags"
 msgid "Custom mapgen"
-msgstr "Коментар"
+msgstr "Кастомна генерація мапи"
 
 #. NOTE: tags: description for custom_mapgen
 #: app/_translations.py:58
@@ -207,51 +209,52 @@ msgid ""
 "Contains a completely custom mapgen implemented in Lua, usually requires "
 "worlds to be set to the 'singlenode' mapgen."
 msgstr ""
+"Містить повністю власну генерацію карт, реалізовану на Lua, що зазвичай "
+"вимагає встановлення світів на генератор карт \"singlenode\"."
 
 #. NOTE: tags: title for decorative
 #: app/_translations.py:60
-#, fuzzy
 msgctxt "tags"
 msgid "Decorative"
-msgstr "Деактивувати"
+msgstr "Декорації"
 
 #. NOTE: tags: description for decorative
 #: app/_translations.py:62
 msgctxt "tags"
 msgid "Adds nodes with no other purpose than for use in building"
 msgstr ""
+"Додає блоки, які не мають іншого призначення, окрім використання в "
+"будівництві"
 
 #. NOTE: tags: title for developer_tools
 #: app/_translations.py:64
-#, fuzzy
 msgctxt "tags"
 msgid "Developer Tools"
-msgstr "Засоби модерування"
+msgstr "Інструменти розробника"
 
 #. NOTE: tags: description for developer_tools
 #: app/_translations.py:66
 msgctxt "tags"
 msgid "Tools for game and mod developers"
-msgstr ""
+msgstr "Інструменти для розробників ігор та модів"
 
 #. NOTE: tags: title for education
 #: app/_translations.py:68
-#, fuzzy
 msgctxt "tags"
 msgid "Education"
-msgstr "Дія"
+msgstr "Освіта"
 
 #. NOTE: tags: description for education
 #: app/_translations.py:70
 msgctxt "tags"
 msgid "Either has educational value, or is a tool to help teachers "
-msgstr ""
+msgstr "Має освітню цінність або є інструментом, який допомагає вчителям. "
 
 #. NOTE: tags: title for environment
 #: app/_translations.py:72
 msgctxt "tags"
 msgid "Environment / Weather"
-msgstr ""
+msgstr "Навколишнє середовище / Погода"
 
 #. NOTE: tags: description for environment
 #: app/_translations.py:74
@@ -260,18 +263,20 @@ msgid ""
 "Improves the world, adding weather, ambient sounds, or other environment "
 "mechanics"
 msgstr ""
+"Покращує світ, додаючи погоду, навколишні звуки або інші механіки "
+"навколишнього середовища"
 
 #. NOTE: tags: title for food
 #: app/_translations.py:76
 msgctxt "tags"
 msgid "Food / Drinks"
-msgstr ""
+msgstr "Їжа / Напої"
 
 #. NOTE: tags: title for gui
 #: app/_translations.py:78
 msgctxt "tags"
 msgid "GUI"
-msgstr ""
+msgstr "GUI"
 
 #. NOTE: tags: description for gui
 #: app/_translations.py:80
@@ -280,96 +285,98 @@ msgid ""
 "For content whose main utility or features are provided within a GUI, on-"
 "screen menu, or similar"
 msgstr ""
+"Для контенту, основна корисність або функції якого надаються в межах "
+"графічного інтерфейсу користувача, екранного меню або подібного"
 
 #. NOTE: tags: title for hud
 #: app/_translations.py:82
 msgctxt "tags"
 msgid "HUD"
-msgstr ""
+msgstr "HUD"
 
 #. NOTE: tags: description for hud
 #: app/_translations.py:84
 msgctxt "tags"
 msgid "For mods that grant the player extra information in the HUD"
-msgstr ""
+msgstr "Для модів, які надають гравцеві додаткову інформацію на HUD"
 
 #. NOTE: tags: title for inventory
 #: app/_translations.py:86
 msgctxt "tags"
 msgid "Inventory"
-msgstr ""
+msgstr "Інвентар"
 
 #. NOTE: tags: description for inventory
 #: app/_translations.py:88
 msgctxt "tags"
 msgid "Changes the inventory GUI"
-msgstr ""
+msgstr "Змінює графічний інтерфейс інвентаря"
 
 #. NOTE: tags: title for jam_combat_mod
 #: app/_translations.py:90
 msgctxt "tags"
 msgid "Jam / Combat 2020"
-msgstr ""
+msgstr "Jam / Combat 2020"
 
 #. NOTE: tags: description for jam_combat_mod
 #: app/_translations.py:92
 msgctxt "tags"
 msgid "For mods created for the Discord \"Combat\" modding event in 2020"
-msgstr ""
+msgstr "Для модів, створених для модінг-івенту \"Combat\" у Discord у 2020 році"
 
 #. NOTE: tags: title for jam_game_2021
 #: app/_translations.py:94
 msgctxt "tags"
 msgid "Jam / Game 2021"
-msgstr ""
+msgstr "Jam / Game 2021"
 
 #. NOTE: tags: description for jam_game_2021
 #: app/_translations.py:96
 msgctxt "tags"
 msgid "Entries to the 2021 Minetest Game Jam"
-msgstr ""
+msgstr "Роботи, представлені на Minetest Game Jam 2021"
 
 #. NOTE: tags: title for jam_game_2022
 #: app/_translations.py:98
 msgctxt "tags"
 msgid " Jam / Game 2022"
-msgstr ""
+msgstr " Jam / Game 2022"
 
 #. NOTE: tags: description for jam_game_2022
 #: app/_translations.py:100
 msgctxt "tags"
 msgid "Entries to the 2022 Minetest Game Jam "
-msgstr ""
+msgstr "Роботи, представлені на Minetest Game Jam 2022 "
 
 #. NOTE: tags: title for jam_game_2023
 #: app/_translations.py:102
 msgctxt "tags"
 msgid "Jam / Game 2023"
-msgstr ""
+msgstr "Jam / Game 2023"
 
 #. NOTE: tags: description for jam_game_2023
 #: app/_translations.py:104
 msgctxt "tags"
 msgid "Entries to the 2023 Minetest Game Jam "
-msgstr ""
+msgstr "Роботи, представлені на Minetest Game Jam 2023 "
 
 #. NOTE: tags: title for jam_game_2024
 #: app/_translations.py:106
 msgctxt "tags"
 msgid "Jam / Game 2024"
-msgstr ""
+msgstr "Jam / Game 2024"
 
 #. NOTE: tags: description for jam_game_2024
 #: app/_translations.py:108
 msgctxt "tags"
 msgid "Entries to the 2024 Luanti Game Jam"
-msgstr ""
+msgstr "Роботи, представлені на Luanti Game Jam 2024"
 
 #. NOTE: tags: title for jam_weekly_2021
 #: app/_translations.py:110
 msgctxt "tags"
 msgid "Jam / Weekly Challenges 2021"
-msgstr ""
+msgstr "Jam / Weekly Challenges 2021"
 
 #. NOTE: tags: description for jam_weekly_2021
 #: app/_translations.py:112
@@ -378,103 +385,104 @@ msgid ""
 "For mods created for the Discord \"Weekly Challenges\" modding event in "
 "2021"
 msgstr ""
+"Для модів, створених для модінг-івенту \"Щотижневі челенджі\" у Discord у "
+"2021 році"
 
 #. NOTE: tags: title for less_than_px
 #: app/_translations.py:114
 msgctxt "tags"
 msgid "<16px"
-msgstr ""
+msgstr "&lt;16пікс"
 
 #. NOTE: tags: description for less_than_px
 #: app/_translations.py:116
 msgctxt "tags"
 msgid "Less than 16px"
-msgstr ""
+msgstr "Менше, ніж 16пікс"
 
 #. NOTE: tags: title for library
 #: app/_translations.py:118
 msgctxt "tags"
 msgid "API / Library"
-msgstr ""
+msgstr "API / Бібліотека"
 
 #. NOTE: tags: description for library
 #: app/_translations.py:120
 msgctxt "tags"
 msgid "Primarily adds an API for other mods to use"
-msgstr ""
+msgstr "Переважно додає API для використання іншими модами"
 
 #. NOTE: tags: title for magic
 #: app/_translations.py:122
 msgctxt "tags"
 msgid "Magic / Enchanting"
-msgstr ""
+msgstr "Магія / Зачарування"
 
 #. NOTE: tags: title for mapgen
 #: app/_translations.py:124
 msgctxt "tags"
 msgid "Mapgen / Biomes / Decoration"
-msgstr ""
+msgstr "Генератор світу / Біоми / Декорації"
 
 #. NOTE: tags: description for mapgen
 #: app/_translations.py:126
 msgctxt "tags"
 msgid "New mapgen or changes mapgen"
-msgstr ""
+msgstr "Нові генератори світу або зміни, пов'язані із ними"
 
 #. NOTE: tags: title for mini-game
 #: app/_translations.py:128
-#, fuzzy
 msgctxt "tags"
 msgid "Mini-game"
-msgstr "Назва"
+msgstr "Міні-ігри"
 
 #. NOTE: tags: description for mini-game
 #: app/_translations.py:130
 msgctxt "tags"
 msgid "Adds a mini-game to be played within Luanti"
-msgstr ""
+msgstr "Додає міні-ігри"
 
 #. NOTE: tags: title for mobs
 #: app/_translations.py:132
 msgctxt "tags"
 msgid "Mobs / Animals / NPCs"
-msgstr ""
+msgstr "Моби / Тварини / NPC"
 
 #. NOTE: tags: description for mobs
 #: app/_translations.py:134
 msgctxt "tags"
 msgid "Adds mobs, animals, and non-player characters"
-msgstr ""
+msgstr "Додає мобів, тварин або ботів"
 
 #. NOTE: tags: title for mtg
 #: app/_translations.py:136
 msgctxt "tags"
 msgid "Minetest Game improved"
-msgstr ""
+msgstr "Покращення Minetest Game"
 
 #. NOTE: tags: description for mtg
 #: app/_translations.py:138
 msgctxt "tags"
 msgid "Forks of Minetest Game"
-msgstr ""
+msgstr "Форки Minetest Game"
 
 #. NOTE: tags: title for multiplayer
 #: app/_translations.py:140
 msgctxt "tags"
 msgid "Multiplayer-focused"
-msgstr ""
+msgstr "Багатокористувацький"
 
 #. NOTE: tags: description for multiplayer
 #: app/_translations.py:142
 msgctxt "tags"
 msgid "Can/should only be used in multiplayer"
-msgstr ""
+msgstr "Можна/слід використовувати у багатокористувацькому режимі"
 
 #. NOTE: tags: title for oneofakind__original
 #: app/_translations.py:144
 msgctxt "tags"
 msgid "One-of-a-kind / Original"
-msgstr ""
+msgstr "Єдиний у своєму роді / Оригінал"
 
 #. NOTE: tags: description for oneofakind__original
 #: app/_translations.py:146
@@ -483,24 +491,26 @@ msgid ""
 "For games and such that are of their own kind, distinct and original in "
 "nature to others of the same category."
 msgstr ""
+"Для ігор і таких, які є власними, відмінними та оригінальними за своєю "
+"природою від інших тієї ж категорії."
 
 #. NOTE: tags: title for plants_and_farming
 #: app/_translations.py:148
 msgctxt "tags"
 msgid "Plants and Farming"
-msgstr ""
+msgstr "Рослини та сільське господарство"
 
 #. NOTE: tags: description for plants_and_farming
 #: app/_translations.py:150
 msgctxt "tags"
 msgid "Adds new plants or other farmable resources."
-msgstr ""
+msgstr "Додає нові рослини чи фермерські ресурси."
 
 #. NOTE: tags: title for player_effects
 #: app/_translations.py:152
 msgctxt "tags"
 msgid "Player Effects / Power Ups"
-msgstr ""
+msgstr "Ефекти гравця / Підсилення"
 
 #. NOTE: tags: description for player_effects
 #: app/_translations.py:154
@@ -509,24 +519,26 @@ msgid ""
 "For content that changes player effects, including physics, for example: "
 "speed, jump height or gravity."
 msgstr ""
+"Для контенту, що змінює ефекти гравця, включаючи фізику, наприклад: "
+"швидкість, висота стрибка чи гравітація."
 
 #. NOTE: tags: title for puzzle
 #: app/_translations.py:156
 msgctxt "tags"
 msgid "Puzzle"
-msgstr ""
+msgstr "Пазли"
 
 #. NOTE: tags: description for puzzle
 #: app/_translations.py:158
 msgctxt "tags"
 msgid "Focus on puzzle solving instead of combat"
-msgstr ""
+msgstr "Зосереджено на вирішуванні логічних завдань, замість атак"
 
 #. NOTE: tags: title for pve
 #: app/_translations.py:160
 msgctxt "tags"
 msgid "Player vs Environment (PvE)"
-msgstr ""
+msgstr "Гравець проти сутностей (PvE)"
 
 #. NOTE: tags: description for pve
 #: app/_translations.py:162
@@ -535,35 +547,35 @@ msgid ""
 "For content designed for one or more players that focus on combat against"
 " the world, mobs, or NPCs."
 msgstr ""
+"Для контенту, розробленого для одного або кількох гравців, які "
+"зосереджуються на боротьбі проти світу, мобів або NPC."
 
 #. NOTE: tags: title for pvp
 #: app/_translations.py:164
 msgctxt "tags"
 msgid "Player vs Player (PvP)"
-msgstr ""
+msgstr "Гравець проти гравця (PvP)"
 
 #. NOTE: tags: description for pvp
 #: app/_translations.py:166
 msgctxt "tags"
 msgid "Designed to be played competitively against other players"
-msgstr ""
+msgstr "Розроблено для змагання з іншими гравцями"
 
 #. NOTE: tags: title for seasonal
 #: app/_translations.py:168
-#, fuzzy
 msgctxt "tags"
 msgid "Seasonal"
-msgstr "Причина"
+msgstr "Сезонний"
 
 #. NOTE: tags: description for seasonal
 #: app/_translations.py:170
 msgctxt "tags"
 msgid "For content generally themed around a certain season or holiday"
-msgstr ""
+msgstr "Для вмісту, присвяченого певній порі року чи святу"
 
 #. NOTE: tags: title for server_tools
 #: app/_translations.py:172
-#, fuzzy
 msgctxt "tags"
 msgid "Server Moderation and Tools"
 msgstr "Засоби модерування"
@@ -572,25 +584,25 @@ msgstr "Засоби модерування"
 #: app/_translations.py:174
 msgctxt "tags"
 msgid "Helps with server maintenance and moderation"
-msgstr ""
+msgstr "Допомагає із підтримкою сервера та модерацією"
 
 #. NOTE: tags: title for shooter
 #: app/_translations.py:176
 msgctxt "tags"
 msgid "Shooter"
-msgstr ""
+msgstr "Шутери"
 
 #. NOTE: tags: description for shooter
 #: app/_translations.py:178
 msgctxt "tags"
 msgid "First person shooters (FPS) and more"
-msgstr ""
+msgstr "Шутери від першого лиця (FPS) та більше"
 
 #. NOTE: tags: title for simulation
 #: app/_translations.py:180
 msgctxt "tags"
 msgid "Sims"
-msgstr ""
+msgstr "Симулятори"
 
 #. NOTE: tags: description for simulation
 #: app/_translations.py:182
@@ -599,24 +611,26 @@ msgid ""
 "Mods and games that aim to simulate real life activity. Similar to "
 "SimCity/The Sims/OpenTTD/etc."
 msgstr ""
+"Моди та ігри, що намагаються симулювати активности реального життя. Схоже на "
+"SimCity/The Sims, OpenTTD/тощо."
 
 #. NOTE: tags: title for singleplayer
 #: app/_translations.py:184
 msgctxt "tags"
 msgid "Singleplayer-focused"
-msgstr ""
+msgstr "Для одного гравця"
 
 #. NOTE: tags: description for singleplayer
 #: app/_translations.py:186
 msgctxt "tags"
 msgid "Content that can be played alone"
-msgstr ""
+msgstr "Контент, що слід використовувати самому"
 
 #. NOTE: tags: title for skins
 #: app/_translations.py:188
 msgctxt "tags"
 msgid "Player customization / Skins"
-msgstr ""
+msgstr "Кастомізація гравця / Скіни"
 
 #. NOTE: tags: description for skins
 #: app/_translations.py:190
@@ -625,44 +639,44 @@ msgid ""
 "Allows the player to customize their character by changing the texture or"
 " adding accessories."
 msgstr ""
+"Дозволяє гравцеві налаштовувати свого персонажа, змінюючи текстуру або "
+"додаючи аксесуари."
 
 #. NOTE: tags: title for sound_music
 #: app/_translations.py:192
 msgctxt "tags"
 msgid "Sounds / Music"
-msgstr ""
+msgstr "Звуки / Музика"
 
 #. NOTE: tags: description for sound_music
 #: app/_translations.py:194
 msgctxt "tags"
 msgid "Focuses on or adds new sounds or musical things"
-msgstr ""
+msgstr "Додає нові звуки чи які-небудь музичні предмети/блоки"
 
 #. NOTE: tags: title for sports
 #: app/_translations.py:196
-#, fuzzy
 msgctxt "tags"
 msgid "Sports"
-msgstr "Звіт"
+msgstr "Спорт"
 
 #. NOTE: tags: title for storage
 #: app/_translations.py:198
-#, fuzzy
 msgctxt "tags"
 msgid "Storage"
-msgstr "Держава"
+msgstr "Зберігання"
 
 #. NOTE: tags: description for storage
 #: app/_translations.py:200
 msgctxt "tags"
 msgid "Adds or improves item storage mechanics"
-msgstr ""
+msgstr "Додає або покращує механіки зберігання предметів"
 
 #. NOTE: tags: title for strategy_rts
 #: app/_translations.py:202
 msgctxt "tags"
 msgid "Strategy / RTS"
-msgstr ""
+msgstr "Стратегія / RTS (стратегія в реальному часі)"
 
 #. NOTE: tags: description for strategy_rts
 #: app/_translations.py:204
@@ -671,12 +685,14 @@ msgid ""
 "Games and mods with a heavy strategy component, whether real-time or "
 "turn-based"
 msgstr ""
+"Ігри та моди з важким стратегічним компонентом, як у реальному часі, так і "
+"покрокові"
 
 #. NOTE: tags: title for survival
 #: app/_translations.py:206
 msgctxt "tags"
 msgid "Survival"
-msgstr ""
+msgstr "Виживання"
 
 #. NOTE: tags: description for survival
 #: app/_translations.py:208
@@ -685,37 +701,38 @@ msgid ""
 "Written specifically for survival gameplay with a focus on game-balance, "
 "difficulty level, or resources available through crafting, mining, ..."
 msgstr ""
+"Написаний спеціально для геймплея виживання з акцентом на ігровий баланс, "
+"рівень складності або ресурси, доступні через крафт, видобуток, ..."
 
 #. NOTE: tags: title for technology
 #: app/_translations.py:210
 msgctxt "tags"
 msgid "Machines / Electronics"
-msgstr ""
+msgstr "Машини / Електроніка"
 
 #. NOTE: tags: description for technology
 #: app/_translations.py:212
 msgctxt "tags"
 msgid "Adds machines useful in automation, tubes, or power."
-msgstr ""
+msgstr "Додає машини, корисні в автоматизації, труби або енергію."
 
 #. NOTE: tags: title for tools
 #: app/_translations.py:214
 msgctxt "tags"
 msgid "Tools / Weapons / Armor"
-msgstr ""
+msgstr "Інструменти / Зброя / Броня"
 
 #. NOTE: tags: description for tools
 #: app/_translations.py:216
 msgctxt "tags"
 msgid "Adds or changes tools, weapons, and armor"
-msgstr ""
+msgstr "Додає або змінює інструменти, зброю та броню"
 
 #. NOTE: tags: title for transport
 #: app/_translations.py:218
-#, fuzzy
 msgctxt "tags"
 msgid "Transport"
-msgstr "Звіт"
+msgstr "Транспорт"
 
 #. NOTE: tags: description for transport
 #: app/_translations.py:220
@@ -724,57 +741,57 @@ msgid ""
 "Adds or changes transportation methods. Includes teleportation, vehicles,"
 " ridable mobs, transport infrastructure and thematic content"
 msgstr ""
+"Додає або змінює методи транспортування. Включає телепортацію, транспортні "
+"засоби, моби, на яких можна їздити, транспортну інфраструктуру та тематичний "
+"контент"
 
 #. NOTE: tags: title for world_tools
 #: app/_translations.py:222
 msgctxt "tags"
 msgid "World Maintenance and Tools"
-msgstr ""
+msgstr "Редагування світу та інструменти"
 
 #. NOTE: tags: description for world_tools
 #: app/_translations.py:224
 msgctxt "tags"
 msgid "Tools to manage the world"
-msgstr ""
+msgstr "Інструменти для керування світом"
 
 #. NOTE: content_warnings: title for alcohol_tobacco
 #: app/_translations.py:226
 msgctxt "content_warnings"
 msgid "Alcohol / Tobacco"
-msgstr ""
+msgstr "Алкоголь / Тютюн"
 
 #. NOTE: content_warnings: description for alcohol_tobacco
 #: app/_translations.py:228
 msgctxt "content_warnings"
 msgid "Contains alcohol and/or tobacco"
-msgstr ""
+msgstr "Містить алкоголь та/або тютюн"
 
 #. NOTE: content_warnings: title for bad_language
 #: app/_translations.py:230
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Bad Language"
-msgstr "Додати пакунок"
+msgstr "Погана мова"
 
 #. NOTE: content_warnings: description for bad_language
 #: app/_translations.py:232
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Contains swearing"
-msgstr "Попередження вмісту"
+msgstr "Містить лайку"
 
 #. NOTE: content_warnings: title for drugs
 #: app/_translations.py:234
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Drugs"
-msgstr "Правила"
+msgstr "Наркотики"
 
 #. NOTE: content_warnings: description for drugs
 #: app/_translations.py:236
 msgctxt "content_warnings"
 msgid "Contains recreational drugs other than alcohol or tobacco"
-msgstr ""
+msgstr "Містить рекреаційні наркотики, крім алкоголю чи тютюну"
 
 #. NOTE: content_warnings: title for gambling
 #: app/_translations.py:238
@@ -787,44 +804,45 @@ msgstr "Адмін"
 #: app/_translations.py:240
 msgctxt "content_warnings"
 msgid "Games of chance, gambling games, etc"
-msgstr ""
+msgstr "Азартні ігри"
 
 #. NOTE: content_warnings: title for gore
 #: app/_translations.py:242
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Gore"
-msgstr "Більше"
+msgstr "Кров"
 
 #. NOTE: content_warnings: description for gore
 #: app/_translations.py:244
 msgctxt "content_warnings"
 msgid "Blood, etc"
-msgstr ""
+msgstr "Кров, тощо"
 
 #. NOTE: content_warnings: title for horror
 #: app/_translations.py:246
 msgctxt "content_warnings"
 msgid "Fear / Horror"
-msgstr ""
+msgstr "Страх / Жахи"
 
 #. NOTE: content_warnings: description for horror
 #: app/_translations.py:248
 msgctxt "content_warnings"
 msgid "Shocking and scary content. May scare young children"
-msgstr ""
+msgstr "Шокуючий і страшний контент. Може налякати маленьких дітей"
 
 #. NOTE: content_warnings: title for violence
 #: app/_translations.py:250
 msgctxt "content_warnings"
 msgid "Violence"
-msgstr ""
+msgstr "Насильство"
 
 #. NOTE: content_warnings: description for violence
 #: app/_translations.py:252
 msgctxt "content_warnings"
 msgid "Non-cartoon violence. May be towards fantasy or  human-like characters"
 msgstr ""
+"Насильство без мультфільму. Може бути спрямовано до фантастичних або "
+"людиноподібних персонажів"
 
 #: app/querybuilder.py:60 app/templates/admin/languages/list.html:27
 #: app/templates/admin/tags/list.html:34
@@ -839,7 +857,7 @@ msgstr "Пакунки"
 #: app/querybuilder.py:75
 #, python-format
 msgid "%(package_type)s for %(game_name)s"
-msgstr ""
+msgstr "%(package_type)s для %(game_name)s"
 
 #: app/template_filters.py:92
 #, python-format
@@ -848,7 +866,7 @@ msgstr "%(delta)s тому"
 
 #: app/blueprints/api/endpoints.py:74 app/templates/index.html:104
 msgid "Featured"
-msgstr "Рекомендовані"
+msgstr "Рекомендовано"
 
 #: app/blueprints/api/tokens.py:33
 #: app/blueprints/packages/advanced_search.py:83
@@ -946,23 +964,22 @@ msgstr "Вилучено пакунок з колекції улюбленого
 #: app/blueprints/feeds/__init__.py:32 app/templates/index.html:8
 msgid "Welcome to the best place to find Luanti mods, games, and texture packs"
 msgstr ""
-"Вітаємо у найкращому місті щоб знайти моди, ігри та пакунки текстур до "
-"Luanti"
+"Вітаємо у найкращому місці щоб знайти моди, ігри та пакунки текстур до Luanti"
 
 #: app/blueprints/feeds/__init__.py:70 app/templates/base.html:29
 #: app/templates/base.html:36
 msgid "ContentDB new packages"
-msgstr ""
+msgstr "Нові пакунки ContentDB"
 
 #: app/blueprints/feeds/__init__.py:98 app/templates/base.html:31
 #: app/templates/base.html:38
 msgid "ContentDB package updates"
-msgstr ""
+msgstr "Оновлення пакунків ContentDB"
 
 #: app/blueprints/feeds/__init__.py:107 app/templates/base.html:27
 #: app/templates/base.html:34
 msgid "ContentDB all"
-msgstr ""
+msgstr "Все у ContentDB"
 
 #: app/blueprints/oauth/__init__.py:169 app/templates/admin/tags/list.html:26
 #: app/templates/admin/warnings/list.html:24
@@ -981,6 +998,8 @@ msgstr "Вид Застосунку"
 #: app/blueprints/oauth/__init__.py:198
 msgid "An OAuth client with that title already exists. Please choose a new title."
 msgstr ""
+"OAuth клієнт із таким заголовком уже існує. Будь ласка, оберіть новий "
+"заголовок."
 
 #: app/blueprints/oauth/__init__.py:262
 msgid "Revoked all user tokens"
@@ -994,7 +1013,7 @@ msgstr "Змінити деталі"
 #: app/blueprints/packages/__init__.py:37
 #: app/templates/packages/translation.html:4
 msgid "Translation"
-msgstr ""
+msgstr "Переклад"
 
 #: app/blueprints/packages/__init__.py:42
 #: app/templates/packages/releases_list.html:34
@@ -1041,15 +1060,15 @@ msgstr "Підтримувані ігри"
 
 #: app/blueprints/packages/advanced_search.py:39
 msgid "Android Default"
-msgstr ""
+msgstr "Стандартний Android"
 
 #: app/blueprints/packages/advanced_search.py:40
 msgid "Desktop Default"
-msgstr ""
+msgstr "Стандартний Desktop"
 
 #: app/blueprints/packages/advanced_search.py:41
 msgid "Non-free"
-msgstr ""
+msgstr "Не вільний"
 
 #: app/blueprints/packages/advanced_search.py:42 app/models/packages.py:630
 #: app/templates/packages/view.html:170
@@ -1059,15 +1078,15 @@ msgstr "Робота в процесі"
 #. NOTE: Package maintenance state
 #: app/blueprints/packages/advanced_search.py:43 app/models/packages.py:170
 msgid "Deprecated"
-msgstr ""
+msgstr "Застарілий"
 
 #: app/blueprints/packages/advanced_search.py:44
 msgid "All content warnings"
-msgstr ""
+msgstr "Усі попередження"
 
 #: app/blueprints/packages/advanced_search.py:53
 msgid "Query"
-msgstr ""
+msgstr "Запит"
 
 #: app/blueprints/packages/advanced_search.py:54
 #: app/blueprints/packages/packages.py:231 app/templates/packages/view.html:616
@@ -1100,7 +1119,7 @@ msgstr "Ліцензія"
 
 #: app/blueprints/packages/advanced_search.py:67
 msgid "Supports Game"
-msgstr ""
+msgstr "Підтримує гру"
 
 #: app/blueprints/packages/advanced_search.py:71
 #: app/templates/admin/storage.html:39
@@ -1120,23 +1139,23 @@ msgstr "%(title)s від %(author)s"
 #: app/blueprints/packages/reviews.py:54
 #: app/templates/packages/translation.html:39
 msgid "Language"
-msgstr ""
+msgstr "Мови"
 
 #: app/blueprints/packages/advanced_search.py:76
 msgid "Hide Tags and Content Warnings"
-msgstr ""
+msgstr "Сховати мітки та попередження вмісту"
 
 #: app/blueprints/packages/advanced_search.py:77
 msgid "Luanti Version"
-msgstr ""
+msgstr "Версія Luanti"
 
 #: app/blueprints/packages/advanced_search.py:81
 msgid "Sort by"
-msgstr ""
+msgstr "Сортувати"
 
 #: app/blueprints/packages/advanced_search.py:85
 msgid "Package score"
-msgstr ""
+msgstr "Рахунок пакунку"
 
 #: app/blueprints/packages/advanced_search.py:86 app/templates/index.html:78
 #: app/templates/packages/reviews_list.html:4
@@ -1148,35 +1167,35 @@ msgstr "Відгуки"
 #: app/blueprints/packages/advanced_search.py:87
 #: app/templates/packages/view.html:191 app/templates/users/profile.html:242
 msgid "Downloads"
-msgstr "Завантаження"
+msgstr "Завантажити"
 
 #: app/blueprints/packages/advanced_search.py:88
 msgid "Created At"
-msgstr ""
+msgstr "Створено"
 
 #: app/blueprints/packages/advanced_search.py:89
 msgid "Approved At"
-msgstr ""
+msgstr "Затверджено"
 
 #: app/blueprints/packages/advanced_search.py:90
 msgid "Last Release"
-msgstr ""
+msgstr "Останній випуск"
 
 #: app/blueprints/packages/advanced_search.py:92
 msgid "Order"
-msgstr ""
+msgstr "Порядок"
 
 #: app/blueprints/packages/advanced_search.py:93
 msgid "Descending"
-msgstr ""
+msgstr "Низхідний"
 
 #: app/blueprints/packages/advanced_search.py:94
 msgid "Ascending"
-msgstr ""
+msgstr "Висхідний"
 
 #: app/blueprints/packages/advanced_search.py:96
 msgid "Random order"
-msgstr ""
+msgstr "Випадковий порядок"
 
 #: app/blueprints/packages/packages.py:216
 msgid "No download available."
@@ -1208,7 +1227,7 @@ msgstr "Стан підтримки"
 
 #: app/blueprints/packages/packages.py:241
 msgid "Media License"
-msgstr "Ліцензія медія"
+msgstr "Ліцензія для медія"
 
 #: app/blueprints/packages/packages.py:243
 msgid "Long Description (Markdown)"
@@ -1236,11 +1255,11 @@ msgstr "URL відеозапису"
 
 #: app/blueprints/packages/packages.py:250
 msgid "Donate URL"
-msgstr "Пожертвувати URL"
+msgstr "URL для донатів"
 
 #: app/blueprints/packages/packages.py:251
 msgid "Translation URL"
-msgstr ""
+msgstr "URL для допомоги із перекладом"
 
 #: app/blueprints/packages/packages.py:257
 msgid "_game is not an allowed name"
@@ -1251,12 +1270,12 @@ msgid ""
 "Package already exists, but is removed. Please contact ContentDB staff to"
 " restore the package"
 msgstr ""
-"Пакет уже існує, але видалено. Щоб відновити пакет, зверніться до "
-"персоналу ContentDB"
+"Пакунок уже існує, але він видалений. Щоб відновити пакунок, зверніться до "
+"підтримки ContentDB"
 
 #: app/blueprints/packages/packages.py:273
 msgid "Package already exists"
-msgstr "Пакет уже існує"
+msgstr "Пакунок уже існує"
 
 #: app/blueprints/packages/packages.py:279
 msgid "A collection with a similar name already exists"
@@ -1268,10 +1287,12 @@ msgid ""
 "You must add an email address to your account and confirm it before you "
 "can manage packages"
 msgstr ""
+"Ви маєте додати свою електронну адресу до вашого акаунту і підвердити її, "
+"перш ніж ви зможете керувати пакунками"
 
 #: app/blueprints/packages/packages.py:338
 msgid "Save draft"
-msgstr ""
+msgstr "Зберегти чернетку"
 
 #: app/blueprints/packages/packages.py:346
 msgid "Unable to find that user"
@@ -1297,15 +1318,17 @@ msgid ""
 "Please comment in the approval thread so editors know what you have "
 "changed"
 msgstr ""
+"Будь ласка, прокоментуйте гілку затвердження, щоб редактори знали, що ви "
+"змінили"
 
 #: app/blueprints/packages/packages.py:490
 #, python-format
 msgid "Set state to %(state)s"
-msgstr ""
+msgstr "Стан встановлено на %(state)s"
 
 #: app/blueprints/packages/packages.py:520
 msgid "Deleted package"
-msgstr "Видалити пакунок"
+msgstr "Видалений пакунок"
 
 #: app/blueprints/packages/packages.py:542
 msgid "Unapproved package"
@@ -1345,7 +1368,7 @@ msgstr "Непідтримувані ігри"
 
 #: app/blueprints/packages/packages.py:735
 msgid "Supports all games (unless stated) / is game independent"
-msgstr "Підтримує усі ігри (доки не вказано)/ ігро-незалежний"
+msgstr "Підтримує усі ігри (доки не вказано що-небудь окрім) / ігро-незалежний"
 
 #: app/blueprints/packages/packages.py:751
 msgid "You need at least one release before you can edit game support"
@@ -1356,13 +1379,12 @@ msgstr ""
 #: app/blueprints/packages/packages.py:755
 msgid "Mod(pack) needs to contain at least one mod. Please create a new release"
 msgstr ""
-"Пакунок модів має містити щонайменше один мод. Будь ласка створіть нову "
-"публікацію"
+"Модпак має містити щонайменше один мод. Будь ласка, створіть новий випуск"
 
 #: app/blueprints/packages/releases.py:57
 #: app/blueprints/packages/releases.py:72
 msgid "Release Notes"
-msgstr ""
+msgstr "Примітки до випуску"
 
 #: app/blueprints/packages/releases.py:59
 msgid "Method"
@@ -1424,8 +1446,7 @@ msgstr "Вказати максимум"
 #: app/blueprints/packages/releases.py:222
 msgid "Only change values previously set as none"
 msgstr ""
-"Змінюйте лише значення, для яких раніше було встановлено значення "
-"\"немає\"."
+"Змінюйте лише значення, для яких раніше було встановлено значення \"немає\""
 
 #: app/blueprints/packages/releases.py:223
 msgid "Update"
@@ -1494,7 +1515,7 @@ msgstr "Оцінка"
 #: app/blueprints/packages/reviews.py:62 app/templates/macros/reviews.html:125
 #: app/templates/macros/reviews.html:179
 msgid "Yes"
-msgstr "Так"
+msgstr "Рекомендую"
 
 #: app/blueprints/packages/reviews.py:62 app/templates/macros/reviews.html:130
 #: app/templates/macros/reviews.html:183
@@ -1504,7 +1525,7 @@ msgstr "Нейтрально"
 #: app/blueprints/packages/reviews.py:62 app/templates/macros/reviews.html:135
 #: app/templates/macros/reviews.html:187
 msgid "No"
-msgstr "Ні"
+msgstr "Не рекомендую"
 
 #: app/blueprints/packages/reviews.py:71
 msgid "You can't review your own package!"
@@ -1515,9 +1536,8 @@ msgid ""
 "You've reviewed too many packages recently. Please wait before trying "
 "again, and consider making your reviews more detailed"
 msgstr ""
-"Ви нещодавно переглянули занадто багато пакетів. Будь ласка, зачекайте, "
-"перш ніж спробувати знову, і подумайте про те, щоб ваші відгуки були "
-"детальнішими"
+"Ви нещодавно оглянули занадто багато пакетів. Будь ласка, зачекайте, перш "
+"ніж спробувати знову, і подумайте про те, щоб ваші відгуки були детальнішими"
 
 #: app/blueprints/packages/reviews.py:94 app/blueprints/threads/__init__.py:207
 #: app/blueprints/threads/__init__.py:240
@@ -1561,7 +1581,7 @@ msgstr "Уже підписано!"
 
 #: app/blueprints/threads/__init__.py:73
 msgid "Subscribed to thread"
-msgstr "Підписався на тему"
+msgstr "Ви підписалися на гілку"
 
 #: app/blueprints/threads/__init__.py:88
 msgid "Unsubscribed!"
@@ -1639,7 +1659,7 @@ msgstr "Користувач %(username)s не існує"
 
 #: app/blueprints/users/account.py:55
 msgid "Incorrect password. Did you set one?"
-msgstr "Невірний пароль. Ви встановили один?"
+msgstr "Неправильний пароль. Ви встановили його?"
 
 #: app/blueprints/users/account.py:58
 msgid "You need to confirm the registration email"
@@ -1735,7 +1755,7 @@ msgid ""
 "%(display_name)s. Try a different email address."
 msgstr ""
 "Нам не вдалося створити обліковий запис, оскільки %(display_name)s уже "
-"використовує електронну адресу. Спробуйте іншу електронну адресу."
+"використовує адресу електронної пошти. Спробуйте іншу електронну адресу."
 
 #: app/blueprints/users/account.py:239 app/blueprints/users/account.py:243
 msgid "Your password has been changed successfully."
@@ -1747,11 +1767,11 @@ msgstr "Неправильний старий пароль"
 
 #: app/blueprints/users/account.py:286
 msgid "Unknown verification token!"
-msgstr "Невідомий маркер підтвердження!"
+msgstr "Невідомий токен підтвердження!"
 
 #: app/blueprints/users/account.py:290
 msgid "Token has expired"
-msgstr "Термін дії маркера закінчився"
+msgstr "Термін дії токена закінчився"
 
 #: app/blueprints/users/account.py:304
 msgid "Another user is already using that email"
@@ -1798,12 +1818,16 @@ msgid ""
 "Unable to get GitHub username for user. Make sure the forum account "
 "exists."
 msgstr ""
+"Неможливо отримати ім'я користувача GitHub для користувача. Переконайтеся, "
+"що існує обліковий запис форуму."
 
 #: app/blueprints/users/claim.py:66
 msgid ""
 "A ContentDB user with that name already exists. Please contact an admin "
 "to link to your forum account"
 msgstr ""
+"Зміст користувача ContentDB з такою назвою вже існує. Будь ласка, зв'яжіться "
+"з адміністратором для посилання на свій обліковий запис форуму"
 
 #: app/blueprints/users/claim.py:75
 msgid "That user has already been claimed!"
