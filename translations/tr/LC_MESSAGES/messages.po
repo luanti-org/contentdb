@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2024-04-04 08:23+0000\n"
-"Last-Translator: Oğuz Ersen <oguz@ersen.moe>\n"
+"PO-Revision-Date: 2025-01-19 20:00+0000\n"
+"Last-Translator: Siber <anonloxu@gmail.com>\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/minetest/"
+"contentdb/tr/>\n"
 "Language: tr\n"
-"Language-Team: Turkish "
-"<https://hosted.weblate.org/projects/minetest/contentdb/tr/>\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10-dev\n"
 "Generated-By: Babel 2.15.0\n"
 
 #: app/__init__.py:156
@@ -31,65 +32,61 @@ msgstr "Yasaklandınız."
 #: app/_translations.py:6
 msgctxt "tags"
 msgid "128px+"
-msgstr ""
+msgstr "128px+"
 
 #. NOTE: tags: description for 128px
 #: app/_translations.py:8
-#, fuzzy
 msgctxt "tags"
 msgid "For 128px or higher texture packs"
-msgstr "En İyi Doku Paketleri"
+msgstr "128px'den doku paketleri için"
 
 #. NOTE: tags: title for 16px
 #: app/_translations.py:10
 msgctxt "tags"
 msgid "16px"
-msgstr ""
+msgstr "16px"
 
 #. NOTE: tags: description for 16px
 #: app/_translations.py:12
-#, fuzzy
 msgctxt "tags"
 msgid "For 16px texture packs"
-msgstr "En İyi Doku Paketleri"
+msgstr "16px doku paketleri için"
 
 #. NOTE: tags: title for 32px
 #: app/_translations.py:14
 msgctxt "tags"
 msgid "32px"
-msgstr ""
+msgstr "32px"
 
 #. NOTE: tags: description for 32px
 #: app/_translations.py:16
-#, fuzzy
 msgctxt "tags"
 msgid "For 32px texture packs"
-msgstr "En İyi Doku Paketleri"
+msgstr "32px doku paketleri için"
 
 #. NOTE: tags: title for 64px
 #: app/_translations.py:18
 msgctxt "tags"
 msgid "64px"
-msgstr ""
+msgstr "64px"
 
 #. NOTE: tags: description for 64px
 #: app/_translations.py:20
-#, fuzzy
 msgctxt "tags"
 msgid "For 64px texture packs"
-msgstr "En İyi Doku Paketleri"
+msgstr "64px doku paketleri için"
 
 #. NOTE: tags: title for adventure__rpg
 #: app/_translations.py:22
 msgctxt "tags"
 msgid "Adventure / RPG"
-msgstr ""
+msgstr "Macera / RPG"
 
 #. NOTE: tags: title for april_fools
 #: app/_translations.py:24
 msgctxt "tags"
 msgid "Joke"
-msgstr ""
+msgstr "Şaka"
 
 #. NOTE: tags: description for april_fools
 #: app/_translations.py:26
@@ -98,54 +95,56 @@ msgid ""
 "For humorous content, meant as a novelty or joke, not to be taken "
 "seriously, and that is not meant to be used seriously or long-term."
 msgstr ""
+"Şaka veya yenilik olarak tasarlanmış, ciddiye alınmaması gereken ve ciddi "
+"veya uzun vadeli kullanım amacı taşımayan mizahi içeriklerdir."
 
 #. NOTE: tags: title for building
 #: app/_translations.py:28
 msgctxt "tags"
 msgid "Building"
-msgstr ""
+msgstr "İnşaat"
 
 #. NOTE: tags: description for building
 #: app/_translations.py:30
 msgctxt "tags"
 msgid "Focuses on building, such as adding new materials or nodes"
-msgstr ""
+msgstr "Yeni malzemeler veya düğümler eklemek gibi inşa etmeye odaklanır"
 
 #. NOTE: tags: title for building_mechanics
 #: app/_translations.py:32
 msgctxt "tags"
 msgid "Building Mechanics and Tools"
-msgstr ""
+msgstr "Mekanik ve Araç İnşaatı"
 
 #. NOTE: tags: description for building_mechanics
 #: app/_translations.py:34
 msgctxt "tags"
 msgid "Adds game mechanics or tools that change how players build."
-msgstr ""
+msgstr "Oyuncuların inşaat etme tercihlerine göre mekanik yada araç ekler."
 
 #. NOTE: tags: title for chat
 #: app/_translations.py:36
 msgctxt "tags"
 msgid "Chat / Commands"
-msgstr ""
+msgstr "Sohbet / Komutlar"
 
 #. NOTE: tags: description for chat
 #: app/_translations.py:38
 msgctxt "tags"
 msgid "Focus on player chat/communication or console interaction."
-msgstr ""
+msgstr "Oyuncunun sohbet/iletişim yada konsol etkileşimine odaklanır."
 
 #. NOTE: tags: title for commerce
 #: app/_translations.py:40
 msgctxt "tags"
 msgid "Commerce / Economy"
-msgstr ""
+msgstr "Ticaret / Ekonomi"
 
 #. NOTE: tags: description for commerce
 #: app/_translations.py:42
 msgctxt "tags"
 msgid "Related to economies, money, and trading"
-msgstr ""
+msgstr "Ekonomi, para ve takasa ilgilidir"
 
 #. NOTE: tags: title for complex_installation
 #: app/_translations.py:44
@@ -161,26 +160,26 @@ msgid ""
 "Requires futher installation steps, such as installing LuaRocks or "
 "editing the trusted mod setting"
 msgstr ""
+"LuaRocks'u yüklemek veya güvenilir mod ayarını düzenlemek gibi daha ileri "
+"kurulum adımları gerektirir"
 
 #. NOTE: tags: title for crafting
 #: app/_translations.py:48
-#, fuzzy
 msgctxt "tags"
 msgid "Crafting"
-msgstr "Derecelendirme"
+msgstr "Üretim"
 
 #. NOTE: tags: description for crafting
 #: app/_translations.py:50
 msgctxt "tags"
 msgid "Big changes to crafting gameplay"
-msgstr ""
+msgstr "Üretim oynanışına büyük etkiler"
 
 #. NOTE: tags: title for creative
 #: app/_translations.py:52
-#, fuzzy
 msgctxt "tags"
 msgid "Creative"
-msgstr "Oluştur"
+msgstr "Yaratıcılık"
 
 #. NOTE: tags: description for creative
 #: app/_translations.py:54
@@ -190,13 +189,15 @@ msgid ""
 "content only available through a creative inventory, or provides tools "
 "that facilitate ingame creation and doesn't add difficulty or scarcity"
 msgstr ""
+"Özellikle yaratıcı mod için kullanılmak üzere yazılmıştır. Yalnızca yaratıcı "
+"envanter aracılığıyla kullanılabilen içerik ekler veya oyun içi yaratımı "
+"kolaylaştıran zorluk veya kıtlık eklemeyen araçlar sağlar"
 
 #. NOTE: tags: title for custom_mapgen
 #: app/_translations.py:56
-#, fuzzy
 msgctxt "tags"
 msgid "Custom mapgen"
-msgstr "Depolama"
+msgstr "Özel oluşturulmuş harita"
 
 #. NOTE: tags: description for custom_mapgen
 #: app/_translations.py:58
@@ -205,19 +206,20 @@ msgid ""
 "Contains a completely custom mapgen implemented in Lua, usually requires "
 "worlds to be set to the 'singlenode' mapgen."
 msgstr ""
+"Lua'da uygulanan tamamen özel bir mapgen içerir, genellikle dünyaların "
+"'singlenode' mapgen'e ayarlanmasını gerektirir."
 
 #. NOTE: tags: title for decorative
 #: app/_translations.py:60
-#, fuzzy
 msgctxt "tags"
 msgid "Decorative"
-msgstr "Devre dışı bırak"
+msgstr "Dekorasyon"
 
 #. NOTE: tags: description for decorative
 #: app/_translations.py:62
 msgctxt "tags"
 msgid "Adds nodes with no other purpose than for use in building"
-msgstr ""
+msgstr "İnşaat amaçlı başka bir şey eklemez"
 
 #. NOTE: tags: title for developer_tools
 #: app/_translations.py:64
@@ -230,26 +232,25 @@ msgstr "Moderatör Araçları"
 #: app/_translations.py:66
 msgctxt "tags"
 msgid "Tools for game and mod developers"
-msgstr ""
+msgstr "Oyun ve mod geliştiricilerine özel araçlar"
 
 #. NOTE: tags: title for education
 #: app/_translations.py:68
-#, fuzzy
 msgctxt "tags"
 msgid "Education"
-msgstr "Hareket"
+msgstr "Eğitim"
 
 #. NOTE: tags: description for education
 #: app/_translations.py:70
 msgctxt "tags"
 msgid "Either has educational value, or is a tool to help teachers "
-msgstr ""
+msgstr "Öğretmenlere yardımcı olmak için eğitimsel araçlar ekler "
 
 #. NOTE: tags: title for environment
 #: app/_translations.py:72
 msgctxt "tags"
 msgid "Environment / Weather"
-msgstr ""
+msgstr "Çevre / Hava Durumu"
 
 #. NOTE: tags: description for environment
 #: app/_translations.py:74
@@ -257,19 +258,19 @@ msgctxt "tags"
 msgid ""
 "Improves the world, adding weather, ambient sounds, or other environment "
 "mechanics"
-msgstr ""
+msgstr "Dünyaya, hava durumu, ortam sesleri ya da diğer çevre mekanikleri ekler"
 
 #. NOTE: tags: title for food
 #: app/_translations.py:76
 msgctxt "tags"
 msgid "Food / Drinks"
-msgstr ""
+msgstr "Yemek / İçecek"
 
 #. NOTE: tags: title for gui
 #: app/_translations.py:78
 msgctxt "tags"
 msgid "GUI"
-msgstr ""
+msgstr "GKA (GUI)"
 
 #. NOTE: tags: description for gui
 #: app/_translations.py:80
@@ -278,42 +279,44 @@ msgid ""
 "For content whose main utility or features are provided within a GUI, on-"
 "screen menu, or similar"
 msgstr ""
+"Temel işlevselliği veya özellikleri bir GKA, ekran menüsü veya benzeri bir "
+"ortamda sunulan içerikler için"
 
 #. NOTE: tags: title for hud
 #: app/_translations.py:82
 msgctxt "tags"
 msgid "HUD"
-msgstr ""
+msgstr "GÖE (HUD)"
 
 #. NOTE: tags: description for hud
 #: app/_translations.py:84
 msgctxt "tags"
 msgid "For mods that grant the player extra information in the HUD"
-msgstr ""
+msgstr "GÖE'de oyuncuya ek bilgiler sağlayan modlar için"
 
 #. NOTE: tags: title for inventory
 #: app/_translations.py:86
 msgctxt "tags"
 msgid "Inventory"
-msgstr ""
+msgstr "Envanter"
 
 #. NOTE: tags: description for inventory
 #: app/_translations.py:88
 msgctxt "tags"
 msgid "Changes the inventory GUI"
-msgstr ""
+msgstr "Envanter Görünüşünü Değiştirir"
 
 #. NOTE: tags: title for jam_combat_mod
 #: app/_translations.py:90
 msgctxt "tags"
 msgid "Jam / Combat 2020"
-msgstr ""
+msgstr "Jam / Combat 2020"
 
 #. NOTE: tags: description for jam_combat_mod
 #: app/_translations.py:92
 msgctxt "tags"
 msgid "For mods created for the Discord \"Combat\" modding event in 2020"
-msgstr ""
+msgstr "Discord 2020 \"Combat\" modlama etkinliği için yaratılan modlar"
 
 #. NOTE: tags: title for jam_game_2021
 #: app/_translations.py:94
@@ -381,31 +384,31 @@ msgstr ""
 #: app/_translations.py:114
 msgctxt "tags"
 msgid "<16px"
-msgstr ""
+msgstr "&lt;16px"
 
 #. NOTE: tags: description for less_than_px
 #: app/_translations.py:116
 msgctxt "tags"
 msgid "Less than 16px"
-msgstr ""
+msgstr "16px'den az"
 
 #. NOTE: tags: title for library
 #: app/_translations.py:118
 msgctxt "tags"
 msgid "API / Library"
-msgstr ""
+msgstr "API / Kütüphane"
 
 #. NOTE: tags: description for library
 #: app/_translations.py:120
 msgctxt "tags"
 msgid "Primarily adds an API for other mods to use"
-msgstr ""
+msgstr "Diğer modların kullanılması için API ekler"
 
 #. NOTE: tags: title for magic
 #: app/_translations.py:122
 msgctxt "tags"
 msgid "Magic / Enchanting"
-msgstr ""
+msgstr "Sihir / Büyü"
 
 #. NOTE: tags: title for mapgen
 #: app/_translations.py:124
@@ -421,52 +424,51 @@ msgstr ""
 
 #. NOTE: tags: title for mini-game
 #: app/_translations.py:128
-#, fuzzy
 msgctxt "tags"
 msgid "Mini-game"
-msgstr "Ad"
+msgstr "Mini-oyunlar"
 
 #. NOTE: tags: description for mini-game
 #: app/_translations.py:130
 msgctxt "tags"
 msgid "Adds a mini-game to be played within Luanti"
-msgstr ""
+msgstr "Luanti ile oynanabilen mini-oyunlar ekler"
 
 #. NOTE: tags: title for mobs
 #: app/_translations.py:132
 msgctxt "tags"
 msgid "Mobs / Animals / NPCs"
-msgstr ""
+msgstr "Yaratıklar / Hayvanlar / NPCler"
 
 #. NOTE: tags: description for mobs
 #: app/_translations.py:134
 msgctxt "tags"
 msgid "Adds mobs, animals, and non-player characters"
-msgstr ""
+msgstr "Oyuna yaratıklar, hayvanlar ve oyuncu-olmayan karakterler ekler"
 
 #. NOTE: tags: title for mtg
 #: app/_translations.py:136
 msgctxt "tags"
 msgid "Minetest Game improved"
-msgstr ""
+msgstr "Gelişmiş Minetest Oyunu"
 
 #. NOTE: tags: description for mtg
 #: app/_translations.py:138
 msgctxt "tags"
 msgid "Forks of Minetest Game"
-msgstr ""
+msgstr "Minetest Oyunun Çataları"
 
 #. NOTE: tags: title for multiplayer
 #: app/_translations.py:140
 msgctxt "tags"
 msgid "Multiplayer-focused"
-msgstr ""
+msgstr "Çok Oyunculu-odaklı"
 
 #. NOTE: tags: description for multiplayer
 #: app/_translations.py:142
 msgctxt "tags"
 msgid "Can/should only be used in multiplayer"
-msgstr ""
+msgstr "Çok oyunculuda kullanılabilir/kullanılmalı"
 
 #. NOTE: tags: title for oneofakind__original
 #: app/_translations.py:144
@@ -486,19 +488,19 @@ msgstr ""
 #: app/_translations.py:148
 msgctxt "tags"
 msgid "Plants and Farming"
-msgstr ""
+msgstr "Bitkiler ve Tarla"
 
 #. NOTE: tags: description for plants_and_farming
 #: app/_translations.py:150
 msgctxt "tags"
 msgid "Adds new plants or other farmable resources."
-msgstr ""
+msgstr "Yeni bitkiler ve tarla kaynakları ekler."
 
 #. NOTE: tags: title for player_effects
 #: app/_translations.py:152
 msgctxt "tags"
 msgid "Player Effects / Power Ups"
-msgstr ""
+msgstr "Oyuncu Efektleri / Güçler"
 
 #. NOTE: tags: description for player_effects
 #: app/_translations.py:154
@@ -507,24 +509,26 @@ msgid ""
 "For content that changes player effects, including physics, for example: "
 "speed, jump height or gravity."
 msgstr ""
+"Oyuncunun fizik dahil efektlerini değiştirmek için, örneğin: hız, zıplama "
+"yükseliği ya da yerçekimi."
 
 #. NOTE: tags: title for puzzle
 #: app/_translations.py:156
 msgctxt "tags"
 msgid "Puzzle"
-msgstr ""
+msgstr "Bulmaca"
 
 #. NOTE: tags: description for puzzle
 #: app/_translations.py:158
 msgctxt "tags"
 msgid "Focus on puzzle solving instead of combat"
-msgstr ""
+msgstr "Savaş yerine bulmaca çözme odaklı"
 
 #. NOTE: tags: title for pve
 #: app/_translations.py:160
 msgctxt "tags"
 msgid "Player vs Environment (PvE)"
-msgstr ""
+msgstr "Oyuncu Çevreye karşı (PvE)"
 
 #. NOTE: tags: description for pve
 #: app/_translations.py:162
@@ -533,62 +537,62 @@ msgid ""
 "For content designed for one or more players that focus on combat against"
 " the world, mobs, or NPCs."
 msgstr ""
+"Bir ya da daha fazla oyuncunun dünya, yaratıklar ya da NPClere karşı "
+"olmasına odaklanır."
 
 #. NOTE: tags: title for pvp
 #: app/_translations.py:164
 msgctxt "tags"
 msgid "Player vs Player (PvP)"
-msgstr ""
+msgstr "Oyuncu, Oyuncuya karşı (PvP)"
 
 #. NOTE: tags: description for pvp
 #: app/_translations.py:166
 msgctxt "tags"
 msgid "Designed to be played competitively against other players"
-msgstr ""
+msgstr "Bir oyuncunun başka oyuncuya karşı olması için tasarlandı"
 
 #. NOTE: tags: title for seasonal
 #: app/_translations.py:168
-#, fuzzy
 msgctxt "tags"
 msgid "Seasonal"
-msgstr "Sebep"
+msgstr "Mevsimsel"
 
 #. NOTE: tags: description for seasonal
 #: app/_translations.py:170
 msgctxt "tags"
 msgid "For content generally themed around a certain season or holiday"
-msgstr ""
+msgstr "Genel sezon ya da tatil temalı içerik"
 
 #. NOTE: tags: title for server_tools
 #: app/_translations.py:172
-#, fuzzy
 msgctxt "tags"
 msgid "Server Moderation and Tools"
-msgstr "Moderatör Araçları"
+msgstr "Sunucu Moderatörlüğü ve Araçları"
 
 #. NOTE: tags: description for server_tools
 #: app/_translations.py:174
 msgctxt "tags"
 msgid "Helps with server maintenance and moderation"
-msgstr ""
+msgstr "Sunucu bakımına ve moderatörliğe yardımcı olur"
 
 #. NOTE: tags: title for shooter
 #: app/_translations.py:176
 msgctxt "tags"
 msgid "Shooter"
-msgstr ""
+msgstr "Nişancılık"
 
 #. NOTE: tags: description for shooter
 #: app/_translations.py:178
 msgctxt "tags"
 msgid "First person shooters (FPS) and more"
-msgstr ""
+msgstr "Birinci şahıs nişan (FPS) ve fazlası"
 
 #. NOTE: tags: title for simulation
 #: app/_translations.py:180
 msgctxt "tags"
 msgid "Sims"
-msgstr ""
+msgstr "Simülatör"
 
 #. NOTE: tags: description for simulation
 #: app/_translations.py:182
@@ -597,24 +601,26 @@ msgid ""
 "Mods and games that aim to simulate real life activity. Similar to "
 "SimCity/The Sims/OpenTTD/etc."
 msgstr ""
+"Gerçek hayata odaklı aktiviteler için modlar. SimCity/The Sims/OpenTTD vs. "
+"Gibi."
 
 #. NOTE: tags: title for singleplayer
 #: app/_translations.py:184
 msgctxt "tags"
 msgid "Singleplayer-focused"
-msgstr ""
+msgstr "Tek oyunculu-odaklı"
 
 #. NOTE: tags: description for singleplayer
 #: app/_translations.py:186
 msgctxt "tags"
 msgid "Content that can be played alone"
-msgstr ""
+msgstr "Tek oynanabilir içerikler"
 
 #. NOTE: tags: title for skins
 #: app/_translations.py:188
 msgctxt "tags"
 msgid "Player customization / Skins"
-msgstr ""
+msgstr "Oyuncu özeleştirme / Kaplama"
 
 #. NOTE: tags: description for skins
 #: app/_translations.py:190
@@ -623,25 +629,26 @@ msgid ""
 "Allows the player to customize their character by changing the texture or"
 " adding accessories."
 msgstr ""
+"Oyuncular karakterlerin dokularını ve aksesuar ekleyerek özelleştirmeye izin "
+"verir."
 
 #. NOTE: tags: title for sound_music
 #: app/_translations.py:192
 msgctxt "tags"
 msgid "Sounds / Music"
-msgstr ""
+msgstr "Ses / Müzik"
 
 #. NOTE: tags: description for sound_music
 #: app/_translations.py:194
 msgctxt "tags"
 msgid "Focuses on or adds new sounds or musical things"
-msgstr ""
+msgstr "Yeni ses veya müzikal içerikler eklemeye odaklı"
 
 #. NOTE: tags: title for sports
 #: app/_translations.py:196
-#, fuzzy
 msgctxt "tags"
 msgid "Sports"
-msgstr "Rapor"
+msgstr "Spor"
 
 #. NOTE: tags: title for storage
 #: app/_translations.py:198
@@ -654,13 +661,13 @@ msgstr "Depolama"
 #: app/_translations.py:200
 msgctxt "tags"
 msgid "Adds or improves item storage mechanics"
-msgstr ""
+msgstr "Eşya depolama mekaniği ekler veya geliştirir"
 
 #. NOTE: tags: title for strategy_rts
 #: app/_translations.py:202
 msgctxt "tags"
 msgid "Strategy / RTS"
-msgstr ""
+msgstr "Strateji / RTS"
 
 #. NOTE: tags: description for strategy_rts
 #: app/_translations.py:204
@@ -669,12 +676,14 @@ msgid ""
 "Games and mods with a heavy strategy component, whether real-time or "
 "turn-based"
 msgstr ""
+"Gerçek zamanlı veya sıralı olan, yoğun strateji unsuru içeren oyunlar ve "
+"modlar"
 
 #. NOTE: tags: title for survival
 #: app/_translations.py:206
 msgctxt "tags"
 msgid "Survival"
-msgstr ""
+msgstr "Hayata Kalma"
 
 #. NOTE: tags: description for survival
 #: app/_translations.py:208
@@ -683,37 +692,38 @@ msgid ""
 "Written specifically for survival gameplay with a focus on game-balance, "
 "difficulty level, or resources available through crafting, mining, ..."
 msgstr ""
+"Özellikle oyun dengesine göre odaklı yazılmıştır, zorluk seviyesi, yada "
+"üretim yaparken mevcut kaynaklar, maden, ..."
 
 #. NOTE: tags: title for technology
 #: app/_translations.py:210
 msgctxt "tags"
 msgid "Machines / Electronics"
-msgstr ""
+msgstr "Makine / Elektronik"
 
 #. NOTE: tags: description for technology
 #: app/_translations.py:212
 msgctxt "tags"
 msgid "Adds machines useful in automation, tubes, or power."
-msgstr ""
+msgstr "İşe yarar otomasyon, tüpler, veya güç ekler."
 
 #. NOTE: tags: title for tools
 #: app/_translations.py:214
 msgctxt "tags"
 msgid "Tools / Weapons / Armor"
-msgstr ""
+msgstr "Araçlar / Silahlar / Zırhlar"
 
 #. NOTE: tags: description for tools
 #: app/_translations.py:216
 msgctxt "tags"
 msgid "Adds or changes tools, weapons, and armor"
-msgstr ""
+msgstr "Değişmiş yada yeni araçlar, silahlar, ve zırhlar ekler"
 
 #. NOTE: tags: title for transport
 #: app/_translations.py:218
-#, fuzzy
 msgctxt "tags"
 msgid "Transport"
-msgstr "Çevir"
+msgstr "Ulaşım"
 
 #. NOTE: tags: description for transport
 #: app/_translations.py:220
@@ -722,107 +732,106 @@ msgid ""
 "Adds or changes transportation methods. Includes teleportation, vehicles,"
 " ridable mobs, transport infrastructure and thematic content"
 msgstr ""
+"Değişmiş yada yeni ulaşım metotlar ekler. Işınlanma, araçlar, binilebilir "
+"yaratıklar, ulaşım altyapısı ve tematik içerik"
 
 #. NOTE: tags: title for world_tools
 #: app/_translations.py:222
 msgctxt "tags"
 msgid "World Maintenance and Tools"
-msgstr ""
+msgstr "Dünya Bakım ve Araçları"
 
 #. NOTE: tags: description for world_tools
 #: app/_translations.py:224
 msgctxt "tags"
 msgid "Tools to manage the world"
-msgstr ""
+msgstr "Dünyayı yönetmek için araçlar"
 
 #. NOTE: content_warnings: title for alcohol_tobacco
 #: app/_translations.py:226
 msgctxt "content_warnings"
 msgid "Alcohol / Tobacco"
-msgstr ""
+msgstr "Alkol / Tütün"
 
 #. NOTE: content_warnings: description for alcohol_tobacco
 #: app/_translations.py:228
 msgctxt "content_warnings"
 msgid "Contains alcohol and/or tobacco"
-msgstr ""
+msgstr "Alkol ve/veya tütün içerir"
 
 #. NOTE: content_warnings: title for bad_language
 #: app/_translations.py:230
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Bad Language"
-msgstr "Dil"
+msgstr "Zararlı Dil"
 
 #. NOTE: content_warnings: description for bad_language
 #: app/_translations.py:232
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Contains swearing"
-msgstr "İçerik Uyarıları"
+msgstr "Küfür içerir"
 
 #. NOTE: content_warnings: title for drugs
 #: app/_translations.py:234
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Drugs"
-msgstr "Kurallar"
+msgstr "Uyuşturucular"
 
 #. NOTE: content_warnings: description for drugs
 #: app/_translations.py:236
 msgctxt "content_warnings"
 msgid "Contains recreational drugs other than alcohol or tobacco"
-msgstr ""
+msgstr "Alkol veya tütün dışındaki keyif verici maddeleri içerir"
 
 #. NOTE: content_warnings: title for gambling
 #: app/_translations.py:238
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Gambling"
-msgstr "Yönetici"
+msgstr "Kumar"
 
 #. NOTE: content_warnings: description for gambling
 #: app/_translations.py:240
 msgctxt "content_warnings"
 msgid "Games of chance, gambling games, etc"
-msgstr ""
+msgstr "Kumar, şans oyunları vs. ekler"
 
 #. NOTE: content_warnings: title for gore
 #: app/_translations.py:242
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Gore"
-msgstr "Daha fazla"
+msgstr "Vahşet"
 
 #. NOTE: content_warnings: description for gore
 #: app/_translations.py:244
 msgctxt "content_warnings"
 msgid "Blood, etc"
-msgstr ""
+msgstr "Kan, vs"
 
 #. NOTE: content_warnings: title for horror
 #: app/_translations.py:246
 msgctxt "content_warnings"
 msgid "Fear / Horror"
-msgstr ""
+msgstr "Korku / Dehşet"
 
 #. NOTE: content_warnings: description for horror
 #: app/_translations.py:248
 msgctxt "content_warnings"
 msgid "Shocking and scary content. May scare young children"
-msgstr ""
+msgstr "Şok verici ve korkutucu içerik. Küçük çocukları korkutabilir"
 
 #. NOTE: content_warnings: title for violence
 #: app/_translations.py:250
 msgctxt "content_warnings"
 msgid "Violence"
-msgstr ""
+msgstr "Şiddet"
 
 #. NOTE: content_warnings: description for violence
 #: app/_translations.py:252
 msgctxt "content_warnings"
 msgid "Non-cartoon violence. May be towards fantasy or  human-like characters"
 msgstr ""
+"Çizgi film dışı şiddet. Fantastik veya insan benzeri karakterlere yönelik "
+"olabilir"
 
 #: app/querybuilder.py:60 app/templates/admin/languages/list.html:27
 #: app/templates/admin/tags/list.html:34
@@ -950,17 +959,17 @@ msgstr ""
 #: app/blueprints/feeds/__init__.py:70 app/templates/base.html:29
 #: app/templates/base.html:36
 msgid "ContentDB new packages"
-msgstr ""
+msgstr "ContentDB yeni paketler"
 
 #: app/blueprints/feeds/__init__.py:98 app/templates/base.html:31
 #: app/templates/base.html:38
 msgid "ContentDB package updates"
-msgstr ""
+msgstr "ContentDB paket güncellemeleri"
 
 #: app/blueprints/feeds/__init__.py:107 app/templates/base.html:27
 #: app/templates/base.html:34
 msgid "ContentDB all"
-msgstr ""
+msgstr "ContentDB hepsi"
 
 #: app/blueprints/oauth/__init__.py:169 app/templates/admin/tags/list.html:26
 #: app/templates/admin/warnings/list.html:24
@@ -979,6 +988,8 @@ msgstr "Uygulama Türü"
 #: app/blueprints/oauth/__init__.py:198
 msgid "An OAuth client with that title already exists. Please choose a new title."
 msgstr ""
+"Bu başlığa sahip bir OAuth istemcisi zaten mevcut. Lütfen yeni bir başlık "
+"seçin."
 
 #: app/blueprints/oauth/__init__.py:262
 msgid "Revoked all user tokens"
@@ -1039,15 +1050,15 @@ msgstr "Desteklenen Oyunlar"
 
 #: app/blueprints/packages/advanced_search.py:39
 msgid "Android Default"
-msgstr ""
+msgstr "Android Varsayılan"
 
 #: app/blueprints/packages/advanced_search.py:40
 msgid "Desktop Default"
-msgstr ""
+msgstr "Masaüstü Varsayılan"
 
 #: app/blueprints/packages/advanced_search.py:41
 msgid "Non-free"
-msgstr ""
+msgstr "Ücretli"
 
 #: app/blueprints/packages/advanced_search.py:42 app/models/packages.py:630
 #: app/templates/packages/view.html:170
@@ -1057,15 +1068,15 @@ msgstr "Devam Eden Çalışma"
 #. NOTE: Package maintenance state
 #: app/blueprints/packages/advanced_search.py:43 app/models/packages.py:170
 msgid "Deprecated"
-msgstr ""
+msgstr "Kullanım dışı"
 
 #: app/blueprints/packages/advanced_search.py:44
 msgid "All content warnings"
-msgstr ""
+msgstr "Tüm içerik uyarıları"
 
 #: app/blueprints/packages/advanced_search.py:53
 msgid "Query"
-msgstr ""
+msgstr "Sorgu"
 
 #: app/blueprints/packages/advanced_search.py:54
 #: app/blueprints/packages/packages.py:231 app/templates/packages/view.html:616
@@ -1122,19 +1133,19 @@ msgstr "Dil"
 
 #: app/blueprints/packages/advanced_search.py:76
 msgid "Hide Tags and Content Warnings"
-msgstr ""
+msgstr "Etiket ve İçerik Uyarılarını Gizle"
 
 #: app/blueprints/packages/advanced_search.py:77
 msgid "Luanti Version"
-msgstr ""
+msgstr "Luanti Sürümü"
 
 #: app/blueprints/packages/advanced_search.py:81
 msgid "Sort by"
-msgstr ""
+msgstr "Sırala"
 
 #: app/blueprints/packages/advanced_search.py:85
 msgid "Package score"
-msgstr ""
+msgstr "Paket skoru"
 
 #: app/blueprints/packages/advanced_search.py:86 app/templates/index.html:78
 #: app/templates/packages/reviews_list.html:4
@@ -1150,15 +1161,15 @@ msgstr "İndirmeler"
 
 #: app/blueprints/packages/advanced_search.py:88
 msgid "Created At"
-msgstr ""
+msgstr "Yapım Yeri"
 
 #: app/blueprints/packages/advanced_search.py:89
 msgid "Approved At"
-msgstr ""
+msgstr "Onaylanma Yeri"
 
 #: app/blueprints/packages/advanced_search.py:90
 msgid "Last Release"
-msgstr ""
+msgstr "Son Sürüm"
 
 #: app/blueprints/packages/advanced_search.py:92
 msgid "Order"
@@ -1301,7 +1312,7 @@ msgstr "Ne değiştirdiğinizi bilmeleri için lütfen onay başlığına yorum 
 #: app/blueprints/packages/packages.py:490
 #, python-format
 msgid "Set state to %(state)s"
-msgstr ""
+msgstr "Durumu %(state)slara ayarla"
 
 #: app/blueprints/packages/packages.py:520
 msgid "Deleted package"
@@ -1358,7 +1369,7 @@ msgstr "Mod(paket) en az bir mod içermelidir. Lütfen yeni bir sürüm oluştur
 #: app/blueprints/packages/releases.py:57
 #: app/blueprints/packages/releases.py:72
 msgid "Release Notes"
-msgstr ""
+msgstr "Sürüm Notları"
 
 #: app/blueprints/packages/releases.py:59
 msgid "Method"
@@ -1791,12 +1802,16 @@ msgid ""
 "Unable to get GitHub username for user. Make sure the forum account "
 "exists."
 msgstr ""
+"Kullanıcı için GitHub kullanıcı adı alınamadı. Forum hesabının var olduğuna "
+"emin olun."
 
 #: app/blueprints/users/claim.py:66
 msgid ""
 "A ContentDB user with that name already exists. Please contact an admin "
 "to link to your forum account"
 msgstr ""
+"Bu isimle bir ContentDB kullanıcısı zaten var. Lütfen forum hesabını "
+"bağlamak için yöneticiye başvurun"
 
 #: app/blueprints/users/claim.py:75
 msgid "That user has already been claimed!"
@@ -1931,13 +1946,14 @@ msgstr "Bir kullanıcı zaten bu ada sahip"
 
 #: app/blueprints/users/settings.py:264
 msgid "Removed GitHub account"
-msgstr ""
+msgstr "GitHub hesabı kaldırıldı"
 
 #: app/blueprints/users/settings.py:266
 msgid ""
 "You need to add an email address and password before you can remove your "
 "GitHub account"
 msgstr ""
+"GitHub hesabını silmeden önce hesabına e-posta adresi ve şifre eklemen lazım"
 
 #: app/blueprints/users/settings.py:279
 msgid "Users with moderator rank or above cannot be deleted"
@@ -1974,7 +1990,7 @@ msgstr "Github hesabına bağlandı"
 #: app/blueprints/vcs/github.py:90
 #, python-format
 msgid "GitHub account is already associated with another user: %(username)s"
-msgstr ""
+msgstr "GitHub hesabı: %(username)s tarafından zaten ilişkilendirildi"
 
 #: app/blueprints/vcs/github.py:98 app/blueprints/vcs/github.py:124
 msgid "Authorization failed [err=gh-login-failed]"
@@ -2091,7 +2107,7 @@ msgstr "Paket adını değiştirme izniniz yok"
 
 #: app/logic/packages.py:140
 msgid "You cannot change package type once approved"
-msgstr ""
+msgstr "Paket onaylandıktan sonra türünü değiştiremezsin"
 
 #: app/logic/releases.py:33
 msgid "You don't have permission to make releases"
@@ -2107,7 +2123,7 @@ msgstr ""
 
 #: app/logic/releases.py:41
 msgid "A release with this name already exists"
-msgstr ""
+msgstr "Bu isimle bir sürüm zaten mevcut"
 
 #: app/logic/releases.py:80
 msgid "Invalid commit hash; it must be a 40 character long base16 string"
@@ -2151,6 +2167,8 @@ msgid ""
 "Unable to create an account as the username is already taken. If you "
 "meant to log in, you need to connect %(provider)s to your account first"
 msgstr ""
+"Kullanıcı adı zaten alınmış olduğu için hesap oluşturulamıyor. Giriş yapmak "
+"istiyorsanız, önce %(provider)sları hesabınıza bağlamanız gerekir"
 
 #: app/logic/users.py:33
 msgid "That username/display name is already in use, please choose another."
@@ -2158,7 +2176,7 @@ msgstr "Bu kullanıcı adı/görünen ad zaten kullanımda, lütfen başka bir t
 
 #: app/logic/users.py:40
 msgid "Unable to create an account as the username was used in the past."
-msgstr ""
+msgstr "Kullanıcı adı geçmişte kullanıldığı için hesap oluşturulamıyor."
 
 #: app/models/packages.py:69
 msgid "Mod"
@@ -2188,62 +2206,62 @@ msgstr "Doku Paketleri"
 
 #: app/models/packages.py:87
 msgid "Top mod"
-msgstr ""
+msgstr "Popüler Modlar"
 
 #: app/models/packages.py:89
 msgid "Top game"
-msgstr ""
+msgstr "Popüler Oyunlar"
 
 #: app/models/packages.py:91
 msgid "Top texture pack"
-msgstr ""
+msgstr "Popüler doku paketleri"
 
 #: app/models/packages.py:94
 #, python-format
 msgid "Top %(place)d mod"
-msgstr ""
+msgstr "Popüler %(place)d modları"
 
 #: app/models/packages.py:96
 #, python-format
 msgid "Top %(place)d game"
-msgstr ""
+msgstr "Popüler %(place)d oyunları"
 
 #: app/models/packages.py:98
 #, python-format
 msgid "Top %(place)d texture pack"
-msgstr ""
+msgstr "Popüler %(place)d doku paketleri"
 
 #: app/models/packages.py:102
 #, python-format
 msgid "%(display_name)s has a mod placed at #%(place)d."
-msgstr ""
+msgstr "%(display_name)s %(place)d yerinde yerleştirilmiş modu vardır."
 
 #: app/models/packages.py:105
 #, python-format
 msgid "%(display_name)s has a game placed at #%(place)d."
-msgstr ""
+msgstr "%(display_name)s %(place)d yerinde yerleştirilmiş oyunu vardır."
 
 #: app/models/packages.py:108
 #, python-format
 msgid "%(display_name)s has a texture pack placed at #%(place)d."
-msgstr ""
+msgstr "%(display_name)s %(place)d yerinde yerleştirilmiş doku paketi vardır."
 
 #: app/models/packages.py:114
 msgid "Do you recommend this mod?"
-msgstr ""
+msgstr "Bu modu önerir misin?"
 
 #: app/models/packages.py:116
 msgid "Do you recommend this game?"
-msgstr ""
+msgstr "Bu oyunu önerir misin?"
 
 #: app/models/packages.py:118
 msgid "Do you recommend this texture pack?"
-msgstr ""
+msgstr "Bu doku paketini önerir misin?"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:155 app/models/packages.py:173
 msgid "Looking for Maintainer"
-msgstr ""
+msgstr "Geliştirici Aranıyor"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:158
@@ -2253,12 +2271,12 @@ msgstr ""
 #. NOTE: Package maintenance state
 #: app/models/packages.py:161
 msgid "Actively Developed"
-msgstr ""
+msgstr "Aktif Olarak Geliştirildi"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:164
 msgid "Maintenance Only"
-msgstr ""
+msgstr "Sadece Geliştiriciler"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:167
@@ -2268,26 +2286,31 @@ msgstr ""
 #: app/models/packages.py:177
 msgid "Under active development, and may break worlds/things without warning"
 msgstr ""
+"Aktif olarak geliştirme sürecinde, uyarı olmadan dünya/bazı şeyleri bozabilir"
 
 #: app/models/packages.py:179
 msgid "Fully playable, but with some breakages/changes expected"
-msgstr ""
+msgstr "Oynanabilir, ama bazı bozulma/değişiklik beklenilebilir"
 
 #: app/models/packages.py:181
 msgid "Finished, with bug fixes being made as needed"
-msgstr ""
+msgstr "Tamamlanmıştır, lazım olan hata düzeltmeler ile"
 
 #: app/models/packages.py:183
 msgid ""
 "Finished, the maintainer doesn't intend to continue working on it or "
 "provide support"
 msgstr ""
+"Tamamlanmıştır, bakımı yapan kişi üzerinde çalışmaya veya destek sağlamayı "
+"düşünmüyor"
 
 #: app/models/packages.py:185
 msgid ""
 "The maintainer doesn't recommend this package. See the description for "
 "more info"
 msgstr ""
+"Bakımı yapan kişi bu paketi önermiyor. Daha fazla bilgi için açıklamayı "
+"kontrol et"
 
 #: app/models/packages.py:231
 msgid "Submit for Approval"
@@ -2312,45 +2335,45 @@ msgstr "Sil"
 #: app/models/packages.py:1385
 #, python-format
 msgid "New commit %(hash)s found on the Git repo."
-msgstr ""
+msgstr "Git reposunda yeni %(hash)s bulundu."
 
 #: app/models/packages.py:1389
 #, python-format
 msgid "The last release was commit %(hash)s"
-msgstr ""
+msgstr "Son sürüm, commit %(hash)s idi"
 
 #: app/models/packages.py:1395
 #, python-format
 msgid "New tag %(tag_name)s found on the Git repo."
-msgstr ""
+msgstr "Git reposunda %(tag_name)s adında yeni etiket ismi bulundu."
 
 #: app/models/users.py:46
 msgid "Banned"
-msgstr ""
+msgstr "Yasaklandı"
 
 #: app/models/users.py:48
 msgid "Not Joined"
-msgstr ""
+msgstr "Katılmadı"
 
 #: app/models/users.py:50
 msgid "New Member"
-msgstr ""
+msgstr "Yeni Üye"
 
 #: app/models/users.py:52
 msgid "Member"
-msgstr ""
+msgstr "Üye"
 
 #: app/models/users.py:54
 msgid "Trusted Member"
-msgstr ""
+msgstr "Güvenilir Üye"
 
 #: app/models/users.py:56
 msgid "Approver"
-msgstr ""
+msgstr "Oynaylayıcı"
 
 #: app/models/users.py:58
 msgid "Editor"
-msgstr ""
+msgstr "Editör"
 
 #. NOTE: BOT notification type
 #: app/models/users.py:60 app/models/users.py:455
@@ -2359,7 +2382,7 @@ msgstr ""
 
 #: app/models/users.py:62
 msgid "Moderator"
-msgstr ""
+msgstr "Moderatör"
 
 #: app/models/users.py:64 app/templates/base.html:178
 msgid "Admin"
@@ -2384,7 +2407,7 @@ msgstr "Yeni Konu"
 #. NOTE: NEW_REVIEW notification type
 #: app/models/users.py:449
 msgid "New Review"
-msgstr ""
+msgstr "Yeni İnceleme"
 
 #. NOTE: THREAD_REPLY notification type
 #: app/models/users.py:452
@@ -2409,87 +2432,87 @@ msgstr ""
 #. NOTE: OTHER notification type
 #: app/models/users.py:467
 msgid "Other"
-msgstr ""
+msgstr "Diğer"
 
 #: app/models/users.py:477
 msgid "This is a Package Edit notification."
-msgstr ""
+msgstr "Bu Paket Düzenleme bildirimi."
 
 #: app/models/users.py:479
 msgid "This is a Package Approval notification."
-msgstr ""
+msgstr "Bu Paket Onaylama bildirimi."
 
 #: app/models/users.py:481
 msgid "This is a New Thread notification."
-msgstr ""
+msgstr "Bu Yeni Konu bildirimi."
 
 #: app/models/users.py:483
 msgid "This is a New Review notification."
-msgstr ""
+msgstr "Bu Yeni İnceleme bildirimi."
 
 #: app/models/users.py:485
 msgid "This is a Thread Reply notification."
-msgstr ""
+msgstr "Bu Konu Yanıt bildirimi."
 
 #: app/models/users.py:487
 msgid "This is a Bot notification."
-msgstr ""
+msgstr "Bu Bot bildirimi."
 
 #: app/models/users.py:489
 msgid "This is a Maintainer change notification."
-msgstr ""
+msgstr "Bu Geliştirici değişme bildirimi."
 
 #: app/models/users.py:491
 msgid "This is an Editor Alert notification."
-msgstr ""
+msgstr "Bu Editör Uyarı bildirimi."
 
 #: app/models/users.py:493
 msgid "This is an Editor Misc notification."
-msgstr ""
+msgstr "Bu Çeşitli Düzenleyici bildirimi."
 
 #: app/models/users.py:495
 msgid "This is an Other notification."
-msgstr ""
+msgstr "Bu Diğer bildirimi."
 
 #: app/models/users.py:502
 msgid "When another user edits your packages, releases, etc."
-msgstr ""
+msgstr "Başka bir kullanıcı paketini, sürümünü, vs. Düzenler ise."
 
 #: app/models/users.py:504
 msgid "Notifications from editors related to the package approval process."
-msgstr ""
+msgstr "Düzenleyicilerin paketlerin onaylanma süresi için bildirimler."
 
 #: app/models/users.py:506
 msgid "When a thread is created on your package."
-msgstr ""
+msgstr "Paketinde bir konu açıldığı zaman."
 
 #: app/models/users.py:508
 msgid "When a user posts a review on your package."
-msgstr ""
+msgstr "Bir kullanıcı paketine inceleme yazar ise."
 
 #: app/models/users.py:510
 msgid "When someone replies to a thread you're watching."
-msgstr ""
+msgstr "Takip ettiğin konuyu birisi cevaplar ise."
 
 #: app/models/users.py:512
 msgid "From a bot - for example, update notifications."
-msgstr ""
+msgstr "Bot tarafından - örneğin, günceleme bildirimleri."
 
 #: app/models/users.py:514
 msgid "When your package's maintainers change."
-msgstr ""
+msgstr "Paketlerinin geliştiricisi değiştiği zaman."
 
 #: app/models/users.py:516
 msgid "For editors: Important alerts."
-msgstr ""
+msgstr "Düzenleyiciler için: Önemli uyarılar."
 
 #: app/models/users.py:518
 msgid "For editors: Minor notifications, including new threads."
-msgstr ""
+msgstr "Editörler için: Yeni konular da dahil olmak üzere küçük bildirimler."
 
 #: app/models/users.py:520
 msgid "Minor notifications not important enough for a dedicated category."
-msgstr ""
+msgstr "Küçük bildirimler özel bir kategori için yeterince önemli değildir."
 
 #: app/tasks/emails.py:122
 msgid ""
@@ -2615,7 +2638,7 @@ msgstr "Hakkında"
 
 #: app/templates/base.html:261
 msgid "Contact Us"
-msgstr ""
+msgstr "İletişim"
 
 #: app/templates/base.html:262
 msgid "Rules"
@@ -2636,7 +2659,7 @@ msgstr "API"
 
 #: app/templates/base.html:266
 msgid "RSS / Feeds"
-msgstr ""
+msgstr "RSS/ Beslemeler"
 
 #: app/templates/base.html:267 app/templates/users/register.html:40
 msgid "Privacy Policy"
@@ -2648,7 +2671,7 @@ msgstr "Rapor / DMCA"
 
 #: app/templates/base.html:271 app/templates/packages/advanced_search.html:4
 msgid "Advanced Search"
-msgstr ""
+msgstr "Gelişmiş Arama"
 
 #: app/templates/base.html:272
 msgid "User List"
@@ -2666,7 +2689,7 @@ msgstr "Koleksiyonlar"
 
 #: app/templates/base.html:275 app/templates/donate/index.html:4
 msgid "Support Creators"
-msgstr ""
+msgstr "Yapımcılara Destek Ol"
 
 #: app/templates/base.html:276
 msgid "Translate Packages"
@@ -2687,7 +2710,7 @@ msgstr "Özgür olmayan paketleri gizle"
 #: app/templates/base.html:290
 #, python-format
 msgid "Our privacy policy has been updated (%(date)s)"
-msgstr ""
+msgstr "Gizlilik Politikamız %(date)s tarihinde güncellendi"
 
 #: app/templates/index.html:4
 msgid "Welcome"
@@ -3025,19 +3048,23 @@ msgstr "Paketi görüntüle"
 
 #: app/templates/donate/index.html:62
 msgid "Support ContentDB"
-msgstr ""
+msgstr "ContentDB'ye Destek Ol"
 
 #: app/templates/donate/index.html:64
 msgid ""
 "You can donate to rubenwardy to cover ContentDB's costs and support "
 "future development."
 msgstr ""
+"ContentDB'nin maliyetlerini karşılamak ve gelecekteki gelişimi desteklemek "
+"için Rubenwardy'ye bağışta bulunabilirsiniz."
 
 #: app/templates/donate/index.html:67
 msgid ""
 "For more information about the cost of ContentDB and what rubenwardy "
 "does, see his donation page:"
 msgstr ""
+"ContentDB'nin maliyeti ve Rubenwardy'nin ne yaptığı hakkında daha fazla "
+"bilgi için bağış sayfasına bakın:"
 
 #: app/templates/donate/index.html:73
 msgid "Based on your reviews / favorites"
@@ -3319,11 +3346,11 @@ msgstr "İncelemeyi gönder"
 
 #: app/templates/macros/reviews.html:193
 msgid "Report an issue"
-msgstr ""
+msgstr "Sorun Belirt"
 
 #: app/templates/macros/reviews.html:197
 msgid "Ask a question"
-msgstr ""
+msgstr "Soru Sor"
 
 #: app/templates/macros/stats.html:15 app/templates/macros/stats.html:20
 #, python-format
@@ -3634,13 +3661,15 @@ msgstr "Örnek Yetkilendirme URL'si"
 msgid ""
 "Titles must be globally unique. For example, what's the name of your "
 "application?"
-msgstr ""
+msgstr "Başlıklar globale göre eşiz olmalı. Örneğin, uygulamanızın adı nedir?"
 
 #: app/templates/oauth/create_edit.html:68
 msgid ""
 "Shown to users when you request access to their account. For example, "
 "what does your application do?"
 msgstr ""
+"Hesaplarına erişim isteğinde bulunduğunuzda kullanıcılara gösterilir. "
+"Örneğin, uygulamanız ne işe yarıyor?"
 
 #: app/templates/oauth/create_edit.html:70
 msgid "Where will you store your client_secret?"
@@ -3666,25 +3695,27 @@ msgstr "Uygulama oluşturulmadı"
 #: app/templates/packages/advanced_search.html:13
 msgid "Use shift to select multiple. Leave selection empty to match any type."
 msgstr ""
+"Çoklu seçim için shift kullan. Herhangi bir türle eşleştirmek için seçimi "
+"boş bırakın."
 
 #: app/templates/packages/advanced_search.html:14
 #: app/templates/packages/advanced_search.html:19
 #: app/templates/packages/advanced_search.html:20
 #: app/templates/packages/advanced_search.html:21
 msgid "Use shift to select multiple."
-msgstr ""
+msgstr "Çoklu seçim için shift kullan."
 
 #: app/templates/packages/advanced_search.html:17
 msgid "Tags and Content Warnings"
-msgstr ""
+msgstr "Etiketler ve İçerik Uyarıları"
 
 #: app/templates/packages/advanced_search.html:23
 msgid "Compatibility"
-msgstr ""
+msgstr "Uyumluluk"
 
 #: app/templates/packages/advanced_search.html:28
 msgid "Sorting"
-msgstr ""
+msgstr "Sıralama"
 
 #: app/templates/packages/alias_create_edit.html:4
 msgid "Alias"
@@ -3762,6 +3793,8 @@ msgid ""
 "You can include a .cdb.json file in your package to update these details "
 "automatically."
 msgstr ""
+"Ayrıntıları otomatik olarak güncellemek için paketinize bir .cdb.json "
+"dosyası ekleyebilirsiniz."
 
 #: app/templates/packages/create_edit.html:55
 msgid ""
@@ -3783,6 +3816,9 @@ msgid ""
 "anywhere in the short description. It is unnecessary and wastes "
 "characters."
 msgstr ""
+"İpucu: <i>Minetest</i>, <i>Mod</i> yada <i>Mod paketlerini</i> kısa "
+"açıklamanın herhangi bir yerinde dahil etmeyin. Gereksizdir ve karakter "
+"israfına yol açar."
 
 #: app/templates/packages/create_edit.html:88
 msgid ""
@@ -4145,12 +4181,12 @@ msgstr "Sürümü düzenle"
 #: app/templates/packages/release_edit.html:15
 #: app/templates/packages/release_new.html:42
 msgid "Release short name. Eg: 1.0.0 or 2018-05-28"
-msgstr ""
+msgstr "Sürümün kısa adı: Örn: 1.0.0 yada 2018-05-28"
 
 #: app/templates/packages/release_edit.html:16
 #: app/templates/packages/release_new.html:43
 msgid "Human-readable name. Eg: 1.0.0 - The Trains Update"
-msgstr ""
+msgstr "İnsan-okunabilir ad: Örn: 1.0.0 - Tren Güncellemesi"
 
 #: app/templates/packages/release_edit.html:35
 #: app/templates/packages/release_view.html:35
@@ -4281,7 +4317,7 @@ msgstr "1. İsim Sürümü"
 
 #: app/templates/packages/release_new.html:43
 msgid "Same as name"
-msgstr ""
+msgstr "İsim ile aynı"
 
 #: app/templates/packages/release_new.html:46
 msgid "2. Set the content"
@@ -4446,11 +4482,11 @@ msgstr ""
 
 #: app/templates/packages/remove.html:51
 msgid "You don't need to delete a package just to change something."
-msgstr ""
+msgstr "Bir şeyini değiştirmek için paket silmene gerek yok."
 
 #: app/templates/packages/remove.html:52
 msgid "Click 'Edit' at the top right of the package page."
-msgstr ""
+msgstr "Paket sayfasının sağ üst köşesindeki 'Düzenle' düğmesine tıklayın."
 
 #: app/templates/packages/remove.html:60
 msgid "and"
@@ -4481,6 +4517,7 @@ msgstr "%(author)s tarafından %(title)s için bir inceleme gönderin"
 #: app/templates/packages/review_create_edit.html:20
 msgid "Please make sure you read ContentDB's <a href='/rules/'>rules</a>"
 msgstr ""
+"ContentDB'nin <a href=\"/rules/\">kurallarını</a> okuduğunuzdan emin olun"
 
 #: app/templates/packages/review_create_edit.html:25
 #: app/templates/threads/new.html:16
@@ -4492,7 +4529,7 @@ msgstr ""
 
 #: app/templates/packages/review_create_edit.html:55
 msgid "What language are you writing your review in?"
-msgstr ""
+msgstr "İncelemeni hangi dil ile yazıyorsun?"
 
 #: app/templates/packages/review_create_edit.html:68
 msgid "Delete review."
@@ -4624,6 +4661,8 @@ msgid ""
 "To provide translations for your package, you need to create .tr files "
 "and upload a new release."
 msgstr ""
+"Paketinize çeviri sağlanması için, .tr dosyası oluşturmanız ve yeni sürüm "
+"yüklemeniz gerek."
 
 #: app/templates/packages/translation.html:19
 msgid ""
@@ -4665,11 +4704,11 @@ msgstr ""
 
 #: app/templates/packages/translation.html:102
 msgid "With games, you also need to name the textdomain in game.conf:"
-msgstr ""
+msgstr "Oyunlarda, game.conf dosyasında textdomain'i de adlandırmanız gerekir:"
 
 #: app/templates/packages/translation.html:106
 msgid "Replace mymod with the name of mod / textdomain you chose."
-msgstr ""
+msgstr "mymod yerine seçtiğiniz mod / textdomain adını yazın."
 
 #: app/templates/packages/update_config.html:4
 #: app/templates/packages/update_config.html:9
@@ -4716,7 +4755,7 @@ msgstr ""
 #: app/templates/packages/view.html:22 app/templates/packages/view.html:25
 #, python-format
 msgid "%(title)s releases"
-msgstr ""
+msgstr "%(title)s sürümleri"
 
 #: app/templates/packages/view.html:49
 msgid "Download"
@@ -4784,7 +4823,7 @@ msgstr "Çevir"
 
 #: app/templates/packages/view.html:304
 msgid "Thumbnail for video"
-msgstr ""
+msgstr "Video için küçük resim"
 
 #: app/templates/packages/view.html:321
 msgid "Awaiting review"
@@ -4817,7 +4856,7 @@ msgstr "Oyun içeriğini görüntüleme"
 #: app/templates/packages/view.html:398
 #, python-format
 msgid "Release notes for %(title)s"
-msgstr ""
+msgstr "%(title)s için not yayınlayın"
 
 #: app/templates/packages/view.html:411
 msgid "Favorite"
@@ -5056,16 +5095,18 @@ msgstr "Artı onaylayıcılar ve editörler"
 
 #: app/templates/threads/view.html:136
 msgid "Is this review outdated?"
-msgstr ""
+msgstr "Bu incelemenin tarihi geçmiş mi?"
 
 #: app/templates/threads/view.html:137
 msgid "For example, does it complain about issues you've already fixed?"
-msgstr ""
+msgstr "Örneğin, zaten düzelttiğiniz sorunlar hakkında şikayet ediyor mu?"
 
 #: app/templates/threads/view.html:138
 #, python-format
 msgid "You can report outdated reviews by clicking %(flag)s on the review."
 msgstr ""
+"Güncel olmayan incelemeleri, inceleme üzerindeki %(flag)sl'a tıklayarak "
+"bildirebilirsiniz."
 
 #: app/templates/todo/editor.html:4 app/templates/todo/todo_base.html:17
 msgid "Editor Work Queue"
@@ -5203,7 +5244,7 @@ msgstr "%(rel)s desteklemeyen paketler"
 #: app/templates/todo/outdated.html:16 app/templates/todo/screenshots.html:12
 #: app/templates/todo/screenshots.html:16
 msgid "Minetest-Mods org only"
-msgstr ""
+msgstr "Sadece Minetest-Mods kuruluşu"
 
 #: app/templates/todo/mtver_support.html:25 app/templates/todo/outdated.html:24
 #: app/templates/todo/screenshots.html:24
@@ -5419,7 +5460,7 @@ msgstr "ContentDB'nin GitHub İzinlerini Görüntüleyin"
 
 #: app/templates/users/account.html:65
 msgid "Disconnect"
-msgstr ""
+msgstr "Bağlantıyı kes"
 
 #: app/templates/users/account.html:70
 msgid "Link Github"
@@ -5445,7 +5486,7 @@ msgstr ""
 
 #: app/templates/users/account.html:88
 msgid "Please raise a report to request account deletion."
-msgstr ""
+msgstr "Lütfen hesap silinmesi için bir rapor hazırlayın."
 
 #: app/templates/users/account.html:95
 msgid "Recent Account Actions"
@@ -5473,6 +5514,8 @@ msgid ""
 "Note: protonmail is unsupported by ContentDB. <a "
 "href='https://forum.luanti.org/viewtopic.php?t=30709'>More info</a>."
 msgstr ""
+"Not: protonmail ContentDB tarafından desteklenmiyor. <a href="
+"\"https://forum.luanti.org/viewtopic.php?t=30709\">Daha fazla bilgi</a>."
 
 #: app/templates/users/change_set_password.html:27
 #: app/templates/users/register.html:30
@@ -5750,7 +5793,7 @@ msgstr "E-posta Adresi"
 
 #: app/templates/users/modtools.html:116
 msgid "Pending email verifications"
-msgstr ""
+msgstr "Eposta onayı bekleniyor"
 
 #: app/templates/users/profile.html:20
 msgid "Profile picture"
@@ -5832,7 +5875,7 @@ msgstr "Forumlardan içe aktar"
 
 #: app/templates/users/profile_edit.html:33
 msgid "Remove profile picture"
-msgstr ""
+msgstr "Profil resmini kaldır"
 
 #: app/templates/users/profile_edit.html:51
 msgid ""
@@ -6039,7 +6082,7 @@ msgstr "İsteğe bağlı bağımlılıklar"
 
 #: app/utils/minetest_hypertext.py:340
 msgid "No reviews available."
-msgstr ""
+msgstr "İnceleme bulunamadı."
 
 #: app/utils/user.py:51
 msgid "You have a lot of notifications, you should either read or clear them"
@@ -7007,4 +7050,3 @@ msgstr ""
 
 #~ msgid "Luanti-Mods org only"
 #~ msgstr "Sadece Luanti-Mods kuruluşu"
-
