@@ -5553,7 +5553,8 @@ msgid ""
 "Note: protonmail is unsupported by ContentDB. <a "
 "href='https://forum.luanti.org/viewtopic.php?t=30709'>More info</a>."
 msgstr ""
-"குறிப்பு: புரோட்டான்மெயில் ContentDB ஆல் ஆதரிக்கப்படவில்லை. <a> மேலும் செய்தி </a>."
+"குறிப்பு: புரோட்டான்மெயில் ContentDB ஆல் ஆதரிக்கப்படவில்லை. <a "
+"href='https://forum.luanti.org/viewtopic.php?t=30709'> மேலும் செய்தி </a>."
 
 #: app/templates/users/change_set_password.html:27
 #: app/templates/users/register.html:30
@@ -5646,7 +5647,8 @@ msgstr "உங்கள் மன்ற சுயவிவரத்தில் 
 msgid ""
 "Log into the forum and <a "
 "href='https://forum.luanti.org/ucp.php?i=173'>do that here</a>."
-msgstr "மன்றத்தில் உள்நுழைக மற்றும் <a> இங்கே செய்யுங்கள் </a>."
+msgstr "மன்றத்தில் உள்நுழைக மற்றும் <a "
+"href='https://forum.luanti.org/ucp.php?i=173'>do that here</a>இங்கே செய்யுங்கள் </a>."
 
 #: app/templates/users/claim_forums.html:47
 msgid "Next: log in with GitHub"
@@ -5666,7 +5668,8 @@ msgid ""
 "href='https://forum.luanti.org/ucp.php?i=profile&mode=signature'>User "
 "Control Panel &gt; Profile &gt; Edit signature</a>"
 msgstr ""
-"<a> பயனர் கட்டுப்பாட்டு குழு &amp; gt; சுயவிவரம் &amp; சிடி; கையொப்பத்தைத் திருத்து "
+"<a "
+"href='https://forum.luanti.org/ucp.php?i=profile&mode=signature'> பயனர் கட்டுப்பாட்டு குழு &amp; gt; சுயவிவரம் &amp; சிடி; கையொப்பத்தைத் திருத்து "
 "</a>"
 
 #: app/templates/users/claim_forums.html:75
