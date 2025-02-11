@@ -80,6 +80,7 @@ app.config["WTF_CSRF_TIME_LIMIT"] = None
 app.config["BABEL_TRANSLATION_DIRECTORIES"] = "../translations"
 app.config["LANGUAGES"] = {
 	"en": "English",
+	"cs": "čeština",
 	"de": "Deutsch",
 	"es": "Español",
 	"fr": "Français",
@@ -90,6 +91,7 @@ app.config["LANGUAGES"] = {
 	"ru": "русский язык",
 	"sk": "Slovenčina",
 	"sv": "Svenska",
+	"ta": "தமிழ்",
 	"tr": "Türkçe",
 	"uk": "Українська",
 	"vi": "tiếng Việt",
