@@ -39,24 +39,25 @@
 		</div>
 		<div class="carousel-inner">
 			{% for package in spotlight_pkgs %}
+				{% set meta = package.get_translated(load_desc=False) %}
 				{% set cover_image = package.get_cover_image_url() %}
 				{% set tags =  package.tags | sort(attribute="views", reverse=True) %}
 				<div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
 					<a href="{{ package.get_url('packages.view') }}">
 						<div class="ratio ratio-16x9">
 							<img src="{{ cover_image }}"
-								alt="{{ _('%(title)s by %(author)s', title=package.title, author=package.author.display_name) }}">
+								alt="{{ _('%(title)s by %(author)s', title=meta.title, author=package.author.display_name) }}">
 						</div>
 						<div class="carousel-caption text-shadow">
 							<h3 class="mt-0 mb-3">
 								{% if package.author %}
-									{{ _('<strong>%(title)s</strong> by %(author)s', title=package.title, author=package.author.display_name) }}
+									{{ _('<strong>%(title)s</strong> by %(author)s', title=meta.title, author=package.author.display_name) }}
 								{% else %}
-									<strong>{{ package.title }}</strong>
+									<strong>{{ meta.title }}</strong>
 								{% endif %}
 							</h3>
 							<p>
-								{{ package.short_desc }}
+								{{ meta.short_desc }}
 							</p>
 							{% if package.author %}
 								<div class="d-none d-md-block">
