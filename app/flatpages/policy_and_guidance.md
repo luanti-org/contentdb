@@ -31,6 +31,8 @@ including ones not covered by this document, and to ban users who abuse this ser
 Sexually-orientated content is not permitted.
 If in doubt at what this means, [contact us by raising a report](/report/).
 
+Content which depicts or encourages the use of illegal drugs (under the laws of the United Kingdom) is not permitted.
+
 Mature content is permitted providing that it is labelled correctly.
 See [Content Flags](/help/content_flags/).
 

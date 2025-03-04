@@ -33,8 +33,8 @@ without making a release.
 Packages with mature content will be tagged with a content warning based
 on the content type.
 
+* `alcohol_tobacco`: alcohol or tobacco.
 * `bad_language`: swearing.
-* `drugs`: drugs or alcohol.
 * `gambling`
 * `gore`: blood, etc.
 * `horror`: shocking and scary content.
