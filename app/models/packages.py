@@ -812,7 +812,7 @@ class Package(db.Model):
 
 		elif perm == Permission.APPROVE_SCREENSHOT:
 			return (is_maintainer or is_approver) and \
-				user.rank.at_least(UserRank.MEMBER if self.approved else UserRank.NEW_MEMBER)
+				user.rank.at_least(UserRank.TRUSTED_MEMBER if self.approved else UserRank.NEW_MEMBER)
 
 		elif perm == Permission.EDIT_MAINTAINERS or perm == Permission.DELETE_PACKAGE:
 			return is_owner or user.rank.at_least(UserRank.EDITOR)
