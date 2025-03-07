@@ -40,19 +40,6 @@
 		</div>
 	</div>
 
-	{% if allow_private_change %}
-		{{ render_checkbox_field(form.private, class_="my-3") }}
-	{% elif form.private.data %}
-		<p>
-			Private.
-		</p>
-	{% endif %}
-	{% if allow_private_change or form.private.data %}
-		<p>
-			{{ _("Only you, the package author, and users of Approver rank and above can read private threads.") }}
-		</p>
-	{% endif %}
-
 	{{ render_submit_field(form.btn_submit) }}
 </form>
 

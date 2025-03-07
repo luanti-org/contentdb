@@ -281,7 +281,6 @@ def view(id):
 class ThreadForm(FlaskForm):
 	title	= StringField(lazy_gettext("Title"), [InputRequired(), Length(3,100)])
 	comment = TextAreaField(lazy_gettext("Comment"), [InputRequired(), Length(10, 2000)], filters=[normalize_line_endings])
-	private = BooleanField(lazy_gettext("Private"))
 	btn_submit  = SubmitField(lazy_gettext("Open Thread"))
 
 
@@ -296,14 +295,11 @@ def new():
 		if package is None:
 			abort(404)
 
-	def_is_private = request.args.get("private") or False
 	if package is None and not current_user.rank.at_least(UserRank.APPROVER):
 		abort(404)
 
 	is_review_thread = package and not package.approved
-	allow_private_change = not is_review_thread
-	if is_review_thread:
-		def_is_private = True
+	is_private_thread = is_review_thread
 
 	# Check that user can make the thread
 	if package and not package.check_perm(current_user, Permission.CREATE_THREAD):
@@ -326,7 +322,6 @@ def new():
 
 	# Set default values
 	elif request.method == "GET":
-		form.private.data = def_is_private
 		form.title.data   = request.args.get("title") or ""
 
 	# Validate and submit
@@ -337,7 +332,7 @@ def new():
 			thread = Thread()
 			thread.author  = current_user
 			thread.title   = form.title.data
-			thread.private = form.private.data if allow_private_change else def_is_private
+			thread.private = is_private_thread
 			thread.package = package
 			db.session.add(thread)
 
@@ -385,7 +380,7 @@ def new():
 
 			return redirect(thread.get_view_url())
 
-	return render_template("threads/new.html", form=form, allow_private_change=allow_private_change, package=package)
+	return render_template("threads/new.html", form=form, package=package)
 
 
 @bp.route("/users/<username>/comments/")
