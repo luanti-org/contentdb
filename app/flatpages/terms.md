@@ -2,12 +2,6 @@ title: Terms of Service
 
 Also see the [Package Inclusion Policy](/policy_and_guidance/).
 
-## General
-
-### Minimum Age
-
-You must be at least 13 years of age to use this service.
-
 ## Content
 
 ### Prohibited content
@@ -64,10 +58,9 @@ we will swiftly take down that content.
 
 To minimise the length of time for which any illegal content within the scope of the Online Safety Act 2023 is present:
 
-* in respect of terrorism content, we will swiftly remove such content when we become aware of it.
-* in respect of child sexual exploitation or abuse content, we will swiftly remove such content when we become aware of it.
-* in respect of content that amounts to an offence specified in Schedule 7, Online Safety Act 2023, we will swiftly
-  remove such content when we become aware of it.
+* in respect of terrorism content, we offer an easy-to-access and use reporting function and will swiftly remove such content when we become aware of it.
+* in respect of child sexual exploitation or abuse content, we offer an easy-to-access and use reporting function and will swiftly remove such content when we become aware of it.
+* in respect of other content that amounts to an offence specified in Schedule 7, Online Safety Act 2023, we offer an easy-to-access and use reporting function and will swiftly remove such content when we become aware of it.
 
 ### Protecting children
 
@@ -76,7 +69,9 @@ We protect all children from the kinds of content listed in "Prohibited Content"
 * prohibiting that type of content from our service; and
 * swiftly taking down that content, if we are alerted by a person to its presence, or we become aware of it in any other way.
 
-Users below 13 years of age are not allowed on this service.
+### Proactive technology
+
+We do not use proactive technology to detect illegal content.
 
 
 ## Limitation of Liability
@@ -84,7 +79,7 @@ Users below 13 years of age are not allowed on this service.
 THE SERVICE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO
 THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL WE BE LIABLE
 FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF
-OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+OR IN CONNECTION WITH THE SERVICE OR THE USE OR OTHER DEALINGS IN THE SERVICE.
 
 We reserve the right to ban or suspend your account, or take down your content, for any reason.
 
@@ -96,9 +91,15 @@ This service is subject to the jurisdiction of the United Kingdom.
 
 ## Complaints
 
-### Appeals
+### Reporting content
 
-You may send a complaint / request an appeal by [contacting the admin]({{ admin_contact_url }}) 
+You may report content by clicking the report flag next to a comment or "Report" on the page containing the content.
+
+You can also make reports by [contacting the admin]({{ admin_contact_url }}).
+
+### Complaints and Appeals
+
+You may send a complaint / request an appeal by [contacting the admin]({{ admin_contact_url }}). 
 
 ### Your right to bring a claim
 
