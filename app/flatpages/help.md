@@ -4,7 +4,7 @@ toc: False
 
 ## Rules
 
-* [Rules](/rules/)
+* [Terms of Service](/terms/)
 * [Package Inclusion Policy and Guidance](/policy_and_guidance/)
 
 ## General Help

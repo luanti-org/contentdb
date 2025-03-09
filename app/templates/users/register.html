@@ -34,15 +34,10 @@
 		</p>
 		{{ render_field(form.question, hint=_("Please prove that you are human")) }}
 
-		{% set label %}
-			{{ _("I agree to the ") }}
-			<a href="{{ url_for('flatpage', path='privacy_policy') }} ">
-				{{ _("Privacy Policy") }}
-			</a>
-		{% endset %}
-		{{ render_checkbox_field(form.agree, label=label, class_="my-4") }}
+		<p>
+			{{ _("By signing up, you agree to the <a href='/terms/' target='_blank'>Terms of Service</a> and <a href='/privacy_policy/' target='_blank'>Privacy Policy</a>.") }}
+		</p>
 
-		{# Submit button #}
 		<p>
 			{{ render_submit_field(form.submit, tabindex=180) }}
 		</p>
