@@ -104,7 +104,6 @@ class RegisterForm(FlaskForm):
 	email    = StringField(lazy_gettext("Email"), [InputRequired(), Email()])
 	password = PasswordField(lazy_gettext("Password"), [InputRequired(), Length(12, 100)])
 	question  = StringField(lazy_gettext("What is the result of the above calculation?"), [InputRequired()])
-	agree    = BooleanField(lazy_gettext("I agree"), [DataRequired()])
 	submit   = SubmitField(lazy_gettext("Register"))
 
 
