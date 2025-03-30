@@ -116,17 +116,32 @@ curl -X DELETE https://content.luanti.org/api/delete-token/ \
         * `include_images`: Optional, defaults to true. If true, images use `<img>`. If false, they're linked.
         * `protocol_version`: Optional, used to get the correct release.
         * `engine_version`: Optional, used to get the correct release. Ex: `5.3.0`.
+* GET `/api/packages/<username>/<name>/for-client/reviews/`
+    * Returns hypertext representing the package's reviews
+    * Query arguments
+        * `formspec_version`: Required. See /hypertext/ below.
+        * `include_images`: Optional, defaults to true. If true, images use `<img>`. If false, they're linked.
+    * Returns JSON dictionary with following keys:
+        * `head`: markup for suggested styling and custom tags, prepend to the body before displaying.
+        * `body`: markup for long description.
+        * `links`: dictionary of anchor name to link URL.
+        * `images`: dictionary of img name to image URL.
+        * `image_tooltips`: dictionary of img name to tooltip text.
+    * The hypertext body contains some placeholders that should be replaced client-side:
+        * `<thumbsup>` with a thumbs up icon. 
+        * `<neutral>` with a thumbs up icon. 
+        * `<thumbsdown>` with a thumbs up icon. 
 * GET `/api/packages/<author>/<name>/hypertext/`
     * Converts the long description to [Luanti Markup Language](https://github.com/minetest/minetest/blob/master/doc/lua_api.md#markup-language)
       to be used in a `hypertext` formspec element.
     * Query arguments:
         * `formspec_version`: Required, maximum supported formspec version.
         * `include_images`: Optional, defaults to true. If true, images use `<img>`. If false, they're linked.
-    * Returns JSON dictionary with following key:
+    * Returns JSON dictionary with following keys:
         * `head`: markup for suggested styling and custom tags, prepend to the body before displaying.
         * `body`: markup for long description.
         * `links`: dictionary of anchor name to link URL.
-        * `images`: dictionary of img name to image URL
+        * `images`: dictionary of img name to image URL.
         * `image_tooltips`: dictionary of img name to tooltip text.
 * GET `/api/packages/<username>/<name>/dependencies/`
     * Returns dependencies, with suggested candidates
