@@ -120,7 +120,6 @@ curl -X DELETE https://content.luanti.org/api/delete-token/ \
     * Returns hypertext representing the package's reviews
     * Query arguments
         * `formspec_version`: Required. See /hypertext/ below.
-        * `include_images`: Optional, defaults to true. If true, images use `<img>`. If false, they're linked.
     * Returns JSON dictionary with following keys:
         * `head`: markup for suggested styling and custom tags, prepend to the body before displaying.
         * `body`: markup for long description.
