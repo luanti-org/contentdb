@@ -28,7 +28,6 @@ from app.blueprints.api.support import error, api_create_vcs_release
 from app.logic.users import create_user
 from app.models import db, User, APIToken, AuditSeverity
 from app.utils import abs_url_for, add_audit_log, login_user_set_active, is_safe_url
-
 from . import bp
 from .common import get_packages_for_vcs_and_token
 
@@ -98,6 +97,7 @@ def github_callback(oauth_token):
 			flash(gettext("Authorization failed [err=gh-login-failed]"), "danger")
 			return redirect(url_for("users.login"))
 
+		user_by_github.github_username = github_username
 		add_audit_log(AuditSeverity.USER, user_by_github, "Logged in using GitHub OAuth",
 				url_for("users.profile", username=user_by_github.username))
 		db.session.commit()
