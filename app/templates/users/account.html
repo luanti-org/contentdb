@@ -59,12 +59,11 @@
 						{{ _("View ContentDB's GitHub Permissions") }}
 					</a>
 				{% endif %}
-				{% if user.forums_username %}
-					<form method="post" action="{{ url_for('users.disconnect_github', username=user.username) }}" class="d-inline-block">
-						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-						<input type="submit" class="btn btn-secondary" value="{{  _('Disconnect') }}" />
-					</form>
-				{% endif %}
+
+				<form method="post" action="{{ url_for('users.disconnect_github', username=user.username) }}" class="d-inline-block">
+					<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+					<input type="submit" class="btn btn-secondary" value="{{  _('Disconnect') }}" />
+				</form>
 			{% elif user == current_user %}
 				<a class="btn btn-secondary" href="{{ url_for('vcs.github_start') }}">
 					{{ _("Link Github") }}
