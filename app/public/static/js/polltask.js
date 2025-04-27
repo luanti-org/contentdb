@@ -42,6 +42,14 @@ async function pollTask(poll_url, disableTimeout) {
 			console.error(e);
 		}
 
+		if (res && res.status) {
+			let status = res.status.toLowerCase();
+			if (status === "pending") {
+				status = "pending or unknown";
+			}
+			document.getElementById("status").textContent = `Status: ${status}`;
+		}
+
 		if (res && res.status === "SUCCESS") {
 			console.log("Got result")
 			return res.result;

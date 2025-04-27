@@ -10,11 +10,12 @@
 
 {% block content %}
 	<h1>{{ self.title() }}</h1>
+	<p id="status"></p>
 
 	{% if "error" in info or info.status == "FAILURE" or info.status == "REVOKED" %}
 		<pre style="white-space: pre-wrap; word-wrap: break-word;">{{ info.error }}</pre>
 	{% else %}
-		<script src="/static/js/polltask.js"></script>
+		<script src="/static/js/polltask.js?v=2"></script>
 		<script>
 			// @author rubenwardy
 			// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&dn=gpl-3.0.txt GPL-v3-or-Later

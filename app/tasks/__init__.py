@@ -64,7 +64,7 @@ class FlaskCelery(Celery):
 
 def make_celery(app):
 	celery = FlaskCelery(app.import_name, backend=app.config['CELERY_RESULT_BACKEND'],
-					broker=app.config['CELERY_BROKER_URL'])
+					broker=app.config['CELERY_BROKER_URL'], task_track_started=True)
 
 	celery.init_app(app)
 	return celery
