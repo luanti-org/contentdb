@@ -17,6 +17,7 @@
 		{{ form.hidden_tag() }}
 		{{ render_field(form.query, hint=self.query_hint()) }}
 		{{ render_field(form.file_filter, hint="Supports wildcards and regex") }}
+		{{ render_field(form.type, hint=_("Use shift to select multiple. Leave selection empty to match any type.")) }}
 		{{ render_submit_field(form.submit, tabindex=180) }}
 	</form>
 

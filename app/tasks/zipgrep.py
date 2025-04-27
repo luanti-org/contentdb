@@ -16,16 +16,20 @@
 
 import subprocess
 import sys
-from subprocess import Popen, PIPE
-from typing import Optional
+from subprocess import Popen, PIPE, TimeoutExpired
+from typing import Optional, List
 
 from app.models import Package, PackageState, PackageRelease
 from app.tasks import celery
 
 
 @celery.task(bind=True)
-def search_in_releases(self, query: str, file_filter: str):
-	packages = list(Package.query.filter(Package.state == PackageState.APPROVED).all())
+def search_in_releases(self, query: str, file_filter: str, types: List[str]):
+	pkg_query = Package.query.filter(Package.state == PackageState.APPROVED)
+	if len(types) > 0:
+		pkg_query = pkg_query.filter(Package.type.in_(types))
+
+	packages = list(pkg_query.all())
 	results = []
 
 	total = len(packages)
