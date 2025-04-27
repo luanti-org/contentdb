@@ -26,49 +26,43 @@ from app.tasks import celery
 @celery.task(bind=True)
 def search_in_releases(self, query: str, file_filter: str):
 	packages = list(Package.query.filter(Package.state == PackageState.APPROVED).all())
-	running = []
 	results = []
 
 	total = len(packages)
 	self.update_state(state="PROGRESS", meta={"current": 0, "total": total})
 
-	while len(packages) > 0 or len(running) > 0:
-		# Check running
-		for i in range(len(running) - 1, -1, -1):
-			package: Package = running[i][0]
-			handle: subprocess.Popen[str] = running[i][1]
+	while len(packages) > 0:
+		package = packages.pop()
+		release: Optional[PackageRelease] = package.get_download_release()
+		if release:
+			print(f"[Zipgrep] Checking {package.name}", file=sys.stderr)
+			self.update_state(state="PROGRESS", meta={
+				"current": total - len(packages),
+				"total": total,
+				"running": [package.as_key_dict()],
+			})
+
+			handle = Popen(["zipgrep", query, release.file_path, file_filter], stdout=PIPE, encoding="UTF-8")
+			handle.wait(timeout=60)
 			exit_code = handle.poll()
 			if exit_code is None:
-				continue
+				handle.kill()
+				results.append({
+					"package": package.as_key_dict(),
+					"lines": "Error: timeout",
+				})
 			elif exit_code == 0:
 				print(f"[Zipgrep] Success for {package.name}", file=sys.stderr)
 				results.append({
 					"package": package.as_key_dict(),
 					"lines": handle.stdout.read(),
 				})
-			else:
-				print(f"[Zipgrep] Error for {package.name}", file=sys.stderr)
-
-			del running[i]
-
-		# Create new
-		while len(running) < 1 and len(packages) > 0:
-			package = packages.pop()
-			release: Optional[PackageRelease] = package.get_download_release()
-			if release:
-				print(f"[Zipgrep] Starting {package.name}", file=sys.stderr)
-				handle = Popen(["zipgrep", query, release.file_path, file_filter], stdout=PIPE, encoding="UTF-8")
-				running.append([package, handle])
-
-				remaining = len(packages) + len(running)
-				self.update_state(state="PROGRESS", meta={
-					"current": total - remaining,
-					"total": total,
-					"running": [x[0].as_key_dict() for x in running],
+			elif exit_code != 1:
+				print(f"[Zipgrep] Error {exit_code} for {package.name}", file=sys.stderr)
+				results.append({
+					"package": package.as_key_dict(),
+					"lines": f"Error: exit {exit_code}",
 				})
-
-		if len(running) > 0:
-			running[0][1].wait()
 
 	return {
 		"query": query,
