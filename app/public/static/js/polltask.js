@@ -44,10 +44,29 @@ async function pollTask(poll_url, disableTimeout) {
 
 		if (res && res.status) {
 			let status = res.status.toLowerCase();
-			if (status === "pending") {
-				status = "pending or unknown";
+
+			const progress = document.getElementById("progress");
+
+			if (status === "progress") {
+				progress.classList.remove("d-none");
+				const bar = progress.children[0];
+
+				const {current, total, running} = res.result;
+				const perc = Math.min( Math.max(100 * current / total, 0), 100);
+				bar.style.width = `${perc}%`;
+				bar.setAttribute("aria-valuenow", current);
+				bar.setAttribute("aria-valuemax", total);
+
+				const packages = running.map(x => `${x.author}/${x.name}`).join(", ");
+				document.getElementById("status").textContent = `Status: in progress (${current} / ${total})\n\n${packages}`;
+			} else {
+				progress.classList.add("d-none");
+
+				if (status === "pending") {
+					status = "pending or unknown";
+				}
+				document.getElementById("status").textContent = `Status: ${status}`;
 			}
-			document.getElementById("status").textContent = `Status: ${status}`;
 		}
 
 		if (res && res.status === "SUCCESS") {

@@ -15,6 +15,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import subprocess
+import sys
 from subprocess import Popen, PIPE
 from typing import Optional
 
@@ -22,11 +23,14 @@ from app.models import Package, PackageState, PackageRelease
 from app.tasks import celery
 
 
-@celery.task()
-def search_in_releases(query: str, file_filter: str):
+@celery.task(bind=True)
+def search_in_releases(self, query: str, file_filter: str):
 	packages = list(Package.query.filter(Package.state == PackageState.APPROVED).all())
 	running = []
 	results = []
+
+	total = len(packages)
+	self.update_state(state="PROGRESS", meta={"current": 0, "total": total})
 
 	while len(packages) > 0 or len(running) > 0:
 		# Check running
@@ -37,10 +41,13 @@ def search_in_releases(query: str, file_filter: str):
 			if exit_code is None:
 				continue
 			elif exit_code == 0:
+				print(f"[Zipgrep] Success for {package.name}", file=sys.stderr)
 				results.append({
 					"package": package.as_key_dict(),
 					"lines": handle.stdout.read(),
 				})
+			else:
+				print(f"[Zipgrep] Error for {package.name}", file=sys.stderr)
 
 			del running[i]
 
@@ -49,8 +56,16 @@ def search_in_releases(query: str, file_filter: str):
 			package = packages.pop()
 			release: Optional[PackageRelease] = package.get_download_release()
 			if release:
+				print(f"[Zipgrep] Starting {package.name}", file=sys.stderr)
 				handle = Popen(["zipgrep", query, release.file_path, file_filter], stdout=PIPE, encoding="UTF-8")
 				running.append([package, handle])
+
+				remaining = len(packages) + len(running)
+				self.update_state(state="PROGRESS", meta={
+					"current": total - remaining,
+					"total": total,
+					"running": [x[0].as_key_dict() for x in running],
+				})
 
 		if len(running) > 0:
 			running[0][1].wait()

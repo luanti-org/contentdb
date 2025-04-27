@@ -11,6 +11,9 @@
 {% block content %}
 	<h1>{{ self.title() }}</h1>
 	<p id="status"></p>
+	<div id="progress" class="progress d-none">
+		<div class="progress-bar bg-info" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+	</div>
 
 	{% if "error" in info or info.status == "FAILURE" or info.status == "REVOKED" %}
 		<pre style="white-space: pre-wrap; word-wrap: break-word;">{{ info.error }}</pre>
