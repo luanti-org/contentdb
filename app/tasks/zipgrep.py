@@ -46,6 +46,7 @@ def search_in_releases(self, query: str, file_filter: str):
 			handle.wait(timeout=60)
 			exit_code = handle.poll()
 			if exit_code is None:
+				print(f"[Zipgrep] Timeout for {package.name}", file=sys.stderr)
 				handle.kill()
 				results.append({
 					"package": package.as_key_dict(),
