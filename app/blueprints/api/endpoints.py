@@ -30,7 +30,7 @@ from app.logic.graphs import get_package_stats, get_package_stats_for_user, get_
 from app.markdown import render_markdown
 from app.models import Tag, PackageState, PackageType, Package, db, PackageRelease, Permission, \
 	MinetestRelease, APIToken, PackageScreenshot, License, ContentWarning, User, PackageReview, Thread, Collection, \
-	PackageAlias, Language
+	PackageAlias, Language, PackageDailyStats
 from app.querybuilder import QueryBuilder
 from app.utils import is_package_page, get_int_or_abort, url_set_query, abs_url, is_yes, get_request_date, cached, \
 	cors_allowed
@@ -39,6 +39,7 @@ from . import bp
 from .auth import is_api_authd
 from .support import error, api_create_vcs_release, api_create_zip_release, api_create_screenshot, \
 	api_order_screenshots, api_edit_package, api_set_cover_image
+from ...rediscache import make_view_key, set_temp_key, has_key
 
 
 @bp.route("/api/packages/")
@@ -99,6 +100,14 @@ def package_view(package):
 @is_package_page
 @cors_allowed
 def package_view_client(package: Package):
+	ip = request.headers.get("X-Forwarded-For") or request.remote_addr
+	if ip is not None and (request.headers.get("User-Agent") or "").startswith("Minetest"):
+		key = make_view_key(ip, package)
+		if not has_key(key):
+			set_temp_key(key, "true")
+			PackageDailyStats.notify_view(package)
+			db.session.commit()
+
 	protocol_version = request.args.get("protocol_version")
 	engine_version = request.args.get("engine_version")
 	if protocol_version or engine_version:
