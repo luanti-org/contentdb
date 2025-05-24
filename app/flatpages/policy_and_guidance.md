@@ -201,3 +201,7 @@ Packages must not contain obfuscated code.
 ## 9. Reporting Violations
 
 Please click "Report" on the package page.
+
+## 10. Version Control System
+
+For mods, and games a version control system (such as git) is required. Texture packs are currently exempt.
