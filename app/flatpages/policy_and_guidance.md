@@ -13,6 +13,8 @@ the listings and to combat abuse.
 * **Don't put promotions or advertisements in any package metadata.** <sup>5</sup>
 * **Don't manipulate package placement using reviews or downloads.** <sup>6</sup>
 * **Screenshots must not be misleading.** <sup>7</sup>
+* **Don't submit malware, clearly disclose telemetry, no obfuscated code.** <sup>8</sup>
+* **Use a vcs system for mods and games** <sup>9</sup>
 * **The ContentDB admin reserves the right to remove packages for any reason**,
   including ones not covered by this document, and to ban users who abuse
   this service. <sup>1</sup>
@@ -197,11 +199,10 @@ Instead, they should use the insecure environment API.
 
 Packages must not contain obfuscated code.
 
-
-## 9. Reporting Violations
-
-Please click "Report" on the package page.
-
-## 10. Version Control System
+## 9. Version Control System
 
 For mods, and games a version control system (such as git) is required. Texture packs are currently exempt.
+
+## Reporting Violations
+
+Please click "Report" on the package page.
