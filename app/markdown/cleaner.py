@@ -14,7 +14,9 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+from functools import partial
 from bleach import Cleaner
+from bleach.linkifier import LinkifyFilter, DEFAULT_CALLBACKS
 
 
 # Based on
@@ -38,6 +40,7 @@ ALLOWED_TAGS = {
 	"div", "span", "del", "s",
 	"details",
 	"summary",
+	"sup",
 }
 
 ALLOWED_CSS = [
@@ -70,9 +73,21 @@ ALLOWED_ATTRIBUTES = {
 ALLOWED_PROTOCOLS = {"http", "https", "mailto"}
 
 
+def linker_callback(attrs, new=False):
+	if new:
+		text = attrs.get("_text")
+		if not (text.startswith("http://") or text.startswith("https://")):
+			return None
+
+	return attrs
+
+
 def clean_html(html: str):
 	cleaner = Cleaner(
 		tags=ALLOWED_TAGS,
 		attributes=ALLOWED_ATTRIBUTES,
-		protocols=ALLOWED_PROTOCOLS)
+		protocols=ALLOWED_PROTOCOLS,
+		filters=[partial(LinkifyFilter,
+				callbacks=[linker_callback] + DEFAULT_CALLBACKS,
+				skip_tags={"pre", "code"})])
 	return cleaner.clean(html)

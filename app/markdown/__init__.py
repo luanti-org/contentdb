@@ -53,7 +53,6 @@ def render_code(self, tokens: Sequence[Token], idx, options, env):
 	return f"<pre><code>{escapeHtml(token.content)}</code></pre>"
 
 
-
 gfm_like.make()
 md = MarkdownIt("gfm-like", {"highlight": highlight_code})
 md.add_render_rule("fence", render_code)
