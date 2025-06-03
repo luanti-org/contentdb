@@ -59,9 +59,12 @@ md.add_render_rule("fence", render_code)
 init_mention(md)
 
 
-def render_markdown(source):
+def render_markdown(source, clean=True):
 	html = md.render(source)
-	return clean_html(html)
+	if clean:
+		return clean_html(html)
+	else:
+		return html
 
 
 def init_markdown(app):
