@@ -14,7 +14,7 @@ the listings and to combat abuse.
 * **Don't manipulate package placement using reviews or downloads.** <sup>6</sup>
 * **Screenshots must not be misleading.** <sup>7</sup>
 * **Don't submit malware, clearly disclose telemetry, no obfuscated code.** <sup>8</sup>
-* **Use a vcs system for mods and games** <sup>9</sup>
+* **Use a vcs for mods and games** <sup>9</sup>
 * **The ContentDB admin reserves the right to remove packages for any reason**,
   including ones not covered by this document, and to ban users who abuse
   this service. <sup>1</sup>
