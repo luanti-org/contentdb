@@ -29,7 +29,7 @@ from app.models import Package, db, User, Permission, Thread, UserRank, AuditSev
 from app.utils import add_notification, is_yes, add_audit_log, get_system_user, has_blocked_domains, \
 	normalize_line_endings
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField, BooleanField
+from wtforms import StringField, TextAreaField, SubmitField
 from wtforms.validators import InputRequired, Length
 from app.utils import get_int_or_abort
 
