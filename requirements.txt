@@ -10,7 +10,8 @@ GitHub-Flask
 SQLAlchemy-Searchable
 
 bcrypt
-markdown
+markdown-it-py
+linkify-it-py
 bleach
 passlib
 

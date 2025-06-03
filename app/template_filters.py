@@ -23,7 +23,7 @@ from flask_login import current_user
 from markupsafe import Markup
 
 from . import app, utils
-from .markdown import get_headings
+from app.markdown import get_headings
 from .models import Permission, Package, PackageState, PackageRelease
 from .utils import abs_url_for, url_set_query, url_set_anchor, url_current
 from .utils.minetest_hypertext import normalize_whitespace as do_normalize_whitespace
