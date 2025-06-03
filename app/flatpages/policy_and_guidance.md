@@ -201,7 +201,7 @@ Packages must not contain obfuscated code.
 
 ## 9. Version Control System
 
-For mods, and games a version control system (such as git) is required. Texture packs are currently exempt.
+For mods and games a version control system (such as git) is required. Texture packs are currently exempt.
 
 ## Reporting Violations
 
