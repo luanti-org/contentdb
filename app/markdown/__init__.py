@@ -24,6 +24,7 @@ from markdown_it.token import Token
 from markdown_it.presets import gfm_like
 from pygments import highlight
 from pygments.lexers import get_lexer_by_name
+from pygments.util import ClassNotFound
 from pygments.formatters.html import HtmlFormatter
 
 from .cleaner import clean_html
@@ -31,10 +32,11 @@ from .mention import init_mention
 
 
 def highlight_code(code, name, attrs):
-	if name == "":
+	try:
+		lexer = get_lexer_by_name(name)
+	except ClassNotFound:
 		return None
 
-	lexer = get_lexer_by_name(name)
 	formatter = HtmlFormatter()
 
 	return highlight(code, lexer, formatter)
