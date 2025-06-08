@@ -15,6 +15,7 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from . import redis_client
+from .models import Package
 
 # This file acts as a facade between the rest of the code and redis,
 # and also means that the rest of the code avoids knowing about `app`
@@ -23,8 +24,12 @@ from . import redis_client
 EXPIRY_TIME_S = 2*7*24*60*60  # 2 weeks
 
 
-def make_download_key(ip, package):
+def make_download_key(ip: str, package: Package):
 	return "{}/{}/{}".format(ip, package.author.username, package.name)
+
+
+def make_view_key(ip: str, package: Package):
+	return "view/{}/{}/{}".format(ip, package.author.username, package.name)
 
 
 def set_temp_key(key, v):
