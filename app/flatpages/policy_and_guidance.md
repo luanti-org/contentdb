@@ -28,7 +28,7 @@ including ones not covered by this document, and to ban users who abuse this ser
 
 ### 2.1. Acceptable Content
 
-Sexually-orientated content is not permitted.
+Sexually explicit content is not permitted.
 If in doubt at what this means, [contact us by raising a report](/report/).
 
 Content which depicts or encourages the use of illegal drugs (under the laws of the United Kingdom) is not permitted.
