@@ -68,8 +68,9 @@ window.addEventListener("load", () => {
 	}
 
 	setupHints("short_desc", {
-		"short_desc_mods": (val) => val.indexOf("minetest") >= 0 || val.indexOf("mod") >= 0 ||
-				val.indexOf("modpack") >= 0 || val.indexOf("mod pack") >= 0,
+		"short_desc_mods": (val) => val.indexOf("luanti") >= 0 || val.indexOf("minetest") >= 0 ||
+				val.indexOf("mod") >= 0 || val.indexOf("modpack") >= 0 ||
+				val.indexOf("mod pack") >= 0,
 	});
 
 	setupHints("desc", {

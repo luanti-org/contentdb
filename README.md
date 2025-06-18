@@ -1,7 +1,7 @@
 # ContentDB
 ![Build Status](https://github.com/minetest/contentdb/actions/workflows/test.yml/badge.svg)
 
-A content database for Minetest mods, games, and more.\
+A content database for Luanti mods, games, and more.\
 Developed by rubenwardy, license AGPLv3.0+.
 
 See [Getting Started](docs/getting_started.md) for setting up a development/prodiction environment.
