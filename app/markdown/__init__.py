@@ -22,6 +22,7 @@ from markdown_it import MarkdownIt
 from markdown_it.common.utils import unescapeAll, escapeHtml
 from markdown_it.token import Token
 from markdown_it.presets import gfm_like
+from mdit_py_plugins.anchors import anchors_plugin
 from pygments import highlight
 from pygments.lexers import get_lexer_by_name
 from pygments.util import ClassNotFound
@@ -57,6 +58,7 @@ def render_code(self, tokens: Sequence[Token], idx, options, env):
 
 gfm_like.make()
 md = MarkdownIt("gfm-like", {"highlight": highlight_code})
+md.use(anchors_plugin, permalink=True, permalinkSymbol="#", max_level=6)
 md.add_render_rule("fence", render_code)
 init_mention(md)
 
@@ -82,7 +84,8 @@ def get_headings(html: str):
 	root = []
 	stack = []
 	for heading in headings:
-		this = {"link": heading.get("id") or "", "text": heading.text, "children": []}
+		text = heading.find(text=True, recursive=False)
+		this = {"link": heading.get("id") or "", "text": text, "children": []}
 		this_level = int(heading.name[1:]) - 1
 
 		while this_level <= len(stack):

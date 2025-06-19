@@ -12,6 +12,7 @@ SQLAlchemy-Searchable
 bcrypt
 markdown-it-py
 linkify-it-py
+mdit-py-plugins
 bleach
 passlib
 

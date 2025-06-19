@@ -57,12 +57,16 @@ def allow_class(_tag, name, value):
 	return name == "class" and value in ALLOWED_CSS
 
 
+def allow_a(_tag, name, value):
+	return name in ["href", "title", "data-username"] or (name == "class" and value == "header-anchor")
+
+
 ALLOWED_ATTRIBUTES = {
 	"h1": ["id"],
 	"h2": ["id"],
 	"h3": ["id"],
 	"h4": ["id"],
-	"a": ["href", "title", "data-username"],
+	"a": allow_a,
 	"img": ["src", "title", "alt"],
 	"code": allow_class,
 	"div": allow_class,

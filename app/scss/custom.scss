@@ -51,6 +51,19 @@ h3 {
 	letter-spacing: .05em
 }
 
+h1, h2, h3, h4, h5, h6 {
+	&::after {
+		display: block;
+		content: "";
+		clear: both;
+	}
+}
+
+.header-anchor {
+	float: right;
+	opacity: 0.8;
+}
+
 .badge-notify {
 	background:yellow; /* #00bc8c;*/
 	color: black;
