@@ -1,6 +1,6 @@
-# Minetest's use of the API
+# Luanti's use of the API
 
-This document explains how Minetest's ContentDB client interacts with ContentDB.
+This document explains how Luanti's ContentDB client interacts with ContentDB.
 This is useful both for implementing your own client for ContentDB to install mods, 
 or for implementing ContentDB compatible servers.
 
@@ -36,7 +36,7 @@ Example response:
 `type` is one of `mod`, `game`, or `txp`.
 
 `release` is the release ID. Newer releases have higher IDs.
-Minetest compares this ID to a locally stored version to detect whether a package has updates.
+Luanti compares this ID to a locally stored version to detect whether a package has updates.
 
 Because the client specifies the engine version information, the response must contain a release
 number and the package must be downloadable.
@@ -62,7 +62,7 @@ track the installed release to detect updates in the future.
 
 ### Short version
 
-Minetest uses `/api/packages/<author>/<name>/dependencies/?only_hard=1` to find out the hard
+Luanti uses `/api/packages/<author>/<name>/dependencies/?only_hard=1` to find out the hard
 dependencies for a package.
 
 Then, it resolves each dependency recursively. 
