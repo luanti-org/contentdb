@@ -28,7 +28,7 @@ def daterange(start_date, end_date):
 
 
 keys = ["platform_minetest", "platform_other", "reason_new",
-		"reason_dependency", "reason_update"]
+		"reason_dependency", "reason_update", "views_minetest"]
 
 
 def flatten_data(stats):
@@ -78,7 +78,8 @@ def get_package_stats_for_user(user: User, start_date: Optional[datetime.date], 
 			func.sum(PackageDailyStats.platform_other).label("platform_other"),
 			func.sum(PackageDailyStats.reason_new).label("reason_new"),
 			func.sum(PackageDailyStats.reason_dependency).label("reason_dependency"),
-			func.sum(PackageDailyStats.reason_update).label("reason_update")) \
+			func.sum(PackageDailyStats.reason_update).label("reason_update"),
+			func.sum(PackageDailyStats.views_minetest).label("views_minetest")) \
 		.filter(PackageDailyStats.package.has(author_id=user.id))
 
 	if start_date:
