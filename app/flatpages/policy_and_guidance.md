@@ -1,22 +1,5 @@
 title: Package Inclusion Policy and Guidance
 
-## 0. Overview
-
-ContentDB is for the community, and as such listings should be useful to the
-community. To help with this, there are a few rules to improve the quality of
-the listings and to combat abuse.
-
-* **No inappropriate content.** <sup>2.1</sup>
-* **Content must be playable/useful, but not necessarily finished.** <sup>2.2</sup>
-* **Don't use the name of another mod unless your mod is a fork or reimplementation.** <sup>3</sup>
-* **Licenses must allow derivatives, redistribution, and must not discriminate.** <sup>4</sup>
-* **Don't put promotions or advertisements in any package metadata.** <sup>5</sup>
-* **Don't manipulate package placement using reviews or downloads.** <sup>6</sup>
-* **Screenshots must not be misleading.** <sup>7</sup>
-* **The ContentDB admin reserves the right to remove packages for any reason**,
-  including ones not covered by this document, and to ban users who abuse
-  this service. <sup>1</sup>
-
 
 ## 1. General
 
@@ -26,35 +9,44 @@ including ones not covered by this document, and to ban users who abuse this ser
 
 ## 2. Accepted Content
 
-### 2.1. Acceptable Content
+### 2.1. Mature Content
 
-Sexually-orientated content is not permitted.
-If in doubt at what this means, [contact us by raising a report](/report/).
+See the [Terms of Service](/terms/) for a full list of prohibited content.
 
-Content which depicts or encourages the use of illegal drugs (under the laws of the United Kingdom) is not permitted.
-
-Mature content is permitted providing that it is labelled correctly.
+Other mature content is permitted providing that it is labelled correctly.
 See [Content Flags](/help/content_flags/).
 
-### 2.2. State of Completion
+### 2.2. Useful Content / State of Completion
 
 ContentDB should only currently contain playable content - content which is
-sufficiently complete to be useful to end-users. It's fine to add stuff which is
-still a Work in Progress (WIP) as long as it adds sufficient value; Note that
-this doesn't mean that you should add a thing you started working on yesterday,
-it's worth adding all the basic stuff to make your package useful.
+sufficiently complete to be useful to end-users.
 
-You should make sure to mark Work in Progress stuff as such in the "maintenance
-status" column, as this will help advise players.
+It's fine to add stuff which is still a Work in Progress (WIP) as long as it
+adds sufficient value. You should make sure to mark Work in Progress stuff as
+such in the "maintenance status" dropdown, as this will help advise players.
 
 Adding non-player facing mods, such as libraries and server tools, is perfectly
-fine and encouraged. ContentDB isn't just for player-facing things, and adding
-libraries allows them to be installed when a mod depends on it.
+fine and encouraged. ContentDB isn't just for player-facing things and adding
+libraries allows Luanti to automatically install dependencies.
+
+### 2.3. Language
+
+We require packages to be in English with (optional) client-side translations for
+other languages. This is because Luanti currently requires English as the base language
+([Issue to change this](https://github.com/luanti-org/luanti/issues/6503)).
+
+Your package's title and short description must be in English. You can use client-side
+translations to [translate content meta](https://api.minetest.net/translations/#translating-content-meta).
+
+### 2.4. Attempt to contribute before forking
+
+You should attempt to contribute upstream before forking a package. If you choose
+to fork, you should have a justification (different objectives, maintainer is unavailable, etc).
 
 
 ## 3. Technical Names
 
-### 3.1 Right to a name
+### 3.1. Right to a Name
 
 A package uses a name when it has that name or contains a mod that uses that name.
 
@@ -72,7 +64,7 @@ to change the name of the package, or your package won't be accepted.
 
 We reserve the right to issue exceptions for this where we feel necessary.
 
-### 3.2. Mod Forks and Reimplementations
+### 3.2. Forks and Reimplementations
 
 An exception to the above is that mods are allowed to have the same name as a
 mod if it's a fork of that mod (or a close reimplementation). In real terms, it
@@ -81,14 +73,34 @@ should be possible to use the new mod as a drop-in replacement.
 We reserve the right to decide whether a mod counts as a fork or
 reimplementation of the mod that owns the name.
 
+### 3.3. Game Mod Namespacing
+
+New mods introduced by a game must have a unique common prefix to avoid conflicts with
+other games and standalone mods. The prefix must end in an underscore. This does not
+apply to existing mods included in the game that are available standalone or in other
+game (for example, awards).
+
+Standalone mods may not use a game's namespace unless they have been permission to
+do so.
+
+For example, the NodeCore game's first-party mods all start with `nc_`: `nc_api`, `nc_doors`.
+NodeCore could include an existing mod like `awards` without needing the namespace.
+
+The exception given by 3.2 also applies to game namespaces - you may use another game's
+prefix if your game is a fork.
+
 
 ## 4. Licenses
 
-### 4.1. Allowed Licenses
+### 4.1. License file
 
+You must have a LICENSE.txt/md or COPYING file describing the licensing of your package.
 Please ensure that you correctly credit any resources (code, assets, or otherwise)
-that you have used in your package. For help on doing copyright correctly, see
-the [Copyright help page](/help/copyright/).
+that you have used in your package.
+
+For help on doing copyright correctly, see the [Copyright help page](/help/copyright/).
+
+### 4.2. Allowed Licenses
 
 **The use of licenses that do not allow derivatives or redistribution is not
 permitted. This includes CC-ND (No-Derivatives) and lots of closed source licenses.
@@ -98,13 +110,13 @@ of the content on servers or singleplayer is also not permitted.**
 However, closed sourced licenses are allowed if they allow the above.
 
 If the license you use is not on the list then please select "Other", and we'll
-get around to adding it. We tend to reject custom/untested licenses, and
-reserve the right to decide whether a license should be included.
+get around to adding it. We reject custom/untested licenses and reserve the right
+to decide whether a license should be included.
 
 Please note that the definitions of "free" and "non-free" is the same as that
 of the [Free Software Foundation](https://www.gnu.org/philosophy/free-sw.en.html).
 
-### 4.2. Recommended Licenses
+### 4.3. Recommended Licenses
 
 It is highly recommended that you use a Free and Open Source software (FOSS)
 license. FOSS licenses result in a sharing community and will increase the
