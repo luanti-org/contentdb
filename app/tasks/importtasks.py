@@ -124,6 +124,9 @@ def post_release_check_update(self, release: PackageRelease, path):
 		provides = tree.get_mod_names()
 
 		package = release.package
+		if not package.approved:
+			tree.check_for_legacy_files()
+
 		old_provided_names = set([x.name for x in package.provides])
 		package.provides.clear()
 

@@ -90,6 +90,8 @@ class PackageTreeNode:
 	children: list
 	type: ContentType
 	strict: bool
+	has_legacy_depends: bool
+	has_legacy_description: bool
 
 	def __init__(self, base_dir: str, relative: str,
 			author: Optional[str] = None,
@@ -103,6 +105,8 @@ class PackageTreeNode:
 		self.meta = {}
 		self.children = []
 		self.strict = strict
+		self.has_legacy_depends = False
+		self.has_legacy_description = False
 
 		# Detect type
 		self.type = detect_type(base_dir)
@@ -183,6 +187,11 @@ class PackageTreeNode:
 					result["description"] = f.read()
 			except IOError:
 				pass
+
+		if os.path.isfile(self.baseDir + "/depends.txt"):
+			self.has_legacy_depends = True
+		if os.path.isfile(self.baseDir + "/description.txt"):
+			self.has_legacy_description = True
 
 		# Read dependencies
 		if "depends" in result or "optional_depends" in result:
@@ -303,6 +312,16 @@ class PackageTreeNode:
 
 	def get(self, key: str, default=None):
 		return self.meta.get(key, default)
+
+	def check_for_legacy_files(self):
+		if self.has_legacy_depends:
+			raise MinetestCheckError("Found depends.txt at {}. Delete this file and use depends in mod.conf instead" \
+						.format(self.relative))
+		if self.has_legacy_description:
+			raise MinetestCheckError("Found description.txt at {}. Delete this file and use description in {} instead" \
+						.format(self.relative, self.get_meta_file_name()))
+		for child in self.children:
+			child.check_for_legacy_files()
 
 	def validate(self):
 		for child in self.children:
