@@ -164,10 +164,13 @@ Doing so may result in temporary or permanent suspension from ContentDB.
 
 ## 7. Screenshots
 
-1.  **Screenshots must not violate copyright.** You should have the rights to the
+1.  We require all packages to have at least one screenshot. For packages without visual
+    content, we recommend making a representative image with icons or text to depict the package.
+
+2.  **Screenshots must not violate copyright.** You should have the rights to the
     screenshot.
 
-2.  **Screenshots must depict the actual content of the package in some way, and
+3.  **Screenshots must depict the actual content of the package in some way, and
     not be misleading.**
 
     Do not use idealized mockups or blender concept renders if they do not
@@ -183,17 +186,15 @@ Doing so may result in temporary or permanent suspension from ContentDB.
     will look like in a typical/realistic game scene, but should be "in the
     background" only as far as possible.
 
-3.  **Screenshots must only contain content appropriate for the Content Warnings of
+4.  **Screenshots must only contain content appropriate for the Content Warnings of
     the package.**
 
-4.  **Screenshots should be MOSTLY in-game screenshots, if applicable.** Some
+5.  **Screenshots should be MOSTLY in-game screenshots, if applicable.** Some
     alterations on in-game screenshots are okay, such as collages, added text,
     some reasonable compositing.
 
     Don't just use one of the textures from the package; show it in-situ as it
     actually looks in the game.
-
-5.  **Packages should have a screenshot when reasonably applicable.**
 
 6.  **Screenshots should be of reasonable dimensions.** We recommend using 1920x1080.
 
