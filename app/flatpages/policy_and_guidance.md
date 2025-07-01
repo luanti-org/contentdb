@@ -42,6 +42,8 @@ translations to [translate content meta](https://api.minetest.net/translations/#
 
 You should attempt to contribute upstream before forking a package. If you choose
 to fork, you should have a justification (different objectives, maintainer is unavailable, etc).
+You should use a different title and make it clear in the long description what the
+benefit of your fork is over the original package.
 
 ### 2.5. Copyright and trademarks
 
