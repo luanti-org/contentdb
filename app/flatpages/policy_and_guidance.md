@@ -172,7 +172,8 @@ Doing so may result in temporary or permanent suspension from ContentDB.
 ## 7. Screenshots
 
 1.  We require all packages to have at least one screenshot. For packages without visual
-    content, we recommend making a representative image with icons or text to depict the package.
+    content, we recommend making a symbolic image with icons, graphics, or text to depict
+    the package.
 
 2.  **Screenshots must not violate copyright.** You should have the rights to the
     screenshot.
@@ -195,15 +196,6 @@ Doing so may result in temporary or permanent suspension from ContentDB.
 
 4.  **Screenshots must only contain content appropriate for the Content Warnings of
     the package.**
-
-5.  **Screenshots should be MOSTLY in-game screenshots, if applicable.** Some
-    alterations on in-game screenshots are okay, such as collages, added text,
-    some reasonable compositing.
-
-    Don't just use one of the textures from the package; show it in-situ as it
-    actually looks in the game.
-
-6.  **Screenshots should be of reasonable dimensions.** We recommend using 1920x1080.
 
 
 ## 8. Security
