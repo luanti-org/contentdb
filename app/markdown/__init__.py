@@ -58,7 +58,7 @@ def render_code(self, tokens: Sequence[Token], idx, options, env):
 
 gfm_like.make()
 md = MarkdownIt("gfm-like", {"highlight": highlight_code})
-md.use(anchors_plugin, permalink=True, permalinkSymbol="#", max_level=6)
+md.use(anchors_plugin, permalink=True, permalinkSymbol="🔗", max_level=6)
 md.add_render_rule("fence", render_code)
 init_mention(md)
 

@@ -57,12 +57,19 @@ h1, h2, h3, h4, h5, h6 {
 		content: "";
 		clear: both;
 	}
+
+	.header-anchor {
+		transition: opacity 0.15s ease-in-out;
+		opacity: 0.25;
+		margin: 0 0 0 0.25em;
+		font-size: 60%;
+	}
+
+	&:hover .header-anchor {
+		opacity: 0.9;
+	}
 }
 
-.header-anchor {
-	float: right;
-	opacity: 0.8;
-}
 
 .badge-notify {
 	background:yellow; /* #00bc8c;*/
