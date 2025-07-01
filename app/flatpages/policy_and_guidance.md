@@ -105,6 +105,10 @@ You must have a LICENSE.txt/md or COPYING file describing the licensing of your 
 Please ensure that you correctly credit any resources (code, assets, or otherwise)
 that you have used in your package.
 
+You may use lowercase or include a suffix in the filename (ie: `license-code.txt`). If
+you are making a game or modpack, your top level license file may just be a summary or
+refer to the license files of individual components.
+
 For help on doing copyright correctly, see the [Copyright help page](/help/copyright/).
 
 ### 4.2. Allowed Licenses
