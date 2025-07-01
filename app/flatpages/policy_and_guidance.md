@@ -43,6 +43,13 @@ translations to [translate content meta](https://api.minetest.net/translations/#
 You should attempt to contribute upstream before forking a package. If you choose
 to fork, you should have a justification (different objectives, maintainer is unavailable, etc).
 
+### 2.5. Copyright and trademarks
+
+Your package must not violate copyright or trademarks. You should avoid the use of
+trademarks in the package's title or short description. If you do use a trademark,
+ensure that you phrase it in a way that does not imply official association or
+endorsement.
+
 
 ## 3. Technical Names
 
