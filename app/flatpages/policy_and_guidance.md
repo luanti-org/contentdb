@@ -13,8 +13,8 @@ including ones not covered by this document, and to ban users who abuse this ser
 
 See the [Terms of Service](/terms/) for a full list of prohibited content.
 
-Other mature content is permitted providing that it is labelled correctly.
-See [Content Flags](/help/content_flags/).
+Other mature content is permitted providing that it labelled with the applicable
+[content warning](/help/content_flags/).
 
 ### 2.2. Useful Content / State of Completion
 
@@ -36,7 +36,7 @@ other languages. This is because Luanti currently requires English as the base l
 ([Issue to change this](https://github.com/luanti-org/luanti/issues/6503)).
 
 Your package's title and short description must be in English. You can use client-side
-translations to [translate content meta](https://api.minetest.net/translations/#translating-content-meta).
+translations to [translate content meta](https://api.luanti.org/translations/#translating-content-meta).
 
 ### 2.4. Attempt to contribute before forking
 
@@ -85,15 +85,14 @@ reimplementation of the mod that owns the name.
 ### 3.3. Game Mod Namespacing
 
 New mods introduced by a game must have a unique common prefix to avoid conflicts with
-other games and standalone mods. The prefix must end in an underscore. This does not
-apply to existing mods included in the game that are available standalone or in other
-game (for example, awards).
+other games and standalone mods. For example, the NodeCore game's first-party mods all
+start with `nc_`: `nc_api`, `nc_doors`.
+
+You may include existing or standard mods in your game without renaming them to use the
+namespace. For example, NodeCore could include the `awards` mod without needing to rename it.
 
 Standalone mods may not use a game's namespace unless they have been permission to
 do so.
-
-For example, the NodeCore game's first-party mods all start with `nc_`: `nc_api`, `nc_doors`.
-NodeCore could include an existing mod like `awards` without needing the namespace.
 
 The exception given by 3.2 also applies to game namespaces - you may use another game's
 prefix if your game is a fork.
@@ -103,7 +102,7 @@ prefix if your game is a fork.
 
 ### 4.1. License file
 
-You must have a LICENSE.txt/md or COPYING file describing the licensing of your package.
+You must have a LICENSE, LICENSE.txt, or LICENSE.md file describing the licensing of your package.
 Please ensure that you correctly credit any resources (code, assets, or otherwise)
 that you have used in your package.
 
@@ -181,8 +180,8 @@ Doing so may result in temporary or permanent suspension from ContentDB.
     content, we recommend making a symbolic image with icons, graphics, or text to depict
     the package.
 
-2.  **Screenshots must not violate copyright.** You should have the rights to the
-    screenshot.
+2.  **Screenshots must not violate copyright.** This means don't just copy images
+    from Google search, see [the copyright guide](/help/copyright/).
 
 3.  **Screenshots must depict the actual content of the package in some way, and
     not be misleading.**
