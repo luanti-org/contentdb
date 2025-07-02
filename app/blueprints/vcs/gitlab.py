@@ -38,7 +38,7 @@ def webhook_impl():
 	if token is None:
 		return error(403, "Invalid authentication")
 
-	packages = get_packages_for_vcs_and_token(token, json["project"]["web_url"].replace("https://", "").replace("http://", ""))
+	packages = get_packages_for_vcs_and_token(token, json["project"]["web_url"])
 	for package in packages:
 		#
 		# Check event

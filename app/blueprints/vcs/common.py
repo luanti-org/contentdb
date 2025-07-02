@@ -20,6 +20,7 @@ from app.models import Package, APIToken, Permission, PackageState
 
 
 def get_packages_for_vcs_and_token(token: APIToken, repo_url: str) -> list[Package]:
+	repo_url = repo_url.replace("https://", "").replace("http://", "").lower()
 	if token.package:
 		packages = [token.package]
 		if not token.package.check_perm(token.owner, Permission.APPROVE_RELEASE):
