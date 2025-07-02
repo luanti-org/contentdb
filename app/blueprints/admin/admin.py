@@ -21,9 +21,10 @@ from wtforms import StringField, SubmitField, BooleanField
 from wtforms.validators import InputRequired, Length, Optional
 from app.utils import rank_required, add_audit_log, add_notification, get_system_user, nonempty_or_none, \
 	get_int_or_abort
+from sqlalchemy import func
 from . import bp
 from .actions import actions
-from app.models import UserRank, Package, db, PackageState, User, AuditSeverity, NotificationType, PackageAlias
+from app.models import UserRank, Package, db, PackageState, PackageRelease, PackageScreenshot, User, AuditSeverity, NotificationType, PackageAlias
 from ...querybuilder import QueryBuilder
 
 
@@ -182,6 +183,17 @@ def transfer():
 	return render_template("admin/transfer.html", form=form)
 
 
+def sum_file_sizes(clazz):
+	ret = {}
+	for entry in (db.session
+			.query(clazz.package_id, func.sum(clazz.file_size_bytes))
+			.select_from(clazz)
+			.group_by(clazz.package_id)
+			.all()):
+		ret[entry[0]] = entry[1]
+	return ret
+
+
 @bp.route("/admin/storage/")
 @rank_required(UserRank.EDITOR)
 def storage():
@@ -192,15 +204,20 @@ def storage():
 	show_all = len(packages) < 100
 	min_size = get_int_or_abort(request.args.get("min_size"), 0 if show_all else 50)
 
+	package_size_releases = sum_file_sizes(PackageRelease)
+	package_size_screenshots = sum_file_sizes(PackageScreenshot)
+
 	data = []
 	for package in packages:
-		size_releases = sum([x.file_size_bytes for x in package.releases])
-		size_screenshots = sum([x.file_size_bytes for x in package.screenshots])
+		size_releases = package_size_releases.get(package.id, 0)
+		size_screenshots = package_size_screenshots.get(package.id, 0)
+		size_total = size_releases + size_screenshots
+		if size_total < min_size * 1024 * 1024:
+			continue
+
 		latest_release = package.releases.first()
 		size_latest = latest_release.file_size_bytes if latest_release else 0
-		size_total = size_releases + size_screenshots
-		if size_total > min_size*1024*1024:
-			data.append([package, size_total, size_releases, size_screenshots, size_latest])
+		data.append([package, size_total, size_releases, size_screenshots, size_latest])
 
 	data.sort(key=lambda x: x[1], reverse=True)
 	return render_template("admin/storage.html", data=data)
