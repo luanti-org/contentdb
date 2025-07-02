@@ -91,8 +91,8 @@ start with `nc_`: `nc_api`, `nc_doors`.
 You may include existing or standard mods in your game without renaming them to use the
 namespace. For example, NodeCore could include the `awards` mod without needing to rename it.
 
-Standalone mods may not use a game's namespace unless they have been permission to
-do so.
+Standalone mods may not use a game's namespace unless they have been given permission by
+the game's author.
 
 The exception given by 3.2 also applies to game namespaces - you may use another game's
 prefix if your game is a fork.
