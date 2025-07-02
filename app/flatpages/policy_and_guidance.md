@@ -18,11 +18,11 @@ Other mature content is permitted providing that it labelled with the applicable
 
 ### 2.2. Useful Content / State of Completion
 
-ContentDB should only currently contain playable content - content which is
-sufficiently complete to be useful to end-users.
+ContentDB is for playable and useful content - content which is sufficiently
+complete to be useful to end-users.
 
 It's fine to add stuff which is still a Work in Progress (WIP) as long as it
-adds sufficient value. You should make sure to mark Work in Progress stuff as
+adds sufficient value. You must make sure to mark Work in Progress stuff as
 such in the "maintenance status" dropdown, as this will help advise players.
 
 Adding non-player facing mods, such as libraries and server tools, is perfectly
@@ -77,7 +77,7 @@ We reserve the right to issue exceptions for this where we feel necessary.
 
 An exception to the above is that mods are allowed to have the same name as a
 mod if it's a fork of that mod (or a close reimplementation). In real terms, it
-should be possible to use the new mod as a drop-in replacement.
+must be possible to use the new mod as a drop-in replacement.
 
 We reserve the right to decide whether a mod counts as a fork or
 reimplementation of the mod that owns the name.
