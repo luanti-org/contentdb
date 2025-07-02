@@ -13,7 +13,7 @@ including ones not covered by this document, and to ban users who abuse this ser
 
 See the [Terms of Service](/terms/) for a full list of prohibited content.
 
-Other mature content is permitted providing that it labelled with the applicable
+Other mature content is permitted providing that it is labelled with the applicable
 [content warning](/help/content_flags/).
 
 ### 2.2. Useful Content / State of Completion
