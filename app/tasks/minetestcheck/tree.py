@@ -25,7 +25,7 @@ from .config import parse_conf
 from .translation import Translation, parse_tr
 
 basenamePattern = re.compile("^([a-z0-9_]+)$")
-licensePattern = re.compile("^license[^/.]*(\.(txt|md))?$", re.IGNORECASE)
+licensePattern = re.compile("^licen[sc]e[^/.]*(\.(txt|md))?$", re.IGNORECASE)
 
 DISALLOWED_NAMES = {
 	"core", "minetest", "group", "table", "string", "lua", "luajit", "assert", "debug",
