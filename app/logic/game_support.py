@@ -174,12 +174,6 @@ class GameSupport:
 
 	def _get_supported_games(self, package: GSPackage, visited: list[str]) -> Optional[set[str]]:
 		if package.id_ in visited:
-			# first_idx = visited.index(package.id_)
-			# visited = visited[first_idx:]
-			# err = f"Dependency cycle detected: {' -> '.join(visited)} -> {package.id_}"
-			# for id_ in visited:
-			# 	package2 = self.get(id_)
-			# 	package2.add_error(err)
 			return None
 
 		if package.type == PackageType.GAME:

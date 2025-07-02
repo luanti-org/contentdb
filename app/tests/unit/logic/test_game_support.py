@@ -204,10 +204,6 @@ def test_cycle():
 	support.on_update(modA)
 
 	assert support.all_errors == {
-		"author/mod_b: Dependency cycle detected: author/mod_a -> author/mod_b -> author/mod_a",
-		"author/mod_a: Dependency cycle detected: author/mod_a -> author/mod_b -> author/mod_a",
-		"author/mod_b: Dependency cycle detected: author/mod_b -> author/mod_a -> author/mod_b",
-		"author/mod_a: Dependency cycle detected: author/mod_b -> author/mod_a -> author/mod_b",
 		"author/mod_b: Unable to fulfill dependency mod_a",
 		"author/mod_a: Unable to fulfill dependency mod_b"
 	}
@@ -236,8 +232,6 @@ def test_cycle_fails_safely():
 		"author/mod_b: Unable to fulfill dependency mod_c",
 		"author/mod_d: Unable to fulfill dependency mod_b",
 		"author/mod_c: Unable to fulfill dependency mod_b",
-		"author/mod_c: Dependency cycle detected: author/mod_b -> author/mod_c -> author/mod_b",
-		"author/mod_b: Dependency cycle detected: author/mod_b -> author/mod_c -> author/mod_b"
 	}
 
 
@@ -382,10 +376,6 @@ def test_update_cycle():
 	support.on_update(game1)
 
 	assert support.all_errors == {
-		"author/mod_c: Dependency cycle detected: author/mod_a -> author/mod_c -> author/mod_a",
-		"author/mod_a: Dependency cycle detected: author/mod_a -> author/mod_c -> author/mod_a",
-		"author/mod_c: Dependency cycle detected: author/mod_c -> author/mod_a -> author/mod_c",
-		"author/mod_a: Dependency cycle detected: author/mod_c -> author/mod_a -> author/mod_c",
 		"author/mod_a: Unable to fulfill dependency mod_c",
 		"author/mod_c: Unable to fulfill dependency mod_a"
 	}
