@@ -28,7 +28,7 @@ from app import app
 from sqlalchemy import or_, and_
 
 from app.markdown import get_links, render_markdown
-from app.models import Package, db, PackageState, AuditLogEntry, AuditSeverity
+from app.models import db, Package, PackageState, PackageRelease, PackageScreenshot, AuditLogEntry, AuditSeverity
 from app.tasks import celery, TaskError
 from app.utils import post_bot_message, post_to_approval_thread, get_system_user, add_audit_log
 
@@ -209,3 +209,34 @@ def check_package_for_broken_links(package_id: int):
 	if msg:
 		post_bot_message(package, "Broken links", msg)
 		db.session.commit()
+
+
+@celery.task(bind=True)
+def update_file_size_bytes(self):
+	releases = PackageRelease.query.filter_by(file_size_bytes=0).all()
+	screenshots = PackageScreenshot.query.filter_by(file_size_bytes=0).all()
+	total = len(releases) + len(screenshots)
+	self.update_state(state="PROGRESS", meta={
+		"current": 0,
+		"total": total,
+	})
+
+	for i, release in enumerate(releases):
+		release.calculate_file_size_bytes()
+
+		if i % 100 == 0:
+			self.update_state(state="PROGRESS", meta={
+				"current": i + 1,
+				"total": total,
+			})
+
+	for i, ss in enumerate(screenshots):
+		ss.calculate_file_size_bytes()
+
+		if i % 100 == 0:
+			self.update_state(state="PROGRESS", meta={
+				"current": i + len(releases) + 1,
+				"total": total,
+			})
+
+	db.session.commit()

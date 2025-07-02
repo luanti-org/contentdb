@@ -337,6 +337,7 @@ def check_zip_release(self, id, path):
 		post_release_check_update(self, release, temp)
 
 		release.task_id = None
+		release.calculate_file_size_bytes()
 		release.approve(release.package.author)
 		db.session.commit()
 
@@ -416,6 +417,7 @@ def make_vcs_release(self, id, branch):
 
 		release.url         = "/uploads/" + filename
 		release.task_id     = None
+		release.calculate_file_size_bytes()
 		release.approve(release.package.author)
 		db.session.commit()
 

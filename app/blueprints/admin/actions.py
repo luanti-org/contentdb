@@ -29,7 +29,7 @@ from app.tasks.forumtasks import import_topic_list, check_all_forum_accounts
 from app.tasks.importtasks import import_repo_screenshot, check_zip_release, check_for_updates, update_all_game_support, \
 	import_languages, check_all_zip_files
 from app.tasks.usertasks import import_github_user_ids
-from app.tasks.pkgtasks import notify_about_git_forum_links, clear_removed_packages, check_package_for_broken_links
+from app.tasks.pkgtasks import notify_about_git_forum_links, clear_removed_packages, check_package_for_broken_links, update_file_size_bytes
 from app.utils import add_notification, get_system_user
 
 actions = {}
@@ -319,6 +319,13 @@ def do_notify_git_forums_links():
 def do_check_all_zip_files():
 	task_id = uuid()
 	check_all_zip_files.apply_async((), task_id=task_id)
+	return redirect(url_for("tasks.check", id=task_id, r=url_for("admin.admin_page")))
+
+
+@action("Update file_size_bytes")
+def do_update_file_size_bytes():
+	task_id = uuid()
+	update_file_size_bytes.apply_async((), task_id=task_id)
 	return redirect(url_for("tasks.check", id=task_id, r=url_for("admin.admin_page")))
 
 

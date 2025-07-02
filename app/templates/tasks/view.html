@@ -20,7 +20,7 @@
 	{% if "error" in info or info.status == "FAILURE" or info.status == "REVOKED" %}
 		<pre style="white-space: pre-wrap; word-wrap: break-word;">{{ info.error }}</pre>
 	{% else %}
-		<script src="/static/js/polltask.js?v=3"></script>
+		<script src="/static/js/polltask.js?v=4"></script>
 		<noscript>
 			{{ _("Reload the page to check for updates.") }}
 		</noscript>

@@ -1103,6 +1103,7 @@ class PackageRelease(db.Model):
 	commit_hash  = db.Column(db.String(41), nullable=True, default=None)
 	downloads    = db.Column(db.Integer, nullable=False, default=0)
 	release_notes = db.Column(db.UnicodeText, nullable=True, default=None)
+	file_size_bytes = db.Column(db.Integer, nullable=False, default=0)
 
 	@property
 	def summary(self) -> str:
@@ -1126,14 +1127,14 @@ class PackageRelease(db.Model):
 	def file_path(self):
 		return self.url.replace("/uploads/", app.config["UPLOAD_DIR"])
 
-	@property
-	def file_size_bytes(self):
+	def calculate_file_size_bytes(self):
 		path = self.file_path
 		if not os.path.isfile(path):
-			return 0
+			self.file_size_bytes = 0
+			return
 
 		file_stats = os.stat(path)
-		return file_stats.st_size
+		self.file_size_bytes = file_stats.st_size
 
 	@property
 	def file_size(self):
@@ -1263,6 +1264,8 @@ class PackageScreenshot(db.Model):
 	width      = db.Column(db.Integer, nullable=False)
 	height     = db.Column(db.Integer, nullable=False)
 
+	file_size_bytes = db.Column(db.Integer, nullable=False, default=0)
+
 	def is_very_small(self):
 		return self.width < 720 or self.height < 405
 
@@ -1276,14 +1279,14 @@ class PackageScreenshot(db.Model):
 	def file_path(self):
 		return self.url.replace("/uploads/", app.config["UPLOAD_DIR"])
 
-	@property
-	def file_size_bytes(self):
+	def calculate_file_size_bytes(self):
 		path = self.file_path
 		if not os.path.isfile(path):
-			return 0
+			self.file_size_bytes = 0
+			return
 
 		file_stats = os.stat(path)
-		return file_stats.st_size
+		self.file_size_bytes = file_stats.st_size
 
 	@property
 	def file_size(self):

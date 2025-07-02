@@ -84,7 +84,7 @@ window.addEventListener("load", () => {
 				bar.setAttribute("aria-valuenow", current);
 				bar.setAttribute("aria-valuemax", total);
 
-				const packages = running.map(x => `${x.author}/${x.name}`).join(", ");
+				const packages = (running ?? []).map(x => `${x.author}/${x.name}`).join(", ");
 				document.getElementById("status").textContent = `Status: in progress (${current} / ${total})\n\n${packages}`;
 			} else {
 				progress.classList.add("d-none");
@@ -98,6 +98,9 @@ window.addEventListener("load", () => {
 
 		pollTask(`/tasks/${taskId}/`, true, onProgress)
 			.then(function() { location.reload() })
-			.catch(function() { location.reload() })
+			.catch(function(e) {
+				console.error(e);
+				location.reload();
+			});
 	}
 });
