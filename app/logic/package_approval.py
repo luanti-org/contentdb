@@ -107,8 +107,7 @@ def validate_package_for_approval(package: Package) -> List[PackageValidationNot
 		# Don't bother validating any more until we have a release
 		return retval
 
-	if (package.type == PackageType.GAME or package.type == PackageType.TXP) and \
-			package.screenshots.count() == 0:
+	if package.screenshots.count() == 0:
 		danger(lazy_gettext("You need to add at least one screenshot."))
 
 	missing_deps = package.get_missing_hard_dependencies_query().all()
