@@ -49,7 +49,7 @@ def search_in_releases(self, query: str, file_filter: str, types: List[str]):
 			handle = Popen(["zipgrep", query, release.file_path, file_filter], stdout=PIPE, encoding="UTF-8")
 
 			try:
-				handle.wait(timeout=15)
+				handle.wait(timeout=45)
 			except TimeoutExpired:
 				print(f"[Zipgrep] Timeout for {package.name}", file=sys.stderr)
 				handle.kill()
