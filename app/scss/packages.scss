@@ -92,3 +92,8 @@
 	max-height: 1em;
 	filter: none !important;
 }
+
+.release-notes-body {
+	max-height: 20em;
+	overflow: hidden auto;
+}
