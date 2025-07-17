@@ -96,4 +96,8 @@
 .release-notes-body {
 	max-height: 20em;
 	overflow: hidden auto;
+
+	> *:first-child {
+		margin-top: 0;
+	}
 }
