@@ -69,6 +69,19 @@ ALLOWED_FIELDS = {
 	"translation_url": str,
 }
 
+NULLABLE = {
+	"tags",
+	"content_warnings",
+	"repo",
+	"website",
+	"issue_tracker",
+	"issueTracker",
+	"forums",
+	"video_url",
+	"donate_url",
+	"translation_url",
+}
+
 ALIASES = {
 	"short_description": "short_desc",
 	"issue_tracker": "issueTracker",
@@ -86,11 +99,13 @@ def is_int(val):
 
 def validate(data: dict):
 	for key, value in data.items():
-		if value is not None:
+		if value is None:
+			check(key in NULLABLE, f"{key} must not be null")
+		else:
 			typ = ALLOWED_FIELDS.get(key)
-			check(typ is not None, key + " is not a known field")
+			check(typ is not None, f"{key} is not a known field")
 			if typ != AnyType:
-				check(isinstance(value, typ), key + " must be a " + typ.__name__)
+				check(isinstance(value, typ), f"{key} must be a " + typ.__name__)
 
 	if "name" in data:
 		name = data["name"]
@@ -102,8 +117,8 @@ def validate(data: dict):
 		value = data.get(key)
 		if value is not None:
 			check(value.startswith("http://") or value.startswith("https://"),
-					key + " must start with http:// or https://")
-			check(validators.url(value), key + " must be a valid URL")
+					f"{key} must start with http:// or https://")
+			check(validators.url(value), f"{key} must be a valid URL")
 
 
 def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, data: dict,
@@ -169,7 +184,6 @@ def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, 
 		package.provides.append(m)
 
 	if "tags" in data:
-		old_tags = list(package.tags)
 		package.tags.clear()
 		for tag_id in (data["tags"] or []):
 			if is_int(tag_id):

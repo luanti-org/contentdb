@@ -71,8 +71,6 @@ def get_meta(urlstr, author):
 				data = json.loads(f.read())
 				for key, value in data.items():
 					result[key] = value
-		except LogicError as e:
-			raise TaskError(e.message)
 		except JSONDecodeError as e:
 			raise TaskError("Whilst reading .cdb.json: " + str(e))
 		except IOError:
@@ -195,7 +193,7 @@ def post_release_check_update(self, release: PackageRelease, path):
 				data = json.loads(f.read())
 				do_edit_package(package.author, package, False, False, data, "Post release hook")
 		except LogicError as e:
-			raise TaskError(e.message)
+			raise TaskError("Whilst applying .cdb.json: " + e.message)
 		except JSONDecodeError as e:
 			raise TaskError("Whilst reading .cdb.json: " + str(e))
 		except IOError:
