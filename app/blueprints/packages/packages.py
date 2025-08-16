@@ -306,10 +306,6 @@ def handle_create_edit(package: typing.Optional[Package], form: PackageForm, aut
 			"translation_url": form.translation_url.data,
 		})
 
-		if wasNew:
-			msg = f"Created package {author.username}/{form.name.data}"
-			add_audit_log(AuditSeverity.NORMAL, current_user, msg, package.get_url("packages.view"), package)
-
 		if wasNew and package.repo is not None:
 			import_repo_screenshot.delay(package.id)
 
@@ -322,6 +318,7 @@ def handle_create_edit(package: typing.Optional[Package], form: PackageForm, aut
 		return redirect(next_url)
 	except LogicError as e:
 		flash(e.message, "danger")
+		db.session.rollback()
 
 
 @bp.route("/packages/new/", methods=["GET", "POST"])

@@ -136,6 +136,9 @@ def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, 
 
 	for alias, to in ALIASES.items():
 		if alias in data:
+			if to in data and data[to] != data[alias]:
+				raise LogicError(403, f"Aliased field ({alias}) does not match new field ({to})")
+
 			data[to] = data[alias]
 
 	validate(data)
@@ -207,7 +210,10 @@ def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, 
 				package.content_warnings.append(warning)
 
 	was_modified = was_new
-	if not was_new:
+	if was_new:
+		msg = f"Created package {package.author.username}/{package.name}"
+		add_audit_log(AuditSeverity.NORMAL, user, msg, package.get_url("packages.view"), package)
+	else:
 		after_dict = package.as_dict("/")
 		diff = diff_dictionaries(before_dict, after_dict)
 		was_modified = len(diff) > 0
