@@ -2,7 +2,7 @@
 	<script src="/static/libs/chart.min.js"></script>
 	<script src="/static/libs/chartjs-adapter-date-fns.bundle.min.js"></script>
 	<script src="/static/libs/chartjs-plugin-annotation.min.js"></script>
-	<script src="/static/js/package_charts.js?v=2"></script>
+	<script src="/static/js/package_charts.js?v=3"></script>
 {% endmacro %}
 
 
@@ -117,6 +117,12 @@
 				<canvas id="chart-reason-pie" class="chart"></canvas>
 			</div>
 		</div>
+
+		<h3 class="mt-5">{{ _("Views inside Luanti") }}</h3>
+		<p>
+			{{ _("Number of package page views inside the Luanti client. v5.10 and later only.") }}
+		</p>
+		<canvas id="chart-views" class="chart"></canvas>
 
 		<h3 style="margin-top: 6em;">{{ _("Need more stats?") }}</h3>
 		<p>
