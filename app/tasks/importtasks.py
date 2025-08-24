@@ -534,7 +534,7 @@ def check_update_config_impl(package):
 	db.session.commit()
 
 
-@celery.task(bind=True)
+@celery.task(bind=True, rate_limit="60/m")
 def check_update_config(self, package_id):
 	package: Package = Package.query.get(package_id)
 	if package is None:
