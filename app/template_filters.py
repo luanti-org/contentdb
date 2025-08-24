@@ -26,7 +26,7 @@ from . import app, utils
 from app.markdown import get_headings
 from .models import Permission, Package, PackageState, PackageRelease
 from .utils import abs_url_for, url_set_query, url_set_anchor, url_current
-from .utils.minetest_hypertext import normalize_whitespace as do_normalize_whitespace
+from .utils.luanti_hypertext import normalize_whitespace as do_normalize_whitespace
 
 
 @app.context_processor

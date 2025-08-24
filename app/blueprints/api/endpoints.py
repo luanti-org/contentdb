@@ -29,12 +29,12 @@ from app import csrf
 from app.logic.graphs import get_package_stats, get_package_stats_for_user, get_all_package_stats
 from app.markdown import render_markdown
 from app.models import Tag, PackageState, PackageType, Package, db, PackageRelease, Permission, \
-	MinetestRelease, APIToken, PackageScreenshot, License, ContentWarning, User, PackageReview, Thread, Collection, \
+	LuantiRelease, APIToken, PackageScreenshot, License, ContentWarning, User, PackageReview, Thread, Collection, \
 	PackageAlias, Language
 from app.querybuilder import QueryBuilder
 from app.utils import is_package_page, get_int_or_abort, url_set_query, abs_url, is_yes, get_request_date, cached, \
 	cors_allowed
-from app.utils.minetest_hypertext import html_to_minetest, package_info_as_hypertext, package_reviews_as_hypertext
+from app.utils.luanti_hypertext import html_to_luanti, package_info_as_hypertext, package_reviews_as_hypertext
 from . import bp
 from .auth import is_api_authd
 from .support import error, api_create_vcs_release, api_create_zip_release, api_create_screenshot, \
@@ -102,7 +102,7 @@ def package_view_client(package: Package):
 	protocol_version = request.args.get("protocol_version")
 	engine_version = request.args.get("engine_version")
 	if protocol_version or engine_version:
-		version = MinetestRelease.get(engine_version, get_int_or_abort(protocol_version))
+		version = LuantiRelease.get(engine_version, get_int_or_abort(protocol_version))
 	else:
 		version = None
 
@@ -116,7 +116,7 @@ def package_view_client(package: Package):
 	page_url = package.get_url("packages.view", absolute=True)
 	if data["long_description"] is not None:
 		html = render_markdown(data["long_description"])
-		data["long_description"] = html_to_minetest(html, page_url, formspec_version, include_images)
+		data["long_description"] = html_to_luanti(html, page_url, formspec_version, include_images)
 
 	data["info_hypertext"] = package_info_as_hypertext(package, formspec_version)
 
@@ -153,7 +153,7 @@ def package_hypertext(package):
 	include_images = is_yes(request.args.get("include_images", "true"))
 	html = render_markdown(package.desc if package.desc else "")
 	page_url = package.get_url("packages.view", absolute=True)
-	return jsonify(html_to_minetest(html, page_url, formspec_version, include_images))
+	return jsonify(html_to_luanti(html, page_url, formspec_version, include_images))
 
 
 @bp.route("/api/packages/<author>/<name>/", methods=["PUT"])
@@ -636,14 +636,14 @@ def versions():
 	protocol_version = request.args.get("protocol_version")
 	engine_version = request.args.get("engine_version")
 	if protocol_version or engine_version:
-		rel = MinetestRelease.get(engine_version, get_int_or_abort(protocol_version))
+		rel = LuantiRelease.get(engine_version, get_int_or_abort(protocol_version))
 		if rel is None:
 			error(404, "No releases found")
 
 		return jsonify(rel.as_dict())
 
 	return jsonify([rel.as_dict() \
-			for rel in MinetestRelease.query.all() if rel.get_actual() is not None])
+			for rel in LuantiRelease.query.all() if rel.get_actual() is not None])
 
 
 @bp.route("/api/languages/")
@@ -835,7 +835,7 @@ def hypertext():
 	if request.content_type == "text/markdown":
 		html = render_markdown(html)
 
-	return jsonify(html_to_minetest(html, "", formspec_version, include_images))
+	return jsonify(html_to_luanti(html, "", formspec_version, include_images))
 
 
 @bp.route("/api/collections/")
@@ -886,9 +886,9 @@ def collection_view(token, author, name):
 @cached(300)
 def updates():
 	protocol_version = get_int_or_abort(request.args.get("protocol_version"))
-	minetest_version = request.args.get("engine_version")
-	if protocol_version or minetest_version:
-		version = MinetestRelease.get(minetest_version, protocol_version)
+	engine_version = request.args.get("engine_version")
+	if protocol_version or engine_version:
+		version = LuantiRelease.get(engine_version, protocol_version)
 	else:
 		version = None
 

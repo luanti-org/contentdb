@@ -2,7 +2,7 @@ import os
 
 import pytest
 
-from app.tasks.minetestcheck.translation import parse_tr
+from app.tasks.luanticheck.translation import parse_tr
 
 
 def test_parses_tr():

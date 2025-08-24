@@ -10,8 +10,8 @@ as it was submitted as university coursework. To learn about the history and dev
 
 ContentDB is open source software, licensed under AGPLv3.0.
 
-<a href="https://github.com/minetest/contentdb/" class="btn btn-primary me-1">Source code</a>
-<a href="https://github.com/minetest/contentdb/issues/" class="btn btn-secondary me-1">Issue tracker</a>
+<a href="https://github.com/luanti-org/contentdb/" class="btn btn-primary me-1">Source code</a>
+<a href="https://github.com/luanti-org/contentdb/issues/" class="btn btn-secondary me-1">Issue tracker</a>
 <a href="{{ admin_contact_url }}" class="btn btn-secondary me-1">Contact admin</a>
 {% if monitoring_url -%}
 <a href="{{ monitoring_url }}" class="btn btn-secondary">Stats / monitoring</a>

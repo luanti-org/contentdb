@@ -55,7 +55,7 @@ def make_indent(w):
 	return f"<img name=blank.png width={16*w} height=1>"
 
 
-class MinetestHTMLParser(HTMLParser):
+class LuantiHTMLParser(HTMLParser):
 	def __init__(self, page_url: str, include_images: bool, link_prefix: str):
 		super().__init__()
 		self.page_url = page_url
@@ -224,8 +224,8 @@ class MinetestHTMLParser(HTMLParser):
 			self.current_line += f"&{name};"
 
 
-def html_to_minetest(html, page_url: str, formspec_version: int = 7, include_images: bool = True, link_prefix: str = "link_"):
-	parser = MinetestHTMLParser(page_url, include_images, link_prefix)
+def html_to_luanti(html, page_url: str, formspec_version: int = 7, include_images: bool = True, link_prefix: str = "link_"):
+	parser = LuantiHTMLParser(page_url, include_images, link_prefix)
 	parser.feed(html)
 	parser.finish_line()
 
@@ -329,7 +329,7 @@ def package_reviews_as_hypertext(package: Package, formspec_version: int = 7):
 	for review in reviews:
 		review: PackageReview
 		html = render_markdown(review.thread.first_reply.comment)
-		content = html_to_minetest(html, package.get_url("packages.view", absolute=True),
+		content = html_to_luanti(html, package.get_url("packages.view", absolute=True),
 				formspec_version, False, f"review_{review.id}_")
 		links.update(content["links"])
 		comment_body = content["body"].rstrip()

@@ -1043,7 +1043,7 @@ class Tag(db.Model):
 		}
 
 
-class MinetestRelease(db.Model):
+class LuantiRelease(db.Model):
 	id       = db.Column(db.Integer, primary_key=True)
 	name     = db.Column(db.String(100), unique=True, nullable=False)
 	protocol = db.Column(db.Integer, nullable=False, default=0)
@@ -1067,11 +1067,11 @@ class MinetestRelease(db.Model):
 		}
 
 	@classmethod
-	def get(cls, version: typing.Optional[str], protocol_num: typing.Optional[str]) -> typing.Optional["MinetestRelease"]:
+	def get(cls, version: typing.Optional[str], protocol_num: typing.Optional[str]) -> typing.Optional["LuantiRelease"]:
 		if version:
 			parts = version.strip().split(".")
 			if len(parts) >= 2:
-				query = MinetestRelease.query.filter(func.replace(MinetestRelease.name, "-dev", "") == "{}.{}".format(parts[0], parts[1]))
+				query = LuantiRelease.query.filter(func.replace(LuantiRelease.name, "-dev", "") == "{}.{}".format(parts[0], parts[1]))
 				if protocol_num:
 					query = query.filter_by(protocol=protocol_num)
 
@@ -1081,9 +1081,9 @@ class MinetestRelease(db.Model):
 
 		if protocol_num:
 			# Find the closest matching release
-			return MinetestRelease.query.order_by(db.desc(MinetestRelease.protocol),
-							db.desc(MinetestRelease.id)) \
-						.filter(MinetestRelease.protocol <= protocol_num).first()
+			return LuantiRelease.query.order_by(db.desc(LuantiRelease.protocol),
+							db.desc(LuantiRelease.id)) \
+						.filter(LuantiRelease.protocol <= protocol_num).first()
 
 		return None
 
@@ -1114,11 +1114,11 @@ class PackageRelease(db.Model):
 
 		return self.release_notes.split("\n")[0]
 
-	min_rel_id = db.Column(db.Integer, db.ForeignKey("minetest_release.id"), nullable=True, server_default=None)
-	min_rel    = db.relationship("MinetestRelease", foreign_keys=[min_rel_id])
+	min_rel_id = db.Column(db.Integer, db.ForeignKey("luanti_release.id"), nullable=True, server_default=None)
+	min_rel    = db.relationship("LuantiRelease", foreign_keys=[min_rel_id])
 
-	max_rel_id = db.Column(db.Integer, db.ForeignKey("minetest_release.id"), nullable=True, server_default=None)
-	max_rel    = db.relationship("MinetestRelease", foreign_keys=[max_rel_id])
+	max_rel_id = db.Column(db.Integer, db.ForeignKey("luanti_release.id"), nullable=True, server_default=None)
+	max_rel    = db.relationship("LuantiRelease", foreign_keys=[max_rel_id])
 
 	# If the release is approved, then the task_id must be null and the url must be present
 	CK_approval_valid = db.CheckConstraint("not approved OR (task_id IS NULL AND (url = '') IS NOT FALSE)")
@@ -1441,7 +1441,7 @@ class PackageDailyStats(db.Model):
 	reason_update = db.Column(db.Integer, nullable=False, default=0)
 
 	@staticmethod
-	def update(package: Package, is_minetest: bool, reason: str):
+	def update(package: Package, is_luanti: bool, reason: str):
 		date = datetime.datetime.utcnow().date()
 
 		to_update = dict()
@@ -1449,7 +1449,7 @@ class PackageDailyStats(db.Model):
 			"package_id": package.id, "date": date
 		}
 
-		field_platform = "platform_minetest" if is_minetest else "platform_other"
+		field_platform = "platform_minetest" if is_luanti else "platform_other"
 		to_update[field_platform] = getattr(PackageDailyStats, field_platform) + 1
 		kwargs[field_platform] = 1
 

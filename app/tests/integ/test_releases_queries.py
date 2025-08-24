@@ -1,7 +1,7 @@
 from typing import List, Tuple, Optional
 
 from app.default_data import populate_test_data
-from app.models import db, License, PackageType, User, Package, PackageState, PackageRelease, MinetestRelease
+from app.models import db, License, PackageType, User, Package, PackageState, PackageRelease, LuantiRelease
 from .utils import parse_json, validate_package_list
 from .utils import client # noqa
 
@@ -32,10 +32,10 @@ def make_package(name: str, versions: List[Tuple[Optional[str], Optional[str]]])
 		rel.url = "https://github.com/ezhh/handholds/archive/master.zip"
 
 		if minv:
-			rel.min_rel = MinetestRelease.query.filter_by(name=minv).first()
+			rel.min_rel = LuantiRelease.query.filter_by(name=minv).first()
 			assert rel.min_rel
 		if maxv:
-			rel.max_rel = MinetestRelease.query.filter_by(name=maxv).first()
+			rel.max_rel = LuantiRelease.query.filter_by(name=maxv).first()
 			assert rel.max_rel
 
 		rel.approved = True

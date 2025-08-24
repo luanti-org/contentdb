@@ -28,7 +28,7 @@ from sqlalchemy.sql.expression import func
 
 PKGS_PER_ROW = 4
 
-# GAMEJAM_BANNER = "https://jam.minetest.net/img/banner.png"
+# GAMEJAM_BANNER = "https://jam.luanti.org/img/banner.png"
 #
 # class GameJam:
 # 	cover_image = type("", (), dict(url=GAMEJAM_BANNER))()
@@ -40,7 +40,7 @@ PKGS_PER_ROW = 4
 # 	def get_url(self, _name):
 # 		return "/gamejam/"
 #
-# 	title = "Minetest Game Jam 2023: \"Unexpected\""
+# 	title = "Luanti Game Jam 2023: \"Unexpected\""
 # 	author = None
 #
 # 	short_desc = "The game jam has finished! It's now up to the community to play and rate the games."
@@ -51,7 +51,7 @@ PKGS_PER_ROW = 4
 
 @bp.route("/gamejam/")
 def gamejam():
-	return redirect("https://jam.minetest.net/")
+	return redirect("https://jam.luanti.org/")
 
 
 @bp.route("/")

@@ -141,7 +141,7 @@ permanent bans.
 
 ## Where can I get help?
 
-[Join](https://www.minetest.net/get-involved/) IRC, Matrix, or Discord to ask for help.
+[Join](https://www.luanti.org/get-involved/) IRC, Matrix, or Discord to ask for help.
 In Discord, there are the #assets or #contentdb channels. In IRC or Matrix, you can just ask in the main channels.
 
 If your package is already on ContentDB, you can open a thread.

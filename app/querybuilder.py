@@ -22,7 +22,7 @@ from sqlalchemy.orm import subqueryload
 from sqlalchemy.sql.expression import func
 from sqlalchemy_searchable import search
 
-from .models import db, PackageType, Package, ForumTopic, License, MinetestRelease, PackageRelease, User, Tag, \
+from .models import db, PackageType, Package, ForumTopic, License, LuantiRelease, PackageRelease, User, Tag, \
 	ContentWarning, PackageState, PackageDevState
 from .utils import is_yes, get_int_or_abort
 
@@ -49,7 +49,7 @@ class QueryBuilder:
 	hide_wip: bool
 	hide_nonfree: bool
 	show_added: bool
-	version: Optional[MinetestRelease]
+	version: Optional[LuantiRelease]
 	has_lang: Optional[str]
 
 	@property
@@ -163,12 +163,12 @@ class QueryBuilder:
 		self.author = args.get("author")
 
 		protocol_version = get_int_or_abort(args.get("protocol_version"))
-		minetest_version = args.get("engine_version")
-		if minetest_version == "":
-			minetest_version = None
+		engine_version = args.get("engine_version")
+		if engine_version == "":
+			engine_version = None
 
-		if protocol_version or minetest_version:
-			self.version = MinetestRelease.get(minetest_version, protocol_version)
+		if protocol_version or engine_version:
+			self.version = LuantiRelease.get(engine_version, protocol_version)
 		else:
 			self.version = None
 

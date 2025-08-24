@@ -2,7 +2,7 @@ title: Privacy Policy
 ---
 
 Last Updated: 2024-04-30
-([View updates](https://github.com/minetest/contentdb/commits/master/app/flatpages/privacy_policy.md))
+([View updates](https://github.com/luanti-org/contentdb/commits/master/app/flatpages/privacy_policy.md))
 
 ## What Information is Collected
 

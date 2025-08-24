@@ -31,13 +31,13 @@ from sqlalchemy import and_
 from sqlalchemy.dialects.postgresql import insert
 
 from app.models import AuditSeverity, db, NotificationType, PackageRelease, MetaPackage, Dependency, PackageType, \
-	MinetestRelease, Package, PackageState, PackageScreenshot, PackageUpdateTrigger, PackageUpdateConfig, \
+	LuantiRelease, Package, PackageState, PackageScreenshot, PackageUpdateTrigger, PackageUpdateConfig, \
 	PackageGameSupport, PackageTranslation, Language
 from app.tasks import celery, TaskError
 from app.utils import random_string, post_bot_message, add_system_notification, add_system_audit_log, \
 	get_games_from_list, add_audit_log
 from app.utils.git import clone_repo, get_latest_tag, get_latest_commit, get_temp_dir, get_release_notes
-from .minetestcheck import build_tree, MinetestCheckError, ContentType, PackageTreeNode
+from .luanticheck import build_tree, LuantiCheckError, ContentType, PackageTreeNode
 from .webhooktasks import post_discord_webhook
 from app import app
 from app.logic.LogicError import LogicError
@@ -51,7 +51,7 @@ def get_meta(urlstr, author):
 	with clone_repo(urlstr, recursive=True) as repo:
 		try:
 			tree = build_tree(repo.working_tree_dir, author=author, repo=urlstr)
-		except MinetestCheckError as err:
+		except LuantiCheckError as err:
 			raise TaskError(str(err))
 
 		result = {"name": tree.name, "type": tree.type.name}
@@ -113,7 +113,7 @@ def post_release_check_update(self, release: PackageRelease, path):
 				author=release.package.author.username, name=release.package.name)
 
 		if tree.name is not None and release.package.name != tree.name and tree.type == ContentType.MOD:
-			raise MinetestCheckError(f"Expected {tree.relative} to have technical name {release.package.name}, instead has name {tree.name}")
+			raise LuantiCheckError(f"Expected {tree.relative} to have technical name {release.package.name}, instead has name {tree.name}")
 
 		cache = {}
 		def get_meta_packages(names):
@@ -165,10 +165,10 @@ def post_release_check_update(self, release: PackageRelease, path):
 		# Raise error on unresolved game dependencies
 		if package.type == PackageType.GAME and len(depends) > 0:
 			deps = ", ".join(depends)
-			raise MinetestCheckError("Game has unresolved hard dependencies: " + deps)
+			raise LuantiCheckError("Game has unresolved hard dependencies: " + deps)
 
 		if package.state != PackageState.APPROVED and tree.find_license_file() is None:
-			raise MinetestCheckError(
+			raise LuantiCheckError(
 				"You need to add a LICENSE.txt/.md or COPYING file to your package. See the 'Copyright Guide' for more info")
 
 		# Add dependencies
@@ -183,10 +183,10 @@ def post_release_check_update(self, release: PackageRelease, path):
 
 		# Update min/max
 		if tree.meta.get("min_minetest_version"):
-			release.min_rel = MinetestRelease.get(tree.meta["min_minetest_version"], None)
+			release.min_rel = LuantiRelease.get(tree.meta["min_minetest_version"], None)
 
 		if tree.meta.get("max_minetest_version"):
-			release.max_rel = MinetestRelease.get(tree.meta["max_minetest_version"], None)
+			release.max_rel = LuantiRelease.get(tree.meta["max_minetest_version"], None)
 
 		try:
 			with open(os.path.join(tree.baseDir, ".cdb.json"), "r") as f:
@@ -232,7 +232,7 @@ def post_release_check_update(self, release: PackageRelease, path):
 
 		return tree
 
-	except (MinetestCheckError, TaskError, LogicError) as err:
+	except (LuantiCheckError, TaskError, LogicError) as err:
 		db.session.rollback()
 
 		error_message = err.value if hasattr(err, "value") else str(err)
@@ -377,7 +377,7 @@ def import_languages(self, id, path):
 					strict=False)
 			update_translations(release.package, tree)
 			db.session.commit()
-		except (MinetestCheckError, TaskError, LogicError) as err:
+		except (LuantiCheckError, TaskError, LogicError) as err:
 			db.session.rollback()
 
 			task_url = url_for('tasks.check', id=self.request.id)
