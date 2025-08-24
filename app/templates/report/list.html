@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title -%}
+	{{ _("Reports") }}
+{%- endblock %}
+
+
+{% block content %}
+
+<h1>{{ self.title() }}</h1>
+
+<nav class="list-group">
+	{% for report in reports %}
+		<a class="list-group-item list-group-item-action" href="{{ url_for('report.view',  rid=report.id) }}">
+			{% if report.is_resolved %}
+				<span class="badge bg-secondary me-3">
+					Closed
+				</span>
+			{% else %}
+				<span class="badge bg-warning me-3">
+					Open
+				</span>
+			{% endif %}
+			{{ report.title }}
+		</a>
+	{% else %}
+		<span>
+			No reports.
+		</span>
+	{% endfor %}
+</nav>
+
+{% endblock %}

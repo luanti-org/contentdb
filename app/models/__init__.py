@@ -130,6 +130,24 @@ class AuditLogEntry(db.Model):
 			raise Exception("Permission {} is not related to audit log entries".format(perm.name))
 
 
+class Report(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+
+	created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+
+	user_id  = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=True)
+	user = db.relationship("User", foreign_keys=[user_id], back_populates="reports")
+
+	thread_id  = db.Column(db.Integer, db.ForeignKey("thread.id"), nullable=True)
+	thread = db.relationship("Thread", foreign_keys=[thread_id])
+
+	url = db.Column(db.String, nullable=True)
+	title = db.Column(db.Unicode(300), nullable=False)
+	message = db.Column(db.UnicodeText, nullable=False)
+
+	is_resolved = db.Column(db.Boolean, nullable=False, default=False)
+
+
 REPO_BLACKLIST = [".zip", "mediafire.com", "dropbox.com", "weebly.com",
 	"minetest.net", "luanti.org", "dropboxusercontent.com", "4shared.com",
 	"digitalaudioconcepts.com", "hg.intevation.org", "www.wtfpl.net",

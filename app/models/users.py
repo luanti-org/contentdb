@@ -210,6 +210,7 @@ class User(db.Model, UserMixin):
 	forum_topics  = db.relationship("ForumTopic", back_populates="author", lazy="dynamic", cascade="all, delete, delete-orphan")
 	collections = db.relationship("Collection", back_populates="author", lazy="dynamic", cascade="all, delete, delete-orphan", order_by=db.asc("title"))
 	clients = db.relationship("OAuthClient", back_populates="owner", lazy="dynamic", cascade="all, delete, delete-orphan")
+	reports = db.relationship("Report", back_populates="user", lazy="dynamic", cascade="all")
 
 	ban = db.relationship("UserBan", foreign_keys="UserBan.user_id", back_populates="user", uselist=False)
 

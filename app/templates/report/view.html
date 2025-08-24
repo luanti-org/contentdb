@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title -%}
+	{{ report.title }}
+{%- endblock %}
+
+{% from "macros/forms.html" import render_field, render_submit_field, render_radio_field, easymde_scripts %}
+{% block scriptextra %}
+	{{ easymde_scripts() }}
+{% endblock %}
+
+{% block content %}
+
+<p>
+	<a href="{{ url_for('report.list_all') }}">Back to reports</a>
+</p>
+
+<h1>
+	{% if report.is_resolved %}
+		<span class="badge bg-secondary me-3">
+			Closed
+		</span>
+	{% else %}
+		<span class="badge bg-warning me-3">
+			Open
+		</span>
+	{% endif %}
+	{{ self.title() }}
+</h1>
+
+<article class="row">
+	<div class="col-md-9">
+		<div class="card">
+			<div class="card-body markdown">
+				{{ report.message | markdown }}
+			</div>
+		</div>
+	</div>
+
+	<aside class="col-md-3 info-sidebar">
+		<dl>
+			<dt>URL</dt>
+			<dd>
+				<a href="{{ report.url }}">{{ report.url }}</a>
+			</dd>
+		</dl>
+		<dl>
+			<dt>Created At</dt>
+			<dd>
+				{{  report.created_at | full_datetime }}
+			</dd>
+		</dl>
+		<dl>
+			<dt>Reporter</dt>
+			<dd>
+				{% if report.user %}
+				<a href="{{ url_for('users.profile', username=report.user.username) }}">
+					{{ report.user.username }}
+				</a>
+				{% else %}
+					Anonymous
+				{% endif %}
+			</dd>
+		</dl>
+	</aside>
+</article>
+
+{% if not report.is_resolved %}
+<article>
+	<h2>Quick resolve</h2>
+	<form method="POST" action="">
+		{{ resolve_form.hidden_tag() }}
+		{{ render_submit_field(resolve_form.completed) }}
+		{{ render_submit_field(resolve_form.removed) }}
+		{{ render_submit_field(resolve_form.invalid) }}
+	</form>
+</article>
+{% endif %}
+
+{% endblock %}

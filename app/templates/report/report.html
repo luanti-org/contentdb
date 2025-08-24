@@ -4,6 +4,10 @@
 	{{ _("Report") }}
 {%- endblock %}
 
+{% from "macros/forms.html" import render_field, render_submit_field, render_checkbox_field, easymde_scripts %}
+{% block scriptextra %}
+	{{ easymde_scripts() }}
+{% endblock %}
 
 {% block content %}
 
@@ -22,23 +26,17 @@
 
 {% else %}
 
-{% from "macros/forms.html" import render_field, render_submit_field, render_checkbox_field %}
-
 <form method="POST" action="" enctype="multipart/form-data">
 	{{ form.hidden_tag() }}
-	{% if url %}
-		<p>
-			URL: <code>{{ url }}</code>
-		</p>
-	{% endif %}
-	{{ render_field(form.message, hint=_("What are you reporting? Why are you reporting it?")) }}
+	{{ render_field(form.url) }}
+	{{ render_field(form.title) }}
+	{{ render_field(form.message, class_="m-0", fieldclass="form-control markdown", data_enter_submit="1") }}
 	{{ render_submit_field(form.submit) }}
 
 	<p class="mt-5 text-muted">
-		{{ _("Reports will be shared with ContentDB staff.") }}
-		{% if is_anon %}
-			{{ _("Only the admin will be able to see who made the report.") }}
-		{% endif %}
+		{{ _("The full report will be visible to all ContentDB staff members, including editors and moderators.") }}
+		{{ _("If you are reporting content posted by another user, we may discuss the report with them but will not disclose who reported it.") }}
+		{{ _("If you are reporting content by an editor or moderator, then you should email the admin or a moderator directly to hide your identity.") }}
 	</p>
 	<p class="alert alert-info">
 		{{ _("Found a bug? Please report on the package's issue tracker or in a thread instead.") }}
