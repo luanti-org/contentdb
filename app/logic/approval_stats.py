@@ -96,7 +96,7 @@ def _get_approval_statistics(entries: list[AuditLogEntry], start_date: Optional[
 				(end_date is None or entry.created_at <= end_date)))
 		info.is_in_range = info.is_in_range or is_in_range
 
-		new_state = get_state(entry.title)
+		new_state = get_state(entry.title.replace("…", "") + (entry.description or ""))
 		if new_state == info.state:
 			continue
 
