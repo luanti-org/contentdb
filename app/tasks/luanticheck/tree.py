@@ -20,7 +20,7 @@ import re
 import glob
 from typing import Optional
 
-from . import MinetestCheckError, ContentType
+from . import LuantiCheckError, ContentType
 from .config import parse_conf
 from .translation import Translation, parse_tr
 
@@ -73,10 +73,10 @@ def check_name_list(key: str, value: list[str], relative: str, allow_star: bool 
 			if dep == "*" and allow_star:
 				continue
 			elif " " in dep:
-				raise MinetestCheckError(
+				raise LuantiCheckError(
 					f"Invalid {key} name '{dep}' at {relative}, did you forget a comma?")
 			else:
-				raise MinetestCheckError(
+				raise LuantiCheckError(
 					f"Invalid {key} name '{dep}' at {relative}, names must only contain a-z0-9_.")
 
 
@@ -114,14 +114,14 @@ class PackageTreeNode:
 
 		if self.type == ContentType.GAME:
 			if not os.path.isdir(os.path.join(base_dir, "mods")):
-				raise MinetestCheckError("Game at {} does not have a mods/ folder".format(self.relative))
+				raise LuantiCheckError("Game at {} does not have a mods/ folder".format(self.relative))
 			self._add_children_from_mod_dir("mods")
 		elif self.type == ContentType.MOD:
 			if self.name and not basenamePattern.match(self.name):
-				raise MinetestCheckError(f"Invalid base name for mod {self.name} at {self.relative}, names must only contain a-z0-9_.")
+				raise LuantiCheckError(f"Invalid base name for mod {self.name} at {self.relative}, names must only contain a-z0-9_.")
 
 			if self.name and self.name in DISALLOWED_NAMES:
-				raise MinetestCheckError(f"Forbidden mod name '{self.name}' used at {self.relative}")
+				raise LuantiCheckError(f"Forbidden mod name '{self.name}' used at {self.relative}")
 
 			self._check_dir_casing(["textures", "media", "sounds", "models", "locale"])
 		elif self.type == ContentType.MODPACK:
@@ -139,7 +139,7 @@ class PackageTreeNode:
 		for dir in next(os.walk(self.baseDir))[1]:
 			lowercase = dir.lower()
 			if lowercase != dir and lowercase in dirs:
-				raise MinetestCheckError(f"Incorrect case, {dir} should be {lowercase} at {self.relative}{dir}")
+				raise LuantiCheckError(f"Incorrect case, {dir} should be {lowercase} at {self.relative}{dir}")
 
 	def get_readme_path(self):
 		for filename in os.listdir(self.baseDir):
@@ -173,12 +173,12 @@ class PackageTreeNode:
 					for key, value in conf.items():
 						result[key] = value
 			except SyntaxError as e:
-				raise MinetestCheckError("Error while reading {}: {}".format(meta_file_rel , e.msg))
+				raise LuantiCheckError("Error while reading {}: {}".format(meta_file_rel , e.msg))
 			except IOError:
 				pass
 
 			if self.strict and "release" in result:
-				raise MinetestCheckError("{} should not contain 'release' key, as this is for use by ContentDB only.".format(meta_file_rel))
+				raise LuantiCheckError("{} should not contain 'release' key, as this is for use by ContentDB only.".format(meta_file_rel))
 
 		# description.txt
 		if "description" not in result:
@@ -269,11 +269,11 @@ class PackageTreeNode:
 			if not entry.startswith('.') and os.path.isdir(path):
 				child = PackageTreeNode(path, relative + entry + "/", name=entry, strict=self.strict)
 				if not child.type.is_mod_like():
-					raise MinetestCheckError("Expecting mod or modpack, found {} at {} inside {}" \
+					raise LuantiCheckError("Expecting mod or modpack, found {} at {} inside {}" \
 						.format(child.type.value, child.relative, self.type.value))
 
 				if child.name is None:
-					raise MinetestCheckError("Missing base name for mod at {}".format(self.relative))
+					raise LuantiCheckError("Missing base name for mod at {}".format(self.relative))
 
 				self.children.append(child)
 
@@ -315,10 +315,10 @@ class PackageTreeNode:
 
 	def check_for_legacy_files(self):
 		if self.has_legacy_depends:
-			raise MinetestCheckError("Found depends.txt at {}. Delete this file and use depends in mod.conf instead" \
+			raise LuantiCheckError("Found depends.txt at {}. Delete this file and use depends in mod.conf instead" \
 						.format(self.relative))
 		if self.has_legacy_description:
-			raise MinetestCheckError("Found description.txt at {}. Delete this file and use description in {} instead" \
+			raise LuantiCheckError("Found description.txt at {}. Delete this file and use description in {} instead" \
 						.format(self.relative, self.get_meta_file_name()))
 		for child in self.children:
 			child.check_for_legacy_files()
@@ -348,6 +348,6 @@ class PackageTreeNode:
 				ret.append(parse_tr(name))
 			except SyntaxError as e:
 				relative_path = os.path.join(self.relative, os.path.relpath(name, self.baseDir))
-				raise MinetestCheckError(f"Syntax error whilst reading {relative_path}: {e}")
+				raise LuantiCheckError(f"Syntax error whilst reading {relative_path}: {e}")
 
 		return ret

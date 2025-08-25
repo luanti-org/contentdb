@@ -20,7 +20,7 @@ from flask import jsonify, abort, make_response, url_for, current_app
 from app.logic.packages import do_edit_package
 from app.logic.releases import LogicError, do_create_vcs_release, do_create_zip_release
 from app.logic.screenshots import do_create_screenshot, do_order_screenshots, do_set_cover_image
-from app.models import APIToken, Package, MinetestRelease, PackageScreenshot
+from app.models import APIToken, Package, LuantiRelease, PackageScreenshot
 
 
 def error(code: int, msg: str):
@@ -39,7 +39,7 @@ def guard(f):
 
 
 def api_create_vcs_release(token: APIToken, package: Package, name: str, title: Optional[str], release_notes: Optional[str], ref: str,
-		min_v: MinetestRelease = None, max_v: MinetestRelease = None, reason="API"):
+		min_v: LuantiRelease = None, max_v: LuantiRelease = None, reason="API"):
 	if not token.can_operate_on_package(package):
 		error(403, "API token does not have access to the package")
 
@@ -55,7 +55,7 @@ def api_create_vcs_release(token: APIToken, package: Package, name: str, title: 
 
 
 def api_create_zip_release(token: APIToken, package: Package, name: str, title: Optional[str], release_notes: Optional[str], file,
-		min_v: MinetestRelease = None, max_v: MinetestRelease = None, reason="API", commit_hash: str = None):
+		min_v: LuantiRelease = None, max_v: LuantiRelease = None, reason="API", commit_hash: str = None):
 	if not token.can_operate_on_package(package):
 		error(403, "API token does not have access to the package")
 

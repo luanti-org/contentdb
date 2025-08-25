@@ -1,5 +1,5 @@
 # ContentDB
-![Build Status](https://github.com/minetest/contentdb/actions/workflows/test.yml/badge.svg)
+![Build Status](https://github.com/luanti-org/contentdb/actions/workflows/test.yml/badge.svg)
 
 A content database for Luanti mods, games, and more.\
 Developed by rubenwardy, license AGPLv3.0+.
@@ -82,7 +82,7 @@ Package "1" --> "*" Release
 Package "1" --> "*" Dependency
 Package "1" --> "*" Tag
 Package "1" --> "*" MetaPackage : provides
-Release --> MinetestVersion
+Release --> LuantiVersion
 Package --> License
 Dependency --> Package
 Dependency --> MetaPackage

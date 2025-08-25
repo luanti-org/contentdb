@@ -23,7 +23,7 @@ from wtforms.validators import Optional
 from wtforms_sqlalchemy.fields import QuerySelectMultipleField, QuerySelectField
 
 from . import bp
-from ...models import PackageType, Tag, db, ContentWarning, License, Language, MinetestRelease, Package, PackageState
+from ...models import PackageType, Tag, db, ContentWarning, License, Language, LuantiRelease, Package, PackageState
 
 
 def make_label(obj: Tag | ContentWarning):
@@ -75,7 +75,7 @@ class AdvancedSearchForm(FlaskForm):
 			get_pk=lambda a: a.id, get_label=lambda a: a.title)
 	hide = SelectMultipleField(lazy_gettext("Hide Tags and Content Warnings"), [Optional()])
 	engine_version = QuerySelectField(lazy_gettext("Luanti Version"),
-			query_factory=lambda: MinetestRelease.query.order_by(db.asc(MinetestRelease.id)),
+			query_factory=lambda: LuantiRelease.query.order_by(db.asc(LuantiRelease.id)),
 			allow_blank=True, blank_value="",
 			get_pk=lambda a: a.value, get_label=lambda a: a.name)
 	sort = SelectField(lazy_gettext("Sort by"), [Optional()], choices=[

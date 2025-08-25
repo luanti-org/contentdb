@@ -25,7 +25,7 @@ from wtforms.validators import InputRequired, Length, Optional
 from wtforms_sqlalchemy.fields import QuerySelectField
 
 from app.logic.releases import do_create_vcs_release, LogicError, do_create_zip_release
-from app.models import Package, db, User, PackageState, Permission, UserRank, PackageDailyStats, MinetestRelease, \
+from app.models import Package, db, User, PackageState, Permission, UserRank, PackageDailyStats, LuantiRelease, \
 	PackageRelease, PackageUpdateTrigger, PackageUpdateConfig
 from app.rediscache import has_key, set_temp_key, make_download_key
 from app.tasks.importtasks import check_update_config
@@ -42,11 +42,11 @@ def list_releases(package):
 
 
 def get_mt_releases(is_max):
-	query = MinetestRelease.query.order_by(db.asc(MinetestRelease.id))
+	query = LuantiRelease.query.order_by(db.asc(LuantiRelease.id))
 	if is_max:
 		query = query.limit(query.count() - 1)
 	else:
-		query = query.filter(MinetestRelease.name != "0.4.17")
+		query = query.filter(LuantiRelease.name != "0.4.17")
 
 	return query
 
@@ -128,9 +128,9 @@ def download_release(package, id):
 	ip = request.headers.get("X-Forwarded-For") or request.remote_addr
 	if ip is not None and not is_user_bot():
 		user_agent = request.headers.get("User-Agent") or ""
-		is_minetest = user_agent.startswith("Luanti") or user_agent.startswith("Minetest")
+		is_luanti = user_agent.startswith("Luanti") or user_agent.startswith("Minetest")
 		reason = request.args.get("reason")
-		PackageDailyStats.update(package, is_minetest, reason)
+		PackageDailyStats.update(package, is_luanti, reason)
 
 		key = make_download_key(ip, release.package)
 		if not has_key(key):

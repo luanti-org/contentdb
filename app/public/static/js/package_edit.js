@@ -86,7 +86,8 @@ window.addEventListener("load", () => {
 		"desc_page_topic": (val) => {
 			const topicId = document.getElementById("forums").value;
 			const r = new RegExp(`forum\\.minetest\\.net\\/viewtopic\\.php\\?[a-z0-9=&]*t=${topicId}`);
-			return topicId && r.test(val);
+			const r2 = new RegExp(`forum\\.luanti\\.org\\/viewtopic\\.php\\?[a-z0-9=&]*t=${topicId}`);
+			return topicId && (r.test(val) || r2.test(val));
 		},
 		"desc_page_repo": (val) => {
 			const repoUrl = document.getElementById("repo").value.replace(".git", "");

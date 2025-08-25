@@ -68,7 +68,7 @@ can also translate your ContentDB page. See Edit Package > Translation for more 
     <a class="btn btn-primary me-2" href="https://rubenwardy.com/minetest_modding_book/en/quality/translations.html">
         {{ _("Translation - Luanti Modding Book") }}
     </a>
-    <a class="btn btn-primary" href="https://api.minetest.net/translations/#translating-content-meta">
+    <a class="btn btn-primary" href="https://api.luanti.org/translations/#translating-content-meta">
         {{ _("Translating content meta - lua_api.md") }}
     </a>
 </p>

@@ -131,7 +131,7 @@ class AuditLogEntry(db.Model):
 
 
 REPO_BLACKLIST = [".zip", "mediafire.com", "dropbox.com", "weebly.com",
-	"minetest.net", "dropboxusercontent.com", "4shared.com",
+	"minetest.net", "luanti.org", "dropboxusercontent.com", "4shared.com",
 	"digitalaudioconcepts.com", "hg.intevation.org", "www.wtfpl.net",
 	"imageshack.com", "imgur.com"]
 

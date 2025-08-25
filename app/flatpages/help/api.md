@@ -3,7 +3,7 @@ title: API
 
 ## Resources
 
-* [How the Luanti client uses the API](https://github.com/minetest/contentdb/blob/master/docs/minetest_client.md)
+* [How the Luanti client uses the API](https://github.com/luanti-org/contentdb/blob/master/docs/luanti_client.md)
 
 
 ## Responses and Error Handling
@@ -131,7 +131,7 @@ curl -X DELETE https://content.luanti.org/api/delete-token/ \
         * `<neutral>` with a thumbs up icon. 
         * `<thumbsdown>` with a thumbs up icon. 
 * GET `/api/packages/<author>/<name>/hypertext/`
-    * Converts the long description to [Luanti Markup Language](https://github.com/minetest/minetest/blob/master/doc/lua_api.md#markup-language)
+    * Converts the long description to [Luanti Markup Language](https://github.com/luanti-org/luanti/blob/master/doc/lua_api.md#markup-language)
       to be used in a `hypertext` formspec element.
     * Query arguments:
         * `formspec_version`: Required, maximum supported formspec version.
@@ -577,7 +577,7 @@ Supported query parameters:
     * Get JSON Schema of `.cdb.json`, including licenses, tags and content warnings.
     * See [JSON Schema Reference](https://json-schema.org/).
 * POST `/api/hypertext/`
-    * Converts HTML or Markdown to [Luanti Markup Language](https://github.com/minetest/minetest/blob/master/doc/lua_api.md#markup-language)
+    * Converts HTML or Markdown to [Luanti Markup Language](https://github.com/luanti-org/luanti/blob/master/doc/lua_api.md#markup-language)
       to be used in a `hypertext` formspec element.
     * Post data: HTML or Markdown as plain text.
     * Content-Type: `text/html` or `text/markdown`.

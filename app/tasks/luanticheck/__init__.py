@@ -17,7 +17,7 @@
 from enum import Enum
 
 
-class MinetestCheckError(Exception):
+class LuantiCheckError(Exception):
 	def __init__(self, value):
 		self.value = value
 
@@ -43,14 +43,14 @@ class ContentType(Enum):
 
 		if self == ContentType.MOD:
 			if not other.is_mod_like():
-				raise MinetestCheckError("Expected a mod or modpack, found " + other.value)
+				raise LuantiCheckError("Expected a mod or modpack, found " + other.value)
 
 		elif self == ContentType.TXP:
 			if other != ContentType.UNKNOWN and other != ContentType.TXP:
-				raise MinetestCheckError("expected a " + self.value + ", found a " + other.value)
+				raise LuantiCheckError("expected a " + self.value + ", found a " + other.value)
 
 		elif other != self:
-			raise MinetestCheckError("Expected a " + self.value + ", found a " + other.value)
+			raise LuantiCheckError("Expected a " + self.value + ", found a " + other.value)
 
 
 from .tree import PackageTreeNode, get_base_dir

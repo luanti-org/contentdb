@@ -16,7 +16,7 @@
 
 import datetime
 
-from .models import User, UserRank, MinetestRelease, Tag, License, Notification, NotificationType, Package, \
+from .models import User, UserRank, LuantiRelease, Tag, License, Notification, NotificationType, Package, \
 	PackageState, PackageType, PackageRelease, MetaPackage, Dependency
 from .utils import make_flask_login_password
 
@@ -35,12 +35,12 @@ def populate(session):
 	system_user.rank = UserRank.BOT
 	session.add(system_user)
 
-	session.add(MinetestRelease("None", 0))
-	session.add(MinetestRelease("0.4.16/17", 32))
-	session.add(MinetestRelease("5.0", 37))
-	session.add(MinetestRelease("5.1", 38))
-	session.add(MinetestRelease("5.2", 39))
-	session.add(MinetestRelease("5.3", 39))
+	session.add(LuantiRelease("None", 0))
+	session.add(LuantiRelease("0.4.16/17", 32))
+	session.add(LuantiRelease("5.0", 37))
+	session.add(LuantiRelease("5.1", 38))
+	session.add(LuantiRelease("5.2", 39))
+	session.add(LuantiRelease("5.3", 39))
 
 	tags = {}
 	for tag in ["Inventory", "Mapgen", "Building",
@@ -69,8 +69,8 @@ def populate_test_data(session):
 	licenses = { x.name : x for x in License.query.all() }
 	tags = { x.name : x for x in Tag.query.all() }
 	admin_user = User.query.filter_by(rank=UserRank.ADMIN).first()
-	v4 = MinetestRelease.query.filter_by(protocol=32).first()
-	v51 = MinetestRelease.query.filter_by(protocol=38).first()
+	v4 = LuantiRelease.query.filter_by(protocol=32).first()
+	v51 = LuantiRelease.query.filter_by(protocol=38).first()
 
 	ez = User("Shara")
 	ez.github_username = "Ezhh"

@@ -23,14 +23,14 @@ from wtforms.validators import InputRequired, Length
 
 from app.utils import rank_required, add_audit_log
 from . import bp
-from app.models import UserRank, MinetestRelease, db, AuditSeverity
+from app.models import UserRank, LuantiRelease, db, AuditSeverity
 
 
 @bp.route("/versions/")
 @rank_required(UserRank.MODERATOR)
 def version_list():
 	return render_template("admin/versions/list.html",
-			versions=MinetestRelease.query.order_by(db.asc(MinetestRelease.id)).all())
+			versions=LuantiRelease.query.order_by(db.asc(LuantiRelease.id)).all())
 
 
 class VersionForm(FlaskForm):
@@ -45,14 +45,14 @@ class VersionForm(FlaskForm):
 def create_edit_version(name=None):
 	version = None
 	if name is not None:
-		version = MinetestRelease.query.filter_by(name=name).first()
+		version = LuantiRelease.query.filter_by(name=name).first()
 		if version is None:
 			abort(404)
 
 	form = VersionForm(formdata=request.form, obj=version)
 	if form.validate_on_submit():
 		if version is None:
-			version = MinetestRelease(form.name.data)
+			version = LuantiRelease(form.name.data)
 			db.session.add(version)
 			flash("Created version " + form.name.data, "success")
 

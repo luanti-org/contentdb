@@ -20,7 +20,7 @@ from flask_login import current_user, login_required
 from sqlalchemy import or_, and_
 
 from app.models import Package, PackageState, PackageScreenshot, PackageUpdateConfig, ForumTopic, db, \
-	PackageRelease, Permission, UserRank, License, MetaPackage, Dependency, AuditLogEntry, Tag, MinetestRelease
+	PackageRelease, Permission, UserRank, License, MetaPackage, Dependency, AuditLogEntry, Tag, LuantiRelease
 from app.querybuilder import QueryBuilder
 from app.utils import get_int_or_abort, is_yes, rank_required
 from . import bp
@@ -170,7 +170,7 @@ def screenshots():
 def mtver_support():
 	is_mtm_only = is_yes(request.args.get("mtm"))
 
-	current_stable = MinetestRelease.query.filter(~MinetestRelease.name.like("%-dev")).order_by(db.desc(MinetestRelease.id)).first()
+	current_stable = LuantiRelease.query.filter(~LuantiRelease.name.like("%-dev")).order_by(db.desc(LuantiRelease.id)).first()
 
 	query = db.session.query(Package) \
 			.filter(~Package.releases.any(or_(PackageRelease.max_rel==None, PackageRelease.max_rel == current_stable))) \

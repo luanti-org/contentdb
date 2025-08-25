@@ -33,4 +33,4 @@ downloaded from that IP.
 You can see all scores using the [scores REST API](/api/scores/), or by
 using the [Prometheus metrics](/help/metrics/) endpoint.
 
-Consider [suggesting improvements](https://github.com/minetest/contentdb/issues/new?assignees=&labels=Policy&template=policy.md&title=).
+Consider [suggesting improvements](https://github.com/luanti-org/contentdb/issues/new?assignees=&labels=Policy&template=policy.md&title=).

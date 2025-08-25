@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-from app.utils.minetest_hypertext import html_to_minetest
+from app.utils.luanti_hypertext import html_to_luanti
 
 
 conquer_html = """
@@ -74,7 +74,7 @@ page_url = "https://example.com/a/b/"
 
 
 def test_conquer():
-	assert html_to_minetest(conquer_html, page_url)["body"].strip() == conquer_expected.strip()
+	assert html_to_luanti(conquer_html, page_url)["body"].strip() == conquer_expected.strip()
 
 
 def test_images():
@@ -83,7 +83,7 @@ def test_images():
 	"""
 
 	expected = "<img name=image_0 width=128 height=128>"
-	result = html_to_minetest(html, page_url)
+	result = html_to_luanti(html, page_url)
 	assert result["body"].strip() == expected.strip()
 	assert len(result["images"]) == 1
 	assert result["images"]["image_0"] == "https://example.com/path/to/img.png"
@@ -95,7 +95,7 @@ def test_images_removed():
 	"""
 
 	expected = "<action name=image_0><u>Image: alt</u></action>"
-	result = html_to_minetest(html, page_url, 7, False)
+	result = html_to_luanti(html, page_url, 7, False)
 	assert result["body"].strip() == expected.strip()
 	assert len(result["images"]) == 0
 	assert result["links"]["image_0"] == "https://example.com/path/to/img.png"
@@ -112,7 +112,7 @@ def test_links_relative_absolute():
 			"<action name=link_1><u>Absolute</u></action> " \
 			"<action name=link_2><u>Other domain</u></action>"
 
-	result = html_to_minetest(html, page_url, 7, False)
+	result = html_to_luanti(html, page_url, 7, False)
 	assert result["body"].strip() == expected.strip()
 	assert result["links"]["link_0"] == "https://example.com/a/b/relative"
 	assert result["links"]["link_1"] == "https://example.com/absolute"
@@ -134,7 +134,7 @@ def test_bullets():
 		"<img name=blank.png width=32 height=1>• sub two\n\n" \
 		"<img name=blank.png width=16 height=1>• four\n"
 
-	result = html_to_minetest(html, page_url)
+	result = html_to_luanti(html, page_url)
 	assert result["body"].strip() == expected.strip()
 
 
@@ -158,7 +158,7 @@ def test_table():
 	expected = "<action name=link_0><u>(view table in browser)</u></action>\n\n" \
 			"<b>Heading</b>\n" \
 			"<action name=link_1><u>(view table in browser)</u></action>"
-	result = html_to_minetest(html, page_url)
+	result = html_to_luanti(html, page_url)
 	assert result["body"].strip() == expected.strip()
 	assert result["links"]["link_0"] == f"{page_url}#with-id"
 	assert result["links"]["link_1"] == f"{page_url}#heading"
@@ -170,7 +170,7 @@ def test_inline():
 	"""
 
 	expected = "<b>One <i>two</i> three</b>"
-	result = html_to_minetest(html, page_url)
+	result = html_to_luanti(html, page_url)
 	assert result["body"].strip() == expected.strip()
 
 
@@ -180,7 +180,7 @@ def test_escape():
 	"""
 
 	expected = r"<b>One <i>t\\w\<o\></i> three</b>"
-	result = html_to_minetest(html, page_url)
+	result = html_to_luanti(html, page_url)
 	assert result["body"].strip() == expected.strip()
 
 
@@ -190,5 +190,5 @@ def test_unknown_attr():
 	"""
 
 	expected = r"<action name=link_0><u>link</u></action>"
-	result = html_to_minetest(html, page_url)
+	result = html_to_luanti(html, page_url)
 	assert result["body"].strip() == expected.strip()

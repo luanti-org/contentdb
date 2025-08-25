@@ -18,7 +18,7 @@ depends_on = None
 
 
 def upgrade():
-	# Source: https://github.com/minetest/minetest/blob/master/builtin/mainmenu/settings/dlg_settings.lua#L156
+	# Source: https://github.com/luanti-org/luanti/blob/master/builtin/mainmenu/settings/dlg_settings.lua#L156
 	languages = {
 		"en": "English",
 		# "ar": "", blacklisted
