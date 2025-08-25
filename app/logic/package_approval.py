@@ -46,6 +46,9 @@ class PackageValidationNote:
 		self.buttons.append((url, label))
 		return self
 
+	def __repr__(self):
+		return str(self.message)
+
 
 def is_package_name_taken(normalised_name: str) -> bool:
 	return Package.query.filter(

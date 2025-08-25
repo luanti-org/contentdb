@@ -84,6 +84,7 @@ def test_missing_hard_deps(get_forum_topic):
 	mock_package = MockPackageHelper(PackageType.MOD)
 	mock_package.add_release()
 	mock_package.add_missing_hard_deps()
+	mock_package.add_screenshot()
 
 	topic = MagicMock()
 	topic.author = mock_package.package.author
@@ -103,6 +104,7 @@ def test_requires_multiple_issues():
 	mock_package.add_release()
 	mock_package.set_license("Other", "Other")
 	mock_package.set_no_game_support()
+	mock_package.add_screenshot()
 
 	notes = package_approval.validate_package_for_approval(mock_package.package)
 	assert len(notes) == 5
@@ -120,6 +122,7 @@ def test_requires_multiple_issues():
 def test_forum_topic_author_mismatch(get_forum_topic):
 	mock_package = MockPackageHelper()
 	mock_package.add_release()
+	mock_package.add_screenshot()
 
 	topic = MagicMock()
 	get_forum_topic.return_value = topic
@@ -136,6 +139,7 @@ def test_forum_topic_author_mismatch(get_forum_topic):
 def test_passes(get_forum_topic):
 	mock_package = MockPackageHelper()
 	mock_package.add_release()
+	mock_package.add_screenshot()
 
 	topic = MagicMock()
 	topic.author = mock_package.package.author
@@ -168,8 +172,8 @@ def test_games_txp_must_have_unique_name(get_forum_topic):
 @patch("app.logic.package_approval.get_conflicting_mod_names", MagicMock(return_value=set()))
 @patch("app.logic.package_approval.count_packages_with_forum_topic", MagicMock(return_value=1))
 @patch("app.logic.package_approval.get_forum_topic")
-def test_games_txp_require_screenshots(get_forum_topic):
-	mock_package = MockPackageHelper(PackageType.GAME)
+def test_require_screenshots(get_forum_topic):
+	mock_package = MockPackageHelper(PackageType.MOD)
 	mock_package.add_release()
 
 	topic = MagicMock()

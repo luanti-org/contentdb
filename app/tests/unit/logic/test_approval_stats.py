@@ -35,6 +35,7 @@ class MockEntry:
 		self.causer = causer
 		self.created_at = datetime.datetime.strptime(date, "%Y-%m-%dT%H:%M:%S%z")
 		self.title = title
+		self.description = None
 		self.package = MockPackage(package_id)
 
 
