@@ -73,7 +73,7 @@
 
 {% if not report.is_resolved %}
 <article>
-	<h2>Quick resolve</h2>
+	<h2>Close report</h2>
 	<form method="POST" action="">
 		{{ resolve_form.hidden_tag() }}
 		{{ render_submit_field(resolve_form.completed) }}
