@@ -254,6 +254,9 @@ def view(id):
 			if mentioned is None:
 				continue
 
+			if not thread.check_perm(mentioned, Permission.SEE_THREAD):
+				continue
+
 			msg = "Mentioned by {} in '{}'".format(current_user.display_name, thread.title)
 			add_notification(mentioned, current_user, NotificationType.THREAD_REPLY,
 							 msg, thread.get_view_url(), thread.package)
