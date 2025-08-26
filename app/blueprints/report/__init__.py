@@ -19,19 +19,19 @@ from flask_babel import lazy_gettext
 from flask_login import current_user
 from flask_wtf import FlaskForm
 from werkzeug.utils import redirect
-from wtforms import TextAreaField, SubmitField, URLField, StringField, RadioField, SelectField
-from wtforms.validators import InputRequired, Length, Optional
+from wtforms import TextAreaField, SubmitField, URLField, StringField, SelectField
+from wtforms.validators import InputRequired, Length, Optional, DataRequired
 
-from app.models import User, UserRank, Report, db, AuditSeverity, Thread, ReportCategory
+from app.models import UserRank, Report, db, AuditSeverity, ReportCategory
 from app.tasks.webhooktasks import post_discord_webhook
-from app.utils import is_no, abs_url_samesite, normalize_line_endings, rank_required, add_audit_log, abs_url_for, \
-	add_replies, random_string
+from app.utils import (is_no, abs_url_samesite, normalize_line_endings, rank_required, add_audit_log, abs_url_for,
+		random_string)
 
 bp = Blueprint("report", __name__)
 
 
 class ReportForm(FlaskForm):
-	category = SelectField(lazy_gettext("Category"), [InputRequired()], choices=ReportCategory.choices(with_none=True), coerce=ReportCategory.coerce)
+	category = SelectField(lazy_gettext("Category"), [DataRequired()], choices=ReportCategory.choices(with_none=True), coerce=ReportCategory.coerce)
 
 	url = URLField(lazy_gettext("URL"), [Optional()])
 	title = StringField(lazy_gettext("Subject / Title"), [InputRequired(), Length(10, 300)])
