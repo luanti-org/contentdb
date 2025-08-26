@@ -87,7 +87,7 @@
 		{{ _("Please raise a report to request account deletion.") }}
 	</p>
 	<p>
-		<a class="btn btn-secondary" href="{{ url_for('report.report', url=url_current(), message="Delete my account") }}">{{ _("Report") }}</a>
+		<a class="btn btn-secondary" href="{{ url_for('report.report', url=url_current(), title='Delete my account', category='account_deletion') }}">{{ _("Report") }}</a>
 	</p>
 {% endif %}
 

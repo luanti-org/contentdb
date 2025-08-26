@@ -28,6 +28,7 @@
 
 <form method="POST" action="" enctype="multipart/form-data">
 	{{ form.hidden_tag() }}
+	{{ render_field(form.category) }}
 	{{ render_field(form.url) }}
 	{{ render_field(form.title) }}
 	{{ render_field(form.message, class_="m-0", fieldclass="form-control markdown", data_enter_submit="1") }}

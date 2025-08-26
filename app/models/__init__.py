@@ -13,8 +13,7 @@
 #
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-
+from flask_babel import LazyString
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_searchable import make_searchable
@@ -130,6 +129,58 @@ class AuditLogEntry(db.Model):
 			raise Exception("Permission {} is not related to audit log entries".format(perm.name))
 
 
+class ReportCategory(enum.Enum):
+	ACCOUNT_DELETION = "account_deletion"
+	COPYRIGHT = "copyright"
+	USER_CONDUCT = "user_conduct"
+	ILLEGAL_HARMFUL = "illegal_harmful"
+	APPEAL = "appeal"
+	OTHER = "other"
+
+	def __str__(self):
+		return self.name
+
+	@property
+	def title(self) -> LazyString:
+		if self == ReportCategory.ACCOUNT_DELETION:
+			return lazy_gettext("Account deletion")
+		elif self == ReportCategory.COPYRIGHT:
+			return lazy_gettext("Copyright infringement / DMCA")
+		elif self == ReportCategory.USER_CONDUCT:
+			return lazy_gettext("User behaviour, bullying, or abuse")
+		elif self == ReportCategory.ILLEGAL_HARMFUL:
+			return lazy_gettext("Illegal or harmful content")
+		elif self == ReportCategory.APPEAL:
+			return lazy_gettext("Appeal")
+		elif self == ReportCategory.OTHER:
+			return lazy_gettext("Other")
+		else:
+			raise Exception("Unknown report category")
+
+	@classmethod
+	def get(cls, name):
+		try:
+			return ReportCategory[name.upper()]
+		except KeyError:
+			return None
+
+	@classmethod
+	def choices(cls, with_none):
+		ret = [(choice, choice.title) for choice in cls]
+
+		if with_none:
+			ret.insert(0, (None, ""))
+
+		return ret
+
+	@classmethod
+	def coerce(cls, item):
+		if item is None or (isinstance(item, str) and item.upper() == "NONE"):
+			return None
+		return item if type(item) == ReportCategory else ReportCategory[item.upper()]
+
+
+
 class Report(db.Model):
 	id = db.Column(db.String(24), primary_key=True)
 
@@ -141,6 +192,7 @@ class Report(db.Model):
 	thread_id  = db.Column(db.Integer, db.ForeignKey("thread.id"), nullable=True)
 	thread = db.relationship("Thread", foreign_keys=[thread_id])
 
+	category = db.Column(db.Enum(ReportCategory), nullable=False)
 	url = db.Column(db.String, nullable=True)
 	title = db.Column(db.Unicode(300), nullable=False)
 	message = db.Column(db.UnicodeText, nullable=False)
