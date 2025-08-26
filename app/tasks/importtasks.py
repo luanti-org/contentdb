@@ -478,13 +478,11 @@ def check_update_config_impl(package):
 	if config.last_commit == commit:
 		if tag and config.last_tag != tag:
 			config.last_tag = tag
-			db.session.commit()
 		return
 
 	if not config.last_commit:
 		config.last_commit = commit
 		config.last_tag = tag
-		db.session.commit()
 		return
 
 	if package.releases.filter_by(commit_hash=commit).count() > 0:
@@ -502,8 +500,6 @@ def check_update_config_impl(package):
 
 		msg = "Created release {} (Git Update Detection)".format(rel.title)
 		add_system_audit_log(AuditSeverity.NORMAL, msg, package.get_url("packages.view"), package)
-
-		db.session.commit()
 
 		make_vcs_release.apply_async((rel.id, commit), task_id=rel.task_id)
 
@@ -531,7 +527,7 @@ def check_update_config_impl(package):
 
 	config.last_commit = commit
 	config.last_tag = tag
-	db.session.commit()
+
 
 def check_update_config(self, package_id):
 	package: Package = Package.query.get(package_id)
@@ -543,6 +539,9 @@ def check_update_config(self, package_id):
 	err = None
 	try:
 		check_update_config_impl(package)
+
+		package.update_config.last_checked_at = datetime.datetime.now()
+		db.session.commit()
 	except GitCommandError as e:
 		# This is needed to stop the backtrace being weird
 		err = e.stderr

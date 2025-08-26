@@ -1371,6 +1371,8 @@ class PackageUpdateConfig(db.Model):
 	# Set to now when an outdated notification is sent. Set to None when a release is created
 	outdated_at = db.Column(db.DateTime, nullable=True, default=None)
 
+	last_checked_at = db.Column(db.DateTime, nullable=True, default=None)
+
 	trigger     = db.Column(db.Enum(PackageUpdateTrigger), nullable=False, default=PackageUpdateTrigger.COMMIT)
 	ref         = db.Column(db.String(41), nullable=True, default=None)
 
