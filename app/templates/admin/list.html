@@ -21,6 +21,12 @@
 						{{ _("Audit Log") }}
 					</a>
 				{% endif %}
+				{% if current_user.rank.at_least(current_user.rank.MODERATOR) %}
+					<a class="list-group-item list-group-item-action" href="{{ url_for('report.list_all') }}">
+						<i class="fas fa-user-clock me-2"></i>
+						Reports
+					</a>
+				{% endif %}
 			</div>
 
 			<h3>Packages</h3>

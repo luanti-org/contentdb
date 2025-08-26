@@ -12,7 +12,7 @@
 {% block content %}
 
 <p>
-	<a href="{{ url_for('report.list_all') }}">Back to reports</a>
+	<a class="btn bg-secondary" href="{{ url_for('report.list_all') }}">Back to reports</a>
 </p>
 
 <h1>
@@ -21,7 +21,7 @@
 			Closed
 		</span>
 	{% else %}
-		<span class="badge bg-warning me-3">
+		<span class="badge bg-info me-3">
 			Open
 		</span>
 	{% endif %}

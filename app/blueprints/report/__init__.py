@@ -83,7 +83,7 @@ def report():
 @bp.route("/admin/reports/")
 @rank_required(UserRank.MODERATOR)
 def list_all():
-	reports = Report.query.order_by(db.desc(Report.is_resolved), db.desc(Report.created_at)).all()
+	reports = Report.query.order_by(db.asc(Report.is_resolved), db.asc(Report.created_at)).all()
 	return render_template("report/list.html", reports=reports)
 
 
