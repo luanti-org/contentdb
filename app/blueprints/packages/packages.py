@@ -325,7 +325,7 @@ def handle_create_edit(package: typing.Optional[Package], form: PackageForm, aut
 @bp.route("/packages/<author>/<name>/edit/", methods=["GET", "POST"])
 @login_required
 def create_edit(author=None, name=None):
-	if current_user.email is None:
+	if current_user.email is None and not current_user.rank.at_least(UserRank.ADMIN):
 		flash(gettext("You must add an email address to your account and confirm it before you can manage packages"), "danger")
 		return redirect(url_for("users.email_notifications"))
 
