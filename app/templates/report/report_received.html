@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title -%}
+	{{ _("We have received your report") }}
+{%- endblock %}
+
+
+{% block content %}
+
+<h1>{{ self.title() }}</h1>
+
+<p>
+	{{ _("We aim to resolve your report quickly.") }}
+</p>
+
+<p>
+	{{ _("If the report is about illegal or harmful content, we aim to resolve within 48 hours.") }}
+	{{ _("If we find the content to be infringing, we will remove it and may warn or suspend the user.") }}
+</p>
+
+<p>
+	{{ _("Due to limited resources, we may not contact you further about the report unless we need clarification.") }}
+</p>
+
+<p>
+	{{ _("For future reference, use report id: %(report_id)s.", report_id=rid) }}
+</p>
+
+<p>
+	<a class="btn bg-primary btn-large" href="{{ url_for('homepage.home') }}">{{ _("Back to home") }}</a>
+</p>
+
+{% endblock %}

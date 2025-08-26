@@ -75,9 +75,14 @@ def report():
 		msg = f"**New Report**\nReport on `{report.url}`\n\n{report.title}\n\nView: {abs_url}"
 		post_discord_webhook.delay(None if is_anon else current_user.username, msg, True)
 
-		return redirect(url_for("report.view", rid=report.id))
+		return redirect(url_for("report.report_received", rid=report.id))
 
 	return render_template("report/report.html", form=form, url=url, is_anon=is_anon, noindex=url is not None)
+
+
+@bp.route("/report/received/")
+def report_received():
+	return render_template("report/report_received.html", rid=request.args.get("rid"))
 
 
 @bp.route("/admin/reports/")
