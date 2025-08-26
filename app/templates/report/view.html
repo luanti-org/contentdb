@@ -83,4 +83,16 @@
 </article>
 {% endif %}
 
+<article>
+	<h2>Thread</h2>
+	{% if report.thread %}
+		{% from "macros/threads.html" import render_thread %}
+		{{ render_thread(report.thread, current_user, form=False) }}
+	{% else %}
+		<p>
+			No thread.
+		</p>
+	{% endif %}
+</article>
+
 {% endblock %}

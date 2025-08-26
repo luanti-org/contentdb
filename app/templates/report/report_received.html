@@ -18,15 +18,23 @@
 	{{ _("If we find the content to be infringing, we will remove it and may warn or suspend the user.") }}
 </p>
 
+{% if report.thread %}
+<p>
+	{{ _("A private thread has been created for this report. You can use it to communicate with ContentDB staff and receive updates about the report.") }}
+</p>
+{% else %}
 <p>
 	{{ _("Due to limited resources, we may not contact you further about the report unless we need clarification.") }}
 </p>
-
 <p>
-	{{ _("For future reference, use report id: %(report_id)s.", report_id=rid) }}
+	{{ _("For future reference, use report id: %(report_id)s.", report_id=report.id) }}
 </p>
+{% endif %}
 
 <p>
+	{% if report.thread %}
+		<a class="btn bg-primary btn-large me-2" href="{{ url_for('threads.view', id=report.thread.id) }}">{{ _("View thread") }}</a>
+	{% endif %}
 	<a class="btn bg-primary btn-large" href="{{ url_for('homepage.home') }}">{{ _("Back to home") }}</a>
 </p>
 

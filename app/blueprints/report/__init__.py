@@ -22,10 +22,10 @@ from werkzeug.utils import redirect
 from wtforms import TextAreaField, SubmitField, URLField, StringField, SelectField
 from wtforms.validators import InputRequired, Length, Optional, DataRequired
 
-from app.models import UserRank, Report, db, AuditSeverity, ReportCategory
+from app.models import User, UserRank, Report, db, AuditSeverity, ReportCategory, Thread
 from app.tasks.webhooktasks import post_discord_webhook
 from app.utils import (is_no, abs_url_samesite, normalize_line_endings, rank_required, add_audit_log, abs_url_for,
-		random_string)
+					   random_string, add_replies)
 
 bp = Blueprint("report", __name__)
 
@@ -65,7 +65,19 @@ def report():
 		report.user = current_user if current_user.is_authenticated else None
 		form.populate_obj(report)
 
-		if not current_user.is_authenticated:
+		if current_user.is_authenticated:
+			thread = Thread()
+			thread.title = f"Report: {form.title.data}"
+			thread.author = current_user
+			thread.private = True
+			thread.watchers.extend(User.query.filter(User.rank >= UserRank.MODERATOR).all())
+			db.session.add(thread)
+			db.session.flush()
+
+			report.thread = thread
+
+			add_replies(thread, current_user, f"**{report.category.title} report created**\n\n{form.message.data}")
+		else:
 			ip_addr = request.headers.get("X-Forwarded-For") or request.remote_addr
 			report.message = ip_addr + "\n\n" + report.message
 
@@ -89,7 +101,9 @@ def report():
 
 @bp.route("/report/received/")
 def report_received():
-	return render_template("report/report_received.html", rid=request.args.get("rid"))
+	rid = request.args.get("rid")
+	report = Report.query.get_or_404(rid)
+	return render_template("report/report_received.html", report=report)
 
 
 @bp.route("/admin/reports/")
@@ -115,7 +129,7 @@ def view(rid: str):
 		if resolve_form.completed.data:
 			outcome = "completed"
 		elif resolve_form.removed.data:
-			outcome = "removed"
+			outcome = "content removed"
 		elif resolve_form.invalid.data:
 			outcome = "invalid"
 		else:
@@ -124,6 +138,10 @@ def view(rid: str):
 		report.is_resolved = True
 		url = url_for("report.view", rid=report.id)
 		add_audit_log(AuditSeverity.MODERATION, current_user, f"Resolved report as {outcome} \"{report.title}\"", url)
+
+		if report.thread:
+			add_replies(report.thread, current_user, f"Report closed as {outcome}", is_status_update=True)
+
 		db.session.commit()
 
 	return render_template("report/view.html", report=report, resolve_form=resolve_form)
