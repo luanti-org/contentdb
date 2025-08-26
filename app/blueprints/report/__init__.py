@@ -25,7 +25,7 @@ from wtforms.validators import InputRequired, Length, Optional
 from app.models import User, UserRank, Report, db, AuditSeverity, Thread
 from app.tasks.webhooktasks import post_discord_webhook
 from app.utils import is_no, abs_url_samesite, normalize_line_endings, rank_required, add_audit_log, abs_url_for, \
-	add_replies
+	add_replies, random_string
 
 bp = Blueprint("report", __name__)
 
@@ -55,6 +55,7 @@ def report():
 
 	if form and form.validate_on_submit():
 		report = Report()
+		report.id = random_string(8)
 		report.user = current_user if current_user.is_authenticated else None
 		form.populate_obj(report)
 
@@ -98,9 +99,9 @@ class ResolveForm(FlaskForm):
 	invalid = SubmitField(lazy_gettext("Invalid / No action taken"))
 
 
-@bp.route("/admin/reports/<int:rid>/", methods=["GET", "POST"])
+@bp.route("/admin/reports/<rid>/", methods=["GET", "POST"])
 @rank_required(UserRank.MODERATOR)
-def view(rid: int):
+def view(rid: str):
 	report = Report.query.get_or_404(rid)
 
 	resolve_form = ResolveForm(request.form)

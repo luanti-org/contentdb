@@ -131,7 +131,7 @@ class AuditLogEntry(db.Model):
 
 
 class Report(db.Model):
-	id = db.Column(db.Integer, primary_key=True)
+	id = db.Column(db.String(24), primary_key=True)
 
 	created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
 
