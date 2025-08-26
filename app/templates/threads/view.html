@@ -128,6 +128,11 @@
 		</aside>
 	{% endif %}
 
+	{% set report = thread.report.first() %}
+	{% if report and report.check_perm(current_user, "SEE_REPORT") %}
+		<a class="btn bg-primary btn-large" href="{{ url_for('report.view', rid=report.id) }}">View report page</a>
+	{% endif %}
+
 	{% if thread.review and current_user == thread.package.author %}
 		{% set flag %}
 			<i class="fas fa-flag mx-2"></i>

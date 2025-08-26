@@ -57,6 +57,8 @@ class Thread(db.Model):
 
 	watchers   = db.relationship("User", secondary=watchers, backref="watching")
 
+	report = db.relationship("Report", foreign_keys="Report.thread_id", back_populates="thread", lazy="dynamic")
+
 	first_reply = db.relationship("ThreadReply", uselist=False, foreign_keys="ThreadReply.thread_id",
 			lazy=True, order_by=db.asc("id"), viewonly=True,
 			primaryjoin="Thread.id==ThreadReply.thread_id")

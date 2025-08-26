@@ -200,6 +200,20 @@ class Report(db.Model):
 	is_resolved = db.Column(db.Boolean, nullable=False, default=False)
 
 
+	def check_perm(self, user, perm):
+		if type(perm) == str:
+			perm = Permission[perm]
+		elif type(perm) != Permission:
+			raise Exception("Unknown permission given to Report.check_perm()")
+		if not user.is_authenticated:
+			return False
+
+		if perm == Permission.SEE_REPORT:
+			return user.rank.at_least(UserRank.MODERATOR)
+		else:
+			raise Exception("Permission {} is not related to reports".format(perm.name))
+
+
 REPO_BLACKLIST = [".zip", "mediafire.com", "dropbox.com", "weebly.com",
 	"minetest.net", "luanti.org", "dropboxusercontent.com", "4shared.com",
 	"digitalaudioconcepts.com", "hg.intevation.org", "www.wtfpl.net",

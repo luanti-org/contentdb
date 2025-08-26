@@ -22,7 +22,7 @@ from werkzeug.utils import redirect
 from wtforms import TextAreaField, SubmitField, URLField, StringField, SelectField
 from wtforms.validators import InputRequired, Length, Optional, DataRequired
 
-from app.models import User, UserRank, Report, db, AuditSeverity, ReportCategory, Thread
+from app.models import User, UserRank, Report, db, AuditSeverity, ReportCategory, Thread, Permission
 from app.tasks.webhooktasks import post_discord_webhook
 from app.utils import (is_no, abs_url_samesite, normalize_line_endings, rank_required, add_audit_log, abs_url_for,
 					   random_string, add_replies)
@@ -120,9 +120,10 @@ class ResolveForm(FlaskForm):
 
 
 @bp.route("/admin/reports/<rid>/", methods=["GET", "POST"])
-@rank_required(UserRank.MODERATOR)
 def view(rid: str):
 	report = Report.query.get_or_404(rid)
+	if not report.check_perm(current_user, Permission.SEE_REPORT):
+		abort(404)
 
 	resolve_form = ResolveForm(request.form)
 	if resolve_form.validate_on_submit():
