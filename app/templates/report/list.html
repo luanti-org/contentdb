@@ -12,16 +12,26 @@
 <nav class="list-group">
 	{% for report in reports %}
 		<a class="list-group-item list-group-item-action" href="{{ url_for('report.view',  rid=report.id) }}">
-			{% if report.is_resolved %}
-				<span class="badge bg-secondary me-3">
-					Closed
-				</span>
-			{% else %}
-				<span class="badge bg-info me-3">
-					Open
-				</span>
-			{% endif %}
-			{{ report.title }}
+			<div class="row">
+				<div class="col">
+					{% if report.is_resolved %}
+						<span class="badge bg-secondary me-3">
+							Closed
+						</span>
+					{% else %}
+						<span class="badge bg-info me-3">
+							Open
+						</span>
+					{% endif %}
+					{{ report.title }}
+					{% if report.user %}
+						by {{ report.user.display_name }}
+					{% endif %}
+				</div>
+				<div class="col-auto">
+					{{ report.created_at | timedelta }} ago
+				</div>
+			</div>
 		</a>
 	{% else %}
 		<span>

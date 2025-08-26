@@ -20,7 +20,7 @@ from flask_login import current_user, login_required
 from sqlalchemy import or_, and_
 
 from app.models import Package, PackageState, PackageScreenshot, PackageUpdateConfig, ForumTopic, db, \
-	PackageRelease, Permission, UserRank, License, MetaPackage, Dependency, AuditLogEntry, Tag, LuantiRelease
+	PackageRelease, Permission, UserRank, License, MetaPackage, Dependency, AuditLogEntry, Tag, LuantiRelease, Report
 from app.querybuilder import QueryBuilder
 from app.utils import get_int_or_abort, is_yes, rank_required
 from . import bp
@@ -83,11 +83,13 @@ def view_editor():
 		.order_by(db.desc(AuditLogEntry.created_at)) \
 		.limit(20).all()
 
+	reports = Report.query.filter_by(is_resolved=False).order_by(db.asc(Report.created_at)).all() if current_user.rank.at_least(UserRank.EDITOR) else None
+
 	return render_template("todo/editor.html", current_tab="editor",
 			packages=packages, wip_packages=wip_packages, releases=releases, screenshots=screenshots,
 			can_approve_new=can_approve_new, can_approve_rel=can_approve_rel, can_approve_scn=can_approve_scn,
 			license_needed=license_needed, total_packages=total_packages, total_to_tag=total_to_tag,
-			unfulfilled_meta_packages=unfulfilled_meta_packages, audit_log=audit_log)
+			unfulfilled_meta_packages=unfulfilled_meta_packages, audit_log=audit_log, reports=reports)
 
 
 @bp.route("/todo/tags/")

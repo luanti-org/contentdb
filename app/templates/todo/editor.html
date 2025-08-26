@@ -5,6 +5,28 @@
 {% endblock %}
 
 {% block content %}
+	{% if reports %}
+		<h2 class="mb-4">{{ _("Reports") }}</h2>
+		<nav class="list-group">
+			{% for report in reports %}
+				<a class="list-group-item list-group-item-action" href="{{ url_for('report.view',  rid=report.id) }}">
+					<div class="row">
+						<div class="col">
+							<span class="badge bg-secondary me-3">{{ report.category.title }}</span>
+							{{ report.title }}
+							{% if report.user %}
+								by {{ report.user.display_name }}
+							{% endif %}
+						</div>
+						<div class="col-auto">
+							{{ report.created_at | timedelta }} ago
+						</div>
+					</div>
+				</a>
+			{% endfor %}
+		</nav>
+	{% endif %}
+
 	<h2 class="mb-4">{{ _("Approval Queue") }}</h2>
 	{% if can_approve_scn and screenshots %}
 		<div class="card my-4">
