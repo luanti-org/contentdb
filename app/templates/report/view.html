@@ -11,7 +11,9 @@
 
 {% block content %}
 
+{% set url = url_for("report.view", rid=report.id) %}
 <p class="float-end">
+	<a class="btn bg-secondary me-2" href="{{ url_for('admin.audit', url=url) }}">View audit log</a>
 	<a class="btn bg-secondary" href="{{ url_for('report.edit', rid=report.id) }}">{{ _("Edit") }}</a>
 </p>
 

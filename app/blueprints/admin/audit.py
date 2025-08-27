@@ -15,12 +15,23 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from flask import render_template, request, abort
+from flask_babel import lazy_gettext
 from flask_login import current_user, login_required
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+from wtforms.validators import Optional, Length
 
 from app.models import db, AuditLogEntry, UserRank, User, Permission
 from app.utils import rank_required, get_int_or_abort
 
 from . import bp
+
+
+class AuditForm(FlaskForm):
+	username = StringField(lazy_gettext("Username"), [Optional(), Length(0, 25)])
+	q = StringField(lazy_gettext("Query"), [Optional(), Length(0, 300)])
+	url = StringField(lazy_gettext("URL"), [Optional(), Length(0, 300)])
+	submit = SubmitField(lazy_gettext("Search"), name=None)
 
 
 @bp.route("/admin/audit/")
@@ -31,18 +42,22 @@ def audit():
 
 	query = AuditLogEntry.query.order_by(db.desc(AuditLogEntry.created_at))
 
-	if "username" in request.args:
-		user = User.query.filter_by(username=request.args.get("username")).first()
-		if not user:
-			abort(404)
+	form = AuditForm(request.args)
+	username = form.username.data
+	q = form.q.data
+	url = form.url.data
+	if username:
+		user = User.query.filter_by(username=username).first_or_404()
 		query = query.filter_by(causer=user)
 
-	if "q" in request.args:
-		q = request.args["q"]
+	if q:
 		query = query.filter(AuditLogEntry.title.ilike(f"%{q}%"))
 
+	if url:
+		query = query.filter(AuditLogEntry.url.ilike(f"%{url}%"))
+
 	pagination = query.paginate(page=page, per_page=num)
-	return render_template("admin/audit.html", log=pagination.items, pagination=pagination)
+	return render_template("admin/audit.html", log=pagination.items, pagination=pagination, form=form)
 
 
 @bp.route("/admin/audit/<int:id_>/")

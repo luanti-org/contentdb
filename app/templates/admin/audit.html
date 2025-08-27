@@ -7,6 +7,14 @@ Audit Log
 {% block content %}
 	<h1>Audit Log</h1>
 
+	{% from "macros/forms.html" import render_field, render_submit_field %}
+	<form method="GET" action="">
+		{{ render_field(form.username) }}
+		{{ render_field(form.q) }}
+		{{ render_field(form.url) }}
+		{{ render_submit_field(form.submit) }}
+	</form>
+
 	{% from "macros/pagination.html" import render_pagination %}
 	{% from "macros/audit_log.html" import render_audit_log %}
 
