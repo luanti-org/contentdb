@@ -113,36 +113,40 @@ def list_all():
 	return render_template("report/list.html", reports=reports)
 
 
-class ResolveForm(FlaskForm):
-	completed = SubmitField(lazy_gettext("Completed / resolved"))
-	removed = SubmitField(lazy_gettext("Content removed"))
-	invalid = SubmitField(lazy_gettext("Invalid / No action taken"))
-
-
 @bp.route("/admin/reports/<rid>/", methods=["GET", "POST"])
 def view(rid: str):
 	report = Report.query.get_or_404(rid)
 	if not report.check_perm(current_user, Permission.SEE_REPORT):
 		abort(404)
 
-	resolve_form = ResolveForm(request.form)
-	if resolve_form.validate_on_submit():
-		if resolve_form.completed.data:
-			outcome = "completed"
-		elif resolve_form.removed.data:
-			outcome = "content removed"
-		elif resolve_form.invalid.data:
-			outcome = "invalid"
+	if request.method == "POST":
+		if report.is_resolved:
+			if "reopen" in request.form:
+				report.is_resolved = False
+				url = url_for("report.view", rid=report.id)
+				add_audit_log(AuditSeverity.MODERATION, current_user, f"Reopened report \"{report.title}\"", url)
+
+				if report.thread:
+					add_replies(report.thread, current_user, f"Reopened report", is_status_update=True)
+
+				db.session.commit()
 		else:
-			abort(400)
+			if "completed" in request.form:
+				outcome = "completed"
+			elif "removed" in request.form:
+				outcome = "content removed"
+			elif "invalid" in request.form:
+				outcome = "invalid"
+			else:
+				abort(400)
 
-		report.is_resolved = True
-		url = url_for("report.view", rid=report.id)
-		add_audit_log(AuditSeverity.MODERATION, current_user, f"Resolved report as {outcome} \"{report.title}\"", url)
+			report.is_resolved = True
+			url = url_for("report.view", rid=report.id)
+			add_audit_log(AuditSeverity.MODERATION, current_user, f"Resolved report as {outcome} \"{report.title}\"", url)
 
-		if report.thread:
-			add_replies(report.thread, current_user, f"Report closed as {outcome}", is_status_update=True)
+			if report.thread:
+				add_replies(report.thread, current_user, f"Report closed as {outcome}", is_status_update=True)
 
-		db.session.commit()
+			db.session.commit()
 
-	return render_template("report/view.html", report=report, resolve_form=resolve_form)
+	return render_template("report/view.html", report=report)

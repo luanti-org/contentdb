@@ -71,17 +71,19 @@
 	</aside>
 </article>
 
-{% if not report.is_resolved %}
 <article>
-	<h2>Close report</h2>
+	<h2>{% if report.is_resolved %}Reopen report{% else %}Close report{% endif %}</h2>
 	<form method="POST" action="">
-		{{ resolve_form.hidden_tag() }}
-		{{ render_submit_field(resolve_form.completed) }}
-		{{ render_submit_field(resolve_form.removed) }}
-		{{ render_submit_field(resolve_form.invalid) }}
+	<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+		{% if report.is_resolved %}
+			<button type="submit" class="btn bg-primary" name="reopen" value="true">{{ _("Reopen") }}</button>
+		{% else %}
+			<button type="submit" class="btn bg-primary" name="completed" value="true">{{ _("Completed / resolved") }}</button>
+			<button type="submit" class="btn bg-primary" name="removed" value="true">{{ _("Content removed") }}</button>
+			<button type="submit" class="btn bg-primary" name="invalid" value="true">{{ _("Invalid") }}</button>
+		{% endif %}
 	</form>
 </article>
-{% endif %}
 
 <article>
 	<h2>Thread</h2>
