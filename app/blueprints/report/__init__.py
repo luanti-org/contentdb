@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-from flask import Blueprint, request, render_template, url_for, abort
+from flask import Blueprint, request, render_template, url_for, abort, flash
 from flask_babel import lazy_gettext
 from flask_login import current_user
 from flask_wtf import FlaskForm
@@ -137,6 +137,8 @@ def view(rid: str):
 				outcome = "content removed"
 			elif "invalid" in request.form:
 				outcome = "invalid"
+				if report.thread:
+					flash("Make sure to comment why the report is invalid in the thread", "warning")
 			else:
 				abort(400)
 
