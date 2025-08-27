@@ -569,7 +569,7 @@ def check_update_config_default(self, package_id):
 	check_update_config(self, package_id)
 
 
-@celery.task(bind=True, rate_limit="400/h")
+@celery.task(bind=True, rate_limit="100/h") # per worker
 def check_update_config_codeberg(self, package_id):
 	check_update_config(self, package_id)
 
