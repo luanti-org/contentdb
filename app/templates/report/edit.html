@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title -%}
+	Edit report
+{%- endblock %}
+
+{% from "macros/forms.html" import render_field, render_submit_field, render_checkbox_field, easymde_scripts %}
+{% block scriptextra %}
+	{{ easymde_scripts() }}
+{% endblock %}
+
+{% block content %}
+
+<h1>{{ self.title() }}</h1>
+
+<form method="POST" action="" enctype="multipart/form-data">
+	{{ form.hidden_tag() }}
+	{{ render_field(form.category) }}
+	{{ render_field(form.url) }}
+	{{ render_field(form.title) }}
+	{{ render_field(form.message, class_="m-0", fieldclass="form-control markdown", data_enter_submit="1") }}
+	{{ render_submit_field(form.submit) }}
+</form>
+
+{% endblock %}

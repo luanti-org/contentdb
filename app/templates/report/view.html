@@ -11,6 +11,10 @@
 
 {% block content %}
 
+<p class="float-end">
+	<a class="btn bg-secondary" href="{{ url_for('report.edit', rid=report.id) }}">{{ _("Edit") }}</a>
+</p>
+
 <p>
 	<a class="btn bg-secondary" href="{{ url_for('report.list_all') }}">Back to reports</a>
 </p>

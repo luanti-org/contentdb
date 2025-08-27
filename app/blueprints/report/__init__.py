@@ -150,3 +150,22 @@ def view(rid: str):
 			db.session.commit()
 
 	return render_template("report/view.html", report=report)
+
+
+@bp.route("/admin/reports/<rid>/edit/", methods=["GET", "POST"])
+def edit(rid: str):
+	report = Report.query.get_or_404(rid)
+	if not report.check_perm(current_user, Permission.SEE_REPORT):
+		abort(404)
+
+	form = ReportForm(request.form, obj=report)
+	form.submit.label.text = lazy_gettext("Save")
+	if form.validate_on_submit():
+		form.populate_obj(report)
+		url = url_for("report.view", rid=report.id)
+		add_audit_log(AuditSeverity.MODERATION, current_user, f"Edited report \"{report.title}\"", url)
+		db.session.commit()
+
+		return redirect(url_for("report.view", rid=report.id))
+
+	return render_template("report/edit.html", report=report, form=form)
