@@ -19,8 +19,9 @@ from flask import render_template, request, redirect, flash, url_for, abort
 from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileRequired
 from wtforms import StringField, SubmitField, BooleanField, FileField
-from wtforms.validators import InputRequired, Length, DataRequired, Optional
+from wtforms.validators import Length, DataRequired, Optional
 from wtforms_sqlalchemy.fields import QuerySelectField
 
 from app.logic.LogicError import LogicError
@@ -32,7 +33,7 @@ from app.utils import is_package_page
 
 class CreateScreenshotForm(FlaskForm):
 	title	   = StringField(lazy_gettext("Title/Caption"), [Optional(), Length(-1, 100)])
-	file_upload = FileField(lazy_gettext("File Upload"), [InputRequired()])
+	file_upload = FileField(lazy_gettext("File Upload"), [FileRequired()])
 	submit	   = SubmitField(lazy_gettext("Save"))
 
 

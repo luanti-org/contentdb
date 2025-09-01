@@ -38,6 +38,7 @@
 	{{ render_field(form.url) }}
 	{{ render_field(form.title) }}
 	{{ render_field(form.message, class_="m-0", fieldclass="form-control markdown", data_enter_submit="1") }}
+	{{ render_field(form.file_upload, accept="image/png,image/jpeg,image/webp", hint=_("Optional, usually not required")) }}
 	{{ render_submit_field(form.submit) }}
 	<p class="alert alert-info mt-5">
 		{{ _("Found a bug? Please report on the package's issue tracker or in a thread instead.") }}

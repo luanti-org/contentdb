@@ -52,7 +52,7 @@
 					pattern="[A-Za-z0-9/._-]+") }}
 		{% endif %}
 
-		{{ render_field(form.file_upload, fieldclass="form-control-file", class_="mt-3", accept=".zip") }}
+		{{ render_field(form.file_upload, class_="mt-3", accept=".zip") }}
 
 		<p>
 			{{ _("Take a look at the <a href='/help/package_config/'>Package Configuration and Releases Guide</a> for

@@ -17,7 +17,7 @@
 import imghdr
 import os
 
-from flask_babel import lazy_gettext
+from flask_babel import lazy_gettext, LazyString
 
 from app import app
 from app.logic.LogicError import LogicError
@@ -35,7 +35,7 @@ def is_allowed_image(data):
 	return imghdr.what(None, data) in ALLOWED_IMAGES
 
 
-def upload_file(file, file_type, file_type_desc):
+def upload_file(file, file_type: str, file_type_desc: LazyString | str, length: int=10):
 	if not file or file is None or file.filename == "":
 		raise LogicError(400, "Expected file")
 
@@ -62,7 +62,7 @@ def upload_file(file, file_type, file_type_desc):
 
 	file.stream.seek(0)
 
-	filename = random_string(10) + "." + ext
+	filename = random_string(length) + "." + ext
 	filepath = os.path.join(app.config["UPLOAD_DIR"], filename)
 	file.save(filepath)
 

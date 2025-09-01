@@ -183,7 +183,6 @@ class ReportCategory(enum.Enum):
 		return item if type(item) == ReportCategory else ReportCategory[item.upper()]
 
 
-
 class Report(db.Model):
 	id = db.Column(db.String(24), primary_key=True)
 
@@ -202,6 +201,7 @@ class Report(db.Model):
 
 	is_resolved = db.Column(db.Boolean, nullable=False, default=False)
 
+	attachments = db.relationship("ReportAttachment", back_populates="report", lazy="dynamic", cascade="all, delete, delete-orphan")
 
 	def check_perm(self, user, perm):
 		if type(perm) == str:
@@ -215,6 +215,17 @@ class Report(db.Model):
 			return user.rank.at_least(UserRank.MODERATOR)
 		else:
 			raise Exception("Permission {} is not related to reports".format(perm.name))
+
+
+class ReportAttachment(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+
+	created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+
+	report_id = db.Column(db.String(24), db.ForeignKey("report.id"), nullable=False)
+	report = db.relationship("Report", foreign_keys=[report_id], back_populates="attachments")
+
+	url = db.Column(db.String(100), nullable=False)
 
 
 REPO_BLACKLIST = [".zip", "mediafire.com", "dropbox.com", "weebly.com",

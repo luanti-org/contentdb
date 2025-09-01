@@ -12,7 +12,7 @@
 		{{ form.hidden_tag() }}
 
 		{{ render_field(form.title) }}
-		{{ render_field(form.file_upload, fieldclass="form-control-file", accept="image/png,image/jpeg,image/webp") }}
+		{{ render_field(form.file_upload, accept="image/png,image/jpeg,image/webp") }}
 		{{ render_checkbox_field
 		{{ render_submit_field(form.submit) }}
 	</form>

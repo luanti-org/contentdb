@@ -19,10 +19,11 @@ from flask_babel import lazy_gettext
 from flask_login import current_user
 from flask_wtf import FlaskForm
 from werkzeug.utils import redirect
-from wtforms import TextAreaField, SubmitField, URLField, StringField, SelectField
+from wtforms import TextAreaField, SubmitField, URLField, StringField, SelectField, FileField
 from wtforms.validators import InputRequired, Length, Optional, DataRequired
 
-from app.models import User, UserRank, Report, db, AuditSeverity, ReportCategory, Thread, Permission
+from app.logic.uploads import upload_file
+from app.models import User, UserRank, Report, db, AuditSeverity, ReportCategory, Thread, Permission, ReportAttachment
 from app.tasks.webhooktasks import post_discord_webhook
 from app.utils import (is_no, abs_url_samesite, normalize_line_endings, rank_required, add_audit_log, abs_url_for,
 					   random_string, add_replies)
@@ -36,6 +37,7 @@ class ReportForm(FlaskForm):
 	url = URLField(lazy_gettext("URL"), [Optional()])
 	title = StringField(lazy_gettext("Subject / Title"), [InputRequired(), Length(10, 300)])
 	message = TextAreaField(lazy_gettext("Message"), [Optional(), Length(0, 10000)], filters=[normalize_line_endings])
+	file_upload = FileField(lazy_gettext("Image Upload"), [Optional()])
 	submit = SubmitField(lazy_gettext("Report"))
 
 
@@ -50,7 +52,7 @@ def report():
 
 		url = abs_url_samesite(url)
 
-	form = ReportForm(formdata=request.form) if current_user.is_authenticated else None
+	form = ReportForm() if current_user.is_authenticated else None
 	if form and request.method == "GET":
 		try:
 			form.category.data = ReportCategory.coerce(request.args.get("category"))
@@ -83,6 +85,13 @@ def report():
 
 		db.session.add(report)
 		db.session.flush()
+
+		if form.file_upload.data:
+			atmt = ReportAttachment()
+			report.attachments.add(atmt)
+			uploaded_url, _ = upload_file(form.file_upload.data, "image", lazy_gettext("a PNG, JPEG, or WebP image file"))
+			atmt.url = uploaded_url
+			db.session.add(atmt)
 
 		if current_user.is_authenticated:
 			add_audit_log(AuditSeverity.USER, current_user, f"New report: {report.title}",

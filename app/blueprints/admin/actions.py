@@ -23,7 +23,7 @@ from flask import redirect, url_for, flash, current_app
 from sqlalchemy import or_, and_
 
 from app.models import PackageRelease, db, Package, PackageState, PackageScreenshot, MetaPackage, User, \
-	NotificationType, PackageUpdateConfig, License, UserRank, PackageType, Thread, AuditLogEntry
+	NotificationType, PackageUpdateConfig, License, UserRank, PackageType, Thread, AuditLogEntry, ReportAttachment
 from app.tasks.emails import send_pending_digests
 from app.tasks.forumtasks import import_topic_list, check_all_forum_accounts
 from app.tasks.importtasks import import_repo_screenshot, check_zip_release, check_for_updates, update_all_game_support, \
@@ -68,9 +68,10 @@ def clean_uploads():
 
 		release_urls = get_filenames_from_column(PackageRelease.url)
 		screenshot_urls = get_filenames_from_column(PackageScreenshot.url)
+		attachment_urls = get_filenames_from_column(ReportAttachment.url)
 		pp_urls = get_filenames_from_column(User.profile_pic)
 
-		db_urls = release_urls.union(screenshot_urls).union(pp_urls)
+		db_urls = release_urls.union(screenshot_urls).union(pp_urls).union(attachment_urls)
 		unreachable = existing_uploads.difference(db_urls)
 
 		import sys

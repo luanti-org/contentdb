@@ -77,6 +77,17 @@
 	</aside>
 </article>
 
+{% if report.attachments %}
+	<article>
+		<h2>Attachments</h2>
+		<ul>
+			{% for attachment in report.attachments %}
+				<li><a href="{{ attachment.url }}">{{ attachment.url }}</a></li>
+			{% endfor %}
+		</ul>
+	</article>
+{% endif %}
+
 <article>
 	<h2>{% if report.is_resolved %}Reopen report{% else %}Close report{% endif %}</h2>
 	<form method="POST" action="">
