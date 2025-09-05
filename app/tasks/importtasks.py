@@ -569,12 +569,6 @@ def check_update_config_default(self, package_id):
 	check_update_config(self, package_id)
 
 
-@celery.task(bind=True, rate_limit="25/h") # per worker
-def check_update_config_codeberg(self, package_id):
-	check_update_config(self, package_id)
-
-
-
 @celery.task
 def check_for_updates():
 	for update_config in PackageUpdateConfig.query.all():
@@ -587,9 +581,6 @@ def check_for_updates():
 			db.session.delete(update_config)
 			continue
 
-		if "codeberg.org" in update_config.package.repo:
-			check_update_config_codeberg.delay(update_config.package_id)
-		else:
-			check_update_config_default.delay(update_config.package_id)
+		check_update_config_default.delay(update_config.package_id)
 
 	db.session.commit()
