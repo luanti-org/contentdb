@@ -529,6 +529,7 @@ def check_update_config_impl(package):
 	config.last_tag = tag
 
 
+@celery.task(bind=True, rate_limit="60/m")
 def check_update_config(self, package_id):
 	package: Package = Package.query.get(package_id)
 	if package is None:
@@ -564,11 +565,6 @@ def check_update_config(self, package_id):
 		return
 
 
-@celery.task(bind=True, rate_limit="60/m")
-def check_update_config_default(self, package_id):
-	check_update_config(self, package_id)
-
-
 @celery.task
 def check_for_updates():
 	for update_config in PackageUpdateConfig.query.all():
@@ -581,6 +577,6 @@ def check_for_updates():
 			db.session.delete(update_config)
 			continue
 
-		check_update_config_default.delay(update_config.package_id)
+		check_update_config.delay(update_config.package_id)
 
 	db.session.commit()
