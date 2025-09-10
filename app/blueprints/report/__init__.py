@@ -141,11 +141,11 @@ def view(rid: str):
 				db.session.commit()
 		else:
 			if "completed" in request.form:
-				outcome = "completed"
+				outcome = "as completed"
 			elif "removed" in request.form:
-				outcome = "content removed"
+				outcome = "as content removed"
 			elif "invalid" in request.form:
-				outcome = "invalid"
+				outcome = "without action"
 				if report.thread:
 					flash("Make sure to comment why the report is invalid in the thread", "warning")
 			else:
@@ -153,10 +153,10 @@ def view(rid: str):
 
 			report.is_resolved = True
 			url = url_for("report.view", rid=report.id)
-			add_audit_log(AuditSeverity.MODERATION, current_user, f"Resolved report as {outcome} \"{report.title}\"", url)
+			add_audit_log(AuditSeverity.MODERATION, current_user, f"Report closed {outcome} \"{report.title}\"", url)
 
 			if report.thread:
-				add_replies(report.thread, current_user, f"Report closed as {outcome}", is_status_update=True)
+				add_replies(report.thread, current_user, f"Closed report {outcome}", is_status_update=True)
 
 			db.session.commit()
 
