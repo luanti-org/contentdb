@@ -28,7 +28,7 @@ from app.logic.releases import do_create_vcs_release, LogicError, do_create_zip_
 from app.models import Package, db, User, PackageState, Permission, UserRank, PackageDailyStats, LuantiRelease, \
 	PackageRelease, PackageUpdateTrigger, PackageUpdateConfig
 from app.rediscache import has_key, set_temp_key, make_download_key
-from app.tasks.importtasks import check_update_config_default
+from app.tasks.importtasks import check_update_config
 from app.utils import is_user_bot, is_package_page, nonempty_or_none, normalize_line_endings
 from . import bp, get_package_tabs
 
@@ -310,7 +310,7 @@ def set_update_config(package, form):
 	db.session.commit()
 
 	if package.update_config.last_commit is None:
-		check_update_config_default.delay(package.id)
+		check_update_config.delay(package.id)
 
 
 @bp.route("/packages/<author>/<name>/update-config/", methods=["GET", "POST"])
