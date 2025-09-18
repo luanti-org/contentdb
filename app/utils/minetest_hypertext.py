@@ -298,7 +298,7 @@ def package_info_as_hypertext(package: Package, formspec_version: int = 7):
 	add_value(gettext("License"), license)
 	if package.dev_state:
 		add_value(gettext("Maintenance State"), package.dev_state.value)
-	add_value(gettext("Added"), package.created_at)
+	add_value(gettext("Added"), package.created_at.isoformat(timespec="seconds") + "Z")
 	add_list(gettext("Maintainers"), [user.display_name for user in package.maintainers])
 	add_list(gettext("Provides"), [x.name for x in package.provides])
 
