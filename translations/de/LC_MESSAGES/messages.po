@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2024-12-06 21:06+0000\n"
+"PO-Revision-Date: 2025-07-03 14:01+0000\n"
 "Last-Translator: Wuzzy <Wuzzy@disroot.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/minetest/"
 "contentdb/de/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 "Generated-By: Babel 2.15.0\n"
 
 #: app/__init__.py:156
@@ -2157,7 +2157,7 @@ msgstr "Sie haben keine Erlaubnis dieses Paket zu bearbeiten"
 
 #: app/logic/packages.py:116
 msgid "You don't have permission to change the package name"
-msgstr "Sie habe keine Erlaubnis den Namen dieses Paketes zu bearbeiten"
+msgstr "Sie habe keine Erlaubnis, den Namen dieses Paketes zu bearbeiten"
 
 #: app/logic/packages.py:140
 msgid "You cannot change package type once approved"
@@ -3298,7 +3298,7 @@ msgstr "Gelöschter Benutzer"
 
 #: app/templates/macros/audit_log.html:64
 msgid "No audit log entries."
-msgstr "Keine Audit-Log Einträge."
+msgstr "Keine Audit-Log-Einträge."
 
 #: app/templates/macros/forms.html:21 app/templates/macros/reviews.html:151
 #: app/templates/packages/remove.html:80 app/templates/packages/view.html:486
