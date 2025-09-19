@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2023-07-05 21:50+0000\n"
-"Last-Translator: AlexTECPlayz <alextec70@outlook.com>\n"
+"PO-Revision-Date: 2025-07-27 19:04+0000\n"
+"Last-Translator: Gabriel <gabrielpopa154@gmail.com>\n"
+"Language-Team: Romanian <https://hosted.weblate.org/projects/minetest/"
+"contentdb/ro/>\n"
 "Language: ro\n"
-"Language-Team: Romanian "
-"<https://hosted.weblate.org/projects/minetest/contentdb/ro/>\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 "
-"< 20)) ? 1 : 2;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Weblate 5.13-dev\n"
 "Generated-By: Babel 2.15.0\n"
 
 #: app/__init__.py:156
@@ -32,61 +33,61 @@ msgstr "Ai fost expulzat."
 #: app/_translations.py:6
 msgctxt "tags"
 msgid "128px+"
-msgstr ""
+msgstr "128px+"
 
 #. NOTE: tags: description for 128px
 #: app/_translations.py:8
 msgctxt "tags"
 msgid "For 128px or higher texture packs"
-msgstr ""
+msgstr "Pentru pachete de texturi de 128px sau mai mari"
 
 #. NOTE: tags: title for 16px
 #: app/_translations.py:10
 msgctxt "tags"
 msgid "16px"
-msgstr ""
+msgstr "16px"
 
 #. NOTE: tags: description for 16px
 #: app/_translations.py:12
 msgctxt "tags"
 msgid "For 16px texture packs"
-msgstr ""
+msgstr "Pentru pachete de texturi de 16px"
 
 #. NOTE: tags: title for 32px
 #: app/_translations.py:14
 msgctxt "tags"
 msgid "32px"
-msgstr ""
+msgstr "32px"
 
 #. NOTE: tags: description for 32px
 #: app/_translations.py:16
 msgctxt "tags"
 msgid "For 32px texture packs"
-msgstr ""
+msgstr "Pentru pachete de texturi de 32px"
 
 #. NOTE: tags: title for 64px
 #: app/_translations.py:18
 msgctxt "tags"
 msgid "64px"
-msgstr ""
+msgstr "64px"
 
 #. NOTE: tags: description for 64px
 #: app/_translations.py:20
 msgctxt "tags"
 msgid "For 64px texture packs"
-msgstr ""
+msgstr "Pentru pachete de texturi de 64px"
 
 #. NOTE: tags: title for adventure__rpg
 #: app/_translations.py:22
 msgctxt "tags"
 msgid "Adventure / RPG"
-msgstr ""
+msgstr "Aventură/RPG"
 
 #. NOTE: tags: title for april_fools
 #: app/_translations.py:24
 msgctxt "tags"
 msgid "Joke"
-msgstr ""
+msgstr "Glumă"
 
 #. NOTE: tags: description for april_fools
 #: app/_translations.py:26
@@ -95,36 +96,43 @@ msgid ""
 "For humorous content, meant as a novelty or joke, not to be taken "
 "seriously, and that is not meant to be used seriously or long-term."
 msgstr ""
+"Pentru conținut umoristic, menit ca o glumă sau o noutate, care nu trebuie "
+"luat în serios și care nu este destinat utilizării serioase sau pe termen "
+"lung."
 
 #. NOTE: tags: title for building
 #: app/_translations.py:28
 msgctxt "tags"
 msgid "Building"
-msgstr ""
+msgstr "Construcție"
 
 #. NOTE: tags: description for building
 #: app/_translations.py:30
 msgctxt "tags"
 msgid "Focuses on building, such as adding new materials or nodes"
 msgstr ""
+"Se concentrează pe construcție, cum ar fi adăugarea de materiale sau noduri "
+"noi"
 
 #. NOTE: tags: title for building_mechanics
 #: app/_translations.py:32
 msgctxt "tags"
 msgid "Building Mechanics and Tools"
-msgstr ""
+msgstr "Mecanică și Instrumente de Construcție"
 
 #. NOTE: tags: description for building_mechanics
 #: app/_translations.py:34
 msgctxt "tags"
 msgid "Adds game mechanics or tools that change how players build."
 msgstr ""
+"Introduce mecanisme sau instrumente care schimbă felul în care jucătorii "
+"construiesc."
 
 #. NOTE: tags: title for chat
 #: app/_translations.py:36
 msgctxt "tags"
 msgid "Chat / Commands"
-msgstr ""
+msgstr "Chat / Comenzi"
 
 #. NOTE: tags: description for chat
 #: app/_translations.py:38
@@ -6507,4 +6515,3 @@ msgstr ""
 
 #~ msgid "Luanti-Mods org only"
 #~ msgstr ""
-
