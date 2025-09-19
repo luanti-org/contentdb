@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2025-07-07 13:02+0000\n"
-"Last-Translator: FedonT <phaidtheodcoc@gmail.com>\n"
+"PO-Revision-Date: 2025-07-13 09:02+0000\n"
+"Last-Translator: GiorgeGi <giorgegi729@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/minetest/contentdb/"
 "el/>\n"
 "Language: el\n"
@@ -30,7 +30,6 @@ msgstr "Έχετε αποκλειστεί."
 
 #. NOTE: tags: title for 128px
 #: app/_translations.py:6
-#, fuzzy
 msgctxt "tags"
 msgid "128px+"
 msgstr "128 πίξελ+"
@@ -107,22 +106,19 @@ msgstr "Κτίσμα"
 
 #. NOTE: tags: description for building
 #: app/_translations.py:30
-#, fuzzy
 msgctxt "tags"
 msgid "Focuses on building, such as adding new materials or nodes"
 msgstr ""
-"Εστιάζει στην οικοδόμηση, όπως στην προσθήκη νέων υλικών και μπλοκ κατασκευής"
+"Εστιάζει στο χτίσιμο, όπως στην προσθήκη νέων υλικών και μπλοκ κατασκευής"
 
 #. NOTE: tags: title for building_mechanics
 #: app/_translations.py:32
-#, fuzzy
 msgctxt "tags"
 msgid "Building Mechanics and Tools"
 msgstr "Κανονισμοί Χτισίματος και Εργαλεία"
 
 #. NOTE: tags: description for building_mechanics
 #: app/_translations.py:34
-#, fuzzy
 msgctxt "tags"
 msgid "Adds game mechanics or tools that change how players build."
 msgstr ""
@@ -137,12 +133,11 @@ msgstr "Συζήτηση / Εντολές"
 
 #. NOTE: tags: description for chat
 #: app/_translations.py:38
-#, fuzzy
 msgctxt "tags"
 msgid "Focus on player chat/communication or console interaction."
 msgstr ""
 "Εστιάζει στην συζήτηση των παικτών/στην επικοινωνία ή στην αλληλεπίδραση με "
-"την κονσόλα"
+"την κονσόλα."
 
 #. NOTE: tags: title for commerce
 #: app/_translations.py:40
@@ -164,14 +159,13 @@ msgstr "Περίπλοκη εγκατάσταση"
 
 #. NOTE: tags: description for complex_installation
 #: app/_translations.py:46
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "Requires futher installation steps, such as installing LuaRocks or "
 "editing the trusted mod setting"
 msgstr ""
 "Απαιτεί περαιτέρω βήματα εγκατάστασης, όπως την εγκατάσταση του LuaRocks ή "
-"την επεξεργασία της έμπιστης ρύθμισης της αλλαγής"
+"την επεξεργασία της ρύθμισης έμπιστων τροποποιήσεων"
 
 #. NOTE: tags: title for crafting
 #: app/_translations.py:48
@@ -181,21 +175,18 @@ msgstr "Κατασκευή"
 
 #. NOTE: tags: description for crafting
 #: app/_translations.py:50
-#, fuzzy
 msgctxt "tags"
 msgid "Big changes to crafting gameplay"
-msgstr "Μεγάλες αλλαγές στον τρόπο παιχνιδιού με κατασκευή"
+msgstr "Μεγάλες αλλαγές στον τρόπο παιχνιδιού όσον αφορά την χειροτεχνία"
 
 #. NOTE: tags: title for creative
 #: app/_translations.py:52
-#, fuzzy
 msgctxt "tags"
 msgid "Creative"
-msgstr "Δημιουργική"
+msgstr "Δημιουργίας"
 
 #. NOTE: tags: description for creative
 #: app/_translations.py:54
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "Written specifically or exclusively for use in creative mode. Adds "
@@ -203,20 +194,18 @@ msgid ""
 "that facilitate ingame creation and doesn't add difficulty or scarcity"
 msgstr ""
 "Γραμμένο ειδικά ή αποκλειστικά για χρήση σε λειτουργία δημιουργίας. "
-"Προσθέτει περιεχόμενο διαθέσιμο μόνο από ένα δημιουργικό inventory, ή "
-"παρέχει εργαλεία που πραγματοποιούν δημιουργία μέσα στο παιχνίδι και δεν "
-"προσθέτουν δυσκολία ή έλλειψη."
+"Προσθέτει περιεχόμενο διαθέσιμο μόνο από συλλογή αντικειμένων σε κατάσταση "
+"δημιουργίας, ή παρέχει εργαλεία που πραγματοποιούν δημιουργία μέσα στο "
+"παιχνίδι και δεν προσθέτουν δυσκολία ή έλλειψη"
 
 #. NOTE: tags: title for custom_mapgen
 #: app/_translations.py:56
-#, fuzzy
 msgctxt "tags"
 msgid "Custom mapgen"
 msgstr "Προσαρμόσιμη γεννήτρια χάρτη"
 
 #. NOTE: tags: description for custom_mapgen
 #: app/_translations.py:58
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "Contains a completely custom mapgen implemented in Lua, usually requires "
@@ -233,28 +222,24 @@ msgstr "Διακοσμητικό"
 
 #. NOTE: tags: description for decorative
 #: app/_translations.py:62
-#, fuzzy
 msgctxt "tags"
 msgid "Adds nodes with no other purpose than for use in building"
-msgstr "Προσθέτει μπλοκ με όχι άλλο σκοπό πέρα από χρήση σε οικοδομήσεις"
+msgstr "Προσθέτει μπλοκ με όχι άλλο σκοπό πέρα από χρήση σε χτίσιμο"
 
 #. NOTE: tags: title for developer_tools
 #: app/_translations.py:64
-#, fuzzy
 msgctxt "tags"
 msgid "Developer Tools"
 msgstr "Εργαλεία Προγραμματιστών"
 
 #. NOTE: tags: description for developer_tools
 #: app/_translations.py:66
-#, fuzzy
 msgctxt "tags"
 msgid "Tools for game and mod developers"
-msgstr "Εργαλεία για προγραμματιστές παιχνιδιού και τροποποιήσεων"
+msgstr "Εργαλεία για προγραμματιστές παιχνιδιών και τροποποιήσεων"
 
 #. NOTE: tags: title for education
 #: app/_translations.py:68
-#, fuzzy
 msgctxt "tags"
 msgid "Education"
 msgstr "Εκπαίδευση"
@@ -307,14 +292,12 @@ msgstr ""
 
 #. NOTE: tags: title for hud
 #: app/_translations.py:82
-#, fuzzy
 msgctxt "tags"
 msgid "HUD"
 msgstr "HUD"
 
 #. NOTE: tags: description for hud
 #: app/_translations.py:84
-#, fuzzy
 msgctxt "tags"
 msgid "For mods that grant the player extra information in the HUD"
 msgstr "Για τροποποιήσεις που παρέχουν στον παίκτη επιπλέον πληροφορίες στο HUD"
@@ -323,7 +306,7 @@ msgstr "Για τροποποιήσεις που παρέχουν στον πα�
 #: app/_translations.py:86
 msgctxt "tags"
 msgid "Inventory"
-msgstr ""
+msgstr "Υπάρχοντα"
 
 #. NOTE: tags: description for inventory
 #: app/_translations.py:88
@@ -335,7 +318,7 @@ msgstr "Αλλάζει την γραφική αναπαράσταση του inv
 #: app/_translations.py:90
 msgctxt "tags"
 msgid "Jam / Combat 2020"
-msgstr ""
+msgstr "Jam/Combat 2020"
 
 #. NOTE: tags: description for jam_combat_mod
 #: app/_translations.py:92
@@ -349,7 +332,7 @@ msgstr ""
 #: app/_translations.py:94
 msgctxt "tags"
 msgid "Jam / Game 2021"
-msgstr ""
+msgstr "Jam/Game 2021"
 
 #. NOTE: tags: description for jam_game_2021
 #: app/_translations.py:96
@@ -361,105 +344,95 @@ msgstr "Συμμετοχές στον διαγωνισμό Minetest Game Jam τ�
 #: app/_translations.py:98
 msgctxt "tags"
 msgid " Jam / Game 2022"
-msgstr ""
+msgstr " Jam/Game 2022"
 
 #. NOTE: tags: description for jam_game_2022
 #: app/_translations.py:100
-#, fuzzy
 msgctxt "tags"
 msgid "Entries to the 2022 Minetest Game Jam "
-msgstr "Εισαγωγές στο 2022 Minetest Game Jam "
+msgstr "Εισαγωγές στο Minetest Game Jam του 2022 "
 
 #. NOTE: tags: title for jam_game_2023
 #: app/_translations.py:102
 msgctxt "tags"
 msgid "Jam / Game 2023"
-msgstr ""
+msgstr "Jam/Game 2023"
 
 #. NOTE: tags: description for jam_game_2023
 #: app/_translations.py:104
-#, fuzzy
 msgctxt "tags"
 msgid "Entries to the 2023 Minetest Game Jam "
-msgstr "Εισαγωγές για το 2023 Minetest Game Jam "
+msgstr "Εισαγωγές για το Minetest Game Jam του 2023 "
 
 #. NOTE: tags: title for jam_game_2024
 #: app/_translations.py:106
 msgctxt "tags"
 msgid "Jam / Game 2024"
-msgstr ""
+msgstr "Jam/Game 2024"
 
 #. NOTE: tags: description for jam_game_2024
 #: app/_translations.py:108
-#, fuzzy
 msgctxt "tags"
 msgid "Entries to the 2024 Luanti Game Jam"
-msgstr "Εισαγωγές στο 2024 Luanti Game Jam"
+msgstr "Εισαγωγές στο Luanti Game Jam του 2024"
 
 #. NOTE: tags: title for jam_weekly_2021
 #: app/_translations.py:110
 msgctxt "tags"
 msgid "Jam / Weekly Challenges 2021"
-msgstr ""
+msgstr "Jam/Weekly Challenges 2021"
 
 #. NOTE: tags: description for jam_weekly_2021
 #: app/_translations.py:112
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "For mods created for the Discord \"Weekly Challenges\" modding event in "
 "2021"
 msgstr ""
-"Για τροποποιήσεις που δημιουργήθηκαν για το Discord "
-"\"Εβδομαδιαίες Προκλήσεις\" γεγονός τροποποίησης το 2021"
+"Για τροποποιήσεις που δημιουργήθηκαν για το γεγονός τροποποίησεων "
+"\"Εβδομαδιαίες Προκλήσεις\" στο Discord το 2021"
 
 #. NOTE: tags: title for less_than_px
 #: app/_translations.py:114
-#, fuzzy
 msgctxt "tags"
 msgid "<16px"
 msgstr "&lt;16 πίξελ"
 
 #. NOTE: tags: description for less_than_px
 #: app/_translations.py:116
-#, fuzzy
 msgctxt "tags"
 msgid "Less than 16px"
 msgstr "Λιγότερο από 16πίξελ"
 
 #. NOTE: tags: title for library
 #: app/_translations.py:118
-#, fuzzy
 msgctxt "tags"
 msgid "API / Library"
 msgstr "API / Βιβλιοθήκη"
 
 #. NOTE: tags: description for library
 #: app/_translations.py:120
-#, fuzzy
 msgctxt "tags"
 msgid "Primarily adds an API for other mods to use"
-msgstr "Κυρίως προσθέτει ένα API για να το χρησιμοποιήσουν άλλες τροποποιήσεις"
+msgstr "Κυρίως προσθέτει ένα API για χρήση από άλλες τροποποιήσεις"
 
 #. NOTE: tags: title for magic
 #: app/_translations.py:122
-#, fuzzy
 msgctxt "tags"
 msgid "Magic / Enchanting"
-msgstr "Μαγεία"
+msgstr "Μαγεία / Ενίσχυση με μαγεία"
 
 #. NOTE: tags: title for mapgen
 #: app/_translations.py:124
-#, fuzzy
 msgctxt "tags"
 msgid "Mapgen / Biomes / Decoration"
-msgstr "Παραγωγή Χάρτη / Εποχές / Διακόσμηση"
+msgstr "Παραγωγή Χάρτη / Μεγαοικοσυστήματα / Διακόσμηση"
 
 #. NOTE: tags: description for mapgen
 #: app/_translations.py:126
 msgctxt "tags"
 msgid "New mapgen or changes mapgen"
-msgstr ""
+msgstr "Νέα γεννήτρια χάρτη ή αλλάζει την γεννήτρια χάρτη"
 
 #. NOTE: tags: title for mini-game
 #: app/_translations.py:128
@@ -517,14 +490,13 @@ msgstr "Μοναδικό"
 
 #. NOTE: tags: description for oneofakind__original
 #: app/_translations.py:146
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "For games and such that are of their own kind, distinct and original in "
 "nature to others of the same category."
 msgstr ""
-"Για παιχνίδια και διάφορα που είναι στο δικό τους είδος, ξεχωριστά και "
-"πρωτότυπα στην φύση τους σε σχέση με άλλους στην ίδια κατηγορία."
+"Για παιχνίδια κ.λπ. που αποτελούν ξεχωριστή κατηγορία, με αυθεντικό και "
+"μοναδικό χαρακτήρα σε σχέση με άλλα του είδους τους."
 
 #. NOTE: tags: title for plants_and_farming
 #: app/_translations.py:148
@@ -540,46 +512,40 @@ msgstr "Προσθέτει νέα φυτά ή καλλιεργήσιμες πρ�
 
 #. NOTE: tags: title for player_effects
 #: app/_translations.py:152
-#, fuzzy
 msgctxt "tags"
 msgid "Player Effects / Power Ups"
-msgstr "Εφέ Παίκτη / Ενδυναμώσεις"
+msgstr "Εφέ Παίκτη / Ενισχυτικά"
 
 #. NOTE: tags: description for player_effects
 #: app/_translations.py:154
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "For content that changes player effects, including physics, for example: "
 "speed, jump height or gravity."
 msgstr ""
-"Για περιεχόμενο που αλλάζει τα εφέ του παίκτη, συμπεριλαμβανομένου την "
-"φυσική, για παράδειγμα: ταχύτητα, ύψος άλματος ή βαρύτητα."
+"Για περιεχόμενο που αλλάζει τα εφέ παίκτη, συμπεριλαμβανομένου τους κανόνες "
+"φυσικής, για παράδειγμα: ταχύτητα, ύψος άλματος ή βαρύτητα."
 
 #. NOTE: tags: title for puzzle
 #: app/_translations.py:156
-#, fuzzy
 msgctxt "tags"
 msgid "Puzzle"
 msgstr "Παζλ"
 
 #. NOTE: tags: description for puzzle
 #: app/_translations.py:158
-#, fuzzy
 msgctxt "tags"
 msgid "Focus on puzzle solving instead of combat"
 msgstr "Συγκεντρώσου στην επίλυση παζλ αντί στην μάχη"
 
 #. NOTE: tags: title for pve
 #: app/_translations.py:160
-#, fuzzy
 msgctxt "tags"
 msgid "Player vs Environment (PvE)"
 msgstr "Παίκτης εναντίον Περιβάλλον (PvE)"
 
 #. NOTE: tags: description for pve
 #: app/_translations.py:162
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "For content designed for one or more players that focus on combat against"
@@ -590,17 +556,15 @@ msgstr ""
 
 #. NOTE: tags: title for pvp
 #: app/_translations.py:164
-#, fuzzy
 msgctxt "tags"
 msgid "Player vs Player (PvP)"
-msgstr "Παίκτης εναντίον Παίκτης (PvP)"
+msgstr "Παίκτης εναντίον Παίκτη (PvP)"
 
 #. NOTE: tags: description for pvp
 #: app/_translations.py:166
-#, fuzzy
 msgctxt "tags"
 msgid "Designed to be played competitively against other players"
-msgstr "Σχεδιασμένο να παιχτεί ανταγωνιστικά εναντίον άλλων παικτών"
+msgstr "Σχεδιασμένο για να παίζεται ανταγωνιστικά εναντίον άλλων παικτών"
 
 #. NOTE: tags: title for seasonal
 #: app/_translations.py:168
@@ -610,81 +574,71 @@ msgstr "Εποχικό"
 
 #. NOTE: tags: description for seasonal
 #: app/_translations.py:170
-#, fuzzy
 msgctxt "tags"
 msgid "For content generally themed around a certain season or holiday"
-msgstr "Για περιεχόμενο συνήθως με θέμα γύρω από μία συγκεκριμένη εποχή ή εορτή"
+msgstr ""
+"Για περιεχόμενο με θεματική συνήθως γύρω από μία συγκεκριμένη εποχή ή εορτή"
 
 #. NOTE: tags: title for server_tools
 #: app/_translations.py:172
-#, fuzzy
 msgctxt "tags"
 msgid "Server Moderation and Tools"
-msgstr "Έλεγχος Διακομιστή και Εργαλεία"
+msgstr "Διαχείριση και Εργαλεία Διακομιστή"
 
 #. NOTE: tags: description for server_tools
 #: app/_translations.py:174
-#, fuzzy
 msgctxt "tags"
 msgid "Helps with server maintenance and moderation"
 msgstr "Βοηθάει με την συντήρηση και τον έλεγχο του διακομιστή"
 
 #. NOTE: tags: title for shooter
 #: app/_translations.py:176
-#, fuzzy
 msgctxt "tags"
 msgid "Shooter"
 msgstr "Σκοπευτής"
 
 #. NOTE: tags: description for shooter
 #: app/_translations.py:178
-#, fuzzy
 msgctxt "tags"
 msgid "First person shooters (FPS) and more"
 msgstr "Σκοπευτής πρώτου προσώπου (FPS) και περισσότερα"
 
 #. NOTE: tags: title for simulation
 #: app/_translations.py:180
-#, fuzzy
 msgctxt "tags"
 msgid "Sims"
 msgstr "Προσομοίωση"
 
 #. NOTE: tags: description for simulation
 #: app/_translations.py:182
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "Mods and games that aim to simulate real life activity. Similar to "
 "SimCity/The Sims/OpenTTD/etc."
 msgstr ""
-"Τροποποιήσεις και παιχνίδια που σκοπεύουν να προσομοιώσουν δραστηριότητες "
-"της πραγματικής ζωής. Παρόμοια με SimCity/The Sims/OpenTTD/κτλ."
+"Τροποποιήσεις και παιχνίδια που στοχεύουν στην προσομοίωση πραγματικών "
+"δραστηριοτήτων. Παρόμοια με τα SimCity/The Sims/OpenTTD/κτλ."
 
 #. NOTE: tags: title for singleplayer
 #: app/_translations.py:184
-#, fuzzy
 msgctxt "tags"
 msgid "Singleplayer-focused"
-msgstr "Για έναν παίκτη-στοχευμένο"
+msgstr "Επικεντρωμένο στο παιχνίδι ενός παίκτη"
 
 #. NOTE: tags: description for singleplayer
 #: app/_translations.py:186
-#, fuzzy
 msgctxt "tags"
 msgid "Content that can be played alone"
 msgstr "Περιεχόμενο που μπορεί να παιχθεί ατομικά"
 
 #. NOTE: tags: title for skins
 #: app/_translations.py:188
-#, fuzzy
 msgctxt "tags"
 msgid "Player customization / Skins"
-msgstr "Εξατομίκευση Παίκτη / Skins"
+msgstr "Εξατομίκευση Παίκτη / Εμφανίσεις Χαρακτήρα"
 
 #. NOTE: tags: description for skins
 #: app/_translations.py:190
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "Allows the player to customize their character by changing the texture or"
@@ -695,223 +649,194 @@ msgstr ""
 
 #. NOTE: tags: title for sound_music
 #: app/_translations.py:192
-#, fuzzy
 msgctxt "tags"
 msgid "Sounds / Music"
 msgstr "Ήχοι / Μουσική"
 
 #. NOTE: tags: description for sound_music
 #: app/_translations.py:194
-#, fuzzy
 msgctxt "tags"
 msgid "Focuses on or adds new sounds or musical things"
-msgstr "Εστιάζει σε ή προσθέτει νέους ήχους ή μουσικά πράγματα."
+msgstr "Εστιάζει σε ή προσθέτει νέους ήχους ή μουσικό περιεχόμενο"
 
 #. NOTE: tags: title for sports
 #: app/_translations.py:196
-#, fuzzy
 msgctxt "tags"
 msgid "Sports"
 msgstr "Αθλητικά"
 
 #. NOTE: tags: title for storage
 #: app/_translations.py:198
-#, fuzzy
 msgctxt "tags"
 msgid "Storage"
-msgstr "Αποθήκευση"
+msgstr "Αποθηκευτικός Χώρος"
 
 #. NOTE: tags: description for storage
 #: app/_translations.py:200
-#, fuzzy
 msgctxt "tags"
 msgid "Adds or improves item storage mechanics"
 msgstr "Προσθέτει ή βελτιώνει τους μηχανισμούς αποθήκευσης αντικειμένων"
 
 #. NOTE: tags: title for strategy_rts
 #: app/_translations.py:202
-#, fuzzy
 msgctxt "tags"
 msgid "Strategy / RTS"
-msgstr "Στρατηγική / Στρατηγική σε Πραγματικό Χρόνο"
+msgstr "Στρατηγική / Παιχνίδι Πραγματικού Χρόνου"
 
 #. NOTE: tags: description for strategy_rts
 #: app/_translations.py:204
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "Games and mods with a heavy strategy component, whether real-time or "
 "turn-based"
 msgstr ""
-"Παιχνίδια ή τροποποιήσεις με ένα βαρύ στρατηγικό κομμάτι, είτε πραγματικού-"
-"χρόνου ή με βάση την σειρά"
+"Παιχνίδια ή τροποποιήσεις με βαρύ στρατηγικό κομμάτι, είτε πραγματικού-"
+"χρόνου είτε με βάση την σειρά"
 
 #. NOTE: tags: title for survival
 #: app/_translations.py:206
-#, fuzzy
 msgctxt "tags"
 msgid "Survival"
 msgstr "Επιβίωση"
 
 #. NOTE: tags: description for survival
 #: app/_translations.py:208
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "Written specifically for survival gameplay with a focus on game-balance, "
 "difficulty level, or resources available through crafting, mining, ..."
 msgstr ""
-"Γραμμένο ειδικά για παιχνίδι επιβίωσης με εστίαση στην ισότητα του "
-"παιχνιδιού, επίπεδο δυσκολίας, ή πόρους διαθέσιμους μέσω χειροτεχνίας, "
-"εξόρυξης, ..."
+"Γραμμένο ειδικά για παιχνίδι επιβίωσης με εστίαση στην εξισορρόπηση του "
+"παιχνιδιού, στο επίπεδο δυσκολίας, ή στους πόρους διαθέσιμους μέσω "
+"χειροτεχνίας, εξόρυξης, ..."
 
 #. NOTE: tags: title for technology
 #: app/_translations.py:210
-#, fuzzy
 msgctxt "tags"
 msgid "Machines / Electronics"
 msgstr "Μηχανές / Ηλεκτρονικά"
 
 #. NOTE: tags: description for technology
 #: app/_translations.py:212
-#, fuzzy
 msgctxt "tags"
 msgid "Adds machines useful in automation, tubes, or power."
-msgstr "Προσθέτει μηχανές χρήσιμες στην αυτοματοποίηση, σωλήνες, ή ισχύς."
+msgstr ""
+"Προσθέτει μηχανές χρήσιμες στην αυτοματοποίηση, στις σωληνώσεις, ή στην ισχύ."
 
 #. NOTE: tags: title for tools
 #: app/_translations.py:214
-#, fuzzy
 msgctxt "tags"
 msgid "Tools / Weapons / Armor"
 msgstr "Εργαλεία / Όπλα / Πανοπλία"
 
 #. NOTE: tags: description for tools
 #: app/_translations.py:216
-#, fuzzy
 msgctxt "tags"
 msgid "Adds or changes tools, weapons, and armor"
 msgstr "Προσθέτει ή αλλάζει εργαλεία, όπλα, και πανοπλία"
 
 #. NOTE: tags: title for transport
 #: app/_translations.py:218
-#, fuzzy
 msgctxt "tags"
 msgid "Transport"
 msgstr "Μεταφορά"
 
 #. NOTE: tags: description for transport
 #: app/_translations.py:220
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "Adds or changes transportation methods. Includes teleportation, vehicles,"
 " ridable mobs, transport infrastructure and thematic content"
 msgstr ""
-"Προσθέτει ή αλλάζει μεταφορικές μεθόδους. Περιλαμβάνει τηλεμεταφορά, "
+"Προσθέτει ή αλλάζει τις μεθόδους μεταφοράς. Περιλαμβάνει τηλεμεταφορά, "
 "οχήματα, οδηγήσιμα mobs, υποδομή μεταφοράς και θεματικό περιεχόμενο"
 
 #. NOTE: tags: title for world_tools
 #: app/_translations.py:222
-#, fuzzy
 msgctxt "tags"
 msgid "World Maintenance and Tools"
 msgstr "Συντήρηση Κόσμου και Εργαλεία"
 
 #. NOTE: tags: description for world_tools
 #: app/_translations.py:224
-#, fuzzy
 msgctxt "tags"
 msgid "Tools to manage the world"
 msgstr "Εργαλεία για την διαχείριση του κόσμου"
 
 #. NOTE: content_warnings: title for alcohol_tobacco
 #: app/_translations.py:226
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Alcohol / Tobacco"
 msgstr "Αλκοόλ / Καπνός"
 
 #. NOTE: content_warnings: description for alcohol_tobacco
 #: app/_translations.py:228
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Contains alcohol and/or tobacco"
 msgstr "Περιέχει αλκοόλ και/ή καπνό"
 
 #. NOTE: content_warnings: title for bad_language
 #: app/_translations.py:230
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Bad Language"
-msgstr "Κακή Γλώσσα"
+msgstr "Απρεπής Γλώσσα"
 
 #. NOTE: content_warnings: description for bad_language
 #: app/_translations.py:232
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Contains swearing"
 msgstr "Περιέχει υβριστικό λόγο"
 
 #. NOTE: content_warnings: title for drugs
 #: app/_translations.py:234
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Drugs"
 msgstr "Ουσίες"
 
 #. NOTE: content_warnings: description for drugs
 #: app/_translations.py:236
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Contains recreational drugs other than alcohol or tobacco"
-msgstr "Περιλαμβάνει ψυχαγωγικές ουσίες εκτός από αλκοόλ ή καπνό"
+msgstr "Περιλαμβάνει ουσίες ψυχαγωγικής χρήσης πέρα από αλκοόλ ή καπνό"
 
 #. NOTE: content_warnings: title for gambling
 #: app/_translations.py:238
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Gambling"
-msgstr "Τυχερά Παιχνίδια"
+msgstr "Τζόγος"
 
 #. NOTE: content_warnings: description for gambling
 #: app/_translations.py:240
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Games of chance, gambling games, etc"
-msgstr "Παιχνίδια πιθανότητας, παιχνίδια τύχης, κτλ"
+msgstr "Παιχνίδια πιθανότητας, παιχνίδια τζόγου, κτλ"
 
 #. NOTE: content_warnings: title for gore
 #: app/_translations.py:242
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Gore"
-msgstr "Αίμα"
+msgstr "Αιματηρό περιεχόμενο"
 
 #. NOTE: content_warnings: description for gore
 #: app/_translations.py:244
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Blood, etc"
 msgstr "Αίμα, κτλ"
 
 #. NOTE: content_warnings: title for horror
 #: app/_translations.py:246
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Fear / Horror"
 msgstr "Φόβος / Τρόμος"
 
 #. NOTE: content_warnings: description for horror
 #: app/_translations.py:248
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Shocking and scary content. May scare young children"
-msgstr "Σοκαριστικό και τρομακτικό περιεχόμενο. Μπορεί να τρομάξει νέα παιδιά"
+msgstr "Σοκαριστικό και τρομακτικό περιεχόμενο. Μπορεί να τρομάξει μικρά παιδιά"
 
 #. NOTE: content_warnings: title for violence
 #: app/_translations.py:250
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Violence"
 msgstr "Βία"
@@ -921,6 +846,7 @@ msgstr "Βία"
 msgctxt "content_warnings"
 msgid "Non-cartoon violence. May be towards fantasy or  human-like characters"
 msgstr ""
+"Μη καρτουνίστικη βία. Πιθανώς προς φανταστικούς ή  ανρθπόμορφους χαρακτήρες"
 
 #: app/querybuilder.py:60 app/templates/admin/languages/list.html:27
 #: app/templates/admin/tags/list.html:34
@@ -933,7 +859,7 @@ msgid "Packages"
 msgstr "Πακέτα"
 
 #: app/querybuilder.py:75
-#, fuzzy, python-format
+#, python-format
 msgid "%(package_type)s for %(game_name)s"
 msgstr "%(package_type)s για %(game_name)s"
 
@@ -958,7 +884,6 @@ msgid "Name"
 msgstr "Όνομα"
 
 #: app/blueprints/api/tokens.py:34
-#, fuzzy
 msgid "Limit to package"
 msgstr "Περιορισμός σε πακέτο"
 
@@ -995,12 +920,10 @@ msgstr "Τίτλος"
 #: app/blueprints/collections/__init__.py:83
 #: app/blueprints/collections/__init__.py:88
 #: app/templates/packages/translation.html:45
-#, fuzzy
 msgid "Short Description"
 msgstr "Μικρή Περιγραφή"
 
 #: app/blueprints/collections/__init__.py:84
-#, fuzzy
 msgid "Page Content"
 msgstr "Περιεχόμενο Σελίδας"
 
@@ -1011,65 +934,54 @@ msgid "Private"
 msgstr "Ιδιωτικό"
 
 #: app/blueprints/collections/__init__.py:86
-#, fuzzy
 msgid "Pinned to my profile"
-msgstr "Καρφωμένο στο προφίλ μου"
+msgstr "Καρφιτσωμένο στο προφίλ μου"
 
 #: app/blueprints/collections/__init__.py:158
-#, fuzzy
 msgid "A collection with a similar title already exists"
 msgstr "Μία συλλογή με παρόμοιο τίτλο υπάρχει ήδη"
 
 #: app/blueprints/collections/__init__.py:164
-#, fuzzy
 msgid "Unable to create collection as a package with that name already exists"
 msgstr ""
-"Αδύνατον να δημιουργηθεί η συλλογή διότι ένα πακέτο με αυτό το όνομα υπάρχει "
-"ήδη"
+"Δεν είναι δυνατή η δημιουργία της συλλογής διότι ένα πακέτο με αυτό το όνομα "
+"υπάρχει ήδη"
 
 #: app/blueprints/collections/__init__.py:310
-#, fuzzy
 msgid "Added package to collection"
 msgstr "Προστέθηκε το πακέτο στην συλλογή"
 
 #: app/blueprints/collections/__init__.py:312
-#, fuzzy
 msgid "Removed package from collection"
 msgstr "Αφαιρέθηκε το πακέτο από την συλλογή"
 
 #: app/blueprints/collections/__init__.py:331
-#, fuzzy
 msgid "Added package to favorites collection"
 msgstr "Προστέθηκε το πακέτο στην συλλογή αγαπημένων"
 
 #: app/blueprints/collections/__init__.py:333
-#, fuzzy
 msgid "(Public, change from Profile > My Collections)"
 msgstr "(Δημόσιο, άλλαξε από Προφίλ &gt; Οι συλλογές μου)"
 
 #: app/blueprints/collections/__init__.py:337
-#, fuzzy
 msgid "Removed package from favorites collection"
 msgstr "Το πακέτο αφαιρέθηκε από την συλλογή των αγαπημένων"
 
 #: app/blueprints/feeds/__init__.py:32 app/templates/index.html:8
-#, fuzzy
 msgid "Welcome to the best place to find Luanti mods, games, and texture packs"
 msgstr ""
-"Καλώς ήρθες στο καλύτερο μέρος για να βρεις τροποποιήσεις Luanti, παιχνίδια "
-"και πακέτα υφής."
+"Καλώς ήρθες στο καλύτερο μέρος για να βρεις τροποποιήσεις, παιχνίδια και "
+"πακέτα υφής για το Luanti"
 
 #: app/blueprints/feeds/__init__.py:70 app/templates/base.html:29
 #: app/templates/base.html:36
-#, fuzzy
 msgid "ContentDB new packages"
-msgstr "ContentDB νέα πακέτα"
+msgstr "Νέα πακέτα ContentDB"
 
 #: app/blueprints/feeds/__init__.py:98 app/templates/base.html:31
 #: app/templates/base.html:38
-#, fuzzy
 msgid "ContentDB package updates"
-msgstr "ContentDB ενημερώσεις πακέτων"
+msgstr "Ενημερώσεις Πακέτων ContentDB"
 
 #: app/blueprints/feeds/__init__.py:107 app/templates/base.html:27
 #: app/templates/base.html:34
@@ -1083,22 +995,22 @@ msgid "Description"
 msgstr "Περιγραφή"
 
 #: app/blueprints/oauth/__init__.py:170
-#, fuzzy
 msgid "Redirect URL"
 msgstr "URL Ανακατεύθυνσης"
 
 #: app/blueprints/oauth/__init__.py:171
-#, fuzzy
 msgid "App Type"
 msgstr "Τύπος Εφαρμογής"
 
 #: app/blueprints/oauth/__init__.py:198
 msgid "An OAuth client with that title already exists. Please choose a new title."
 msgstr ""
+"Ένας πελάτης OAuth με αυτόν τον τίτλο υπάρχει ήδη. Παρακαλώ επιλέξτε έναν "
+"νέο τίτλο."
 
 #: app/blueprints/oauth/__init__.py:262
 msgid "Revoked all user tokens"
-msgstr ""
+msgstr "Ανάκληση όλων των διακριτικών του χρήστη"
 
 #: app/blueprints/packages/__init__.py:32
 #: app/templates/packages/create_edit.html:29
@@ -1108,7 +1020,7 @@ msgstr "Επεξεργασία λεπτομερειών"
 #: app/blueprints/packages/__init__.py:37
 #: app/templates/packages/translation.html:4
 msgid "Translation"
-msgstr ""
+msgstr "Μετάφραση"
 
 #: app/blueprints/packages/__init__.py:42
 #: app/templates/packages/releases_list.html:34
@@ -1137,7 +1049,7 @@ msgstr "Αρχείο ελέγχου"
 #: app/templates/packages/stats.html:4 app/templates/packages/stats.html:23
 #: app/templates/packages/view.html:243 app/templates/users/profile.html:148
 msgid "Statistics"
-msgstr ""
+msgstr "Στατιστικές"
 
 #: app/blueprints/packages/__init__.py:67 app/templates/packages/share.html:4
 msgid "Share and Badges"
@@ -1145,43 +1057,43 @@ msgstr "Κοινή χρήση και Σήματα"
 
 #: app/blueprints/packages/__init__.py:72
 msgid "Remove / Unpublish"
-msgstr ""
+msgstr "Αφαίρεση / Αναίρεση Δημοσίευσης"
 
 #: app/blueprints/packages/__init__.py:80 app/logic/package_approval.py:123
 #: app/templates/packages/game_support.html:4
 #: app/utils/minetest_hypertext.py:275 app/utils/minetest_hypertext.py:277
 msgid "Supported Games"
-msgstr ""
+msgstr "Υποστηριζόμενα Παιχνίδια"
 
 #: app/blueprints/packages/advanced_search.py:39
 msgid "Android Default"
-msgstr ""
+msgstr "Προεπιλογή Android"
 
 #: app/blueprints/packages/advanced_search.py:40
 msgid "Desktop Default"
-msgstr ""
+msgstr "Προεπιλογή Υπολογιστή"
 
 #: app/blueprints/packages/advanced_search.py:41
 msgid "Non-free"
-msgstr ""
+msgstr "Μη-ελεύθερα"
 
 #: app/blueprints/packages/advanced_search.py:42 app/models/packages.py:630
 #: app/templates/packages/view.html:170
 msgid "Work in Progress"
-msgstr ""
+msgstr "Υπό Κατασκευή"
 
 #. NOTE: Package maintenance state
 #: app/blueprints/packages/advanced_search.py:43 app/models/packages.py:170
 msgid "Deprecated"
-msgstr ""
+msgstr "Σε αποδρομή"
 
 #: app/blueprints/packages/advanced_search.py:44
 msgid "All content warnings"
-msgstr ""
+msgstr "Προειδοποιήσεις όλων των τύπων περιεχομένου"
 
 #: app/blueprints/packages/advanced_search.py:53
 msgid "Query"
-msgstr ""
+msgstr "Ερώτημα"
 
 #: app/blueprints/packages/advanced_search.py:54
 #: app/blueprints/packages/packages.py:231 app/templates/packages/view.html:616
@@ -1204,7 +1116,7 @@ msgstr "Ετικέτες"
 #: app/blueprints/packages/advanced_search.py:60
 #: app/blueprints/packages/packages.py:239
 msgid "Content Warnings"
-msgstr ""
+msgstr "Προειδοποιήσεις Περιεχομένου"
 
 #: app/blueprints/packages/advanced_search.py:63
 #: app/blueprints/packages/packages.py:240 app/templates/packages/view.html:627
@@ -1214,7 +1126,7 @@ msgstr "Άδεια"
 
 #: app/blueprints/packages/advanced_search.py:67
 msgid "Supports Game"
-msgstr ""
+msgstr "Υποστηρίζει Παιχνίδι"
 
 #: app/blueprints/packages/advanced_search.py:71
 #: app/templates/admin/storage.html:39
@@ -1228,29 +1140,29 @@ msgstr ""
 #: app/templates/packages/similar.html:22 app/templates/translate/index.html:28
 #, python-format
 msgid "%(title)s by %(author)s"
-msgstr ""
+msgstr "%(title)s από %(author)s"
 
 #: app/blueprints/packages/advanced_search.py:72
 #: app/blueprints/packages/reviews.py:54
 #: app/templates/packages/translation.html:39
 msgid "Language"
-msgstr ""
+msgstr "Γλώσσα"
 
 #: app/blueprints/packages/advanced_search.py:76
 msgid "Hide Tags and Content Warnings"
-msgstr ""
+msgstr "Απόκρυψη ετικετών και προειδοποιήσεων περιεχομένου"
 
 #: app/blueprints/packages/advanced_search.py:77
 msgid "Luanti Version"
-msgstr ""
+msgstr "Έκδοση Luanti"
 
 #: app/blueprints/packages/advanced_search.py:81
 msgid "Sort by"
-msgstr ""
+msgstr "Ταξινόμηση κατά"
 
 #: app/blueprints/packages/advanced_search.py:85
 msgid "Package score"
-msgstr ""
+msgstr "Βαθμολογία πακέτου"
 
 #: app/blueprints/packages/advanced_search.py:86 app/templates/index.html:78
 #: app/templates/packages/reviews_list.html:4
@@ -1266,71 +1178,71 @@ msgstr "Λήψεις"
 
 #: app/blueprints/packages/advanced_search.py:88
 msgid "Created At"
-msgstr ""
+msgstr "Δημιουργήθηκε Σε"
 
 #: app/blueprints/packages/advanced_search.py:89
 msgid "Approved At"
-msgstr ""
+msgstr "Εγκρίθηκε Σε"
 
 #: app/blueprints/packages/advanced_search.py:90
 msgid "Last Release"
-msgstr ""
+msgstr "Τελευταία Έκδοση"
 
 #: app/blueprints/packages/advanced_search.py:92
 msgid "Order"
-msgstr ""
+msgstr "Διάταξη"
 
 #: app/blueprints/packages/advanced_search.py:93
 msgid "Descending"
-msgstr ""
+msgstr "Φθίνουσα"
 
 #: app/blueprints/packages/advanced_search.py:94
 msgid "Ascending"
-msgstr ""
+msgstr "Αύξουσα"
 
 #: app/blueprints/packages/advanced_search.py:96
 msgid "Random order"
-msgstr ""
+msgstr "Τυχαία σειρά"
 
 #: app/blueprints/packages/packages.py:216
 msgid "No download available."
-msgstr ""
+msgstr "Μη διαθέσιμη λήψη."
 
 #: app/blueprints/packages/packages.py:232
 msgid "Title (Human-readable)"
-msgstr ""
+msgstr "Τίτλος (Αναγνώσιμος από άνθρωπο)"
 
 #: app/blueprints/packages/packages.py:233
 #: app/blueprints/packages/packages.py:646
 msgid "Name (Technical)"
-msgstr ""
+msgstr "Όνομα (Τεχνικό)"
 
 #: app/blueprints/packages/packages.py:233
 #: app/blueprints/packages/packages.py:647
 #: app/templates/packages/create_edit.html:80
 msgid "Lower case letters (a-z), digits (0-9), and underscores (_) only"
-msgstr ""
+msgstr "Πεζά γράμματα (a-z), αριθμοί (0-9), και κάτω πάυλα (_) μόνο"
 
 #: app/blueprints/packages/packages.py:234
 msgid "Short Description (Plaintext)"
-msgstr ""
+msgstr "Μικρή Περιγραφή (Απλό κείμενο)"
 
 #: app/blueprints/packages/packages.py:236 app/templates/packages/view.html:638
 #: app/utils/minetest_hypertext.py:300
 msgid "Maintenance State"
-msgstr ""
+msgstr "Κατάσταση Συντήρησης"
 
 #: app/blueprints/packages/packages.py:241
 msgid "Media License"
-msgstr ""
+msgstr "Άδεια Μέσων"
 
 #: app/blueprints/packages/packages.py:243
 msgid "Long Description (Markdown)"
-msgstr ""
+msgstr "Μεγάλη Περιγραφή (Γλώσσα Μοροφποίησης)"
 
 #: app/blueprints/packages/packages.py:245
 msgid "VCS Repository URL"
-msgstr ""
+msgstr "VCS Αποθετήριο URL"
 
 #: app/blueprints/packages/packages.py:246 app/blueprints/users/settings.py:77
 msgid "Website URL"
@@ -1338,11 +1250,11 @@ msgstr "URL ιστοσελίδας"
 
 #: app/blueprints/packages/packages.py:247
 msgid "Issue Tracker URL"
-msgstr ""
+msgstr "URL Ανιχνευτής Προβλημάτων"
 
 #: app/blueprints/packages/packages.py:248
 msgid "Forum Topic ID"
-msgstr ""
+msgstr "ID Θέματος Φόρουμ"
 
 #: app/blueprints/packages/packages.py:249
 msgid "Video URL"
@@ -1350,29 +1262,31 @@ msgstr "Βίντεο URL"
 
 #: app/blueprints/packages/packages.py:250
 msgid "Donate URL"
-msgstr ""
+msgstr "URL Δωρεών"
 
 #: app/blueprints/packages/packages.py:251
 msgid "Translation URL"
-msgstr ""
+msgstr "URL Μετάφρασης"
 
 #: app/blueprints/packages/packages.py:257
 msgid "_game is not an allowed name"
-msgstr ""
+msgstr "_game δεν είναι ένα επιτρεπτό όνομα"
 
 #: app/blueprints/packages/packages.py:267
 msgid ""
 "Package already exists, but is removed. Please contact ContentDB staff to"
 " restore the package"
 msgstr ""
+"Το πακέτο υπάρχει είδη αλλά έχει αφαιρεθεί. Παρακαλώ επικοινωνήστε με το "
+"προσωπικό του ContentDB για την αποκατάσταση του πακέτου"
 
 #: app/blueprints/packages/packages.py:273
 msgid "Package already exists"
-msgstr ""
+msgstr "Το πακέτο υπάρχει ήδη"
 
 #: app/blueprints/packages/packages.py:279
 msgid "A collection with a similar name already exists"
-msgstr ""
+msgstr "Μια συλλογή με παρόμοιο όνομα υπάρχει ήδη"
 
 #: app/blueprints/packages/packages.py:332
 #: app/blueprints/packages/releases.py:89
@@ -1380,14 +1294,16 @@ msgid ""
 "You must add an email address to your account and confirm it before you "
 "can manage packages"
 msgstr ""
+"Πρέπει να προσθέσεις μια διεύθυνση ηλεκτρονικού ταχυδρομείου στον λογαριασμό "
+"σου και να το επιβεβαιώσεις πριν μπορέσεις να διαχειριστείς πακέτα"
 
 #: app/blueprints/packages/packages.py:338
 msgid "Save draft"
-msgstr ""
+msgstr "Αποθήκευση πρόχειρου"
 
 #: app/blueprints/packages/packages.py:346
 msgid "Unable to find that user"
-msgstr ""
+msgstr "Αποτυχία εύρεσης αυτού του χρήστη"
 
 #: app/blueprints/packages/packages.py:350
 #: app/blueprints/packages/screenshots.py:137
@@ -1398,46 +1314,49 @@ msgstr "Η άδεια απορρίφθηκε"
 #: app/blueprints/packages/packages.py:503
 #: app/blueprints/packages/packages.py:525
 msgid "You don't have permission to do that"
-msgstr ""
+msgstr "Δεν έχεις άδεια για να πράξεις αυτό"
 
 #: app/blueprints/packages/packages.py:444
 msgid "Please comment what changes are needed in the approval thread"
-msgstr ""
+msgstr "Παρακαλώ σχολιάστε ποιές αλλαγές χρειάζονται στο νήμα αποδοχών"
 
 #: app/blueprints/packages/packages.py:451
 msgid ""
 "Please comment in the approval thread so editors know what you have "
 "changed"
 msgstr ""
+"Παρακαλώ σχολιάστε στο νήμα αποδοχών ώστε οι συντάκτες να ξέρουν τι αλλαγές "
+"κάνατε"
 
 #: app/blueprints/packages/packages.py:490
 #, python-format
 msgid "Set state to %(state)s"
-msgstr ""
+msgstr "Όρισε κατάσταση σε %(state)s"
 
 #: app/blueprints/packages/packages.py:520
 msgid "Deleted package"
-msgstr ""
+msgstr "Διαγράφηκε πακέτο"
 
 #: app/blueprints/packages/packages.py:542
 msgid "Unapproved package"
-msgstr ""
+msgstr "Ανέγκριτο πακέτο"
 
 #: app/blueprints/packages/packages.py:551
 msgid "Maintainers (Comma-separated)"
-msgstr ""
+msgstr "Συντηρητές (Διαχωρισμένοι με υποδιαστολή)"
 
 #: app/blueprints/packages/packages.py:560
 msgid "You don't have permission to edit maintainers"
-msgstr ""
+msgstr "Δεν έχεις δικαιώματα επεξεργασίας συντηρητών"
 
 #: app/blueprints/packages/packages.py:610
 msgid "You are not a maintainer"
-msgstr ""
+msgstr "Δεν είσαι συντηρητής"
 
 #: app/blueprints/packages/packages.py:613
 msgid "Package owners cannot remove themselves as maintainers"
 msgstr ""
+"Ιδιοκτήτες πακέτων δεν μπορούν να αφαιρέσουν τον εαυτό τους ως συντηρητές"
 
 #: app/blueprints/packages/packages.py:645
 msgid "Author Name"
@@ -1445,32 +1364,38 @@ msgstr "Όνομα Συντάκτη"
 
 #: app/blueprints/packages/packages.py:732
 msgid "Enable support detection based on dependencies (recommended)"
-msgstr ""
+msgstr "Ενεργοποίησε ανίχνευση υποστήριξης βασισμένη σε εξαρτήσεις (συνίσταται)"
 
 #: app/blueprints/packages/packages.py:733
 msgid "Supported games"
-msgstr ""
+msgstr "Υποστηριζόμενα παιχνίδια"
 
 #: app/blueprints/packages/packages.py:734
 msgid "Unsupported games"
-msgstr ""
+msgstr "Μη υποστηριζόμενα παιχνίδια"
 
 #: app/blueprints/packages/packages.py:735
 msgid "Supports all games (unless stated) / is game independent"
 msgstr ""
+"Υποστηρίζει όλα τα παιχνίδια (εκτός αν αναφέρεται αλλιώς) / είναι ανεξάρτητο "
+"παιχνιδιών"
 
 #: app/blueprints/packages/packages.py:751
 msgid "You need at least one release before you can edit game support"
 msgstr ""
+"Χρειάζεται να έχετε κάνει τουλάχιστον μία έκδοση πριν να μπορείτε να "
+"επεξεργάζεστε την υποστήριξη παιχνιδιών"
 
 #: app/blueprints/packages/packages.py:755
 msgid "Mod(pack) needs to contain at least one mod. Please create a new release"
 msgstr ""
+"Η τροποποίηση (ή πακέτο τροποποιήσεων) πρέπει να περιέχει τουλάχιστον μία "
+"τροποποίηση. Παρακαλώ δημιουργήστε μία νέα έκδοση"
 
 #: app/blueprints/packages/releases.py:57
 #: app/blueprints/packages/releases.py:72
 msgid "Release Notes"
-msgstr ""
+msgstr "Σημειώσεις Έκδοσης"
 
 #: app/blueprints/packages/releases.py:59
 msgid "Method"
@@ -1484,19 +1409,19 @@ msgstr "Ανέβασμα αρχείου"
 
 #: app/blueprints/packages/releases.py:60
 msgid "Git reference (ie: commit hash, branch, or tag)"
-msgstr ""
+msgstr "Git αναφορά (π.χ: commit hash, branch, ή tag)"
 
 #: app/blueprints/packages/releases.py:62
 #: app/blueprints/packages/releases.py:77
 #: app/blueprints/packages/releases.py:217
 msgid "Minimum Luanti Version"
-msgstr ""
+msgstr "Ελάχιστη Έκδοση Luanti"
 
 #: app/blueprints/packages/releases.py:64
 #: app/blueprints/packages/releases.py:79
 #: app/blueprints/packages/releases.py:220
 msgid "Maximum Luanti Version"
-msgstr ""
+msgstr "Μέγιστη Έκδοση Luanti"
 
 #: app/blueprints/packages/releases.py:74
 #: app/templates/packages/release_edit.html:31
@@ -1506,32 +1431,32 @@ msgstr "URL"
 
 #: app/blueprints/packages/releases.py:75
 msgid "Task ID"
-msgstr ""
+msgstr "ID εργασίας"
 
 #: app/blueprints/packages/releases.py:76
 #: app/blueprints/packages/screenshots.py:41
 msgid "Is Approved"
-msgstr ""
+msgstr "Εγκρίθηκε"
 
 #: app/blueprints/packages/releases.py:98
 msgid "Import from Git"
-msgstr ""
+msgstr "Εισήγαγε από Git"
 
 #: app/blueprints/packages/releases.py:98
 msgid "Upload .zip file"
-msgstr ""
+msgstr "Ανέβασε .zip αρχείο"
 
 #: app/blueprints/packages/releases.py:216
 msgid "Set Min"
-msgstr ""
+msgstr "Όρισε Ελάχιστο"
 
 #: app/blueprints/packages/releases.py:219
 msgid "Set Max"
-msgstr ""
+msgstr "Όρισε Μέγιστο"
 
 #: app/blueprints/packages/releases.py:222
 msgid "Only change values previously set as none"
-msgstr ""
+msgstr "Άλλαξε μόνο τις τιμές που έχουν οριστεί απο πρίν ως none"
 
 #: app/blueprints/packages/releases.py:223
 msgid "Update"
@@ -1544,15 +1469,15 @@ msgstr "Ενεργοποίηση"
 
 #: app/blueprints/packages/releases.py:276
 msgid "New Commit"
-msgstr ""
+msgstr "Νέο Commit"
 
 #: app/blueprints/packages/releases.py:277 app/templates/admin/tags/list.html:8
 msgid "New Tag"
-msgstr ""
+msgstr "Νέα Ετικέτα"
 
 #: app/blueprints/packages/releases.py:279
 msgid "Branch name"
-msgstr ""
+msgstr "Όνομα Branch"
 
 #: app/blueprints/packages/releases.py:280
 #: app/templates/packages/update_config.html:38
@@ -1561,11 +1486,11 @@ msgstr "Ενέργεια"
 
 #: app/blueprints/packages/releases.py:281
 msgid "Send notification and mark as outdated"
-msgstr ""
+msgstr "Στείλε ειδοποίηση και μάρακρέ το ως απαρχαιωμένο"
 
 #: app/blueprints/packages/releases.py:281 app/logic/package_approval.py:104
 msgid "Create release"
-msgstr ""
+msgstr "Δημιούργησε έκδοση"
 
 #: app/blueprints/packages/releases.py:283
 msgid "Save Settings"
@@ -1573,19 +1498,20 @@ msgstr "Αποθήκευση Ρυθμίσεων"
 
 #: app/blueprints/packages/releases.py:284
 msgid "Disable Automation"
-msgstr ""
+msgstr "Απενεργοποίησε τους Αυτοματισμούς"
 
 #: app/blueprints/packages/releases.py:323
 msgid "Please add a Git repository URL in order to set up automatic releases"
 msgstr ""
+"Παρακαλώ προσθέστε ένα URL αποθετηρίου Git για να στήσετε αυτόματες εκδόσεις"
 
 #: app/blueprints/packages/releases.py:339
 msgid "Deleted update configuration"
-msgstr ""
+msgstr "Διαγράφηκε η διαμόρφωση ενημερώσεων"
 
 #: app/blueprints/packages/releases.py:347
 msgid "Now, please create an initial release"
-msgstr ""
+msgstr "Τώρα, παρακαλώ δημιουργήστε μία αρχική έκδοση"
 
 #: app/blueprints/packages/reviews.py:60 app/blueprints/threads/__init__.py:181
 #: app/blueprints/threads/__init__.py:182
@@ -1595,7 +1521,7 @@ msgstr "Σχόλιο"
 
 #: app/blueprints/packages/reviews.py:61
 msgid "Rating"
-msgstr ""
+msgstr "Aξιολόγηση"
 
 #: app/blueprints/packages/reviews.py:62 app/templates/macros/reviews.html:125
 #: app/templates/macros/reviews.html:179
@@ -1605,7 +1531,7 @@ msgstr "Ναι"
 #: app/blueprints/packages/reviews.py:62 app/templates/macros/reviews.html:130
 #: app/templates/macros/reviews.html:183
 msgid "Neutral"
-msgstr ""
+msgstr "Ουδέτερο"
 
 #: app/blueprints/packages/reviews.py:62 app/templates/macros/reviews.html:135
 #: app/templates/macros/reviews.html:187
@@ -1614,33 +1540,36 @@ msgstr "Όχι"
 
 #: app/blueprints/packages/reviews.py:71
 msgid "You can't review your own package!"
-msgstr ""
+msgstr "Δεν μπορείς να αξιολογήσεις το δικό σου πακέτο!"
 
 #: app/blueprints/packages/reviews.py:81
 msgid ""
 "You've reviewed too many packages recently. Please wait before trying "
 "again, and consider making your reviews more detailed"
 msgstr ""
+"Έχετε αξιολογήσει πάρα πολλά πακέτα προσφάτως. Παρακαλώ περιμένετε πριν "
+"ξανάπροσπαθήσετε, και λάβετε υπ' όψην να κάνετε τις κριτικές σας πιο "
+"περιεκτικές"
 
 #: app/blueprints/packages/reviews.py:94 app/blueprints/threads/__init__.py:207
 #: app/blueprints/threads/__init__.py:240
 #: app/blueprints/threads/__init__.py:335 app/blueprints/users/settings.py:114
 #: app/logic/packages.py:131
 msgid "Linking to blocked sites is not allowed"
-msgstr ""
+msgstr "Υπερσύνδεση σε μπλοκαρισμένες ιστοσελίδες δεν είναι επιτρεπτό"
 
 #: app/blueprints/packages/reviews.py:199
 msgid "You can't vote on the reviews on your own package!"
-msgstr ""
+msgstr "Δεν μπορείς να ψηφίσεις στις αξιολογήσεις στο δικό σου πακέτο!"
 
 #: app/blueprints/packages/reviews.py:206
 msgid "You can't vote on your own reviews!"
-msgstr ""
+msgstr "Δεν μπορείς να ψηφίσεις στις δικές σου αξιολογήσεις!"
 
 #: app/blueprints/packages/screenshots.py:34
 #: app/blueprints/packages/screenshots.py:40
 msgid "Title/Caption"
-msgstr ""
+msgstr "Τίτλος/Λεζάντα"
 
 #: app/blueprints/packages/screenshots.py:46
 #: app/templates/packages/screenshots.html:110
@@ -1660,57 +1589,57 @@ msgstr "Αναφορά"
 
 #: app/blueprints/threads/__init__.py:71
 msgid "Already subscribed!"
-msgstr ""
+msgstr "Ήδη εγγεγραμμένος!"
 
 #: app/blueprints/threads/__init__.py:73
 msgid "Subscribed to thread"
-msgstr ""
+msgstr "Εγγραφείτε στο νήμα"
 
 #: app/blueprints/threads/__init__.py:88
 msgid "Unsubscribed!"
-msgstr ""
+msgstr "Μη εγγεγραμμένος!"
 
 #: app/blueprints/threads/__init__.py:92
 msgid "Already not subscribed!"
-msgstr ""
+msgstr "Είδη μη εγγεγραμμένος!"
 
 #: app/blueprints/threads/__init__.py:110
 msgid "Locked thread"
-msgstr ""
+msgstr "Κλειδωμένο νήμα"
 
 #: app/blueprints/threads/__init__.py:113
 msgid "Unlocked thread"
-msgstr ""
+msgstr "Ξεκλείδωτο νήμα"
 
 #: app/blueprints/threads/__init__.py:162
 msgid "Cannot delete thread opening post!"
-msgstr ""
+msgstr "Η εναρκτήρια ανάρτηση του νήματος δεν μπορεί να διαγραφεί!"
 
 #: app/blueprints/threads/__init__.py:236
 msgid "Please wait before commenting again"
-msgstr ""
+msgstr "Παρακαλώ περιμένετε πριν ξανασχολιάσετε"
 
 #: app/blueprints/threads/__init__.py:285
 #: app/templates/macros/package_approval.html:56
 msgid "Open Thread"
-msgstr ""
+msgstr "Ανοιχτό Νήμα"
 
 #: app/blueprints/threads/__init__.py:310
 msgid "Unable to create thread!"
-msgstr ""
+msgstr "Αποτυχία δημιουργίας νήματος!"
 
 #: app/blueprints/threads/__init__.py:316
 msgid "An approval thread already exists! Consider replying there instead"
-msgstr ""
+msgstr "Ένα νήμα αποδοχών υπάρχει ήδη! Σκεφτείτε αντί αυτού να απαντήσετε εκεί"
 
 #: app/blueprints/threads/__init__.py:320
 msgid "Please wait before opening another thread"
-msgstr ""
+msgstr "Παρακαλώ περιμένετε πριν ανοίξετε άλλο νήμα"
 
 #: app/blueprints/todo/user.py:193
 #: app/templates/collections/package_add_to.html:46
 msgid "Done"
-msgstr ""
+msgstr "Ολοκληρώθηκε"
 
 #: app/blueprints/users/account.py:36 app/templates/users/login.html:15
 msgid "Username or email"
@@ -1733,20 +1662,20 @@ msgstr "Σύνδεση"
 
 #: app/blueprints/users/account.py:45
 msgid "Incorrect email or password"
-msgstr ""
+msgstr "Λανθασμένη διεύθυνση ηλεκτρονικού ταχυδρομείου ή κωδικός"
 
 #: app/blueprints/users/account.py:52
 #, python-format
 msgid "User %(username)s does not exist"
-msgstr ""
+msgstr "Ο Χρήστης %(username)s δεν υπάρχει"
 
 #: app/blueprints/users/account.py:55
 msgid "Incorrect password. Did you set one?"
-msgstr ""
+msgstr "Λανθασμένος κωδικός. Έχεις ορίσει έναν;"
 
 #: app/blueprints/users/account.py:58
 msgid "You need to confirm the registration email"
-msgstr ""
+msgstr "Πρέπει να επιβεβαιώσετε την διεύθυνση ηλεκτρονικού ταχυδρομίου εγγραφής"
 
 #: app/blueprints/users/account.py:66
 msgid "Login failed"
@@ -1766,6 +1695,8 @@ msgid ""
 "Only alphabetic letters (A-Za-z), numbers (0-9), underscores (_), minuses"
 " (-), and periods (.) allowed"
 msgstr ""
+"Επιτρέπονται μόνο αλφαβητικά γράμματα (A-Za-z), αριθμοί (0-9), κάτω παύλες "
+"(_), πλην (-) και τελείες (.)"
 
 #: app/blueprints/users/account.py:104 app/blueprints/users/account.py:153
 #: app/blueprints/users/account.py:189 app/blueprints/users/account.py:338
@@ -1775,7 +1706,7 @@ msgstr "E-mail"
 
 #: app/blueprints/users/account.py:106
 msgid "What is the result of the above calculation?"
-msgstr ""
+msgstr "Ποιό είναι το αποτέλεσμα του παραπάνω υπολογισμού;"
 
 #: app/blueprints/users/account.py:107
 msgid "I agree"
@@ -1788,7 +1719,7 @@ msgstr "Εγγραφή"
 
 #: app/blueprints/users/account.py:113
 msgid "Incorrect captcha answer"
-msgstr ""
+msgstr "Λανθασμένη απάντηση captcha"
 
 #: app/blueprints/users/account.py:154
 msgid "Reset Password"
@@ -1796,7 +1727,7 @@ msgstr "Επαναφορά κωδικού"
 
 #: app/blueprints/users/account.py:180
 msgid "Unable to find account"
-msgstr ""
+msgstr "Αδύνατη η ανεύρεση του λογαριασμού"
 
 #: app/blueprints/users/account.py:190 app/blueprints/users/account.py:198
 msgid "New password"
@@ -1804,7 +1735,7 @@ msgstr "Νέος κωδικός πρόσβασης"
 
 #: app/blueprints/users/account.py:191 app/blueprints/users/account.py:199
 msgid "Verify password"
-msgstr ""
+msgstr "Επαλήθευση κωδικού"
 
 #: app/blueprints/users/account.py:192 app/blueprints/users/account.py:200
 msgid "Passwords must match"
@@ -1822,10 +1753,12 @@ msgstr "Οι κωδικοί πρόσβασης δεν ταιριάζουν"
 #: app/logic/users.py:51
 msgid "That email address has been unsubscribed/blacklisted, and cannot be used"
 msgstr ""
+"Αυτή η διεύθυνση ηλεκτρονικού ταχυδρομείου έχει διαγραφεί από τη λίστα/έχει "
+"συμπεριληφθεί στη μαύρη λίστα και δεν μπορεί να χρησιμοποιηθεί"
 
 #: app/blueprints/users/account.py:224 app/logic/users.py:46
 msgid "Email already in use"
-msgstr ""
+msgstr "Ηλεκτρονικό ταχυδρομείο ήδη σε λειτουργία"
 
 #: app/blueprints/users/account.py:225 app/logic/users.py:47
 #, python-format
@@ -1833,6 +1766,9 @@ msgid ""
 "We were unable to create the account as the email is already in use by "
 "%(display_name)s. Try a different email address."
 msgstr ""
+"Δεν μπορέσαμε να δημιουργήσουμε τον λογαριασμό αφού η διεύθυνση ηλεκτρονικού "
+"ταχυδρομείου είναι ήδη σε χρήση από %(display_name)s. Δοκιμάστε μια "
+"διαφορετική διεύθυνση ηλεκτρονικού ταχυδρομείου."
 
 #: app/blueprints/users/account.py:239 app/blueprints/users/account.py:243
 msgid "Your password has been changed successfully."
@@ -1840,37 +1776,41 @@ msgstr "Ο κωδικός πρόσβασής σας άλλαξε με επιτυ
 
 #: app/blueprints/users/account.py:258
 msgid "Old password is incorrect"
-msgstr ""
+msgstr "Ο παλιός κωδικός είναι λανθασμένος"
 
 #: app/blueprints/users/account.py:286
 msgid "Unknown verification token!"
-msgstr ""
+msgstr "Άγνωστο διακριτικό επαλήθευσης!"
 
 #: app/blueprints/users/account.py:290
 msgid "Token has expired"
-msgstr ""
+msgstr "Το διακριτικό έχει λήξει"
 
 #: app/blueprints/users/account.py:304
 msgid "Another user is already using that email"
 msgstr ""
+"Ένας άλλος χρήστης χρησιμοποιεί ήδη αυτήν τη διεύθυνση ηλεκτρονικού "
+"ταχυδρομείου"
 
 #: app/blueprints/users/account.py:307
 msgid "Confirmed email change"
-msgstr ""
+msgstr "Επικυρωμένη αλλαγή email"
 
 #: app/blueprints/users/account.py:312
 msgid "Email address changed"
-msgstr ""
+msgstr "Η διεύθυνση ηλεκτρονικού ταχυδρομείου άλλαξε"
 
 #: app/blueprints/users/account.py:313
 msgid ""
 "Your email address has changed. If you didn't request this, please "
 "contact an administrator."
 msgstr ""
+"Η διεύθυνση ηλεκτρονικού ταχυδρομείου σας έχει αλλάξει. Εάν δεν το ζητήσατε "
+"εσείς, επικοινωνήστε με έναν διαχειριστή."
 
 #: app/blueprints/users/account.py:331
 msgid "You may now log in"
-msgstr ""
+msgstr "Μπορείτε τώρα να συνδεθείτε"
 
 #: app/blueprints/users/account.py:339
 msgid "Send"
@@ -1881,118 +1821,128 @@ msgid ""
 "That email is now blacklisted. Please contact an admin if you wish to "
 "undo this."
 msgstr ""
+"Αυτή η διεύθυνση ηλεκτρονικού ταχυδρομείου έχει πλέον προστεθεί στη μαύρη "
+"λίστα. Επικοινωνήστε με έναν διαχειριστή εάν θέλετε να αναιρέσετε αυτήν την "
+"ενέργεια."
 
 #: app/blueprints/users/claim.py:46
 msgid "User has already been claimed"
-msgstr ""
+msgstr "Αύτος ο χρήστη χρησιμοποιείται ήδη"
 
 #: app/blueprints/users/claim.py:50
 msgid ""
 "Unable to get GitHub username for user. Make sure the forum account "
 "exists."
 msgstr ""
+"Δεν είναι δυνατή η λήψη ονόματος χρήστη GitHub για τον χρήστη. Βεβαιωθείτε "
+"ότι ο λογαριασμός στο φόρουμ υπάρχει."
 
 #: app/blueprints/users/claim.py:66
 msgid ""
 "A ContentDB user with that name already exists. Please contact an admin "
 "to link to your forum account"
 msgstr ""
+"Υπάρχει ήδη ένας χρήστης ContentDB με αυτό το όνομα. Επικοινωνήστε με έναν "
+"διαχειριστή για να συνδεθείτε με τον λογαριασμό σας στο φόρουμ"
 
 #: app/blueprints/users/claim.py:75
 msgid "That user has already been claimed!"
-msgstr ""
+msgstr "Αυτός ο χρήστης ήδη χρησιμοποιείται!"
 
 #: app/blueprints/users/claim.py:88
 #, python-format
 msgid "Error whilst attempting to access forums: %(message)s"
-msgstr ""
+msgstr "Σφάλμα κατά την προσπάθεια πρόσβασης στα φόρουμ: %(message)s"
 
 #: app/blueprints/users/claim.py:92
 msgid "Unable to get forum signature - does the user exist?"
-msgstr ""
+msgstr "Δεν είναι δυνατή η λήψη υπογραφής φόρουμ - υπάρχει ο χρήστης;"
 
 #: app/blueprints/users/claim.py:107
 msgid "Unable to login as user"
-msgstr ""
+msgstr "Δεν είναι δυνατή η σύνδεση ως χρήστης"
 
 #: app/blueprints/users/claim.py:113
 msgid "Could not find the key in your signature!"
-msgstr ""
+msgstr "Δεν μπόρεσε να βρεθεί το κλειδί στην υπογραφή σου!"
 
 #: app/blueprints/users/claim.py:116
 msgid "Unknown claim type"
-msgstr ""
+msgstr "Άγνωστος τύπος αιτήματος"
 
 #: app/blueprints/users/profile.py:117
 msgid "Top reviewer"
-msgstr ""
+msgstr "Κορυφαίος κριτικός"
 
 #: app/blueprints/users/profile.py:118
 #, python-format
 msgid "%(display_name)s has written the most helpful reviews on ContentDB."
 msgstr ""
+"Ο χρήστης %(display_name)s έχει γράψει τις πιο χρήσιμες κριτικές στο "
+"ContentDB."
 
 #: app/blueprints/users/profile.py:123
 msgid "2nd most helpful reviewer"
-msgstr ""
+msgstr "2ος πιο βοηθητικός κριτικός"
 
 #: app/blueprints/users/profile.py:125
 msgid "3rd most helpful reviewer"
-msgstr ""
+msgstr "3ος πιο βοηθητικός κριτικός"
 
 #: app/blueprints/users/profile.py:126
 #, python-format
 msgid "This puts %(display_name)s in the top %(perc)s%%"
-msgstr ""
+msgstr "Αυτό βάζει τους %(display_name)s στο κορυφαίο %(perc)s%%"
 
 #: app/blueprints/users/profile.py:130
 #, python-format
 msgid "Top %(perc)s%% reviewer"
-msgstr ""
+msgstr "Κορυφαίο %(perc)s%% κριτικών"
 
 #: app/blueprints/users/profile.py:131
 #, python-format
 msgid "Only %(place)d users have written more helpful reviews."
-msgstr ""
+msgstr "Μόνο %(place)d χρήστες έχουν γράψει πιο χρήσιμες κριτικές."
 
 #: app/blueprints/users/profile.py:136
 msgid "Consider writing more helpful reviews to get a medal."
 msgstr ""
+"Σκεφτείτε να γράψετε πιο χρήσιμες κριτικές για να κερδίσετε ένα μετάλλιο."
 
 #: app/blueprints/users/profile.py:138
 #, python-format
 msgid "You are in place %(place)s."
-msgstr ""
+msgstr "Είσαι στην %(place)s θέση."
 
 #: app/blueprints/users/profile.py:188
 #, python-format
 msgid "Your packages have %(downloads)d downloads in total."
-msgstr ""
+msgstr "Τα πακέτα σας έχουν συνολικά %(downloads)d λήψεις."
 
 #: app/blueprints/users/profile.py:189
 msgid "First medal is at 50k."
-msgstr ""
+msgstr "Το πρώτο μετάλλιο είναι στα 50 χιλιάδες."
 
 #: app/blueprints/users/profile.py:194
 msgid ">300k downloads"
-msgstr ""
+msgstr "&gt;300 χιλιάδες λήψεις"
 
 #: app/blueprints/users/profile.py:197
 msgid ">100k downloads"
-msgstr ""
+msgstr "&gt;100 χιλιάδες λήψεις"
 
 #: app/blueprints/users/profile.py:200
 msgid ">75k downloads"
-msgstr ""
+msgstr "&gt;75 χιλιάδες λήψεις"
 
 #: app/blueprints/users/profile.py:203
 msgid ">50k downloads"
-msgstr ""
+msgstr "&gt;50 χιλιάδες λήψεις"
 
 #: app/blueprints/users/profile.py:204
 #, python-format
 msgid "Has received %(downloads)d downloads across all packages."
-msgstr ""
+msgstr "Έχει λάβει %(downloads)d λήψεις σε όλα τα πακέτα."
 
 #: app/blueprints/users/settings.py:38 app/templates/users/profile.html:26
 #: app/templates/users/profile_edit.html:8
@@ -2001,47 +1951,49 @@ msgstr "Επεξεργασία Προφίλ"
 
 #: app/blueprints/users/settings.py:43 app/templates/users/account.html:12
 msgid "Account and Security"
-msgstr ""
+msgstr "Λογαριασμός και Ασφάλεια"
 
 #: app/blueprints/users/settings.py:48
 #: app/templates/users/settings_email.html:12
 msgid "Email and Notifications"
-msgstr ""
+msgstr "Ηλεκτρονικό Ταχυδρομείο και Ειδοποιήσεις"
 
 #: app/blueprints/users/settings.py:53 app/templates/api/list_tokens.html:10
 msgid "API Tokens"
-msgstr ""
+msgstr "Διακριτικά API"
 
 #: app/blueprints/users/settings.py:61 app/templates/oauth/list_clients.html:10
 msgid "OAuth2 Applications"
-msgstr ""
+msgstr "Εφαρμογές OAuth2"
 
 #: app/blueprints/users/settings.py:68 app/templates/users/modtools.html:4
 #: app/templates/users/modtools.html:8 app/templates/users/profile.html:44
 msgid "Moderator Tools"
-msgstr ""
+msgstr "Εργαλεία Εποπτών"
 
 #: app/blueprints/users/settings.py:78
 msgid "Donation URL"
-msgstr ""
+msgstr "URL Δωρεών"
 
 #: app/blueprints/users/settings.py:94 app/blueprints/users/settings.py:101
 msgid "A user already has that name"
-msgstr ""
+msgstr "Ένας χρήστης έχει ήδη αυτό το όνομα"
 
 #: app/blueprints/users/settings.py:264
 msgid "Removed GitHub account"
-msgstr ""
+msgstr "Διαγραμμένος GitHub λογαριασμός"
 
 #: app/blueprints/users/settings.py:266
 msgid ""
 "You need to add an email address and password before you can remove your "
 "GitHub account"
 msgstr ""
+"Πρέπει να προσθέσετε μια διεύθυνση ηλεκτρονικού ταχυδρομείου και έναν κωδικό "
+"πρόσβασης προτού καταργήσετε τον λογαριασμό σας στο GitHub"
 
 #: app/blueprints/users/settings.py:279
 msgid "Users with moderator rank or above cannot be deleted"
-msgstr ""
+msgstr "Δεν είναι δυνατή η διαγραφή χρηστών με βαθμό επόπτη ή υψηλότερο"
 
 #: app/blueprints/users/settings.py:325
 msgid "Display name"
@@ -2049,11 +2001,11 @@ msgstr "Προβολή ονόματος"
 
 #: app/blueprints/users/settings.py:326
 msgid "Forums Username"
-msgstr ""
+msgstr "Όνομα Χρήστη στα Φόρουμ"
 
 #: app/blueprints/users/settings.py:327
 msgid "GitHub Username"
-msgstr ""
+msgstr "Όνομα Χρήστη στο GitHub"
 
 #: app/blueprints/users/settings.py:328 app/templates/users/list.html:14
 msgid "Rank"
@@ -2061,7 +2013,7 @@ msgstr "Κατάταξη"
 
 #: app/blueprints/users/settings.py:381
 msgid "Can't promote a user to a rank higher than yourself!"
-msgstr ""
+msgstr "Δεν μπορείτε να προβιβάσετε έναν χρήστη σε υψηλότερη τάξη από εσάς!"
 
 #: app/blueprints/vcs/github.py:56
 msgid "Authorization failed [err=gh-oauth-login-failed]"
@@ -2075,6 +2027,7 @@ msgstr "Συνδέθηκε το GitHub με τον λογαριασμό"
 #, python-format
 msgid "GitHub account is already associated with another user: %(username)s"
 msgstr ""
+"Ο λογαριασμός GitHub συσχετίζεται ήδη με έναν άλλον χρήστη: %(username)s"
 
 #: app/blueprints/vcs/github.py:98 app/blueprints/vcs/github.py:124
 msgid "Authorization failed [err=gh-login-failed]"
@@ -2082,11 +2035,11 @@ msgstr "Η εξουσιοδότηση απέτυχε [err=gh-login-failed]"
 
 #: app/blueprints/zipgrep/__init__.py:35
 msgid "Text to find (regex)"
-msgstr ""
+msgstr "Κείμενο προς εύρεση (regex)"
 
 #: app/blueprints/zipgrep/__init__.py:36
 msgid "File filter"
-msgstr ""
+msgstr "Φίλτρο αρχείων"
 
 #: app/blueprints/zipgrep/__init__.py:38 app/templates/base.html:74
 #: app/templates/packages/advanced_search.html:34
@@ -2097,22 +2050,25 @@ msgstr "Αναζήτηση"
 #: app/logic/package_approval.py:95
 msgid "A package already exists with this name. Please see Policy and Guidance 3"
 msgstr ""
+"Ένα πακέτο με αυτό το όνομα υπάρχει ήδη. Παρακαλώ δείτε Πολιτική και "
+"Καθοδήγηση 3"
 
 #: app/logic/package_approval.py:99
 msgid "You need to create a release before this package can be approved."
 msgstr ""
+"Πρέπει να δημιουργήσετε μια έκδοση πριν αυτό το πακέτο μπορέσει να εγκριθεί."
 
 #: app/logic/package_approval.py:101
 msgid "Release is still importing, or has an error."
-msgstr ""
+msgstr "Η έκδοση εξακολουθεί να εισάγεται ή παρουσιάζει σφάλμα."
 
 #: app/logic/package_approval.py:105
 msgid "Set up releases"
-msgstr ""
+msgstr "Στήσιμο εκδόσεων"
 
 #: app/logic/package_approval.py:112
 msgid "You need to add at least one screenshot."
-msgstr ""
+msgstr "Πρέπει να προσθέσετε τουλάχιστον ένα στιγμιότυπο οθόνης."
 
 #: app/logic/package_approval.py:117
 #, python-format
@@ -2120,25 +2076,33 @@ msgid ""
 "The following hard dependencies need to be added to ContentDB first: "
 "%(deps)s"
 msgstr ""
+"Οι ακόλουθες σταθερές εξαρτήσεις πρέπει πρώτα να προστεθούν στο ContentDB: "
+"%(deps)s"
 
 #: app/logic/package_approval.py:121
 msgid ""
 "What games does your package support? Please specify on the supported "
 "games page"
 msgstr ""
+"Ποια παιχνίδια υποστηρίζει το πακέτο σας; Παρακαλώ διευκρινίστε στη σελίδα "
+"με τα υποστηριζόμενα παιχνίδια"
 
 #: app/logic/package_approval.py:126
 msgid "Please wait for the license to be added to CDB."
-msgstr ""
+msgstr "Παρακαλώ περιμένετε να προστεθεί η άδεια χρήσης στο CDB."
 
 #: app/logic/package_approval.py:134
 msgid "Please make sure that this package has the right to the names it uses."
 msgstr ""
+"Παρακαλώ βεβαιωθείτε ότι αυτό το πακέτο έχει τα δικαιώματα για τα ονόματα "
+"που χρησιμοποιεί."
 
 #: app/logic/package_approval.py:139
 #, python-format
 msgid "Please make sure that this package has the right to the names %(names)s"
 msgstr ""
+"Παρακαλώ βεβαιωθείτε ότι αυτό το πακέτο έχει τα δικαιώματα για τα ονόματα "
+"%(names)s"
 
 #: app/logic/package_approval.py:140 app/templates/index.html:112
 #: app/templates/index.html:123 app/templates/index.html:134
@@ -2166,50 +2130,58 @@ msgid ""
 "Warning: Forum topic not found. The topic may have been created since the"
 " last forum crawl."
 msgstr ""
+"Προειδοποίηση: Η θεματική του φόρουμ δεν βρέθηκε. Η θεματική ενδέχεται να "
+"έχει δημιουργηθεί από την τελευταία εξόρυξη στο φόρουμ."
 
 #: app/logic/packages.py:99
 msgid ""
 "Name can only contain lower case letters (a-z), digits (0-9), and "
 "underscores (_)"
 msgstr ""
+"Το όνομα μπορεί να περιέχει μόνο πεζά γράμματα (a-z), ψηφία (0-9) και κάτω "
+"πάυλα (_)"
 
 #: app/logic/packages.py:112
 msgid "You don't have permission to edit this package"
-msgstr ""
+msgstr "Δεν έχετε άδεια επεξεργασίας αυτού του πακέτου"
 
 #: app/logic/packages.py:116
 msgid "You don't have permission to change the package name"
-msgstr ""
+msgstr "Δεν έχετε άδεια να αλλάξετε το όνομα του πακέτου"
 
 #: app/logic/packages.py:140
 msgid "You cannot change package type once approved"
-msgstr ""
+msgstr "Δεν μπορείτε να αλλάξετε τον τύπο πακέτου μετά την έγκρισή του"
 
 #: app/logic/releases.py:33
 msgid "You don't have permission to make releases"
-msgstr ""
+msgstr "Δεν έχετε άδεια να φτιάχνετε εκδόσεις"
 
 #: app/logic/releases.py:38
 msgid ""
 "You've created too many releases for this package in the last 5 minutes, "
 "please wait before trying again"
 msgstr ""
+"Έχετε δημιουργήσει πάρα πολλές εκδόσεις για αυτό το πακέτο τα τελευταία 5 "
+"λεπτά, παρακαλώ περιμένετε πριν προσπαθήσετε ξανά"
 
 #: app/logic/releases.py:41
 msgid "A release with this name already exists"
-msgstr ""
+msgstr "Μία έκδοση με αυτό το όνομα υπάρχει ήδη"
 
 #: app/logic/releases.py:80
 msgid "Invalid commit hash; it must be a 40 character long base16 string"
 msgstr ""
+"Μη έγκυρο hash commit· πρέπει να είναι μια συμβολοσειρά base16 μήκους 40 "
+"χαρακτήρων"
 
 #: app/logic/screenshots.py:32
 msgid "Too many requests, please wait before trying again"
-msgstr ""
+msgstr "Πάρα πολλά αιτήματα, παρακαλώ περιμένετε πριν προσπαθήσετε ξανά"
 
 #: app/logic/screenshots.py:34
 msgid "a PNG, JPEG, or WebP image file"
-msgstr ""
+msgstr "ένα PNG, JPEG, ή WebP αρχείο εικόνας"
 
 #: app/logic/screenshots.py:51
 #, python-format
@@ -2217,15 +2189,17 @@ msgid ""
 "Screenshot is too small, it should be at least %(width)s by %(height)s "
 "pixels"
 msgstr ""
+"Το στιγμιότυπο οθόνης είναι πολύ μικρό, θα πρέπει να έχει διαστάσεις "
+"τουλάχιστον %(width)s επί %(height)s πίξελ"
 
 #: app/logic/uploads.py:58
 #, python-format
 msgid "Please upload %(file_desc)s"
-msgstr ""
+msgstr "Παρακαλώ ανεβάστε %(file_desc)s"
 
 #: app/logic/uploads.py:61
 msgid "Uploaded image isn't actually an image"
-msgstr ""
+msgstr "Η εικόνα που ανέβηκε δεν είναι στην πραγματικότητα εικόνα"
 
 #: app/logic/users.py:15
 msgid "Username is invalid"
@@ -2234,6 +2208,8 @@ msgstr "Το όνομα χρήστη δεν είναι έγκυρο"
 #: app/logic/users.py:26
 msgid "An account already exists for that username but hasn't been claimed yet."
 msgstr ""
+"Υπάρχει ήδη ένας λογαριασμός για αυτό το όνομα χρήστη, αλλά δεν έχει παρθεί "
+"ακόμα."
 
 #: app/logic/users.py:29
 #, python-format
@@ -2241,18 +2217,25 @@ msgid ""
 "Unable to create an account as the username is already taken. If you "
 "meant to log in, you need to connect %(provider)s to your account first"
 msgstr ""
+"Δεν είναι δυνατή η δημιουργία λογαριασμού, καθώς το όνομα χρήστη είναι ήδη "
+"σε χρήση. Εάν σκοπεύατε να συνδεθείτε, πρέπει πρώτα να συνδέσετε τον "
+"%(provider)s στον λογαριασμό σας"
 
 #: app/logic/users.py:33
 msgid "That username/display name is already in use, please choose another."
 msgstr ""
+"Αυτό το όνομα χρήστη/εμφανιζόμενο όνομα χρησιμοποιείται ήδη, επιλέξτε κάποιο "
+"άλλο."
 
 #: app/logic/users.py:40
 msgid "Unable to create an account as the username was used in the past."
 msgstr ""
+"Δεν είναι δυνατή η δημιουργία λογαριασμού, καθώς το όνομα χρήστη "
+"χρησιμοποιήθηκε στο παρελθόν."
 
 #: app/models/packages.py:69
 msgid "Mod"
-msgstr ""
+msgstr "Τροποποίηση"
 
 #: app/models/packages.py:71
 msgid "Game"
@@ -2260,12 +2243,12 @@ msgstr "Παιχνίδι"
 
 #: app/models/packages.py:73
 msgid "Texture Pack"
-msgstr ""
+msgstr "Πακέτο Υφής"
 
 #: app/models/packages.py:78 app/templates/base.html:53
 #: app/templates/modnames/view.html:14
 msgid "Mods"
-msgstr ""
+msgstr "Τροποποιήσεις"
 
 #: app/models/packages.py:80 app/templates/base.html:56
 #: app/templates/modnames/view.html:17
@@ -2274,114 +2257,120 @@ msgstr "Παιχνίδια"
 
 #: app/models/packages.py:82 app/templates/base.html:59
 msgid "Texture Packs"
-msgstr ""
+msgstr "Πακέτα Υφής"
 
 #: app/models/packages.py:87
 msgid "Top mod"
-msgstr ""
+msgstr "Κορυφαία τροποποίηση"
 
 #: app/models/packages.py:89
 msgid "Top game"
-msgstr ""
+msgstr "Κορυφαίο παιχνίδι"
 
 #: app/models/packages.py:91
 msgid "Top texture pack"
-msgstr ""
+msgstr "Κορυφαίο πακέτο υφής"
 
 #: app/models/packages.py:94
 #, python-format
 msgid "Top %(place)d mod"
-msgstr ""
+msgstr "Κορυφαία %(place)d τροποποίηση"
 
 #: app/models/packages.py:96
 #, python-format
 msgid "Top %(place)d game"
-msgstr ""
+msgstr "Κορυφαίο %(place)d παιχνίδι"
 
 #: app/models/packages.py:98
 #, python-format
 msgid "Top %(place)d texture pack"
-msgstr ""
+msgstr "Κορυφαίο %(place)d πακέτο υφής"
 
 #: app/models/packages.py:102
 #, python-format
 msgid "%(display_name)s has a mod placed at #%(place)d."
-msgstr ""
+msgstr "%(display_name)s έχει μια τροποποίηση τοποθετημένη σε #%(place)d."
 
 #: app/models/packages.py:105
 #, python-format
 msgid "%(display_name)s has a game placed at #%(place)d."
-msgstr ""
+msgstr "%(display_name)s έχει ένα παιχνίδι τοποθετημένο σε #%(place)d."
 
 #: app/models/packages.py:108
 #, python-format
 msgid "%(display_name)s has a texture pack placed at #%(place)d."
-msgstr ""
+msgstr "%(display_name)s έχει ένα πακέτο υφής τοποθετημένο σε #%(place)d."
 
 #: app/models/packages.py:114
 msgid "Do you recommend this mod?"
-msgstr ""
+msgstr "Προτείνετε αυτήν την τροποποίηση;"
 
 #: app/models/packages.py:116
 msgid "Do you recommend this game?"
-msgstr ""
+msgstr "Προτείνετε αυτό το παιχνίδι;"
 
 #: app/models/packages.py:118
 msgid "Do you recommend this texture pack?"
-msgstr ""
+msgstr "Προτείνετε αυτό το πακέτο υφής;"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:155 app/models/packages.py:173
 msgid "Looking for Maintainer"
-msgstr ""
+msgstr "Σε αναζήτηση για Συντηρητή"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:158
 msgid "Beta"
-msgstr ""
+msgstr "Beta"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:161
 msgid "Actively Developed"
-msgstr ""
+msgstr "Ενεργά Αναπτυσσόμενο"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:164
 msgid "Maintenance Only"
-msgstr ""
+msgstr "Μόνο σε Συντήρηση"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:167
 msgid "As-is"
-msgstr ""
+msgstr "Ως έχει"
 
 #: app/models/packages.py:177
 msgid "Under active development, and may break worlds/things without warning"
 msgstr ""
+"Υπό ενεργή ανάπτυξη, και μπορεί να χαλάσει κόσμους/πράγματα χωρίς "
+"προειδοποίηση"
 
 #: app/models/packages.py:179
 msgid "Fully playable, but with some breakages/changes expected"
-msgstr ""
+msgstr "Πλήρως παικτό, αλλά με κάποιες αναμενόμενες θράυσεις/αλλαγές"
 
 #: app/models/packages.py:181
 msgid "Finished, with bug fixes being made as needed"
-msgstr ""
+msgstr "Ολοκληρωμένο, με διορθώσεις σφαλμάτων όπου απαιτείτο"
 
 #: app/models/packages.py:183
 msgid ""
 "Finished, the maintainer doesn't intend to continue working on it or "
 "provide support"
 msgstr ""
+"Ολοκληρωμένο, ο συντηρητής δεν σκοπεύει να συνεχίσει να παράγει για αυτό ή "
+"να παρέχει υποστήριξη"
 
 #: app/models/packages.py:185
 msgid ""
 "The maintainer doesn't recommend this package. See the description for "
 "more info"
 msgstr ""
+"Ο συντηρητής δεν συνιστά αυτό το πακέτο. Δείτε την περιγραφή για "
+"περισσότερες πληροφορίες"
 
 #: app/models/packages.py:231
 msgid "Submit for Approval"
-msgstr ""
+msgstr "Υποβολή για Έγκριση"
 
 #: app/models/packages.py:233
 msgid "Approve"
@@ -5791,10 +5780,7 @@ msgstr "Εκδήλωση"
 
 #: app/templates/users/settings_email.html:53
 msgid "Immediately"
-msgstr ""
-"Αυτό το εργαλείο θα διαγράψει την προσωρινή μνήμη προσωρινής εικόνας "
-"Instagram. Οι εικόνες που εμφανίζονται στις σελίδες προϊόντων θα "
-"ανανεωθούν αμέσως."
+msgstr "Κατευθείαν"
 
 #: app/templates/users/settings_email.html:54
 msgid "In digest"
