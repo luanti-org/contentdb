@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2025-01-19 20:00+0000\n"
-"Last-Translator: Siber <anonloxu@gmail.com>\n"
+"PO-Revision-Date: 2025-03-10 13:52+0000\n"
+"Last-Translator: Siber <siber@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/minetest/"
 "contentdb/tr/>\n"
 "Language: tr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 "Generated-By: Babel 2.15.0\n"
 
 #: app/__init__.py:156
@@ -148,10 +148,9 @@ msgstr "Ekonomi, para ve takasa ilgilidir"
 
 #. NOTE: tags: title for complex_installation
 #: app/_translations.py:44
-#, fuzzy
 msgctxt "tags"
 msgid "Complex installation"
-msgstr "Dokümantasyon"
+msgstr "Kompleks kurulum"
 
 #. NOTE: tags: description for complex_installation
 #: app/_translations.py:46
@@ -223,10 +222,9 @@ msgstr "İnşaat amaçlı başka bir şey eklemez"
 
 #. NOTE: tags: title for developer_tools
 #: app/_translations.py:64
-#, fuzzy
 msgctxt "tags"
 msgid "Developer Tools"
-msgstr "Moderatör Araçları"
+msgstr "Geliştirici Araçları"
 
 #. NOTE: tags: description for developer_tools
 #: app/_translations.py:66
@@ -310,67 +308,67 @@ msgstr "Envanter Görünüşünü Değiştirir"
 #: app/_translations.py:90
 msgctxt "tags"
 msgid "Jam / Combat 2020"
-msgstr "Jam / Combat 2020"
+msgstr "Jam / Savaş 2020"
 
 #. NOTE: tags: description for jam_combat_mod
 #: app/_translations.py:92
 msgctxt "tags"
 msgid "For mods created for the Discord \"Combat\" modding event in 2020"
-msgstr "Discord 2020 \"Combat\" modlama etkinliği için yaratılan modlar"
+msgstr "Discord 2020 \"Savaş\" modlama etkinliği için yaratılan modlar"
 
 #. NOTE: tags: title for jam_game_2021
 #: app/_translations.py:94
 msgctxt "tags"
 msgid "Jam / Game 2021"
-msgstr ""
+msgstr "Jam / Oyunlar 2021"
 
 #. NOTE: tags: description for jam_game_2021
 #: app/_translations.py:96
 msgctxt "tags"
 msgid "Entries to the 2021 Minetest Game Jam"
-msgstr ""
+msgstr "2021 Minetest Oyun Yarışması Girişleri"
 
 #. NOTE: tags: title for jam_game_2022
 #: app/_translations.py:98
 msgctxt "tags"
 msgid " Jam / Game 2022"
-msgstr ""
+msgstr " Jam / Oyunlar 2022"
 
 #. NOTE: tags: description for jam_game_2022
 #: app/_translations.py:100
 msgctxt "tags"
 msgid "Entries to the 2022 Minetest Game Jam "
-msgstr ""
+msgstr "2021 Minetest Oyun Yarışması Girişleri "
 
 #. NOTE: tags: title for jam_game_2023
 #: app/_translations.py:102
 msgctxt "tags"
 msgid "Jam / Game 2023"
-msgstr ""
+msgstr "Jam / Oyunlar 2023"
 
 #. NOTE: tags: description for jam_game_2023
 #: app/_translations.py:104
 msgctxt "tags"
 msgid "Entries to the 2023 Minetest Game Jam "
-msgstr ""
+msgstr "2023 Minetest Oyun Yarışması Girişleri "
 
 #. NOTE: tags: title for jam_game_2024
 #: app/_translations.py:106
 msgctxt "tags"
 msgid "Jam / Game 2024"
-msgstr ""
+msgstr "Jam / Oyun 2024"
 
 #. NOTE: tags: description for jam_game_2024
 #: app/_translations.py:108
 msgctxt "tags"
 msgid "Entries to the 2024 Luanti Game Jam"
-msgstr ""
+msgstr "2024 Luanti Oyun Yarışması Girişleri"
 
 #. NOTE: tags: title for jam_weekly_2021
 #: app/_translations.py:110
 msgctxt "tags"
 msgid "Jam / Weekly Challenges 2021"
-msgstr ""
+msgstr "Jam / Haftalık Yarışmalar 2021"
 
 #. NOTE: tags: description for jam_weekly_2021
 #: app/_translations.py:112
@@ -379,6 +377,8 @@ msgid ""
 "For mods created for the Discord \"Weekly Challenges\" modding event in "
 "2021"
 msgstr ""
+"Discord 2021'de \"Haftalık Yarışmalar\" modlama etkinliği için oluşturulan "
+"modlar"
 
 #. NOTE: tags: title for less_than_px
 #: app/_translations.py:114
@@ -414,13 +414,13 @@ msgstr "Sihir / Büyü"
 #: app/_translations.py:124
 msgctxt "tags"
 msgid "Mapgen / Biomes / Decoration"
-msgstr ""
+msgstr "Harita oluşumu / Biyomlar / Dekorasyon"
 
 #. NOTE: tags: description for mapgen
 #: app/_translations.py:126
 msgctxt "tags"
 msgid "New mapgen or changes mapgen"
-msgstr ""
+msgstr "Yeni ya da harita oluşumu değiştirir"
 
 #. NOTE: tags: title for mini-game
 #: app/_translations.py:128
@@ -474,7 +474,7 @@ msgstr "Çok oyunculuda kullanılabilir/kullanılmalı"
 #: app/_translations.py:144
 msgctxt "tags"
 msgid "One-of-a-kind / Original"
-msgstr ""
+msgstr "Eşsiz / Orijnal"
 
 #. NOTE: tags: description for oneofakind__original
 #: app/_translations.py:146
@@ -483,6 +483,8 @@ msgid ""
 "For games and such that are of their own kind, distinct and original in "
 "nature to others of the same category."
 msgstr ""
+"Kendi türünde, diğer benzer kategorilerden farklı ve özgün olan oyunlar ve "
+"benzeri şeyler için."
 
 #. NOTE: tags: title for plants_and_farming
 #: app/_translations.py:148
@@ -652,10 +654,9 @@ msgstr "Spor"
 
 #. NOTE: tags: title for storage
 #: app/_translations.py:198
-#, fuzzy
 msgctxt "tags"
 msgid "Storage"
-msgstr "Depolama"
+msgstr "Depo"
 
 #. NOTE: tags: description for storage
 #: app/_translations.py:200
@@ -1109,7 +1110,7 @@ msgstr "Lisans"
 
 #: app/blueprints/packages/advanced_search.py:67
 msgid "Supports Game"
-msgstr ""
+msgstr "Desteklediği Oyunlar"
 
 #: app/blueprints/packages/advanced_search.py:71
 #: app/templates/admin/storage.html:39
@@ -1173,19 +1174,19 @@ msgstr "Son Sürüm"
 
 #: app/blueprints/packages/advanced_search.py:92
 msgid "Order"
-msgstr ""
+msgstr "Sıralama"
 
 #: app/blueprints/packages/advanced_search.py:93
 msgid "Descending"
-msgstr ""
+msgstr "Azalan"
 
 #: app/blueprints/packages/advanced_search.py:94
 msgid "Ascending"
-msgstr ""
+msgstr "Artan"
 
 #: app/blueprints/packages/advanced_search.py:96
 msgid "Random order"
-msgstr ""
+msgstr "Rastgele Sırala"
 
 #: app/blueprints/packages/packages.py:216
 msgid "No download available."
@@ -2266,7 +2267,7 @@ msgstr "Geliştirici Aranıyor"
 #. NOTE: Package maintenance state
 #: app/models/packages.py:158
 msgid "Beta"
-msgstr ""
+msgstr "Beta"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:161
@@ -2281,7 +2282,7 @@ msgstr "Sadece Geliştiriciler"
 #. NOTE: Package maintenance state
 #: app/models/packages.py:167
 msgid "As-is"
-msgstr ""
+msgstr "Olduğu gibi"
 
 #: app/models/packages.py:177
 msgid "Under active development, and may break worlds/things without warning"
@@ -2378,7 +2379,7 @@ msgstr "Editör"
 #. NOTE: BOT notification type
 #: app/models/users.py:60 app/models/users.py:455
 msgid "Bot"
-msgstr ""
+msgstr "Robot"
 
 #: app/models/users.py:62
 msgid "Moderator"
@@ -2391,12 +2392,12 @@ msgstr "Yönetici"
 #. NOTE: PACKAGE_EDIT notification type
 #: app/models/users.py:440
 msgid "Package Edit"
-msgstr ""
+msgstr "Paket Düzenleme"
 
 #. NOTE: PACKAGE_APPROVAL notification type
 #: app/models/users.py:443
 msgid "Package Approval"
-msgstr ""
+msgstr "Paket Onaylanma"
 
 #. NOTE: NEW_THREAD notification type
 #: app/models/users.py:446 app/templates/threads/list.html:12
@@ -2412,7 +2413,7 @@ msgstr "Yeni İnceleme"
 #. NOTE: THREAD_REPLY notification type
 #: app/models/users.py:452
 msgid "Thread Reply"
-msgstr ""
+msgstr "Konu Yanıtları"
 
 #. NOTE: MAINTAINER notification type
 #: app/models/users.py:458 app/templates/macros/threads.html:27
@@ -2422,12 +2423,12 @@ msgstr "Geliştirici"
 #. NOTE: EDITOR_ALERT notification type
 #: app/models/users.py:461
 msgid "Editor Alert"
-msgstr ""
+msgstr "Düzenleme Uyarısı"
 
 #. NOTE: EDITOR_MISC notification type
 #: app/models/users.py:464
 msgid "Editor Misc"
-msgstr ""
+msgstr "Çeşitli Düzenlemeler"
 
 #. NOTE: OTHER notification type
 #: app/models/users.py:467
@@ -4453,13 +4454,15 @@ msgstr "%(title)s öğesini kaldır"
 
 #: app/templates/packages/remove.html:12
 msgid "Change maintenance state"
-msgstr ""
+msgstr "Bakım durumunu değiştir"
 
 #: app/templates/packages/remove.html:14
 msgid ""
 "As an alternative to removing your package, you may wish to change the "
 "maintenance state."
 msgstr ""
+"Paketinizi kaldırmaya alternatif olarak bakım durumunu değiştirmek "
+"isteyebilirsiniz."
 
 #: app/templates/packages/remove.html:38
 msgid ""
@@ -4471,6 +4474,12 @@ msgid ""
 "\t\t\tlater point. ContentDB staff can restore removed packages, if "
 "needed."
 msgstr ""
+"Veri kaybını önlemek için paketleri kalıcı olarak silemezsiniz.\n"
+"\t\t\tContentDB'den kaldırabilirsiniz, bu da onların\n"
+"\t\t\therhangi bir kullanıcı tarafından görülebilir. Kaldırılan paketler "
+"aşağıdaki durumlarda kalıcı olarak silinebilir\n"
+"\t\t\tsonraki nokta. ContentDB personeli gerekirse kaldırılan paketleri geri "
+"yükleyebilir."
 
 #: app/templates/packages/remove.html:46
 msgid ""
@@ -5624,15 +5633,13 @@ msgid "Verification token"
 msgstr "Doğrulama jetonu"
 
 #: app/templates/users/claim_forums.html:71
-#, fuzzy
 msgid ""
 "Go to <a "
 "href='https://forum.luanti.org/ucp.php?i=profile&mode=signature'>User "
 "Control Panel &gt; Profile &gt; Edit signature</a>"
 msgstr ""
-"<a "
-"href=\"https://forum.luanti.org/ucp.php?i=profile&amp;mode=signature\">Kullanıcı"
-" Kontrol Paneli &gt; Profil &gt; İmzayı Düzenle</a> bölümüne gidin"
+"<a href=\"https://forum.luanti.org/ucp.php?i=profile&amp;mode=signature\""
+">Kullanıcı Kontrol Paneli &gt; Profil &gt; İmzayı Düzenle</a> bölümüne gidin"
 
 #: app/templates/users/claim_forums.html:75
 msgid "Paste this into your signature:"
@@ -6062,15 +6069,15 @@ msgstr "Geçen yıl"
 
 #: app/utils/minetest_hypertext.py:108
 msgid "(view table in browser)"
-msgstr ""
+msgstr "(tabloyu tarayıcıda görüntüle)"
 
 #: app/utils/minetest_hypertext.py:139
 msgid "Image"
-msgstr ""
+msgstr "Resim"
 
 #: app/utils/minetest_hypertext.py:259
 msgid "none"
-msgstr ""
+msgstr "hiçbiri"
 
 #: app/utils/minetest_hypertext.py:280
 msgid "Unsupported Games"
