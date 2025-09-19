@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2025-01-18 15:02+0000\n"
+"PO-Revision-Date: 2025-06-22 06:49+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/minetest/contentdb/"
 "ta/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 "Generated-By: Babel 2.15.0\n"
 
 #: app/__init__.py:156
@@ -859,7 +859,7 @@ msgstr "தொகுப்பு"
 #: app/querybuilder.py:75
 #, python-format
 msgid "%(package_type)s for %(game_name)s"
-msgstr "%(package_type)s க்கான %(தொகுப்பு_ வகை) கள்"
+msgstr "%(game_name)s க்கான %(package_type)s"
 
 #: app/template_filters.py:92
 #, python-format
@@ -1561,7 +1561,7 @@ msgstr "உங்கள் சொந்த மதிப்புரைகளி�
 #: app/blueprints/packages/screenshots.py:34
 #: app/blueprints/packages/screenshots.py:40
 msgid "Title/Caption"
-msgstr "தலைப்பு/தலைப்பு"
+msgstr "தலைப்பு/தொப்பி"
 
 #: app/blueprints/packages/screenshots.py:46
 #: app/templates/packages/screenshots.html:110
@@ -2082,8 +2082,8 @@ msgstr ""
 #, python-format
 msgid "Please make sure that this package has the right to the names %(names)s"
 msgstr ""
-"தயவுசெய்து இந்த தொகுப்புக்கு %(பெயர்கள்) பெயர்களுக்கு உரிமை உண்டு என்பதை உறுதிப்படுத்திக் "
-"கொள்ளுங்கள்"
+"தயவுசெய்து இந்தத் தொகுப்புக்கு %(names)s பெயர்களுக்கு உரிமை உண்டு என்பதை உறுதிப்படுத்திக்"
+" கொள்ளுங்கள்"
 
 #: app/logic/package_approval.py:140 app/templates/index.html:112
 #: app/templates/index.html:123 app/templates/index.html:134
@@ -2166,7 +2166,7 @@ msgid ""
 "Screenshot is too small, it should be at least %(width)s by %(height)s "
 "pixels"
 msgstr ""
-"திரைக்காட்சி மிகவும் சிறியது, இது குறைந்தது %(width)s %(உயரம்) பிக்சல்களாக இருக்க "
+"திரைக்காட்சி மிகவும் சிறியது, இது குறைந்தது %(width)s %(height)s பிக்சல்களாக இருக்க "
 "வேண்டும்"
 
 #: app/logic/uploads.py:58
@@ -2560,7 +2560,7 @@ msgstr ""
 #: app/tasks/emails.py:163
 #, python-format
 msgid "%(num)d new notifications"
-msgstr "%(எண்) புதிய அறிவிப்புகள்"
+msgstr "%(num)d புதிய அறிவிப்புகள்"
 
 #: app/tasks/emails.py:165 app/templates/macros/forms.html:59
 #: app/templates/packages/create_edit.html:41
@@ -3465,8 +3465,8 @@ msgid ""
 "<b>Other / Unknown</b>: downloaded by a web browser or an outdated Luanti"
 " version (before 5.5)."
 msgstr ""
-"<b> பிற / அறியப்படாத &lt; / b&gt;: வலை உலாவி அல்லது காலாவதியான லுவாண்டி பதிப்பால் "
-"பதிவிறக்கம் செய்யப்பட்டது (5.5 க்கு முன்).</b>"
+"<b>பிற / அறியப்படாத</b>: வலை உலாவி அல்லது காலாவதியான லுவாண்டி பதிப்பால் பதிவிறக்கம் "
+"செய்யப்பட்டது (5.5 க்கு முன்)."
 
 #: app/templates/macros/stats.html:121
 msgid "Need more stats?"
@@ -4097,7 +4097,7 @@ msgid ""
 "Adding to %(conf)s allows users who install outside ContentDB to benefit "
 "as well."
 msgstr ""
-"%(CONF) உடன் சேர்ப்பது, வெளிப்புற ContentDB ஐ நிறுவும் பயனர்களுக்கும் பயனளிக்க "
+"%(conf)s உடன் சேர்ப்பது, வெளிப்புற ContentDB ஐ நிறுவும் பயனர்களுக்கும் பயனளிக்க "
 "அனுமதிக்கிறது."
 
 #: app/templates/packages/game_support.html:119
@@ -4280,8 +4280,8 @@ msgid ""
 "You can <a href='/help/package_config/'>set this automatically</a> in the"
 " .conf of your package."
 msgstr ""
-"உங்கள் தொகுப்பின் .conf இல் இதை தானாக  ஐ அமைக்க <a href="
-"\"/help/packaction_config/\"> அமைக்கலாம்.</a>"
+"உங்கள் தொகுப்பின் .conf இல் <a href=\"/help/packaction_config/\">அமைக்க இதைத் "
+"தானாக</a> அமைக்கலாம்."
 
 #: app/templates/packages/release_edit.html:87
 msgid "Delete Release"
@@ -4593,7 +4593,7 @@ msgstr "வாக்குகளை மதிப்பாய்வு செய�
 #: app/templates/packages/review_votes.html:13
 #, python-format
 msgid "Review votes on %(title)s by %(author)s"
-msgstr "%(title)s மீதான வாக்குகளை மறுஆய்வு செய்யுங்கள் (ஆசிரியர்) கள்"
+msgstr "%(title)s மீதான வாக்குகளை மறுஆய்வு செய்யுங்கள் %(author)s"
 
 #: app/templates/packages/screenshot_edit.html:4
 #: app/templates/packages/screenshot_edit.html:11
@@ -4988,7 +4988,7 @@ msgstr "தொழில்நுட்ப பெயர்"
 #: app/templates/packages/view.html:634 app/utils/minetest_hypertext.py:295
 #, python-format
 msgid "%(code_license)s for code,<br>%(media_license)s for media."
-msgstr "%(குறியீட்டிற்கான குறியீடு உரிமம், <br>%(ஊடகத்திற்கான ஊடக உரிமங்கள்."
+msgstr "குறியீட்டிற்கான %(code_license)s, <br>ஊடகத்திற்கான %(media_license)s."
 
 #: app/templates/packages/view.html:642
 msgid "Unknown"
@@ -5193,7 +5193,8 @@ msgstr "குறிச்சொல் தொகுப்புகள்"
 #: app/templates/todo/editor.html:130
 #, python-format
 msgid "%(total_to_tag)d / %(total_packages)d packages don't have any tags."
-msgstr "%."
+msgstr ""
+"%(total_to_tag)d / %(total_packages)d தொகுப்புகளில் எந்த குறிச்சொற்களும் இல்லை."
 
 #: app/templates/todo/editor.html:140
 msgid "View Tags"
@@ -5219,7 +5220,7 @@ msgstr "அண்மைக் கால செயல்கள்"
 #: app/templates/todo/game_support.html:4
 #, python-format
 msgid "Game Support for %(username)s"
-msgstr "%க்கான விளையாட்டு உதவி (பயனர்பெயர்கள்"
+msgstr "%(username)sக்கான விளையாட்டு உதவி"
 
 #: app/templates/todo/game_support.html:11 app/templates/todo/user.html:77
 msgid "You should specify the games supported by your mods and texture packs."
@@ -5553,8 +5554,8 @@ msgid ""
 "Note: protonmail is unsupported by ContentDB. <a "
 "href='https://forum.luanti.org/viewtopic.php?t=30709'>More info</a>."
 msgstr ""
-"குறிப்பு: புரோட்டான்மெயில் ContentDB ஆல் ஆதரிக்கப்படவில்லை. <a "
-"href='https://forum.luanti.org/viewtopic.php?t=30709'> மேலும் செய்தி </a>."
+"குறிப்பு: புரோட்டான்மெயில் ContentDB ஆல் ஆதரிக்கப்படவில்லை. <a href="
+"\"https://forum.luanti.org/viewtopic.php?t=30709\"> மேலும் செய்தி </a>."
 
 #: app/templates/users/change_set_password.html:27
 #: app/templates/users/register.html:30
@@ -5647,8 +5648,9 @@ msgstr "உங்கள் மன்ற சுயவிவரத்தில் 
 msgid ""
 "Log into the forum and <a "
 "href='https://forum.luanti.org/ucp.php?i=173'>do that here</a>."
-msgstr "மன்றத்தில் உள்நுழைக மற்றும் <a "
-"href='https://forum.luanti.org/ucp.php?i=173'>do that here</a>இங்கே செய்யுங்கள் </a>."
+msgstr ""
+"மன்றத்தில் உள்நுழைக மற்றும் <a href=\"https://forum.luanti.org/ucp.php?i=173\">இங்கே"
+" செய்யுங்கள் </a>."
 
 #: app/templates/users/claim_forums.html:47
 msgid "Next: log in with GitHub"
@@ -5668,9 +5670,8 @@ msgid ""
 "href='https://forum.luanti.org/ucp.php?i=profile&mode=signature'>User "
 "Control Panel &gt; Profile &gt; Edit signature</a>"
 msgstr ""
-"<a "
-"href='https://forum.luanti.org/ucp.php?i=profile&mode=signature'> பயனர் கட்டுப்பாட்டு குழு &amp; gt; சுயவிவரம் &amp; சிடி; கையொப்பத்தைத் திருத்து "
-"</a>"
+"<a href=\"https://forum.luanti.org/ucp.php?i=profile&amp;mode=signature\"> "
+"பயனர் கட்டுப்பாட்டு குழு &gt; சுயவிவரம் &gt; கையொப்பத்தைத் திருத்து </a>"
 
 #: app/templates/users/claim_forums.html:75
 msgid "Paste this into your signature:"
