@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
 "PO-Revision-Date: 2025-07-14 16:22+0000\n"
-"Last-Translator: Тарас Арт <fromkaniv@gmail.com>\n"
+"Last-Translator: Денис <denissavchenko0@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/minetest/"
 "contentdb/uk/>\n"
 "Language: uk\n"
@@ -5689,8 +5689,8 @@ msgid ""
 "This will delete your account, removing %(threads)d threads and "
 "%(replies)d replies."
 msgstr ""
-"Це призведе до видалення вашого акаунта, видалення тем %(threads)d і "
-"відповідей %(replies)d."
+"Це призведе до видалення вашого облікового запису, видалення %(threads)d "
+"ланцюжків і %(replies)d відповідей."
 
 #: app/templates/users/delete.html:22
 msgid ""
@@ -5706,9 +5706,8 @@ msgid ""
 "Instead, your account will be deactivated and all personal information "
 "wiped - including %(threads)d threads and %(replies)d replies."
 msgstr ""
-"Натомість ваш обліковий запис буде деактивовано, а вся особиста "
-"інформація буде видалена, включно з темами %(threads)d та відповідями "
-"%(replies)d."
+"Натомість ваш обліковий запис буде деактивовано, а всю особисту інформацію "
+"буде видалено, включаючи %(threads)d ланцюжків і %(replies)d відповідей."
 
 #: app/templates/users/delete.html:25
 msgid "See the privacy policy for more information."
@@ -5802,11 +5801,11 @@ msgstr "Заборона"
 
 #: app/templates/users/modtools.html:73
 msgid "Unban"
-msgstr "Розбан"
+msgstr "Розблокувати"
 
 #: app/templates/users/modtools.html:90
 msgid "Message to display to banned user"
-msgstr "Повідомлення для показу забаненому користувачеві"
+msgstr "Повідомлення для відображення заблокованому користувачеві"
 
 #: app/templates/users/modtools.html:94
 msgid "Expires At"
