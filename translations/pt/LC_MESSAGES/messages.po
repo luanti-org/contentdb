@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2024-12-06 21:06+0000\n"
-"Last-Translator: ats <athos2256@gmail.com>\n"
+"PO-Revision-Date: 2025-05-18 15:01+0000\n"
+"Last-Translator: Ian Pedras <ian@pedras.org>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/minetest/"
 "contentdb/pt/>\n"
 "Language: pt\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 "Generated-By: Babel 2.15.0\n"
 
 #: app/__init__.py:156
@@ -121,12 +121,13 @@ msgstr "Construir engenhos e ferramentas"
 msgctxt "tags"
 msgid "Adds game mechanics or tools that change how players build."
 msgstr ""
+"Adiciona mecanismos ou ferramentas que mudam como os jogadores constroem."
 
 #. NOTE: tags: title for chat
 #: app/_translations.py:36
 msgctxt "tags"
 msgid "Chat / Commands"
-msgstr ""
+msgstr "Conversa / Commandos"
 
 #. NOTE: tags: description for chat
 #: app/_translations.py:38
