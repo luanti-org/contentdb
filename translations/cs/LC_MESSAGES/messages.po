@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2025-02-05 10:01+0000\n"
+"PO-Revision-Date: 2025-04-14 05:11+0000\n"
 "Last-Translator: Matyáš Pilz <matys.pilz@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/minetest/contentdb/"
 "cs/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 "Generated-By: Babel 2.15.0\n"
 
 #: app/__init__.py:156
@@ -62,7 +62,7 @@ msgstr "32 px"
 #: app/_translations.py:16
 msgctxt "tags"
 msgid "For 32px texture packs"
-msgstr "32 px balíčky textur"
+msgstr "pro 32 px balíčky textur"
 
 #. NOTE: tags: title for 64px
 #: app/_translations.py:18
@@ -186,9 +186,8 @@ msgid ""
 "content only available through a creative inventory, or provides tools "
 "that facilitate ingame creation and doesn't add difficulty or scarcity"
 msgstr ""
-"Určeno především pro kreativní mod. Přidává obsah dostupný pouze v "
-"inventáři creativu, nabízí nástroje na usnadnění tvorby ve hře a "
-"nezvyšují obtížnost"
+"Určeno především pro kreativní mod. Přidává obsah dostupný pouze v inventáři "
+"creativu, nabízí nástroje na usnadnění tvorby ve hře a nezvyšuje obtížnost"
 
 #. NOTE: tags: title for custom_mapgen
 #: app/_translations.py:56
@@ -4914,7 +4913,7 @@ msgstr "Kompatibilní hry"
 #: app/templates/packages/view.html:548 app/templates/packages/view.html:568
 #: app/utils/minetest_hypertext.py:275
 msgid "No specific game required"
-msgstr "Vyžadována konkrétní hra"
+msgstr "Není vyžadována konkrétní hra"
 
 #: app/templates/packages/view.html:551
 msgid "Tested with:"
