@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2023-12-16 10:05+0000\n"
+"PO-Revision-Date: 2025-03-25 08:41+0000\n"
 "Last-Translator: Jun Nogata <nogajun@gmail.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/minetest/"
+"contentdb/ja/>\n"
 "Language: ja\n"
-"Language-Team: Japanese "
-"<https://hosted.weblate.org/projects/minetest/contentdb/ja/>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.11-dev\n"
 "Generated-By: Babel 2.15.0\n"
 
 #: app/__init__.py:156
@@ -31,65 +32,61 @@ msgstr "BANされました。"
 #: app/_translations.py:6
 msgctxt "tags"
 msgid "128px+"
-msgstr ""
+msgstr "128px以上"
 
 #. NOTE: tags: description for 128px
 #: app/_translations.py:8
-#, fuzzy
 msgctxt "tags"
 msgid "For 128px or higher texture packs"
-msgstr "人気のテクスチャパック"
+msgstr "128px以上のテクスチャパックです"
 
 #. NOTE: tags: title for 16px
 #: app/_translations.py:10
 msgctxt "tags"
 msgid "16px"
-msgstr ""
+msgstr "16px"
 
 #. NOTE: tags: description for 16px
 #: app/_translations.py:12
-#, fuzzy
 msgctxt "tags"
 msgid "For 16px texture packs"
-msgstr "人気のテクスチャパック"
+msgstr "16pxのテクスチャパックです"
 
 #. NOTE: tags: title for 32px
 #: app/_translations.py:14
 msgctxt "tags"
 msgid "32px"
-msgstr ""
+msgstr "32px"
 
 #. NOTE: tags: description for 32px
 #: app/_translations.py:16
-#, fuzzy
 msgctxt "tags"
 msgid "For 32px texture packs"
-msgstr "人気のテクスチャパック"
+msgstr "32pxのテクスチャパックです"
 
 #. NOTE: tags: title for 64px
 #: app/_translations.py:18
 msgctxt "tags"
 msgid "64px"
-msgstr ""
+msgstr "64px"
 
 #. NOTE: tags: description for 64px
 #: app/_translations.py:20
-#, fuzzy
 msgctxt "tags"
 msgid "For 64px texture packs"
-msgstr "人気のテクスチャパック"
+msgstr "64pxのテクスチャパックです"
 
 #. NOTE: tags: title for adventure__rpg
 #: app/_translations.py:22
 msgctxt "tags"
 msgid "Adventure / RPG"
-msgstr ""
+msgstr "アドベンチャー・RPG"
 
 #. NOTE: tags: title for april_fools
 #: app/_translations.py:24
 msgctxt "tags"
 msgid "Joke"
-msgstr ""
+msgstr "ジョーク"
 
 #. NOTE: tags: description for april_fools
 #: app/_translations.py:26
@@ -97,61 +94,62 @@ msgctxt "tags"
 msgid ""
 "For humorous content, meant as a novelty or joke, not to be taken "
 "seriously, and that is not meant to be used seriously or long-term."
-msgstr ""
+msgstr "ふざけたり冗談に使うユーモラスなものです。真面目に使ったり長く使うものではあ"
+"りません。"
 
 #. NOTE: tags: title for building
 #: app/_translations.py:28
 msgctxt "tags"
 msgid "Building"
-msgstr ""
+msgstr "建築"
 
 #. NOTE: tags: description for building
 #: app/_translations.py:30
 msgctxt "tags"
 msgid "Focuses on building, such as adding new materials or nodes"
-msgstr ""
+msgstr "新しい材料やノードといった建築に焦点を当てたものです"
 
 #. NOTE: tags: title for building_mechanics
 #: app/_translations.py:32
 msgctxt "tags"
 msgid "Building Mechanics and Tools"
-msgstr ""
+msgstr "建築装置・道具"
 
 #. NOTE: tags: description for building_mechanics
 #: app/_translations.py:34
 msgctxt "tags"
 msgid "Adds game mechanics or tools that change how players build."
-msgstr ""
+msgstr "プレイヤーの建築効率を上げる機械や道具を追加します。"
 
 #. NOTE: tags: title for chat
 #: app/_translations.py:36
 msgctxt "tags"
 msgid "Chat / Commands"
-msgstr ""
+msgstr "チャット・コマンド"
 
 #. NOTE: tags: description for chat
 #: app/_translations.py:38
 msgctxt "tags"
 msgid "Focus on player chat/communication or console interaction."
-msgstr ""
+msgstr "プレイヤーのチャットやコミュニケーション、またはコマンドに関するものです。"
 
 #. NOTE: tags: title for commerce
 #: app/_translations.py:40
 msgctxt "tags"
 msgid "Commerce / Economy"
-msgstr ""
+msgstr "取引・商売"
 
 #. NOTE: tags: description for commerce
 #: app/_translations.py:42
 msgctxt "tags"
 msgid "Related to economies, money, and trading"
-msgstr ""
+msgstr "お金や取引、商売に関連するものです"
 
 #. NOTE: tags: title for complex_installation
 #: app/_translations.py:44
 msgctxt "tags"
 msgid "Complex installation"
-msgstr ""
+msgstr "高度なインストール"
 
 #. NOTE: tags: description for complex_installation
 #: app/_translations.py:46
@@ -159,27 +157,26 @@ msgctxt "tags"
 msgid ""
 "Requires futher installation steps, such as installing LuaRocks or "
 "editing the trusted mod setting"
-msgstr ""
+msgstr "LuaRocksからのインストールや適切なMODの設定など追加のインストール手順が必要と"
+"なるものです"
 
 #. NOTE: tags: title for crafting
 #: app/_translations.py:48
-#, fuzzy
 msgctxt "tags"
 msgid "Crafting"
-msgstr "レーティング"
+msgstr "クラフト"
 
 #. NOTE: tags: description for crafting
 #: app/_translations.py:50
 msgctxt "tags"
 msgid "Big changes to crafting gameplay"
-msgstr ""
+msgstr "クラフト関連のゲーム性に大きな影響をあたえるものです"
 
 #. NOTE: tags: title for creative
 #: app/_translations.py:52
-#, fuzzy
 msgctxt "tags"
 msgid "Creative"
-msgstr "作成"
+msgstr "クリエイティブモード"
 
 #. NOTE: tags: description for creative
 #: app/_translations.py:54
@@ -189,13 +186,16 @@ msgid ""
 "content only available through a creative inventory, or provides tools "
 "that facilitate ingame creation and doesn't add difficulty or scarcity"
 msgstr ""
+"クリエイティブモードでの利用に特化、または専用に作られています。クリエイティ"
+"ブモードのインベントリでのみ利用できるアイテムを追加したり、ゲーム内での制作"
+"作業が容易になるツールを提供しますが、難易度の変更したり希少品を追加などはし"
+"ません"
 
 #. NOTE: tags: title for custom_mapgen
 #: app/_translations.py:56
-#, fuzzy
 msgctxt "tags"
 msgid "Custom mapgen"
-msgstr "コメント"
+msgstr "マップ生成"
 
 #. NOTE: tags: description for custom_mapgen
 #: app/_translations.py:58
@@ -204,51 +204,50 @@ msgid ""
 "Contains a completely custom mapgen implemented in Lua, usually requires "
 "worlds to be set to the 'singlenode' mapgen."
 msgstr ""
+"Luaで作られた独自のマップ生成システムが含まれています。利用する場合、ワールド"
+"のマップジェネレーターに「singlenode」を指定する必要があります。"
 
 #. NOTE: tags: title for decorative
 #: app/_translations.py:60
-#, fuzzy
 msgctxt "tags"
 msgid "Decorative"
-msgstr "寄付"
+msgstr "装飾"
 
 #. NOTE: tags: description for decorative
 #: app/_translations.py:62
 msgctxt "tags"
 msgid "Adds nodes with no other purpose than for use in building"
-msgstr ""
+msgstr "建築目的には使わないノードを追加します"
 
 #. NOTE: tags: title for developer_tools
 #: app/_translations.py:64
-#, fuzzy
 msgctxt "tags"
 msgid "Developer Tools"
-msgstr "モデレーターツール"
+msgstr "開発者ツール"
 
 #. NOTE: tags: description for developer_tools
 #: app/_translations.py:66
 msgctxt "tags"
 msgid "Tools for game and mod developers"
-msgstr ""
+msgstr "ゲームまたはMOD開発者向けツールです"
 
 #. NOTE: tags: title for education
 #: app/_translations.py:68
-#, fuzzy
 msgctxt "tags"
 msgid "Education"
-msgstr "説明"
+msgstr "教育"
 
 #. NOTE: tags: description for education
 #: app/_translations.py:70
 msgctxt "tags"
 msgid "Either has educational value, or is a tool to help teachers "
-msgstr ""
+msgstr "教育向けまたは先生を支援するツールです "
 
 #. NOTE: tags: title for environment
 #: app/_translations.py:72
 msgctxt "tags"
 msgid "Environment / Weather"
-msgstr ""
+msgstr "環境・天候"
 
 #. NOTE: tags: description for environment
 #: app/_translations.py:74
@@ -256,19 +255,19 @@ msgctxt "tags"
 msgid ""
 "Improves the world, adding weather, ambient sounds, or other environment "
 "mechanics"
-msgstr ""
+msgstr "天候や環境音、そのほか環境に関する機能を追加してワールドを改良します"
 
 #. NOTE: tags: title for food
 #: app/_translations.py:76
 msgctxt "tags"
 msgid "Food / Drinks"
-msgstr ""
+msgstr "食料・飲み物"
 
 #. NOTE: tags: title for gui
 #: app/_translations.py:78
 msgctxt "tags"
 msgid "GUI"
-msgstr ""
+msgstr "GUI"
 
 #. NOTE: tags: description for gui
 #: app/_translations.py:80
@@ -276,97 +275,97 @@ msgctxt "tags"
 msgid ""
 "For content whose main utility or features are provided within a GUI, on-"
 "screen menu, or similar"
-msgstr ""
+msgstr "おもなユーティリティや機能がGUIや画面情報として提供されるものです"
 
 #. NOTE: tags: title for hud
 #: app/_translations.py:82
 msgctxt "tags"
 msgid "HUD"
-msgstr ""
+msgstr "HUD"
 
 #. NOTE: tags: description for hud
 #: app/_translations.py:84
 msgctxt "tags"
 msgid "For mods that grant the player extra information in the HUD"
-msgstr ""
+msgstr "プレイヤー画面に追加情報を表示するMODです"
 
 #. NOTE: tags: title for inventory
 #: app/_translations.py:86
 msgctxt "tags"
 msgid "Inventory"
-msgstr ""
+msgstr "インベントリ"
 
 #. NOTE: tags: description for inventory
 #: app/_translations.py:88
 msgctxt "tags"
 msgid "Changes the inventory GUI"
-msgstr ""
+msgstr "インベントリ操作に変化をあたえます"
 
 #. NOTE: tags: title for jam_combat_mod
 #: app/_translations.py:90
 msgctxt "tags"
 msgid "Jam / Combat 2020"
-msgstr ""
+msgstr "Jam / Combat 2020"
 
 #. NOTE: tags: description for jam_combat_mod
 #: app/_translations.py:92
 msgctxt "tags"
 msgid "For mods created for the Discord \"Combat\" modding event in 2020"
-msgstr ""
+msgstr "2020年にDiscordで行われたMOD作成コンテスト「Combat」の作品です"
 
 #. NOTE: tags: title for jam_game_2021
 #: app/_translations.py:94
 msgctxt "tags"
 msgid "Jam / Game 2021"
-msgstr ""
+msgstr "Jam / Game 2021"
 
 #. NOTE: tags: description for jam_game_2021
 #: app/_translations.py:96
 msgctxt "tags"
 msgid "Entries to the 2021 Minetest Game Jam"
-msgstr ""
+msgstr "2021年に行われたMinetestゲームジャム出展作品です"
 
 #. NOTE: tags: title for jam_game_2022
 #: app/_translations.py:98
 msgctxt "tags"
 msgid " Jam / Game 2022"
-msgstr ""
+msgstr " Jam / Game 2022"
 
 #. NOTE: tags: description for jam_game_2022
 #: app/_translations.py:100
 msgctxt "tags"
 msgid "Entries to the 2022 Minetest Game Jam "
-msgstr ""
+msgstr "2022年に行われたMinetestゲームジャムの出展作品です "
 
 #. NOTE: tags: title for jam_game_2023
 #: app/_translations.py:102
 msgctxt "tags"
 msgid "Jam / Game 2023"
-msgstr ""
+msgstr "Jam / Game 2023"
 
 #. NOTE: tags: description for jam_game_2023
 #: app/_translations.py:104
 msgctxt "tags"
 msgid "Entries to the 2023 Minetest Game Jam "
-msgstr ""
+msgstr "2023年に行われたMinetestゲームジャム出展作品です "
 
 #. NOTE: tags: title for jam_game_2024
 #: app/_translations.py:106
 msgctxt "tags"
 msgid "Jam / Game 2024"
-msgstr ""
+msgstr "Jam / Game 2024"
 
 #. NOTE: tags: description for jam_game_2024
 #: app/_translations.py:108
 msgctxt "tags"
 msgid "Entries to the 2024 Luanti Game Jam"
-msgstr ""
+msgstr "2024年に行われたLuantiゲームジャムの出展作品です"
 
 #. NOTE: tags: title for jam_weekly_2021
 #: app/_translations.py:110
 msgctxt "tags"
 msgid "Jam / Weekly Challenges 2021"
-msgstr ""
+msgstr "Jam / Weekly Challenges 2021"
 
 #. NOTE: tags: description for jam_weekly_2021
 #: app/_translations.py:112
@@ -374,104 +373,104 @@ msgctxt "tags"
 msgid ""
 "For mods created for the Discord \"Weekly Challenges\" modding event in "
 "2021"
-msgstr ""
+msgstr "2021年にDiscordで行われたMOD作成コンテスト「ウィークリーチャレンジ」の作品で"
+"す"
 
 #. NOTE: tags: title for less_than_px
 #: app/_translations.py:114
 msgctxt "tags"
 msgid "<16px"
-msgstr ""
+msgstr "16px未満"
 
 #. NOTE: tags: description for less_than_px
 #: app/_translations.py:116
 msgctxt "tags"
 msgid "Less than 16px"
-msgstr ""
+msgstr "16px未満のテクスチャパックです"
 
 #. NOTE: tags: title for library
 #: app/_translations.py:118
 msgctxt "tags"
 msgid "API / Library"
-msgstr ""
+msgstr "API・ライブラリ"
 
 #. NOTE: tags: description for library
 #: app/_translations.py:120
 msgctxt "tags"
 msgid "Primarily adds an API for other mods to use"
-msgstr ""
+msgstr "主にほかのMODが利用するAPIを追加します"
 
 #. NOTE: tags: title for magic
 #: app/_translations.py:122
 msgctxt "tags"
 msgid "Magic / Enchanting"
-msgstr ""
+msgstr "魔法・エンチャント"
 
 #. NOTE: tags: title for mapgen
 #: app/_translations.py:124
 msgctxt "tags"
 msgid "Mapgen / Biomes / Decoration"
-msgstr ""
+msgstr "マップ生成・バイオーム・デコレーション"
 
 #. NOTE: tags: description for mapgen
 #: app/_translations.py:126
 msgctxt "tags"
 msgid "New mapgen or changes mapgen"
-msgstr ""
+msgstr "新しいマップ生成プログラムやマップ生成に変更を加えます"
 
 #. NOTE: tags: title for mini-game
 #: app/_translations.py:128
-#, fuzzy
 msgctxt "tags"
 msgid "Mini-game"
-msgstr "名前"
+msgstr "ミニゲーム"
 
 #. NOTE: tags: description for mini-game
 #: app/_translations.py:130
 msgctxt "tags"
 msgid "Adds a mini-game to be played within Luanti"
-msgstr ""
+msgstr "Luantiで遊べるミニゲームを追加します"
 
 #. NOTE: tags: title for mobs
 #: app/_translations.py:132
 msgctxt "tags"
 msgid "Mobs / Animals / NPCs"
-msgstr ""
+msgstr "モブ・動物・NPC"
 
 #. NOTE: tags: description for mobs
 #: app/_translations.py:134
 msgctxt "tags"
 msgid "Adds mobs, animals, and non-player characters"
-msgstr ""
+msgstr "モブや動物、ノン・プレイヤー・キャラクターを追加します"
 
 #. NOTE: tags: title for mtg
 #: app/_translations.py:136
 msgctxt "tags"
 msgid "Minetest Game improved"
-msgstr ""
+msgstr "Minetest Gameの改善"
 
 #. NOTE: tags: description for mtg
 #: app/_translations.py:138
 msgctxt "tags"
 msgid "Forks of Minetest Game"
-msgstr ""
+msgstr "Minetest Game派生"
 
 #. NOTE: tags: title for multiplayer
 #: app/_translations.py:140
 msgctxt "tags"
 msgid "Multiplayer-focused"
-msgstr ""
+msgstr "マルチプレイヤー向け"
 
 #. NOTE: tags: description for multiplayer
 #: app/_translations.py:142
 msgctxt "tags"
 msgid "Can/should only be used in multiplayer"
-msgstr ""
+msgstr "マルチプレイヤーで使うためのものです"
 
 #. NOTE: tags: title for oneofakind__original
 #: app/_translations.py:144
 msgctxt "tags"
 msgid "One-of-a-kind / Original"
-msgstr ""
+msgstr "個性的・オリジナル"
 
 #. NOTE: tags: description for oneofakind__original
 #: app/_translations.py:146
@@ -485,7 +484,7 @@ msgstr ""
 #: app/_translations.py:148
 msgctxt "tags"
 msgid "Plants and Farming"
-msgstr ""
+msgstr "植物と農業"
 
 #. NOTE: tags: description for plants_and_farming
 #: app/_translations.py:150
@@ -497,7 +496,7 @@ msgstr ""
 #: app/_translations.py:152
 msgctxt "tags"
 msgid "Player Effects / Power Ups"
-msgstr ""
+msgstr "プレイヤー効果・強化"
 
 #. NOTE: tags: description for player_effects
 #: app/_translations.py:154
@@ -511,7 +510,7 @@ msgstr ""
 #: app/_translations.py:156
 msgctxt "tags"
 msgid "Puzzle"
-msgstr ""
+msgstr "パズル"
 
 #. NOTE: tags: description for puzzle
 #: app/_translations.py:158
@@ -523,7 +522,7 @@ msgstr ""
 #: app/_translations.py:160
 msgctxt "tags"
 msgid "Player vs Environment (PvE)"
-msgstr ""
+msgstr "対コンピューター(PvE)"
 
 #. NOTE: tags: description for pve
 #: app/_translations.py:162
@@ -531,25 +530,26 @@ msgctxt "tags"
 msgid ""
 "For content designed for one or more players that focus on combat against"
 " the world, mobs, or NPCs."
-msgstr ""
+msgstr "ワールドやモブ、NPCとの戦闘に重点を置いた1人または複数プレイヤー向けの内容で"
+"す。"
 
 #. NOTE: tags: title for pvp
 #: app/_translations.py:164
 msgctxt "tags"
 msgid "Player vs Player (PvP)"
-msgstr ""
+msgstr "対人戦(PvP)"
 
 #. NOTE: tags: description for pvp
 #: app/_translations.py:166
 msgctxt "tags"
 msgid "Designed to be played competitively against other players"
-msgstr ""
+msgstr "ほかのプレイヤーとの競争して遊べるように作られています"
 
 #. NOTE: tags: title for seasonal
 #: app/_translations.py:168
 msgctxt "tags"
 msgid "Seasonal"
-msgstr ""
+msgstr "季節向け"
 
 #. NOTE: tags: description for seasonal
 #: app/_translations.py:170
@@ -559,10 +559,9 @@ msgstr ""
 
 #. NOTE: tags: title for server_tools
 #: app/_translations.py:172
-#, fuzzy
 msgctxt "tags"
 msgid "Server Moderation and Tools"
-msgstr "モデレーターツール"
+msgstr "サーバー管理とツール"
 
 #. NOTE: tags: description for server_tools
 #: app/_translations.py:174
@@ -574,7 +573,7 @@ msgstr ""
 #: app/_translations.py:176
 msgctxt "tags"
 msgid "Shooter"
-msgstr ""
+msgstr "シューティング"
 
 #. NOTE: tags: description for shooter
 #: app/_translations.py:178
@@ -586,7 +585,7 @@ msgstr ""
 #: app/_translations.py:180
 msgctxt "tags"
 msgid "Sims"
-msgstr ""
+msgstr "シミュレーター"
 
 #. NOTE: tags: description for simulation
 #: app/_translations.py:182
@@ -600,7 +599,7 @@ msgstr ""
 #: app/_translations.py:184
 msgctxt "tags"
 msgid "Singleplayer-focused"
-msgstr ""
+msgstr "1人プレイ向け"
 
 #. NOTE: tags: description for singleplayer
 #: app/_translations.py:186
@@ -612,7 +611,7 @@ msgstr ""
 #: app/_translations.py:188
 msgctxt "tags"
 msgid "Player customization / Skins"
-msgstr ""
+msgstr "プレイヤーのカスタマイズ・スキン"
 
 #. NOTE: tags: description for skins
 #: app/_translations.py:190
@@ -626,7 +625,7 @@ msgstr ""
 #: app/_translations.py:192
 msgctxt "tags"
 msgid "Sounds / Music"
-msgstr ""
+msgstr "サウンド・音楽"
 
 #. NOTE: tags: description for sound_music
 #: app/_translations.py:194
@@ -636,28 +635,27 @@ msgstr ""
 
 #. NOTE: tags: title for sports
 #: app/_translations.py:196
-#, fuzzy
 msgctxt "tags"
 msgid "Sports"
-msgstr "報告"
+msgstr "スポーツ"
 
 #. NOTE: tags: title for storage
 #: app/_translations.py:198
 msgctxt "tags"
 msgid "Storage"
-msgstr ""
+msgstr "ストレージ"
 
 #. NOTE: tags: description for storage
 #: app/_translations.py:200
 msgctxt "tags"
 msgid "Adds or improves item storage mechanics"
-msgstr ""
+msgstr "アイテムを保管するための機能の追加や改善をします"
 
 #. NOTE: tags: title for strategy_rts
 #: app/_translations.py:202
 msgctxt "tags"
 msgid "Strategy / RTS"
-msgstr ""
+msgstr "戦略・RTS"
 
 #. NOTE: tags: description for strategy_rts
 #: app/_translations.py:204
@@ -671,7 +669,7 @@ msgstr ""
 #: app/_translations.py:206
 msgctxt "tags"
 msgid "Survival"
-msgstr ""
+msgstr "サバイバル"
 
 #. NOTE: tags: description for survival
 #: app/_translations.py:208
@@ -685,7 +683,7 @@ msgstr ""
 #: app/_translations.py:210
 msgctxt "tags"
 msgid "Machines / Electronics"
-msgstr ""
+msgstr "機械・電気製品"
 
 #. NOTE: tags: description for technology
 #: app/_translations.py:212
@@ -697,7 +695,7 @@ msgstr ""
 #: app/_translations.py:214
 msgctxt "tags"
 msgid "Tools / Weapons / Armor"
-msgstr ""
+msgstr "武器・防具・道具"
 
 #. NOTE: tags: description for tools
 #: app/_translations.py:216
@@ -707,10 +705,9 @@ msgstr ""
 
 #. NOTE: tags: title for transport
 #: app/_translations.py:218
-#, fuzzy
 msgctxt "tags"
 msgid "Transport"
-msgstr "報告"
+msgstr "輸送"
 
 #. NOTE: tags: description for transport
 #: app/_translations.py:220
@@ -724,101 +721,98 @@ msgstr ""
 #: app/_translations.py:222
 msgctxt "tags"
 msgid "World Maintenance and Tools"
-msgstr ""
+msgstr "ワールドの整備とツール"
 
 #. NOTE: tags: description for world_tools
 #: app/_translations.py:224
 msgctxt "tags"
 msgid "Tools to manage the world"
-msgstr ""
+msgstr "ワールド管理ツール"
 
 #. NOTE: content_warnings: title for alcohol_tobacco
 #: app/_translations.py:226
 msgctxt "content_warnings"
 msgid "Alcohol / Tobacco"
-msgstr ""
+msgstr "酒・たばこ"
 
 #. NOTE: content_warnings: description for alcohol_tobacco
 #: app/_translations.py:228
 msgctxt "content_warnings"
 msgid "Contains alcohol and/or tobacco"
-msgstr ""
+msgstr "酒やたばこに関するものが含まれています"
 
 #. NOTE: content_warnings: title for bad_language
 #: app/_translations.py:230
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Bad Language"
-msgstr "パッケージを追加"
+msgstr "下品な言葉"
 
 #. NOTE: content_warnings: description for bad_language
 #: app/_translations.py:232
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Contains swearing"
-msgstr "内容の警告"
+msgstr "罵倒や下品な言葉が含まれています"
 
 #. NOTE: content_warnings: title for drugs
 #: app/_translations.py:234
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Drugs"
-msgstr "規範"
+msgstr "違法薬物"
 
 #. NOTE: content_warnings: description for drugs
 #: app/_translations.py:236
 msgctxt "content_warnings"
 msgid "Contains recreational drugs other than alcohol or tobacco"
-msgstr ""
+msgstr "酒やたばこに入らない違法薬物に関することが含まれています"
 
 #. NOTE: content_warnings: title for gambling
 #: app/_translations.py:238
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Gambling"
-msgstr "管理者"
+msgstr "ギャンブル"
 
 #. NOTE: content_warnings: description for gambling
 #: app/_translations.py:240
 msgctxt "content_warnings"
 msgid "Games of chance, gambling games, etc"
-msgstr ""
+msgstr "ギャンブルや博打に関することが含まれています"
 
 #. NOTE: content_warnings: title for gore
 #: app/_translations.py:242
 msgctxt "content_warnings"
 msgid "Gore"
-msgstr ""
+msgstr "残酷表現"
 
 #. NOTE: content_warnings: description for gore
 #: app/_translations.py:244
 msgctxt "content_warnings"
 msgid "Blood, etc"
-msgstr ""
+msgstr "血や残酷な表現など"
 
 #. NOTE: content_warnings: title for horror
 #: app/_translations.py:246
 msgctxt "content_warnings"
 msgid "Fear / Horror"
-msgstr ""
+msgstr "恐怖・ホラー"
 
 #. NOTE: content_warnings: description for horror
 #: app/_translations.py:248
 msgctxt "content_warnings"
 msgid "Shocking and scary content. May scare young children"
-msgstr ""
+msgstr "小さな子供に影響を与える衝撃的な表現や恐怖に関するものが含まれます"
 
 #. NOTE: content_warnings: title for violence
 #: app/_translations.py:250
 msgctxt "content_warnings"
 msgid "Violence"
-msgstr ""
+msgstr "暴力表現"
 
 #. NOTE: content_warnings: description for violence
 #: app/_translations.py:252
 msgctxt "content_warnings"
 msgid "Non-cartoon violence. May be towards fantasy or  human-like characters"
-msgstr ""
+msgstr "現実的な暴力表現。想像上のものや人間のようなキャラクターへの暴力表現も含まれ"
+"ます"
 
 #: app/querybuilder.py:60 app/templates/admin/languages/list.html:27
 #: app/templates/admin/tags/list.html:34
@@ -893,7 +887,7 @@ msgstr "タイトル"
 #: app/blueprints/collections/__init__.py:88
 #: app/templates/packages/translation.html:45
 msgid "Short Description"
-msgstr ""
+msgstr "概要"
 
 #: app/blueprints/collections/__init__.py:84
 msgid "Page Content"
@@ -907,27 +901,27 @@ msgstr "プライベート"
 
 #: app/blueprints/collections/__init__.py:86
 msgid "Pinned to my profile"
-msgstr ""
+msgstr "プロフィール表示を固定する"
 
 #: app/blueprints/collections/__init__.py:158
 msgid "A collection with a similar title already exists"
-msgstr ""
+msgstr "似たタイトルのコレクションが存在します"
 
 #: app/blueprints/collections/__init__.py:164
 msgid "Unable to create collection as a package with that name already exists"
-msgstr ""
+msgstr "その名前と同じ名前のパッケージが存在しているのでコレクションは作成できません"
 
 #: app/blueprints/collections/__init__.py:310
 msgid "Added package to collection"
-msgstr ""
+msgstr "パッケージをコレクションに追加しました"
 
 #: app/blueprints/collections/__init__.py:312
 msgid "Removed package from collection"
-msgstr ""
+msgstr "コレクションからパッケージを削除しました"
 
 #: app/blueprints/collections/__init__.py:331
 msgid "Added package to favorites collection"
-msgstr ""
+msgstr "パッケージをお気に入りのコレクションに追加しました"
 
 #: app/blueprints/collections/__init__.py:333
 msgid "(Public, change from Profile > My Collections)"
@@ -935,7 +929,7 @@ msgstr ""
 
 #: app/blueprints/collections/__init__.py:337
 msgid "Removed package from favorites collection"
-msgstr ""
+msgstr "パッケージをお気に入りのコレクションから削除しました"
 
 #: app/blueprints/feeds/__init__.py:32 app/templates/index.html:8
 msgid "Welcome to the best place to find Luanti mods, games, and texture packs"
@@ -968,7 +962,7 @@ msgstr ""
 
 #: app/blueprints/oauth/__init__.py:171
 msgid "App Type"
-msgstr ""
+msgstr "種類を追加"
 
 #: app/blueprints/oauth/__init__.py:198
 msgid "An OAuth client with that title already exists. Please choose a new title."
@@ -986,7 +980,7 @@ msgstr "詳細を編集"
 #: app/blueprints/packages/__init__.py:37
 #: app/templates/packages/translation.html:4
 msgid "Translation"
-msgstr ""
+msgstr "翻訳"
 
 #: app/blueprints/packages/__init__.py:42
 #: app/templates/packages/releases_list.html:34
@@ -1029,7 +1023,7 @@ msgstr "削除 / 非公開"
 #: app/templates/packages/game_support.html:4
 #: app/utils/minetest_hypertext.py:275 app/utils/minetest_hypertext.py:277
 msgid "Supported Games"
-msgstr "対応しているゲーム"
+msgstr "対応ゲーム"
 
 #: app/blueprints/packages/advanced_search.py:39
 msgid "Android Default"
@@ -1046,12 +1040,12 @@ msgstr ""
 #: app/blueprints/packages/advanced_search.py:42 app/models/packages.py:630
 #: app/templates/packages/view.html:170
 msgid "Work in Progress"
-msgstr ""
+msgstr "制作中"
 
 #. NOTE: Package maintenance state
 #: app/blueprints/packages/advanced_search.py:43 app/models/packages.py:170
 msgid "Deprecated"
-msgstr ""
+msgstr "廃止"
 
 #: app/blueprints/packages/advanced_search.py:44
 msgid "All content warnings"
@@ -1070,7 +1064,7 @@ msgstr "種類"
 #: app/blueprints/packages/advanced_search.py:56
 #: app/templates/macros/topics.html:6 app/templates/packages/view.html:184
 msgid "Author"
-msgstr ""
+msgstr "作者"
 
 #: app/blueprints/packages/advanced_search.py:57
 #: app/blueprints/packages/packages.py:238 app/templates/admin/tags/list.html:4
@@ -1112,7 +1106,7 @@ msgstr ""
 #: app/blueprints/packages/reviews.py:54
 #: app/templates/packages/translation.html:39
 msgid "Language"
-msgstr ""
+msgstr "言語"
 
 #: app/blueprints/packages/advanced_search.py:76
 msgid "Hide Tags and Content Warnings"
@@ -1156,19 +1150,19 @@ msgstr ""
 
 #: app/blueprints/packages/advanced_search.py:92
 msgid "Order"
-msgstr ""
+msgstr "並び替え"
 
 #: app/blueprints/packages/advanced_search.py:93
 msgid "Descending"
-msgstr ""
+msgstr "降順"
 
 #: app/blueprints/packages/advanced_search.py:94
 msgid "Ascending"
-msgstr ""
+msgstr "昇順"
 
 #: app/blueprints/packages/advanced_search.py:96
 msgid "Random order"
-msgstr ""
+msgstr "ランダム"
 
 #: app/blueprints/packages/packages.py:216
 msgid "No download available."
@@ -1176,12 +1170,12 @@ msgstr "ダウンロードできるものはありません。"
 
 #: app/blueprints/packages/packages.py:232
 msgid "Title (Human-readable)"
-msgstr "タイトル（人が読める形式）"
+msgstr "タイトル（人が読むためのタイトル）"
 
 #: app/blueprints/packages/packages.py:233
 #: app/blueprints/packages/packages.py:646
 msgid "Name (Technical)"
-msgstr "名前（技術的なもの）"
+msgstr "名前（Luanti内部で利用する技術的な名称）"
 
 #: app/blueprints/packages/packages.py:233
 #: app/blueprints/packages/packages.py:647
@@ -1191,7 +1185,7 @@ msgstr "小文字 (a-z)、数字 (0-9)、アンダースコア (_) に限りま�
 
 #: app/blueprints/packages/packages.py:234
 msgid "Short Description (Plaintext)"
-msgstr "短い説明（プレーンテキスト）"
+msgstr "概要（プレーンテキスト）"
 
 #: app/blueprints/packages/packages.py:236 app/templates/packages/view.html:638
 #: app/utils/minetest_hypertext.py:300
@@ -1204,7 +1198,7 @@ msgstr "メディアのライセンス"
 
 #: app/blueprints/packages/packages.py:243
 msgid "Long Description (Markdown)"
-msgstr "長い説明（Markdown形式）"
+msgstr "詳細な説明（Markdown形式）"
 
 #: app/blueprints/packages/packages.py:245
 msgid "VCS Repository URL"
@@ -1232,7 +1226,7 @@ msgstr "寄付受付URL"
 
 #: app/blueprints/packages/packages.py:251
 msgid "Translation URL"
-msgstr ""
+msgstr "翻訳URL"
 
 #: app/blueprints/packages/packages.py:257
 msgid "_game is not an allowed name"
@@ -1242,26 +1236,28 @@ msgstr "_gameは許可された名前ではありません"
 msgid ""
 "Package already exists, but is removed. Please contact ContentDB staff to"
 " restore the package"
-msgstr "パッケージは既に存在しますが、削除されています。パッケージを復元するにはContentDBスタッフまでご連絡ください"
+msgstr "パッケージは、すでに存在していますが削除されています。パッケージを復元するに"
+"は、ContentDBスタッフまで連絡してください"
 
 #: app/blueprints/packages/packages.py:273
 msgid "Package already exists"
-msgstr "パッケージは既に存在しています"
+msgstr "パッケージは、すでに存在しています"
 
 #: app/blueprints/packages/packages.py:279
 msgid "A collection with a similar name already exists"
-msgstr ""
+msgstr "似た名前のコレクションが存在しています"
 
 #: app/blueprints/packages/packages.py:332
 #: app/blueprints/packages/releases.py:89
 msgid ""
 "You must add an email address to your account and confirm it before you "
 "can manage packages"
-msgstr ""
+msgstr "パッケージを管理する前に、アカウントにメールアドレスを追加して確認する必要が"
+"あります"
 
 #: app/blueprints/packages/packages.py:338
 msgid "Save draft"
-msgstr ""
+msgstr "下書きを保存"
 
 #: app/blueprints/packages/packages.py:346
 msgid "Unable to find that user"
@@ -1276,7 +1272,7 @@ msgstr "権限がありません"
 #: app/blueprints/packages/packages.py:503
 #: app/blueprints/packages/packages.py:525
 msgid "You don't have permission to do that"
-msgstr "権限がありません"
+msgstr "操作を行うための権限がありません"
 
 #: app/blueprints/packages/packages.py:444
 msgid "Please comment what changes are needed in the approval thread"
@@ -1327,7 +1323,7 @@ msgstr "依存関係に基づくサポート検出を有効にする（推奨）
 
 #: app/blueprints/packages/packages.py:733
 msgid "Supported games"
-msgstr "対応しているゲーム"
+msgstr "対応するゲーム"
 
 #: app/blueprints/packages/packages.py:734
 msgid "Unsupported games"
@@ -1478,21 +1474,21 @@ msgstr "レーティング"
 #: app/blueprints/packages/reviews.py:62 app/templates/macros/reviews.html:125
 #: app/templates/macros/reviews.html:179
 msgid "Yes"
-msgstr "はい"
+msgstr "良い"
 
 #: app/blueprints/packages/reviews.py:62 app/templates/macros/reviews.html:130
 #: app/templates/macros/reviews.html:183
 msgid "Neutral"
-msgstr "中立"
+msgstr "普通"
 
 #: app/blueprints/packages/reviews.py:62 app/templates/macros/reviews.html:135
 #: app/templates/macros/reviews.html:187
 msgid "No"
-msgstr "いいえ"
+msgstr "悪い"
 
 #: app/blueprints/packages/reviews.py:71
 msgid "You can't review your own package!"
-msgstr ""
+msgstr "自分のパッケージにはレビューできません！"
 
 #: app/blueprints/packages/reviews.py:81
 msgid ""
@@ -2300,32 +2296,32 @@ msgstr ""
 
 #: app/models/users.py:50
 msgid "New Member"
-msgstr ""
+msgstr "新規メンバー"
 
 #: app/models/users.py:52
 msgid "Member"
-msgstr ""
+msgstr "メンバー"
 
 #: app/models/users.py:54
 msgid "Trusted Member"
-msgstr ""
+msgstr "信頼されたメンバー"
 
 #: app/models/users.py:56
 msgid "Approver"
-msgstr ""
+msgstr "承認者"
 
 #: app/models/users.py:58
 msgid "Editor"
-msgstr ""
+msgstr "編集者"
 
 #. NOTE: BOT notification type
 #: app/models/users.py:60 app/models/users.py:455
 msgid "Bot"
-msgstr ""
+msgstr "ボット"
 
 #: app/models/users.py:62
 msgid "Moderator"
-msgstr ""
+msgstr "モデレーター"
 
 #: app/models/users.py:64 app/templates/base.html:178
 msgid "Admin"
@@ -2563,7 +2559,7 @@ msgstr "サインアウト"
 #: app/templates/admin/languages/list.html:10 app/templates/base.html:199
 #: app/templates/packages/view.html:620 app/utils/minetest_hypertext.py:288
 msgid "Languages"
-msgstr ""
+msgstr "言語"
 
 #: app/templates/base.html:216 app/templates/translate/index.html:76
 msgid "Help translate ContentDB"
@@ -2575,7 +2571,7 @@ msgstr "ContentDBについて"
 
 #: app/templates/base.html:261
 msgid "Contact Us"
-msgstr ""
+msgstr "お問い合わせ"
 
 #: app/templates/base.html:262
 msgid "Rules"
@@ -2596,7 +2592,7 @@ msgstr "API"
 
 #: app/templates/base.html:266
 msgid "RSS / Feeds"
-msgstr ""
+msgstr "RSS / フィード"
 
 #: app/templates/base.html:267 app/templates/users/register.html:40
 msgid "Privacy Policy"
@@ -2608,7 +2604,7 @@ msgstr "報告 / DMCA"
 
 #: app/templates/base.html:271 app/templates/packages/advanced_search.html:4
 msgid "Advanced Search"
-msgstr ""
+msgstr "高度な検索"
 
 #: app/templates/base.html:272
 msgid "User List"
@@ -2626,11 +2622,11 @@ msgstr "コレクション"
 
 #: app/templates/base.html:275 app/templates/donate/index.html:4
 msgid "Support Creators"
-msgstr ""
+msgstr "制作者をサポートする"
 
 #: app/templates/base.html:276
 msgid "Translate Packages"
-msgstr ""
+msgstr "パッケージを翻訳する"
 
 #: app/templates/base.html:277
 msgid "Source Code"
@@ -2638,11 +2634,11 @@ msgstr "ソースコード"
 
 #: app/templates/base.html:283
 msgid "Show non-free packages"
-msgstr ""
+msgstr "利用制限があるパッケージを表示"
 
 #: app/templates/base.html:285
 msgid "Hide non-free packages"
-msgstr ""
+msgstr "利用制限があるパッケージを隠す"
 
 #: app/templates/base.html:290
 #, python-format
@@ -2656,7 +2652,7 @@ msgstr "ようこそ"
 #: app/templates/index.html:53
 #, python-format
 msgid "<strong>%(title)s</strong> by %(author)s"
-msgstr ""
+msgstr "<strong>%(title)s</strong> （%(author)s）"
 
 #: app/templates/index.html:94 app/templates/packages/view.html:285
 msgid "Previous"
@@ -2702,7 +2698,7 @@ msgstr "高評価のレビュー"
 
 #: app/templates/index.html:192
 msgid "All reviews"
-msgstr ""
+msgstr "すべてのレビュー"
 
 #: app/templates/index.html:194
 msgid "Recent Positive Reviews"
@@ -2740,7 +2736,7 @@ msgstr ""
 #: app/templates/packages/game_support.html:20
 #: app/templates/threads/view.html:101 app/templates/todo/tags.html:36
 msgid "Package"
-msgstr ""
+msgstr "パッケージ"
 
 #: app/templates/admin/storage.html:62
 #: app/templates/collections/create_edit.html:61
@@ -2803,7 +2799,7 @@ msgstr ""
 
 #: app/templates/api/create_edit_token.html:26
 msgid "Click 'Delete' to revoke access."
-msgstr ""
+msgstr "「削除」をクリックしてアクセス権限を取り消します。"
 
 #: app/templates/api/create_edit_token.html:30
 msgid "API Tokens allow scripts to act on your behalf."
@@ -2817,7 +2813,7 @@ msgstr ""
 
 #: app/templates/api/create_edit_token.html:36
 msgid "Access Token"
-msgstr ""
+msgstr "アクセストークン"
 
 #: app/templates/api/create_edit_token.html:39
 msgid ""
@@ -2827,7 +2823,7 @@ msgstr ""
 
 #: app/templates/api/create_edit_token.html:46
 msgid "Reset"
-msgstr ""
+msgstr "リセット"
 
 #: app/templates/api/create_edit_token.html:56
 msgid "Human-readable name to tell tokens apart."
@@ -2851,26 +2847,26 @@ msgstr "作成"
 
 #: app/templates/api/list_tokens.html:9
 msgid "API Documentation"
-msgstr ""
+msgstr "APIドキュメント"
 
 #: app/templates/api/list_tokens.html:17
 msgid "Application"
-msgstr ""
+msgstr "アプリケーション"
 
 #: app/templates/api/list_tokens.html:24
 msgid "No tokens created"
-msgstr ""
+msgstr "トークンは作成されていません"
 
 #: app/templates/collections/create_edit.html:5
 #: app/templates/collections/view.html:42 app/templates/macros/releases.html:68
 #: app/templates/packages/release_view.html:10
 #: app/templates/packages/view.html:123 app/templates/packages/view.html:262
 msgid "Edit"
-msgstr ""
+msgstr "編集"
 
 #: app/templates/collections/create_edit.html:7
 msgid "New Collection"
-msgstr ""
+msgstr "新規コレクション"
 
 #: app/templates/collections/create_edit.html:32
 msgid "Users won't be redirected when going to the old URL"
@@ -2892,7 +2888,7 @@ msgstr ""
 
 #: app/templates/collections/create_edit.html:103
 msgid "Are you sure you want to remove {title}?"
-msgstr ""
+msgstr "{title} を削除してもよろしいですか?"
 
 #: app/templates/collections/delete.html:4
 #, python-format
@@ -2912,39 +2908,39 @@ msgstr ""
 #: app/templates/threads/delete_thread.html:18
 #: app/templates/users/delete.html:30
 msgid "Cancel"
-msgstr ""
+msgstr "キャンセル"
 
 #: app/templates/collections/list.html:5 app/templates/collections/list.html:24
 #: app/templates/collections/view.html:27
 #, python-format
 msgid "%(author)s's collections"
-msgstr ""
+msgstr "%(author)s さんのコレクション"
 
 #: app/templates/collections/list.html:49
 msgid "No collections"
-msgstr ""
+msgstr "コレクションがありません"
 
 #: app/templates/collections/package_add_to.html:4
 #, python-format
 msgid "Add %(package_title)s to a collection"
-msgstr ""
+msgstr "%(package_title)s をコレクションに追加"
 
 #: app/templates/collections/package_add_to.html:9
 msgid "Create Collection"
-msgstr ""
+msgstr "コレクションを作成"
 
 #: app/templates/collections/package_add_to.html:39
 msgid "You don't have any collections"
-msgstr ""
+msgstr "コレクションはありません"
 
 #: app/templates/collections/view.html:33
 msgid "Make a copy"
-msgstr ""
+msgstr "コピーを作成"
 
 #: app/templates/collections/view.html:54
 #, python-format
 msgid "A collection by %(author)s"
-msgstr ""
+msgstr "%(author)s のコレクション"
 
 #: app/templates/collections/view.html:69
 msgid "To add a package, go to the package's page and click 'Add to collection'"
@@ -3190,7 +3186,7 @@ msgstr ""
 #: app/templates/macros/packagegridtile.html:46
 #: app/templates/translate/index.html:56
 msgid "No packages available"
-msgstr ""
+msgstr "パッケージがありません"
 
 #: app/templates/macros/releases.html:23 app/templates/macros/releases.html:53
 #: app/templates/macros/releases.html:99
@@ -3236,7 +3232,7 @@ msgstr ""
 #: app/templates/macros/reviews.html:113 app/templates/macros/reviews.html:167
 #: app/templates/packages/review_create_edit.html:4
 msgid "Review"
-msgstr ""
+msgstr "レビュー"
 
 #: app/templates/macros/reviews.html:140
 #: app/templates/packages/review_create_edit.html:51
@@ -3599,11 +3595,11 @@ msgstr ""
 
 #: app/templates/packages/advanced_search.html:23
 msgid "Compatibility"
-msgstr ""
+msgstr "互換性"
 
 #: app/templates/packages/advanced_search.html:28
 msgid "Sorting"
-msgstr ""
+msgstr "ソート"
 
 #: app/templates/packages/alias_create_edit.html:4
 msgid "Alias"
@@ -3629,7 +3625,7 @@ msgstr ""
 #: app/templates/packages/bulk_update_conf.html:4
 #, python-format
 msgid "Git Update Detection for %(username)s"
-msgstr ""
+msgstr "%(username)s のGitリポジトリ更新を検出しました"
 
 #: app/templates/packages/bulk_update_conf.html:10
 msgid "Packages with Update Settings"
@@ -3670,13 +3666,14 @@ msgstr "パッケージ投稿ポリシーとガイドはご覧になりました
 
 #: app/templates/packages/create_edit.html:47
 msgid "Read more"
-msgstr ""
+msgstr "続きを読む"
 
 #: app/templates/packages/create_edit.html:49
 msgid ""
 "You can include a .cdb.json file in your package to update these details "
 "automatically."
-msgstr ""
+msgstr "これら詳細については、パッケージに.cdb.jsonファイルを含めることで自動的に更新"
+"できます。"
 
 #: app/templates/packages/create_edit.html:55
 msgid ""
@@ -3684,10 +3681,13 @@ msgid ""
 "features\n"
 "\t\t\tsuch as finding metadata from git, and autocompletion."
 msgstr ""
+"JavaScriptは、ユーザーインターフェイスの利便性向上のために必要です\n"
+"\t\t"
+"\tgitのメタデータ検索やオートコンプリートといった機能のためにも利用されます。"
 
 #: app/templates/packages/create_edit.html:78
 msgid "You need to unpublish the package to change the name."
-msgstr ""
+msgstr "名前を変更するには非公開にする必要があります。"
 
 #: app/templates/packages/create_edit.html:85
 msgid ""
@@ -3695,6 +3695,9 @@ msgid ""
 "anywhere in the short description. It is unnecessary and wastes "
 "characters."
 msgstr ""
+"ヒント: "
+"概要に<i>Minetest</i>、<i>mod</i>、<i>modpack</i>といった文字列を含めないでく"
+"ださい。これらは不要で、文字数を無駄に使います。"
 
 #: app/templates/packages/create_edit.html:88
 msgid ""
@@ -3734,21 +3737,22 @@ msgstr ""
 
 #: app/templates/packages/create_edit.html:116
 msgid "Do you have a Git repository?"
-msgstr ""
+msgstr "Gitリポジトリをお持ちですか？"
 
 #: app/templates/packages/create_edit.html:118
 msgid "Having a repository is optional"
-msgstr ""
+msgstr "リポジトリの入力はオプションです"
 
 #: app/templates/packages/create_edit.html:121
 msgid ""
 "If you do have a repository, enter the URL below. Otherwise, leave blank "
 "and click skip."
-msgstr ""
+msgstr "リポジトリがある場合は、以下にURLを入力してください。リポジトリがない場合は、"
+"何も入力せずに「スキップ」ボタンをクリックしてください。"
 
 #: app/templates/packages/create_edit.html:126
 msgid "HTTP URL to a Git, Mercurial, or other repository"
-msgstr ""
+msgstr "Git、Mercurial、またはそのほかリポジトリのHTTP URLを入力します"
 
 #: app/templates/packages/create_edit.html:129
 msgid "Next (Autoimport)"
@@ -3764,11 +3768,11 @@ msgstr "インポート中...（しばらく時間がかかる場合がありま
 
 #: app/templates/packages/create_edit.html:137
 msgid "Where should users report issues?"
-msgstr ""
+msgstr "問題があった場合、ユーザーはどこに報告すればいいでですか？"
 
 #: app/templates/packages/create_edit.html:141
 msgid "Paste a forum topic URL"
-msgstr ""
+msgstr "フォーラム・掲示板のURLを貼り付け"
 
 #: app/templates/packages/create_edit.html:143
 msgid "YouTube videos will be shown in an embed."
@@ -5042,7 +5046,7 @@ msgstr ""
 #: app/templates/todo/user.html:4
 #, python-format
 msgid "%(username)s's to do list"
-msgstr ""
+msgstr "%(username)s さんのタスク一覧"
 
 #: app/templates/todo/user.html:9
 msgid "Misc To do"
@@ -5050,11 +5054,11 @@ msgstr ""
 
 #: app/templates/todo/user.html:13
 msgid "Enable email notifications"
-msgstr ""
+msgstr "メール通知を有効にする"
 
 #: app/templates/todo/user.html:18
 msgid "Unapproved Packages Needing Action"
-msgstr ""
+msgstr "処理が必要な未承認のパッケージ"
 
 #: app/templates/todo/user.html:48
 msgid "See all Update Settings"
@@ -5145,7 +5149,7 @@ msgstr ""
 
 #: app/templates/translate/index.html:73
 msgid "ContentDB"
-msgstr ""
+msgstr "ContentDB"
 
 #: app/templates/translate/index.html:80
 msgid "Packages that support translation"
@@ -5206,7 +5210,7 @@ msgstr ""
 
 #: app/templates/users/account.html:73
 msgid "None"
-msgstr ""
+msgstr "なし"
 
 #: app/templates/users/account.html:80
 msgid "Account Deletion and Deactivation"
@@ -5325,7 +5329,7 @@ msgstr ""
 #: app/templates/users/claim_forums.html:68
 #: app/templates/users/register.html:16
 msgid "Only a-zA-Z0-9._ allowed"
-msgstr "a-zA-Z0-9 _ のみ利用可"
+msgstr "a-z A-Z 0-9 _ のみ利用可"
 
 #: app/templates/users/claim_forums.html:43
 msgid "You'll need to have the GitHub field in your forum profile filled out."
@@ -5750,7 +5754,7 @@ msgstr ""
 
 #: app/utils/flask.py:164
 msgid "Last year"
-msgstr ""
+msgstr "去年1年"
 
 #: app/utils/minetest_hypertext.py:108
 msgid "(view table in browser)"
@@ -5762,7 +5766,7 @@ msgstr ""
 
 #: app/utils/minetest_hypertext.py:259
 msgid "none"
-msgstr ""
+msgstr "なし"
 
 #: app/utils/minetest_hypertext.py:280
 msgid "Unsupported Games"
@@ -5774,7 +5778,7 @@ msgstr ""
 
 #: app/utils/minetest_hypertext.py:340
 msgid "No reviews available."
-msgstr ""
+msgstr "レビューがありません。"
 
 #: app/utils/user.py:51
 msgid "You have a lot of notifications, you should either read or clear them"
@@ -6622,4 +6626,3 @@ msgstr ""
 
 #~ msgid "Luanti-Mods org only"
 #~ msgstr ""
-
