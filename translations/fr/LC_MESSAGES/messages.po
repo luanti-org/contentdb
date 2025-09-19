@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
 "PO-Revision-Date: 2025-02-26 20:50+0000\n"
-"Last-Translator: Tanavit MINETEST <tanavit@posto.ovh>\n"
+"Last-Translator: 3raven <elise_declerck@laposte.net>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/minetest/"
 "contentdb/fr/>\n"
 "Language: fr\n"
@@ -2534,8 +2534,7 @@ msgstr "Quand un autre utilisateur édite vos paquets, publications, etc."
 
 #: app/models/users.py:504
 msgid "Notifications from editors related to the package approval process."
-msgstr ""
-"Notification des éditeurs relatives au processus d'approbation de paquet."
+msgstr "Notifications des éditeurs liés au processus d'approbation des paquets."
 
 #: app/models/users.py:506
 msgid "When a thread is created on your package."
