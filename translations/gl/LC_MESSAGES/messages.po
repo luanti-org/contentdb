@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2025-02-08 22:00+0000\n"
+"PO-Revision-Date: 2025-06-15 23:06+0000\n"
 "Last-Translator: ninjum <ninhum@gmx.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/minetest/"
 "contentdb/gl/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 "Generated-By: Babel 2.15.0\n"
 
 #: app/__init__.py:156
@@ -32,49 +32,49 @@ msgstr "Fuches prohibido."
 #: app/_translations.py:6
 msgctxt "tags"
 msgid "128px+"
-msgstr ""
+msgstr "+ de 128 px"
 
 #. NOTE: tags: description for 128px
 #: app/_translations.py:8
 msgctxt "tags"
 msgid "For 128px or higher texture packs"
-msgstr ""
+msgstr "Para paquetes de texturas de 128 píxeles ou maior"
 
 #. NOTE: tags: title for 16px
 #: app/_translations.py:10
 msgctxt "tags"
 msgid "16px"
-msgstr ""
+msgstr "16 px"
 
 #. NOTE: tags: description for 16px
 #: app/_translations.py:12
 msgctxt "tags"
 msgid "For 16px texture packs"
-msgstr ""
+msgstr "Para paquetes de texturas de 16 píxeles"
 
 #. NOTE: tags: title for 32px
 #: app/_translations.py:14
 msgctxt "tags"
 msgid "32px"
-msgstr ""
+msgstr "32 px"
 
 #. NOTE: tags: description for 32px
 #: app/_translations.py:16
 msgctxt "tags"
 msgid "For 32px texture packs"
-msgstr ""
+msgstr "Para paquetes de texturas de 32 píxeles"
 
 #. NOTE: tags: title for 64px
 #: app/_translations.py:18
 msgctxt "tags"
 msgid "64px"
-msgstr ""
+msgstr "64 px"
 
 #. NOTE: tags: description for 64px
 #: app/_translations.py:20
 msgctxt "tags"
 msgid "For 64px texture packs"
-msgstr ""
+msgstr "Para paquetes de texturas de 64 píxeles"
 
 #. NOTE: tags: title for adventure__rpg
 #: app/_translations.py:22
@@ -317,7 +317,7 @@ msgstr "Cambia a interface gráfica do inventario"
 #: app/_translations.py:90
 msgctxt "tags"
 msgid "Jam / Combat 2020"
-msgstr ""
+msgstr "Jam / Combate 2020"
 
 #. NOTE: tags: description for jam_combat_mod
 #: app/_translations.py:92
@@ -331,25 +331,25 @@ msgstr ""
 #: app/_translations.py:94
 msgctxt "tags"
 msgid "Jam / Game 2021"
-msgstr ""
+msgstr "Jam / Xogo 2021"
 
 #. NOTE: tags: description for jam_game_2021
 #: app/_translations.py:96
 msgctxt "tags"
 msgid "Entries to the 2021 Minetest Game Jam"
-msgstr ""
+msgstr "Entradas na Minetest Game Jam 2021"
 
 #. NOTE: tags: title for jam_game_2022
 #: app/_translations.py:98
 msgctxt "tags"
 msgid " Jam / Game 2022"
-msgstr ""
+msgstr " Jam / Xogo 2022"
 
 #. NOTE: tags: description for jam_game_2022
 #: app/_translations.py:100
 msgctxt "tags"
 msgid "Entries to the 2022 Minetest Game Jam "
-msgstr ""
+msgstr "Entradas para o Minetest Game Jam de 2022 "
 
 #. NOTE: tags: title for jam_game_2023
 #: app/_translations.py:102
@@ -361,25 +361,25 @@ msgstr "Jam / Xogo 2023"
 #: app/_translations.py:104
 msgctxt "tags"
 msgid "Entries to the 2023 Minetest Game Jam "
-msgstr ""
+msgstr "Participacións no Jam de Xogos de Minetest 2023 "
 
 #. NOTE: tags: title for jam_game_2024
 #: app/_translations.py:106
 msgctxt "tags"
 msgid "Jam / Game 2024"
-msgstr ""
+msgstr "Jam/ Xogo 2024"
 
 #. NOTE: tags: description for jam_game_2024
 #: app/_translations.py:108
 msgctxt "tags"
 msgid "Entries to the 2024 Luanti Game Jam"
-msgstr ""
+msgstr "Entradas para o Luanti Game Jam de 2024"
 
 #. NOTE: tags: title for jam_weekly_2021
 #: app/_translations.py:110
 msgctxt "tags"
 msgid "Jam / Weekly Challenges 2021"
-msgstr ""
+msgstr "Jam / Desafíos semanais 2021"
 
 #. NOTE: tags: description for jam_weekly_2021
 #: app/_translations.py:112
@@ -388,36 +388,39 @@ msgid ""
 "For mods created for the Discord \"Weekly Challenges\" modding event in "
 "2021"
 msgstr ""
+"Para modificacións creadas para o evento de modificación "
+"\"Weekly Challenges\" de Discord en 2021"
 
 #. NOTE: tags: title for less_than_px
 #: app/_translations.py:114
 msgctxt "tags"
 msgid "<16px"
-msgstr ""
+msgstr "&lt;16px"
 
 #. NOTE: tags: description for less_than_px
 #: app/_translations.py:116
 msgctxt "tags"
 msgid "Less than 16px"
-msgstr ""
+msgstr "Menos de 16 píxeles"
 
 #. NOTE: tags: title for library
 #: app/_translations.py:118
 msgctxt "tags"
 msgid "API / Library"
-msgstr ""
+msgstr "API / Biblioteca"
 
 #. NOTE: tags: description for library
 #: app/_translations.py:120
+#, fuzzy
 msgctxt "tags"
 msgid "Primarily adds an API for other mods to use"
-msgstr ""
+msgstr "Engade principalmente unha API para que outros mods a usen"
 
 #. NOTE: tags: title for magic
 #: app/_translations.py:122
 msgctxt "tags"
 msgid "Magic / Enchanting"
-msgstr ""
+msgstr "Maxia / Encanto"
 
 #. NOTE: tags: title for mapgen
 #: app/_translations.py:124
@@ -526,7 +529,7 @@ msgstr ""
 #: app/_translations.py:156
 msgctxt "tags"
 msgid "Puzzle"
-msgstr ""
+msgstr "Crebacabezas"
 
 #. NOTE: tags: description for puzzle
 #: app/_translations.py:158
@@ -652,7 +655,7 @@ msgstr ""
 #: app/_translations.py:196
 msgctxt "tags"
 msgid "Sports"
-msgstr ""
+msgstr "Deportes"
 
 #. NOTE: tags: title for storage
 #: app/_translations.py:198
