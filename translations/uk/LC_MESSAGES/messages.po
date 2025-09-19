@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
 "PO-Revision-Date: 2025-08-04 10:11+0000\n"
-"Last-Translator: Тарас Арт <fromkaniv@gmail.com>\n"
+"Last-Translator: Денис <denissavchenko0@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/minetest/"
 "contentdb/uk/>\n"
 "Language: uk\n"
@@ -5479,7 +5479,7 @@ msgstr "Не має пароля"
 
 #: app/templates/users/account.html:33
 msgid "Linked Accounts"
-msgstr "Пов'язані акаунти"
+msgstr "Пов’язані облікові записи"
 
 #: app/templates/users/account.html:43
 #, python-format
@@ -5604,7 +5604,7 @@ msgstr ""
 
 #: app/templates/users/claim_forums.html:18
 msgid "Don't have a forums account?"
-msgstr "У вас немає облікового запису форумів?"
+msgstr "Не маєте облікового запису на форумі?"
 
 #: app/templates/users/claim_forums.html:19
 #, python-format
@@ -5617,7 +5617,7 @@ msgstr "Варіант 1"
 
 #: app/templates/users/claim_forums.html:27
 msgid "Use GitHub field in forum profile"
-msgstr "Використовуйте поле GitHub на форумі"
+msgstr "Використовуйте поле GitHub у профілі форуму"
 
 #: app/templates/users/claim_forums.html:35
 #: app/templates/users/claim_forums.html:64
@@ -5637,7 +5637,7 @@ msgstr "Дозволено лише a-zA-Z0-9._"
 
 #: app/templates/users/claim_forums.html:43
 msgid "You'll need to have the GitHub field in your forum profile filled out."
-msgstr "Вам потрібно буде заповнити поле GitHub у вашому профілі на форумі."
+msgstr "Вам потрібно буде заповнити поле GitHub у вашому профілі форуму."
 
 #: app/templates/users/claim_forums.html:44
 msgid ""
@@ -5923,7 +5923,7 @@ msgstr ""
 
 #: app/templates/users/profile_edit.html:55
 msgid "Profile Information"
-msgstr "Інформація облікового запису"
+msgstr "Інформація профілю"
 
 #: app/templates/users/profile_edit.html:62
 msgid "Pretending to be another user is grounds for a permanent ban"
