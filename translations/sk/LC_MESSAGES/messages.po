@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2024-10-06 08:16+0000\n"
+"PO-Revision-Date: 2025-09-15 12:01+0000\n"
 "Last-Translator: Pexauteau Santander <pexauteau@gmail.com>\n"
+"Language-Team: Slovak <https://hosted.weblate.org/projects/minetest/"
+"contentdb/sk/>\n"
 "Language: sk\n"
-"Language-Team: Slovak "
-"<https://hosted.weblate.org/projects/minetest/contentdb/sk/>\n"
-"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
+"X-Generator: Weblate 5.14-dev\n"
 "Generated-By: Babel 2.15.0\n"
 
 #: app/__init__.py:156
@@ -329,7 +330,7 @@ msgstr "Jam / Hra 2020"
 #: app/_translations.py:96
 msgctxt "tags"
 msgid "Entries to the 2021 Minetest Game Jam"
-msgstr ""
+msgstr "Hry navrhnuté pre Minetest Game Jam 2021"
 
 #. NOTE: tags: title for jam_game_2022
 #: app/_translations.py:98
@@ -341,7 +342,7 @@ msgstr " Jam / Hra 2022"
 #: app/_translations.py:100
 msgctxt "tags"
 msgid "Entries to the 2022 Minetest Game Jam "
-msgstr ""
+msgstr "Hry navrhnuté pre Minetest Game Jam 2022 "
 
 #. NOTE: tags: title for jam_game_2023
 #: app/_translations.py:102
@@ -353,7 +354,7 @@ msgstr "Jam / Hra 2023"
 #: app/_translations.py:104
 msgctxt "tags"
 msgid "Entries to the 2023 Minetest Game Jam "
-msgstr ""
+msgstr "Hry navrhnuté pre Minetest Game Jam 2023 "
 
 #. NOTE: tags: title for jam_game_2024
 #: app/_translations.py:106
@@ -6835,4 +6836,3 @@ msgstr ""
 
 #~ msgid "Luanti-Mods org only"
 #~ msgstr "Iba Luanti organizačné rozšírenia"
-
