@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2025-01-29 11:02+0000\n"
-"Last-Translator: Balázs Kovács <kovacs.balazs.ktk@gmail.com>\n"
+"PO-Revision-Date: 2025-07-05 21:02+0000\n"
+"Last-Translator: Kisbenedek Márton <martonkisbenedek@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/minetest/"
 "contentdb/hu/>\n"
 "Language: hu\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 "Generated-By: Babel 2.15.0\n"
 
 #: app/__init__.py:156
@@ -30,59 +30,51 @@ msgstr "Kitiltottak."
 
 #. NOTE: tags: title for 128px
 #: app/_translations.py:6
-#, fuzzy
 msgctxt "tags"
 msgid "128px+"
-msgstr "128px+"
+msgstr "128 pixel felett"
 
 #. NOTE: tags: description for 128px
 #: app/_translations.py:8
-#, fuzzy
 msgctxt "tags"
 msgid "For 128px or higher texture packs"
-msgstr "Legjobb megjelenés(textúra)csomagok"
+msgstr "128 pixeles vagy annál nagyobb méretű textúra csomagokhoz"
 
 #. NOTE: tags: title for 16px
 #: app/_translations.py:10
-#, fuzzy
 msgctxt "tags"
 msgid "16px"
-msgstr "16px"
+msgstr "16 pixel"
 
 #. NOTE: tags: description for 16px
 #: app/_translations.py:12
-#, fuzzy
 msgctxt "tags"
 msgid "For 16px texture packs"
-msgstr "Legjobb megjelenés(textúra)csomagok"
+msgstr "16 pixeles textúra csomagokhoz"
 
 #. NOTE: tags: title for 32px
 #: app/_translations.py:14
-#, fuzzy
 msgctxt "tags"
 msgid "32px"
-msgstr "32px"
+msgstr "32 pixel"
 
 #. NOTE: tags: description for 32px
 #: app/_translations.py:16
-#, fuzzy
 msgctxt "tags"
 msgid "For 32px texture packs"
-msgstr "Legjobb megjelenés(textúra)csomagok"
+msgstr "32 pixeles textúra csomagokhoz"
 
 #. NOTE: tags: title for 64px
 #: app/_translations.py:18
-#, fuzzy
 msgctxt "tags"
 msgid "64px"
-msgstr "64px"
+msgstr "64 pixel"
 
 #. NOTE: tags: description for 64px
 #: app/_translations.py:20
-#, fuzzy
 msgctxt "tags"
 msgid "For 64px texture packs"
-msgstr "Legjobb megjelenés(textúra)csomagok"
+msgstr "64 pixeles textúra csomagokhoz"
 
 #. NOTE: tags: title for adventure__rpg
 #: app/_translations.py:22
@@ -103,32 +95,35 @@ msgid ""
 "For humorous content, meant as a novelty or joke, not to be taken "
 "seriously, and that is not meant to be used seriously or long-term."
 msgstr ""
-"Humoros tartalomhoz, viccnek szánva, vaygis nem komolyan vevendő, és nem "
-"komoly hosszú távra való használatra."
+"Humoros, újdonságnak vagy viccnek szánt, nem komolyan veendő tartalomhoz, "
+"amelyet arra szántak, hogy komolyan vagy hosszú távon használják."
 
 #. NOTE: tags: title for building
 #: app/_translations.py:28
 msgctxt "tags"
 msgid "Building"
-msgstr "Épitmény"
+msgstr "Építés"
 
 #. NOTE: tags: description for building
 #: app/_translations.py:30
 msgctxt "tags"
 msgid "Focuses on building, such as adding new materials or nodes"
-msgstr "Épitésre fókuszál, mint új építőkockák és alapanyagok"
+msgstr ""
+"Az építésre összpontosít, például új anyagok vagy építőkockák hozzáadására"
 
 #. NOTE: tags: title for building_mechanics
 #: app/_translations.py:32
 msgctxt "tags"
 msgid "Building Mechanics and Tools"
-msgstr "Épitési eszközök és mehanikák"
+msgstr "Építési mechanikák és eszközök"
 
 #. NOTE: tags: description for building_mechanics
 #: app/_translations.py:34
 msgctxt "tags"
 msgid "Adds game mechanics or tools that change how players build."
-msgstr "Olyan mehanikákat vagy eszözöket ad, amely változást hoz az építésbe."
+msgstr ""
+"Olyan játékmechanikákat vagy eszközöket ad hozzá, amelyek megváltoztatják a "
+"játékosok építési módját."
 
 #. NOTE: tags: title for chat
 #: app/_translations.py:36
@@ -138,23 +133,23 @@ msgstr "Csevegés / Parancsok"
 
 #. NOTE: tags: description for chat
 #: app/_translations.py:38
-#, fuzzy
 msgctxt "tags"
 msgid "Focus on player chat/communication or console interaction."
-msgstr "A csevegésre/kommunkációra, vagy konzolkezelésre fókuszál."
+msgstr ""
+"A játékosok közötti csevegésre/kommunikációra, vagy konzolkezelésre "
+"összpontosít."
 
 #. NOTE: tags: title for commerce
 #: app/_translations.py:40
 msgctxt "tags"
 msgid "Commerce / Economy"
-msgstr ""
+msgstr "Üzlet / Gazdaság"
 
 #. NOTE: tags: description for commerce
 #: app/_translations.py:42
-#, fuzzy
 msgctxt "tags"
 msgid "Related to economies, money, and trading"
-msgstr "Kereskedéshez, pénzhez és ekonómiához van köze"
+msgstr "Gazdasággal, pénzzel és kereskedéssel kapcsolatos"
 
 #. NOTE: tags: title for complex_installation
 #: app/_translations.py:44
@@ -169,15 +164,14 @@ msgid ""
 "Requires futher installation steps, such as installing LuaRocks or "
 "editing the trusted mod setting"
 msgstr ""
-"Szükséges hozzá a LuaRocks, vagy a megbízható modok listájának "
-"szerkesztése"
+"További telepítési lépéseket igényel, például a LuaRocks telepítését vagy a "
+"megbízható mod beállítások szerkesztését"
 
 #. NOTE: tags: title for crafting
 #: app/_translations.py:48
-#, fuzzy
 msgctxt "tags"
 msgid "Crafting"
-msgstr "Értékelés"
+msgstr "Barkácsolás"
 
 #. NOTE: tags: description for crafting
 #: app/_translations.py:50
@@ -187,86 +181,82 @@ msgstr "Nagy változások a barkácsolási élményhez"
 
 #. NOTE: tags: title for creative
 #: app/_translations.py:52
-#, fuzzy
 msgctxt "tags"
 msgid "Creative"
-msgstr "Létrehozás"
+msgstr "Kreatív"
 
 #. NOTE: tags: description for creative
 #: app/_translations.py:54
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "Written specifically or exclusively for use in creative mode. Adds "
 "content only available through a creative inventory, or provides tools "
 "that facilitate ingame creation and doesn't add difficulty or scarcity"
 msgstr ""
-"Kreatív módra tervezve. Olyan tartalmat ad hozzá, ami csak a kreatív "
-"eszköztárban érhető el, vagy olyan eszközöket ad, ami megváltoztatja a "
-"játék nehézségét."
+"Különösen, vagy kizárólag Kreatív módban történő használatra tervezve. Olyan "
+"tartalmat ad hozzá, ami csak a kreatív eszköztárban érhető el, vagy olyan "
+"eszközöket biztosít, amelyek megkönnyítik a játékbeli alkotást, és nem "
+"növelik a nehézséget vagy a hiányosságokat"
 
 #. NOTE: tags: title for custom_mapgen
 #: app/_translations.py:56
-#, fuzzy
 msgctxt "tags"
 msgid "Custom mapgen"
-msgstr "Megjegyzés"
+msgstr "Egyedi térképgenerátor"
 
 #. NOTE: tags: description for custom_mapgen
 #: app/_translations.py:58
-#, fuzzy
 msgctxt "tags"
 msgid ""
 "Contains a completely custom mapgen implemented in Lua, usually requires "
 "worlds to be set to the 'singlenode' mapgen."
 msgstr ""
-"Egy teljesen egyedi térképgenerálót tartalmaz, amit Lua-ban hoztak létre,"
-" ami miatt legtöbbször át kell állítani a térképgenerálást singlenode-ra."
+"Egy Lua-ban létrehozott teljesen egyedi térképgenerátort tartalmaz, ami "
+"miatt általában át kell állítani a térképgenerálást 'singlenode'-ra."
 
 #. NOTE: tags: title for decorative
 #: app/_translations.py:60
-#, fuzzy
 msgctxt "tags"
 msgid "Decorative"
-msgstr "Adományozás"
+msgstr "Dekoratív"
 
 #. NOTE: tags: description for decorative
 #: app/_translations.py:62
 msgctxt "tags"
 msgid "Adds nodes with no other purpose than for use in building"
-msgstr "Olyan node-kat add hozzá, amik csak épitési célt szolgálnak"
+msgstr ""
+"Olyan blokkokat ad hozzá, amelyeknek nincs más célja, mint az építésben való "
+"felhasználás"
 
 #. NOTE: tags: title for developer_tools
 #: app/_translations.py:64
-#, fuzzy
 msgctxt "tags"
 msgid "Developer Tools"
-msgstr "Moderátor Eszközök"
+msgstr "Fejlesztői eszközök"
 
 #. NOTE: tags: description for developer_tools
 #: app/_translations.py:66
 msgctxt "tags"
 msgid "Tools for game and mod developers"
-msgstr "Eszközök mod és játékfejlesztőknek"
+msgstr "Eszközök mod- és játékfejlesztőknek"
 
 #. NOTE: tags: title for education
 #: app/_translations.py:68
-#, fuzzy
 msgctxt "tags"
 msgid "Education"
-msgstr "Akció"
+msgstr "Oktatás"
 
 #. NOTE: tags: description for education
 #: app/_translations.py:70
 msgctxt "tags"
 msgid "Either has educational value, or is a tool to help teachers "
-msgstr ""
+msgstr "Vagy oktatási értékkel bír, vagy tanárokat segítő eszköz "
 
 #. NOTE: tags: title for environment
 #: app/_translations.py:72
 msgctxt "tags"
 msgid "Environment / Weather"
-msgstr ""
+msgstr "Környezet / Időjárás"
 
 #. NOTE: tags: description for environment
 #: app/_translations.py:74
@@ -275,18 +265,20 @@ msgid ""
 "Improves the world, adding weather, ambient sounds, or other environment "
 "mechanics"
 msgstr ""
+"Javítja a világot időjárás, környezeti hangok, vagy más környezeti "
+"mechanikák hozzáadásával"
 
 #. NOTE: tags: title for food
 #: app/_translations.py:76
 msgctxt "tags"
 msgid "Food / Drinks"
-msgstr ""
+msgstr "Étel / Ital"
 
 #. NOTE: tags: title for gui
 #: app/_translations.py:78
 msgctxt "tags"
 msgid "GUI"
-msgstr ""
+msgstr "Felhasználói felület"
 
 #. NOTE: tags: description for gui
 #: app/_translations.py:80
@@ -295,18 +287,22 @@ msgid ""
 "For content whose main utility or features are provided within a GUI, on-"
 "screen menu, or similar"
 msgstr ""
+"Olyan tartalomhoz, melynek fő hasznossága vagy funkciói egy grafikus "
+"felhasználói felületen, képernyőmenüben vagy hasonlóban találhatók"
 
 #. NOTE: tags: title for hud
 #: app/_translations.py:82
 msgctxt "tags"
 msgid "HUD"
-msgstr ""
+msgstr "HUD"
 
 #. NOTE: tags: description for hud
 #: app/_translations.py:84
 msgctxt "tags"
 msgid "For mods that grant the player extra information in the HUD"
 msgstr ""
+"Olyan modokhoz, amelyek többlet információkat biztosítanak a játékosnak a "
+"HUD-ban"
 
 #. NOTE: tags: title for inventory
 #: app/_translations.py:86
@@ -318,73 +314,75 @@ msgstr "Felszerelés"
 #: app/_translations.py:88
 msgctxt "tags"
 msgid "Changes the inventory GUI"
-msgstr ""
+msgstr "Megváltoztatja az Inventory felületét"
 
 #. NOTE: tags: title for jam_combat_mod
 #: app/_translations.py:90
 msgctxt "tags"
 msgid "Jam / Combat 2020"
-msgstr ""
+msgstr "Jam / Combat 2020"
 
 #. NOTE: tags: description for jam_combat_mod
 #: app/_translations.py:92
 msgctxt "tags"
 msgid "For mods created for the Discord \"Combat\" modding event in 2020"
 msgstr ""
+"Olyan modokhoz, melyek a Discord\"Combat\" modding eseményre készültek "
+"2020-ban"
 
 #. NOTE: tags: title for jam_game_2021
 #: app/_translations.py:94
 msgctxt "tags"
 msgid "Jam / Game 2021"
-msgstr ""
+msgstr "Jam / Játék 2021"
 
 #. NOTE: tags: description for jam_game_2021
 #: app/_translations.py:96
 msgctxt "tags"
 msgid "Entries to the 2021 Minetest Game Jam"
-msgstr ""
+msgstr "A 2021-es Minetest Game Jam résztvevői"
 
 #. NOTE: tags: title for jam_game_2022
 #: app/_translations.py:98
 msgctxt "tags"
 msgid " Jam / Game 2022"
-msgstr ""
+msgstr " Jam / Játék 2022"
 
 #. NOTE: tags: description for jam_game_2022
 #: app/_translations.py:100
 msgctxt "tags"
 msgid "Entries to the 2022 Minetest Game Jam "
-msgstr ""
+msgstr "A 2022-es Minetest Game Jam résztvevői "
 
 #. NOTE: tags: title for jam_game_2023
 #: app/_translations.py:102
 msgctxt "tags"
 msgid "Jam / Game 2023"
-msgstr ""
+msgstr "Jam / Játék 2023"
 
 #. NOTE: tags: description for jam_game_2023
 #: app/_translations.py:104
 msgctxt "tags"
 msgid "Entries to the 2023 Minetest Game Jam "
-msgstr ""
+msgstr "A 2023-as Minetest Game Jam résztvevői "
 
 #. NOTE: tags: title for jam_game_2024
 #: app/_translations.py:106
 msgctxt "tags"
 msgid "Jam / Game 2024"
-msgstr ""
+msgstr "Jam / Játék 2024"
 
 #. NOTE: tags: description for jam_game_2024
 #: app/_translations.py:108
 msgctxt "tags"
 msgid "Entries to the 2024 Luanti Game Jam"
-msgstr ""
+msgstr "A 2024-es Luanti Game Jam résztvevői"
 
 #. NOTE: tags: title for jam_weekly_2021
 #: app/_translations.py:110
 msgctxt "tags"
 msgid "Jam / Weekly Challenges 2021"
-msgstr ""
+msgstr "Jam / Heti kihívások 2021"
 
 #. NOTE: tags: description for jam_weekly_2021
 #: app/_translations.py:112
@@ -393,18 +391,20 @@ msgid ""
 "For mods created for the Discord \"Weekly Challenges\" modding event in "
 "2021"
 msgstr ""
+"Azokhoz a modokhoz, melyek a Discord \"Heti kihívások\" modding eseményhez "
+"készültek 2021-ben"
 
 #. NOTE: tags: title for less_than_px
 #: app/_translations.py:114
 msgctxt "tags"
 msgid "<16px"
-msgstr ""
+msgstr "16 pixelnél kisebb"
 
 #. NOTE: tags: description for less_than_px
 #: app/_translations.py:116
 msgctxt "tags"
 msgid "Less than 16px"
-msgstr "Kevesebb, mint 16px"
+msgstr "Kevesebb, mint 16 pixel"
 
 #. NOTE: tags: title for library
 #: app/_translations.py:118
@@ -416,7 +416,7 @@ msgstr "API / Könyvtár"
 #: app/_translations.py:120
 msgctxt "tags"
 msgid "Primarily adds an API for other mods to use"
-msgstr "Elsősorban egy API-t ad más modok számára"
+msgstr "Elsősorban egy API-t ad hozzá, amit más modok használhatnak"
 
 #. NOTE: tags: title for magic
 #: app/_translations.py:122
@@ -438,58 +438,57 @@ msgstr "Új térképgenerátor, vagy meglévő változtatása"
 
 #. NOTE: tags: title for mini-game
 #: app/_translations.py:128
-#, fuzzy
 msgctxt "tags"
 msgid "Mini-game"
-msgstr "Név"
+msgstr "Mini játék"
 
 #. NOTE: tags: description for mini-game
 #: app/_translations.py:130
 msgctxt "tags"
 msgid "Adds a mini-game to be played within Luanti"
-msgstr ""
+msgstr "Egy Luantiban játszható mini-játékot ad hozzá"
 
 #. NOTE: tags: title for mobs
 #: app/_translations.py:132
 msgctxt "tags"
 msgid "Mobs / Animals / NPCs"
-msgstr ""
+msgstr "Mobok / Állatok / NPC-k"
 
 #. NOTE: tags: description for mobs
 #: app/_translations.py:134
 msgctxt "tags"
 msgid "Adds mobs, animals, and non-player characters"
-msgstr ""
+msgstr "Mobokat, állatokat, és nem játszható karaktereket ad hozzá"
 
 #. NOTE: tags: title for mtg
 #: app/_translations.py:136
 msgctxt "tags"
 msgid "Minetest Game improved"
-msgstr ""
+msgstr "Fejlesztett Minetest Game"
 
 #. NOTE: tags: description for mtg
 #: app/_translations.py:138
 msgctxt "tags"
 msgid "Forks of Minetest Game"
-msgstr ""
+msgstr "A Minetest Game forkjai"
 
 #. NOTE: tags: title for multiplayer
 #: app/_translations.py:140
 msgctxt "tags"
 msgid "Multiplayer-focused"
-msgstr ""
+msgstr "Többjátékos-központú"
 
 #. NOTE: tags: description for multiplayer
 #: app/_translations.py:142
 msgctxt "tags"
 msgid "Can/should only be used in multiplayer"
-msgstr ""
+msgstr "Csak többjátékos módban használandó/használható"
 
 #. NOTE: tags: title for oneofakind__original
 #: app/_translations.py:144
 msgctxt "tags"
 msgid "One-of-a-kind / Original"
-msgstr ""
+msgstr "Páratlan / Eredeti"
 
 #. NOTE: tags: description for oneofakind__original
 #: app/_translations.py:146
@@ -498,24 +497,26 @@ msgid ""
 "For games and such that are of their own kind, distinct and original in "
 "nature to others of the same category."
 msgstr ""
+"Olyan játékok és hasonlók esetében, amelyek a maguk nemében, jellegükben "
+"különböznek és eredetiek az azonos kategóriájú játékoktól."
 
 #. NOTE: tags: title for plants_and_farming
 #: app/_translations.py:148
 msgctxt "tags"
 msgid "Plants and Farming"
-msgstr ""
+msgstr "Növények és mezőgazdaság"
 
 #. NOTE: tags: description for plants_and_farming
 #: app/_translations.py:150
 msgctxt "tags"
 msgid "Adds new plants or other farmable resources."
-msgstr ""
+msgstr "Új növényeket vagy más termeszthető erőforrásokat ad hozzá."
 
 #. NOTE: tags: title for player_effects
 #: app/_translations.py:152
 msgctxt "tags"
 msgid "Player Effects / Power Ups"
-msgstr ""
+msgstr "Játékos hatások / Teljesítmény növelők"
 
 #. NOTE: tags: description for player_effects
 #: app/_translations.py:154
@@ -531,19 +532,19 @@ msgstr ""
 #: app/_translations.py:156
 msgctxt "tags"
 msgid "Puzzle"
-msgstr ""
+msgstr "Rejtvény"
 
 #. NOTE: tags: description for puzzle
 #: app/_translations.py:158
 msgctxt "tags"
 msgid "Focus on puzzle solving instead of combat"
-msgstr ""
+msgstr "A rejtvények megoldására összpontosít a harc helyett"
 
 #. NOTE: tags: title for pve
 #: app/_translations.py:160
 msgctxt "tags"
 msgid "Player vs Environment (PvE)"
-msgstr ""
+msgstr "Játékos a környezet ellen (PvE)"
 
 #. NOTE: tags: description for pve
 #: app/_translations.py:162
@@ -552,12 +553,14 @@ msgid ""
 "For content designed for one or more players that focus on combat against"
 " the world, mobs, or NPCs."
 msgstr ""
+"Egy vagy több játékos számára tervezett tartalom, amely a világ, a mobok "
+"vagy az NPC-k elleni harcra összpontosít."
 
 #. NOTE: tags: title for pvp
 #: app/_translations.py:164
 msgctxt "tags"
 msgid "Player vs Player (PvP)"
-msgstr "Játékos vs játékos (PvP)"
+msgstr "Játékosok egymás ellen (PvP)"
 
 #. NOTE: tags: description for pvp
 #: app/_translations.py:166
@@ -569,13 +572,13 @@ msgstr "Arra tervezték, hogy más játékosok ellen versengő módban játsszá
 #: app/_translations.py:168
 msgctxt "tags"
 msgid "Seasonal"
-msgstr ""
+msgstr "Évszakhoz kötött"
 
 #. NOTE: tags: description for seasonal
 #: app/_translations.py:170
 msgctxt "tags"
 msgid "For content generally themed around a certain season or holiday"
-msgstr ""
+msgstr "Általában egy adott évszak vagy ünnep köré tematizált tartalmakhoz"
 
 #. NOTE: tags: title for server_tools
 #: app/_translations.py:172
@@ -593,19 +596,19 @@ msgstr "Segít a szerver karbantartásban és moderálásban"
 #: app/_translations.py:176
 msgctxt "tags"
 msgid "Shooter"
-msgstr ""
+msgstr "Lövöldözős"
 
 #. NOTE: tags: description for shooter
 #: app/_translations.py:178
 msgctxt "tags"
 msgid "First person shooters (FPS) and more"
-msgstr ""
+msgstr "Belsőnézetű lövöldözős (FPS) és más"
 
 #. NOTE: tags: title for simulation
 #: app/_translations.py:180
 msgctxt "tags"
 msgid "Sims"
-msgstr ""
+msgstr "Szimulációk"
 
 #. NOTE: tags: description for simulation
 #: app/_translations.py:182
@@ -614,24 +617,26 @@ msgid ""
 "Mods and games that aim to simulate real life activity. Similar to "
 "SimCity/The Sims/OpenTTD/etc."
 msgstr ""
+"Modok és játékok, amelyek célja a valós élet szimulálása. Hasonlóak a "
+"SimCity/The Sims/OpenTTD/ stb. játékokhoz."
 
 #. NOTE: tags: title for singleplayer
 #: app/_translations.py:184
 msgctxt "tags"
 msgid "Singleplayer-focused"
-msgstr ""
+msgstr "Egyjátékos központú"
 
 #. NOTE: tags: description for singleplayer
 #: app/_translations.py:186
 msgctxt "tags"
 msgid "Content that can be played alone"
-msgstr ""
+msgstr "Egyedül játszható tartalom"
 
 #. NOTE: tags: title for skins
 #: app/_translations.py:188
 msgctxt "tags"
 msgid "Player customization / Skins"
-msgstr ""
+msgstr "Játékos testreszabás / Skinek"
 
 #. NOTE: tags: description for skins
 #: app/_translations.py:190
@@ -640,44 +645,44 @@ msgid ""
 "Allows the player to customize their character by changing the texture or"
 " adding accessories."
 msgstr ""
+"Lehetővé teszi a játékos számára, hogy testre szabja karakterét a textúra "
+"megváltoztatásával vagy kiegészítők hozzáadásával."
 
 #. NOTE: tags: title for sound_music
 #: app/_translations.py:192
 msgctxt "tags"
 msgid "Sounds / Music"
-msgstr ""
+msgstr "Hangok / Zene"
 
 #. NOTE: tags: description for sound_music
 #: app/_translations.py:194
 msgctxt "tags"
 msgid "Focuses on or adds new sounds or musical things"
-msgstr ""
+msgstr "Új hangokra vagy zenei dolgokra összpontosít, vagy ezeket adja hozzá"
 
 #. NOTE: tags: title for sports
 #: app/_translations.py:196
-#, fuzzy
 msgctxt "tags"
 msgid "Sports"
-msgstr "Jelentés"
+msgstr "Sportok"
 
 #. NOTE: tags: title for storage
 #: app/_translations.py:198
-#, fuzzy
 msgctxt "tags"
 msgid "Storage"
-msgstr "Állapot"
+msgstr "Tárolás"
 
 #. NOTE: tags: description for storage
 #: app/_translations.py:200
 msgctxt "tags"
 msgid "Adds or improves item storage mechanics"
-msgstr ""
+msgstr "A tárgyak tárolási mechanikáját javítja, vagy bővíti"
 
 #. NOTE: tags: title for strategy_rts
 #: app/_translations.py:202
 msgctxt "tags"
 msgid "Strategy / RTS"
-msgstr ""
+msgstr "Stratégia / RTS"
 
 #. NOTE: tags: description for strategy_rts
 #: app/_translations.py:204
@@ -686,12 +691,14 @@ msgid ""
 "Games and mods with a heavy strategy component, whether real-time or "
 "turn-based"
 msgstr ""
+"Játékok és modok súlyos stratégiai komponenssel, akár valós idejű, akár "
+"fordulóalapú játékokról van szó"
 
 #. NOTE: tags: title for survival
 #: app/_translations.py:206
 msgctxt "tags"
 msgid "Survival"
-msgstr ""
+msgstr "Túlélő"
 
 #. NOTE: tags: description for survival
 #: app/_translations.py:208
@@ -700,37 +707,41 @@ msgid ""
 "Written specifically for survival gameplay with a focus on game-balance, "
 "difficulty level, or resources available through crafting, mining, ..."
 msgstr ""
+"Kifejezetten a túlélő játékmenethez íródott, a játék egyensúlyára, a "
+"nehézségi szintre vagy a barkácsolással, bányászattal, stb. elérhető "
+"erőforrásokra összpontosít"
 
 #. NOTE: tags: title for technology
 #: app/_translations.py:210
 msgctxt "tags"
 msgid "Machines / Electronics"
-msgstr ""
+msgstr "Gépek / Elektronika"
 
 #. NOTE: tags: description for technology
 #: app/_translations.py:212
 msgctxt "tags"
 msgid "Adds machines useful in automation, tubes, or power."
 msgstr ""
+"Az automatizálás, a csövek vagy a villamos energia területén hasznos gépeket "
+"ad hozzá."
 
 #. NOTE: tags: title for tools
 #: app/_translations.py:214
 msgctxt "tags"
 msgid "Tools / Weapons / Armor"
-msgstr ""
+msgstr "Eszközök / Fegyverek / Páncél"
 
 #. NOTE: tags: description for tools
 #: app/_translations.py:216
 msgctxt "tags"
 msgid "Adds or changes tools, weapons, and armor"
-msgstr ""
+msgstr "Hozzáad, vagy megváltoztat eszközöket, fegyvereket és páncélokat"
 
 #. NOTE: tags: title for transport
 #: app/_translations.py:218
-#, fuzzy
 msgctxt "tags"
 msgid "Transport"
-msgstr "Jelentés"
+msgstr "Szállítás"
 
 #. NOTE: tags: description for transport
 #: app/_translations.py:220
@@ -739,6 +750,9 @@ msgid ""
 "Adds or changes transportation methods. Includes teleportation, vehicles,"
 " ridable mobs, transport infrastructure and thematic content"
 msgstr ""
+"Hozzáad vagy megváltoztat a szállítási módszereket. Tartalmazza a "
+"teleportálást, járműveket, lovagolható mobokat, közlekedési infrastruktúrát "
+"és tematikus tartalmakat"
 
 #. NOTE: tags: title for world_tools
 #: app/_translations.py:222
@@ -756,89 +770,87 @@ msgstr "Eszközök a világ karbantartására"
 #: app/_translations.py:226
 msgctxt "content_warnings"
 msgid "Alcohol / Tobacco"
-msgstr ""
+msgstr "Alkohol / Dohány"
 
 #. NOTE: content_warnings: description for alcohol_tobacco
 #: app/_translations.py:228
 msgctxt "content_warnings"
 msgid "Contains alcohol and/or tobacco"
-msgstr ""
+msgstr "Alkoholt és/vagy dohányt tartalmaz"
 
 #. NOTE: content_warnings: title for bad_language
 #: app/_translations.py:230
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Bad Language"
-msgstr "Nyelvek"
+msgstr "Csúnya szavak"
 
 #. NOTE: content_warnings: description for bad_language
 #: app/_translations.py:232
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Contains swearing"
-msgstr "Tartalomra vonatkozó figyelmeztetések"
+msgstr "Káromkodást tartalmaz"
 
 #. NOTE: content_warnings: title for drugs
 #: app/_translations.py:234
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Drugs"
-msgstr "Szabályok"
+msgstr "Kábítószerek"
 
 #. NOTE: content_warnings: description for drugs
 #: app/_translations.py:236
 msgctxt "content_warnings"
 msgid "Contains recreational drugs other than alcohol or tobacco"
 msgstr ""
+"Alkoholon és dohányon kívüli, kikapcsolódási célú kábítószereket tartalmaz"
 
 #. NOTE: content_warnings: title for gambling
 #: app/_translations.py:238
-#, fuzzy
 msgctxt "content_warnings"
 msgid "Gambling"
-msgstr "Admin"
+msgstr "Szerencsejáték"
 
 #. NOTE: content_warnings: description for gambling
 #: app/_translations.py:240
 msgctxt "content_warnings"
 msgid "Games of chance, gambling games, etc"
-msgstr ""
+msgstr "Esélyeken alapuló játékok, szerencsejátékok, stb"
 
 #. NOTE: content_warnings: title for gore
 #: app/_translations.py:242
 msgctxt "content_warnings"
 msgid "Gore"
-msgstr ""
+msgstr "Vérontás"
 
 #. NOTE: content_warnings: description for gore
 #: app/_translations.py:244
 msgctxt "content_warnings"
 msgid "Blood, etc"
-msgstr ""
+msgstr "Vér, stb"
 
 #. NOTE: content_warnings: title for horror
 #: app/_translations.py:246
 msgctxt "content_warnings"
 msgid "Fear / Horror"
-msgstr ""
+msgstr "Félelem / Horror"
 
 #. NOTE: content_warnings: description for horror
 #: app/_translations.py:248
 msgctxt "content_warnings"
 msgid "Shocking and scary content. May scare young children"
-msgstr ""
+msgstr "Sokkoló és ijesztő tartalom. Megijesztheti a kisgyermekeket"
 
 #. NOTE: content_warnings: title for violence
 #: app/_translations.py:250
 msgctxt "content_warnings"
 msgid "Violence"
-msgstr ""
+msgstr "Erőszak"
 
 #. NOTE: content_warnings: description for violence
 #: app/_translations.py:252
 msgctxt "content_warnings"
 msgid "Non-cartoon violence. May be towards fantasy or  human-like characters"
 msgstr ""
+"Nem rajzfilmes erőszak. Lehet fantasy vagy   ember-szerű karakterek irányába"
 
 #: app/querybuilder.py:60 app/templates/admin/languages/list.html:27
 #: app/templates/admin/tags/list.html:34
@@ -853,12 +865,12 @@ msgstr "Csomagok"
 #: app/querybuilder.py:75
 #, python-format
 msgid "%(package_type)s for %(game_name)s"
-msgstr "%(package_type)s a %(game_name)s-hez"
+msgstr "%(package_type)s a(z) %(game_name)s játékhoz"
 
 #: app/template_filters.py:92
 #, python-format
 msgid "%(delta)s ago"
-msgstr "%(delta)s előtt"
+msgstr "Ennyivel ezelőtt: %(delta)s"
 
 #: app/blueprints/api/endpoints.py:74 app/templates/index.html:104
 msgid "Featured"
@@ -931,52 +943,52 @@ msgstr "Rögzítve a profilomhoz"
 
 #: app/blueprints/collections/__init__.py:158
 msgid "A collection with a similar title already exists"
-msgstr "Egy kollekció már létezik ezen a néven"
+msgstr "Egy gyűjtemény már létezik hasonló címmel"
 
 #: app/blueprints/collections/__init__.py:164
 msgid "Unable to create collection as a package with that name already exists"
-msgstr "Nem lehet kollekciót létrehozni, mivel már létezik ilyen nevű csomag"
+msgstr "Nem lehet gyűjteményt létrehozni, mivel már létezik ilyen nevű csomag"
 
 #: app/blueprints/collections/__init__.py:310
 msgid "Added package to collection"
-msgstr "csomag hozzáadva a kollekcióhoz"
+msgstr "Csomag hozzáadva a gyűjteményhez"
 
 #: app/blueprints/collections/__init__.py:312
 msgid "Removed package from collection"
-msgstr "Csomag eltávolítása a kollekciótól"
+msgstr "Csomag eltávolítva a gyűjteményből"
 
 #: app/blueprints/collections/__init__.py:331
 msgid "Added package to favorites collection"
-msgstr "Csomag hozzáadva a kedvenc kollekcióhoz"
+msgstr "Csomag hozzáadva a kedvenc gyűjteményhez"
 
 #: app/blueprints/collections/__init__.py:333
 msgid "(Public, change from Profile > My Collections)"
-msgstr "(Nyilvános, módosítás a Profil &gt; Saját gyűjteményeim)"
+msgstr "(Nyilvános, módosítás a Profilból &gt; Saját gyűjteményeim)"
 
 #: app/blueprints/collections/__init__.py:337
 msgid "Removed package from favorites collection"
-msgstr "Csomag törölve a kedvenc kollekcióból"
+msgstr "Csomag törölve a kedvenc gyűjteményből"
 
 #: app/blueprints/feeds/__init__.py:32 app/templates/index.html:8
 msgid "Welcome to the best place to find Luanti mods, games, and texture packs"
 msgstr ""
-"Üdv a legjobb helyen a minetest kiegészítők játékok és textúra csomagok "
-"megtalálásához"
+"Üdvözöllek a legjobb helyen, ahol Luanti modokat, játékokat és textúra "
+"csomagokat találhatsz"
 
 #: app/blueprints/feeds/__init__.py:70 app/templates/base.html:29
 #: app/templates/base.html:36
 msgid "ContentDB new packages"
-msgstr ""
+msgstr "ContentDB új csomagok"
 
 #: app/blueprints/feeds/__init__.py:98 app/templates/base.html:31
 #: app/templates/base.html:38
 msgid "ContentDB package updates"
-msgstr ""
+msgstr "ContentDB csomagfrissítések"
 
 #: app/blueprints/feeds/__init__.py:107 app/templates/base.html:27
 #: app/templates/base.html:34
 msgid "ContentDB all"
-msgstr ""
+msgstr "ContentDB minden"
 
 #: app/blueprints/oauth/__init__.py:169 app/templates/admin/tags/list.html:26
 #: app/templates/admin/warnings/list.html:24
@@ -990,21 +1002,21 @@ msgstr "URL átirányítás"
 
 #: app/blueprints/oauth/__init__.py:171
 msgid "App Type"
-msgstr "App Típusa"
+msgstr "Alkalmazás típus"
 
 #: app/blueprints/oauth/__init__.py:198
 msgid "An OAuth client with that title already exists. Please choose a new title."
 msgstr ""
+"Egy OAuth kliens ezzel a címmel már létezik. Kérlek válassz egy új címet."
 
 #: app/blueprints/oauth/__init__.py:262
-#, fuzzy
 msgid "Revoked all user tokens"
-msgstr "Elvette a felhasználó összes zsetonját"
+msgstr "Visszavont összes felhasználói zseton"
 
 #: app/blueprints/packages/__init__.py:32
 #: app/templates/packages/create_edit.html:29
 msgid "Edit Details"
-msgstr "Részletek Szerkesztése"
+msgstr "Részletek szerkesztése"
 
 #: app/blueprints/packages/__init__.py:37
 #: app/templates/packages/translation.html:4
@@ -1015,7 +1027,7 @@ msgstr "Fordítás"
 #: app/templates/packages/releases_list.html:34
 #: app/templates/packages/view.html:675 app/templates/todo/editor.html:75
 msgid "Releases"
-msgstr "Változások"
+msgstr "Kiadások"
 
 #: app/blueprints/packages/__init__.py:47
 #: app/templates/packages/screenshots.html:4
@@ -1032,13 +1044,13 @@ msgstr "Karbantartók"
 #: app/blueprints/packages/__init__.py:57 app/templates/admin/list.html:21
 #: app/templates/base.html:173 app/templates/packages/audit.html:4
 msgid "Audit Log"
-msgstr "Ellenőrzési Napló"
+msgstr "Ellenőrzési napló"
 
 #: app/blueprints/packages/__init__.py:62 app/templates/base.html:164
 #: app/templates/packages/stats.html:4 app/templates/packages/stats.html:23
 #: app/templates/packages/view.html:243 app/templates/users/profile.html:148
 msgid "Statistics"
-msgstr "Starisztikák"
+msgstr "Statisztikák"
 
 #: app/blueprints/packages/__init__.py:67 app/templates/packages/share.html:4
 msgid "Share and Badges"
@@ -1046,7 +1058,7 @@ msgstr "Megosztás és Jelvények"
 
 #: app/blueprints/packages/__init__.py:72
 msgid "Remove / Unpublish"
-msgstr "Eltávolítás /Közzététel viszavonása"
+msgstr "Eltávolítás / Közzététel megszüntetése"
 
 #: app/blueprints/packages/__init__.py:80 app/logic/package_approval.py:123
 #: app/templates/packages/game_support.html:4
@@ -1056,39 +1068,39 @@ msgstr "Támogatott játékok"
 
 #: app/blueprints/packages/advanced_search.py:39
 msgid "Android Default"
-msgstr ""
+msgstr "Android alapértelmezés"
 
 #: app/blueprints/packages/advanced_search.py:40
 msgid "Desktop Default"
-msgstr ""
+msgstr "Asztali alapértelmezés"
 
 #: app/blueprints/packages/advanced_search.py:41
 msgid "Non-free"
-msgstr ""
+msgstr "Nem nyílt/szabad"
 
 #: app/blueprints/packages/advanced_search.py:42 app/models/packages.py:630
 #: app/templates/packages/view.html:170
 msgid "Work in Progress"
-msgstr "Fejlszesztés alatt"
+msgstr "Fejlesztés alatt"
 
 #. NOTE: Package maintenance state
 #: app/blueprints/packages/advanced_search.py:43 app/models/packages.py:170
 msgid "Deprecated"
-msgstr ""
+msgstr "Elavult"
 
 #: app/blueprints/packages/advanced_search.py:44
 msgid "All content warnings"
-msgstr ""
+msgstr "Minden tartalom figyelmeztetés"
 
 #: app/blueprints/packages/advanced_search.py:53
 msgid "Query"
-msgstr ""
+msgstr "Kereső kifejezés"
 
 #: app/blueprints/packages/advanced_search.py:54
 #: app/blueprints/packages/packages.py:231 app/templates/packages/view.html:616
 #: app/utils/minetest_hypertext.py:263
 msgid "Type"
-msgstr "Gépelni"
+msgstr "Gépelés"
 
 #: app/blueprints/packages/advanced_search.py:56
 #: app/templates/macros/topics.html:6 app/templates/packages/view.html:184
@@ -1115,7 +1127,7 @@ msgstr "Licenc"
 
 #: app/blueprints/packages/advanced_search.py:67
 msgid "Supports Game"
-msgstr ""
+msgstr "Játékot támogat"
 
 #: app/blueprints/packages/advanced_search.py:71
 #: app/templates/admin/storage.html:39
@@ -1129,29 +1141,29 @@ msgstr ""
 #: app/templates/packages/similar.html:22 app/templates/translate/index.html:28
 #, python-format
 msgid "%(title)s by %(author)s"
-msgstr "%(title)skészitő:%(author)s"
+msgstr "%(title)s készítő: %(author)s"
 
 #: app/blueprints/packages/advanced_search.py:72
 #: app/blueprints/packages/reviews.py:54
 #: app/templates/packages/translation.html:39
 msgid "Language"
-msgstr ""
+msgstr "Nyelv"
 
 #: app/blueprints/packages/advanced_search.py:76
 msgid "Hide Tags and Content Warnings"
-msgstr ""
+msgstr "A tartalom figyelmeztetésekkel rendelkező címkék elrejtése"
 
 #: app/blueprints/packages/advanced_search.py:77
 msgid "Luanti Version"
-msgstr ""
+msgstr "Luanti verzió"
 
 #: app/blueprints/packages/advanced_search.py:81
 msgid "Sort by"
-msgstr ""
+msgstr "Rendezési elv"
 
 #: app/blueprints/packages/advanced_search.py:85
 msgid "Package score"
-msgstr ""
+msgstr "Csomag pontszám"
 
 #: app/blueprints/packages/advanced_search.py:86 app/templates/index.html:78
 #: app/templates/packages/reviews_list.html:4
@@ -1163,35 +1175,37 @@ msgstr "Vélemények"
 #: app/blueprints/packages/advanced_search.py:87
 #: app/templates/packages/view.html:191 app/templates/users/profile.html:242
 msgid "Downloads"
-msgstr ""
+msgstr "Letöltések"
 
 #: app/blueprints/packages/advanced_search.py:88
+#, fuzzy
 msgid "Created At"
-msgstr ""
+msgstr "Készítve"
 
 #: app/blueprints/packages/advanced_search.py:89
+#, fuzzy
 msgid "Approved At"
-msgstr ""
+msgstr "Jóváhagyva"
 
 #: app/blueprints/packages/advanced_search.py:90
 msgid "Last Release"
-msgstr ""
+msgstr "Legutóbbi kiadás"
 
 #: app/blueprints/packages/advanced_search.py:92
 msgid "Order"
-msgstr ""
+msgstr "sorrend"
 
 #: app/blueprints/packages/advanced_search.py:93
 msgid "Descending"
-msgstr ""
+msgstr "Csökkenő"
 
 #: app/blueprints/packages/advanced_search.py:94
 msgid "Ascending"
-msgstr ""
+msgstr "Növekvő"
 
 #: app/blueprints/packages/advanced_search.py:96
 msgid "Random order"
-msgstr ""
+msgstr "Véletlenszerű sorrend"
 
 #: app/blueprints/packages/packages.py:216
 msgid "No download available."
@@ -1199,7 +1213,7 @@ msgstr "Nem érhető el letöltés."
 
 #: app/blueprints/packages/packages.py:232
 msgid "Title (Human-readable)"
-msgstr "Cím (Ember-által-olvasható)"
+msgstr "Cím (ember-által-olvasható)"
 
 #: app/blueprints/packages/packages.py:233
 #: app/blueprints/packages/packages.py:646
@@ -1219,7 +1233,7 @@ msgstr "Rövid leírás (egyszerű szöveg)"
 #: app/blueprints/packages/packages.py:236 app/templates/packages/view.html:638
 #: app/utils/minetest_hypertext.py:300
 msgid "Maintenance State"
-msgstr "Karbantartási Állapot"
+msgstr "Karbantartási állapot"
 
 #: app/blueprints/packages/packages.py:241
 msgid "Media License"
@@ -1239,11 +1253,11 @@ msgstr "Weboldal URL"
 
 #: app/blueprints/packages/packages.py:247
 msgid "Issue Tracker URL"
-msgstr "Követett URL Probléma"
+msgstr "Problémakövető URL"
 
 #: app/blueprints/packages/packages.py:248
 msgid "Forum Topic ID"
-msgstr "Fórum Téma ID"
+msgstr "Fórumtéma ID"
 
 #: app/blueprints/packages/packages.py:249
 msgid "Video URL"
@@ -1266,8 +1280,8 @@ msgid ""
 "Package already exists, but is removed. Please contact ContentDB staff to"
 " restore the package"
 msgstr ""
-"Ez a csomag már létezik, de eltávolították. Kérjük keresse fel a "
-"ContentDB szerkesztőségét a csomag visszahozatalához"
+"Ez a csomag már létezik, de eltávolították. Kérjük keresd fel a ContentDB "
+"szerkesztőségét a csomag visszaállításához"
 
 #: app/blueprints/packages/packages.py:273
 msgid "Package already exists"
@@ -1275,7 +1289,7 @@ msgstr "A csomag már létezik"
 
 #: app/blueprints/packages/packages.py:279
 msgid "A collection with a similar name already exists"
-msgstr "Egy kollekció ezen a néven már létezik"
+msgstr "Egy gyűjtemény ezen a néven már létezik"
 
 #: app/blueprints/packages/packages.py:332
 #: app/blueprints/packages/releases.py:89
@@ -1283,8 +1297,8 @@ msgid ""
 "You must add an email address to your account and confirm it before you "
 "can manage packages"
 msgstr ""
-"Ahhoz, hogy a csomagokat kezelni tudja, hozzá kell adjon egy Email címet "
-"a profiljához"
+"A csomagok kezelése előtt hozzá kell adnod egy email címet a fiókodhoz, és "
+"meg kell erősítened azt"
 
 #: app/blueprints/packages/packages.py:338
 msgid "Save draft"
@@ -1303,27 +1317,26 @@ msgstr "Hozzáférés megtagadva"
 #: app/blueprints/packages/packages.py:503
 #: app/blueprints/packages/packages.py:525
 msgid "You don't have permission to do that"
-msgstr "Nincs erre engedélye"
+msgstr "Ehhez nincs engedélyed"
 
 #: app/blueprints/packages/packages.py:444
 msgid "Please comment what changes are needed in the approval thread"
 msgstr ""
-"Kérjük, hogy a jóváhagyási témában írja meg, milyen változtatásokra van "
+"Kérjük, hogy a jóváhagyási témában írd meg, milyen változtatásokra van "
 "szükség"
 
 #: app/blueprints/packages/packages.py:451
-#, fuzzy
 msgid ""
 "Please comment in the approval thread so editors know what you have "
 "changed"
 msgstr ""
-"Írjon véleményt az Engedélyezési Szál-ba, így a szerkesztők tudni fogják "
-"mit változtatott"
+"Kérjük, kommentáld a jóváhagyási témában, hogy a szerkesztők tudják, mit "
+"változtattál"
 
 #: app/blueprints/packages/packages.py:490
 #, python-format
 msgid "Set state to %(state)s"
-msgstr ""
+msgstr "Beállítása %(state)s állapotra"
 
 #: app/blueprints/packages/packages.py:520
 msgid "Deleted package"
@@ -1335,11 +1348,11 @@ msgstr "Nem jóváhagyott csomag"
 
 #: app/blueprints/packages/packages.py:551
 msgid "Maintainers (Comma-separated)"
-msgstr "Karbantartók (vesszővel-elválasztva)"
+msgstr "Karbantartók (vesszővel elválasztva)"
 
 #: app/blueprints/packages/packages.py:560
 msgid "You don't have permission to edit maintainers"
-msgstr "Nincs engedélye a karbantartók szerkesztéséhez"
+msgstr "Nincs engedélyed a karbantartók szerkesztéséhez"
 
 #: app/blueprints/packages/packages.py:610
 msgid "You are not a maintainer"
@@ -1351,13 +1364,12 @@ msgstr "A csomagtulajdonosok nem tudják eltávolítani magukat karbantartókén
 
 #: app/blueprints/packages/packages.py:645
 msgid "Author Name"
-msgstr "Szerző Neve"
+msgstr "Szerző neve"
 
 #: app/blueprints/packages/packages.py:732
 msgid "Enable support detection based on dependencies (recommended)"
 msgstr ""
-"Engedélyezze a támogatottság megjelenését a függőségein alapulva "
-"(ajánlott)"
+"A függőségek alapján történő támogatásfelismerés engedélyezése (ajánlott)"
 
 #: app/blueprints/packages/packages.py:733
 msgid "Supported games"
@@ -1378,13 +1390,13 @@ msgstr "A játéktámogatás szerkesztéséhez legalább egy kiadásra van szük
 #: app/blueprints/packages/packages.py:755
 msgid "Mod(pack) needs to contain at least one mod. Please create a new release"
 msgstr ""
-"A Mod(csomag)nak tartalmaznia kell legalább egy modot. készítsen egy új "
-"kiadást"
+"A Mod(csomag)nak tartalmaznia kell legalább egy modot. Kérlek, készíts egy "
+"új kiadást"
 
 #: app/blueprints/packages/releases.py:57
 #: app/blueprints/packages/releases.py:72
 msgid "Release Notes"
-msgstr ""
+msgstr "Kiadási megjegyzések"
 
 #: app/blueprints/packages/releases.py:59
 msgid "Method"
@@ -1394,23 +1406,23 @@ msgstr "Módszer"
 #: app/blueprints/packages/releases.py:61
 #: app/blueprints/packages/screenshots.py:35
 msgid "File Upload"
-msgstr "Fájl Feltöltés"
+msgstr "Fájl feltöltés"
 
 #: app/blueprints/packages/releases.py:60
 msgid "Git reference (ie: commit hash, branch, or tag)"
-msgstr "Git hivatkozás (azaz: commit hash, branch vagy tag)"
+msgstr "Git hivatkozás (azaz: commit hash, ág vagy címke)"
 
 #: app/blueprints/packages/releases.py:62
 #: app/blueprints/packages/releases.py:77
 #: app/blueprints/packages/releases.py:217
 msgid "Minimum Luanti Version"
-msgstr "Minimális Luanti Verzió"
+msgstr "Minimális Luanti verzió"
 
 #: app/blueprints/packages/releases.py:64
 #: app/blueprints/packages/releases.py:79
 #: app/blueprints/packages/releases.py:220
 msgid "Maximum Luanti Version"
-msgstr "Maximális Luanti Verzió"
+msgstr "Maximális Luanti verzió"
 
 #: app/blueprints/packages/releases.py:74
 #: app/templates/packages/release_edit.html:31
@@ -1433,7 +1445,7 @@ msgstr "Importálás a Gitből"
 
 #: app/blueprints/packages/releases.py:98
 msgid "Upload .zip file"
-msgstr ".zip fájl feltöltése"
+msgstr "Egy .zip fájl feltöltése"
 
 #: app/blueprints/packages/releases.py:216
 msgid "Set Min"
@@ -1466,7 +1478,7 @@ msgstr "Új címke"
 
 #: app/blueprints/packages/releases.py:279
 msgid "Branch name"
-msgstr "Branch neve"
+msgstr "Ág neve"
 
 #: app/blueprints/packages/releases.py:280
 #: app/templates/packages/update_config.html:38
@@ -1479,15 +1491,15 @@ msgstr "Értesítés küldése és megjelölés elavultként"
 
 #: app/blueprints/packages/releases.py:281 app/logic/package_approval.py:104
 msgid "Create release"
-msgstr "Verzió létrehozása"
+msgstr "Kiadás létrehozása"
 
 #: app/blueprints/packages/releases.py:283
 msgid "Save Settings"
-msgstr "Beállítások Mentése"
+msgstr "Beállítások mentése"
 
 #: app/blueprints/packages/releases.py:284
 msgid "Disable Automation"
-msgstr "Automatizálás Tiltása"
+msgstr "Automatizálás tiltása"
 
 #: app/blueprints/packages/releases.py:323
 msgid "Please add a Git repository URL in order to set up automatic releases"
@@ -1497,11 +1509,11 @@ msgstr ""
 
 #: app/blueprints/packages/releases.py:339
 msgid "Deleted update configuration"
-msgstr "Frissítési konfiguráció törölve"
+msgstr "Törölt frissítési konfiguráció"
 
 #: app/blueprints/packages/releases.py:347
 msgid "Now, please create an initial release"
-msgstr "Most kérjük, hozzon létre egy kezdeti verziót"
+msgstr "Most kérjük, hozz létre egy kezdeti verziót"
 
 #: app/blueprints/packages/reviews.py:60 app/blueprints/threads/__init__.py:181
 #: app/blueprints/threads/__init__.py:182
@@ -1530,22 +1542,22 @@ msgstr "Nem"
 
 #: app/blueprints/packages/reviews.py:71
 msgid "You can't review your own package!"
-msgstr "Nem tudod értékelni a saját csomagodat!"
+msgstr "Nem értékelheted a saját csomagodat!"
 
 #: app/blueprints/packages/reviews.py:81
 msgid ""
 "You've reviewed too many packages recently. Please wait before trying "
 "again, and consider making your reviews more detailed"
 msgstr ""
-"Az utóbbi időben túl sok csomagot tekintett át. Kérjük, várjon, mielőtt "
-"újra próbálkozna, és fontolja meg az értékelések részletesebbé tételét"
+"Az utóbbi időben túl sok csomagot tekintettél át. Kérjük, várj az újra "
+"próbálkozás előtt, és fontold meg, hogy részletesebb értékeléseket adsz"
 
 #: app/blueprints/packages/reviews.py:94 app/blueprints/threads/__init__.py:207
 #: app/blueprints/threads/__init__.py:240
 #: app/blueprints/threads/__init__.py:335 app/blueprints/users/settings.py:114
 #: app/logic/packages.py:131
 msgid "Linking to blocked sites is not allowed"
-msgstr "Linkek amik blokkolt oldalakra vezetnek nem engedélyezett"
+msgstr "A blokkolt oldalakra való hivatkozás nem engedélyezett"
 
 #: app/blueprints/packages/reviews.py:199
 msgid "You can't vote on the reviews on your own package!"
@@ -1578,19 +1590,19 @@ msgstr "Jelentés"
 
 #: app/blueprints/threads/__init__.py:71
 msgid "Already subscribed!"
-msgstr "Már feliratkozott!"
+msgstr "Már fel vagy iratkozva!"
 
 #: app/blueprints/threads/__init__.py:73
 msgid "Subscribed to thread"
-msgstr "Feliratkozott a témára"
+msgstr "Feliratkozva a témára"
 
 #: app/blueprints/threads/__init__.py:88
 msgid "Unsubscribed!"
-msgstr "Leiratkozott!"
+msgstr "Leiratkozva!"
 
 #: app/blueprints/threads/__init__.py:92
 msgid "Already not subscribed!"
-msgstr "Már nincsen feliratkozva!"
+msgstr "Már nincs feliratkozva!"
 
 #: app/blueprints/threads/__init__.py:110
 msgid "Locked thread"
@@ -1598,7 +1610,7 @@ msgstr "Lezárt téma"
 
 #: app/blueprints/threads/__init__.py:113
 msgid "Unlocked thread"
-msgstr "Feloldott szál"
+msgstr "Feloldott téma"
 
 #: app/blueprints/threads/__init__.py:162
 msgid "Cannot delete thread opening post!"
@@ -1606,12 +1618,12 @@ msgstr "A téma nyitó hozzászólását nem lehet törölni!"
 
 #: app/blueprints/threads/__init__.py:236
 msgid "Please wait before commenting again"
-msgstr "Kérjük, várjon, mielőtt újra hozzászólna"
+msgstr "Kérjük, várj új hozzászólás előtt"
 
 #: app/blueprints/threads/__init__.py:285
 #: app/templates/macros/package_approval.html:56
 msgid "Open Thread"
-msgstr "Téma Megnyitása"
+msgstr "Téma megnyitása"
 
 #: app/blueprints/threads/__init__.py:310
 msgid "Unable to create thread!"
@@ -1619,11 +1631,12 @@ msgstr "Nem lehet létrehozni a témát!"
 
 #: app/blueprints/threads/__init__.py:316
 msgid "An approval thread already exists! Consider replying there instead"
-msgstr "Már létezik jóváhagyási szál! Fontolja meg, hogy inkább ott válaszol"
+msgstr ""
+"Már létezik jóváhagyási beszélgetés! Fontold meg, hogy inkább ott válaszolsz"
 
 #: app/blueprints/threads/__init__.py:320
 msgid "Please wait before opening another thread"
-msgstr "Kérjük, várjon, mielőtt újabb témát nyitna"
+msgstr "Kérjük, várj újabb téma nyitása előtt"
 
 #: app/blueprints/todo/user.py:193
 #: app/templates/collections/package_add_to.html:46
@@ -1632,7 +1645,7 @@ msgstr "Kész"
 
 #: app/blueprints/users/account.py:36 app/templates/users/login.html:15
 msgid "Username or email"
-msgstr "Felhasználónév vagy e-mail"
+msgstr "Felhasználónév vagy email"
 
 #: app/blueprints/users/account.py:37 app/blueprints/users/account.py:105
 #: app/templates/users/account.html:14 app/templates/users/login.html:16
@@ -1651,12 +1664,12 @@ msgstr "Bejelentkezés"
 
 #: app/blueprints/users/account.py:45
 msgid "Incorrect email or password"
-msgstr "Helytelen e-mail vagy jelszó"
+msgstr "Helytelen email vagy jelszó"
 
 #: app/blueprints/users/account.py:52
 #, python-format
 msgid "User %(username)s does not exist"
-msgstr "A %(username)s felhasználó nem létezik"
+msgstr "%(username)s felhasználó nem létezik"
 
 #: app/blueprints/users/account.py:55
 msgid "Incorrect password. Did you set one?"
@@ -1664,7 +1677,7 @@ msgstr "Hibás jelszó. Beállítottál egyet?"
 
 #: app/blueprints/users/account.py:58
 msgid "You need to confirm the registration email"
-msgstr "Meg kell erősítenie a regisztrációs e-mailt"
+msgstr "Meg kell erősítened a regisztrációs emailt"
 
 #: app/blueprints/users/account.py:66
 msgid "Login failed"
@@ -1672,7 +1685,7 @@ msgstr "A bejelentkezés sikertelen"
 
 #: app/blueprints/users/account.py:100 app/blueprints/users/settings.py:76
 msgid "Display Name"
-msgstr "Megjelenítendő Név"
+msgstr "Megjelenítendő név"
 
 #: app/blueprints/users/account.py:101 app/blueprints/users/settings.py:324
 #: app/templates/users/list.html:18
@@ -1684,14 +1697,14 @@ msgid ""
 "Only alphabetic letters (A-Za-z), numbers (0-9), underscores (_), minuses"
 " (-), and periods (.) allowed"
 msgstr ""
-"Csak alfabetikus betűk (A-Za-z), számok (0-9), aláhúzásjelek (_), "
-"mínuszjelek (-) és pontok (.) megengedettek"
+"Csak az ábécé betűi (A-Za-z), számok (0-9), aláhúzásjelek (_), mínuszjelek "
+"(-) és pontok (.) megengedettek"
 
 #: app/blueprints/users/account.py:104 app/blueprints/users/account.py:153
 #: app/blueprints/users/account.py:189 app/blueprints/users/account.py:338
 #: app/blueprints/users/settings.py:147
 msgid "Email"
-msgstr "E-mail"
+msgstr "Email"
 
 #: app/blueprints/users/account.py:106
 msgid "What is the result of the above calculation?"
@@ -1712,11 +1725,11 @@ msgstr "Hibás captcha válasz"
 
 #: app/blueprints/users/account.py:154
 msgid "Reset Password"
-msgstr "Jelszó Visszaállítása"
+msgstr "Jelszó visszaállítása"
 
 #: app/blueprints/users/account.py:180
 msgid "Unable to find account"
-msgstr "Nem találja a fiókot"
+msgstr "Fiók nem található"
 
 #: app/blueprints/users/account.py:190 app/blueprints/users/account.py:198
 msgid "New password"
@@ -1724,7 +1737,7 @@ msgstr "Új jelszó"
 
 #: app/blueprints/users/account.py:191 app/blueprints/users/account.py:199
 msgid "Verify password"
-msgstr "Jelszó megerösítése"
+msgstr "Jelszó ellenőrzése"
 
 #: app/blueprints/users/account.py:192 app/blueprints/users/account.py:200
 msgid "Passwords must match"
@@ -1741,11 +1754,11 @@ msgstr "A jelszavak nem egyeznek"
 #: app/blueprints/users/account.py:219 app/blueprints/users/settings.py:175
 #: app/logic/users.py:51
 msgid "That email address has been unsubscribed/blacklisted, and cannot be used"
-msgstr "Ez az e-mail cím leiratkozott/fekete listára került és nem használható"
+msgstr "Ez az email cím leiratkozott/fekete listára került és nem használható"
 
 #: app/blueprints/users/account.py:224 app/logic/users.py:46
 msgid "Email already in use"
-msgstr "Már használatban lévő e-mail"
+msgstr "Már használatban lévő email"
 
 #: app/blueprints/users/account.py:225 app/logic/users.py:47
 #, python-format
@@ -1753,12 +1766,12 @@ msgid ""
 "We were unable to create the account as the email is already in use by "
 "%(display_name)s. Try a different email address."
 msgstr ""
-"Nem tudtuk létrehozni a fiókot, mivel az e-mailt már használja "
-"%(display_name)s. Próbáljon ki egy másik e-mail címet."
+"Nem tudtuk létrehozni a fiókot, mivel az emailt már %(display_name)s "
+"használja. Próbálj meg egy másik email címet."
 
 #: app/blueprints/users/account.py:239 app/blueprints/users/account.py:243
 msgid "Your password has been changed successfully."
-msgstr "A jelszó sikeresen megváltozott."
+msgstr "A jelszavad sikeresen megváltozott."
 
 #: app/blueprints/users/account.py:258
 msgid "Old password is incorrect"
@@ -1774,27 +1787,27 @@ msgstr "A token lejárt"
 
 #: app/blueprints/users/account.py:304
 msgid "Another user is already using that email"
-msgstr "Egy másik felhasználó már használja ezt az e-mail címet"
+msgstr "Egy másik felhasználó már használja ezt az email címet"
 
 #: app/blueprints/users/account.py:307
 msgid "Confirmed email change"
-msgstr "Megerősített e-mail módosítás"
+msgstr "Megerősített email módosítás"
 
 #: app/blueprints/users/account.py:312
 msgid "Email address changed"
-msgstr "Megváltozott az e-mail cím"
+msgstr "Az email cím megváltozott"
 
 #: app/blueprints/users/account.py:313
 msgid ""
 "Your email address has changed. If you didn't request this, please "
 "contact an administrator."
 msgstr ""
-"Az e-mail címe megváltozott. Ha ezt nem kérte, forduljon egy "
+"Az email címed megváltozott. Ha ezt nem kérted, kérlek fordulj egy "
 "rendszergazdához."
 
 #: app/blueprints/users/account.py:331
 msgid "You may now log in"
-msgstr "Bejelentkezhet"
+msgstr "Most már bejelentkezhetsz"
 
 #: app/blueprints/users/account.py:339
 msgid "Send"
@@ -1805,8 +1818,8 @@ msgid ""
 "That email is now blacklisted. Please contact an admin if you wish to "
 "undo this."
 msgstr ""
-"Ez az e-mail mostantól feketelistán van. Kérjük, lépjen kapcsolatba egy "
-"adminisztrátorral, ha le szeretné venni onnan."
+"Ez az email mostantól feketelistán van. Kérjük, lépj kapcsolatba egy "
+"adminisztrátorral, ha le szeretnéd venni onnan."
 
 #: app/blueprints/users/claim.py:46
 msgid "User has already been claimed"
@@ -1817,12 +1830,16 @@ msgid ""
 "Unable to get GitHub username for user. Make sure the forum account "
 "exists."
 msgstr ""
+"A GitHub felhasználónevet nem sikerült beszerezni a felhasználóhoz. Győződj "
+"meg róla, hogy a fórumfiók létezik."
 
 #: app/blueprints/users/claim.py:66
 msgid ""
 "A ContentDB user with that name already exists. Please contact an admin "
 "to link to your forum account"
 msgstr ""
+"Egy ilyen nevű ContentDB felhasználó már létezik. Kérjük, lépj kapcsolatba "
+"egy adminisztrátorral a fórum fiókoddal való összekapcsoláshoz"
 
 #: app/blueprints/users/claim.py:75
 msgid "That user has already been claimed!"
@@ -1843,7 +1860,7 @@ msgstr "Nem sikerült felhasználóként bejelentkezni"
 
 #: app/blueprints/users/claim.py:113
 msgid "Could not find the key in your signature!"
-msgstr "Nem található a kulcs az aláírásában!"
+msgstr "Nem található a kulcs az aláírásodban!"
 
 #: app/blueprints/users/claim.py:116
 msgid "Unknown claim type"
@@ -1860,79 +1877,79 @@ msgstr "%(display_name)s írta a leghasznosabb véleményeket a ContentDB-n."
 
 #: app/blueprints/users/profile.py:123
 msgid "2nd most helpful reviewer"
-msgstr "A második legsegítőkészebb értékelő"
+msgstr "A 2. leghasznosabb értékelő"
 
 #: app/blueprints/users/profile.py:125
 msgid "3rd most helpful reviewer"
-msgstr "A 3. legsegítőkészebb értékelő"
+msgstr "A 3. leghasznosabb értékelő"
 
 #: app/blueprints/users/profile.py:126
 #, python-format
 msgid "This puts %(display_name)s in the top %(perc)s%%"
-msgstr "Ezzel került %(display_name)s a csúcsra %(perc)s%%"
+msgstr "Ezzel %(display_name)s a legjobb %(perc)s%% közé került"
 
 #: app/blueprints/users/profile.py:130
 #, python-format
 msgid "Top %(perc)s%% reviewer"
-msgstr "Legjobb %(perc)s bíráló"
+msgstr "Legjobb %(perc)s értékelő"
 
 #: app/blueprints/users/profile.py:131
 #, python-format
 msgid "Only %(place)d users have written more helpful reviews."
-msgstr "Csak a %(place)d felhasználók írták hasznosabb véleményeket."
+msgstr "Csak %(place)d felhasználók írtak hasznosabb véleményeket."
 
 #: app/blueprints/users/profile.py:136
 msgid "Consider writing more helpful reviews to get a medal."
-msgstr "Fontolja meg, hogy több hasznos véleményt írjon az érem megszerzéséhez."
+msgstr "Fontold meg, hogy több hasznos véleményt írsz az érem megszerzéséhez."
 
 #: app/blueprints/users/profile.py:138
 #, python-format
 msgid "You are in place %(place)s."
-msgstr "Ön a következő helyen van %(place)s."
+msgstr "A következő helyen vagy: %(place)s."
 
 #: app/blueprints/users/profile.py:188
 #, python-format
 msgid "Your packages have %(downloads)d downloads in total."
-msgstr "A csomagjai %(downloads)d letöltés összesen."
+msgstr "A csomagjaid összesen %(downloads)d letöltéssel rendelkeznek."
 
 #: app/blueprints/users/profile.py:189
 msgid "First medal is at 50k."
-msgstr "Az első érem 50 ezer."
+msgstr "Az első érem 50 ezernél van."
 
 #: app/blueprints/users/profile.py:194
 msgid ">300k downloads"
-msgstr "&gt;300 ezer letöltés"
+msgstr "300 ezer feletti letöltés"
 
 #: app/blueprints/users/profile.py:197
 msgid ">100k downloads"
-msgstr "&gt;100 ezer letöltés"
+msgstr "100 ezer feletti letöltés"
 
 #: app/blueprints/users/profile.py:200
 msgid ">75k downloads"
-msgstr "&gt;75 ezer letöltés"
+msgstr "75 ezer feletti letöltés"
 
 #: app/blueprints/users/profile.py:203
 msgid ">50k downloads"
-msgstr "&gt;50 ezer letöltés"
+msgstr "50 ezer feletti letöltés"
 
 #: app/blueprints/users/profile.py:204
 #, python-format
 msgid "Has received %(downloads)d downloads across all packages."
-msgstr "Fogadott %(downloads)d letöltések az összes csomagban."
+msgstr "%(downloads)d letöltést fogadott az összes csomagban."
 
 #: app/blueprints/users/settings.py:38 app/templates/users/profile.html:26
 #: app/templates/users/profile_edit.html:8
 msgid "Edit Profile"
-msgstr "Profil Szerkesztése"
+msgstr "Profil szerkesztése"
 
 #: app/blueprints/users/settings.py:43 app/templates/users/account.html:12
 msgid "Account and Security"
-msgstr "Fiók és Biztonság"
+msgstr "Fiók és biztonság"
 
 #: app/blueprints/users/settings.py:48
 #: app/templates/users/settings_email.html:12
 msgid "Email and Notifications"
-msgstr "Email és Értesítések"
+msgstr "Email és értesítések"
 
 #: app/blueprints/users/settings.py:53 app/templates/api/list_tokens.html:10
 msgid "API Tokens"
@@ -1940,12 +1957,12 @@ msgstr "API-Tokenek"
 
 #: app/blueprints/users/settings.py:61 app/templates/oauth/list_clients.html:10
 msgid "OAuth2 Applications"
-msgstr "OAuth2 Applikációk"
+msgstr "OAuth2 alkalmazások"
 
 #: app/blueprints/users/settings.py:68 app/templates/users/modtools.html:4
 #: app/templates/users/modtools.html:8 app/templates/users/profile.html:44
 msgid "Moderator Tools"
-msgstr "Moderátor Eszközök"
+msgstr "Moderátor eszközök"
 
 #: app/blueprints/users/settings.py:78
 msgid "Donation URL"
@@ -1957,13 +1974,15 @@ msgstr "Van már felhasználó ezzel a névvel"
 
 #: app/blueprints/users/settings.py:264
 msgid "Removed GitHub account"
-msgstr ""
+msgstr "Eltávolított GitHub fiók"
 
 #: app/blueprints/users/settings.py:266
 msgid ""
 "You need to add an email address and password before you can remove your "
 "GitHub account"
 msgstr ""
+"A GitHub-fiókod eltávolítása előtt hozzá kell adnod egy email címet és "
+"jelszót"
 
 #: app/blueprints/users/settings.py:279
 msgid "Users with moderator rank or above cannot be deleted"
@@ -1975,11 +1994,11 @@ msgstr "Megjelenítendő név"
 
 #: app/blueprints/users/settings.py:326
 msgid "Forums Username"
-msgstr "Fórum Felhasználónév"
+msgstr "Fórum felhasználónév"
 
 #: app/blueprints/users/settings.py:327
 msgid "GitHub Username"
-msgstr "GitHub Felhasználónév"
+msgstr "GitHub felhasználónév"
 
 #: app/blueprints/users/settings.py:328 app/templates/users/list.html:14
 msgid "Rank"
@@ -1987,7 +2006,7 @@ msgstr "Rang"
 
 #: app/blueprints/users/settings.py:381
 msgid "Can't promote a user to a rank higher than yourself!"
-msgstr "Nem léptethet fel egy felhasználót sajátjánál magasabb rangra!"
+msgstr "Nem léptethetsz fel egy felhasználót sajátodnál magasabb rangra!"
 
 #: app/blueprints/vcs/github.py:56
 msgid "Authorization failed [err=gh-oauth-login-failed]"
@@ -2000,11 +2019,11 @@ msgstr "A GitHub-ot hozzákapcsoltuk a fiókhoz"
 #: app/blueprints/vcs/github.py:90
 #, python-format
 msgid "GitHub account is already associated with another user: %(username)s"
-msgstr ""
+msgstr "A GitHub fiók már egy másik felhasználóhoz van társítva: %(username)s"
 
 #: app/blueprints/vcs/github.py:98 app/blueprints/vcs/github.py:124
 msgid "Authorization failed [err=gh-login-failed]"
-msgstr "Belépés sikertelen [err=gh-login-failed]"
+msgstr "Engedélyezés sikertelen [err=gh-login-failed]"
 
 #: app/blueprints/zipgrep/__init__.py:35
 msgid "Text to find (regex)"
@@ -2023,16 +2042,16 @@ msgstr "Keresés"
 #: app/logic/package_approval.py:95
 msgid "A package already exists with this name. Please see Policy and Guidance 3"
 msgstr ""
-"Egy csomag már létezik ezzel a névvel. kérjük látogassa meg a Feltételek "
-"és Tanácsadások 3-at"
+"Egy csomag már létezik ezzel a névvel. Kérjük látogasd meg a Feltételek és "
+"Tanácsadások 3-at"
 
 #: app/logic/package_approval.py:99
 msgid "You need to create a release before this package can be approved."
-msgstr "Készítenie kell egy kiadást mielőtt a csomagot elfogadhatják."
+msgstr "Készítened kell egy kiadást mielőtt a csomagot elfogadhatják."
 
 #: app/logic/package_approval.py:101
 msgid "Release is still importing, or has an error."
-msgstr "A kiadás még mindíg feltöltés alatt, vagy megakadhatott."
+msgstr "A kiadás még mindig importálás alatt, vagy hibás."
 
 #: app/logic/package_approval.py:105
 msgid "Set up releases"
@@ -2040,7 +2059,7 @@ msgstr "Kiadások beállítása"
 
 #: app/logic/package_approval.py:112
 msgid "You need to add at least one screenshot."
-msgstr "Meg kell adnia legalább egy képernyőképet."
+msgstr "Meg kell adnod legalább egy képernyőképet."
 
 #: app/logic/package_approval.py:117
 #, python-format
@@ -2048,7 +2067,7 @@ msgid ""
 "The following hard dependencies need to be added to ContentDB first: "
 "%(deps)s"
 msgstr ""
-"ezek a fontos függőségek/követelmények előbb meg kell jelenjenek a "
+"Ezek a fontos függőségek/követelmények előbb meg kell jelenjenek a "
 "ContenetDB-n:%(deps)s"
 
 #: app/logic/package_approval.py:121
@@ -2056,22 +2075,22 @@ msgid ""
 "What games does your package support? Please specify on the supported "
 "games page"
 msgstr ""
-"Mely játékokat támogatja a csomag? Kérjük adja meg a Támogatott játékok "
-"oldalon előbb"
+"Mely játékokat támogatja a csomagod? Kérjük add meg a Támogatott játékok "
+"oldalon"
 
 #: app/logic/package_approval.py:126
 msgid "Please wait for the license to be added to CDB."
-msgstr "Kérjük várjon, amíg a licensz/engedély megjelenik a ContentDB-n."
+msgstr "Kérjük várj, amíg a licenc megjelenik a ContentDB-n."
 
 #: app/logic/package_approval.py:134
 msgid "Please make sure that this package has the right to the names it uses."
-msgstr "Kérjük ellenőrizze, hogy a csomagnak van joga ezt a nevet használni."
+msgstr "Kérjük ellenőrizd, hogy a csomagnak van-e joga ezt a nevet használni."
 
 #: app/logic/package_approval.py:139
 #, python-format
 msgid "Please make sure that this package has the right to the names %(names)s"
 msgstr ""
-"Kérjük menjen biztosra, hogy a csomagnak joga van a %(names)s név "
+"Kérjük győződj meg róla, hogy a csomagnak joga van a(z) %(names)s név "
 "használatára"
 
 #: app/logic/package_approval.py:140 app/templates/index.html:112
@@ -2091,7 +2110,7 @@ msgstr "Hiba: Egy másik csomag már használja ezt a fórum témát!"
 
 #: app/logic/package_approval.py:150
 msgid "Error: Forum topic author doesn't match package author."
-msgstr "Hiba: A fórum téma szerzője nem egyezik a csomag szerzőjével."
+msgstr "Hiba: A fórumtéma szerzője nem egyezik a csomag szerzőjével."
 
 #: app/logic/package_approval.py:152
 msgid ""
@@ -2111,31 +2130,31 @@ msgstr ""
 
 #: app/logic/packages.py:112
 msgid "You don't have permission to edit this package"
-msgstr "Nincs engedélye a csomag szerkesztésére"
+msgstr "Nincs engedélyed a csomag szerkesztésére"
 
 #: app/logic/packages.py:116
 msgid "You don't have permission to change the package name"
-msgstr "Nincs jogosultsága a csomagnév megváltoztatására"
+msgstr "Nincs jogosultságod a csomagnév megváltoztatására"
 
 #: app/logic/packages.py:140
 msgid "You cannot change package type once approved"
-msgstr ""
+msgstr "A jóváhagyott csomag típusát nem lehet megváltoztatni"
 
 #: app/logic/releases.py:33
 msgid "You don't have permission to make releases"
-msgstr "Nincs engedélye kiadások készítésére"
+msgstr "Nincs engedélyed kiadások készítésére"
 
 #: app/logic/releases.py:38
 msgid ""
 "You've created too many releases for this package in the last 5 minutes, "
 "please wait before trying again"
 msgstr ""
-"Túl sok kiadást hozott létre ehhez a csomaghoz az elmúlt 5 percben. "
-"Kérjük, várjon, mielőtt újra próbálkozna"
+"Túl sok kiadást hoztál létre ehhez a csomaghoz az elmúlt 5 percben. Kérjük, "
+"várj, mielőtt újra próbálkoznál"
 
 #: app/logic/releases.py:41
 msgid "A release with this name already exists"
-msgstr ""
+msgstr "Egy kiadás már létezik ilyen névvel"
 
 #: app/logic/releases.py:80
 msgid "Invalid commit hash; it must be a 40 character long base16 string"
@@ -2145,7 +2164,7 @@ msgstr ""
 
 #: app/logic/screenshots.py:32
 msgid "Too many requests, please wait before trying again"
-msgstr "Túl sok kérés. Kérjük, várjon, mielőtt újra próbálkozna"
+msgstr "Túl sok kérés. Kérjük, várj, mielőtt újra próbálkoznál"
 
 #: app/logic/screenshots.py:34
 msgid "a PNG, JPEG, or WebP image file"
@@ -2157,13 +2176,13 @@ msgid ""
 "Screenshot is too small, it should be at least %(width)s by %(height)s "
 "pixels"
 msgstr ""
-"A képernyőkép túl kicsi, legalább ilyennek kell lennie %(width)s X "
-"%(height)s pixel"
+"A képernyőkép túl kicsi, legalább %(width)s X %(height)s pixelesnek kell "
+"lennie"
 
 #: app/logic/uploads.py:58
 #, python-format
 msgid "Please upload %(file_desc)s"
-msgstr "Kérjük, töltse fel %(file_desc)s"
+msgstr "%(file_desc)s feltöltése szükséges"
 
 #: app/logic/uploads.py:61
 msgid "Uploaded image isn't actually an image"
@@ -2183,6 +2202,9 @@ msgid ""
 "Unable to create an account as the username is already taken. If you "
 "meant to log in, you need to connect %(provider)s to your account first"
 msgstr ""
+"Nem lehet fiókot létrehozni, mivel a felhasználónév már foglalt. Ha be "
+"akartál jelentkezni, akkor először %(provider)s összekapcsolása szükséges a "
+"fiókoddal"
 
 #: app/logic/users.py:33
 msgid "That username/display name is already in use, please choose another."
@@ -2193,6 +2215,8 @@ msgstr ""
 #: app/logic/users.py:40
 msgid "Unable to create an account as the username was used in the past."
 msgstr ""
+"Nem lehet fiókot létrehozni, mivel a felhasználónevet már korábban "
+"használták."
 
 #: app/models/packages.py:69
 msgid "Mod"
@@ -2222,106 +2246,111 @@ msgstr "Kinézet(textúra)csomag"
 
 #: app/models/packages.py:87
 msgid "Top mod"
-msgstr ""
+msgstr "Legjobb mod"
 
 #: app/models/packages.py:89
 msgid "Top game"
-msgstr ""
+msgstr "Legjobb játék"
 
 #: app/models/packages.py:91
 msgid "Top texture pack"
-msgstr ""
+msgstr "Legjobb textúracsomag"
 
 #: app/models/packages.py:94
 #, python-format
 msgid "Top %(place)d mod"
-msgstr ""
+msgstr "Legjobb %(place)d mod"
 
 #: app/models/packages.py:96
 #, python-format
 msgid "Top %(place)d game"
-msgstr ""
+msgstr "Legjobb %(place)d játék"
 
 #: app/models/packages.py:98
 #, python-format
 msgid "Top %(place)d texture pack"
-msgstr ""
+msgstr "Legjobb %(place)d textúracsomag"
 
 #: app/models/packages.py:102
 #, python-format
 msgid "%(display_name)s has a mod placed at #%(place)d."
-msgstr ""
+msgstr "%(display_name)s rendelkezik moddal #%(place)d helyen."
 
 #: app/models/packages.py:105
 #, python-format
 msgid "%(display_name)s has a game placed at #%(place)d."
-msgstr ""
+msgstr "%(display_name)s rendelkezik játékkal #%(place)d helyen."
 
 #: app/models/packages.py:108
 #, python-format
 msgid "%(display_name)s has a texture pack placed at #%(place)d."
-msgstr ""
+msgstr "%(display_name)s rendelkezik textúracsomaggal #%(place)d helyen."
 
 #: app/models/packages.py:114
 msgid "Do you recommend this mod?"
-msgstr ""
+msgstr "Ajánlod ezt a modot?"
 
 #: app/models/packages.py:116
 msgid "Do you recommend this game?"
-msgstr ""
+msgstr "Ajánlod ezt a játékot?"
 
 #: app/models/packages.py:118
 msgid "Do you recommend this texture pack?"
-msgstr ""
+msgstr "Ajánlod ezt a textúracsomagot?"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:155 app/models/packages.py:173
 msgid "Looking for Maintainer"
-msgstr ""
+msgstr "Karbantartót keres"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:158
 msgid "Beta"
-msgstr ""
+msgstr "Béta"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:161
 msgid "Actively Developed"
-msgstr ""
+msgstr "Aktívan fejlesztett"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:164
 msgid "Maintenance Only"
-msgstr ""
+msgstr "Csak karbantartás"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:167
 msgid "As-is"
-msgstr ""
+msgstr "Ahogy van"
 
 #: app/models/packages.py:177
 msgid "Under active development, and may break worlds/things without warning"
 msgstr ""
+"Aktív fejlesztés alatt áll, és figyelmeztetés nélkül tönkretehet világokat/"
+"dolgokat"
 
 #: app/models/packages.py:179
 msgid "Fully playable, but with some breakages/changes expected"
-msgstr ""
+msgstr "Teljesen játszható, de néhány hiba/változás várható"
 
 #: app/models/packages.py:181
 msgid "Finished, with bug fixes being made as needed"
-msgstr ""
+msgstr "Kész, a hibajavítások szükség szerint készülnek"
 
 #: app/models/packages.py:183
 msgid ""
 "Finished, the maintainer doesn't intend to continue working on it or "
 "provide support"
 msgstr ""
+"Kész, a fenntartó nem szándékozik tovább dolgozni rajta, vagy támogatást "
+"nyújtani"
 
 #: app/models/packages.py:185
 msgid ""
 "The maintainer doesn't recommend this package. See the description for "
 "more info"
 msgstr ""
+"A fenntartó nem ajánlja ezt a csomagot. További információért lásd a leírást"
 
 #: app/models/packages.py:231
 msgid "Submit for Approval"
@@ -2744,7 +2773,7 @@ msgstr "Következő"
 #: app/templates/index.html:108 app/templates/index.html:114
 #: app/templates/packages/game_hub.html:44
 msgid "Recently Added"
-msgstr "Utoljára hozzáadott"
+msgstr "Nemrég hozzáadott"
 
 #: app/templates/index.html:119 app/templates/index.html:125
 #: app/templates/packages/game_hub.html:51
@@ -2758,16 +2787,16 @@ msgstr "Legjobb játékok"
 #: app/templates/index.html:141 app/templates/index.html:147
 #: app/templates/packages/game_hub.html:58
 msgid "Top Mods"
-msgstr "Legjobb kiegészítók (modok)"
+msgstr "Legjobb modok"
 
 #: app/templates/index.html:152 app/templates/index.html:158
 #: app/templates/packages/game_hub.html:65
 msgid "Top Texture Packs"
-msgstr "Legjobb megjelenés(textúra)csomagok"
+msgstr "Legjobb textúracsomagok"
 
 #: app/templates/index.html:164
 msgid "Search by Tags"
-msgstr "Cimke szerinti keresés"
+msgstr "Címke szerinti keresés"
 
 #: app/templates/index.html:178 app/templates/index.html:184
 #: app/templates/packages/game_hub.html:72
@@ -2786,8 +2815,8 @@ msgstr "Legújabb pozitív vélemény"
 #, python-format
 msgid "CDB has %(count)d packages, with a total of %(downloads)d downloads."
 msgstr ""
-"a CDB jelenleg%(count)dcsomaggal rendelkezik,és%(downloads)da letöltések "
-"száma."
+"A CDB jelenleg %(count)d csomaggal rendelkezik, %(downloads)d összes "
+"letöltéssel."
 
 #: app/templates/admin/audit_view.html:16
 #, python-format
@@ -2800,11 +2829,11 @@ msgstr "Törölt játékos okozta."
 
 #: app/templates/admin/send_bulk_email.html:4
 msgid "Send bulk email"
-msgstr "Többszörös email küldése"
+msgstr "Tömeges email küldése"
 
 #: app/templates/admin/send_bulk_notification.html:4
 msgid "Send bulk notification"
-msgstr "Többszörös értesítés küldése"
+msgstr "Tömeges értesítés küldése"
 
 #: app/templates/admin/send_email.html:4
 #, python-format
@@ -2826,19 +2855,19 @@ msgstr "Nincs találat"
 
 #: app/templates/admin/languages/list.html:19
 msgid "Id"
-msgstr "Id"
+msgstr "Azonosító"
 
 #: app/templates/admin/languages/list.html:33
 msgid "Has ContentDB translation?"
-msgstr "Van ContentDB lefordítás?"
+msgstr "Van ContentDB fordítás?"
 
 #: app/templates/admin/licenses/list.html:8
 msgid "New License"
-msgstr "Új licensz/engedély"
+msgstr "Új licenc"
 
 #: app/templates/admin/licenses/list.html:10
 msgid "Licenses"
-msgstr "Licenszek/engedélyek"
+msgstr "Licencek"
 
 #: app/templates/admin/tags/list.html:30
 msgid "Views"
@@ -2847,11 +2876,11 @@ msgstr "Megtekintések"
 #: app/templates/admin/versions/list.html:4
 #: app/templates/admin/versions/list.html:10
 msgid "Luanti Versions"
-msgstr "Luanti változatok"
+msgstr "Luanti verziók"
 
 #: app/templates/admin/versions/list.html:8
 msgid "New Version"
-msgstr "Új változatok"
+msgstr "Új verzió"
 
 #: app/templates/admin/warnings/list.html:4
 #: app/templates/admin/warnings/list.html:10
@@ -2866,7 +2895,7 @@ msgstr "Új figyelmeztetés"
 #: app/templates/oauth/create_edit.html:5
 #, python-format
 msgid "Edit - %(name)s"
-msgstr "Szerkeztés - %(name)s"
+msgstr "Szerkesztés - %(name)s"
 
 #: app/templates/api/create_edit_token.html:7
 msgid "Create API Token"
@@ -2875,38 +2904,38 @@ msgstr "API token létrehozása"
 #: app/templates/api/create_edit_token.html:25
 #, python-format
 msgid "This token was created by the application '%(title)s' by %(author)s."
-msgstr "Ez a zseton a(z) %(title)s alkalmazásban %(author)s-tól megtalálható."
+msgstr ""
+"Ezt a zsetont a(z) %(author)s szerzőtől származó %(title)s alkalmazás hozta "
+"létre."
 
 #: app/templates/api/create_edit_token.html:26
 msgid "Click 'Delete' to revoke access."
-msgstr "Kattintson a 'Törlés're a hozzáférés megtagadásához."
+msgstr "Kattints a 'Törlésre' a hozzáférés megtagadásához."
 
 #: app/templates/api/create_edit_token.html:30
 msgid "API Tokens allow scripts to act on your behalf."
 msgstr ""
-"Az API-tokenek lehetővé teszik, hogy a szkriptek az Ön nevében "
-"cselekedjenek."
+"Az API-tokenek lehetővé teszik, hogy a szkriptek a nevedben cselekedjenek."
 
 #: app/templates/api/create_edit_token.html:31
 msgid ""
 "Be careful with what/whom you share tokens with, as you are responsible "
 "for your account's actions."
 msgstr ""
-"Legyen óvatos, kivel osztja meg zsetonjait, mert Ön a felelős a fiókja "
-"tetteiért."
+"Légy óvatos, hogy kivel és mivel osztod meg zsetonjaidat, mert te vagy a "
+"felelős a fiókod tetteiért."
 
 #: app/templates/api/create_edit_token.html:36
 msgid "Access Token"
-msgstr "Zseton elérés"
+msgstr "Hozzáférési zseton"
 
 #: app/templates/api/create_edit_token.html:39
-#, fuzzy
 msgid ""
 "For security reasons, access tokens will only be shown once. Reset the "
 "token if it is lost."
 msgstr ""
-"Biztonsági okokból az elérési zsetonok csak egyszer jelennek meg. Állitsa"
-" vissza, ha elvesztette."
+"Biztonsági okokból a hozzáférési zsetonok csak egyszer jelennek meg. Állítsd "
+"vissza a zsetont, ha elvesztetted."
 
 #: app/templates/api/create_edit_token.html:46
 msgid "Reset"
@@ -2918,7 +2947,8 @@ msgstr "Ember által olvasható név, amely megkülönbözteti a tokeneket."
 
 #: app/templates/api/create_edit_token.html:57
 msgid "Recommended: Only allows token to interact with a particular package."
-msgstr "Ajánlott: csak akkor enged zsetonokat, ha egy adott csomaggal interaktál."
+msgstr ""
+"Ajánlott: Csak egy adott csomaggal való interakciót engedélyez a zsetonnak."
 
 #: app/templates/api/list_tokens.html:4
 #, python-format
@@ -2938,7 +2968,7 @@ msgstr "API Dokumentáció"
 
 #: app/templates/api/list_tokens.html:17
 msgid "Application"
-msgstr "Applikáció"
+msgstr "Alkalmazás"
 
 #: app/templates/api/list_tokens.html:24
 msgid "No tokens created"
@@ -2953,7 +2983,7 @@ msgstr "Szerkesztés"
 
 #: app/templates/collections/create_edit.html:7
 msgid "New Collection"
-msgstr "Új Kollekció"
+msgstr "Új gyűjtemény"
 
 #: app/templates/collections/create_edit.html:32
 msgid "Users won't be redirected when going to the old URL"
@@ -2961,7 +2991,7 @@ msgstr "A felhasználók nem lesznek átirányítva, ha a régi linkre mennek"
 
 #: app/templates/collections/create_edit.html:46
 msgid "This requires the collection to be public"
-msgstr "Ehhez a Kollekció nyilvános kell legyen"
+msgstr "Ehhez a gyűjteménynek nyilvánosnak kell lennie"
 
 #: app/templates/collections/create_edit.html:76
 #: app/templates/packages/remove.html:36 app/templates/packages/remove.html:90
@@ -2971,16 +3001,16 @@ msgstr "Törlés"
 
 #: app/templates/collections/create_edit.html:89
 msgid "You can replace the description with your own"
-msgstr "Kicseréoheti a leírást sajátjával"
+msgstr "Kicserélheted a leírást a sajátoddal"
 
 #: app/templates/collections/create_edit.html:103
 msgid "Are you sure you want to remove {title}?"
-msgstr "Biztos törölni szeretné {title}?"
+msgstr "Biztos vagy {title} törlésében?"
 
 #: app/templates/collections/delete.html:4
 #, python-format
 msgid "Delete collection \"%(title)s\" by %(author)s"
-msgstr "Ezen kollekció törlése:\"%(title)s\" %(author)s-tól"
+msgstr "%(author)s szerzőtől származó \"%(title)s\" gyűjtemény törlése"
 
 #: app/templates/collections/delete.html:12
 #: app/templates/threads/delete_reply.html:16
@@ -3001,24 +3031,24 @@ msgstr "Mégse"
 #: app/templates/collections/view.html:27
 #, python-format
 msgid "%(author)s's collections"
-msgstr "%(author)s Kollekciója"
+msgstr "%(author)s gyűjteménye"
 
 #: app/templates/collections/list.html:49
 msgid "No collections"
-msgstr "Nincs Kollekció"
+msgstr "Nincs gyűjtemény"
 
 #: app/templates/collections/package_add_to.html:4
 #, python-format
 msgid "Add %(package_title)s to a collection"
-msgstr "addja hozzá %(package_title)s-t egy Kollekcióhoz"
+msgstr "%(package_title)s hozzáadása egy gyűjteményhez"
 
 #: app/templates/collections/package_add_to.html:9
 msgid "Create Collection"
-msgstr "Kollekció létrehozása"
+msgstr "Gyűjtemény létrehozása"
 
 #: app/templates/collections/package_add_to.html:39
 msgid "You don't have any collections"
-msgstr "Nincs Kollekció"
+msgstr "Nincs gyűjteményed"
 
 #: app/templates/collections/view.html:33
 msgid "Make a copy"
@@ -3027,31 +3057,30 @@ msgstr "Másolat készítése"
 #: app/templates/collections/view.html:54
 #, python-format
 msgid "A collection by %(author)s"
-msgstr "%(author)s kollekciója"
+msgstr "%(author)s gyűjteménye"
 
 #: app/templates/collections/view.html:69
 msgid "To add a package, go to the package's page and click 'Add to collection'"
 msgstr ""
-"Csomag hozzáadásához menjen a csomag oldalára, és nyomja meg a "
-"\"Hozzáadás kollekcióhoz\"-t"
+"Csomag hozzáadásához menj a csomag oldalára, és kattints a "
+"\"Hozzáadás gyűjteményhez\" gombra"
 
 #: app/templates/donate/index.html:8
 msgid "Some content creators are accepting donations for their work."
-msgstr "Valamely tartalomkészítők elfogadnak adományokat a munkájukért."
+msgstr "Néhány tartalomkészítő elfogad adományokat a munkájáért."
 
 #: app/templates/donate/index.html:9
-#, fuzzy
 msgid ""
 "Donations are a great way to support your favorite modders, artists, and "
 "game developers."
 msgstr ""
-"Az adományozás egy jó mód a kedvenc Fejlesztői, Modkészítői, és Festői "
-"támogatására."
+"Az adományozás egy jó módja a kedvenc mod készítőid, művészeid, és "
+"játékfejlesztőid támogatásának."
 
 #: app/templates/donate/index.html:37
 #, python-format
 msgid "by %(author)s"
-msgstr "%(author)s-től"
+msgstr "%(author)s szerzőtől"
 
 #: app/templates/donate/index.html:42 app/templates/translate/index.html:38
 msgid "View package"
@@ -3075,7 +3104,7 @@ msgstr ""
 
 #: app/templates/donate/index.html:73
 msgid "Based on your reviews / favorites"
-msgstr "A véleményei/kedvencei alapján"
+msgstr "A véleményeid/kedvenceid alapján"
 
 #: app/templates/donate/index.html:78
 msgid ""
@@ -3085,7 +3114,7 @@ msgstr ""
 
 #: app/templates/donate/index.html:82
 msgid "Sign in to see recommendations based on the packages you've reviewed"
-msgstr "Jelentkezzen be a véleményei alapján ajánlott csomagok megtekintésére"
+msgstr "Jelentkezz be a véleményeid alapján ajánlott csomagok megtekintéséhez"
 
 #: app/templates/donate/index.html:89
 msgid "Top packages"
@@ -3099,12 +3128,12 @@ msgstr "%(count)d csomag támogatást kér"
 #: app/templates/emails/notification.html:10
 #, python-format
 msgid "From %(username)s and on package %(package)s."
-msgstr "%(username)s-tól a %(package)s-csomag(ok)ban."
+msgstr "%(username)s felhasználótól és %(package)s csomagon."
 
 #: app/templates/emails/notification.html:13
 #, python-format
 msgid "From %(username)s."
-msgstr "%(username)s-tól."
+msgstr "%(username)s felhasználótól."
 
 #: app/templates/emails/notification.html:19
 msgid "View Notification"
@@ -3116,19 +3145,19 @@ msgid ""
 "You are receiving this email because you are a registered user of "
 "ContentDB, and have email notifications enabled."
 msgstr ""
-"Ezen email-t azért kapta,mert regisztrált felhasználó a ContentDB-n, és "
-"engedélyezte az email-okat."
+"Ezen email-t azért kaptad, mert regisztrált felhasználó vagy a ContentDB-n, "
+"és engedélyezted az email értesítéseket."
 
 #: app/templates/emails/notification.html:30
 #: app/templates/emails/notification_digest.html:50
 msgid "Manage your preferences"
-msgstr "Preferenciák kezelése"
+msgstr "Beállításaid kezelése"
 
 #: app/templates/emails/notification_digest.html:14
 #: app/templates/emails/notification_digest.html:31
 #, python-format
 msgid "from %(username)s."
-msgstr "%(username)s-tól."
+msgstr "%(username)s felhasználótól."
 
 #: app/templates/emails/notification_digest.html:24
 msgid "Other Notifications"
@@ -3143,30 +3172,31 @@ msgid ""
 "We were unable to perform the password reset as we could not find an "
 "account associated with this email."
 msgstr ""
-"Nem sikerült visszaállítani a jelszót,mert nem találtunk ezen email-el "
-"megegyező fiókot."
+"Nem sikerült visszaállítani a jelszót, mert nem találtunk ehhez az email-hez "
+"kapcsolódó fiókot."
 
 #: app/templates/emails/unable_to_find_account.html:5
 msgid ""
 "This may be because you used another email with your account, or because "
 "you never confirmed your email."
 msgstr ""
-"Lehet azért, mert más fiókot használ evvel az email-el, vagy még nem "
-"engedélyezte azt."
+"Ennek oka lehet, hogy egy másik email címet használtál a fiókodhoz, vagy "
+"hogy soha nem erősítetted meg az email címed."
 
 #: app/templates/emails/unable_to_find_account.html:8
 msgid "You can use GitHub to log in if it is associated with your account."
-msgstr "Bejelentkezhet a GitHub-ba, ha összeköttetésben áll a fiókjával."
+msgstr ""
+"Használhatod a GitHub-ot a bejelentkezéshez, ha az kapcsolódik a fiókodhoz."
 
 #: app/templates/emails/unable_to_find_account.html:9
 msgid "Otherwise, you may need to contact the admin for help."
-msgstr "Másképp fell kell keresse az Admint segítségért."
+msgstr "Ellenkező esetben az adminisztrátorhoz kell fordulnod segítségért."
 
 #: app/templates/emails/unable_to_find_account.html:12
 msgid ""
 "If you weren't expecting to receive this email, then you can safely "
 "ignore it."
-msgstr "Ha nem várta ezt az email, figyelmen kívül hagyhatja."
+msgstr "Ha nem vártad ezt az emailt, nyugodtan figyelmen kívül hagyhatod."
 
 #: app/templates/emails/verify.html:4
 #: app/templates/emails/verify_unsubscribe.html:5
@@ -3178,42 +3208,42 @@ msgid ""
 "This email has been sent to you because someone (hopefully you) has "
 "entered your email address as a user's email."
 msgstr ""
-"Ezt az Emailt azért küldtük, mert (remélhetőleg Ön) ezt az Email címet "
-"adta meg sajátjaként."
+"Ezt az emailt azért küldtük, mert valaki (remélhetőleg te) megadta(d) ezt az "
+"email címet felhasználói email-ként."
 
 #: app/templates/emails/verify.html:11
 msgid "If it wasn't you, then just delete this email."
-msgstr "Ha nem ön volt, törölheti ezt az email-t."
+msgstr "Ha nem te voltál, törölheted ezt az email-t."
 
 #: app/templates/emails/verify.html:15
-#, fuzzy
 msgid "If this was you, then please click this link to confirm the address:"
-msgstr "Ha ön volt, kattintson erre a linkre, hogy elfogjadhassa:"
+msgstr ""
+"Ha ez te voltál, kérlek kattints erre a linkre, hogy megerősítsd a címet:"
 
 #: app/templates/emails/verify.html:19
 msgid "Confirm Email Address"
-msgstr "Email cím elfogadása"
+msgstr "Email cím megerősítése"
 
 #: app/templates/emails/verify.html:23
 #: app/templates/emails/verify_unsubscribe.html:17
 msgid "Or paste this into your browser:"
-msgstr "Vagy ezt másolja be böngészőjébe:"
+msgstr "Vagy másold be ezt a böngésződbe:"
 
 #: app/templates/emails/verify_unsubscribe.html:9
 msgid ""
 "We're sorry to see you go. You just need to do one more thing before your"
 " email is blacklisted."
 msgstr ""
-"Sajnáljuk,hogy elmegy. Meg kell tennie mégvalamit, mielőtt email-je "
-"feketelistára kerül."
+"Sajnáljuk, hogy elmész. Meg még egy dolgot meg kell tenned, mielőtt email "
+"címed feketelistára kerül."
 
 #: app/templates/emails/verify_unsubscribe.html:23
 msgid ""
 "You are receiving this email because someone (hopefully you) entered your"
 " email address in the unsubscribe form."
 msgstr ""
-"Ezt az Emailt azért küldtük, mert (remélhetőleg Ön) megadta ezt az Email "
-"címet a leiratkozási lapon."
+"Ezt az emailt azért küldtük, mert valaki (remélhetőleg te) megadta(d) ezt az "
+"email címet a leiratkozási űrlapon."
 
 #: app/templates/macros/audit_log.html:13
 #, python-format
@@ -3222,7 +3252,7 @@ msgstr ""
 
 #: app/templates/macros/audit_log.html:32
 msgid "Deleted User"
-msgstr "Törölt Felhasználó"
+msgstr "Törölt felhasználó"
 
 #: app/templates/macros/audit_log.html:64
 msgid "No audit log entries."
@@ -3236,7 +3266,7 @@ msgstr "Szükséges"
 
 #: app/templates/macros/forms.html:122
 msgid "Start typing to see suggestions"
-msgstr "Kezdjen el írni javasjatok megjelenítéséhez"
+msgstr "Kezdj el gépelni a javaslatok megjelenítéséhez"
 
 #: app/templates/macros/package_approval.html:5 app/templates/todo/user.html:35
 msgid "State"
@@ -3244,31 +3274,31 @@ msgstr "Állapot"
 
 #: app/templates/macros/package_approval.html:36
 msgid "Please wait for the release to be approved."
-msgstr "Kérjük várjon, amíg a kiadást engedélyezik."
+msgstr "Kérjük várj, amíg a kiadást engedélyezik."
 
 #: app/templates/macros/package_approval.html:38
 msgid "You can now approve this package if you're ready."
-msgstr "Ha készen áll, már engedélyezheti ezt a csomagot."
+msgstr "Ha készen állsz, most már jóváhagyhatod ezt a csomagot."
 
 #: app/templates/macros/package_approval.html:40
 msgid "Please wait for the package to be approved."
-msgstr "Kérjük várjon, amíg a csomagot engedélyezik."
+msgstr "Kérjük várj, amíg a csomagot jóváhagyják."
 
 #: app/templates/macros/package_approval.html:44
 msgid "You can now submit this package for approval if you're ready."
-msgstr "Mostmár elküldheti engedélyezésre a csomagot, ha készen áll."
+msgstr "Ha készen állsz, most már benyújthatod ezt a csomagot jóváhagyásra."
 
 #: app/templates/macros/package_approval.html:46
 msgid "This package can be submitted for approval when ready."
-msgstr "Ez a csomag elküldhető engedélyezésre, ha készen áll."
+msgstr "Ezt a csomagot be lehet nyújtani jóváhagyásra, ha kész."
 
 #: app/templates/macros/package_approval.html:49
 msgid "You need to fix the above errors before you can submit for review"
-msgstr "Mielőtt megosztja véleményét, meg kell oldania a fentebbi hibákat"
+msgstr "A fenti hibákat ki kell javítanod, mielőtt elküldöd felülvizsgálatra"
 
 #: app/templates/macros/package_approval.html:59
 msgid "Package approval thread"
-msgstr "Csomagengedélyezési szál"
+msgstr "Csomag jóváhagyási fórumbeszélgetés"
 
 #: app/templates/macros/package_approval.html:60
 msgid ""
@@ -3448,7 +3478,7 @@ msgstr ""
 
 #: app/templates/macros/threads.html:122
 msgid "This thread has been locked by a moderator."
-msgstr "Ez a szál zárolva lett egy moderátor által."
+msgstr "Ezt a beszélgetést zárolta egy moderátor."
 
 #: app/templates/macros/threads.html:132
 msgid "Reply"
@@ -3456,37 +3486,37 @@ msgstr "Válasz"
 
 #: app/templates/macros/threads.html:153
 msgid "Please wait before commenting again."
-msgstr "Kérjük várjon mielőtt új véleményt írna."
+msgstr "Kérjük várj új hozzászólás előtt."
 
 #: app/templates/macros/threads.html:159
 msgid "This thread has been locked."
-msgstr "Ez a szál zárolva van."
+msgstr "Ezt a beszélgetést zárolták."
 
 #: app/templates/macros/threads.html:161
 msgid "You don't have permission to post."
-msgstr "Nincs jogosultsága posztot készíteni."
+msgstr "Nincs engedélyed a hozzászóláshoz."
 
 #: app/templates/macros/threads.html:181
 msgid "You can add someone to a private thread by writing @username."
-msgstr "Hozzáadhat valakit egy privát szálhoz @felhasználónév írásával."
+msgstr ""
+"Hozzáadhatsz valakit egy privát beszélgetéshez @felhasználónév írásával."
 
 #: app/templates/macros/threads.html:199 app/templates/macros/threads.html:281
 msgid "No threads found"
-msgstr "Nem találhatóak szálak"
+msgstr "Nem találhatók beszélgetések"
 
 #: app/templates/macros/threads.html:207
-#, fuzzy
 msgid "Thread"
-msgstr "Szál"
+msgstr "Fórum beszélgetés"
 
 #: app/templates/macros/threads.html:211
 msgid "Last Reply"
 msgstr "Legutóbbi válasz"
 
 #: app/templates/macros/todo.html:21
-#, fuzzy, python-format
+#, python-format
 msgid "On %(trigger)s, do %(action)s"
-msgstr "ezek által:%(trigger)s, tegye ezeket:%(action)s"
+msgstr "%(trigger)s esetében, tedd ezt: %(action)s"
 
 #: app/templates/macros/todo.html:35 app/templates/packages/view.html:129
 #: app/templates/packages/view.html:451
@@ -3527,21 +3557,20 @@ msgstr "Mod nevek"
 
 #: app/templates/modnames/list.html:37
 msgid "No mod names found."
-msgstr "Nem találhatóak mod nevek."
+msgstr "Nem találhatók mod nevek."
 
 #: app/templates/modnames/view.html:10
 #, python-format
 msgid "Mod Name \"%(name)s\""
-msgstr "Mod nevek %(name)s"
+msgstr "%(name)s mod név"
 
 #: app/templates/modnames/view.html:12
-#, fuzzy
 msgid "Provided By"
-msgstr "Ezáltal elérhető"
+msgstr "Biztosítja:"
 
 #: app/templates/modnames/view.html:21
 msgid "Forum Topics"
-msgstr "Fórum Témák"
+msgstr "Fórumtémák"
 
 #: app/templates/modnames/view.html:27 app/templates/oauth/authorize.html:32
 #: app/templates/packages/game_support.html:42
@@ -3551,27 +3580,27 @@ msgstr "Fórum Témák"
 #: app/templates/todo/game_support.html:45
 #, python-format
 msgid "%(title)s by %(display_name)s"
-msgstr "%(title)s a %(display_name)s-től"
+msgstr "%(title)s %(display_name)s által"
 
 #: app/templates/modnames/view.html:35
 msgid "Required By"
-msgstr "Szükséges Hozzá"
+msgstr "A következő igényi:"
 
 #: app/templates/modnames/view.html:38
 msgid "Optionally Used By"
-msgstr "Opcionálisan Használja"
+msgstr "Opcionálisan használja a következő:"
 
 #: app/templates/notifications/list.html:14
 msgid "Edit email notification settings"
-msgstr "Email értesítések módosítása"
+msgstr "Email értesítési beállítások szerkesztése"
 
 #: app/templates/notifications/list.html:22
 msgid "Newest first."
-msgstr "Legújabb legelöl."
+msgstr "Legújabb elöl."
 
 #: app/templates/notifications/list.html:27
 msgid "Your Notifications"
-msgstr "Az Értesítései"
+msgstr "Az értesítéseid"
 
 #: app/templates/notifications/list.html:61
 #: app/templates/notifications/list.html:99
@@ -3580,7 +3609,7 @@ msgstr "Nincsenek értesítések"
 
 #: app/templates/notifications/list.html:66
 msgid "Editor/Approver Notifications"
-msgstr "Szerkesztő/Engedélyező Értesítések"
+msgstr "Szerkesztő/Jóváhagyó értesítések"
 
 #: app/templates/oauth/authorize.html:4
 #, python-format
@@ -3590,12 +3619,11 @@ msgstr ""
 #: app/templates/oauth/authorize.html:35
 #, python-format
 msgid "wants to access your %(name)s account"
-msgstr "Szeretne hozzáférni a %(name)s profiljához"
+msgstr "szeretne hozzáférni %(name)s nevű profilodhoz"
 
 #: app/templates/oauth/authorize.html:46
-#, fuzzy
 msgid "Verified application"
-msgstr "Ellenőrzött alkalmazás"
+msgstr "Hitelesített alkalmazás"
 
 #: app/templates/oauth/authorize.html:49
 msgid "ContentDB trusts this application"
@@ -5132,9 +5160,8 @@ msgid "Missing tags only"
 msgstr ""
 
 #: app/templates/todo/tags.html:29
-#, fuzzy
 msgid "Edit Tags"
-msgstr "Részletek Szerkesztése"
+msgstr "Címkék szerkesztése"
 
 #: app/templates/todo/todo_base.html:11
 msgid "Your to do list"
@@ -5273,7 +5300,7 @@ msgstr ""
 
 #: app/templates/users/account.html:18
 msgid "Change Password"
-msgstr "Jelszó Módosítása"
+msgstr "Jelszó módosítása"
 
 #: app/templates/users/account.html:22
 #: app/templates/users/change_set_password.html:8
@@ -5511,9 +5538,8 @@ msgid "Delete Anyway"
 msgstr ""
 
 #: app/templates/users/email_sent.html:4
-#, fuzzy
 msgid "Check Your Email"
-msgstr "Felhasználónév vagy e-mail"
+msgstr "Ellenőrizd a postafiókodat"
 
 #: app/templates/users/email_sent.html:11
 msgid "We've sent an email to the address you specified."
@@ -5792,15 +5818,15 @@ msgstr ""
 
 #: app/templates/users/unsubscribe.html:20
 msgid "Please enter the email address you wish to blacklist."
-msgstr "Kérjük,írja be azon email címet,amelyet feketelistázni szeretne."
+msgstr "Kérjük, add meg a feketelistára tenni kívánt email címet."
 
 #: app/templates/users/unsubscribe.html:21
 msgid "You will then need to confirm the email"
-msgstr "El kell majd fogadnia az email-t"
+msgstr "Ezt követően meg kell erősítened az emailt"
 
 #: app/templates/users/unsubscribe.html:33
 msgid "You may now unsubscribe."
-msgstr "Iratkozzon le."
+msgstr "Most már leiratkozhatsz."
 
 #: app/templates/users/unsubscribe.html:40
 #, python-format
@@ -5815,28 +5841,27 @@ msgid ""
 "essential system emails.\n"
 "\t\t\t\t\tConsider editing your email notification preferences instead."
 msgstr ""
-"ContentDB nem tud több \"elfelejtett jelszó\" és hasonló fontos email-"
+"A ContentDB már nem fog tudni \"elfelejtett jelszó\" és hasonló fontos email-"
 "eket küldeni.\n"
-"\t\t\t\t\tAjánlott az email-értesítések beállítások módosítása."
+"\t\t\t\t\tInkább fontold meg az email-értesítési beállítások módosítását."
 
 #: app/templates/users/unsubscribe.html:50
 msgid "You won't be able to use this email with ContentDB anymore."
-msgstr "Ezt az email-t nem tudja többé a ContentDB-n használni."
+msgstr "Ezt az email-t többé már nem fogod tudni használni a ContentDB-vel."
 
 #: app/templates/users/unsubscribe.html:57
-#, fuzzy
 msgid "Edit Notification Preferences"
-msgstr "Értesítések beállítása"
+msgstr "Értesítési beállítások szerkesztése"
 
 #: app/templates/zipgrep/search.html:4
 #: app/templates/zipgrep/view_results.html:9
 msgid "Search in Package Releases"
-msgstr "Csomagváltozatok keresése"
+msgstr "Keresés a csomag kiadásokban"
 
 #: app/templates/zipgrep/view_results.html:4
 #, python-format
 msgid "'%(query)s' - Search Package Releases"
-msgstr "'%(query)s' - Csomagváltozatok keresése"
+msgstr "'%(query)s' - Csomag kiadások keresése"
 
 #: app/utils/flask.py:159
 msgid "All time"
@@ -5888,15 +5913,15 @@ msgstr ""
 
 #: app/utils/user.py:51
 msgid "You have a lot of notifications, you should either read or clear them"
-msgstr "Sok értesítése van. Olvassa el, vagy törölje őket"
+msgstr "Sok értesítésed van, olvasd el, vagy töröld őket"
 
 #: app/utils/user.py:55
 msgid ""
 "Please consider enabling email notifications, you can customise how much "
 "is sent"
 msgstr ""
-"Ajánlott bekapcsolnia az email értesítéseket. Beállíthatja,hogy mijen "
-"gyakoriak legyenek"
+"Kérjük, fontolja meg az email értesítések engedélyezését, testre szabhatod, "
+"hogy mennyi legyen elküldve"
 
 #~ msgid "Like %(display_name)s's work? Donate now!"
 #~ msgstr ""
