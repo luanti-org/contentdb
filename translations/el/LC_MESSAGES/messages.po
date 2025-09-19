@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2025-07-05 21:02+0000\n"
-"Last-Translator: GiorgeGi GiorgeGi <giorgegi729@gmail.com>\n"
+"PO-Revision-Date: 2025-07-07 13:02+0000\n"
+"Last-Translator: FedonT <phaidtheodcoc@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/minetest/contentdb/"
 "el/>\n"
 "Language: el\n"
@@ -111,13 +111,14 @@ msgstr "Κτίσμα"
 msgctxt "tags"
 msgid "Focuses on building, such as adding new materials or nodes"
 msgstr ""
-"Εστιάζει σην οικοδόμηση, όπως στην προσθήκη νέων υλικών και μπλόκ κατασκευής"
+"Εστιάζει στην οικοδόμηση, όπως στην προσθήκη νέων υλικών και μπλοκ κατασκευής"
 
 #. NOTE: tags: title for building_mechanics
 #: app/_translations.py:32
+#, fuzzy
 msgctxt "tags"
 msgid "Building Mechanics and Tools"
-msgstr ""
+msgstr "Κανονισμοί Χτισίματος και Εργαλεία"
 
 #. NOTE: tags: description for building_mechanics
 #: app/_translations.py:34
@@ -126,7 +127,7 @@ msgctxt "tags"
 msgid "Adds game mechanics or tools that change how players build."
 msgstr ""
 "Προσθέτει μηχανισμούς παιχνιδιού ή εργαλεία τα οποία αλλάζουν τον τρόπο που "
-"οι παίκτες οικοδομούν"
+"οι παίκτες χτίζουν."
 
 #. NOTE: tags: title for chat
 #: app/_translations.py:36
@@ -169,7 +170,7 @@ msgid ""
 "Requires futher installation steps, such as installing LuaRocks or "
 "editing the trusted mod setting"
 msgstr ""
-"Απαιτεί περεταίρω βήματα εγκατάστασης, όπως την εγκατάσταση του LuaRocks ή "
+"Απαιτεί περαιτέρω βήματα εγκατάστασης, όπως την εγκατάσταση του LuaRocks ή "
 "την επεξεργασία της έμπιστης ρύθμισης της αλλαγής"
 
 #. NOTE: tags: title for crafting
@@ -194,12 +195,17 @@ msgstr "Δημιουργική"
 
 #. NOTE: tags: description for creative
 #: app/_translations.py:54
+#, fuzzy
 msgctxt "tags"
 msgid ""
 "Written specifically or exclusively for use in creative mode. Adds "
 "content only available through a creative inventory, or provides tools "
 "that facilitate ingame creation and doesn't add difficulty or scarcity"
 msgstr ""
+"Γραμμένο ειδικά ή αποκλειστικά για χρήση σε λειτουργία δημιουργίας. "
+"Προσθέτει περιεχόμενο διαθέσιμο μόνο από ένα δημιουργικό inventory, ή "
+"παρέχει εργαλεία που πραγματοποιούν δημιουργία μέσα στο παιχνίδι και δεν "
+"προσθέτουν δυσκολία ή έλλειψη."
 
 #. NOTE: tags: title for custom_mapgen
 #: app/_translations.py:56
@@ -217,7 +223,7 @@ msgid ""
 "worlds to be set to the 'singlenode' mapgen."
 msgstr ""
 "Περιέχει μια εντελώς προσαρμόσιμη υλοποίηση γεννήτριας χάρτη σε Lua, συνήθως "
-"απαιτεί οι κόσμοι να ορίζονται σε γεννήτρια χάρτη 'singlenode'"
+"απαιτεί οι κόσμοι να ορίζονται σε γεννήτρια χάρτη 'singlenode'."
 
 #. NOTE: tags: title for decorative
 #: app/_translations.py:60
@@ -230,7 +236,7 @@ msgstr "Διακοσμητικό"
 #, fuzzy
 msgctxt "tags"
 msgid "Adds nodes with no other purpose than for use in building"
-msgstr "Προσθέτει μπλόκ με όχι άλλο σκοπό πέρα από χρήση σε οικοδομίσεις"
+msgstr "Προσθέτει μπλοκ με όχι άλλο σκοπό πέρα από χρήση σε οικοδομήσεις"
 
 #. NOTE: tags: title for developer_tools
 #: app/_translations.py:64
@@ -251,7 +257,7 @@ msgstr "Εργαλεία για προγραμματιστές παιχνιδι�
 #, fuzzy
 msgctxt "tags"
 msgid "Education"
-msgstr "Ενέργεια"
+msgstr "Εκπαίδευση"
 
 #. NOTE: tags: description for education
 #: app/_translations.py:70
@@ -301,9 +307,10 @@ msgstr ""
 
 #. NOTE: tags: title for hud
 #: app/_translations.py:82
+#, fuzzy
 msgctxt "tags"
 msgid "HUD"
-msgstr ""
+msgstr "HUD"
 
 #. NOTE: tags: description for hud
 #: app/_translations.py:84
@@ -358,9 +365,10 @@ msgstr ""
 
 #. NOTE: tags: description for jam_game_2022
 #: app/_translations.py:100
+#, fuzzy
 msgctxt "tags"
 msgid "Entries to the 2022 Minetest Game Jam "
-msgstr ""
+msgstr "Εισαγωγές στο 2022 Minetest Game Jam "
 
 #. NOTE: tags: title for jam_game_2023
 #: app/_translations.py:102
@@ -370,9 +378,10 @@ msgstr ""
 
 #. NOTE: tags: description for jam_game_2023
 #: app/_translations.py:104
+#, fuzzy
 msgctxt "tags"
 msgid "Entries to the 2023 Minetest Game Jam "
-msgstr ""
+msgstr "Εισαγωγές για το 2023 Minetest Game Jam "
 
 #. NOTE: tags: title for jam_game_2024
 #: app/_translations.py:106
@@ -382,9 +391,10 @@ msgstr ""
 
 #. NOTE: tags: description for jam_game_2024
 #: app/_translations.py:108
+#, fuzzy
 msgctxt "tags"
 msgid "Entries to the 2024 Luanti Game Jam"
-msgstr ""
+msgstr "Εισαγωγές στο 2024 Luanti Game Jam"
 
 #. NOTE: tags: title for jam_weekly_2021
 #: app/_translations.py:110
@@ -394,35 +404,42 @@ msgstr ""
 
 #. NOTE: tags: description for jam_weekly_2021
 #: app/_translations.py:112
+#, fuzzy
 msgctxt "tags"
 msgid ""
 "For mods created for the Discord \"Weekly Challenges\" modding event in "
 "2021"
 msgstr ""
+"Για τροποποιήσεις που δημιουργήθηκαν για το Discord "
+"\"Εβδομαδιαίες Προκλήσεις\" γεγονός τροποποίησης το 2021"
 
 #. NOTE: tags: title for less_than_px
 #: app/_translations.py:114
+#, fuzzy
 msgctxt "tags"
 msgid "<16px"
-msgstr ""
+msgstr "&lt;16 πίξελ"
 
 #. NOTE: tags: description for less_than_px
 #: app/_translations.py:116
+#, fuzzy
 msgctxt "tags"
 msgid "Less than 16px"
-msgstr ""
+msgstr "Λιγότερο από 16πίξελ"
 
 #. NOTE: tags: title for library
 #: app/_translations.py:118
+#, fuzzy
 msgctxt "tags"
 msgid "API / Library"
-msgstr ""
+msgstr "API / Βιβλιοθήκη"
 
 #. NOTE: tags: description for library
 #: app/_translations.py:120
+#, fuzzy
 msgctxt "tags"
 msgid "Primarily adds an API for other mods to use"
-msgstr ""
+msgstr "Κυρίως προσθέτει ένα API για να το χρησιμοποιήσουν άλλες τροποποιήσεις"
 
 #. NOTE: tags: title for magic
 #: app/_translations.py:122
@@ -433,9 +450,10 @@ msgstr "Μαγεία"
 
 #. NOTE: tags: title for mapgen
 #: app/_translations.py:124
+#, fuzzy
 msgctxt "tags"
 msgid "Mapgen / Biomes / Decoration"
-msgstr ""
+msgstr "Παραγωγή Χάρτη / Εποχές / Διακόσμηση"
 
 #. NOTE: tags: description for mapgen
 #: app/_translations.py:126
@@ -499,11 +517,14 @@ msgstr "Μοναδικό"
 
 #. NOTE: tags: description for oneofakind__original
 #: app/_translations.py:146
+#, fuzzy
 msgctxt "tags"
 msgid ""
 "For games and such that are of their own kind, distinct and original in "
 "nature to others of the same category."
 msgstr ""
+"Για παιχνίδια και διάφορα που είναι στο δικό τους είδος, ξεχωριστά και "
+"πρωτότυπα στην φύση τους σε σχέση με άλλους στην ίδια κατηγορία."
 
 #. NOTE: tags: title for plants_and_farming
 #: app/_translations.py:148
@@ -519,55 +540,67 @@ msgstr "Προσθέτει νέα φυτά ή καλλιεργήσιμες πρ�
 
 #. NOTE: tags: title for player_effects
 #: app/_translations.py:152
+#, fuzzy
 msgctxt "tags"
 msgid "Player Effects / Power Ups"
-msgstr ""
+msgstr "Εφέ Παίκτη / Ενδυναμώσεις"
 
 #. NOTE: tags: description for player_effects
 #: app/_translations.py:154
+#, fuzzy
 msgctxt "tags"
 msgid ""
 "For content that changes player effects, including physics, for example: "
 "speed, jump height or gravity."
 msgstr ""
+"Για περιεχόμενο που αλλάζει τα εφέ του παίκτη, συμπεριλαμβανομένου την "
+"φυσική, για παράδειγμα: ταχύτητα, ύψος άλματος ή βαρύτητα."
 
 #. NOTE: tags: title for puzzle
 #: app/_translations.py:156
+#, fuzzy
 msgctxt "tags"
 msgid "Puzzle"
-msgstr ""
+msgstr "Παζλ"
 
 #. NOTE: tags: description for puzzle
 #: app/_translations.py:158
+#, fuzzy
 msgctxt "tags"
 msgid "Focus on puzzle solving instead of combat"
-msgstr ""
+msgstr "Συγκεντρώσου στην επίλυση παζλ αντί στην μάχη"
 
 #. NOTE: tags: title for pve
 #: app/_translations.py:160
+#, fuzzy
 msgctxt "tags"
 msgid "Player vs Environment (PvE)"
-msgstr ""
+msgstr "Παίκτης εναντίον Περιβάλλον (PvE)"
 
 #. NOTE: tags: description for pve
 #: app/_translations.py:162
+#, fuzzy
 msgctxt "tags"
 msgid ""
 "For content designed for one or more players that focus on combat against"
 " the world, mobs, or NPCs."
 msgstr ""
+"Για περιεχόμενο σχεδιασμένο για έναν ή περισσότερους παίκτες που εστιάζει "
+"στην μάχη εναντίον του κόσμου, mobs, ή NPCs."
 
 #. NOTE: tags: title for pvp
 #: app/_translations.py:164
+#, fuzzy
 msgctxt "tags"
 msgid "Player vs Player (PvP)"
-msgstr ""
+msgstr "Παίκτης εναντίον Παίκτης (PvP)"
 
 #. NOTE: tags: description for pvp
 #: app/_translations.py:166
+#, fuzzy
 msgctxt "tags"
 msgid "Designed to be played competitively against other players"
-msgstr ""
+msgstr "Σχεδιασμένο να παιχτεί ανταγωνιστικά εναντίον άλλων παικτών"
 
 #. NOTE: tags: title for seasonal
 #: app/_translations.py:168
@@ -577,265 +610,311 @@ msgstr "Εποχικό"
 
 #. NOTE: tags: description for seasonal
 #: app/_translations.py:170
+#, fuzzy
 msgctxt "tags"
 msgid "For content generally themed around a certain season or holiday"
-msgstr ""
+msgstr "Για περιεχόμενο συνήθως με θέμα γύρω από μία συγκεκριμένη εποχή ή εορτή"
 
 #. NOTE: tags: title for server_tools
 #: app/_translations.py:172
+#, fuzzy
 msgctxt "tags"
 msgid "Server Moderation and Tools"
-msgstr ""
+msgstr "Έλεγχος Διακομιστή και Εργαλεία"
 
 #. NOTE: tags: description for server_tools
 #: app/_translations.py:174
+#, fuzzy
 msgctxt "tags"
 msgid "Helps with server maintenance and moderation"
-msgstr ""
+msgstr "Βοηθάει με την συντήρηση και τον έλεγχο του διακομιστή"
 
 #. NOTE: tags: title for shooter
 #: app/_translations.py:176
+#, fuzzy
 msgctxt "tags"
 msgid "Shooter"
-msgstr ""
+msgstr "Σκοπευτής"
 
 #. NOTE: tags: description for shooter
 #: app/_translations.py:178
+#, fuzzy
 msgctxt "tags"
 msgid "First person shooters (FPS) and more"
-msgstr ""
+msgstr "Σκοπευτής πρώτου προσώπου (FPS) και περισσότερα"
 
 #. NOTE: tags: title for simulation
 #: app/_translations.py:180
+#, fuzzy
 msgctxt "tags"
 msgid "Sims"
-msgstr ""
+msgstr "Προσομοίωση"
 
 #. NOTE: tags: description for simulation
 #: app/_translations.py:182
+#, fuzzy
 msgctxt "tags"
 msgid ""
 "Mods and games that aim to simulate real life activity. Similar to "
 "SimCity/The Sims/OpenTTD/etc."
 msgstr ""
+"Τροποποιήσεις και παιχνίδια που σκοπεύουν να προσομοιώσουν δραστηριότητες "
+"της πραγματικής ζωής. Παρόμοια με SimCity/The Sims/OpenTTD/κτλ."
 
 #. NOTE: tags: title for singleplayer
 #: app/_translations.py:184
+#, fuzzy
 msgctxt "tags"
 msgid "Singleplayer-focused"
-msgstr ""
+msgstr "Για έναν παίκτη-στοχευμένο"
 
 #. NOTE: tags: description for singleplayer
 #: app/_translations.py:186
+#, fuzzy
 msgctxt "tags"
 msgid "Content that can be played alone"
-msgstr ""
+msgstr "Περιεχόμενο που μπορεί να παιχθεί ατομικά"
 
 #. NOTE: tags: title for skins
 #: app/_translations.py:188
+#, fuzzy
 msgctxt "tags"
 msgid "Player customization / Skins"
-msgstr ""
+msgstr "Εξατομίκευση Παίκτη / Skins"
 
 #. NOTE: tags: description for skins
 #: app/_translations.py:190
+#, fuzzy
 msgctxt "tags"
 msgid ""
 "Allows the player to customize their character by changing the texture or"
 " adding accessories."
 msgstr ""
+"Επιτρέπει στον παίκτη να προσαρμόζει τον χαρακτήρα του αλλάζοντας την υφή ή "
+"προσθέτοντας αξερουάρ."
 
 #. NOTE: tags: title for sound_music
 #: app/_translations.py:192
+#, fuzzy
 msgctxt "tags"
 msgid "Sounds / Music"
-msgstr ""
+msgstr "Ήχοι / Μουσική"
 
 #. NOTE: tags: description for sound_music
 #: app/_translations.py:194
+#, fuzzy
 msgctxt "tags"
 msgid "Focuses on or adds new sounds or musical things"
-msgstr ""
+msgstr "Εστιάζει σε ή προσθέτει νέους ήχους ή μουσικά πράγματα."
 
 #. NOTE: tags: title for sports
 #: app/_translations.py:196
 #, fuzzy
 msgctxt "tags"
 msgid "Sports"
-msgstr "Αναφορά"
+msgstr "Αθλητικά"
 
 #. NOTE: tags: title for storage
 #: app/_translations.py:198
 #, fuzzy
 msgctxt "tags"
 msgid "Storage"
-msgstr "Κατάσταση"
+msgstr "Αποθήκευση"
 
 #. NOTE: tags: description for storage
 #: app/_translations.py:200
+#, fuzzy
 msgctxt "tags"
 msgid "Adds or improves item storage mechanics"
-msgstr ""
+msgstr "Προσθέτει ή βελτιώνει τους μηχανισμούς αποθήκευσης αντικειμένων"
 
 #. NOTE: tags: title for strategy_rts
 #: app/_translations.py:202
+#, fuzzy
 msgctxt "tags"
 msgid "Strategy / RTS"
-msgstr ""
+msgstr "Στρατηγική / Στρατηγική σε Πραγματικό Χρόνο"
 
 #. NOTE: tags: description for strategy_rts
 #: app/_translations.py:204
+#, fuzzy
 msgctxt "tags"
 msgid ""
 "Games and mods with a heavy strategy component, whether real-time or "
 "turn-based"
 msgstr ""
+"Παιχνίδια ή τροποποιήσεις με ένα βαρύ στρατηγικό κομμάτι, είτε πραγματικού-"
+"χρόνου ή με βάση την σειρά"
 
 #. NOTE: tags: title for survival
 #: app/_translations.py:206
+#, fuzzy
 msgctxt "tags"
 msgid "Survival"
-msgstr ""
+msgstr "Επιβίωση"
 
 #. NOTE: tags: description for survival
 #: app/_translations.py:208
+#, fuzzy
 msgctxt "tags"
 msgid ""
 "Written specifically for survival gameplay with a focus on game-balance, "
 "difficulty level, or resources available through crafting, mining, ..."
 msgstr ""
+"Γραμμένο ειδικά για παιχνίδι επιβίωσης με εστίαση στην ισότητα του "
+"παιχνιδιού, επίπεδο δυσκολίας, ή πόρους διαθέσιμους μέσω χειροτεχνίας, "
+"εξόρυξης, ..."
 
 #. NOTE: tags: title for technology
 #: app/_translations.py:210
+#, fuzzy
 msgctxt "tags"
 msgid "Machines / Electronics"
-msgstr ""
+msgstr "Μηχανές / Ηλεκτρονικά"
 
 #. NOTE: tags: description for technology
 #: app/_translations.py:212
+#, fuzzy
 msgctxt "tags"
 msgid "Adds machines useful in automation, tubes, or power."
-msgstr ""
+msgstr "Προσθέτει μηχανές χρήσιμες στην αυτοματοποίηση, σωλήνες, ή ισχύς."
 
 #. NOTE: tags: title for tools
 #: app/_translations.py:214
+#, fuzzy
 msgctxt "tags"
 msgid "Tools / Weapons / Armor"
-msgstr ""
+msgstr "Εργαλεία / Όπλα / Πανοπλία"
 
 #. NOTE: tags: description for tools
 #: app/_translations.py:216
+#, fuzzy
 msgctxt "tags"
 msgid "Adds or changes tools, weapons, and armor"
-msgstr ""
+msgstr "Προσθέτει ή αλλάζει εργαλεία, όπλα, και πανοπλία"
 
 #. NOTE: tags: title for transport
 #: app/_translations.py:218
 #, fuzzy
 msgctxt "tags"
 msgid "Transport"
-msgstr "Αναφορά"
+msgstr "Μεταφορά"
 
 #. NOTE: tags: description for transport
 #: app/_translations.py:220
+#, fuzzy
 msgctxt "tags"
 msgid ""
 "Adds or changes transportation methods. Includes teleportation, vehicles,"
 " ridable mobs, transport infrastructure and thematic content"
 msgstr ""
+"Προσθέτει ή αλλάζει μεταφορικές μεθόδους. Περιλαμβάνει τηλεμεταφορά, "
+"οχήματα, οδηγήσιμα mobs, υποδομή μεταφοράς και θεματικό περιεχόμενο"
 
 #. NOTE: tags: title for world_tools
 #: app/_translations.py:222
+#, fuzzy
 msgctxt "tags"
 msgid "World Maintenance and Tools"
-msgstr ""
+msgstr "Συντήρηση Κόσμου και Εργαλεία"
 
 #. NOTE: tags: description for world_tools
 #: app/_translations.py:224
+#, fuzzy
 msgctxt "tags"
 msgid "Tools to manage the world"
-msgstr ""
+msgstr "Εργαλεία για την διαχείριση του κόσμου"
 
 #. NOTE: content_warnings: title for alcohol_tobacco
 #: app/_translations.py:226
+#, fuzzy
 msgctxt "content_warnings"
 msgid "Alcohol / Tobacco"
-msgstr ""
+msgstr "Αλκοόλ / Καπνός"
 
 #. NOTE: content_warnings: description for alcohol_tobacco
 #: app/_translations.py:228
+#, fuzzy
 msgctxt "content_warnings"
 msgid "Contains alcohol and/or tobacco"
-msgstr ""
+msgstr "Περιέχει αλκοόλ και/ή καπνό"
 
 #. NOTE: content_warnings: title for bad_language
 #: app/_translations.py:230
 #, fuzzy
 msgctxt "content_warnings"
 msgid "Bad Language"
-msgstr "Προσθήκη Πακέτου"
+msgstr "Κακή Γλώσσα"
 
 #. NOTE: content_warnings: description for bad_language
 #: app/_translations.py:232
+#, fuzzy
 msgctxt "content_warnings"
 msgid "Contains swearing"
-msgstr ""
+msgstr "Περιέχει υβριστικό λόγο"
 
 #. NOTE: content_warnings: title for drugs
 #: app/_translations.py:234
+#, fuzzy
 msgctxt "content_warnings"
 msgid "Drugs"
-msgstr ""
+msgstr "Ουσίες"
 
 #. NOTE: content_warnings: description for drugs
 #: app/_translations.py:236
+#, fuzzy
 msgctxt "content_warnings"
 msgid "Contains recreational drugs other than alcohol or tobacco"
-msgstr ""
+msgstr "Περιλαμβάνει ψυχαγωγικές ουσίες εκτός από αλκοόλ ή καπνό"
 
 #. NOTE: content_warnings: title for gambling
 #: app/_translations.py:238
 #, fuzzy
 msgctxt "content_warnings"
 msgid "Gambling"
-msgstr "Διαχειριστής"
+msgstr "Τυχερά Παιχνίδια"
 
 #. NOTE: content_warnings: description for gambling
 #: app/_translations.py:240
+#, fuzzy
 msgctxt "content_warnings"
 msgid "Games of chance, gambling games, etc"
-msgstr ""
+msgstr "Παιχνίδια πιθανότητας, παιχνίδια τύχης, κτλ"
 
 #. NOTE: content_warnings: title for gore
 #: app/_translations.py:242
 #, fuzzy
 msgctxt "content_warnings"
 msgid "Gore"
-msgstr "Περισσότερα"
+msgstr "Αίμα"
 
 #. NOTE: content_warnings: description for gore
 #: app/_translations.py:244
+#, fuzzy
 msgctxt "content_warnings"
 msgid "Blood, etc"
-msgstr ""
+msgstr "Αίμα, κτλ"
 
 #. NOTE: content_warnings: title for horror
 #: app/_translations.py:246
+#, fuzzy
 msgctxt "content_warnings"
 msgid "Fear / Horror"
-msgstr ""
+msgstr "Φόβος / Τρόμος"
 
 #. NOTE: content_warnings: description for horror
 #: app/_translations.py:248
+#, fuzzy
 msgctxt "content_warnings"
 msgid "Shocking and scary content. May scare young children"
-msgstr ""
+msgstr "Σοκαριστικό και τρομακτικό περιεχόμενο. Μπορεί να τρομάξει νέα παιδιά"
 
 #. NOTE: content_warnings: title for violence
 #: app/_translations.py:250
+#, fuzzy
 msgctxt "content_warnings"
 msgid "Violence"
-msgstr ""
+msgstr "Βία"
 
 #. NOTE: content_warnings: description for violence
 #: app/_translations.py:252
@@ -854,9 +933,9 @@ msgid "Packages"
 msgstr "Πακέτα"
 
 #: app/querybuilder.py:75
-#, python-format
+#, fuzzy, python-format
 msgid "%(package_type)s for %(game_name)s"
-msgstr ""
+msgstr "%(package_type)s για %(game_name)s"
 
 #: app/template_filters.py:92
 #, python-format
@@ -879,8 +958,9 @@ msgid "Name"
 msgstr "Όνομα"
 
 #: app/blueprints/api/tokens.py:34
+#, fuzzy
 msgid "Limit to package"
-msgstr ""
+msgstr "Περιορισμός σε πακέτο"
 
 #: app/blueprints/api/tokens.py:36 app/blueprints/collections/__init__.py:93
 #: app/blueprints/oauth/__init__.py:175 app/blueprints/packages/packages.py:253
@@ -915,12 +995,14 @@ msgstr "Τίτλος"
 #: app/blueprints/collections/__init__.py:83
 #: app/blueprints/collections/__init__.py:88
 #: app/templates/packages/translation.html:45
+#, fuzzy
 msgid "Short Description"
-msgstr ""
+msgstr "Μικρή Περιγραφή"
 
 #: app/blueprints/collections/__init__.py:84
+#, fuzzy
 msgid "Page Content"
-msgstr ""
+msgstr "Περιεχόμενο Σελίδας"
 
 #: app/blueprints/collections/__init__.py:85
 #: app/blueprints/threads/__init__.py:284
@@ -929,55 +1011,70 @@ msgid "Private"
 msgstr "Ιδιωτικό"
 
 #: app/blueprints/collections/__init__.py:86
+#, fuzzy
 msgid "Pinned to my profile"
-msgstr ""
+msgstr "Καρφωμένο στο προφίλ μου"
 
 #: app/blueprints/collections/__init__.py:158
+#, fuzzy
 msgid "A collection with a similar title already exists"
-msgstr ""
+msgstr "Μία συλλογή με παρόμοιο τίτλο υπάρχει ήδη"
 
 #: app/blueprints/collections/__init__.py:164
+#, fuzzy
 msgid "Unable to create collection as a package with that name already exists"
 msgstr ""
+"Αδύνατον να δημιουργηθεί η συλλογή διότι ένα πακέτο με αυτό το όνομα υπάρχει "
+"ήδη"
 
 #: app/blueprints/collections/__init__.py:310
+#, fuzzy
 msgid "Added package to collection"
-msgstr ""
+msgstr "Προστέθηκε το πακέτο στην συλλογή"
 
 #: app/blueprints/collections/__init__.py:312
+#, fuzzy
 msgid "Removed package from collection"
-msgstr ""
+msgstr "Αφαιρέθηκε το πακέτο από την συλλογή"
 
 #: app/blueprints/collections/__init__.py:331
+#, fuzzy
 msgid "Added package to favorites collection"
-msgstr ""
+msgstr "Προστέθηκε το πακέτο στην συλλογή αγαπημένων"
 
 #: app/blueprints/collections/__init__.py:333
+#, fuzzy
 msgid "(Public, change from Profile > My Collections)"
-msgstr ""
+msgstr "(Δημόσιο, άλλαξε από Προφίλ &gt; Οι συλλογές μου)"
 
 #: app/blueprints/collections/__init__.py:337
+#, fuzzy
 msgid "Removed package from favorites collection"
-msgstr ""
+msgstr "Το πακέτο αφαιρέθηκε από την συλλογή των αγαπημένων"
 
 #: app/blueprints/feeds/__init__.py:32 app/templates/index.html:8
+#, fuzzy
 msgid "Welcome to the best place to find Luanti mods, games, and texture packs"
 msgstr ""
+"Καλώς ήρθες στο καλύτερο μέρος για να βρεις τροποποιήσεις Luanti, παιχνίδια "
+"και πακέτα υφής."
 
 #: app/blueprints/feeds/__init__.py:70 app/templates/base.html:29
 #: app/templates/base.html:36
+#, fuzzy
 msgid "ContentDB new packages"
-msgstr ""
+msgstr "ContentDB νέα πακέτα"
 
 #: app/blueprints/feeds/__init__.py:98 app/templates/base.html:31
 #: app/templates/base.html:38
+#, fuzzy
 msgid "ContentDB package updates"
-msgstr ""
+msgstr "ContentDB ενημερώσεις πακέτων"
 
 #: app/blueprints/feeds/__init__.py:107 app/templates/base.html:27
 #: app/templates/base.html:34
 msgid "ContentDB all"
-msgstr ""
+msgstr "ContentDB όλα"
 
 #: app/blueprints/oauth/__init__.py:169 app/templates/admin/tags/list.html:26
 #: app/templates/admin/warnings/list.html:24
@@ -986,12 +1083,14 @@ msgid "Description"
 msgstr "Περιγραφή"
 
 #: app/blueprints/oauth/__init__.py:170
+#, fuzzy
 msgid "Redirect URL"
-msgstr ""
+msgstr "URL Ανακατεύθυνσης"
 
 #: app/blueprints/oauth/__init__.py:171
+#, fuzzy
 msgid "App Type"
-msgstr ""
+msgstr "Τύπος Εφαρμογής"
 
 #: app/blueprints/oauth/__init__.py:198
 msgid "An OAuth client with that title already exists. Please choose a new title."
