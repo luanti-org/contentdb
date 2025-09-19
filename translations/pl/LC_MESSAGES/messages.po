@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2024-10-31 18:32+0000\n"
-"Last-Translator: Jakub Z <mrkubax10@onet.pl>\n"
+"PO-Revision-Date: 2025-07-05 21:02+0000\n"
+"Last-Translator: nauta-turbidus <wiktor-t@hotmail.com>\n"
+"Language-Team: Polish <https://hosted.weblate.org/projects/minetest/"
+"contentdb/pl/>\n"
 "Language: pl\n"
-"Language-Team: Polish "
-"<https://hosted.weblate.org/projects/minetest/contentdb/pl/>\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && "
-"(n%100<10 || n%100>=20) ? 1 : 2);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+"X-Generator: Weblate 5.13-dev\n"
 "Generated-By: Babel 2.15.0\n"
 
 #: app/__init__.py:156
@@ -30,14 +31,12 @@ msgstr "Zostałeś zbanowany."
 
 #. NOTE: tags: title for 128px
 #: app/_translations.py:6
-#, fuzzy
 msgctxt "tags"
 msgid "128px+"
 msgstr "128 pikseli i więcej"
 
 #. NOTE: tags: description for 128px
 #: app/_translations.py:8
-#, fuzzy
 msgctxt "tags"
 msgid "For 128px or higher texture packs"
 msgstr "Dla paczek tekstur w rozdzielczości 128 pikseli i wyższej"
@@ -51,7 +50,6 @@ msgstr "16 pikseli"
 
 #. NOTE: tags: description for 16px
 #: app/_translations.py:12
-#, fuzzy
 msgctxt "tags"
 msgid "For 16px texture packs"
 msgstr "Dla paczek tekstur w rozdzielczości 16 pikseli"
@@ -6702,4 +6700,3 @@ msgstr "Rozważ włączenie powiadomień e-mail, możesz dostosować ilość wys
 
 #~ msgid "Luanti-Mods org only"
 #~ msgstr "Modyfikacje z organizacji Luanti-Mods"
-
