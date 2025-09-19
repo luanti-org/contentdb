@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2025-02-26 20:56+0000\n"
-"Last-Translator: 3raven <elise_declerck@laposte.net>\n"
+"PO-Revision-Date: 2025-02-27 01:26+0000\n"
+"Last-Translator: Tanavit MINETEST <tanavit@posto.ovh>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/minetest/"
 "contentdb/fr/>\n"
 "Language: fr\n"
@@ -2554,7 +2554,7 @@ msgstr "Envoyé par un robot - par exemple des notifications de mise à jour."
 
 #: app/models/users.py:514
 msgid "When your package's maintainers change."
-msgstr "Quand le mainteneur de votre paquet change."
+msgstr "Quand les responsables de votre paquet changent."
 
 #: app/models/users.py:516
 msgid "For editors: Important alerts."
@@ -3765,15 +3765,15 @@ msgstr "Aucune application créée"
 #: app/templates/packages/advanced_search.html:13
 msgid "Use shift to select multiple. Leave selection empty to match any type."
 msgstr ""
-"Utiliser shift pour la sélection multiple. Laisser la sélection vide pour "
-"n'importe quelle catégorie."
+"Utilisez Maj pour sélectionner plusieurs objets. Videz la sélection pour "
+"faire correspondre à n'importe quel type."
 
 #: app/templates/packages/advanced_search.html:14
 #: app/templates/packages/advanced_search.html:19
 #: app/templates/packages/advanced_search.html:20
 #: app/templates/packages/advanced_search.html:21
 msgid "Use shift to select multiple."
-msgstr "Utiliser shift pour la sélection multiple."
+msgstr "Utilisez Maj pour sélectionner plusieurs objets."
 
 #: app/templates/packages/advanced_search.html:17
 msgid "Tags and Content Warnings"
