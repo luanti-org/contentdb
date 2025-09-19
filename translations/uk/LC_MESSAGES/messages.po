@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2025-02-28 03:44+0000\n"
-"Last-Translator: Тарас Арт <fromkaniv@gmail.com>\n"
+"PO-Revision-Date: 2025-03-04 21:03+0000\n"
+"Last-Translator: Денис <denissavchenko0@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/minetest/"
 "contentdb/uk/>\n"
 "Language: uk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.10.2-rc\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 "Generated-By: Babel 2.15.0\n"
 
 #: app/__init__.py:156
@@ -27,7 +27,7 @@ msgstr "Забанено:"
 
 #: app/__init__.py:158
 msgid "You have been banned."
-msgstr "Вас забанено."
+msgstr "Вас забанено"
 
 #. NOTE: tags: title for 128px
 #: app/_translations.py:6
@@ -170,13 +170,13 @@ msgstr ""
 #: app/_translations.py:48
 msgctxt "tags"
 msgid "Crafting"
-msgstr "Крафтинг"
+msgstr "Майстрування"
 
 #. NOTE: tags: description for crafting
 #: app/_translations.py:50
 msgctxt "tags"
 msgid "Big changes to crafting gameplay"
-msgstr "Значні зміни в ігровому процесі крафтингу"
+msgstr "Значні зміни в ігровому процесі майструванні"
 
 #. NOTE: tags: title for creative
 #: app/_translations.py:52
@@ -248,7 +248,7 @@ msgstr "Освіта"
 #: app/_translations.py:70
 msgctxt "tags"
 msgid "Either has educational value, or is a tool to help teachers "
-msgstr "Має освітню цінність або є інструментом, який допомагає вчителям. "
+msgstr "Має або освітню цінність, або є інструментом для допомоги вчителям. "
 
 #. NOTE: tags: title for environment
 #: app/_translations.py:72
@@ -263,7 +263,7 @@ msgid ""
 "Improves the world, adding weather, ambient sounds, or other environment "
 "mechanics"
 msgstr ""
-"Покращує світ, додаючи погоду, навколишні звуки або інші механіки "
+"Покращує світ, додаючи погоду, атмосферні звуки або інші механіки "
 "навколишнього середовища"
 
 #. NOTE: tags: title for food
@@ -276,7 +276,7 @@ msgstr "Їжа / Напої"
 #: app/_translations.py:78
 msgctxt "tags"
 msgid "GUI"
-msgstr "GUI"
+msgstr "Графічний інтерфейс"
 
 #. NOTE: tags: description for gui
 #: app/_translations.py:80
@@ -285,20 +285,22 @@ msgid ""
 "For content whose main utility or features are provided within a GUI, on-"
 "screen menu, or similar"
 msgstr ""
-"Для контенту, основна корисність або функції якого надаються в межах "
-"графічного інтерфейсу користувача, екранного меню або подібного"
+"Для контенту, основна утиліта або функції якого надаються через графічний "
+"інтерфейс користувача, екранне меню або подібне"
 
 #. NOTE: tags: title for hud
 #: app/_translations.py:82
 msgctxt "tags"
 msgid "HUD"
-msgstr "HUD"
+msgstr "Головний інтерфейс"
 
 #. NOTE: tags: description for hud
 #: app/_translations.py:84
 msgctxt "tags"
 msgid "For mods that grant the player extra information in the HUD"
-msgstr "Для модів, які надають гравцеві додаткову інформацію на HUD"
+msgstr ""
+"Для модів, які надають гравцю додаткову інформацію в головному інтерфейсі "
+"користувача"
 
 #. NOTE: tags: title for inventory
 #: app/_translations.py:86
@@ -316,7 +318,7 @@ msgstr "Змінює графічний інтерфейс інвентаря"
 #: app/_translations.py:90
 msgctxt "tags"
 msgid "Jam / Combat 2020"
-msgstr "Jam / Combat 2020"
+msgstr "Jam / Бої 2020"
 
 #. NOTE: tags: description for jam_combat_mod
 #: app/_translations.py:92
@@ -328,55 +330,55 @@ msgstr "Для модів, створених для модінг-івенту \
 #: app/_translations.py:94
 msgctxt "tags"
 msgid "Jam / Game 2021"
-msgstr "Jam / Game 2021"
+msgstr "Jam / Ігри 2021"
 
 #. NOTE: tags: description for jam_game_2021
 #: app/_translations.py:96
 msgctxt "tags"
 msgid "Entries to the 2021 Minetest Game Jam"
-msgstr "Роботи, представлені на Minetest Game Jam 2021"
+msgstr "Участь у Game Jam Minetest 2021"
 
 #. NOTE: tags: title for jam_game_2022
 #: app/_translations.py:98
 msgctxt "tags"
 msgid " Jam / Game 2022"
-msgstr " Jam / Game 2022"
+msgstr " Jam / Ігри 2022"
 
 #. NOTE: tags: description for jam_game_2022
 #: app/_translations.py:100
 msgctxt "tags"
 msgid "Entries to the 2022 Minetest Game Jam "
-msgstr "Роботи, представлені на Minetest Game Jam 2022 "
+msgstr "Участь у Game Jam Minetest 2022 "
 
 #. NOTE: tags: title for jam_game_2023
 #: app/_translations.py:102
 msgctxt "tags"
 msgid "Jam / Game 2023"
-msgstr "Jam / Game 2023"
+msgstr "Jam / Ігри 2023"
 
 #. NOTE: tags: description for jam_game_2023
 #: app/_translations.py:104
 msgctxt "tags"
 msgid "Entries to the 2023 Minetest Game Jam "
-msgstr "Роботи, представлені на Minetest Game Jam 2023 "
+msgstr "Участь у Game Jam Minetest 2023 "
 
 #. NOTE: tags: title for jam_game_2024
 #: app/_translations.py:106
 msgctxt "tags"
 msgid "Jam / Game 2024"
-msgstr "Jam / Game 2024"
+msgstr "Jam / Ігри 2024"
 
 #. NOTE: tags: description for jam_game_2024
 #: app/_translations.py:108
 msgctxt "tags"
 msgid "Entries to the 2024 Luanti Game Jam"
-msgstr "Роботи, представлені на Luanti Game Jam 2024"
+msgstr "Участь у Luanti Game Jam 2024"
 
 #. NOTE: tags: title for jam_weekly_2021
 #: app/_translations.py:110
 msgctxt "tags"
 msgid "Jam / Weekly Challenges 2021"
-msgstr "Jam / Weekly Challenges 2021"
+msgstr "Jam / Щотижневі виклики 2021"
 
 #. NOTE: tags: description for jam_weekly_2021
 #: app/_translations.py:112
@@ -398,7 +400,7 @@ msgstr "&lt;16пікс"
 #: app/_translations.py:116
 msgctxt "tags"
 msgid "Less than 16px"
-msgstr "Менше, ніж 16пікс"
+msgstr "Менше ніж 16 пікселів"
 
 #. NOTE: tags: title for library
 #: app/_translations.py:118
@@ -410,37 +412,37 @@ msgstr "API / Бібліотека"
 #: app/_translations.py:120
 msgctxt "tags"
 msgid "Primarily adds an API for other mods to use"
-msgstr "Переважно додає API для використання іншими модами"
+msgstr "Основне призначення — додавання API для використання іншими модами"
 
 #. NOTE: tags: title for magic
 #: app/_translations.py:122
 msgctxt "tags"
 msgid "Magic / Enchanting"
-msgstr "Магія / Зачарування"
+msgstr "Магія / Чарування"
 
 #. NOTE: tags: title for mapgen
 #: app/_translations.py:124
 msgctxt "tags"
 msgid "Mapgen / Biomes / Decoration"
-msgstr "Генератор світу / Біоми / Декорації"
+msgstr "Генерація карт / Біоми / Декорації"
 
 #. NOTE: tags: description for mapgen
 #: app/_translations.py:126
 msgctxt "tags"
 msgid "New mapgen or changes mapgen"
-msgstr "Нові генератори світу або зміни, пов'язані із ними"
+msgstr "Нова генерація карти або зміни в генерації карти"
 
 #. NOTE: tags: title for mini-game
 #: app/_translations.py:128
 msgctxt "tags"
 msgid "Mini-game"
-msgstr "Міні-ігри"
+msgstr "Міні-гра"
 
 #. NOTE: tags: description for mini-game
 #: app/_translations.py:130
 msgctxt "tags"
 msgid "Adds a mini-game to be played within Luanti"
-msgstr "Додає міні-ігри"
+msgstr "Додає міні-гру для гри в Luanti"
 
 #. NOTE: tags: title for mobs
 #: app/_translations.py:132
@@ -458,31 +460,31 @@ msgstr "Додає мобів, тварин або ботів"
 #: app/_translations.py:136
 msgctxt "tags"
 msgid "Minetest Game improved"
-msgstr "Покращення Minetest Game"
+msgstr "Поліпшена гра Minetest"
 
 #. NOTE: tags: description for mtg
 #: app/_translations.py:138
 msgctxt "tags"
 msgid "Forks of Minetest Game"
-msgstr "Форки Minetest Game"
+msgstr "Форки гри Minetest"
 
 #. NOTE: tags: title for multiplayer
 #: app/_translations.py:140
 msgctxt "tags"
 msgid "Multiplayer-focused"
-msgstr "Багатокористувацький"
+msgstr "Орієнтований на багатокористувацький режим"
 
 #. NOTE: tags: description for multiplayer
 #: app/_translations.py:142
 msgctxt "tags"
 msgid "Can/should only be used in multiplayer"
-msgstr "Можна/слід використовувати у багатокористувацькому режимі"
+msgstr "Може/повинен використовуватися лише в багатокористувацькому режимі"
 
 #. NOTE: tags: title for oneofakind__original
 #: app/_translations.py:144
 msgctxt "tags"
 msgid "One-of-a-kind / Original"
-msgstr "Єдиний у своєму роді / Оригінал"
+msgstr "Унікальний / Оригінальний"
 
 #. NOTE: tags: description for oneofakind__original
 #: app/_translations.py:146
@@ -498,19 +500,19 @@ msgstr ""
 #: app/_translations.py:148
 msgctxt "tags"
 msgid "Plants and Farming"
-msgstr "Рослини та сільське господарство"
+msgstr "Рослини та фермерство"
 
 #. NOTE: tags: description for plants_and_farming
 #: app/_translations.py:150
 msgctxt "tags"
 msgid "Adds new plants or other farmable resources."
-msgstr "Додає нові рослини чи фермерські ресурси."
+msgstr "Додає нові рослини або інші ресурси для фермерства."
 
 #. NOTE: tags: title for player_effects
 #: app/_translations.py:152
 msgctxt "tags"
 msgid "Player Effects / Power Ups"
-msgstr "Ефекти гравця / Підсилення"
+msgstr "Ефекти гравця / Покращення"
 
 #. NOTE: tags: description for player_effects
 #: app/_translations.py:154
@@ -520,25 +522,25 @@ msgid ""
 "speed, jump height or gravity."
 msgstr ""
 "Для контенту, що змінює ефекти гравця, включаючи фізику, наприклад: "
-"швидкість, висота стрибка чи гравітація."
+"швидкість, висоту стрибка або гравітацію."
 
 #. NOTE: tags: title for puzzle
 #: app/_translations.py:156
 msgctxt "tags"
 msgid "Puzzle"
-msgstr "Пазли"
+msgstr "Головоломка"
 
 #. NOTE: tags: description for puzzle
 #: app/_translations.py:158
 msgctxt "tags"
 msgid "Focus on puzzle solving instead of combat"
-msgstr "Зосереджено на вирішуванні логічних завдань, замість атак"
+msgstr "Зосереджено на розв’язанні головоломок, а не на боях"
 
 #. NOTE: tags: title for pve
 #: app/_translations.py:160
 msgctxt "tags"
 msgid "Player vs Environment (PvE)"
-msgstr "Гравець проти сутностей (PvE)"
+msgstr "Гравець проти оточення (PvE)"
 
 #. NOTE: tags: description for pve
 #: app/_translations.py:162
@@ -547,8 +549,8 @@ msgid ""
 "For content designed for one or more players that focus on combat against"
 " the world, mobs, or NPCs."
 msgstr ""
-"Для контенту, розробленого для одного або кількох гравців, які "
-"зосереджуються на боротьбі проти світу, мобів або NPC."
+"Для контенту, призначеного для одного або більше гравців, що зосереджується "
+"на боях проти світу, мобів або NPC."
 
 #. NOTE: tags: title for pvp
 #: app/_translations.py:164
@@ -560,7 +562,7 @@ msgstr "Гравець проти гравця (PvP)"
 #: app/_translations.py:166
 msgctxt "tags"
 msgid "Designed to be played competitively against other players"
-msgstr "Розроблено для змагання з іншими гравцями"
+msgstr "Призначено для змагань з іншими гравцями"
 
 #. NOTE: tags: title for seasonal
 #: app/_translations.py:168
@@ -572,31 +574,31 @@ msgstr "Сезонний"
 #: app/_translations.py:170
 msgctxt "tags"
 msgid "For content generally themed around a certain season or holiday"
-msgstr "Для вмісту, присвяченого певній порі року чи святу"
+msgstr "Для контенту, який зазвичай має тематику певного сезону або свята"
 
 #. NOTE: tags: title for server_tools
 #: app/_translations.py:172
 msgctxt "tags"
 msgid "Server Moderation and Tools"
-msgstr "Засоби модерування"
+msgstr "Модерація серверу та інструменти"
 
 #. NOTE: tags: description for server_tools
 #: app/_translations.py:174
 msgctxt "tags"
 msgid "Helps with server maintenance and moderation"
-msgstr "Допомагає із підтримкою сервера та модерацією"
+msgstr "Допомагає в обслуговуванні та модерації серверу"
 
 #. NOTE: tags: title for shooter
 #: app/_translations.py:176
 msgctxt "tags"
 msgid "Shooter"
-msgstr "Шутери"
+msgstr "Шутер"
 
 #. NOTE: tags: description for shooter
 #: app/_translations.py:178
 msgctxt "tags"
 msgid "First person shooters (FPS) and more"
-msgstr "Шутери від першого лиця (FPS) та більше"
+msgstr "Шутери від першої особи (FPS) та інші"
 
 #. NOTE: tags: title for simulation
 #: app/_translations.py:180
@@ -611,26 +613,26 @@ msgid ""
 "Mods and games that aim to simulate real life activity. Similar to "
 "SimCity/The Sims/OpenTTD/etc."
 msgstr ""
-"Моди та ігри, що намагаються симулювати активности реального життя. Схоже на "
-"SimCity/The Sims, OpenTTD/тощо."
+"Моди та ігри, що мають на меті симулювати реальну діяльність. Схожі на "
+"SimCity, The Sims, OpenTTD тощо."
 
 #. NOTE: tags: title for singleplayer
 #: app/_translations.py:184
 msgctxt "tags"
 msgid "Singleplayer-focused"
-msgstr "Для одного гравця"
+msgstr "Орієнтований на одиночний режим"
 
 #. NOTE: tags: description for singleplayer
 #: app/_translations.py:186
 msgctxt "tags"
 msgid "Content that can be played alone"
-msgstr "Контент, що слід використовувати самому"
+msgstr "Контент, який можна грати один"
 
 #. NOTE: tags: title for skins
 #: app/_translations.py:188
 msgctxt "tags"
 msgid "Player customization / Skins"
-msgstr "Кастомізація гравця / Скіни"
+msgstr "Налаштування персонажа / Скіни"
 
 #. NOTE: tags: description for skins
 #: app/_translations.py:190
@@ -639,8 +641,8 @@ msgid ""
 "Allows the player to customize their character by changing the texture or"
 " adding accessories."
 msgstr ""
-"Дозволяє гравцеві налаштовувати свого персонажа, змінюючи текстуру або "
-"додаючи аксесуари."
+"Дозволяє гравцю налаштовувати свого персонажа, змінюючи текстури або додаючи "
+"аксесуари."
 
 #. NOTE: tags: title for sound_music
 #: app/_translations.py:192
@@ -652,13 +654,13 @@ msgstr "Звуки / Музика"
 #: app/_translations.py:194
 msgctxt "tags"
 msgid "Focuses on or adds new sounds or musical things"
-msgstr "Додає нові звуки чи які-небудь музичні предмети/блоки"
+msgstr "Зосереджується на додаванні нових звуків або музичних елементів"
 
 #. NOTE: tags: title for sports
 #: app/_translations.py:196
 msgctxt "tags"
 msgid "Sports"
-msgstr "Спорт"
+msgstr "Спортивні ігри"
 
 #. NOTE: tags: title for storage
 #: app/_translations.py:198
@@ -670,13 +672,13 @@ msgstr "Зберігання"
 #: app/_translations.py:200
 msgctxt "tags"
 msgid "Adds or improves item storage mechanics"
-msgstr "Додає або покращує механіки зберігання предметів"
+msgstr "Додає або покращує механіку зберігання предметів"
 
 #. NOTE: tags: title for strategy_rts
 #: app/_translations.py:202
 msgctxt "tags"
 msgid "Strategy / RTS"
-msgstr "Стратегія / RTS (стратегія в реальному часі)"
+msgstr "Стратегія / RTS"
 
 #. NOTE: tags: description for strategy_rts
 #: app/_translations.py:204
@@ -685,8 +687,8 @@ msgid ""
 "Games and mods with a heavy strategy component, whether real-time or "
 "turn-based"
 msgstr ""
-"Ігри та моди з важким стратегічним компонентом, як у реальному часі, так і "
-"покрокові"
+"Ігри та моди з великою стратегією, незалежно від того, чи це в реальному "
+"часі, чи покрокові"
 
 #. NOTE: tags: title for survival
 #: app/_translations.py:206
@@ -701,8 +703,8 @@ msgid ""
 "Written specifically for survival gameplay with a focus on game-balance, "
 "difficulty level, or resources available through crafting, mining, ..."
 msgstr ""
-"Написаний спеціально для геймплея виживання з акцентом на ігровий баланс, "
-"рівень складності або ресурси, доступні через крафт, видобуток, ..."
+"Написано спеціально для ігор на виживання з акцентом на баланс гри, рівень "
+"складності або ресурси, доступні через майстрування, видобуток, тощо..."
 
 #. NOTE: tags: title for technology
 #: app/_translations.py:210
@@ -714,7 +716,8 @@ msgstr "Машини / Електроніка"
 #: app/_translations.py:212
 msgctxt "tags"
 msgid "Adds machines useful in automation, tubes, or power."
-msgstr "Додає машини, корисні в автоматизації, труби або енергію."
+msgstr ""
+"Додає машини, корисні для автоматизації, трубопроводів або енергопостачання."
 
 #. NOTE: tags: title for tools
 #: app/_translations.py:214
@@ -741,15 +744,14 @@ msgid ""
 "Adds or changes transportation methods. Includes teleportation, vehicles,"
 " ridable mobs, transport infrastructure and thematic content"
 msgstr ""
-"Додає або змінює методи транспортування. Включає телепортацію, транспортні "
-"засоби, моби, на яких можна їздити, транспортну інфраструктуру та тематичний "
-"контент"
+"Додає або змінює способи транспортування. Включає телепортацію, транспортні "
+"засоби, їздових мобів, транспортну інфраструктуру та тематичний контент"
 
 #. NOTE: tags: title for world_tools
 #: app/_translations.py:222
 msgctxt "tags"
 msgid "World Maintenance and Tools"
-msgstr "Редагування світу та інструменти"
+msgstr "Обслуговування світу та інструменти"
 
 #. NOTE: tags: description for world_tools
 #: app/_translations.py:224
@@ -773,13 +775,13 @@ msgstr "Містить алкоголь та/або тютюн"
 #: app/_translations.py:230
 msgctxt "content_warnings"
 msgid "Bad Language"
-msgstr "Погана мова"
+msgstr "Нецензурна лексика"
 
 #. NOTE: content_warnings: description for bad_language
 #: app/_translations.py:232
 msgctxt "content_warnings"
 msgid "Contains swearing"
-msgstr "Містить лайку"
+msgstr "Містить нецензурну лексику"
 
 #. NOTE: content_warnings: title for drugs
 #: app/_translations.py:234
@@ -791,7 +793,7 @@ msgstr "Наркотики"
 #: app/_translations.py:236
 msgctxt "content_warnings"
 msgid "Contains recreational drugs other than alcohol or tobacco"
-msgstr "Містить рекреаційні наркотики, крім алкоголю чи тютюну"
+msgstr "Містить розважальні наркотики, окрім алкоголю та тютюну"
 
 #. NOTE: content_warnings: title for gambling
 #: app/_translations.py:238
@@ -803,13 +805,13 @@ msgstr "Азартні ігри"
 #: app/_translations.py:240
 msgctxt "content_warnings"
 msgid "Games of chance, gambling games, etc"
-msgstr "Азартні ігри"
+msgstr "Ігри на удачу, азартні ігри тощо"
 
 #. NOTE: content_warnings: title for gore
 #: app/_translations.py:242
 msgctxt "content_warnings"
 msgid "Gore"
-msgstr "Кров"
+msgstr "Кровопролиття"
 
 #. NOTE: content_warnings: description for gore
 #: app/_translations.py:244
@@ -827,7 +829,7 @@ msgstr "Страх / Жахи"
 #: app/_translations.py:248
 msgctxt "content_warnings"
 msgid "Shocking and scary content. May scare young children"
-msgstr "Шокуючий і страшний контент. Може налякати маленьких дітей"
+msgstr "Шокуючий та страшний контент. Може налякати малих дітей"
 
 #. NOTE: content_warnings: title for violence
 #: app/_translations.py:250
@@ -840,8 +842,8 @@ msgstr "Насильство"
 msgctxt "content_warnings"
 msgid "Non-cartoon violence. May be towards fantasy or  human-like characters"
 msgstr ""
-"Насильство без мультфільму. Може бути спрямовано до фантастичних або "
-"людиноподібних персонажів"
+"Насильство, не в стилі мультфільмів. Може бути спрямоване на фантастичних "
+"або людиноподібних персонажів"
 
 #: app/querybuilder.py:60 app/templates/admin/languages/list.html:27
 #: app/templates/admin/tags/list.html:34
@@ -851,7 +853,7 @@ msgstr ""
 #: app/templates/packages/list.html:4 app/templates/todo/editor.html:46
 #: app/templates/users/list.html:22 app/templates/users/profile.html:265
 msgid "Packages"
-msgstr "Пакунки"
+msgstr "Пакети"
 
 #: app/querybuilder.py:75
 #, python-format
@@ -865,7 +867,7 @@ msgstr "%(delta)s тому"
 
 #: app/blueprints/api/endpoints.py:74 app/templates/index.html:104
 msgid "Featured"
-msgstr "Рекомендовано"
+msgstr "Рекомендоване"
 
 #: app/blueprints/api/tokens.py:33
 #: app/blueprints/packages/advanced_search.py:83
@@ -876,11 +878,11 @@ msgstr "Рекомендовано"
 #: app/templates/packages/release_edit.html:20
 #: app/templates/packages/release_view.html:22
 msgid "Name"
-msgstr "Назва"
+msgstr "Ім'я"
 
 #: app/blueprints/api/tokens.py:34
 msgid "Limit to package"
-msgstr "Обмеження на пакунки"
+msgstr "Обмежити до пакету"
 
 #: app/blueprints/api/tokens.py:36 app/blueprints/collections/__init__.py:93
 #: app/blueprints/oauth/__init__.py:175 app/blueprints/packages/packages.py:253
@@ -920,7 +922,7 @@ msgstr "Короткий Опис"
 
 #: app/blueprints/collections/__init__.py:84
 msgid "Page Content"
-msgstr "Вміст Сторінки"
+msgstr "Зміст сторінки"
 
 #: app/blueprints/collections/__init__.py:85
 #: app/blueprints/threads/__init__.py:284
@@ -930,7 +932,7 @@ msgstr "Приватний"
 
 #: app/blueprints/collections/__init__.py:86
 msgid "Pinned to my profile"
-msgstr "Закріплене у моєму профілі"
+msgstr "Закріплено на моєму профілі"
 
 #: app/blueprints/collections/__init__.py:158
 msgid "A collection with a similar title already exists"
@@ -938,47 +940,48 @@ msgstr "Колекція з подібною назвою вже існує"
 
 #: app/blueprints/collections/__init__.py:164
 msgid "Unable to create collection as a package with that name already exists"
-msgstr "Неможливо створити колекцію, так як пакунок з такою назвою вже існує"
+msgstr "Не вдається створити колекцію, оскільки пакет з такою назвою вже існує"
 
 #: app/blueprints/collections/__init__.py:310
 msgid "Added package to collection"
-msgstr "Додано пакунок до колекції"
+msgstr "Пакет додано до колекції"
 
 #: app/blueprints/collections/__init__.py:312
 msgid "Removed package from collection"
-msgstr "Вилучено пакунок з колекції"
+msgstr "Пакет видалено з колекції"
 
 #: app/blueprints/collections/__init__.py:331
 msgid "Added package to favorites collection"
-msgstr "Додано пакунок до колекції улюбленого"
+msgstr "Пакет додано до колекції обраних"
 
 #: app/blueprints/collections/__init__.py:333
 msgid "(Public, change from Profile > My Collections)"
-msgstr "(Публічна, змінюйте у Профіль &gt; Мої Колекції)"
+msgstr "(Публічний, змінити в розділі Профіль &gt; Мої колекції)"
 
 #: app/blueprints/collections/__init__.py:337
 msgid "Removed package from favorites collection"
-msgstr "Вилучено пакунок з колекції улюбленого"
+msgstr "Пакет видалено з колекції обраних"
 
 #: app/blueprints/feeds/__init__.py:32 app/templates/index.html:8
 msgid "Welcome to the best place to find Luanti mods, games, and texture packs"
 msgstr ""
-"Вітаємо у найкращому місці щоб знайти моди, ігри та пакунки текстур до Luanti"
+"Ласкаво просимо до найкращого місця для пошуку модів, ігор та текстурних "
+"пакетів для Luanti"
 
 #: app/blueprints/feeds/__init__.py:70 app/templates/base.html:29
 #: app/templates/base.html:36
 msgid "ContentDB new packages"
-msgstr "Нові пакунки ContentDB"
+msgstr "Нові пакети на ContentDB"
 
 #: app/blueprints/feeds/__init__.py:98 app/templates/base.html:31
 #: app/templates/base.html:38
 msgid "ContentDB package updates"
-msgstr "Оновлення пакунків ContentDB"
+msgstr "Оновлення пакетів на ContentDB"
 
 #: app/blueprints/feeds/__init__.py:107 app/templates/base.html:27
 #: app/templates/base.html:34
 msgid "ContentDB all"
-msgstr "Все у ContentDB"
+msgstr "Всі пакети на ContentDB"
 
 #: app/blueprints/oauth/__init__.py:169 app/templates/admin/tags/list.html:26
 #: app/templates/admin/warnings/list.html:24
@@ -988,26 +991,24 @@ msgstr "Опис"
 
 #: app/blueprints/oauth/__init__.py:170
 msgid "Redirect URL"
-msgstr "URL-перенапрямлення"
+msgstr "URL для перенаправлення"
 
 #: app/blueprints/oauth/__init__.py:171
 msgid "App Type"
-msgstr "Вид Застосунку"
+msgstr "Тип додатку"
 
 #: app/blueprints/oauth/__init__.py:198
 msgid "An OAuth client with that title already exists. Please choose a new title."
-msgstr ""
-"OAuth клієнт із таким заголовком уже існує. Будь ласка, оберіть новий "
-"заголовок."
+msgstr "Клієнт OAuth з такою назвою вже існує. Будь ласка, оберіть нову назву."
 
 #: app/blueprints/oauth/__init__.py:262
 msgid "Revoked all user tokens"
-msgstr "Відкликано усі токени користувачів"
+msgstr "Скасовано всі токени користувачів"
 
 #: app/blueprints/packages/__init__.py:32
 #: app/templates/packages/create_edit.html:29
 msgid "Edit Details"
-msgstr "Змінити деталі"
+msgstr "Редагувати деталі"
 
 #: app/blueprints/packages/__init__.py:37
 #: app/templates/packages/translation.html:4
@@ -1024,18 +1025,18 @@ msgstr "Випуски"
 #: app/templates/packages/screenshots.html:4
 #: app/templates/packages/screenshots.html:14 app/templates/todo/editor.html:11
 msgid "Screenshots"
-msgstr "Знімки екрана"
+msgstr "Скриншоти"
 
 #: app/blueprints/packages/__init__.py:52
 #: app/templates/packages/edit_maintainers.html:8
 #: app/templates/packages/view.html:646 app/utils/minetest_hypertext.py:302
 msgid "Maintainers"
-msgstr "Супровідники"
+msgstr "Керівники проекту"
 
 #: app/blueprints/packages/__init__.py:57 app/templates/admin/list.html:21
 #: app/templates/base.html:173 app/templates/packages/audit.html:4
 msgid "Audit Log"
-msgstr "Журнал авдиту"
+msgstr "Журнал аудиту"
 
 #: app/blueprints/packages/__init__.py:62 app/templates/base.html:164
 #: app/templates/packages/stats.html:4 app/templates/packages/stats.html:23
@@ -1045,11 +1046,11 @@ msgstr "Статистика"
 
 #: app/blueprints/packages/__init__.py:67 app/templates/packages/share.html:4
 msgid "Share and Badges"
-msgstr "Обмін і значки"
+msgstr "Поділитися та значки"
 
 #: app/blueprints/packages/__init__.py:72
 msgid "Remove / Unpublish"
-msgstr "Вилучити / Зняти з публікації"
+msgstr "Видалити / Зняти з публікації"
 
 #: app/blueprints/packages/__init__.py:80 app/logic/package_approval.py:123
 #: app/templates/packages/game_support.html:4
@@ -1059,29 +1060,29 @@ msgstr "Підтримувані ігри"
 
 #: app/blueprints/packages/advanced_search.py:39
 msgid "Android Default"
-msgstr "Стандартний Android"
+msgstr "За замовчуванням для Android"
 
 #: app/blueprints/packages/advanced_search.py:40
 msgid "Desktop Default"
-msgstr "Стандартний Desktop"
+msgstr "За замовчуванням для настільних ПК"
 
 #: app/blueprints/packages/advanced_search.py:41
 msgid "Non-free"
-msgstr "Не вільний"
+msgstr "Не безкоштовно"
 
 #: app/blueprints/packages/advanced_search.py:42 app/models/packages.py:630
 #: app/templates/packages/view.html:170
 msgid "Work in Progress"
-msgstr "Робота в процесі"
+msgstr "В процесі розробки"
 
 #. NOTE: Package maintenance state
 #: app/blueprints/packages/advanced_search.py:43 app/models/packages.py:170
 msgid "Deprecated"
-msgstr "Застарілий"
+msgstr "Застаріле"
 
 #: app/blueprints/packages/advanced_search.py:44
 msgid "All content warnings"
-msgstr "Усі попередження"
+msgstr "Усі попередження про контент"
 
 #: app/blueprints/packages/advanced_search.py:53
 msgid "Query"
@@ -1103,12 +1104,12 @@ msgstr "Автор"
 #: app/templates/admin/tags/list.html:10 app/templates/todo/tags.html:38
 #: app/utils/minetest_hypertext.py:264
 msgid "Tags"
-msgstr "Теґи"
+msgstr "Теги"
 
 #: app/blueprints/packages/advanced_search.py:60
 #: app/blueprints/packages/packages.py:239
 msgid "Content Warnings"
-msgstr "Попередження вмісту"
+msgstr "Попередження про контент"
 
 #: app/blueprints/packages/advanced_search.py:63
 #: app/blueprints/packages/packages.py:240 app/templates/packages/view.html:627
@@ -1138,11 +1139,11 @@ msgstr "%(title)s від %(author)s"
 #: app/blueprints/packages/reviews.py:54
 #: app/templates/packages/translation.html:39
 msgid "Language"
-msgstr "Мови"
+msgstr "Мова"
 
 #: app/blueprints/packages/advanced_search.py:76
 msgid "Hide Tags and Content Warnings"
-msgstr "Сховати теґи та попередження вмісту"
+msgstr "Приховати теги та попередження про контент"
 
 #: app/blueprints/packages/advanced_search.py:77
 msgid "Luanti Version"
@@ -1150,11 +1151,11 @@ msgstr "Версія Luanti"
 
 #: app/blueprints/packages/advanced_search.py:81
 msgid "Sort by"
-msgstr "Сортувати"
+msgstr "Сортувати за"
 
 #: app/blueprints/packages/advanced_search.py:85
 msgid "Package score"
-msgstr "Рахунок пакунку"
+msgstr "Оцінка пакету"
 
 #: app/blueprints/packages/advanced_search.py:86 app/templates/index.html:78
 #: app/templates/packages/reviews_list.html:4
@@ -1166,7 +1167,7 @@ msgstr "Відгуки"
 #: app/blueprints/packages/advanced_search.py:87
 #: app/templates/packages/view.html:191 app/templates/users/profile.html:242
 msgid "Downloads"
-msgstr "Завантажити"
+msgstr "Завантаження"
 
 #: app/blueprints/packages/advanced_search.py:88
 msgid "Created At"
@@ -1174,7 +1175,7 @@ msgstr "Створено"
 
 #: app/blueprints/packages/advanced_search.py:89
 msgid "Approved At"
-msgstr "Затверджено"
+msgstr "Схвалено"
 
 #: app/blueprints/packages/advanced_search.py:90
 msgid "Last Release"
@@ -1186,11 +1187,11 @@ msgstr "Порядок"
 
 #: app/blueprints/packages/advanced_search.py:93
 msgid "Descending"
-msgstr "Низхідний"
+msgstr "За спаданням"
 
 #: app/blueprints/packages/advanced_search.py:94
 msgid "Ascending"
-msgstr "Висхідний"
+msgstr "За зростанням"
 
 #: app/blueprints/packages/advanced_search.py:96
 msgid "Random order"
@@ -1202,31 +1203,31 @@ msgstr "Завантаження недоступне."
 
 #: app/blueprints/packages/packages.py:232
 msgid "Title (Human-readable)"
-msgstr "Заголовок (зрозумілий людям)"
+msgstr "Заголовок (Легко зрозумілий)"
 
 #: app/blueprints/packages/packages.py:233
 #: app/blueprints/packages/packages.py:646
 msgid "Name (Technical)"
-msgstr "Назва (технічна)"
+msgstr "Назва (Технічна)"
 
 #: app/blueprints/packages/packages.py:233
 #: app/blueprints/packages/packages.py:647
 #: app/templates/packages/create_edit.html:80
 msgid "Lower case letters (a-z), digits (0-9), and underscores (_) only"
-msgstr "Лише малі букви (a-z), цифри (0-9) і підкреслення (_)"
+msgstr "Лише малі літери (a-z), цифри (0-9) та підкреслення (_)"
 
 #: app/blueprints/packages/packages.py:234
 msgid "Short Description (Plaintext)"
-msgstr "Короткий опис (простий текст)"
+msgstr "Короткий опис (Текстовий формат)"
 
 #: app/blueprints/packages/packages.py:236 app/templates/packages/view.html:638
 #: app/utils/minetest_hypertext.py:300
 msgid "Maintenance State"
-msgstr "Стан підтримки"
+msgstr "Стан обслуговування"
 
 #: app/blueprints/packages/packages.py:241
 msgid "Media License"
-msgstr "Ліцензія для медія"
+msgstr "Ліцензія на медіа"
 
 #: app/blueprints/packages/packages.py:243
 msgid "Long Description (Markdown)"
@@ -1242,43 +1243,43 @@ msgstr "URL вебсайту"
 
 #: app/blueprints/packages/packages.py:247
 msgid "Issue Tracker URL"
-msgstr "URL відстежувача помилок"
+msgstr "URL трекера проблем"
 
 #: app/blueprints/packages/packages.py:248
 msgid "Forum Topic ID"
-msgstr "ІД теми форуму"
+msgstr "ID теми на форумі"
 
 #: app/blueprints/packages/packages.py:249
 msgid "Video URL"
-msgstr "URL відеозапису"
+msgstr "URL відео"
 
 #: app/blueprints/packages/packages.py:250
 msgid "Donate URL"
-msgstr "URL для донатів"
+msgstr "URL для донату"
 
 #: app/blueprints/packages/packages.py:251
 msgid "Translation URL"
-msgstr "URL для допомоги із перекладом"
+msgstr "URL для перекладу"
 
 #: app/blueprints/packages/packages.py:257
 msgid "_game is not an allowed name"
-msgstr "_гра не є дозволеною назвою"
+msgstr "_game не є дозволеною назвою"
 
 #: app/blueprints/packages/packages.py:267
 msgid ""
 "Package already exists, but is removed. Please contact ContentDB staff to"
 " restore the package"
 msgstr ""
-"Пакунок уже існує, але він видалений. Щоб відновити пакунок, зверніться до "
-"підтримки ContentDB"
+"Пакет вже існує, але був видалений. Будь ласка, зверніться до персоналу "
+"ContentDB для відновлення пакету"
 
 #: app/blueprints/packages/packages.py:273
 msgid "Package already exists"
-msgstr "Пакунок уже існує"
+msgstr "Пакет вже існує"
 
 #: app/blueprints/packages/packages.py:279
 msgid "A collection with a similar name already exists"
-msgstr "Колекція з подібним іменем вже існує"
+msgstr "Колекція з подібною назвою вже існує"
 
 #: app/blueprints/packages/packages.py:332
 #: app/blueprints/packages/releases.py:89
@@ -1286,8 +1287,8 @@ msgid ""
 "You must add an email address to your account and confirm it before you "
 "can manage packages"
 msgstr ""
-"Ви маєте додати свою електронну адресу до вашого акаунту і підвердити її, "
-"перш ніж ви зможете керувати пакунками"
+"Ви повинні додати електронну адресу до вашого акаунту та підтвердити її, "
+"перш ніж ви зможете керувати пакетами"
 
 #: app/blueprints/packages/packages.py:338
 msgid "Save draft"
@@ -1295,59 +1296,59 @@ msgstr "Зберегти чернетку"
 
 #: app/blueprints/packages/packages.py:346
 msgid "Unable to find that user"
-msgstr "Не вдалося знайти такого користувача"
+msgstr "Не вдалося знайти цього користувача"
 
 #: app/blueprints/packages/packages.py:350
 #: app/blueprints/packages/screenshots.py:137
 msgid "Permission denied"
-msgstr "Доступ відхилено"
+msgstr "Доступ заборонено"
 
 #: app/blueprints/packages/packages.py:409
 #: app/blueprints/packages/packages.py:503
 #: app/blueprints/packages/packages.py:525
 msgid "You don't have permission to do that"
-msgstr "У Вас нема прав робити це"
+msgstr "У вас немає дозволу на це"
 
 #: app/blueprints/packages/packages.py:444
 msgid "Please comment what changes are needed in the approval thread"
-msgstr "Будь ласка, прокоментуйте необхідні зміни в гілці затвердження"
+msgstr "Будь ласка, прокоментуйте, які зміни потрібно внести в темі схвалення"
 
 #: app/blueprints/packages/packages.py:451
 msgid ""
 "Please comment in the approval thread so editors know what you have "
 "changed"
 msgstr ""
-"Будь ласка, прокоментуйте гілку затвердження, щоб редактори знали, що ви "
+"Будь ласка, прокоментуйте в темі схвалення, щоб редактори знали, що ви "
 "змінили"
 
 #: app/blueprints/packages/packages.py:490
 #, python-format
 msgid "Set state to %(state)s"
-msgstr "Стан встановлено на %(state)s"
+msgstr "Встановити стан на %(state)s"
 
 #: app/blueprints/packages/packages.py:520
 msgid "Deleted package"
-msgstr "Видалений пакунок"
+msgstr "Пакет видалено"
 
 #: app/blueprints/packages/packages.py:542
 msgid "Unapproved package"
-msgstr "Несхвалений пакунок"
+msgstr "Пакет не схвалено"
 
 #: app/blueprints/packages/packages.py:551
 msgid "Maintainers (Comma-separated)"
-msgstr "Супровідники (розділені комою)"
+msgstr "Керівники проекту (Через кому)"
 
 #: app/blueprints/packages/packages.py:560
 msgid "You don't have permission to edit maintainers"
-msgstr "Ви не маєте дозволу редагувати супроводжуючих"
+msgstr "У вас немає дозволу редагувати керівників проекту"
 
 #: app/blueprints/packages/packages.py:610
 msgid "You are not a maintainer"
-msgstr "Ви не супровідник"
+msgstr "Ви не є керівником проекту"
 
 #: app/blueprints/packages/packages.py:613
 msgid "Package owners cannot remove themselves as maintainers"
-msgstr "Власник пакунка не може вилучити себе як супровідника"
+msgstr "Власники пакету не можуть видалити себе з керівників проекту"
 
 #: app/blueprints/packages/packages.py:645
 msgid "Author Name"
@@ -1355,7 +1356,7 @@ msgstr "Імʼя автора"
 
 #: app/blueprints/packages/packages.py:732
 msgid "Enable support detection based on dependencies (recommended)"
-msgstr "Увімкнути виявлення підтримки на основі залежностей (рекомендовано)"
+msgstr "Увімкнути виявлення підтримки на основі залежностей (рекомендується)"
 
 #: app/blueprints/packages/packages.py:733
 msgid "Supported games"
@@ -1367,18 +1368,18 @@ msgstr "Непідтримувані ігри"
 
 #: app/blueprints/packages/packages.py:735
 msgid "Supports all games (unless stated) / is game independent"
-msgstr "Підтримує усі ігри (доки не вказано що-небудь окрім) / ігро-незалежний"
+msgstr "Підтримує всі ігри (якщо не вказано інше) / незалежний від гри"
 
 #: app/blueprints/packages/packages.py:751
 msgid "You need at least one release before you can edit game support"
 msgstr ""
-"Вам потрібна щонайменше одна публікація, перш ніж ви зможете редагувати "
+"Вам потрібно мати хоча б один випуск, перш ніж ви зможете редагувати "
 "підтримку ігор"
 
 #: app/blueprints/packages/packages.py:755
 msgid "Mod(pack) needs to contain at least one mod. Please create a new release"
 msgstr ""
-"Модпак має містити щонайменше один мод. Будь ласка, створіть новий випуск"
+"Мод(пакет) має містити хоча б один мод. Будь ласка, створіть новий випуск"
 
 #: app/blueprints/packages/releases.py:57
 #: app/blueprints/packages/releases.py:72
@@ -1387,17 +1388,17 @@ msgstr "Примітки до випуску"
 
 #: app/blueprints/packages/releases.py:59
 msgid "Method"
-msgstr "Спосіб"
+msgstr "Метод"
 
 #: app/blueprints/packages/releases.py:59
 #: app/blueprints/packages/releases.py:61
 #: app/blueprints/packages/screenshots.py:35
 msgid "File Upload"
-msgstr "Відвантажити файли"
+msgstr "Завантаження файлу"
 
 #: app/blueprints/packages/releases.py:60
 msgid "Git reference (ie: commit hash, branch, or tag)"
-msgstr "Посилання на Git (тобто: хеш фіксації, гілка або тег)"
+msgstr "Посилання на Git (наприклад: хеш коміту, гілка або тег)"
 
 #: app/blueprints/packages/releases.py:62
 #: app/blueprints/packages/releases.py:77
@@ -1419,12 +1420,12 @@ msgstr "URL-адреса"
 
 #: app/blueprints/packages/releases.py:75
 msgid "Task ID"
-msgstr "ІД завдання"
+msgstr "ID завдання"
 
 #: app/blueprints/packages/releases.py:76
 #: app/blueprints/packages/screenshots.py:41
 msgid "Is Approved"
-msgstr "Затверджено"
+msgstr "Схвалено"
 
 #: app/blueprints/packages/releases.py:98
 msgid "Import from Git"
@@ -1432,20 +1433,19 @@ msgstr "Імпортувати з Git"
 
 #: app/blueprints/packages/releases.py:98
 msgid "Upload .zip file"
-msgstr "Відвантажити файл .zip"
+msgstr "Завантажити файл .zip"
 
 #: app/blueprints/packages/releases.py:216
 msgid "Set Min"
-msgstr "Вказати мінімум"
+msgstr "Встановити мінімум"
 
 #: app/blueprints/packages/releases.py:219
 msgid "Set Max"
-msgstr "Вказати максимум"
+msgstr "Встановити максимум"
 
 #: app/blueprints/packages/releases.py:222
 msgid "Only change values previously set as none"
-msgstr ""
-"Змінюйте лише значення, для яких раніше було встановлено значення \"немає\""
+msgstr "Змінюйте лише значення, які були раніше встановлені як «немає»"
 
 #: app/blueprints/packages/releases.py:223
 msgid "Update"
@@ -1462,7 +1462,7 @@ msgstr "Новий коміт"
 
 #: app/blueprints/packages/releases.py:277 app/templates/admin/tags/list.html:8
 msgid "New Tag"
-msgstr "Нова теґ"
+msgstr "Новий тег"
 
 #: app/blueprints/packages/releases.py:279
 msgid "Branch name"
@@ -1475,7 +1475,7 @@ msgstr "Дія"
 
 #: app/blueprints/packages/releases.py:281
 msgid "Send notification and mark as outdated"
-msgstr "Надіслати сповіщення і позначити застарілим"
+msgstr "Надіслати сповіщення та позначити як застаріле"
 
 #: app/blueprints/packages/releases.py:281 app/logic/package_approval.py:104
 msgid "Create release"
@@ -1491,11 +1491,13 @@ msgstr "Вимкнути автоматизацію"
 
 #: app/blueprints/packages/releases.py:323
 msgid "Please add a Git repository URL in order to set up automatic releases"
-msgstr "Додайте URL-адресу сховища Git, щоб налаштувати автоматичні випуски"
+msgstr ""
+"Будь ласка, додайте URL репозиторію Git для налаштування автоматичних "
+"випусків"
 
 #: app/blueprints/packages/releases.py:339
 msgid "Deleted update configuration"
-msgstr "Конфігурацію оновлення видалено"
+msgstr "Конфігурацію оновлень видалено"
 
 #: app/blueprints/packages/releases.py:347
 msgid "Now, please create an initial release"
@@ -1514,7 +1516,7 @@ msgstr "Оцінка"
 #: app/blueprints/packages/reviews.py:62 app/templates/macros/reviews.html:125
 #: app/templates/macros/reviews.html:179
 msgid "Yes"
-msgstr "Рекомендую"
+msgstr "Так"
 
 #: app/blueprints/packages/reviews.py:62 app/templates/macros/reviews.html:130
 #: app/templates/macros/reviews.html:183
@@ -1524,44 +1526,45 @@ msgstr "Нейтрально"
 #: app/blueprints/packages/reviews.py:62 app/templates/macros/reviews.html:135
 #: app/templates/macros/reviews.html:187
 msgid "No"
-msgstr "Не рекомендую"
+msgstr "Ні"
 
 #: app/blueprints/packages/reviews.py:71
 msgid "You can't review your own package!"
-msgstr "Ви не можете перевірити власний пакунок!"
+msgstr "Ви не можете оцінити свій власний пакет!"
 
 #: app/blueprints/packages/reviews.py:81
 msgid ""
 "You've reviewed too many packages recently. Please wait before trying "
 "again, and consider making your reviews more detailed"
 msgstr ""
-"Ви нещодавно оглянули занадто багато пакунків. Будь ласка, зачекайте, перш "
-"ніж спробувати знову, і подумайте про те, щоб ваші відгуки були детальнішими"
+"Ви нещодавно оцінили занадто багато пакетів. Будь ласка, почекайте перед "
+"тим, як спробувати знову, і подумайте над тим, щоб зробити ваші відгуки "
+"більш детальними"
 
 #: app/blueprints/packages/reviews.py:94 app/blueprints/threads/__init__.py:207
 #: app/blueprints/threads/__init__.py:240
 #: app/blueprints/threads/__init__.py:335 app/blueprints/users/settings.py:114
 #: app/logic/packages.py:131
 msgid "Linking to blocked sites is not allowed"
-msgstr "Посилання на заблоковані сайти заборонено"
+msgstr "Посилання на заблоковані сайти не дозволяється"
 
 #: app/blueprints/packages/reviews.py:199
 msgid "You can't vote on the reviews on your own package!"
-msgstr "Ви не можете голосувати за відгуки на власному пакунку!"
+msgstr "Ви не можете голосувати за відгуки на свій власний пакет!"
 
 #: app/blueprints/packages/reviews.py:206
 msgid "You can't vote on your own reviews!"
-msgstr "Ви не можете голосувати за власні відгуки!"
+msgstr "Ви не можете голосувати за свої власні відгуки!"
 
 #: app/blueprints/packages/screenshots.py:34
 #: app/blueprints/packages/screenshots.py:40
 msgid "Title/Caption"
-msgstr "Заголовок/підпис"
+msgstr "Заголовок/Підпис"
 
 #: app/blueprints/packages/screenshots.py:46
 #: app/templates/packages/screenshots.html:110
 msgid "Cover Image"
-msgstr "Зображення обкладинки"
+msgstr "Обкладинка"
 
 #: app/blueprints/report/__init__.py:34 app/templates/users/modtools.html:79
 msgid "Message"
@@ -1572,15 +1575,15 @@ msgstr "Повідомлення"
 #: app/templates/report/index.html:10 app/templates/users/account.html:91
 #: app/templates/users/profile.html:37
 msgid "Report"
-msgstr "Звіт"
+msgstr "Скарга"
 
 #: app/blueprints/threads/__init__.py:71
 msgid "Already subscribed!"
-msgstr "Уже підписано!"
+msgstr "Вже підписано!"
 
 #: app/blueprints/threads/__init__.py:73
 msgid "Subscribed to thread"
-msgstr "Ви підписалися на гілку"
+msgstr "Підписано на тему"
 
 #: app/blueprints/threads/__init__.py:88
 msgid "Unsubscribed!"
@@ -1588,49 +1591,49 @@ msgstr "Відписано!"
 
 #: app/blueprints/threads/__init__.py:92
 msgid "Already not subscribed!"
-msgstr "Вже не підписані!"
+msgstr "Ви вже не підписані!"
 
 #: app/blueprints/threads/__init__.py:110
 msgid "Locked thread"
-msgstr "Заблокований потік"
+msgstr "Тема заблокована"
 
 #: app/blueprints/threads/__init__.py:113
 msgid "Unlocked thread"
-msgstr "Розблокований потік"
+msgstr "Тема розблокована"
 
 #: app/blueprints/threads/__init__.py:162
 msgid "Cannot delete thread opening post!"
-msgstr "Неможливо видалити початковий пост ланцюжка!"
+msgstr "Неможливо видалити перший пост теми!"
 
 #: app/blueprints/threads/__init__.py:236
 msgid "Please wait before commenting again"
-msgstr "Зачекайте, перш ніж коментувати знову"
+msgstr "Будь ласка, зачекайте перед тим, як коментувати знову"
 
 #: app/blueprints/threads/__init__.py:285
 #: app/templates/macros/package_approval.html:56
 msgid "Open Thread"
-msgstr "Відкрити гілку"
+msgstr "Відкрити тему"
 
 #: app/blueprints/threads/__init__.py:310
 msgid "Unable to create thread!"
-msgstr "Не вдалося створити ланцюжок!"
+msgstr "Неможливо створити тему!"
 
 #: app/blueprints/threads/__init__.py:316
 msgid "An approval thread already exists! Consider replying there instead"
-msgstr "Потік схвалення вже існує! Спробуйте натомість відповісти там"
+msgstr "Тема для затвердження вже існує! Розгляньте можливість відповісти там"
 
 #: app/blueprints/threads/__init__.py:320
 msgid "Please wait before opening another thread"
-msgstr "Зачекайте, перш ніж відкривати іншу тему"
+msgstr "Будь ласка, зачекайте перед тим, як відкрити іншу тему"
 
 #: app/blueprints/todo/user.py:193
 #: app/templates/collections/package_add_to.html:46
 msgid "Done"
-msgstr "Завершено"
+msgstr "Готово"
 
 #: app/blueprints/users/account.py:36 app/templates/users/login.html:15
 msgid "Username or email"
-msgstr "Імʼя користувача або ел. пошта"
+msgstr "Ім'я користувача або електронна пошта"
 
 #: app/blueprints/users/account.py:37 app/blueprints/users/account.py:105
 #: app/templates/users/account.html:14 app/templates/users/login.html:16
@@ -1649,7 +1652,7 @@ msgstr "Увійти"
 
 #: app/blueprints/users/account.py:45
 msgid "Incorrect email or password"
-msgstr "Неправильна адреса електронної пошти або пароль"
+msgstr "Невірна електронна пошта або пароль"
 
 #: app/blueprints/users/account.py:52
 #, python-format
@@ -1658,19 +1661,19 @@ msgstr "Користувач %(username)s не існує"
 
 #: app/blueprints/users/account.py:55
 msgid "Incorrect password. Did you set one?"
-msgstr "Неправильний пароль. Ви встановили його?"
+msgstr "Невірний пароль. Ви встановили його?"
 
 #: app/blueprints/users/account.py:58
 msgid "You need to confirm the registration email"
-msgstr "Потрібно підтвердити реєстраційну електронну адресу"
+msgstr "Вам потрібно підтвердити електронну пошту для реєстрації"
 
 #: app/blueprints/users/account.py:66
 msgid "Login failed"
-msgstr "Не вдалося ввійти"
+msgstr "Не вдалося увійти"
 
 #: app/blueprints/users/account.py:100 app/blueprints/users/settings.py:76
 msgid "Display Name"
-msgstr "Відображуване ім'я"
+msgstr "Ім'я для відображення"
 
 #: app/blueprints/users/account.py:101 app/blueprints/users/settings.py:324
 #: app/templates/users/list.html:18
@@ -1682,8 +1685,8 @@ msgid ""
 "Only alphabetic letters (A-Za-z), numbers (0-9), underscores (_), minuses"
 " (-), and periods (.) allowed"
 msgstr ""
-"Дозволені лише букви алфавіту (A-Za-z), цифри (0-9), підкреслення (_), "
-"мінуси (-) і крапки (.)"
+"Тільки літери алфавіту (A-Z, a-z), цифри (0-9), підкреслення (_), дефіси (-) "
+"і крапки (.) дозволені"
 
 #: app/blueprints/users/account.py:104 app/blueprints/users/account.py:153
 #: app/blueprints/users/account.py:189 app/blueprints/users/account.py:338
@@ -1693,7 +1696,7 @@ msgstr "Ел. пошта"
 
 #: app/blueprints/users/account.py:106
 msgid "What is the result of the above calculation?"
-msgstr "Який результат наведеного вище розрахунку?"
+msgstr "Який результат наведеного обчислення?"
 
 #: app/blueprints/users/account.py:107
 msgid "I agree"
@@ -1706,7 +1709,7 @@ msgstr "Зареєструватися"
 
 #: app/blueprints/users/account.py:113
 msgid "Incorrect captcha answer"
-msgstr "Неправильна відповідь captcha"
+msgstr "Невірна відповідь на капчу"
 
 #: app/blueprints/users/account.py:154
 msgid "Reset Password"
@@ -1714,7 +1717,7 @@ msgstr "Скинути пароль"
 
 #: app/blueprints/users/account.py:180
 msgid "Unable to find account"
-msgstr "Не вдалося знайти обліковий запис"
+msgstr "Не вдалося знайти акаунт"
 
 #: app/blueprints/users/account.py:190 app/blueprints/users/account.py:198
 msgid "New password"
@@ -1722,11 +1725,11 @@ msgstr "Новий пароль"
 
 #: app/blueprints/users/account.py:191 app/blueprints/users/account.py:199
 msgid "Verify password"
-msgstr "Перевірити пароль"
+msgstr "Перевірте пароль"
 
 #: app/blueprints/users/account.py:192 app/blueprints/users/account.py:200
 msgid "Passwords must match"
-msgstr "Паролі мають співпадати"
+msgstr "Паролі повинні збігатися"
 
 #: app/blueprints/users/account.py:197
 msgid "Old password"
@@ -1734,18 +1737,18 @@ msgstr "Старий пароль"
 
 #: app/blueprints/users/account.py:208
 msgid "Passwords do not match"
-msgstr "Паролі не збігаються"
+msgstr "Паролі не співпадають"
 
 #: app/blueprints/users/account.py:219 app/blueprints/users/settings.py:175
 #: app/logic/users.py:51
 msgid "That email address has been unsubscribed/blacklisted, and cannot be used"
 msgstr ""
-"Цю адресу електронної пошти скасовано/занесено до чорного списку, і її не"
-" можна використовувати"
+"Ця електронна адреса була відписана або заблокована, і не може бути "
+"використана"
 
 #: app/blueprints/users/account.py:224 app/logic/users.py:46
 msgid "Email already in use"
-msgstr "Ел. адреса вже використовується"
+msgstr "Електронна адреса вже використовується"
 
 #: app/blueprints/users/account.py:225 app/logic/users.py:47
 #, python-format
@@ -1753,20 +1756,21 @@ msgid ""
 "We were unable to create the account as the email is already in use by "
 "%(display_name)s. Try a different email address."
 msgstr ""
-"Нам не вдалося створити обліковий запис, оскільки %(display_name)s уже "
-"використовує адресу електронної пошти. Спробуйте іншу електронну адресу."
+"Нам не вдалося створити обліковий запис, оскільки електронна адреса вже "
+"використовується користувачем %(display_name)s. Спробуйте іншу електронну "
+"адресу."
 
 #: app/blueprints/users/account.py:239 app/blueprints/users/account.py:243
 msgid "Your password has been changed successfully."
-msgstr "Ваш пароль вдало змінено."
+msgstr "Ваш пароль було успішно змінено."
 
 #: app/blueprints/users/account.py:258
 msgid "Old password is incorrect"
-msgstr "Неправильний старий пароль"
+msgstr "Старий пароль неправильний"
 
 #: app/blueprints/users/account.py:286
 msgid "Unknown verification token!"
-msgstr "Невідомий токен підтвердження!"
+msgstr "Невідомий токен перевірки!"
 
 #: app/blueprints/users/account.py:290
 msgid "Token has expired"
@@ -1774,23 +1778,23 @@ msgstr "Термін дії токена закінчився"
 
 #: app/blueprints/users/account.py:304
 msgid "Another user is already using that email"
-msgstr "Інший користувач уже використовує цю електронну адресу"
+msgstr "Інший користувач вже використовує цю електронну пошту"
 
 #: app/blueprints/users/account.py:307
 msgid "Confirmed email change"
-msgstr "Підтверджена зміна електронної пошти"
+msgstr "Зміну електронної пошти підтверджено"
 
 #: app/blueprints/users/account.py:312
 msgid "Email address changed"
-msgstr "Ел. адресу змінено"
+msgstr "Адресу електронної пошти змінено"
 
 #: app/blueprints/users/account.py:313
 msgid ""
 "Your email address has changed. If you didn't request this, please "
 "contact an administrator."
 msgstr ""
-"Ваша електронна адреса змінена. Якщо ви цього не запитували, зверніться "
-"до адміністратора."
+"Ваша електронна адреса була змінена. Якщо ви не запитували цю зміну, будь "
+"ласка, зв'яжіться з адміністратором."
 
 #: app/blueprints/users/account.py:331
 msgid "You may now log in"
@@ -1805,45 +1809,45 @@ msgid ""
 "That email is now blacklisted. Please contact an admin if you wish to "
 "undo this."
 msgstr ""
-"Цей електронний лист зараз у чорному списку. Будь ласка, зверніться до "
+"Ця електронна пошта зараз заблокована. Будь ласка, зверніться до "
 "адміністратора, якщо ви хочете скасувати це."
 
 #: app/blueprints/users/claim.py:46
 msgid "User has already been claimed"
-msgstr "Користувача вже заявлено"
+msgstr "Користувач вже зареєстрований"
 
 #: app/blueprints/users/claim.py:50
 msgid ""
 "Unable to get GitHub username for user. Make sure the forum account "
 "exists."
 msgstr ""
-"Неможливо отримати ім'я користувача GitHub для користувача. Переконайтеся, "
-"що існує обліковий запис форуму."
+"Не вдалося отримати ім'я користувача GitHub для цього користувача. "
+"Переконайтесь, що обліковий запис на форумі існує."
 
 #: app/blueprints/users/claim.py:66
 msgid ""
 "A ContentDB user with that name already exists. Please contact an admin "
 "to link to your forum account"
 msgstr ""
-"Зміст користувача ContentDB з такою назвою вже існує. Будь ласка, зв'яжіться "
-"з адміністратором для посилання на свій обліковий запис форуму"
+"Користувач з таким ім'ям вже існує в ContentDB. Будь ласка, зв'яжіться з "
+"адміністратором, щоб зв'язати його з вашим обліковим записом на форумі"
 
 #: app/blueprints/users/claim.py:75
 msgid "That user has already been claimed!"
-msgstr "Цього користувача вже заявлено!"
+msgstr "Цей користувач вже був зареєстрований!"
 
 #: app/blueprints/users/claim.py:88
 #, python-format
 msgid "Error whilst attempting to access forums: %(message)s"
-msgstr "Помилка під час спроби отримати доступ до форумів: %(message)s"
+msgstr "Помилка при спробі доступу до форуму: %(message)s"
 
 #: app/blueprints/users/claim.py:92
 msgid "Unable to get forum signature - does the user exist?"
-msgstr "Не вдається отримати підпис на форумі – чи існує користувач?"
+msgstr "Неможливо отримати підпис форуму — чи існує цей користувач?"
 
 #: app/blueprints/users/claim.py:107
 msgid "Unable to login as user"
-msgstr "Неможливо увійти як користувач"
+msgstr "Неможливо увійти під користувачем"
 
 #: app/blueprints/users/claim.py:113
 msgid "Could not find the key in your signature!"
@@ -1855,16 +1859,16 @@ msgstr "Невідомий тип претензії"
 
 #: app/blueprints/users/profile.py:117
 msgid "Top reviewer"
-msgstr "Кращий рецензент"
+msgstr "Найкращий рецензент"
 
 #: app/blueprints/users/profile.py:118
 #, python-format
 msgid "%(display_name)s has written the most helpful reviews on ContentDB."
-msgstr "%(display_name)s написав найкорисніші відгуки на ContentDB."
+msgstr "%(display_name)s написав найбільш корисні рецензії на ContentDB."
 
 #: app/blueprints/users/profile.py:123
 msgid "2nd most helpful reviewer"
-msgstr "2-й найбільш корисний рецензент"
+msgstr "%(display_name)s написав другі за корисністю рецензії на ContentDB"
 
 #: app/blueprints/users/profile.py:125
 msgid "3rd most helpful reviewer"
@@ -1878,16 +1882,16 @@ msgstr "Це ставить %(display_name)s у топ %(perc)s%%"
 #: app/blueprints/users/profile.py:130
 #, python-format
 msgid "Top %(perc)s%% reviewer"
-msgstr "Верхній %(perc)s%% рецензент"
+msgstr "Топ %(perc)s%% рецензентів"
 
 #: app/blueprints/users/profile.py:131
 #, python-format
 msgid "Only %(place)d users have written more helpful reviews."
-msgstr "Лише користувачі %(place)d написали більше корисних відгуків."
+msgstr "Тільки %(place)d користувачів написали більше корисних відгуків."
 
 #: app/blueprints/users/profile.py:136
 msgid "Consider writing more helpful reviews to get a medal."
-msgstr "Подумайте про написання корисніших оглядів, щоб отримати медаль."
+msgstr "Спробуйте написати більше корисних відгуків, щоб отримати медаль."
 
 #: app/blueprints/users/profile.py:138
 #, python-format
@@ -1905,24 +1909,24 @@ msgstr "Перша медаль за 50тис."
 
 #: app/blueprints/users/profile.py:194
 msgid ">300k downloads"
-msgstr "&gt;300тис. завантажень"
+msgstr "Більше 300 тис. завантажень"
 
 #: app/blueprints/users/profile.py:197
 msgid ">100k downloads"
-msgstr "&gt;100тис. завантажень"
+msgstr "Більше 100 тис. завантажень"
 
 #: app/blueprints/users/profile.py:200
 msgid ">75k downloads"
-msgstr "&gt;75тис. завантажень"
+msgstr "Більше 75 тис. завантажень"
 
 #: app/blueprints/users/profile.py:203
 msgid ">50k downloads"
-msgstr "&gt;50тис. завантажень"
+msgstr "Більше 50 тис. завантажень"
 
 #: app/blueprints/users/profile.py:204
 #, python-format
 msgid "Has received %(downloads)d downloads across all packages."
-msgstr "Отримано %(downloads)d завантажень у всіх пакунках."
+msgstr "Отримано %(downloads)d завантажень у всіх пакетах."
 
 #: app/blueprints/users/settings.py:38 app/templates/users/profile.html:26
 #: app/templates/users/profile_edit.html:8
@@ -1931,25 +1935,25 @@ msgstr "Змінити профіль"
 
 #: app/blueprints/users/settings.py:43 app/templates/users/account.html:12
 msgid "Account and Security"
-msgstr "Обліківка і безпека"
+msgstr "Обліковий запис і безпека"
 
 #: app/blueprints/users/settings.py:48
 #: app/templates/users/settings_email.html:12
 msgid "Email and Notifications"
-msgstr "Ел. пошта і сповіщення"
+msgstr "Електронна пошта та сповіщення"
 
 #: app/blueprints/users/settings.py:53 app/templates/api/list_tokens.html:10
 msgid "API Tokens"
-msgstr "Токени API"
+msgstr "API Токени"
 
 #: app/blueprints/users/settings.py:61 app/templates/oauth/list_clients.html:10
 msgid "OAuth2 Applications"
-msgstr "Застосунки OAuth2"
+msgstr "OAuth2 додатки"
 
 #: app/blueprints/users/settings.py:68 app/templates/users/modtools.html:4
 #: app/templates/users/modtools.html:8 app/templates/users/profile.html:44
 msgid "Moderator Tools"
-msgstr "Засоби модерування"
+msgstr "Інструменти модератора"
 
 #: app/blueprints/users/settings.py:78
 msgid "Donation URL"
@@ -1957,7 +1961,7 @@ msgstr "URL-адреса пожертви"
 
 #: app/blueprints/users/settings.py:94 app/blueprints/users/settings.py:101
 msgid "A user already has that name"
-msgstr "Користувач уже має таке імʼя"
+msgstr "Користувач вже має таке ім'я"
 
 #: app/blueprints/users/settings.py:264
 msgid "Removed GitHub account"
@@ -1968,8 +1972,8 @@ msgid ""
 "You need to add an email address and password before you can remove your "
 "GitHub account"
 msgstr ""
-"Ви маєте додати свою адресу електронної пошти та пароль, перш ніж вилучити "
-"свій GitHub акаунт"
+"Вам потрібно додати адресу електронної пошти та пароль, перш ніж ви зможете "
+"видалити свій GitHub акаунт"
 
 #: app/blueprints/users/settings.py:279
 msgid "Users with moderator rank or above cannot be deleted"
@@ -1989,11 +1993,11 @@ msgstr "Імʼя користувача GitHub"
 
 #: app/blueprints/users/settings.py:328 app/templates/users/list.html:14
 msgid "Rank"
-msgstr "ранг"
+msgstr "Ранг"
 
 #: app/blueprints/users/settings.py:381
 msgid "Can't promote a user to a rank higher than yourself!"
-msgstr "Не можна підвищити користувача до рангу, вищого за вас!"
+msgstr "Не можна підвищити користувача до рангу вищого за ваш!"
 
 #: app/blueprints/vcs/github.py:56
 msgid "Authorization failed [err=gh-oauth-login-failed]"
@@ -2001,12 +2005,13 @@ msgstr "Не вдалося авторизуватися [err=gh-oauth-login-fai
 
 #: app/blueprints/vcs/github.py:85
 msgid "Linked GitHub to account"
-msgstr "Привʼязка GitHub до обліківки"
+msgstr "Привʼязка GitHub до облікового запису"
 
 #: app/blueprints/vcs/github.py:90
 #, python-format
 msgid "GitHub account is already associated with another user: %(username)s"
-msgstr "GitHub акаунт уже пов'язано з іншим користувачем: %(username)s"
+msgstr ""
+"Обліковий запис GitHub вже прив'язаний з іншим користувачем: %(username)s"
 
 #: app/blueprints/vcs/github.py:98 app/blueprints/vcs/github.py:124
 msgid "Authorization failed [err=gh-login-failed]"
@@ -2014,11 +2019,11 @@ msgstr "Не вдалося авторизуватися [err=gh-login-failed]"
 
 #: app/blueprints/zipgrep/__init__.py:35
 msgid "Text to find (regex)"
-msgstr "Текст для пошуку (регулярний вираз)"
+msgstr "Текст для пошуку (regex)"
 
 #: app/blueprints/zipgrep/__init__.py:36
 msgid "File filter"
-msgstr "Файловий фільтр"
+msgstr "Фільтр файлів"
 
 #: app/blueprints/zipgrep/__init__.py:38 app/templates/base.html:74
 #: app/templates/packages/advanced_search.html:34
@@ -2028,53 +2033,59 @@ msgstr "Пошук"
 
 #: app/logic/package_approval.py:95
 msgid "A package already exists with this name. Please see Policy and Guidance 3"
-msgstr "Пакунок із такою назвою вже існує. Перегляньте Політику та вказівки 3"
+msgstr ""
+"Пакет з таким ім'ям вже існує. Будь ласка, ознайомтесь з Політикою та "
+"Керівництвом 3"
 
 #: app/logic/package_approval.py:99
 msgid "You need to create a release before this package can be approved."
-msgstr "Вам потрібно створити випуск, перш ніж цей пакунок можна буде схвалити."
+msgstr "Вам потрібно створити реліз, перш ніж цей пакет може бути схвалений."
 
 #: app/logic/package_approval.py:101
 msgid "Release is still importing, or has an error."
-msgstr "Випуск все ще імпортується або має помилку."
+msgstr "Реліз все ще імпортується або має помилку."
 
 #: app/logic/package_approval.py:105
 msgid "Set up releases"
-msgstr "Налаштувати випуски"
+msgstr "Налаштувати релізи"
 
 #: app/logic/package_approval.py:112
 msgid "You need to add at least one screenshot."
-msgstr "Потрібно додати принаймні один знімок екрана."
+msgstr "Вам потрібно додати хоча б один скріншот."
 
 #: app/logic/package_approval.py:117
 #, python-format
 msgid ""
 "The following hard dependencies need to be added to ContentDB first: "
 "%(deps)s"
-msgstr "Спершу до ContentDB потрібно додати такі жорсткі залежності: %(deps)s"
+msgstr ""
+"Наступні жорсткі залежності повинні бути спочатку додані до ContentDB: "
+"%(deps)s"
 
 #: app/logic/package_approval.py:121
 msgid ""
 "What games does your package support? Please specify on the supported "
 "games page"
 msgstr ""
-"Які ігри ваш пакунок підтримує? Будь ласка, вкажіть це на сторінці "
-"\"Підтримувані ігри\""
+"Які ігри підтримує ваш пакет? Будь ласка, вкажіть на сторінці підтримуваних "
+"ігор"
 
 #: app/logic/package_approval.py:126
 msgid "Please wait for the license to be added to CDB."
-msgstr "Зачекайте, поки ліцензію буде додано до CDB."
+msgstr "Будь ласка, зачекайте, поки ліцензія буде додана до CDB."
 
 #: app/logic/package_approval.py:134
 msgid "Please make sure that this package has the right to the names it uses."
 msgstr ""
-"Будь ласка, переконайтеся, що цей пакунок має права на імена, які він "
-"використовує."
+"Будь ласка, переконайтеся, що цей пакет має права на використання імен, які "
+"він використовує."
 
 #: app/logic/package_approval.py:139
 #, python-format
 msgid "Please make sure that this package has the right to the names %(names)s"
-msgstr "Переконайтеся, що цей пакунок має права на імена %(names)s"
+msgstr ""
+"Будь ласка, переконайтеся, що цей пакет має права на використання імен "
+"%(names)s"
 
 #: app/logic/package_approval.py:140 app/templates/index.html:112
 #: app/templates/index.html:123 app/templates/index.html:134
@@ -2089,65 +2100,67 @@ msgstr "Дізнатися більше"
 
 #: app/logic/package_approval.py:145
 msgid "Error: Another package already uses this forum topic!"
-msgstr "Помилка: Інший пакунок вже використовує цю тему форуму!"
+msgstr "Помилка: Інший пакет вже використовує цю тему форуму!"
 
 #: app/logic/package_approval.py:150
 msgid "Error: Forum topic author doesn't match package author."
-msgstr "Помилка: Автор теми форуму не співпадає з автором пакунка."
+msgstr "Помилка: Автор теми форуму не збігається з автором пакету."
 
 #: app/logic/package_approval.py:152
 msgid ""
 "Warning: Forum topic not found. The topic may have been created since the"
 " last forum crawl."
 msgstr ""
-"Попередження: тему форуму не знайдено. Можливо, тема була створена після "
+"Попередження: Тему форуму не знайдено. Можливо, тема була створена після "
 "останнього сканування форуму."
 
 #: app/logic/packages.py:99
 msgid ""
 "Name can only contain lower case letters (a-z), digits (0-9), and "
 "underscores (_)"
-msgstr "Ім’я може містити лише малі літери (a–z), цифри (0–9) і підкреслення (_)"
+msgstr ""
+"Ім'я може містити лише малі літери (a-z), цифри (0-9) та підкреслення (_)"
 
 #: app/logic/packages.py:112
 msgid "You don't have permission to edit this package"
-msgstr "Ви не маєте дозволу редагувати цей пакет"
+msgstr "У вас немає дозволу на редагування цього пакета"
 
 #: app/logic/packages.py:116
 msgid "You don't have permission to change the package name"
-msgstr "Ви не маєте дозволу змінювати назву пакунку"
+msgstr "У вас немає дозволу на зміну назви пакета"
 
 #: app/logic/packages.py:140
 msgid "You cannot change package type once approved"
-msgstr "Ви не можете змінити тип пакунку після затвердження"
+msgstr "Ви не можете змінити тип пакета після його затвердження"
 
 #: app/logic/releases.py:33
 msgid "You don't have permission to make releases"
-msgstr "Ви не маєте дозволу на випуски"
+msgstr "У вас немає дозволу на створення релізів"
 
 #: app/logic/releases.py:38
 msgid ""
 "You've created too many releases for this package in the last 5 minutes, "
 "please wait before trying again"
 msgstr ""
-"Ви створили забагато випусків для цього пакунку за останні 5 хвилин. "
-"Зачекайте, перш ніж повторювати спробу"
+"Ви створили занадто багато релізів для цього пакету за останні 5 хвилин, "
+"будь ласка, зачекайте перед тим, як спробувати знову"
 
 #: app/logic/releases.py:41
 msgid "A release with this name already exists"
-msgstr "Випуск з такою назвою уже існує"
+msgstr "Реліз з такою назвою вже існує"
 
 #: app/logic/releases.py:80
 msgid "Invalid commit hash; it must be a 40 character long base16 string"
-msgstr "Недійсний хеш фіксації; це має бути рядок base16 довжиною 40 символів"
+msgstr "Невірний хеш коміту; він має бути рядком з 40 символів у форматі base16"
 
 #: app/logic/screenshots.py:32
 msgid "Too many requests, please wait before trying again"
-msgstr "Забагато запитів, зачекайте, перш ніж повторити спробу"
+msgstr ""
+"Занадто багато запитів, будь ласка, почекайте перед тим, як спробувати знову"
 
 #: app/logic/screenshots.py:34
 msgid "a PNG, JPEG, or WebP image file"
-msgstr "PNG, JPEG, або WebP зображення"
+msgstr "PNG, JPEG або WebP файл зображення"
 
 #: app/logic/screenshots.py:51
 #, python-format
@@ -2155,8 +2168,8 @@ msgid ""
 "Screenshot is too small, it should be at least %(width)s by %(height)s "
 "pixels"
 msgstr ""
-"Знімок екрана замалий, він має мати принаймні %(width)s на %(height)s "
-"пікселів"
+"Зображення занадто мале, воно повинно бути щонайменше %(width)s на %(height)"
+"s пікселів"
 
 #: app/logic/uploads.py:58
 #, python-format
@@ -2165,17 +2178,17 @@ msgstr "Будь ласка, завантажте %(file_desc)s"
 
 #: app/logic/uploads.py:61
 msgid "Uploaded image isn't actually an image"
-msgstr "Завантажене зображення насправді не є зображенням"
+msgstr "Завантажений файл не є зображенням"
 
 #: app/logic/users.py:15
 msgid "Username is invalid"
-msgstr "Неправильне імʼя користувача"
+msgstr "Ім'я користувача недійсне"
 
 #: app/logic/users.py:26
 msgid "An account already exists for that username but hasn't been claimed yet."
 msgstr ""
-"Обліковий запис для цього імені користувача вже існує, але ще не "
-"заявлений."
+"Обліковий запис вже існує для цього імені користувача, але ще не був "
+"активований."
 
 #: app/logic/users.py:29
 #, python-format
@@ -2183,21 +2196,21 @@ msgid ""
 "Unable to create an account as the username is already taken. If you "
 "meant to log in, you need to connect %(provider)s to your account first"
 msgstr ""
-"Неможливо створити обліковий запис, оскільки ім’я користувача вже зайняте. "
-"Якщо ви хотіли увійти, вам потрібно спочатку підключити %(provider)s до "
-"свого облікового запису"
+"Не вдалося створити обліковий запис, оскільки ім'я користувача вже зайняте. "
+"Якщо ви маєте на увазі вхід, спочатку потрібно підключити %(provider)s до "
+"вашого облікового запису"
 
 #: app/logic/users.py:33
 msgid "That username/display name is already in use, please choose another."
 msgstr ""
-"Це ім’я користувача/відображуване ім’я вже використовується, виберіть "
+"Це ім'я користувача/відображення вже використовується, будь ласка, виберіть "
 "інше."
 
 #: app/logic/users.py:40
 msgid "Unable to create an account as the username was used in the past."
 msgstr ""
-"Не вдалося створити обліковий запис, оскільки це ім’я користувача "
-"використовувалося раніше."
+"Неможливо створити акаунт, оскільки це ім'я користувача використовувалося в "
+"минулому."
 
 #: app/models/packages.py:69
 msgid "Mod"
@@ -2209,12 +2222,12 @@ msgstr "Гра"
 
 #: app/models/packages.py:73
 msgid "Texture Pack"
-msgstr "Пакунок текстур"
+msgstr "Текстурний пакунок"
 
 #: app/models/packages.py:78 app/templates/base.html:53
 #: app/templates/modnames/view.html:14
 msgid "Mods"
-msgstr "Моди"
+msgstr "Модифікації"
 
 #: app/models/packages.py:80 app/templates/base.html:56
 #: app/templates/modnames/view.html:17
@@ -2223,7 +2236,7 @@ msgstr "Ігри"
 
 #: app/models/packages.py:82 app/templates/base.html:59
 msgid "Texture Packs"
-msgstr "Пакунки текстур"
+msgstr "Текстурні пакети"
 
 #: app/models/packages.py:87
 msgid "Top mod"
@@ -2235,37 +2248,37 @@ msgstr "Найкраща гра"
 
 #: app/models/packages.py:91
 msgid "Top texture pack"
-msgstr "Найкращий набір текстур"
+msgstr "Найкращий текстурний пакет"
 
 #: app/models/packages.py:94
 #, python-format
 msgid "Top %(place)d mod"
-msgstr "Найкращий %(place)d мод"
+msgstr "Найкращий мод %(place)d"
 
 #: app/models/packages.py:96
 #, python-format
 msgid "Top %(place)d game"
-msgstr "Найкраща %(place)d гра"
+msgstr "Найкраща гра %(place)d"
 
 #: app/models/packages.py:98
 #, python-format
 msgid "Top %(place)d texture pack"
-msgstr "Найкращий %(place)d набір текстур"
+msgstr "Найкращий текстурний пак %(place)d"
 
 #: app/models/packages.py:102
 #, python-format
 msgid "%(display_name)s has a mod placed at #%(place)d."
-msgstr "%(display_name)s має мод, розташований на #%(place)d."
+msgstr "%(display_name)s має мод на місці #%(place)d."
 
 #: app/models/packages.py:105
 #, python-format
 msgid "%(display_name)s has a game placed at #%(place)d."
-msgstr "%(display_name)s має гру, розташовану на #%(place)d."
+msgstr "%(display_name)s має гру на місці #%(place)d."
 
 #: app/models/packages.py:108
 #, python-format
 msgid "%(display_name)s has a texture pack placed at #%(place)d."
-msgstr "%(display_name)s має набір текстур, розташований на #%(place)d."
+msgstr "%(display_name)s має текстурний пак на позиції #%(place)d."
 
 #: app/models/packages.py:114
 msgid "Do you recommend this mod?"
@@ -2277,12 +2290,12 @@ msgstr "Чи рекомендуєте ви цю гру?"
 
 #: app/models/packages.py:118
 msgid "Do you recommend this texture pack?"
-msgstr "Чи рекомендуєте ви цей набір текстур?"
+msgstr "Чи рекомендуєте ви цей текстур-пак?"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:155 app/models/packages.py:173
 msgid "Looking for Maintainer"
-msgstr "Потребує супровідника"
+msgstr "Шукаю утримувача"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:158
@@ -2297,7 +2310,7 @@ msgstr "Активно розвивається"
 #. NOTE: Package maintenance state
 #: app/models/packages.py:164
 msgid "Maintenance Only"
-msgstr "Лише підтримка"
+msgstr "Тільки підтримка"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:167
@@ -2306,30 +2319,30 @@ msgstr "Як є"
 
 #: app/models/packages.py:177
 msgid "Under active development, and may break worlds/things without warning"
-msgstr "В активній розробці, може руйнувати світи/речі без попередження"
+msgstr "Активно розробляється і може зламати світи/об'єкти без попередження"
 
 #: app/models/packages.py:179
 msgid "Fully playable, but with some breakages/changes expected"
-msgstr "Можна грати, проте можуть бути деякі поломки/зміни"
+msgstr "Повністю іграбельна, але можливі деякі збої/зміни"
 
 #: app/models/packages.py:181
 msgid "Finished, with bug fixes being made as needed"
-msgstr "Завершено, з виправленнями помилок за необхідності"
+msgstr "Завершено, з виправленням помилок за необхідності"
 
 #: app/models/packages.py:183
 msgid ""
 "Finished, the maintainer doesn't intend to continue working on it or "
 "provide support"
 msgstr ""
-"Проєкт завершено, супроводжувач не має наміру продовжувати над ним працювати "
-"або надавати підтримку"
+"Завершено, розробник не планує продовжувати роботу над проєктом або надавати "
+"підтримку"
 
 #: app/models/packages.py:185
 msgid ""
 "The maintainer doesn't recommend this package. See the description for "
 "more info"
 msgstr ""
-"Супровідник не рекомендує цей пакунок. Дивіться опис, щоб дізнатися більше"
+"Розробник не рекомендує цей пакет. Дивіться опис для додаткової інформації"
 
 #: app/models/packages.py:231
 msgid "Submit for Approval"
@@ -2354,21 +2367,21 @@ msgstr "Видалити"
 #: app/models/packages.py:1385
 #, python-format
 msgid "New commit %(hash)s found on the Git repo."
-msgstr "Новий комміт %(hash)s знайдено на Git репозиторію."
+msgstr "Знайдено новий коміт %(hash)s у Git-репозиторії."
 
 #: app/models/packages.py:1389
 #, python-format
 msgid "The last release was commit %(hash)s"
-msgstr "Останній випуск це комміт %(hash)s"
+msgstr "Останній випуск був за комітом %(hash)s"
 
 #: app/models/packages.py:1395
 #, python-format
 msgid "New tag %(tag_name)s found on the Git repo."
-msgstr "Новий тег %(tag_name)s знайдено на Git репозиторію."
+msgstr "Знайдений новий тег %(tag_name)s на репозиторії Git."
 
 #: app/models/users.py:46
 msgid "Banned"
-msgstr "Забанено"
+msgstr "Заблоковано"
 
 #: app/models/users.py:48
 msgid "Not Joined"
@@ -2410,18 +2423,18 @@ msgstr "Адмін"
 #. NOTE: PACKAGE_EDIT notification type
 #: app/models/users.py:440
 msgid "Package Edit"
-msgstr "Редагування пакунку"
+msgstr "Редагування пакету"
 
 #. NOTE: PACKAGE_APPROVAL notification type
 #: app/models/users.py:443
 msgid "Package Approval"
-msgstr "Затвердження пакунку"
+msgstr "Затвердження пакету"
 
 #. NOTE: NEW_THREAD notification type
 #: app/models/users.py:446 app/templates/threads/list.html:12
 #: app/templates/threads/new.html:4
 msgid "New Thread"
-msgstr "Нова гілка"
+msgstr "Нова тема"
 
 #. NOTE: NEW_REVIEW notification type
 #: app/models/users.py:449
@@ -2431,12 +2444,12 @@ msgstr "Новий відгук"
 #. NOTE: THREAD_REPLY notification type
 #: app/models/users.py:452
 msgid "Thread Reply"
-msgstr "Відповідь на нитку"
+msgstr "Відповідь на тему"
 
 #. NOTE: MAINTAINER notification type
 #: app/models/users.py:458 app/templates/macros/threads.html:27
 msgid "Maintainer"
-msgstr "Супровідник"
+msgstr "Керівник"
 
 #. NOTE: EDITOR_ALERT notification type
 #: app/models/users.py:461
@@ -2446,7 +2459,7 @@ msgstr "Попередження редактора"
 #. NOTE: EDITOR_MISC notification type
 #: app/models/users.py:464
 msgid "Editor Misc"
-msgstr "Редактор (інше)"
+msgstr "Різне редактора"
 
 #. NOTE: OTHER notification type
 #: app/models/users.py:467
@@ -2455,100 +2468,98 @@ msgstr "Інше"
 
 #: app/models/users.py:477
 msgid "This is a Package Edit notification."
-msgstr "Це повідомлення Редагування пакунку."
+msgstr "Це сповіщення про редагування пакету."
 
 #: app/models/users.py:479
 msgid "This is a Package Approval notification."
-msgstr "Це повідомлення Затвердження пакунку."
+msgstr "Це сповіщення про схвалення пакету."
 
 #: app/models/users.py:481
 msgid "This is a New Thread notification."
-msgstr "Це повідомлення Нової Нитки."
+msgstr "Це сповіщення про нову тему."
 
 #: app/models/users.py:483
 msgid "This is a New Review notification."
-msgstr "Це повідомлення нового відгуку."
+msgstr "Це сповіщення про новий відгук."
 
 #: app/models/users.py:485
 msgid "This is a Thread Reply notification."
-msgstr "Це повідомлення нової відповіді."
+msgstr "Це сповіщення про відповідь на тему."
 
 #: app/models/users.py:487
 msgid "This is a Bot notification."
-msgstr "Це автоматичне сповіщення."
+msgstr "Це сповіщення від бота."
 
 #: app/models/users.py:489
 msgid "This is a Maintainer change notification."
-msgstr "Це повідомлення зміни супровідника."
+msgstr "Це сповіщення про зміну відповідального."
 
 #: app/models/users.py:491
 msgid "This is an Editor Alert notification."
-msgstr "Це повідомлення від редактора."
+msgstr "Це сповіщення про попередження редактора."
 
 #: app/models/users.py:493
 msgid "This is an Editor Misc notification."
-msgstr "Це повідомлення від редактора (інше)."
+msgstr "Це сповіщення про різні питання редактора."
 
 #: app/models/users.py:495
 msgid "This is an Other notification."
-msgstr "Це інше сповіщення."
+msgstr "Це сповіщення іншого типу."
 
 #: app/models/users.py:502
 msgid "When another user edits your packages, releases, etc."
-msgstr "Коли інший користувач редагує ваші пакунки, випуски тощо."
+msgstr "Коли інший користувач редагує ваші пакети, релізи тощо."
 
 #: app/models/users.py:504
 msgid "Notifications from editors related to the package approval process."
-msgstr "Сповіщення від редакторів відносяться до процесу затвердження пакунку."
+msgstr "Повідомлення від редакторів, що стосуються процесу затвердження пакету."
 
 #: app/models/users.py:506
 msgid "When a thread is created on your package."
-msgstr "Коли нитка створена на вашому пакунку."
+msgstr "Коли створено тред для вашого пакету."
 
 #: app/models/users.py:508
 msgid "When a user posts a review on your package."
-msgstr "Коли користувач публікує відгук на ваш пакунок."
+msgstr "Коли користувач залишає відгук про ваш пакет."
 
 #: app/models/users.py:510
 msgid "When someone replies to a thread you're watching."
-msgstr "Коли хтось відповідає на нитку, яку ви дивитесь."
+msgstr "Коли хтось відповідає на тему, за якою ви стежите."
 
 #: app/models/users.py:512
 msgid "From a bot - for example, update notifications."
-msgstr "Від бота - наприклад, сповіщення про оновлення."
+msgstr "Від бота — наприклад, сповіщення про оновлення."
 
 #: app/models/users.py:514
 msgid "When your package's maintainers change."
-msgstr "Коли ваш пакунок змінює супровідника."
+msgstr "Коли змінюються підтримувачі вашого пакета."
 
 #: app/models/users.py:516
 msgid "For editors: Important alerts."
-msgstr "Для редакторів: Важливі сповіщення."
+msgstr "Для редакторів: важливі сповіщення."
 
 #: app/models/users.py:518
 msgid "For editors: Minor notifications, including new threads."
-msgstr "Для редакторів: Малі сповіщення, включаючи нові нитки."
+msgstr "Для редакторів: незначні сповіщення, включаючи нові теми."
 
 #: app/models/users.py:520
 msgid "Minor notifications not important enough for a dedicated category."
 msgstr ""
-"Малі сповіщення не достатньо важливі, тому їм вистачить окремої категорії."
+"Незначні сповіщення, які не є достатньо важливими для окремої категорії."
 
 #: app/tasks/emails.py:122
 msgid ""
 "You are receiving this email because you are a registered user of "
 "ContentDB."
-msgstr ""
-"Ви отримали цей електронний лист, тому що ви зареєстрований користувач "
-"ContentDB."
+msgstr "Ви отримали цей лист, оскільки є зареєстрованим користувачем ContentDB."
 
 #: app/tasks/emails.py:128 app/templates/emails/verify.html:30
 msgid ""
 "You are receiving this email because someone (hopefully you) entered your"
 " email address as a user's email."
 msgstr ""
-"Ви отримали цей електронний лист, тому що хтось (сподіваємось, ви) ввів "
-"вашу електронну адресу як електронну адресу користувача."
+"Ви отримали цей лист, оскільки хтось (сподіваємося, це ви) ввів вашу "
+"електронну адресу як адресу користувача."
 
 #: app/tasks/emails.py:163
 #, python-format
@@ -2584,8 +2595,8 @@ msgid ""
 "That page could not be found. The link may be broken, the page may have "
 "been deleted, or you may not have access to it."
 msgstr ""
-"Цю сторінку не вдалося знайти. Можливо, посилання не працює, сторінку "
-"видалено або ви не маєте до неї доступу."
+"Цю сторінку не знайдено. Посилання може бути неправильним, сторінка була "
+"видалена або у вас немає доступу до неї."
 
 #: app/templates/base.html:62
 msgid "Random"
@@ -2598,21 +2609,21 @@ msgstr "Випадковий"
 #: app/templates/todo/game_support.html:8 app/templates/todo/user.html:45
 #: app/templates/todo/user.html:69
 msgid "Help"
-msgstr "Довідка"
+msgstr "Допомога"
 
 #: app/templates/base.html:72
 #, python-format
 msgid "Search %(type)s"
-msgstr "Пошук %(type)s"
+msgstr "Шукати %(type)s"
 
 #: app/templates/base.html:72 app/templates/todo/tags.html:11
 #: app/templates/todo/tags.html:13
 msgid "Search all packages"
-msgstr "Пошук серед всіх пакунків"
+msgstr "Шукати всі пакети"
 
 #: app/templates/base.html:89
 msgid "Work Queue"
-msgstr "Черга роботи"
+msgstr "Черга робіт"
 
 #: app/templates/base.html:102 app/templates/base.html:154
 msgid "To do list"
@@ -2624,7 +2635,7 @@ msgstr "Сповіщення"
 
 #: app/templates/base.html:132
 msgid "Add Package"
-msgstr "Додати пакунок"
+msgstr "Додати пакет"
 
 #: app/templates/base.html:149
 msgid "Profile"
@@ -2640,7 +2651,7 @@ msgstr "Налаштування"
 
 #: app/templates/base.html:186
 msgid "Sign out"
-msgstr "Вийти з аккаунта"
+msgstr "Вийти"
 
 #: app/templates/admin/languages/list.html:4
 #: app/templates/admin/languages/list.html:10 app/templates/base.html:199
@@ -2666,12 +2677,12 @@ msgstr "Правила"
 
 #: app/templates/base.html:263
 msgid "Policy and Guidance"
-msgstr "Політика та вказівки"
+msgstr "Політика та Настанови"
 
 #: app/templates/base.html:264 app/templates/donate/index.html:46
 #: app/templates/donate/index.html:70 app/templates/users/profile.html:104
 msgid "Donate"
-msgstr "Пожертвуйте"
+msgstr "Пожертвувати"
 
 #: app/templates/base.html:265
 msgid "API"
@@ -2679,11 +2690,11 @@ msgstr "API"
 
 #: app/templates/base.html:266
 msgid "RSS / Feeds"
-msgstr "РПС / Канали"
+msgstr "RSS / Канали"
 
 #: app/templates/base.html:267 app/templates/users/register.html:40
 msgid "Privacy Policy"
-msgstr "Політика приватності"
+msgstr "Політика Конфіденційності"
 
 #: app/templates/base.html:269
 msgid "Report / DMCA"
@@ -2691,7 +2702,7 @@ msgstr "Звіт/ DMCA"
 
 #: app/templates/base.html:271 app/templates/packages/advanced_search.html:4
 msgid "Advanced Search"
-msgstr "Просунутий пошук"
+msgstr "Розширений Пошук"
 
 #: app/templates/base.html:272
 msgid "User List"
@@ -2700,7 +2711,7 @@ msgstr "Список користувачів"
 #: app/templates/base.html:273 app/templates/packages/view.html:197
 #: app/templates/packages/view.html:695 app/templates/threads/list.html:4
 msgid "Threads"
-msgstr "Нитки"
+msgstr "Теми"
 
 #: app/templates/base.html:274 app/templates/collections/list.html:7
 #: app/templates/collections/list.html:26
@@ -2713,7 +2724,7 @@ msgstr "Підтримати творців"
 
 #: app/templates/base.html:276
 msgid "Translate Packages"
-msgstr "Перекласти пакунки"
+msgstr "Перекласти пакети"
 
 #: app/templates/base.html:277
 msgid "Source Code"
@@ -2721,16 +2732,16 @@ msgstr "Вихідний код"
 
 #: app/templates/base.html:283
 msgid "Show non-free packages"
-msgstr "Показати невільні пакунки"
+msgstr "Показати пакети, що не є безкоштовними"
 
 #: app/templates/base.html:285
 msgid "Hide non-free packages"
-msgstr "Сховати невільні пакунки"
+msgstr "Сховати пакети, що не є безкоштовними"
 
 #: app/templates/base.html:290
 #, python-format
 msgid "Our privacy policy has been updated (%(date)s)"
-msgstr "Наша політика приватності була оновлена (%(date)s)"
+msgstr "Наша політика конфіденційності була оновлена (%(date)s)"
 
 #: app/templates/index.html:4
 msgid "Welcome"
@@ -2748,12 +2759,12 @@ msgstr "Попередній"
 #: app/templates/index.html:98 app/templates/packages/view.html:289
 #: app/templates/users/claim_forums.html:87
 msgid "Next"
-msgstr "Далі"
+msgstr "Наступний"
 
 #: app/templates/index.html:108 app/templates/index.html:114
 #: app/templates/packages/game_hub.html:44
 msgid "Recently Added"
-msgstr "Нещодавно додані"
+msgstr "Нещодавно додано"
 
 #: app/templates/index.html:119 app/templates/index.html:125
 #: app/templates/packages/game_hub.html:51
@@ -2762,17 +2773,17 @@ msgstr "Нещодавно оновлено"
 
 #: app/templates/index.html:130 app/templates/index.html:136
 msgid "Top Games"
-msgstr "Найкращі ігри"
+msgstr "Топ ігри"
 
 #: app/templates/index.html:141 app/templates/index.html:147
 #: app/templates/packages/game_hub.html:58
 msgid "Top Mods"
-msgstr "Кращі моди"
+msgstr "Топ моди"
 
 #: app/templates/index.html:152 app/templates/index.html:158
 #: app/templates/packages/game_hub.html:65
 msgid "Top Texture Packs"
-msgstr "Найкращі набори текстур"
+msgstr "Топ текстурних пакетів"
 
 #: app/templates/index.html:164
 msgid "Search by Tags"
@@ -2781,11 +2792,11 @@ msgstr "Пошук за тегами"
 #: app/templates/index.html:178 app/templates/index.html:184
 #: app/templates/packages/game_hub.html:72
 msgid "Highest Reviewed"
-msgstr "Найвищий огляд"
+msgstr "Найвищі оцінки"
 
 #: app/templates/index.html:192
 msgid "All reviews"
-msgstr "Всі відгуки"
+msgstr "Усі відгуки"
 
 #: app/templates/index.html:194
 msgid "Recent Positive Reviews"
@@ -2795,12 +2806,12 @@ msgstr "Останні позитивні відгуки"
 #, python-format
 msgid "CDB has %(count)d packages, with a total of %(downloads)d downloads."
 msgstr ""
-"CDB має %(count)d пакунків із загальною кількістю завантажень %(downloads)d."
+"CDB має %(count)d пакеків з загальною кількістю %(downloads)d завантажень."
 
 #: app/templates/admin/audit_view.html:16
 #, python-format
 msgid "Caused by %(author)s."
-msgstr "Спричинено %(author)s."
+msgstr "Викликано %(author)s."
 
 #: app/templates/admin/audit_view.html:20
 msgid "Caused by a deleted user."
@@ -2808,7 +2819,7 @@ msgstr "Викликано видаленим користувачем."
 
 #: app/templates/admin/send_bulk_email.html:4
 msgid "Send bulk email"
-msgstr "Масове надсилання електронних листів"
+msgstr "Надіслати масову електронну пошту"
 
 #: app/templates/admin/send_bulk_notification.html:4
 msgid "Send bulk notification"
@@ -2817,14 +2828,14 @@ msgstr "Надіслати масове сповіщення"
 #: app/templates/admin/send_email.html:4
 #, python-format
 msgid "Send email to %(username)s"
-msgstr "Надіслати електронний лист на %(username)s"
+msgstr "Надіслати електронну пошту користувачу %(username)s"
 
 #: app/templates/admin/storage.html:18
 #: app/templates/packages/create_edit.html:66
 #: app/templates/packages/game_support.html:20
 #: app/templates/threads/view.html:101 app/templates/todo/tags.html:36
 msgid "Package"
-msgstr "Пакунок"
+msgstr "Пакет"
 
 #: app/templates/admin/storage.html:62
 #: app/templates/collections/create_edit.html:61
@@ -2834,11 +2845,11 @@ msgstr "Немає результатів"
 
 #: app/templates/admin/languages/list.html:19
 msgid "Id"
-msgstr "Ід"
+msgstr "Ідентифікатор"
 
 #: app/templates/admin/languages/list.html:33
 msgid "Has ContentDB translation?"
-msgstr "Має переклад ContentDB?"
+msgstr "Чи є переклад ContentDB?"
 
 #: app/templates/admin/licenses/list.html:8
 msgid "New License"
@@ -2878,40 +2889,40 @@ msgstr "Редагувати - %(name)s"
 
 #: app/templates/api/create_edit_token.html:7
 msgid "Create API Token"
-msgstr "Створити токен API"
+msgstr "Створити API токен"
 
 #: app/templates/api/create_edit_token.html:25
 #, python-format
 msgid "This token was created by the application '%(title)s' by %(author)s."
-msgstr "Цей токен був створений застосунком '%(title)s' від %(author)s."
+msgstr "Цей токен був створений додатком '%(title)s' від %(author)s."
 
 #: app/templates/api/create_edit_token.html:26
 msgid "Click 'Delete' to revoke access."
-msgstr "Натисніть 'Видалити' щоб відкликати доступ."
+msgstr "Натисніть 'Видалити', щоб відкликати доступ."
 
 #: app/templates/api/create_edit_token.html:30
 msgid "API Tokens allow scripts to act on your behalf."
-msgstr "Маркери API дозволяють сценаріям діяти від вашого імені."
+msgstr "API токени дозволяють скриптам діяти від вашого імені."
 
 #: app/templates/api/create_edit_token.html:31
 msgid ""
 "Be careful with what/whom you share tokens with, as you are responsible "
 "for your account's actions."
 msgstr ""
-"Будьте обережні з тим, з ким/чим ви ділитеся токенами, оскільки ви несете"
-" відповідальність за дії вашого облікового запису."
+"Будьте обережні з тим, з ким ви ділитесь токенами, оскільки ви несете "
+"відповідальність за дії вашого акаунта."
 
 #: app/templates/api/create_edit_token.html:36
 msgid "Access Token"
-msgstr "Маркер доступу"
+msgstr "Токен доступу"
 
 #: app/templates/api/create_edit_token.html:39
 msgid ""
 "For security reasons, access tokens will only be shown once. Reset the "
 "token if it is lost."
 msgstr ""
-"З міркувань безпеки маркери доступу буде показано лише один раз. Скиньте "
-"маркер, якщо він втрачений."
+"З міркувань безпеки токени доступу показуються лише один раз. Якщо він "
+"загублений, скиньте токен."
 
 #: app/templates/api/create_edit_token.html:46
 msgid "Reset"
@@ -2923,12 +2934,12 @@ msgstr "Зрозуміле ім’я, щоб розрізняти токени."
 
 #: app/templates/api/create_edit_token.html:57
 msgid "Recommended: Only allows token to interact with a particular package."
-msgstr "Рекомендовано: дозволяє токену лише взаємодіяти з певним пакунком."
+msgstr "Рекомендовано: дозволяє токену взаємодіяти лише з певним пакетом."
 
 #: app/templates/api/list_tokens.html:4
 #, python-format
 msgid "API Tokens | %(username)s"
-msgstr "API маркери | %(username)s"
+msgstr "API Токени | %(username)s"
 
 #: app/templates/api/list_tokens.html:8 app/templates/collections/list.html:21
 #: app/templates/macros/topics.html:29 app/templates/oauth/list_clients.html:8
@@ -2947,7 +2958,7 @@ msgstr "Застосунок"
 
 #: app/templates/api/list_tokens.html:24
 msgid "No tokens created"
-msgstr "Нема створених токенів"
+msgstr "Токени не створені"
 
 #: app/templates/collections/create_edit.html:5
 #: app/templates/collections/view.html:42 app/templates/macros/releases.html:68
@@ -2962,11 +2973,11 @@ msgstr "Нова Колекція"
 
 #: app/templates/collections/create_edit.html:32
 msgid "Users won't be redirected when going to the old URL"
-msgstr "Користувачі не будуть перенапрямлені при відкритті старого URL"
+msgstr "Користувачі не будуть перенаправлені на стару URL-адресу"
 
 #: app/templates/collections/create_edit.html:46
 msgid "This requires the collection to be public"
-msgstr "Це вимагає публікації колекції"
+msgstr "Для цього колекція повинна бути публічною"
 
 #: app/templates/collections/create_edit.html:76
 #: app/templates/packages/remove.html:36 app/templates/packages/remove.html:90
@@ -2980,7 +2991,7 @@ msgstr "Ви можете замінити опис на свій власний
 
 #: app/templates/collections/create_edit.html:103
 msgid "Are you sure you want to remove {title}?"
-msgstr "Ви впевнені, що бажаєте вилучити {title}?"
+msgstr "Ви впевнені, що хочете видалити {title}?"
 
 #: app/templates/collections/delete.html:4
 #, python-format
@@ -2992,7 +3003,7 @@ msgstr "Видалити колекцію \"%(title)s\" від %(author)s"
 #: app/templates/threads/delete_thread.html:16
 #: app/templates/users/delete.html:13
 msgid "Deleting is permanent"
-msgstr "Видалення є безповоротним"
+msgstr "Видалення є постійним"
 
 #: app/templates/collections/delete.html:13
 #: app/templates/oauth/authorize.html:71 app/templates/packages/remove.html:88
@@ -3023,7 +3034,7 @@ msgstr "Створити Колекцію"
 
 #: app/templates/collections/package_add_to.html:39
 msgid "You don't have any collections"
-msgstr "У вас немає жодних колекцій"
+msgstr "У вас немає жодної колекції"
 
 #: app/templates/collections/view.html:33
 msgid "Make a copy"
@@ -3037,8 +3048,8 @@ msgstr "Колекція від %(author)s"
 #: app/templates/collections/view.html:69
 msgid "To add a package, go to the package's page and click 'Add to collection'"
 msgstr ""
-"Щоб додати пакунок, перейдіть на сторінку пакунка і натисніть Add to "
-"'Додати до колекції'"
+"Щоб додати пакет, перейдіть на сторінку пакета та натисніть "
+"\"Додати до колекції\""
 
 #: app/templates/donate/index.html:8
 msgid "Some content creators are accepting donations for their work."
@@ -3049,7 +3060,7 @@ msgid ""
 "Donations are a great way to support your favorite modders, artists, and "
 "game developers."
 msgstr ""
-"Пожертви — це чудовий спосіб підтримати улюблених моддерів, художників і "
+"Пожертви – чудовий спосіб підтримати ваших улюблених моддерів, художників і "
 "розробників ігор."
 
 #: app/templates/donate/index.html:37
@@ -3059,7 +3070,7 @@ msgstr "від %(author)s"
 
 #: app/templates/donate/index.html:42 app/templates/translate/index.html:38
 msgid "View package"
-msgstr "Переглянути пакунок"
+msgstr "Переглянути пакет"
 
 #: app/templates/donate/index.html:62
 msgid "Support ContentDB"
@@ -3070,42 +3081,42 @@ msgid ""
 "You can donate to rubenwardy to cover ContentDB's costs and support "
 "future development."
 msgstr ""
-"Ви можете задонатити rubenwardy, щоб покрити витрати ContentDB та підтримати "
-"майбутню розробку."
+"Ви можете зробити пожертву rubenwardy, щоб покрити витрати ContentDB та "
+"підтримати подальшу розробку."
 
 #: app/templates/donate/index.html:67
 msgid ""
 "For more information about the cost of ContentDB and what rubenwardy "
 "does, see his donation page:"
 msgstr ""
-"Щоб дізнатися більше про вартість ContentDB і чим займається rubenwardy, "
-"перегляньте його сторінку пожертв:"
+"Для отримання додаткової інформації про витрати ContentDB і діяльність "
+"rubenwardy відвідайте його сторінку пожертв:"
 
 #: app/templates/donate/index.html:73
 msgid "Based on your reviews / favorites"
-msgstr "Виходячи з ваших відгуків / улюблених"
+msgstr "На основі ваших відгуків / вибраного"
 
 #: app/templates/donate/index.html:78
 msgid ""
 "No reviewed packages accepting donations. Consider reviewing your "
 "favourite packages"
 msgstr ""
-"Немає перевірених пакунків, які приймають пожертви. Перегляньте ваші "
-"улюблені пакунки"
+"Немає перевірених пакетів, які приймають донати. Розгляньте можливість "
+"залишити відгук про ваші улюблені пакети"
 
 #: app/templates/donate/index.html:82
 msgid "Sign in to see recommendations based on the packages you've reviewed"
 msgstr ""
-"Увійдіть, щоб переглянути рекомендації на основі пакунків, які ви переглянули"
+"Увійдіть, щоб побачити рекомендації на основі пакунків, які ви переглянули"
 
 #: app/templates/donate/index.html:89
 msgid "Top packages"
-msgstr "Найкращі пакунки"
+msgstr "Топ пакети"
 
 #: app/templates/donate/index.html:93
 #, python-format
 msgid "%(count)d packages are looking for donations"
-msgstr "Пакунки %(count)d шукають пожертви"
+msgstr "Пакети %(count)d шукають пожертви"
 
 #: app/templates/emails/notification.html:10
 #, python-format
@@ -3127,13 +3138,13 @@ msgid ""
 "You are receiving this email because you are a registered user of "
 "ContentDB, and have email notifications enabled."
 msgstr ""
-"Ви отримали цей електронний лист, тому що ви зареєстрований користувач "
-"ContentDB і у вас увімкнено сповіщення електронною поштою."
+"Ви отримали цей лист, оскільки є зареєстрованим користувачем ContentDB і "
+"маєте увімкнені електронні сповіщення."
 
 #: app/templates/emails/notification.html:30
 #: app/templates/emails/notification_digest.html:50
 msgid "Manage your preferences"
-msgstr "Керуйте своїми вподобаннями"
+msgstr "Керувати вашими налаштуваннями"
 
 #: app/templates/emails/notification_digest.html:14
 #: app/templates/emails/notification_digest.html:31
@@ -3162,28 +3173,27 @@ msgid ""
 "This may be because you used another email with your account, or because "
 "you never confirmed your email."
 msgstr ""
-"Можливо, ви використовували іншу електронну адресу для свого облікового "
-"запису або ніколи не підтверджували свою електронну адресу."
+"Це може бути через те, що ви використовували іншу електронну адресу для "
+"свого акаунта або тому, що ви ніколи не підтвердили свою електронну пошту."
 
 #: app/templates/emails/unable_to_find_account.html:8
 msgid "You can use GitHub to log in if it is associated with your account."
 msgstr ""
-"Ви можете використовувати GitHub для входу, якщо він пов’язаний з вашим "
-"обліковим записом."
+"Ви можете використовувати GitHub для входу, якщо він пов'язаний з вашим "
+"акаунтом."
 
 #: app/templates/emails/unable_to_find_account.html:9
 msgid "Otherwise, you may need to contact the admin for help."
 msgstr ""
-"В іншому випадку вам може знадобитися звернутися до адміністратора по "
-"допомогу."
+"Інакше вам, можливо, потрібно буде звернутися до адміністратора за допомогою."
 
 #: app/templates/emails/unable_to_find_account.html:12
 msgid ""
 "If you weren't expecting to receive this email, then you can safely "
 "ignore it."
 msgstr ""
-"Якщо ви не очікували отримати цей електронний лист, можете сміливо його "
-"ігнорувати."
+"Якщо ви не очікували отримати цей лист, ви можете безпечно його "
+"проігнорувати."
 
 #: app/templates/emails/verify.html:4
 #: app/templates/emails/verify_unsubscribe.html:5
@@ -3195,8 +3205,8 @@ msgid ""
 "This email has been sent to you because someone (hopefully you) has "
 "entered your email address as a user's email."
 msgstr ""
-"Цей електронний лист надіслано вам, оскільки хтось (сподіваємось, ви) "
-"ввів вашу електронну адресу як електронну адресу користувача."
+"Цей лист надіслано вам, оскільки хтось (сподіваємось, це ви) ввів вашу "
+"електронну адресу як адресу користувача."
 
 #: app/templates/emails/verify.html:11
 msgid "If it wasn't you, then just delete this email."
