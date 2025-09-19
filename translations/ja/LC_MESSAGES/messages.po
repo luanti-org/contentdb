@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2025-03-25 08:41+0000\n"
-"Last-Translator: Jun Nogata <nogajun@gmail.com>\n"
+"PO-Revision-Date: 2025-06-08 21:01+0000\n"
+"Last-Translator: TheOnlyJoeEnderman <joeenderman1@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/minetest/"
 "contentdb/ja/>\n"
 "Language: ja\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 "Generated-By: Babel 2.15.0\n"
 
 #: app/__init__.py:156
@@ -478,7 +478,7 @@ msgctxt "tags"
 msgid ""
 "For games and such that are of their own kind, distinct and original in "
 "nature to others of the same category."
-msgstr ""
+msgstr "同ジャンルの他の作品とは一線を画す、独自性と独創性に富んだゲーム等向け。"
 
 #. NOTE: tags: title for plants_and_farming
 #: app/_translations.py:148
@@ -490,7 +490,7 @@ msgstr "植物と農業"
 #: app/_translations.py:150
 msgctxt "tags"
 msgid "Adds new plants or other farmable resources."
-msgstr ""
+msgstr "新しい植物やその他の栽培可能な資源を追加します。"
 
 #. NOTE: tags: title for player_effects
 #: app/_translations.py:152
@@ -504,7 +504,8 @@ msgctxt "tags"
 msgid ""
 "For content that changes player effects, including physics, for example: "
 "speed, jump height or gravity."
-msgstr ""
+msgstr "速度、ジャンプの高さ、重力など、物理を含むプレイヤーエフェクトを変更するコン"
+"テンツ向け。"
 
 #. NOTE: tags: title for puzzle
 #: app/_translations.py:156
@@ -516,7 +517,7 @@ msgstr "パズル"
 #: app/_translations.py:158
 msgctxt "tags"
 msgid "Focus on puzzle solving instead of combat"
-msgstr ""
+msgstr "戦闘ではなくパズル解決に重点を置く"
 
 #. NOTE: tags: title for pve
 #: app/_translations.py:160
@@ -555,7 +556,7 @@ msgstr "季節向け"
 #: app/_translations.py:170
 msgctxt "tags"
 msgid "For content generally themed around a certain season or holiday"
-msgstr ""
+msgstr "特定の季節や祝日をテーマとしたコンテンツ向け"
 
 #. NOTE: tags: title for server_tools
 #: app/_translations.py:172
@@ -567,7 +568,7 @@ msgstr "サーバー管理とツール"
 #: app/_translations.py:174
 msgctxt "tags"
 msgid "Helps with server maintenance and moderation"
-msgstr ""
+msgstr "サーバーのメンテナンスとモデレーションを支援します"
 
 #. NOTE: tags: title for shooter
 #: app/_translations.py:176
@@ -579,7 +580,7 @@ msgstr "シューティング"
 #: app/_translations.py:178
 msgctxt "tags"
 msgid "First person shooters (FPS) and more"
-msgstr ""
+msgstr "ファーストパーソンシューター（FPS）など"
 
 #. NOTE: tags: title for simulation
 #: app/_translations.py:180
@@ -593,7 +594,8 @@ msgctxt "tags"
 msgid ""
 "Mods and games that aim to simulate real life activity. Similar to "
 "SimCity/The Sims/OpenTTD/etc."
-msgstr ""
+msgstr "現実の活動をシミュレートすることを目的としたMODやゲーム。SimCity/The Sims/"
+"OpenTTD等に類似。"
 
 #. NOTE: tags: title for singleplayer
 #: app/_translations.py:184
@@ -605,7 +607,7 @@ msgstr "1人プレイ向け"
 #: app/_translations.py:186
 msgctxt "tags"
 msgid "Content that can be played alone"
-msgstr ""
+msgstr "一人でプレイできるコンテンツ"
 
 #. NOTE: tags: title for skins
 #: app/_translations.py:188
@@ -619,7 +621,8 @@ msgctxt "tags"
 msgid ""
 "Allows the player to customize their character by changing the texture or"
 " adding accessories."
-msgstr ""
+msgstr "テクスチャの変更やアクセサリーの追加により、プレイヤーがキャラクターをカスタ"
+"マイズできるようにします。"
 
 #. NOTE: tags: title for sound_music
 #: app/_translations.py:192
@@ -631,7 +634,7 @@ msgstr "サウンド・音楽"
 #: app/_translations.py:194
 msgctxt "tags"
 msgid "Focuses on or adds new sounds or musical things"
-msgstr ""
+msgstr "新しいサウンドや音楽要素に焦点を当てる、または追加する"
 
 #. NOTE: tags: title for sports
 #: app/_translations.py:196
@@ -663,7 +666,7 @@ msgctxt "tags"
 msgid ""
 "Games and mods with a heavy strategy component, whether real-time or "
 "turn-based"
-msgstr ""
+msgstr "リアルタイム型・ターン制を問わず、重厚な戦略要素を持つゲームやMOD"
 
 #. NOTE: tags: title for survival
 #: app/_translations.py:206
@@ -677,7 +680,8 @@ msgctxt "tags"
 msgid ""
 "Written specifically for survival gameplay with a focus on game-balance, "
 "difficulty level, or resources available through crafting, mining, ..."
-msgstr ""
+msgstr "ゲームバランス、難易度、またはクラフト・採掘等で入手可能な資源に焦点を当てた"
+"、サバイバルゲームプレイ専用に作成されたもの…"
 
 #. NOTE: tags: title for technology
 #: app/_translations.py:210
@@ -689,7 +693,7 @@ msgstr "機械・電気製品"
 #: app/_translations.py:212
 msgctxt "tags"
 msgid "Adds machines useful in automation, tubes, or power."
-msgstr ""
+msgstr "オートメーション、チューブ、または電力に有用なマシンを追加します。"
 
 #. NOTE: tags: title for tools
 #: app/_translations.py:214
@@ -701,7 +705,7 @@ msgstr "武器・防具・道具"
 #: app/_translations.py:216
 msgctxt "tags"
 msgid "Adds or changes tools, weapons, and armor"
-msgstr ""
+msgstr "ツール、武器、防具を追加または変更します"
 
 #. NOTE: tags: title for transport
 #: app/_translations.py:218
@@ -715,7 +719,8 @@ msgctxt "tags"
 msgid ""
 "Adds or changes transportation methods. Includes teleportation, vehicles,"
 " ridable mobs, transport infrastructure and thematic content"
-msgstr ""
+msgstr "移動手段を追加または変更します。テレポート、乗り物、騎乗可能なMOB、交通インフ"
+"ラ、テーマ性のあるコンテンツを含みます"
 
 #. NOTE: tags: title for world_tools
 #: app/_translations.py:222
@@ -827,7 +832,7 @@ msgstr "パッケージ"
 #: app/querybuilder.py:75
 #, python-format
 msgid "%(package_type)s for %(game_name)s"
-msgstr ""
+msgstr "%(game_name)s用の%(package_type)s"
 
 #: app/template_filters.py:92
 #, python-format
@@ -891,7 +896,7 @@ msgstr "概要"
 
 #: app/blueprints/collections/__init__.py:84
 msgid "Page Content"
-msgstr ""
+msgstr "ページコンテンツ"
 
 #: app/blueprints/collections/__init__.py:85
 #: app/blueprints/threads/__init__.py:284
@@ -925,7 +930,7 @@ msgstr "パッケージをお気に入りのコレクションに追加しまし
 
 #: app/blueprints/collections/__init__.py:333
 msgid "(Public, change from Profile > My Collections)"
-msgstr ""
+msgstr "（公開、プロフィール &gt; マイコレクション から変更）"
 
 #: app/blueprints/collections/__init__.py:337
 msgid "Removed package from favorites collection"
@@ -933,22 +938,22 @@ msgstr "パッケージをお気に入りのコレクションから削除しま
 
 #: app/blueprints/feeds/__init__.py:32 app/templates/index.html:8
 msgid "Welcome to the best place to find Luanti mods, games, and texture packs"
-msgstr ""
+msgstr "Luanti のMOD、ゲーム、テクスチャパックを見つけるのに最適な場所へようこそ"
 
 #: app/blueprints/feeds/__init__.py:70 app/templates/base.html:29
 #: app/templates/base.html:36
 msgid "ContentDB new packages"
-msgstr ""
+msgstr "ContentDB 新着パッケージ"
 
 #: app/blueprints/feeds/__init__.py:98 app/templates/base.html:31
 #: app/templates/base.html:38
 msgid "ContentDB package updates"
-msgstr ""
+msgstr "ContentDB パッケージ更新"
 
 #: app/blueprints/feeds/__init__.py:107 app/templates/base.html:27
 #: app/templates/base.html:34
 msgid "ContentDB all"
-msgstr ""
+msgstr "ContentDB 全て"
 
 #: app/blueprints/oauth/__init__.py:169 app/templates/admin/tags/list.html:26
 #: app/templates/admin/warnings/list.html:24
@@ -958,7 +963,7 @@ msgstr "説明"
 
 #: app/blueprints/oauth/__init__.py:170
 msgid "Redirect URL"
-msgstr ""
+msgstr "リダイレクト URL"
 
 #: app/blueprints/oauth/__init__.py:171
 msgid "App Type"
@@ -966,11 +971,12 @@ msgstr "種類を追加"
 
 #: app/blueprints/oauth/__init__.py:198
 msgid "An OAuth client with that title already exists. Please choose a new title."
-msgstr ""
+msgstr "そのタイトルのOAuthクライアントは既に存在します。新しいタイトルを選択してくだ"
+"さい。"
 
 #: app/blueprints/oauth/__init__.py:262
 msgid "Revoked all user tokens"
-msgstr ""
+msgstr "全てのユーザートークンを取り消しました"
 
 #: app/blueprints/packages/__init__.py:32
 #: app/templates/packages/create_edit.html:29
@@ -1027,15 +1033,15 @@ msgstr "対応ゲーム"
 
 #: app/blueprints/packages/advanced_search.py:39
 msgid "Android Default"
-msgstr ""
+msgstr "Android デフォルト"
 
 #: app/blueprints/packages/advanced_search.py:40
 msgid "Desktop Default"
-msgstr ""
+msgstr "デスクトップ デフォルト"
 
 #: app/blueprints/packages/advanced_search.py:41
 msgid "Non-free"
-msgstr ""
+msgstr "非フリー"
 
 #: app/blueprints/packages/advanced_search.py:42 app/models/packages.py:630
 #: app/templates/packages/view.html:170
@@ -1049,11 +1055,11 @@ msgstr "廃止"
 
 #: app/blueprints/packages/advanced_search.py:44
 msgid "All content warnings"
-msgstr ""
+msgstr "全てのコンテンツ警告"
 
 #: app/blueprints/packages/advanced_search.py:53
 msgid "Query"
-msgstr ""
+msgstr "クエリ"
 
 #: app/blueprints/packages/advanced_search.py:54
 #: app/blueprints/packages/packages.py:231 app/templates/packages/view.html:616
@@ -1086,7 +1092,7 @@ msgstr "ライセンス"
 
 #: app/blueprints/packages/advanced_search.py:67
 msgid "Supports Game"
-msgstr ""
+msgstr "ゲーム対応"
 
 #: app/blueprints/packages/advanced_search.py:71
 #: app/templates/admin/storage.html:39
@@ -1100,7 +1106,7 @@ msgstr ""
 #: app/templates/packages/similar.html:22 app/templates/translate/index.html:28
 #, python-format
 msgid "%(title)s by %(author)s"
-msgstr ""
+msgstr "%(author)s による %(title)s"
 
 #: app/blueprints/packages/advanced_search.py:72
 #: app/blueprints/packages/reviews.py:54
@@ -1110,19 +1116,19 @@ msgstr "言語"
 
 #: app/blueprints/packages/advanced_search.py:76
 msgid "Hide Tags and Content Warnings"
-msgstr ""
+msgstr "タグとコンテンツ警告を非表示"
 
 #: app/blueprints/packages/advanced_search.py:77
 msgid "Luanti Version"
-msgstr ""
+msgstr "Luanti バージョン"
 
 #: app/blueprints/packages/advanced_search.py:81
 msgid "Sort by"
-msgstr ""
+msgstr "並び順"
 
 #: app/blueprints/packages/advanced_search.py:85
 msgid "Package score"
-msgstr ""
+msgstr "パッケージスコア"
 
 #: app/blueprints/packages/advanced_search.py:86 app/templates/index.html:78
 #: app/templates/packages/reviews_list.html:4
@@ -1134,19 +1140,19 @@ msgstr "レビュー"
 #: app/blueprints/packages/advanced_search.py:87
 #: app/templates/packages/view.html:191 app/templates/users/profile.html:242
 msgid "Downloads"
-msgstr ""
+msgstr "ダウンロード数"
 
 #: app/blueprints/packages/advanced_search.py:88
 msgid "Created At"
-msgstr ""
+msgstr "作成日"
 
 #: app/blueprints/packages/advanced_search.py:89
 msgid "Approved At"
-msgstr ""
+msgstr "承認日"
 
 #: app/blueprints/packages/advanced_search.py:90
 msgid "Last Release"
-msgstr ""
+msgstr "最新リリース"
 
 #: app/blueprints/packages/advanced_search.py:92
 msgid "Order"
@@ -1282,12 +1288,12 @@ msgstr "どのような変更が必要か、承認スレッドでコメントし
 msgid ""
 "Please comment in the approval thread so editors know what you have "
 "changed"
-msgstr ""
+msgstr "編集者が変更内容を把握できるよう、承認スレッドにコメントしてください"
 
 #: app/blueprints/packages/packages.py:490
 #, python-format
 msgid "Set state to %(state)s"
-msgstr ""
+msgstr "状態を%(state)sに設定"
 
 #: app/blueprints/packages/packages.py:520
 msgid "Deleted package"
@@ -1335,16 +1341,17 @@ msgstr "すべてのゲームをサポート（明記されている場合を除
 
 #: app/blueprints/packages/packages.py:751
 msgid "You need at least one release before you can edit game support"
-msgstr ""
+msgstr "ゲーム対応を編集するには、少なくとも1つのリリースが必要です"
 
 #: app/blueprints/packages/packages.py:755
 msgid "Mod(pack) needs to contain at least one mod. Please create a new release"
-msgstr ""
+msgstr "MOD（パック）には少なくとも1つのMODが含まれている必要があります。新しいリリー"
+"スを作成してください"
 
 #: app/blueprints/packages/releases.py:57
 #: app/blueprints/packages/releases.py:72
 msgid "Release Notes"
-msgstr ""
+msgstr "リリースノート"
 
 #: app/blueprints/packages/releases.py:59
 msgid "Method"
@@ -1358,7 +1365,7 @@ msgstr "ファイルをアップロード"
 
 #: app/blueprints/packages/releases.py:60
 msgid "Git reference (ie: commit hash, branch, or tag)"
-msgstr ""
+msgstr "Git リファレンス（例：コミットハッシュ、ブランチ、タグ）"
 
 #: app/blueprints/packages/releases.py:62
 #: app/blueprints/packages/releases.py:77
@@ -1397,32 +1404,32 @@ msgstr ".zipファイルをアップロード"
 
 #: app/blueprints/packages/releases.py:216
 msgid "Set Min"
-msgstr ""
+msgstr "最小値設定"
 
 #: app/blueprints/packages/releases.py:219
 msgid "Set Max"
-msgstr ""
+msgstr "最大値設定"
 
 #: app/blueprints/packages/releases.py:222
 msgid "Only change values previously set as none"
-msgstr ""
+msgstr "未設定の値のみ変更可能"
 
 #: app/blueprints/packages/releases.py:223
 msgid "Update"
-msgstr ""
+msgstr "更新"
 
 #: app/blueprints/packages/releases.py:275
 #: app/templates/packages/update_config.html:25
 msgid "Trigger"
-msgstr ""
+msgstr "実行"
 
 #: app/blueprints/packages/releases.py:276
 msgid "New Commit"
-msgstr ""
+msgstr "新しいコミット"
 
 #: app/blueprints/packages/releases.py:277 app/templates/admin/tags/list.html:8
 msgid "New Tag"
-msgstr ""
+msgstr "新しいタグ"
 
 #: app/blueprints/packages/releases.py:279
 msgid "Branch name"
