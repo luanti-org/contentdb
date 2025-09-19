@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2025-02-26 19:09+0000\n"
-"Last-Translator: 3raven <elise_declerck@laposte.net>\n"
+"PO-Revision-Date: 2025-02-26 20:50+0000\n"
+"Last-Translator: Tanavit MINETEST <tanavit@posto.ovh>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/minetest/"
 "contentdb/fr/>\n"
 "Language: fr\n"
@@ -371,7 +371,7 @@ msgstr "Entrées du Game Jam de Minetest 2023 "
 #: app/_translations.py:106
 msgctxt "tags"
 msgid "Jam / Game 2024"
-msgstr "Jam / Game 2024"
+msgstr "Marathon Ludique (Game Jam) 2024"
 
 #. NOTE: tags: description for jam_game_2024
 #: app/_translations.py:108
@@ -2267,7 +2267,7 @@ msgstr "Jeu favori"
 
 #: app/models/packages.py:91
 msgid "Top texture pack"
-msgstr "Paquet de texture favori"
+msgstr "Paquet de textures favori"
 
 #: app/models/packages.py:94
 #, python-format
@@ -2389,7 +2389,7 @@ msgstr "Supprimer"
 #: app/models/packages.py:1385
 #, python-format
 msgid "New commit %(hash)s found on the Git repo."
-msgstr "Nouveaux commits %(hash)s trouvés dans le dépôt Git"
+msgstr "Nouveaux commits %(hash)s trouvés dans le dépôt Git."
 
 #: app/models/packages.py:1389
 #, python-format
@@ -2539,7 +2539,7 @@ msgstr ""
 
 #: app/models/users.py:506
 msgid "When a thread is created on your package."
-msgstr "Quand un fil est créé sur votre paquet."
+msgstr "Quand un fil de discussion est créé sur votre paquet."
 
 #: app/models/users.py:508
 msgid "When a user posts a review on your package."
@@ -3724,7 +3724,7 @@ msgstr ""
 
 #: app/templates/oauth/create_edit.html:56
 msgid "Example Authorize URL"
-msgstr ""
+msgstr "Exemple d'URL d'Autorisation"
 
 #: app/templates/oauth/create_edit.html:67
 msgid ""
@@ -3888,8 +3888,8 @@ msgid ""
 "anywhere in the short description. It is unnecessary and wastes "
 "characters."
 msgstr ""
-"Astuce : n'insérez pas <i>Minetest</i>, <i>mod</i>, or <i>modpack</i>  où "
-"que ce soit dans une description courte. Ce n'est pas nécessaire et cela "
+"Astuce : n'insérez pas <i>Minetest</i>, <i>mod</i>, or <i>modpack</i> où que "
+"ce soit dans une description courte. Ce n'est pas nécessaire et cela "
 "gaspille de la place."
 
 #: app/templates/packages/create_edit.html:88
@@ -4323,7 +4323,7 @@ msgid ""
 "You can <a href='/help/package_config/'>set this automatically</a> in the"
 " .conf of your package."
 msgstr ""
-"Vous pouvez <a href='/help/package_config/'>configurer cela "
+"Vous pouvez <a href=\"/help/package_config/\">configurer cela "
 "automatiquement</a> dans le .conf de votre paquet."
 
 #: app/templates/packages/release_edit.html:87
@@ -4411,7 +4411,7 @@ msgid ""
 "and Releases Guide</a> for\n"
 "\t\t\ttips on customising releases."
 msgstr ""
-"Regardez le <a href='/help/package_config/'>Guide de configuration de "
+"Regardez le <a href=\"/help/package_config/\">Guide de configuration de "
 "paquet et de version </a>\n"
 "\t\t\tpour des conseils sur la customisation de version."
 
@@ -4619,8 +4619,8 @@ msgstr "Veuillez lire les <a href=\"/rules/\">règles</a> de ContentDB"
 #, python-format
 msgid "Found a bug? Post on the <a href='%(url)s'>issue tracker</a> instead."
 msgstr ""
-"Vous avez trouvé un bug ? Reportez le plutôt sur l'<a "
-"href='%(url)s'>issue tracker</a>."
+"Vous avez trouvé un bug ? Reportez le plutôt sur le <a href=\"%(url)s\""
+">système de suivi de problèmes</a>."
 
 #: app/templates/packages/review_create_edit.html:55
 msgid "What language are you writing your review in?"
@@ -4773,7 +4773,7 @@ msgstr "Traduction - Manuel des Mods Luanti"
 
 #: app/templates/packages/translation.html:26
 msgid "Translating content meta - lua_api.md"
-msgstr ""
+msgstr "Traduction des méta-données contenues - lua_api.md"
 
 #: app/templates/packages/translation.html:31
 #, python-format
@@ -4852,9 +4852,9 @@ msgstr ""
 "notification jusqu'à ce qu'il soit marqué comme étant à jour."
 
 #: app/templates/packages/view.html:22 app/templates/packages/view.html:25
-#, fuzzy, python-format
+#, python-format
 msgid "%(title)s releases"
-msgstr "Publications %(title)s"
+msgstr "Publications de %(title)s"
 
 #: app/templates/packages/view.html:49
 msgid "Download"
@@ -5339,9 +5339,8 @@ msgstr "Paquets ne supportant pas %(rel)s"
 #: app/templates/todo/mtver_support.html:17 app/templates/todo/outdated.html:12
 #: app/templates/todo/outdated.html:16 app/templates/todo/screenshots.html:12
 #: app/templates/todo/screenshots.html:16
-#, fuzzy
 msgid "Minetest-Mods org only"
-msgstr "Minetest-Mods org seulement"
+msgstr "Minetest-Mods org exclusivement"
 
 #: app/templates/todo/mtver_support.html:25 app/templates/todo/outdated.html:24
 #: app/templates/todo/screenshots.html:24
