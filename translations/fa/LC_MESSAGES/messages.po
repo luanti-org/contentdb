@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2025-02-06 11:01+0000\n"
-"Last-Translator: Ilia <iliaabbasi@outlook.com>\n"
+"PO-Revision-Date: 2025-06-27 10:09+0000\n"
+"Last-Translator: Matin Sohrablu <1matin21.1234@gmail.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/minetest/"
 "contentdb/fa/>\n"
 "Language: fa\n"
@@ -17,22 +17,22 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 "Generated-By: Babel 2.15.0\n"
 
 #: app/__init__.py:156
 msgid "Banned:"
-msgstr "قطع دسترسی شده:"
+msgstr "مسدود شده:"
 
 #: app/__init__.py:158
 msgid "You have been banned."
-msgstr "دسترسی شما قطع شده است."
+msgstr "شما مسدود شدید."
 
 #. NOTE: tags: title for 128px
 #: app/_translations.py:6
 msgctxt "tags"
 msgid "128px+"
-msgstr ""
+msgstr "128px+"
 
 #. NOTE: tags: description for 128px
 #: app/_translations.py:8
@@ -44,7 +44,7 @@ msgstr ""
 #: app/_translations.py:10
 msgctxt "tags"
 msgid "16px"
-msgstr ""
+msgstr "16px"
 
 #. NOTE: tags: description for 16px
 #: app/_translations.py:12
@@ -56,7 +56,7 @@ msgstr ""
 #: app/_translations.py:14
 msgctxt "tags"
 msgid "32px"
-msgstr ""
+msgstr "32px"
 
 #. NOTE: tags: description for 32px
 #: app/_translations.py:16
@@ -68,7 +68,7 @@ msgstr ""
 #: app/_translations.py:18
 msgctxt "tags"
 msgid "64px"
-msgstr ""
+msgstr "64px"
 
 #. NOTE: tags: description for 64px
 #: app/_translations.py:20
