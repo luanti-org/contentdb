@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2024-11-24 16:00+0000\n"
-"Last-Translator: Vasilis Sarantidis <bilsarantidis@gmail.com>\n"
+"PO-Revision-Date: 2025-07-05 21:02+0000\n"
+"Last-Translator: GiorgeGi GiorgeGi <giorgegi729@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/minetest/contentdb/"
 "el/>\n"
 "Language: el\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 "Generated-By: Babel 2.15.0\n"
 
 #: app/__init__.py:156
@@ -39,43 +39,43 @@ msgstr "128 πίξελ+"
 #: app/_translations.py:8
 msgctxt "tags"
 msgid "For 128px or higher texture packs"
-msgstr ""
+msgstr "Για πακέτα υφής των 128πίξελ ή παραπάνω"
 
 #. NOTE: tags: title for 16px
 #: app/_translations.py:10
 msgctxt "tags"
 msgid "16px"
-msgstr ""
+msgstr "16πίξελ"
 
 #. NOTE: tags: description for 16px
 #: app/_translations.py:12
 msgctxt "tags"
 msgid "For 16px texture packs"
-msgstr ""
+msgstr "Για πακέτα υφής των 16πίξελ"
 
 #. NOTE: tags: title for 32px
 #: app/_translations.py:14
 msgctxt "tags"
 msgid "32px"
-msgstr ""
+msgstr "32πίξελ"
 
 #. NOTE: tags: description for 32px
 #: app/_translations.py:16
 msgctxt "tags"
 msgid "For 32px texture packs"
-msgstr ""
+msgstr "Για πακέτα υφής των 32πίξελ"
 
 #. NOTE: tags: title for 64px
 #: app/_translations.py:18
 msgctxt "tags"
 msgid "64px"
-msgstr ""
+msgstr "64πίξελ"
 
 #. NOTE: tags: description for 64px
 #: app/_translations.py:20
 msgctxt "tags"
 msgid "For 64px texture packs"
-msgstr ""
+msgstr "Για πακέτα υφής των 64πίξελ"
 
 #. NOTE: tags: title for adventure__rpg
 #: app/_translations.py:22
@@ -107,9 +107,11 @@ msgstr "Κτίσμα"
 
 #. NOTE: tags: description for building
 #: app/_translations.py:30
+#, fuzzy
 msgctxt "tags"
 msgid "Focuses on building, such as adding new materials or nodes"
 msgstr ""
+"Εστιάζει σην οικοδόμηση, όπως στην προσθήκη νέων υλικών και μπλόκ κατασκευής"
 
 #. NOTE: tags: title for building_mechanics
 #: app/_translations.py:32
@@ -119,21 +121,27 @@ msgstr ""
 
 #. NOTE: tags: description for building_mechanics
 #: app/_translations.py:34
+#, fuzzy
 msgctxt "tags"
 msgid "Adds game mechanics or tools that change how players build."
 msgstr ""
+"Προσθέτει μηχανισμούς παιχνιδιού ή εργαλεία τα οποία αλλάζουν τον τρόπο που "
+"οι παίκτες οικοδομούν"
 
 #. NOTE: tags: title for chat
 #: app/_translations.py:36
 msgctxt "tags"
 msgid "Chat / Commands"
-msgstr ""
+msgstr "Συζήτηση / Εντολές"
 
 #. NOTE: tags: description for chat
 #: app/_translations.py:38
+#, fuzzy
 msgctxt "tags"
 msgid "Focus on player chat/communication or console interaction."
 msgstr ""
+"Εστιάζει στην συζήτηση των παικτών/στην επικοινωνία ή στην αλληλεπίδραση με "
+"την κονσόλα"
 
 #. NOTE: tags: title for commerce
 #: app/_translations.py:40
@@ -182,7 +190,7 @@ msgstr "Μεγάλες αλλαγές στον τρόπο παιχνιδιού �
 #, fuzzy
 msgctxt "tags"
 msgid "Creative"
-msgstr "Δημιουργία"
+msgstr "Δημιουργική"
 
 #. NOTE: tags: description for creative
 #: app/_translations.py:54
@@ -198,15 +206,18 @@ msgstr ""
 #, fuzzy
 msgctxt "tags"
 msgid "Custom mapgen"
-msgstr "Σχόλιο"
+msgstr "Προσαρμόσιμη γεννήτρια χάρτη"
 
 #. NOTE: tags: description for custom_mapgen
 #: app/_translations.py:58
+#, fuzzy
 msgctxt "tags"
 msgid ""
 "Contains a completely custom mapgen implemented in Lua, usually requires "
 "worlds to be set to the 'singlenode' mapgen."
 msgstr ""
+"Περιέχει μια εντελώς προσαρμόσιμη υλοποίηση γεννήτριας χάρτη σε Lua, συνήθως "
+"απαιτεί οι κόσμοι να ορίζονται σε γεννήτρια χάρτη 'singlenode'"
 
 #. NOTE: tags: title for decorative
 #: app/_translations.py:60
@@ -216,21 +227,24 @@ msgstr "Διακοσμητικό"
 
 #. NOTE: tags: description for decorative
 #: app/_translations.py:62
+#, fuzzy
 msgctxt "tags"
 msgid "Adds nodes with no other purpose than for use in building"
-msgstr ""
+msgstr "Προσθέτει μπλόκ με όχι άλλο σκοπό πέρα από χρήση σε οικοδομίσεις"
 
 #. NOTE: tags: title for developer_tools
 #: app/_translations.py:64
+#, fuzzy
 msgctxt "tags"
 msgid "Developer Tools"
-msgstr ""
+msgstr "Εργαλεία Προγραμματιστών"
 
 #. NOTE: tags: description for developer_tools
 #: app/_translations.py:66
+#, fuzzy
 msgctxt "tags"
 msgid "Tools for game and mod developers"
-msgstr ""
+msgstr "Εργαλεία για προγραμματιστές παιχνιδιού και τροποποιήσεων"
 
 #. NOTE: tags: title for education
 #: app/_translations.py:68
@@ -244,12 +258,14 @@ msgstr "Ενέργεια"
 msgctxt "tags"
 msgid "Either has educational value, or is a tool to help teachers "
 msgstr ""
+"Είτε έχει εκπαιδευτική αξία, είτε χρησιμεύει ως εργαλείο για να βοηθήσει "
+"δασκάλους "
 
 #. NOTE: tags: title for environment
 #: app/_translations.py:72
 msgctxt "tags"
 msgid "Environment / Weather"
-msgstr ""
+msgstr "Περιβάλλον / Καιρός"
 
 #. NOTE: tags: description for environment
 #: app/_translations.py:74
@@ -258,6 +274,8 @@ msgid ""
 "Improves the world, adding weather, ambient sounds, or other environment "
 "mechanics"
 msgstr ""
+"Βελτιώνει τον κόσμο, προσθέτει καιρό, ήχους περιβάλλοντος, ή άλλους "
+"πειρβαλλοντικούς μηχανισμούς"
 
 #. NOTE: tags: title for food
 #: app/_translations.py:76
@@ -278,6 +296,8 @@ msgid ""
 "For content whose main utility or features are provided within a GUI, on-"
 "screen menu, or similar"
 msgstr ""
+"Για περιεχόμενο όπου η κύρια λειτουργία ή χαρακτηριστικά παρέχονται μέσα σε "
+"μία Γραφική Διεπαφή Χρήστη, σε ένα μενού στην οθόνη, ή παρόμοια"
 
 #. NOTE: tags: title for hud
 #: app/_translations.py:82
@@ -287,9 +307,10 @@ msgstr ""
 
 #. NOTE: tags: description for hud
 #: app/_translations.py:84
+#, fuzzy
 msgctxt "tags"
 msgid "For mods that grant the player extra information in the HUD"
-msgstr ""
+msgstr "Για τροποποιήσεις που παρέχουν στον παίκτη επιπλέον πληροφορίες στο HUD"
 
 #. NOTE: tags: title for inventory
 #: app/_translations.py:86
