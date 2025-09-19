@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-10 15:52+0000\n"
-"PO-Revision-Date: 2025-02-26 20:50+0000\n"
-"Last-Translator: 3raven <elise_declerck@laposte.net>\n"
+"PO-Revision-Date: 2025-02-26 20:56+0000\n"
+"Last-Translator: Tanavit MINETEST <tanavit@posto.ovh>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/minetest/"
 "contentdb/fr/>\n"
 "Language: fr\n"
@@ -5296,7 +5296,7 @@ msgstr ""
 
 #: app/templates/todo/game_support.html:35
 msgid "Supports all games"
-msgstr "Compatible avec tout les jeux"
+msgstr "Compatible avec tous les jeux"
 
 #: app/templates/todo/game_support.html:51
 msgid ""
