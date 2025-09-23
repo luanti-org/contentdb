@@ -133,6 +133,7 @@ class ReportCategory(enum.Enum):
 	ACCOUNT_DELETION = "account_deletion"
 	COPYRIGHT = "copyright"
 	USER_CONDUCT = "user_conduct"
+	SPAM = "spam"
 	ILLEGAL_HARMFUL = "illegal_harmful"
 	REVIEW = "review"
 	APPEAL = "appeal"
@@ -149,6 +150,8 @@ class ReportCategory(enum.Enum):
 			return lazy_gettext("Copyright infringement / DMCA")
 		elif self == ReportCategory.USER_CONDUCT:
 			return lazy_gettext("User behaviour, bullying, or abuse")
+		elif self == ReportCategory.SPAM:
+			return lazy_gettext("Spam")
 		elif self == ReportCategory.ILLEGAL_HARMFUL:
 			return lazy_gettext("Illegal or harmful content")
 		elif self == ReportCategory.REVIEW:
