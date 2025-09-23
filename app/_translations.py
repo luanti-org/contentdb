@@ -113,7 +113,7 @@ pgettext("tags", "For mods created for the Discord \"Weekly Challenges\" modding
 # NOTE: tags: title for less_than_px
 pgettext("tags", "<16px")
 # NOTE: tags: description for less_than_px
-pgettext("tags", "Less than 16px")
+pgettext("tags", "For less than 16px texture packs ")
 # NOTE: tags: title for library
 pgettext("tags", "API / Library")
 # NOTE: tags: description for library

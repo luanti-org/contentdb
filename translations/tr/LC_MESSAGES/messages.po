@@ -7,24 +7,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-10 15:52+0000\n"
+"POT-Creation-Date: 2025-09-23 10:00+0100\n"
 "PO-Revision-Date: 2025-03-10 13:52+0000\n"
 "Last-Translator: Siber <siber@users.noreply.hosted.weblate.org>\n"
-"Language-Team: Turkish <https://hosted.weblate.org/projects/minetest/"
-"contentdb/tr/>\n"
 "Language: tr\n"
+"Language-Team: Turkish "
+"<https://hosted.weblate.org/projects/minetest/contentdb/tr/>\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.3-dev\n"
-"Generated-By: Babel 2.15.0\n"
+"Generated-By: Babel 2.17.0\n"
 
-#: app/__init__.py:156
+#: app/__init__.py:155
 msgid "Banned:"
 msgstr "Yasaklı:"
 
-#: app/__init__.py:158
+#: app/__init__.py:157
 msgid "You have been banned."
 msgstr "Yasaklandınız."
 
@@ -95,8 +94,8 @@ msgid ""
 "For humorous content, meant as a novelty or joke, not to be taken "
 "seriously, and that is not meant to be used seriously or long-term."
 msgstr ""
-"Şaka veya yenilik olarak tasarlanmış, ciddiye alınmaması gereken ve ciddi "
-"veya uzun vadeli kullanım amacı taşımayan mizahi içeriklerdir."
+"Şaka veya yenilik olarak tasarlanmış, ciddiye alınmaması gereken ve ciddi"
+" veya uzun vadeli kullanım amacı taşımayan mizahi içeriklerdir."
 
 #. NOTE: tags: title for building
 #: app/_translations.py:28
@@ -159,8 +158,8 @@ msgid ""
 "Requires futher installation steps, such as installing LuaRocks or "
 "editing the trusted mod setting"
 msgstr ""
-"LuaRocks'u yüklemek veya güvenilir mod ayarını düzenlemek gibi daha ileri "
-"kurulum adımları gerektirir"
+"LuaRocks'u yüklemek veya güvenilir mod ayarını düzenlemek gibi daha ileri"
+" kurulum adımları gerektirir"
 
 #. NOTE: tags: title for crafting
 #: app/_translations.py:48
@@ -188,9 +187,9 @@ msgid ""
 "content only available through a creative inventory, or provides tools "
 "that facilitate ingame creation and doesn't add difficulty or scarcity"
 msgstr ""
-"Özellikle yaratıcı mod için kullanılmak üzere yazılmıştır. Yalnızca yaratıcı "
-"envanter aracılığıyla kullanılabilen içerik ekler veya oyun içi yaratımı "
-"kolaylaştıran zorluk veya kıtlık eklemeyen araçlar sağlar"
+"Özellikle yaratıcı mod için kullanılmak üzere yazılmıştır. Yalnızca "
+"yaratıcı envanter aracılığıyla kullanılabilen içerik ekler veya oyun içi "
+"yaratımı kolaylaştıran zorluk veya kıtlık eklemeyen araçlar sağlar"
 
 #. NOTE: tags: title for custom_mapgen
 #: app/_translations.py:56
@@ -277,8 +276,8 @@ msgid ""
 "For content whose main utility or features are provided within a GUI, on-"
 "screen menu, or similar"
 msgstr ""
-"Temel işlevselliği veya özellikleri bir GKA, ekran menüsü veya benzeri bir "
-"ortamda sunulan içerikler için"
+"Temel işlevselliği veya özellikleri bir GKA, ekran menüsü veya benzeri "
+"bir ortamda sunulan içerikler için"
 
 #. NOTE: tags: title for hud
 #: app/_translations.py:82
@@ -377,8 +376,8 @@ msgid ""
 "For mods created for the Discord \"Weekly Challenges\" modding event in "
 "2021"
 msgstr ""
-"Discord 2021'de \"Haftalık Yarışmalar\" modlama etkinliği için oluşturulan "
-"modlar"
+"Discord 2021'de \"Haftalık Yarışmalar\" modlama etkinliği için "
+"oluşturulan modlar"
 
 #. NOTE: tags: title for less_than_px
 #: app/_translations.py:114
@@ -389,8 +388,8 @@ msgstr "&lt;16px"
 #. NOTE: tags: description for less_than_px
 #: app/_translations.py:116
 msgctxt "tags"
-msgid "Less than 16px"
-msgstr "16px'den az"
+msgid "For less than 16px texture packs "
+msgstr ""
 
 #. NOTE: tags: title for library
 #: app/_translations.py:118
@@ -483,8 +482,8 @@ msgid ""
 "For games and such that are of their own kind, distinct and original in "
 "nature to others of the same category."
 msgstr ""
-"Kendi türünde, diğer benzer kategorilerden farklı ve özgün olan oyunlar ve "
-"benzeri şeyler için."
+"Kendi türünde, diğer benzer kategorilerden farklı ve özgün olan oyunlar "
+"ve benzeri şeyler için."
 
 #. NOTE: tags: title for plants_and_farming
 #: app/_translations.py:148
@@ -511,8 +510,8 @@ msgid ""
 "For content that changes player effects, including physics, for example: "
 "speed, jump height or gravity."
 msgstr ""
-"Oyuncunun fizik dahil efektlerini değiştirmek için, örneğin: hız, zıplama "
-"yükseliği ya da yerçekimi."
+"Oyuncunun fizik dahil efektlerini değiştirmek için, örneğin: hız, zıplama"
+" yükseliği ya da yerçekimi."
 
 #. NOTE: tags: title for puzzle
 #: app/_translations.py:156
@@ -603,8 +602,8 @@ msgid ""
 "Mods and games that aim to simulate real life activity. Similar to "
 "SimCity/The Sims/OpenTTD/etc."
 msgstr ""
-"Gerçek hayata odaklı aktiviteler için modlar. SimCity/The Sims/OpenTTD vs. "
-"Gibi."
+"Gerçek hayata odaklı aktiviteler için modlar. SimCity/The Sims/OpenTTD "
+"vs. Gibi."
 
 #. NOTE: tags: title for singleplayer
 #: app/_translations.py:184
@@ -631,8 +630,8 @@ msgid ""
 "Allows the player to customize their character by changing the texture or"
 " adding accessories."
 msgstr ""
-"Oyuncular karakterlerin dokularını ve aksesuar ekleyerek özelleştirmeye izin "
-"verir."
+"Oyuncular karakterlerin dokularını ve aksesuar ekleyerek özelleştirmeye "
+"izin verir."
 
 #. NOTE: tags: title for sound_music
 #: app/_translations.py:192
@@ -733,8 +732,8 @@ msgid ""
 "Adds or changes transportation methods. Includes teleportation, vehicles,"
 " ridable mobs, transport infrastructure and thematic content"
 msgstr ""
-"Değişmiş yada yeni ulaşım metotlar ekler. Işınlanma, araçlar, binilebilir "
-"yaratıklar, ulaşım altyapısı ve tematik içerik"
+"Değişmiş yada yeni ulaşım metotlar ekler. Işınlanma, araçlar, binilebilir"
+" yaratıklar, ulaşım altyapısı ve tematik içerik"
 
 #. NOTE: tags: title for world_tools
 #: app/_translations.py:222
@@ -831,15 +830,15 @@ msgstr "Şiddet"
 msgctxt "content_warnings"
 msgid "Non-cartoon violence. May be towards fantasy or  human-like characters"
 msgstr ""
-"Çizgi film dışı şiddet. Fantastik veya insan benzeri karakterlere yönelik "
-"olabilir"
+"Çizgi film dışı şiddet. Fantastik veya insan benzeri karakterlere yönelik"
+" olabilir"
 
 #: app/querybuilder.py:60 app/templates/admin/languages/list.html:27
 #: app/templates/admin/tags/list.html:34
 #: app/templates/admin/warnings/list.html:28
 #: app/templates/collections/create_edit.html:56
 #: app/templates/collections/view.html:66 app/templates/modnames/list.html:16
-#: app/templates/packages/list.html:4 app/templates/todo/editor.html:46
+#: app/templates/packages/list.html:4 app/templates/todo/editor.html:68
 #: app/templates/users/list.html:22 app/templates/users/profile.html:265
 msgid "Packages"
 msgstr "Paketler"
@@ -854,7 +853,30 @@ msgstr "%(game_name)s için %(package_type)s"
 msgid "%(delta)s ago"
 msgstr "%(delta)s önce"
 
-#: app/blueprints/api/endpoints.py:74 app/templates/index.html:104
+#: app/blueprints/admin/audit.py:31 app/blueprints/users/account.py:101
+#: app/blueprints/users/settings.py:324 app/templates/users/list.html:18
+msgid "Username"
+msgstr "Kullanıcı Adı"
+
+#: app/blueprints/admin/audit.py:32
+#: app/blueprints/packages/advanced_search.py:53
+msgid "Query"
+msgstr "Sorgu"
+
+#: app/blueprints/admin/audit.py:33 app/blueprints/packages/releases.py:74
+#: app/blueprints/report/__init__.py:37
+#: app/templates/packages/release_edit.html:31
+#: app/templates/packages/release_view.html:31
+msgid "URL"
+msgstr "URL"
+
+#: app/blueprints/admin/audit.py:34 app/blueprints/zipgrep/__init__.py:38
+#: app/templates/base.html:74 app/templates/packages/advanced_search.html:34
+#: app/templates/packages/game_hub.html:35 app/templates/todo/tags.html:14
+msgid "Search"
+msgstr "Ara"
+
+#: app/blueprints/api/endpoints.py:74 app/templates/index.html:105
 msgid "Featured"
 msgstr "Öne Çıkanlar"
 
@@ -875,17 +897,18 @@ msgstr "Paket sınırı"
 
 #: app/blueprints/api/tokens.py:36 app/blueprints/collections/__init__.py:93
 #: app/blueprints/oauth/__init__.py:175 app/blueprints/packages/packages.py:253
-#: app/blueprints/packages/packages.py:552
-#: app/blueprints/packages/packages.py:648
-#: app/blueprints/packages/packages.py:736
+#: app/blueprints/packages/packages.py:549
+#: app/blueprints/packages/packages.py:645
+#: app/blueprints/packages/packages.py:733
 #: app/blueprints/packages/releases.py:66
 #: app/blueprints/packages/releases.py:81 app/blueprints/packages/reviews.py:63
-#: app/blueprints/packages/screenshots.py:36
-#: app/blueprints/packages/screenshots.py:42
-#: app/blueprints/packages/screenshots.py:47
-#: app/blueprints/users/account.py:193 app/blueprints/users/account.py:201
-#: app/blueprints/users/settings.py:79 app/blueprints/users/settings.py:148
-#: app/blueprints/users/settings.py:330 app/templates/users/modtools.html:111
+#: app/blueprints/packages/screenshots.py:37
+#: app/blueprints/packages/screenshots.py:43
+#: app/blueprints/packages/screenshots.py:48
+#: app/blueprints/report/__init__.py:173 app/blueprints/users/account.py:192
+#: app/blueprints/users/account.py:200 app/blueprints/users/settings.py:79
+#: app/blueprints/users/settings.py:148 app/blueprints/users/settings.py:330
+#: app/templates/users/modtools.html:111
 msgid "Save"
 msgstr "Kaydet"
 
@@ -894,7 +917,7 @@ msgstr "Kaydet"
 #: app/blueprints/packages/advanced_search.py:84
 #: app/blueprints/packages/releases.py:56
 #: app/blueprints/packages/releases.py:71 app/blueprints/packages/reviews.py:53
-#: app/blueprints/threads/__init__.py:282
+#: app/blueprints/threads/__init__.py:285
 #: app/templates/admin/languages/list.html:23
 #: app/templates/macros/reviews.html:144 app/templates/macros/topics.html:5
 #: app/templates/packages/release_edit.html:21
@@ -914,7 +937,6 @@ msgid "Page Content"
 msgstr "Sayfa İçeriği"
 
 #: app/blueprints/collections/__init__.py:85
-#: app/blueprints/threads/__init__.py:284
 #: app/templates/collections/view.html:51
 msgid "Private"
 msgstr "Özel"
@@ -989,8 +1011,8 @@ msgstr "Uygulama Türü"
 #: app/blueprints/oauth/__init__.py:198
 msgid "An OAuth client with that title already exists. Please choose a new title."
 msgstr ""
-"Bu başlığa sahip bir OAuth istemcisi zaten mevcut. Lütfen yeni bir başlık "
-"seçin."
+"Bu başlığa sahip bir OAuth istemcisi zaten mevcut. Lütfen yeni bir başlık"
+" seçin."
 
 #: app/blueprints/oauth/__init__.py:262
 msgid "Revoked all user tokens"
@@ -1008,19 +1030,19 @@ msgstr "Çeviri"
 
 #: app/blueprints/packages/__init__.py:42
 #: app/templates/packages/releases_list.html:34
-#: app/templates/packages/view.html:675 app/templates/todo/editor.html:75
+#: app/templates/packages/view.html:675 app/templates/todo/editor.html:97
 msgid "Releases"
 msgstr "Sürümler"
 
 #: app/blueprints/packages/__init__.py:47
 #: app/templates/packages/screenshots.html:4
-#: app/templates/packages/screenshots.html:14 app/templates/todo/editor.html:11
+#: app/templates/packages/screenshots.html:14 app/templates/todo/editor.html:33
 msgid "Screenshots"
 msgstr "Ekran görüntüleri"
 
 #: app/blueprints/packages/__init__.py:52
 #: app/templates/packages/edit_maintainers.html:8
-#: app/templates/packages/view.html:646 app/utils/minetest_hypertext.py:302
+#: app/templates/packages/view.html:646 app/utils/luanti_hypertext.py:302
 msgid "Maintainers"
 msgstr "Bakımcılar"
 
@@ -1043,9 +1065,9 @@ msgstr "Paylaşım ve Rozetler"
 msgid "Remove / Unpublish"
 msgstr "Kaldır / Yayından Kaldır"
 
-#: app/blueprints/packages/__init__.py:80 app/logic/package_approval.py:123
-#: app/templates/packages/game_support.html:4
-#: app/utils/minetest_hypertext.py:275 app/utils/minetest_hypertext.py:277
+#: app/blueprints/packages/__init__.py:80 app/logic/package_approval.py:125
+#: app/templates/packages/game_support.html:4 app/utils/luanti_hypertext.py:275
+#: app/utils/luanti_hypertext.py:277
 msgid "Supported Games"
 msgstr "Desteklenen Oyunlar"
 
@@ -1075,13 +1097,10 @@ msgstr "Kullanım dışı"
 msgid "All content warnings"
 msgstr "Tüm içerik uyarıları"
 
-#: app/blueprints/packages/advanced_search.py:53
-msgid "Query"
-msgstr "Sorgu"
-
 #: app/blueprints/packages/advanced_search.py:54
-#: app/blueprints/packages/packages.py:231 app/templates/packages/view.html:616
-#: app/utils/minetest_hypertext.py:263
+#: app/blueprints/packages/packages.py:231
+#: app/blueprints/zipgrep/__init__.py:36 app/templates/packages/view.html:616
+#: app/utils/luanti_hypertext.py:263
 msgid "Type"
 msgstr "Tür"
 
@@ -1093,7 +1112,7 @@ msgstr "Yaratıcı"
 #: app/blueprints/packages/advanced_search.py:57
 #: app/blueprints/packages/packages.py:238 app/templates/admin/tags/list.html:4
 #: app/templates/admin/tags/list.html:10 app/templates/todo/tags.html:38
-#: app/utils/minetest_hypertext.py:264
+#: app/utils/luanti_hypertext.py:264
 msgid "Tags"
 msgstr "Etiketler"
 
@@ -1104,7 +1123,7 @@ msgstr "İçerik Uyarıları"
 
 #: app/blueprints/packages/advanced_search.py:63
 #: app/blueprints/packages/packages.py:240 app/templates/packages/view.html:627
-#: app/utils/minetest_hypertext.py:298
+#: app/utils/luanti_hypertext.py:298
 msgid "License"
 msgstr "Lisans"
 
@@ -1116,7 +1135,7 @@ msgstr "Desteklediği Oyunlar"
 #: app/templates/admin/storage.html:39
 #: app/templates/collections/create_edit.html:81
 #: app/templates/collections/list.html:39
-#: app/templates/collections/view.html:91 app/templates/index.html:48
+#: app/templates/collections/view.html:91 app/templates/index.html:49
 #: app/templates/macros/reviews.html:82 app/templates/macros/topics.html:52
 #: app/templates/packages/game_hub.html:5
 #: app/templates/packages/game_hub.html:25
@@ -1148,7 +1167,7 @@ msgstr "Sırala"
 msgid "Package score"
 msgstr "Paket skoru"
 
-#: app/blueprints/packages/advanced_search.py:86 app/templates/index.html:78
+#: app/blueprints/packages/advanced_search.py:86 app/templates/index.html:79
 #: app/templates/packages/reviews_list.html:4
 #: app/templates/packages/view.html:201 app/templates/packages/view.html:343
 #: app/templates/users/profile.html:279
@@ -1197,12 +1216,12 @@ msgid "Title (Human-readable)"
 msgstr "Başlık (İnsan-okunur)"
 
 #: app/blueprints/packages/packages.py:233
-#: app/blueprints/packages/packages.py:646
+#: app/blueprints/packages/packages.py:643
 msgid "Name (Technical)"
 msgstr "Ad (Teknik)"
 
 #: app/blueprints/packages/packages.py:233
-#: app/blueprints/packages/packages.py:647
+#: app/blueprints/packages/packages.py:644
 #: app/templates/packages/create_edit.html:80
 msgid "Lower case letters (a-z), digits (0-9), and underscores (_) only"
 msgstr "Yalnızca küçük harfler (a-z), rakamlar (0-9) ve alt çizgiler (_)"
@@ -1212,7 +1231,7 @@ msgid "Short Description (Plaintext)"
 msgstr "Kısa Açıklama (Düz Metin)"
 
 #: app/blueprints/packages/packages.py:236 app/templates/packages/view.html:638
-#: app/utils/minetest_hypertext.py:300
+#: app/utils/luanti_hypertext.py:300
 msgid "Maintenance State"
 msgstr "Bakım Durumu"
 
@@ -1272,7 +1291,7 @@ msgstr "Paket zaten mevcut"
 msgid "A collection with a similar name already exists"
 msgstr "Benzer ada sahip bir koleksiyon zaten var"
 
-#: app/blueprints/packages/packages.py:332
+#: app/blueprints/packages/packages.py:329
 #: app/blueprints/packages/releases.py:89
 msgid ""
 "You must add an email address to your account and confirm it before you "
@@ -1281,89 +1300,89 @@ msgstr ""
 "Paketleri yönetebilmeniz için hesabınıza bir e-posta adresi eklemeniz ve "
 "bunu doğrulamanız gerekir"
 
-#: app/blueprints/packages/packages.py:338
+#: app/blueprints/packages/packages.py:335
 msgid "Save draft"
 msgstr "Taslağı kaydet"
 
-#: app/blueprints/packages/packages.py:346
+#: app/blueprints/packages/packages.py:343
 msgid "Unable to find that user"
 msgstr "Bu kullanıcı bulunamadı"
 
-#: app/blueprints/packages/packages.py:350
-#: app/blueprints/packages/screenshots.py:137
+#: app/blueprints/packages/packages.py:347
+#: app/blueprints/packages/screenshots.py:138
 msgid "Permission denied"
 msgstr "İzin reddedildi"
 
-#: app/blueprints/packages/packages.py:409
-#: app/blueprints/packages/packages.py:503
-#: app/blueprints/packages/packages.py:525
+#: app/blueprints/packages/packages.py:406
+#: app/blueprints/packages/packages.py:500
+#: app/blueprints/packages/packages.py:522
 msgid "You don't have permission to do that"
 msgstr "Bunu yapmak için izniniz yok"
 
-#: app/blueprints/packages/packages.py:444
+#: app/blueprints/packages/packages.py:441
 msgid "Please comment what changes are needed in the approval thread"
 msgstr "Lütfen onay dizisinde hangi değişikliklerin gerekli olduğunu yorumlayın"
 
-#: app/blueprints/packages/packages.py:451
+#: app/blueprints/packages/packages.py:448
 msgid ""
 "Please comment in the approval thread so editors know what you have "
 "changed"
 msgstr "Ne değiştirdiğinizi bilmeleri için lütfen onay başlığına yorum yapın"
 
-#: app/blueprints/packages/packages.py:490
+#: app/blueprints/packages/packages.py:487
 #, python-format
 msgid "Set state to %(state)s"
 msgstr "Durumu %(state)slara ayarla"
 
-#: app/blueprints/packages/packages.py:520
+#: app/blueprints/packages/packages.py:517
 msgid "Deleted package"
 msgstr "Silinmiş paket"
 
-#: app/blueprints/packages/packages.py:542
+#: app/blueprints/packages/packages.py:539
 msgid "Unapproved package"
 msgstr "Onaylanmamış paket"
 
-#: app/blueprints/packages/packages.py:551
+#: app/blueprints/packages/packages.py:548
 msgid "Maintainers (Comma-separated)"
 msgstr "Geliştiriciler (Virgülle ayrılmış)"
 
-#: app/blueprints/packages/packages.py:560
+#: app/blueprints/packages/packages.py:557
 msgid "You don't have permission to edit maintainers"
 msgstr "Geliştiricileri düzenleme izniniz yok"
 
-#: app/blueprints/packages/packages.py:610
+#: app/blueprints/packages/packages.py:607
 msgid "You are not a maintainer"
 msgstr "Bir geliştirici değilsiniz"
 
-#: app/blueprints/packages/packages.py:613
+#: app/blueprints/packages/packages.py:610
 msgid "Package owners cannot remove themselves as maintainers"
 msgstr "Paket sahipleri kendilerini geliştirici olmaktan kaldıramaz"
 
-#: app/blueprints/packages/packages.py:645
+#: app/blueprints/packages/packages.py:642
 msgid "Author Name"
 msgstr "Yazar Adı"
 
-#: app/blueprints/packages/packages.py:732
+#: app/blueprints/packages/packages.py:729
 msgid "Enable support detection based on dependencies (recommended)"
 msgstr "Bağımlılıklara göre destek algılamayı etkinleştir (önerilen)"
 
-#: app/blueprints/packages/packages.py:733
+#: app/blueprints/packages/packages.py:730
 msgid "Supported games"
 msgstr "Desteklenen oyunlar"
 
-#: app/blueprints/packages/packages.py:734
+#: app/blueprints/packages/packages.py:731
 msgid "Unsupported games"
 msgstr "Desteklenmeyen oyunlar"
 
-#: app/blueprints/packages/packages.py:735
+#: app/blueprints/packages/packages.py:732
 msgid "Supports all games (unless stated) / is game independent"
 msgstr "Tüm oyunları destekler (belirtilmediği sürece) / oyundan bağımsızdır"
 
-#: app/blueprints/packages/packages.py:751
+#: app/blueprints/packages/packages.py:748
 msgid "You need at least one release before you can edit game support"
 msgstr "Oyun desteğini düzenleyebilmeniz için en az bir sürüm gerekir"
 
-#: app/blueprints/packages/packages.py:755
+#: app/blueprints/packages/packages.py:752
 msgid "Mod(pack) needs to contain at least one mod. Please create a new release"
 msgstr "Mod(paket) en az bir mod içermelidir. Lütfen yeni bir sürüm oluşturun"
 
@@ -1378,7 +1397,7 @@ msgstr "Yöntem"
 
 #: app/blueprints/packages/releases.py:59
 #: app/blueprints/packages/releases.py:61
-#: app/blueprints/packages/screenshots.py:35
+#: app/blueprints/packages/screenshots.py:36
 msgid "File Upload"
 msgstr "Dosya Yükle"
 
@@ -1388,28 +1407,22 @@ msgstr "Git referansı (ör: commit hash, branch veya tag)"
 
 #: app/blueprints/packages/releases.py:62
 #: app/blueprints/packages/releases.py:77
-#: app/blueprints/packages/releases.py:217
+#: app/blueprints/packages/releases.py:218
 msgid "Minimum Luanti Version"
 msgstr "Minimum Luanti Sürümü"
 
 #: app/blueprints/packages/releases.py:64
 #: app/blueprints/packages/releases.py:79
-#: app/blueprints/packages/releases.py:220
+#: app/blueprints/packages/releases.py:221
 msgid "Maximum Luanti Version"
 msgstr "Maksimum Luanti Sürümü"
-
-#: app/blueprints/packages/releases.py:74
-#: app/templates/packages/release_edit.html:31
-#: app/templates/packages/release_view.html:31
-msgid "URL"
-msgstr "URL"
 
 #: app/blueprints/packages/releases.py:75
 msgid "Task ID"
 msgstr "Görev ID"
 
 #: app/blueprints/packages/releases.py:76
-#: app/blueprints/packages/screenshots.py:41
+#: app/blueprints/packages/screenshots.py:42
 msgid "Is Approved"
 msgstr "Onaylandı"
 
@@ -1421,75 +1434,75 @@ msgstr "Git'ten içe aktar"
 msgid "Upload .zip file"
 msgstr ".zip dosyasını yükle"
 
-#: app/blueprints/packages/releases.py:216
+#: app/blueprints/packages/releases.py:217
 msgid "Set Min"
 msgstr "Minimumu Ayarla"
 
-#: app/blueprints/packages/releases.py:219
+#: app/blueprints/packages/releases.py:220
 msgid "Set Max"
 msgstr "Maksimumu Ayarla"
 
-#: app/blueprints/packages/releases.py:222
+#: app/blueprints/packages/releases.py:223
 msgid "Only change values previously set as none"
 msgstr "Yalnızca daha önce hiçbiri olarak ayarlanan değerleri değiştirin"
 
-#: app/blueprints/packages/releases.py:223
+#: app/blueprints/packages/releases.py:224
 msgid "Update"
 msgstr "Güncelleme"
 
-#: app/blueprints/packages/releases.py:275
+#: app/blueprints/packages/releases.py:276
 #: app/templates/packages/update_config.html:25
 msgid "Trigger"
 msgstr "Tetiklen"
 
-#: app/blueprints/packages/releases.py:276
+#: app/blueprints/packages/releases.py:277
 msgid "New Commit"
 msgstr "Yeni Commit"
 
-#: app/blueprints/packages/releases.py:277 app/templates/admin/tags/list.html:8
+#: app/blueprints/packages/releases.py:278 app/templates/admin/tags/list.html:8
 msgid "New Tag"
 msgstr "Yeni Etiket"
 
-#: app/blueprints/packages/releases.py:279
+#: app/blueprints/packages/releases.py:280
 msgid "Branch name"
 msgstr "Branch adı"
 
-#: app/blueprints/packages/releases.py:280
+#: app/blueprints/packages/releases.py:281
 #: app/templates/packages/update_config.html:38
 msgid "Action"
 msgstr "Hareket"
 
-#: app/blueprints/packages/releases.py:281
+#: app/blueprints/packages/releases.py:282
 msgid "Send notification and mark as outdated"
 msgstr "Bildirim gönder ve eski olarak işaretle"
 
-#: app/blueprints/packages/releases.py:281 app/logic/package_approval.py:104
+#: app/blueprints/packages/releases.py:282 app/logic/package_approval.py:107
 msgid "Create release"
 msgstr "Sürüm oluştur"
 
-#: app/blueprints/packages/releases.py:283
+#: app/blueprints/packages/releases.py:284
 msgid "Save Settings"
 msgstr "Ayarları Kaydet"
 
-#: app/blueprints/packages/releases.py:284
+#: app/blueprints/packages/releases.py:285
 msgid "Disable Automation"
 msgstr "Otomasyonu Devre Dışı Bırak"
 
-#: app/blueprints/packages/releases.py:323
+#: app/blueprints/packages/releases.py:324
 msgid "Please add a Git repository URL in order to set up automatic releases"
 msgstr "Otomatik sürümleri ayarlamak için lütfen bir Git deposu URL'si ekleyin"
 
-#: app/blueprints/packages/releases.py:339
+#: app/blueprints/packages/releases.py:340
 msgid "Deleted update configuration"
 msgstr "Silinen güncelleme yapılandırması"
 
-#: app/blueprints/packages/releases.py:347
+#: app/blueprints/packages/releases.py:348
 msgid "Now, please create an initial release"
 msgstr "Şimdi, lütfen bir ilk sürüm oluşturun"
 
 #: app/blueprints/packages/reviews.py:60 app/blueprints/threads/__init__.py:181
 #: app/blueprints/threads/__init__.py:182
-#: app/blueprints/threads/__init__.py:283
+#: app/blueprints/threads/__init__.py:286
 msgid "Comment"
 msgstr "Yorum"
 
@@ -1526,8 +1539,8 @@ msgstr ""
 
 #: app/blueprints/packages/reviews.py:94 app/blueprints/threads/__init__.py:207
 #: app/blueprints/threads/__init__.py:240
-#: app/blueprints/threads/__init__.py:335 app/blueprints/users/settings.py:114
-#: app/logic/packages.py:131
+#: app/blueprints/threads/__init__.py:333 app/blueprints/users/settings.py:114
+#: app/logic/packages.py:149
 msgid "Linking to blocked sites is not allowed"
 msgstr "Engellenen sitelere bağlantı verilmesine izin verilmez"
 
@@ -1539,26 +1552,41 @@ msgstr "Kendi paketinizle ilgili yorumları oylayamazsınız!"
 msgid "You can't vote on your own reviews!"
 msgstr "Kendi yorumlarınıza oy veremezsiniz!"
 
-#: app/blueprints/packages/screenshots.py:34
-#: app/blueprints/packages/screenshots.py:40
+#: app/blueprints/packages/screenshots.py:35
+#: app/blueprints/packages/screenshots.py:41
 msgid "Title/Caption"
 msgstr "Başlık"
 
-#: app/blueprints/packages/screenshots.py:46
+#: app/blueprints/packages/screenshots.py:47
 #: app/templates/packages/screenshots.html:110
 msgid "Cover Image"
 msgstr "Kapak Resmi"
 
-#: app/blueprints/report/__init__.py:34 app/templates/users/modtools.html:79
+#: app/blueprints/report/__init__.py:35
+msgid "Category"
+msgstr ""
+
+#: app/blueprints/report/__init__.py:38
+msgid "Subject / Title"
+msgstr ""
+
+#: app/blueprints/report/__init__.py:39 app/templates/users/modtools.html:79
 msgid "Message"
 msgstr "Mesaj"
 
-#: app/blueprints/report/__init__.py:35 app/templates/macros/threads.html:51
-#: app/templates/packages/view.html:706 app/templates/report/index.html:4
-#: app/templates/report/index.html:10 app/templates/users/account.html:91
-#: app/templates/users/profile.html:37
+#: app/blueprints/report/__init__.py:40
+msgid "Image Upload"
+msgstr ""
+
+#: app/blueprints/report/__init__.py:41 app/templates/macros/threads.html:51
+#: app/templates/packages/view.html:706 app/templates/report/report.html:4
+#: app/templates/users/account.html:90 app/templates/users/profile.html:37
 msgid "Report"
 msgstr "Rapor"
+
+#: app/blueprints/report/__init__.py:92 app/logic/screenshots.py:34
+msgid "a PNG, JPEG, or WebP image file"
+msgstr "PNG, JPEG veya WebP resim dosyası"
 
 #: app/blueprints/threads/__init__.py:71
 msgid "Already subscribed!"
@@ -1592,20 +1620,20 @@ msgstr "Konu açma gönderisi silinemiyor!"
 msgid "Please wait before commenting again"
 msgstr "Tekrar yorum yapmadan önce lütfen bekleyin"
 
-#: app/blueprints/threads/__init__.py:285
+#: app/blueprints/threads/__init__.py:287
 #: app/templates/macros/package_approval.html:56
 msgid "Open Thread"
 msgstr "Konu Aç"
 
-#: app/blueprints/threads/__init__.py:310
+#: app/blueprints/threads/__init__.py:309
 msgid "Unable to create thread!"
 msgstr "Konu oluşturulamıyor!"
 
-#: app/blueprints/threads/__init__.py:316
+#: app/blueprints/threads/__init__.py:315
 msgid "An approval thread already exists! Consider replying there instead"
 msgstr "Onaylanmış bir konu zaten var! Bunun yerine oraya yanıt vermeyi düşünün"
 
-#: app/blueprints/threads/__init__.py:320
+#: app/blueprints/threads/__init__.py:319
 msgid "Please wait before opening another thread"
 msgstr "Lütfen başka bir konu açmadan önce bekleyin"
 
@@ -1624,7 +1652,7 @@ msgstr "Kullanıcı adı ya da e-posta"
 msgid "Password"
 msgstr "Parola"
 
-#: app/blueprints/users/account.py:38 app/blueprints/zipgrep/__init__.py:37
+#: app/blueprints/users/account.py:38
 msgid "Remember me"
 msgstr "Beni hatırla"
 
@@ -1658,12 +1686,7 @@ msgstr "Giriş başarısız oldu"
 msgid "Display Name"
 msgstr "Görünecek İsim"
 
-#: app/blueprints/users/account.py:101 app/blueprints/users/settings.py:324
-#: app/templates/users/list.html:18
-msgid "Username"
-msgstr "Kullanıcı Adı"
-
-#: app/blueprints/users/account.py:102
+#: app/blueprints/users/account.py:103
 msgid ""
 "Only alphabetic letters (A-Za-z), numbers (0-9), underscores (_), minuses"
 " (-), and periods (.) allowed"
@@ -1671,8 +1694,8 @@ msgstr ""
 "Yalnızca alfabetik harflere (A-Za-z), sayılara (0-9), alt çizgilere (_), "
 "eksilere (-) ve noktalara (.) izin verilir"
 
-#: app/blueprints/users/account.py:104 app/blueprints/users/account.py:153
-#: app/blueprints/users/account.py:189 app/blueprints/users/account.py:338
+#: app/blueprints/users/account.py:104 app/blueprints/users/account.py:152
+#: app/blueprints/users/account.py:188 app/blueprints/users/account.py:337
 #: app/blueprints/users/settings.py:147
 msgid "Email"
 msgstr "E-posta"
@@ -1681,59 +1704,55 @@ msgstr "E-posta"
 msgid "What is the result of the above calculation?"
 msgstr "Yukarıdaki hesaplamanın sonucu nedir?"
 
-#: app/blueprints/users/account.py:107
-msgid "I agree"
-msgstr "Onaylıyorum"
-
-#: app/blueprints/users/account.py:108 app/templates/users/login.html:34
+#: app/blueprints/users/account.py:107 app/templates/users/login.html:34
 #: app/templates/users/register.html:4
 msgid "Register"
 msgstr "Kaydol"
 
-#: app/blueprints/users/account.py:113
+#: app/blueprints/users/account.py:112
 msgid "Incorrect captcha answer"
 msgstr "Hatalı captcha yanıtı"
 
-#: app/blueprints/users/account.py:154
+#: app/blueprints/users/account.py:153
 msgid "Reset Password"
 msgstr "Şifreyi Yenile"
 
-#: app/blueprints/users/account.py:180
+#: app/blueprints/users/account.py:179
 msgid "Unable to find account"
 msgstr "Hesap bulunamadı"
 
-#: app/blueprints/users/account.py:190 app/blueprints/users/account.py:198
+#: app/blueprints/users/account.py:189 app/blueprints/users/account.py:197
 msgid "New password"
 msgstr "Yeni Parola"
 
-#: app/blueprints/users/account.py:191 app/blueprints/users/account.py:199
+#: app/blueprints/users/account.py:190 app/blueprints/users/account.py:198
 msgid "Verify password"
 msgstr "Parolayı Doğrula"
 
-#: app/blueprints/users/account.py:192 app/blueprints/users/account.py:200
+#: app/blueprints/users/account.py:191 app/blueprints/users/account.py:199
 msgid "Passwords must match"
 msgstr "Parolalar eşleşmeli"
 
-#: app/blueprints/users/account.py:197
+#: app/blueprints/users/account.py:196
 msgid "Old password"
 msgstr "Eski Parola"
 
-#: app/blueprints/users/account.py:208
+#: app/blueprints/users/account.py:207
 msgid "Passwords do not match"
 msgstr "Parolalar eşleşmiyor"
 
-#: app/blueprints/users/account.py:219 app/blueprints/users/settings.py:175
+#: app/blueprints/users/account.py:218 app/blueprints/users/settings.py:175
 #: app/logic/users.py:51
 msgid "That email address has been unsubscribed/blacklisted, and cannot be used"
 msgstr ""
 "Bu e-posta adresi abonelikten çıkarıldı/kara listeye alındı ve "
 "kullanılamaz"
 
-#: app/blueprints/users/account.py:224 app/logic/users.py:46
+#: app/blueprints/users/account.py:223 app/logic/users.py:46
 msgid "Email already in use"
 msgstr "E-posta zaten kullanımda"
 
-#: app/blueprints/users/account.py:225 app/logic/users.py:47
+#: app/blueprints/users/account.py:224 app/logic/users.py:47
 #, python-format
 msgid ""
 "We were unable to create the account as the email is already in use by "
@@ -1742,35 +1761,35 @@ msgstr ""
 "E-posta zaten %(display_name)s tarafından kullanıldığından hesabı "
 "oluşturamadık. Farklı bir e-posta adresi deneyin."
 
-#: app/blueprints/users/account.py:239 app/blueprints/users/account.py:243
+#: app/blueprints/users/account.py:238 app/blueprints/users/account.py:242
 msgid "Your password has been changed successfully."
 msgstr "Parolanız başarıyla değiştirildi."
 
-#: app/blueprints/users/account.py:258
+#: app/blueprints/users/account.py:257
 msgid "Old password is incorrect"
 msgstr "Eski parola hatalı"
 
-#: app/blueprints/users/account.py:286
+#: app/blueprints/users/account.py:285
 msgid "Unknown verification token!"
 msgstr "Bilinmeyen doğrulama jetonu!"
 
-#: app/blueprints/users/account.py:290
+#: app/blueprints/users/account.py:289
 msgid "Token has expired"
 msgstr "Jetonun süresi doldu"
 
-#: app/blueprints/users/account.py:304
+#: app/blueprints/users/account.py:303
 msgid "Another user is already using that email"
 msgstr "Başka bir kullanıcı zaten bu e-postayı kullanıyor"
 
-#: app/blueprints/users/account.py:307
+#: app/blueprints/users/account.py:306
 msgid "Confirmed email change"
 msgstr "Onaylanmış e-posta değişikliği"
 
-#: app/blueprints/users/account.py:312
+#: app/blueprints/users/account.py:311
 msgid "Email address changed"
 msgstr "E-posta adresi değiştirildi"
 
-#: app/blueprints/users/account.py:313
+#: app/blueprints/users/account.py:312
 msgid ""
 "Your email address has changed. If you didn't request this, please "
 "contact an administrator."
@@ -1778,15 +1797,15 @@ msgstr ""
 "E-posta adresiniz değişti. Bunu siz talep etmediyseniz, lütfen bir "
 "yönetici ile iletişime geçin."
 
-#: app/blueprints/users/account.py:331
+#: app/blueprints/users/account.py:330
 msgid "You may now log in"
 msgstr "Şimdi giriş yapabilirsiniz"
 
-#: app/blueprints/users/account.py:339
+#: app/blueprints/users/account.py:338
 msgid "Send"
 msgstr "Gönder"
 
-#: app/blueprints/users/account.py:370
+#: app/blueprints/users/account.py:369
 msgid ""
 "That email is now blacklisted. Please contact an admin if you wish to "
 "undo this."
@@ -1803,8 +1822,8 @@ msgid ""
 "Unable to get GitHub username for user. Make sure the forum account "
 "exists."
 msgstr ""
-"Kullanıcı için GitHub kullanıcı adı alınamadı. Forum hesabının var olduğuna "
-"emin olun."
+"Kullanıcı için GitHub kullanıcı adı alınamadı. Forum hesabının var "
+"olduğuna emin olun."
 
 #: app/blueprints/users/claim.py:66
 msgid ""
@@ -1843,7 +1862,7 @@ msgstr "Bilinmeyen talep türü"
 msgid "Top reviewer"
 msgstr "En iyi yorumlayıcı"
 
-#: app/blueprints/users/profile.py:118
+#: app/blueprints/users/profile.py:119
 #, python-format
 msgid "%(display_name)s has written the most helpful reviews on ContentDB."
 msgstr "%(display_name)s, ContentDB'deki en yararlı incelemeleri yazdı."
@@ -1856,7 +1875,7 @@ msgstr "2'nci en yararlı yorumlayıcı"
 msgid "3rd most helpful reviewer"
 msgstr "3'üncü en yararlı yorumlayıcı"
 
-#: app/blueprints/users/profile.py:126
+#: app/blueprints/users/profile.py:127
 #, python-format
 msgid "This puts %(display_name)s in the top %(perc)s%%"
 msgstr "Bu, %(display_name)s 'i %(perc)s de en iyi yapar"
@@ -1954,7 +1973,8 @@ msgid ""
 "You need to add an email address and password before you can remove your "
 "GitHub account"
 msgstr ""
-"GitHub hesabını silmeden önce hesabına e-posta adresi ve şifre eklemen lazım"
+"GitHub hesabını silmeden önce hesabına e-posta adresi ve şifre eklemen "
+"lazım"
 
 #: app/blueprints/users/settings.py:279
 msgid "Users with moderator rank or above cannot be deleted"
@@ -1980,58 +2000,52 @@ msgstr "Rütbe"
 msgid "Can't promote a user to a rank higher than yourself!"
 msgstr "Bir kullanıcıyı kendinizden daha yüksek bir rütbeye yükseltemezsiniz!"
 
-#: app/blueprints/vcs/github.py:56
+#: app/blueprints/vcs/github.py:55
 msgid "Authorization failed [err=gh-oauth-login-failed]"
 msgstr "Yetkilendirme başarısız oldu: [err=gh-oauth-login-failed]"
 
-#: app/blueprints/vcs/github.py:85
+#: app/blueprints/vcs/github.py:84
 msgid "Linked GitHub to account"
 msgstr "Github hesabına bağlandı"
 
-#: app/blueprints/vcs/github.py:90
+#: app/blueprints/vcs/github.py:89
 #, python-format
 msgid "GitHub account is already associated with another user: %(username)s"
 msgstr "GitHub hesabı: %(username)s tarafından zaten ilişkilendirildi"
 
-#: app/blueprints/vcs/github.py:98 app/blueprints/vcs/github.py:124
+#: app/blueprints/vcs/github.py:97 app/blueprints/vcs/github.py:124
 msgid "Authorization failed [err=gh-login-failed]"
 msgstr "Yetkilendirme başarısız oldu [err=gh-login-failed]"
 
-#: app/blueprints/zipgrep/__init__.py:35
+#: app/blueprints/zipgrep/__init__.py:34
 msgid "Text to find (regex)"
 msgstr "Bulunacak metin (düzenli ifade)"
 
-#: app/blueprints/zipgrep/__init__.py:36
+#: app/blueprints/zipgrep/__init__.py:35
 msgid "File filter"
 msgstr "Dosya filtresi"
 
-#: app/blueprints/zipgrep/__init__.py:38 app/templates/base.html:74
-#: app/templates/packages/advanced_search.html:34
-#: app/templates/packages/game_hub.html:35 app/templates/todo/tags.html:14
-msgid "Search"
-msgstr "Ara"
-
-#: app/logic/package_approval.py:95
+#: app/logic/package_approval.py:98
 msgid "A package already exists with this name. Please see Policy and Guidance 3"
 msgstr "Bu isimde bir paket zaten mevcuttur. Lütfen Politika ve Kılavuz 3'e bakın"
 
-#: app/logic/package_approval.py:99
+#: app/logic/package_approval.py:102
 msgid "You need to create a release before this package can be approved."
 msgstr "Bu paketin onaylanabilmesi için bir sürüm oluşturmanız gerekir."
 
-#: app/logic/package_approval.py:101
+#: app/logic/package_approval.py:104
 msgid "Release is still importing, or has an error."
 msgstr "Sürüm hala içe aktarılıyor veya bir hata içeriyor."
 
-#: app/logic/package_approval.py:105
+#: app/logic/package_approval.py:108
 msgid "Set up releases"
 msgstr "Sürümleri ayarla"
 
-#: app/logic/package_approval.py:112
+#: app/logic/package_approval.py:114
 msgid "You need to add at least one screenshot."
 msgstr "En az bir ekran görüntüsü eklemeniz gerekir."
 
-#: app/logic/package_approval.py:117
+#: app/logic/package_approval.py:120
 #, python-format
 msgid ""
 "The following hard dependencies need to be added to ContentDB first: "
@@ -2040,7 +2054,7 @@ msgstr ""
 "Önce aşağıdaki sabit bağımlılıkların ContentDB'ye eklenmesi gerekir: "
 "%(deps)s"
 
-#: app/logic/package_approval.py:121
+#: app/logic/package_approval.py:124
 msgid ""
 "What games does your package support? Please specify on the supported "
 "games page"
@@ -2048,25 +2062,25 @@ msgstr ""
 "Paketiniz hangi oyunları destekliyor? Lütfen desteklenen oyunlar "
 "sayfasında belirtin"
 
-#: app/logic/package_approval.py:126
+#: app/logic/package_approval.py:128
 msgid "Please wait for the license to be added to CDB."
 msgstr "Lütfen lisansın CDB'ye eklenmesini bekleyin."
 
-#: app/logic/package_approval.py:134
+#: app/logic/package_approval.py:136
 msgid "Please make sure that this package has the right to the names it uses."
 msgstr ""
 "Lütfen bu paketin kullandığı isimler üzerinde hak sahibi olduğundan emin "
 "olun."
 
-#: app/logic/package_approval.py:139
+#: app/logic/package_approval.py:140
 #, python-format
 msgid "Please make sure that this package has the right to the names %(names)s"
 msgstr "Lütfen bu paketin %(names)s isim hakkına sahip olduğundan emin olun"
 
-#: app/logic/package_approval.py:140 app/templates/index.html:112
-#: app/templates/index.html:123 app/templates/index.html:134
-#: app/templates/index.html:145 app/templates/index.html:156
-#: app/templates/index.html:182 app/templates/packages/game_hub.html:42
+#: app/logic/package_approval.py:142 app/templates/index.html:113
+#: app/templates/index.html:124 app/templates/index.html:135
+#: app/templates/index.html:146 app/templates/index.html:157
+#: app/templates/index.html:183 app/templates/packages/game_hub.html:42
 #: app/templates/packages/game_hub.html:49
 #: app/templates/packages/game_hub.html:56
 #: app/templates/packages/game_hub.html:63
@@ -2074,15 +2088,15 @@ msgstr "Lütfen bu paketin %(names)s isim hakkına sahip olduğundan emin olun"
 msgid "See more"
 msgstr "Daha fazlasını görün"
 
-#: app/logic/package_approval.py:145
+#: app/logic/package_approval.py:147
 msgid "Error: Another package already uses this forum topic!"
 msgstr "Hata: Başka bir paket zaten bu forum konusunu kullanıyor!"
 
-#: app/logic/package_approval.py:150
+#: app/logic/package_approval.py:152
 msgid "Error: Forum topic author doesn't match package author."
 msgstr "Hata: Forum konu yazarı, paket yazarıyla eşleşmiyor."
 
-#: app/logic/package_approval.py:152
+#: app/logic/package_approval.py:154
 msgid ""
 "Warning: Forum topic not found. The topic may have been created since the"
 " last forum crawl."
@@ -2090,7 +2104,7 @@ msgstr ""
 "Uyarı: Forum konusu bulunamadı. Konu, son forum taramasından bu yana "
 "oluşturulmuş olabilir."
 
-#: app/logic/packages.py:99
+#: app/logic/packages.py:114
 msgid ""
 "Name can only contain lower case letters (a-z), digits (0-9), and "
 "underscores (_)"
@@ -2098,15 +2112,15 @@ msgstr ""
 "Ad yalnızca küçük harfler (a-z), rakamlar (0-9) ve alt çizgiler (_) "
 "içerebilir"
 
-#: app/logic/packages.py:112
+#: app/logic/packages.py:127
 msgid "You don't have permission to edit this package"
 msgstr "Bu paketi düzenlemek için izniniz yok"
 
-#: app/logic/packages.py:116
+#: app/logic/packages.py:131
 msgid "You don't have permission to change the package name"
 msgstr "Paket adını değiştirme izniniz yok"
 
-#: app/logic/packages.py:140
+#: app/logic/packages.py:158
 msgid "You cannot change package type once approved"
 msgstr "Paket onaylandıktan sonra türünü değiştiremezsin"
 
@@ -2133,10 +2147,6 @@ msgstr "Geçersiz commit hash'i; 40 karakter uzunluğunda base16 dizesi olmalıd
 #: app/logic/screenshots.py:32
 msgid "Too many requests, please wait before trying again"
 msgstr "Çok sayıda istek, tekrar denemeden önce bekleyin"
-
-#: app/logic/screenshots.py:34
-msgid "a PNG, JPEG, or WebP image file"
-msgstr "PNG, JPEG veya WebP resim dosyası"
 
 #: app/logic/screenshots.py:51
 #, python-format
@@ -2168,8 +2178,8 @@ msgid ""
 "Unable to create an account as the username is already taken. If you "
 "meant to log in, you need to connect %(provider)s to your account first"
 msgstr ""
-"Kullanıcı adı zaten alınmış olduğu için hesap oluşturulamıyor. Giriş yapmak "
-"istiyorsanız, önce %(provider)sları hesabınıza bağlamanız gerekir"
+"Kullanıcı adı zaten alınmış olduğu için hesap oluşturulamıyor. Giriş "
+"yapmak istiyorsanız, önce %(provider)sları hesabınıza bağlamanız gerekir"
 
 #: app/logic/users.py:33
 msgid "That username/display name is already in use, please choose another."
@@ -2178,6 +2188,35 @@ msgstr "Bu kullanıcı adı/görünen ad zaten kullanımda, lütfen başka bir t
 #: app/logic/users.py:40
 msgid "Unable to create an account as the username was used in the past."
 msgstr "Kullanıcı adı geçmişte kullanıldığı için hesap oluşturulamıyor."
+
+#: app/models/__init__.py:147
+msgid "Account deletion"
+msgstr ""
+
+#: app/models/__init__.py:149
+msgid "Copyright infringement / DMCA"
+msgstr ""
+
+#: app/models/__init__.py:151
+msgid "User behaviour, bullying, or abuse"
+msgstr ""
+
+#: app/models/__init__.py:153
+msgid "Illegal or harmful content"
+msgstr ""
+
+#: app/models/__init__.py:155
+msgid "Outdated/invalid review"
+msgstr ""
+
+#: app/models/__init__.py:157
+msgid "Appeal"
+msgstr ""
+
+#. NOTE: OTHER notification type
+#: app/models/__init__.py:159 app/models/users.py:469
+msgid "Other"
+msgstr "Diğer"
 
 #: app/models/packages.py:69
 msgid "Mod"
@@ -2287,7 +2326,8 @@ msgstr "Olduğu gibi"
 #: app/models/packages.py:177
 msgid "Under active development, and may break worlds/things without warning"
 msgstr ""
-"Aktif olarak geliştirme sürecinde, uyarı olmadan dünya/bazı şeyleri bozabilir"
+"Aktif olarak geliştirme sürecinde, uyarı olmadan dünya/bazı şeyleri "
+"bozabilir"
 
 #: app/models/packages.py:179
 msgid "Fully playable, but with some breakages/changes expected"
@@ -2302,8 +2342,8 @@ msgid ""
 "Finished, the maintainer doesn't intend to continue working on it or "
 "provide support"
 msgstr ""
-"Tamamlanmıştır, bakımı yapan kişi üzerinde çalışmaya veya destek sağlamayı "
-"düşünmüyor"
+"Tamamlanmıştır, bakımı yapan kişi üzerinde çalışmaya veya destek "
+"sağlamayı düşünmüyor"
 
 #: app/models/packages.py:185
 msgid ""
@@ -2333,17 +2373,17 @@ msgstr "Onayla"
 msgid "Delete"
 msgstr "Sil"
 
-#: app/models/packages.py:1385
+#: app/models/packages.py:1389
 #, python-format
 msgid "New commit %(hash)s found on the Git repo."
 msgstr "Git reposunda yeni %(hash)s bulundu."
 
-#: app/models/packages.py:1389
+#: app/models/packages.py:1393
 #, python-format
 msgid "The last release was commit %(hash)s"
 msgstr "Son sürüm, commit %(hash)s idi"
 
-#: app/models/packages.py:1395
+#: app/models/packages.py:1399
 #, python-format
 msgid "New tag %(tag_name)s found on the Git repo."
 msgstr "Git reposunda %(tag_name)s adında yeni etiket ismi bulundu."
@@ -2377,7 +2417,7 @@ msgid "Editor"
 msgstr "Editör"
 
 #. NOTE: BOT notification type
-#: app/models/users.py:60 app/models/users.py:455
+#: app/models/users.py:60 app/models/users.py:457
 msgid "Bot"
 msgstr "Robot"
 
@@ -2390,128 +2430,123 @@ msgid "Admin"
 msgstr "Yönetici"
 
 #. NOTE: PACKAGE_EDIT notification type
-#: app/models/users.py:440
+#: app/models/users.py:442
 msgid "Package Edit"
 msgstr "Paket Düzenleme"
 
 #. NOTE: PACKAGE_APPROVAL notification type
-#: app/models/users.py:443
+#: app/models/users.py:445
 msgid "Package Approval"
 msgstr "Paket Onaylanma"
 
 #. NOTE: NEW_THREAD notification type
-#: app/models/users.py:446 app/templates/threads/list.html:12
+#: app/models/users.py:448 app/templates/threads/list.html:12
 #: app/templates/threads/new.html:4
 msgid "New Thread"
 msgstr "Yeni Konu"
 
 #. NOTE: NEW_REVIEW notification type
-#: app/models/users.py:449
+#: app/models/users.py:451
 msgid "New Review"
 msgstr "Yeni İnceleme"
 
 #. NOTE: THREAD_REPLY notification type
-#: app/models/users.py:452
+#: app/models/users.py:454
 msgid "Thread Reply"
 msgstr "Konu Yanıtları"
 
 #. NOTE: MAINTAINER notification type
-#: app/models/users.py:458 app/templates/macros/threads.html:27
+#: app/models/users.py:460 app/templates/macros/threads.html:27
 msgid "Maintainer"
 msgstr "Geliştirici"
 
 #. NOTE: EDITOR_ALERT notification type
-#: app/models/users.py:461
+#: app/models/users.py:463
 msgid "Editor Alert"
 msgstr "Düzenleme Uyarısı"
 
 #. NOTE: EDITOR_MISC notification type
-#: app/models/users.py:464
+#: app/models/users.py:466
 msgid "Editor Misc"
 msgstr "Çeşitli Düzenlemeler"
 
-#. NOTE: OTHER notification type
-#: app/models/users.py:467
-msgid "Other"
-msgstr "Diğer"
-
-#: app/models/users.py:477
+#: app/models/users.py:479
 msgid "This is a Package Edit notification."
 msgstr "Bu Paket Düzenleme bildirimi."
 
-#: app/models/users.py:479
+#: app/models/users.py:481
 msgid "This is a Package Approval notification."
 msgstr "Bu Paket Onaylama bildirimi."
 
-#: app/models/users.py:481
+#: app/models/users.py:483
 msgid "This is a New Thread notification."
 msgstr "Bu Yeni Konu bildirimi."
 
-#: app/models/users.py:483
+#: app/models/users.py:485
 msgid "This is a New Review notification."
 msgstr "Bu Yeni İnceleme bildirimi."
 
-#: app/models/users.py:485
+#: app/models/users.py:487
 msgid "This is a Thread Reply notification."
 msgstr "Bu Konu Yanıt bildirimi."
 
-#: app/models/users.py:487
+#: app/models/users.py:489
 msgid "This is a Bot notification."
 msgstr "Bu Bot bildirimi."
 
-#: app/models/users.py:489
+#: app/models/users.py:491
 msgid "This is a Maintainer change notification."
 msgstr "Bu Geliştirici değişme bildirimi."
 
-#: app/models/users.py:491
+#: app/models/users.py:493
 msgid "This is an Editor Alert notification."
 msgstr "Bu Editör Uyarı bildirimi."
 
-#: app/models/users.py:493
+#: app/models/users.py:495
 msgid "This is an Editor Misc notification."
 msgstr "Bu Çeşitli Düzenleyici bildirimi."
 
-#: app/models/users.py:495
+#: app/models/users.py:497
 msgid "This is an Other notification."
 msgstr "Bu Diğer bildirimi."
 
-#: app/models/users.py:502
+#: app/models/users.py:504
 msgid "When another user edits your packages, releases, etc."
 msgstr "Başka bir kullanıcı paketini, sürümünü, vs. Düzenler ise."
 
-#: app/models/users.py:504
+#: app/models/users.py:506
 msgid "Notifications from editors related to the package approval process."
 msgstr "Düzenleyicilerin paketlerin onaylanma süresi için bildirimler."
 
-#: app/models/users.py:506
+#: app/models/users.py:508
 msgid "When a thread is created on your package."
 msgstr "Paketinde bir konu açıldığı zaman."
 
-#: app/models/users.py:508
+#: app/models/users.py:510
 msgid "When a user posts a review on your package."
 msgstr "Bir kullanıcı paketine inceleme yazar ise."
 
-#: app/models/users.py:510
+#: app/models/users.py:512
 msgid "When someone replies to a thread you're watching."
 msgstr "Takip ettiğin konuyu birisi cevaplar ise."
 
-#: app/models/users.py:512
+#: app/models/users.py:514
 msgid "From a bot - for example, update notifications."
 msgstr "Bot tarafından - örneğin, günceleme bildirimleri."
 
-#: app/models/users.py:514
+#: app/models/users.py:516
 msgid "When your package's maintainers change."
 msgstr "Paketlerinin geliştiricisi değiştiği zaman."
 
-#: app/models/users.py:516
+#: app/models/users.py:518
 msgid "For editors: Important alerts."
 msgstr "Düzenleyiciler için: Önemli uyarılar."
 
-#: app/models/users.py:518
+#: app/models/users.py:520
 msgid "For editors: Minor notifications, including new threads."
 msgstr "Editörler için: Yeni konular da dahil olmak üzere küçük bildirimler."
 
-#: app/models/users.py:520
+#: app/models/users.py:522
 msgid "Minor notifications not important enough for a dedicated category."
 msgstr "Küçük bildirimler özel bir kategori için yeterince önemli değildir."
 
@@ -2538,7 +2573,7 @@ msgstr "%(num)d yeni̇ bi̇ldi̇ri̇m"
 
 #: app/tasks/emails.py:165 app/templates/macros/forms.html:59
 #: app/templates/packages/create_edit.html:41
-#: app/templates/todo/editor.html:155
+#: app/templates/todo/editor.html:177
 msgid "View"
 msgstr "Görünüm"
 
@@ -2625,7 +2660,7 @@ msgstr "Oturumu kapat"
 
 #: app/templates/admin/languages/list.html:4
 #: app/templates/admin/languages/list.html:10 app/templates/base.html:199
-#: app/templates/packages/view.html:620 app/utils/minetest_hypertext.py:288
+#: app/templates/packages/view.html:620 app/utils/luanti_hypertext.py:288
 msgid "Languages"
 msgstr "Diller"
 
@@ -2642,8 +2677,8 @@ msgid "Contact Us"
 msgstr "İletişim"
 
 #: app/templates/base.html:262
-msgid "Rules"
-msgstr "Kurallar"
+msgid "Terms of Service"
+msgstr ""
 
 #: app/templates/base.html:263
 msgid "Policy and Guidance"
@@ -2662,7 +2697,7 @@ msgstr "API"
 msgid "RSS / Feeds"
 msgstr "RSS/ Beslemeler"
 
-#: app/templates/base.html:267 app/templates/users/register.html:40
+#: app/templates/base.html:267
 msgid "Privacy Policy"
 msgstr "Gizlilik Politikası"
 
@@ -2717,62 +2752,62 @@ msgstr "Gizlilik Politikamız %(date)s tarihinde güncellendi"
 msgid "Welcome"
 msgstr "Hoş geldiniz"
 
-#: app/templates/index.html:53
+#: app/templates/index.html:54
 #, python-format
 msgid "<strong>%(title)s</strong> by %(author)s"
 msgstr "%(author)s tarafından <strong>%(title)s</strong>"
 
-#: app/templates/index.html:94 app/templates/packages/view.html:285
+#: app/templates/index.html:95 app/templates/packages/view.html:285
 msgid "Previous"
 msgstr "Önceki"
 
-#: app/templates/index.html:98 app/templates/packages/view.html:289
-#: app/templates/users/claim_forums.html:87
+#: app/templates/index.html:99 app/templates/packages/view.html:289
+#: app/templates/users/claim_forums.html:91
 msgid "Next"
 msgstr "Sonraki"
 
-#: app/templates/index.html:108 app/templates/index.html:114
+#: app/templates/index.html:109 app/templates/index.html:115
 #: app/templates/packages/game_hub.html:44
 msgid "Recently Added"
 msgstr "Son Eklenenler"
 
-#: app/templates/index.html:119 app/templates/index.html:125
+#: app/templates/index.html:120 app/templates/index.html:126
 #: app/templates/packages/game_hub.html:51
 msgid "Recently Updated"
 msgstr "Son Güncelleme"
 
-#: app/templates/index.html:130 app/templates/index.html:136
+#: app/templates/index.html:131 app/templates/index.html:137
 msgid "Top Games"
 msgstr "En İyi Oyunlar"
 
-#: app/templates/index.html:141 app/templates/index.html:147
+#: app/templates/index.html:142 app/templates/index.html:148
 #: app/templates/packages/game_hub.html:58
 msgid "Top Mods"
 msgstr "En İyi Modlar"
 
-#: app/templates/index.html:152 app/templates/index.html:158
+#: app/templates/index.html:153 app/templates/index.html:159
 #: app/templates/packages/game_hub.html:65
 msgid "Top Texture Packs"
 msgstr "En İyi Doku Paketleri"
 
-#: app/templates/index.html:164
+#: app/templates/index.html:165
 msgid "Search by Tags"
 msgstr "Etiketlere Göre Ara"
 
-#: app/templates/index.html:178 app/templates/index.html:184
+#: app/templates/index.html:179 app/templates/index.html:185
 #: app/templates/packages/game_hub.html:72
 msgid "Highest Reviewed"
 msgstr "En Yüksek Değerlendirme"
 
-#: app/templates/index.html:192
+#: app/templates/index.html:193
 msgid "All reviews"
 msgstr "Tüm incelemeler"
 
-#: app/templates/index.html:194
+#: app/templates/index.html:195
 msgid "Recent Positive Reviews"
 msgstr "Son Olumlu Eleştiriler"
 
-#: app/templates/index.html:201
+#: app/templates/index.html:202
 #, python-format
 msgid "CDB has %(count)d packages, with a total of %(downloads)d downloads."
 msgstr "CDB'de %(count)d paket var ve toplamda %(downloads)d içerik indirilmiştir."
@@ -2939,6 +2974,7 @@ msgstr "Oluşturulan jeton yok"
 #: app/templates/collections/view.html:42 app/templates/macros/releases.html:68
 #: app/templates/packages/release_view.html:10
 #: app/templates/packages/view.html:123 app/templates/packages/view.html:262
+#: app/templates/report/view.html:17
 msgid "Edit"
 msgstr "Düzenle"
 
@@ -2965,6 +3001,7 @@ msgid "You can replace the description with your own"
 msgstr "Açıklamayı kendi açıklamanızla değiştirebilirsiniz"
 
 #: app/templates/collections/create_edit.html:103
+#, python-brace-format
 msgid "Are you sure you want to remove {title}?"
 msgstr "{title} kaldırmak istediğinizden emin misiniz?"
 
@@ -3056,8 +3093,8 @@ msgid ""
 "You can donate to rubenwardy to cover ContentDB's costs and support "
 "future development."
 msgstr ""
-"ContentDB'nin maliyetlerini karşılamak ve gelecekteki gelişimi desteklemek "
-"için Rubenwardy'ye bağışta bulunabilirsiniz."
+"ContentDB'nin maliyetlerini karşılamak ve gelecekteki gelişimi "
+"desteklemek için Rubenwardy'ye bağışta bulunabilirsiniz."
 
 #: app/templates/donate/index.html:67
 msgid ""
@@ -3469,19 +3506,15 @@ msgstr "Bu konu kilitlenmiştir."
 msgid "You don't have permission to post."
 msgstr "Paylaşım izniniz yok."
 
-#: app/templates/macros/threads.html:181
-msgid "You can add someone to a private thread by writing @username."
-msgstr "@username yazarak birini özel bir ileti dizisine ekleyebilirsiniz."
-
-#: app/templates/macros/threads.html:199 app/templates/macros/threads.html:281
+#: app/templates/macros/threads.html:194 app/templates/macros/threads.html:276
 msgid "No threads found"
 msgstr "Konu bulunamadı"
 
-#: app/templates/macros/threads.html:207
+#: app/templates/macros/threads.html:202
 msgid "Thread"
 msgstr "Konu"
 
-#: app/templates/macros/threads.html:211
+#: app/templates/macros/threads.html:206
 msgid "Last Reply"
 msgstr "Son Yanıt"
 
@@ -3519,7 +3552,7 @@ msgstr "Eylemler"
 
 #: app/templates/macros/topics.html:18 app/templates/macros/topics.html:54
 #: app/templates/modnames/view.html:29 app/templates/packages/similar.html:40
-#: app/templates/todo/editor.html:160 app/templates/todo/editor.html:175
+#: app/templates/todo/editor.html:182 app/templates/todo/editor.html:197
 msgid "WIP"
 msgstr "WIP"
 
@@ -3548,7 +3581,7 @@ msgstr "Forum Konuları"
 #: app/templates/packages/game_support.html:42
 #: app/templates/packages/similar.html:38 app/templates/packages/view.html:492
 #: app/templates/packages/view.html:516 app/templates/packages/view.html:561
-#: app/templates/packages/view.html:593 app/templates/todo/editor.html:85
+#: app/templates/packages/view.html:593 app/templates/todo/editor.html:107
 #: app/templates/todo/game_support.html:45
 #, python-format
 msgid "%(title)s by %(display_name)s"
@@ -3694,10 +3727,11 @@ msgid "No applications created"
 msgstr "Uygulama oluşturulmadı"
 
 #: app/templates/packages/advanced_search.html:13
+#: app/templates/zipgrep/search.html:20
 msgid "Use shift to select multiple. Leave selection empty to match any type."
 msgstr ""
-"Çoklu seçim için shift kullan. Herhangi bir türle eşleştirmek için seçimi "
-"boş bırakın."
+"Çoklu seçim için shift kullan. Herhangi bir türle eşleştirmek için seçimi"
+" boş bırakın."
 
 #: app/templates/packages/advanced_search.html:14
 #: app/templates/packages/advanced_search.html:19
@@ -3813,13 +3847,10 @@ msgstr "Adı değiştirmek için paketi yayından kaldırmanız gerekir."
 
 #: app/templates/packages/create_edit.html:85
 msgid ""
-"Tip: Don't include <i>Minetest</i>, <i>mod</i>, or <i>modpack</i> "
-"anywhere in the short description. It is unnecessary and wastes "
-"characters."
+"Tip: Don't include <i>Luanti</i>, <i>Minetest</i>, <i>mod</i>, or "
+"<i>modpack</i> anywhere in the short description. It is unnecessary and "
+"wastes characters."
 msgstr ""
-"İpucu: <i>Minetest</i>, <i>Mod</i> yada <i>Mod paketlerini</i> kısa "
-"açıklamanın herhangi bir yerinde dahil etmeyin. Gereksizdir ve karakter "
-"israfına yol açar."
 
 #: app/templates/packages/create_edit.html:88
 msgid ""
@@ -4478,8 +4509,8 @@ msgstr ""
 "\t\t\tContentDB'den kaldırabilirsiniz, bu da onların\n"
 "\t\t\therhangi bir kullanıcı tarafından görülebilir. Kaldırılan paketler "
 "aşağıdaki durumlarda kalıcı olarak silinebilir\n"
-"\t\t\tsonraki nokta. ContentDB personeli gerekirse kaldırılan paketleri geri "
-"yükleyebilir."
+"\t\t\tsonraki nokta. ContentDB personeli gerekirse kaldırılan paketleri "
+"geri yükleyebilir."
 
 #: app/templates/packages/remove.html:46
 msgid ""
@@ -4524,9 +4555,10 @@ msgid "Post a review for %(title)s by %(author)s"
 msgstr "%(author)s tarafından %(title)s için bir inceleme gönderin"
 
 #: app/templates/packages/review_create_edit.html:20
-msgid "Please make sure you read ContentDB's <a href='/rules/'>rules</a>"
+msgid ""
+"Please make sure you read ContentDB's <a href='/terms/'>Terms of "
+"Service</a>"
 msgstr ""
-"ContentDB'nin <a href=\"/rules/\">kurallarını</a> okuduğunuzdan emin olun"
 
 #: app/templates/packages/review_create_edit.html:25
 #: app/templates/threads/new.html:16
@@ -4670,8 +4702,8 @@ msgid ""
 "To provide translations for your package, you need to create .tr files "
 "and upload a new release."
 msgstr ""
-"Paketinize çeviri sağlanması için, .tr dosyası oluşturmanız ve yeni sürüm "
-"yüklemeniz gerek."
+"Paketinize çeviri sağlanması için, .tr dosyası oluşturmanız ve yeni sürüm"
+" yüklemeniz gerek."
 
 #: app/templates/packages/translation.html:19
 msgid ""
@@ -4807,12 +4839,9 @@ msgstr "Özgür olmayan medya"
 
 #: app/templates/packages/view.html:101 app/templates/threads/view.html:109
 msgid ""
-"This thread is only visible to its creator, package maintainers, users of"
-" Approver rank or above, and @mentioned users."
+"This thread is only visible to its creator, package maintainers, and "
+"users of Approver rank or above."
 msgstr ""
-"Bu başlık yalnızca oluşturucusu, paket bakımcıları, Onaylayıcı rütbesi "
-"veya üzeri kullanıcılar ve @bahsedilen kullanıcılar tarafından "
-"görülebilir."
 
 #: app/templates/packages/view.html:214 app/templates/users/profile.html:95
 msgid "Website"
@@ -4902,7 +4931,7 @@ msgstr ""
 msgid "Donate now"
 msgstr "Şimdi bağışta bulunun"
 
-#: app/templates/packages/view.html:484 app/utils/minetest_hypertext.py:283
+#: app/templates/packages/view.html:484 app/utils/luanti_hypertext.py:283
 msgid "Dependencies"
 msgstr "Bağımlılıklar"
 
@@ -4919,7 +4948,7 @@ msgid "Compatible Games"
 msgstr "Uyumlu Oyunlar"
 
 #: app/templates/packages/view.html:548 app/templates/packages/view.html:568
-#: app/utils/minetest_hypertext.py:275
+#: app/utils/luanti_hypertext.py:275
 msgid "No specific game required"
 msgstr "Belirli bir oyun gerekmiyor"
 
@@ -4953,7 +4982,7 @@ msgstr "Bilgi"
 msgid "Technical Name"
 msgstr "Teknik İsim"
 
-#: app/templates/packages/view.html:634 app/utils/minetest_hypertext.py:295
+#: app/templates/packages/view.html:634 app/utils/luanti_hypertext.py:295
 #, python-format
 msgid "%(code_license)s for code,<br>%(media_license)s for media."
 msgstr "Kod için %(code_license)s, <br>medya için %(media_license)s."
@@ -4962,7 +4991,7 @@ msgstr "Kod için %(code_license)s, <br>medya için %(media_license)s."
 msgid "Unknown"
 msgstr "Bilinmeyen"
 
-#: app/templates/packages/view.html:644 app/utils/minetest_hypertext.py:301
+#: app/templates/packages/view.html:644 app/utils/luanti_hypertext.py:301
 msgid "Added"
 msgstr "Eklendi"
 
@@ -4970,7 +4999,7 @@ msgstr "Eklendi"
 msgid "Remove myself"
 msgstr "Kendimi kaldır"
 
-#: app/templates/packages/view.html:663 app/utils/minetest_hypertext.py:303
+#: app/templates/packages/view.html:663 app/utils/luanti_hypertext.py:303
 msgid "Provides"
 msgstr "Sağlar"
 
@@ -4982,7 +5011,11 @@ msgstr "Daha fazla"
 msgid "See audit log"
 msgstr "Denetim günlüğüne bakın"
 
-#: app/templates/report/index.html:15
+#: app/templates/report/list.html:4 app/templates/todo/editor.html:9
+msgid "Reports"
+msgstr ""
+
+#: app/templates/report/report.html:19
 msgid ""
 "Due to spam, we no longer accept reports from anonymous users on this "
 "form."
@@ -4990,31 +5023,102 @@ msgstr ""
 "Spam nedeniyle, artık bu formda anonim kullanıcılardan gelen raporları "
 "kabul etmiyoruz."
 
-#: app/templates/report/index.html:16
+#: app/templates/report/report.html:20
 msgid "Please sign in or contact the admin using the link below."
 msgstr ""
 "Lütfen oturum açın veya aşağıdaki bağlantıyı kullanarak yönetici ile "
 "iletişime geçin."
 
-#: app/templates/report/index.html:34
-msgid "What are you reporting? Why are you reporting it?"
-msgstr "Neyi bildiriyorsunuz? Neden bildiriyorsunuz?"
+#: app/templates/report/report.html:30
+msgid ""
+"The full report will be visible to all ContentDB staff members, including"
+" editors and moderators."
+msgstr ""
 
-#: app/templates/report/index.html:38
-msgid "Reports will be shared with ContentDB staff."
-msgstr "Raporlar ContentDB personeli ile paylaşılacaktır."
+#: app/templates/report/report.html:31
+msgid ""
+"If you are reporting something by another user, we may discuss the report"
+" with them but will not disclose who reported it."
+msgstr ""
 
-#: app/templates/report/index.html:40
-msgid "Only the admin will be able to see who made the report."
-msgstr "Sadece yönetici raporu kimin yaptığını görebilir."
+#: app/templates/report/report.html:32
+msgid ""
+"If you are reporting something by an editor or moderator, then you should"
+" email the admin or a moderator directly to hide your identity."
+msgstr ""
 
-#: app/templates/report/index.html:44
+#: app/templates/report/report.html:41
+msgid "Optional, usually not required"
+msgstr ""
+
+#: app/templates/report/report.html:44
 msgid ""
 "Found a bug? Please report on the package's issue tracker or in a thread "
 "instead."
 msgstr ""
 "Bir hata mı buldunuz? Lütfen bunun yerine paketin sorun izleyicisinde "
 "veya bir başlıkta bildirin."
+
+#: app/templates/report/report_received.html:4
+msgid "We have received your report"
+msgstr ""
+
+#: app/templates/report/report_received.html:13
+msgid "We aim to resolve your report quickly."
+msgstr ""
+
+#: app/templates/report/report_received.html:17
+msgid ""
+"If the report is about illegal or harmful content, we aim to resolve "
+"within 48 hours."
+msgstr ""
+
+#: app/templates/report/report_received.html:18
+msgid ""
+"If we find the content to be infringing, we will remove it and may warn "
+"or suspend the user."
+msgstr ""
+
+#: app/templates/report/report_received.html:23
+msgid ""
+"A private thread has been created for this report. You can use it to "
+"communicate with ContentDB staff and receive updates about the report."
+msgstr ""
+
+#: app/templates/report/report_received.html:27
+msgid ""
+"Due to limited resources, we may not contact you further about the report"
+" unless we need clarification."
+msgstr ""
+
+#: app/templates/report/report_received.html:30
+#, python-format
+msgid "For future reference, use report id: %(report_id)s."
+msgstr ""
+
+#: app/templates/report/report_received.html:36
+msgid "View thread"
+msgstr ""
+
+#: app/templates/report/report_received.html:38
+msgid "Back to home"
+msgstr ""
+
+#: app/templates/report/view.html:96
+msgid "Reopen"
+msgstr ""
+
+#: app/templates/report/view.html:98
+msgid "Completed (action taken)"
+msgstr ""
+
+#: app/templates/report/view.html:99
+msgid "Content removed"
+msgstr ""
+
+#: app/templates/report/view.html:100
+msgid "Invalid / close with no action"
+msgstr ""
 
 #: app/templates/tasks/view.html:5
 msgid "Task Failed"
@@ -5024,7 +5128,7 @@ msgstr "Görev Başarısız Oldu"
 msgid "Working…"
 msgstr "Çalışıyor…"
 
-#: app/templates/tasks/view.html:26
+#: app/templates/tasks/view.html:25
 msgid "Reload the page to check for updates."
 msgstr "Güncellemeleri kontrol etmek için sayfayı yeniden yükleyin."
 
@@ -5050,14 +5154,6 @@ msgid ""
 msgstr ""
 "Paketin CDB'de olmaması gerekiyorsa (örneğin: hiç çalışmıyorsa), o zaman "
 "bize buradan bildirebilirsiniz."
-
-#: app/templates/threads/new.html:52
-msgid ""
-"Only you, the package author, and users of Approver rank and above can "
-"read private threads."
-msgstr ""
-"Özel konuları yalnızca siz, paket yazarı ve Onaylayıcı rütbesi ve "
-"üzerindeki kullanıcılar okuyabilirsiniz."
 
 #: app/templates/threads/user_comments.html:9
 #: app/templates/threads/user_comments.html:13
@@ -5102,15 +5198,15 @@ msgstr "Şunlar tarafından görülebilir:"
 msgid "Plus approvers and editors"
 msgstr "Artı onaylayıcılar ve editörler"
 
-#: app/templates/threads/view.html:136
+#: app/templates/threads/view.html:141
 msgid "Is this review outdated?"
 msgstr "Bu incelemenin tarihi geçmiş mi?"
 
-#: app/templates/threads/view.html:137
+#: app/templates/threads/view.html:142
 msgid "For example, does it complain about issues you've already fixed?"
 msgstr "Örneğin, zaten düzelttiğiniz sorunlar hakkında şikayet ediyor mu?"
 
-#: app/templates/threads/view.html:138
+#: app/templates/threads/view.html:143
 #, python-format
 msgid "You can report outdated reviews by clicking %(flag)s on the review."
 msgstr ""
@@ -5121,68 +5217,68 @@ msgstr ""
 msgid "Editor Work Queue"
 msgstr "Düzenleyici Çalışma Kuyruğu"
 
-#: app/templates/todo/editor.html:8
+#: app/templates/todo/editor.html:30
 msgid "Approval Queue"
 msgstr "Onay Kuyruğu"
 
-#: app/templates/todo/editor.html:15
+#: app/templates/todo/editor.html:37
 msgid "Approve All"
 msgstr "Tümünü Onayla"
 
-#: app/templates/todo/editor.html:33
+#: app/templates/todo/editor.html:55
 msgid "No screenshots need approval."
 msgstr "Hiçbir ekran görüntüsü onay beklemiyor."
 
-#: app/templates/todo/editor.html:65 app/templates/todo/editor.html:183
+#: app/templates/todo/editor.html:87 app/templates/todo/editor.html:205
 msgid "No packages need approval."
 msgstr "Hiçbir paket onay beklemiyor."
 
-#: app/templates/todo/editor.html:80
+#: app/templates/todo/editor.html:102
 msgid "Importing"
 msgstr "İçe aktarılıyor"
 
-#: app/templates/todo/editor.html:90
+#: app/templates/todo/editor.html:112
 msgid "No releases need approval."
 msgstr "Hiçbir sürüm onay beklemiyor."
 
-#: app/templates/todo/editor.html:100
+#: app/templates/todo/editor.html:122
 msgid "All done!"
 msgstr "Hepsi tamam!"
 
-#: app/templates/todo/editor.html:105 app/templates/todo/editor.html:107
+#: app/templates/todo/editor.html:127 app/templates/todo/editor.html:129
 msgid "License Needed"
 msgstr "Lisans Gerekli"
 
-#: app/templates/todo/editor.html:127
+#: app/templates/todo/editor.html:149
 msgid "Tag Packages"
 msgstr "Etiket Paketleri"
 
-#: app/templates/todo/editor.html:130
+#: app/templates/todo/editor.html:152
 #, python-format
 msgid "%(total_to_tag)d / %(total_packages)d packages don't have any tags."
 msgstr ""
 "%(total_to_tag)d / %(total_packages)d paket herhangi bir etikete sahip "
 "değil."
 
-#: app/templates/todo/editor.html:140
+#: app/templates/todo/editor.html:162
 msgid "View Tags"
 msgstr "Etiketleri Görüntüle"
 
-#: app/templates/todo/editor.html:147
+#: app/templates/todo/editor.html:169
 msgid "Unfulfilled Dependencies"
 msgstr "Karşılanmamış Bağımlılıklar"
 
-#: app/templates/todo/editor.html:151
+#: app/templates/todo/editor.html:173
 msgid "Mod names that have hard dependers, but no packages providing them."
 msgstr ""
 "Sabit bağımlıları olan, ancak bunları sağlayan paketler olmayan mod "
 "adları."
 
-#: app/templates/todo/editor.html:193 app/templates/users/account.html:102
+#: app/templates/todo/editor.html:215 app/templates/users/account.html:101
 msgid "View All"
 msgstr "Tümünü Gör"
 
-#: app/templates/todo/editor.html:196
+#: app/templates/todo/editor.html:218
 msgid "Recent Actions"
 msgstr "Son Eylemler"
 
@@ -5471,33 +5567,33 @@ msgstr "ContentDB'nin GitHub İzinlerini Görüntüleyin"
 msgid "Disconnect"
 msgstr "Bağlantıyı kes"
 
-#: app/templates/users/account.html:70
+#: app/templates/users/account.html:69
 msgid "Link Github"
 msgstr "Github'u bağla"
 
-#: app/templates/users/account.html:73
+#: app/templates/users/account.html:72
 msgid "None"
 msgstr "Hiçbiri"
 
-#: app/templates/users/account.html:80
+#: app/templates/users/account.html:79
 msgid "Account Deletion and Deactivation"
 msgstr "Hesap Silme ve Devre Dışı Bırakma"
 
-#: app/templates/users/account.html:84
+#: app/templates/users/account.html:83
 msgid "Delete or Deactivate"
 msgstr "Sil veya Devre Dışı Bırak"
 
-#: app/templates/users/account.html:87
+#: app/templates/users/account.html:86
 msgid "Account Deletion and Deactivation isn't available to users yet."
 msgstr ""
 "Hesap Silme ve Devre Dışı Bırakma henüz kullanıcılar tarafından "
 "kullanılamıyor."
 
-#: app/templates/users/account.html:88
+#: app/templates/users/account.html:87
 msgid "Please raise a report to request account deletion."
 msgstr "Lütfen hesap silinmesi için bir rapor hazırlayın."
 
-#: app/templates/users/account.html:95
+#: app/templates/users/account.html:94
 msgid "Recent Account Actions"
 msgstr "Son Hesap Hareketleri"
 
@@ -5523,8 +5619,9 @@ msgid ""
 "Note: protonmail is unsupported by ContentDB. <a "
 "href='https://forum.luanti.org/viewtopic.php?t=30709'>More info</a>."
 msgstr ""
-"Not: protonmail ContentDB tarafından desteklenmiyor. <a href="
-"\"https://forum.luanti.org/viewtopic.php?t=30709\">Daha fazla bilgi</a>."
+"Not: protonmail ContentDB tarafından desteklenmiyor. <a "
+"href=\"https://forum.luanti.org/viewtopic.php?t=30709\">Daha fazla "
+"bilgi</a>."
 
 #: app/templates/users/change_set_password.html:27
 #: app/templates/users/register.html:30
@@ -5584,35 +5681,43 @@ msgstr "Forum hesabınız yok mu?"
 msgid "You can still <a href='%(url)s'>sign up without one</a>."
 msgstr "Hala <a href=\"%(url)s\">bunlardan biri olmadan da kaydolabilirsiniz</a>."
 
-#: app/templates/users/claim_forums.html:26
+#: app/templates/users/claim_forums.html:23
+#: app/templates/users/register.html:38
+msgid ""
+"By signing up, you agree to the <a href='/terms/' target='_blank'>Terms "
+"of Service</a> and <a href='/privacy_policy/' target='_blank'>Privacy "
+"Policy</a>."
+msgstr ""
+
+#: app/templates/users/claim_forums.html:30
 msgid "Option 1"
 msgstr "Seçenek 1"
 
-#: app/templates/users/claim_forums.html:27
+#: app/templates/users/claim_forums.html:31
 msgid "Use GitHub field in forum profile"
 msgstr "Forum profilinde GitHub alanını kullanın"
 
-#: app/templates/users/claim_forums.html:35
-#: app/templates/users/claim_forums.html:64
+#: app/templates/users/claim_forums.html:39
+#: app/templates/users/claim_forums.html:68
 msgid "Enter your forum username here:"
 msgstr "Forum kullanıcı adınızı buraya girin:"
 
-#: app/templates/users/claim_forums.html:39
-#: app/templates/users/claim_forums.html:68
+#: app/templates/users/claim_forums.html:43
+#: app/templates/users/claim_forums.html:72
 msgid "Forum username"
 msgstr "Forum kullanıcı adı"
 
-#: app/templates/users/claim_forums.html:40
-#: app/templates/users/claim_forums.html:68
+#: app/templates/users/claim_forums.html:44
+#: app/templates/users/claim_forums.html:72
 #: app/templates/users/register.html:16
 msgid "Only a-zA-Z0-9._ allowed"
 msgstr "Yalnızca a-zA-Z0-9._ için izin verilir"
 
-#: app/templates/users/claim_forums.html:43
+#: app/templates/users/claim_forums.html:47
 msgid "You'll need to have the GitHub field in your forum profile filled out."
 msgstr "Forum profilinizdeki GitHub alanını doldurmuş olmanız gerekir."
 
-#: app/templates/users/claim_forums.html:44
+#: app/templates/users/claim_forums.html:48
 msgid ""
 "Log into the forum and <a "
 "href='https://forum.luanti.org/ucp.php?i=173'>do that here</a>."
@@ -5620,36 +5725,37 @@ msgstr ""
 "Foruma giriş yapın ve <a "
 "href=\"https://forum.luanti.org/ucp.php?i=173\">buradan</a> yapın."
 
-#: app/templates/users/claim_forums.html:47
+#: app/templates/users/claim_forums.html:51
 msgid "Next: log in with GitHub"
 msgstr "Sonraki: GitHub ile oturum açın"
 
-#: app/templates/users/claim_forums.html:55
+#: app/templates/users/claim_forums.html:59
 msgid "Option 2"
 msgstr "Seçenek 2"
 
-#: app/templates/users/claim_forums.html:56
+#: app/templates/users/claim_forums.html:60
 msgid "Verification token"
 msgstr "Doğrulama jetonu"
 
-#: app/templates/users/claim_forums.html:71
+#: app/templates/users/claim_forums.html:75
 msgid ""
 "Go to <a "
 "href='https://forum.luanti.org/ucp.php?i=profile&mode=signature'>User "
 "Control Panel &gt; Profile &gt; Edit signature</a>"
 msgstr ""
-"<a href=\"https://forum.luanti.org/ucp.php?i=profile&amp;mode=signature\""
-">Kullanıcı Kontrol Paneli &gt; Profil &gt; İmzayı Düzenle</a> bölümüne gidin"
+"<a "
+"href=\"https://forum.luanti.org/ucp.php?i=profile&amp;mode=signature\">Kullanıcı"
+" Kontrol Paneli &gt; Profil &gt; İmzayı Düzenle</a> bölümüne gidin"
 
-#: app/templates/users/claim_forums.html:75
+#: app/templates/users/claim_forums.html:79
 msgid "Paste this into your signature:"
 msgstr "Bunu imzanıza yapıştırın:"
 
-#: app/templates/users/claim_forums.html:81
+#: app/templates/users/claim_forums.html:85
 msgid "Click next so we can check it."
 msgstr "Kontrol edebilmemiz için ileri'ye tıklayın."
 
-#: app/templates/users/claim_forums.html:84
+#: app/templates/users/claim_forums.html:88
 msgid "Don't worry, you can remove it after this is done."
 msgstr "Endişelenmeyin, bu işlem tamamlandıktan sonra kaldırabilirsiniz."
 
@@ -5924,10 +6030,6 @@ msgstr "Kullanıcı adı ile aynı"
 msgid "Please prove that you are human"
 msgstr "Lütfen insan olduğunuzu kanıtlayın"
 
-#: app/templates/users/register.html:38
-msgid "I agree to the "
-msgstr "Kabul ediyorum "
-
 #: app/templates/users/settings_email.html:4
 #, python-format
 msgid "Email and Notifications - %(username)s"
@@ -6067,27 +6169,31 @@ msgstr "Bugüne kadarki yıl"
 msgid "Last year"
 msgstr "Geçen yıl"
 
-#: app/utils/minetest_hypertext.py:108
+#: app/utils/luanti_hypertext.py:108
 msgid "(view table in browser)"
 msgstr "(tabloyu tarayıcıda görüntüle)"
 
-#: app/utils/minetest_hypertext.py:139
+#: app/utils/luanti_hypertext.py:139
 msgid "Image"
 msgstr "Resim"
 
-#: app/utils/minetest_hypertext.py:259
+#: app/utils/luanti_hypertext.py:259
 msgid "none"
 msgstr "hiçbiri"
 
-#: app/utils/minetest_hypertext.py:280
+#: app/utils/luanti_hypertext.py:280
 msgid "Unsupported Games"
 msgstr "Desteklenmeyen Oyunlar"
 
-#: app/utils/minetest_hypertext.py:284
+#: app/utils/luanti_hypertext.py:284
 msgid "Optional dependencies"
 msgstr "İsteğe bağlı bağımlılıklar"
 
-#: app/utils/minetest_hypertext.py:340
+#: app/utils/luanti_hypertext.py:325
+msgid "Leave a review"
+msgstr ""
+
+#: app/utils/luanti_hypertext.py:346
 msgid "No reviews available."
 msgstr "İnceleme bulunamadı."
 
@@ -7057,3 +7163,65 @@ msgstr ""
 
 #~ msgid "Luanti-Mods org only"
 #~ msgstr "Sadece Luanti-Mods kuruluşu"
+
+#~ msgctxt "tags"
+#~ msgid "Less than 16px"
+#~ msgstr "16px'den az"
+
+#~ msgid "I agree"
+#~ msgstr "Onaylıyorum"
+
+#~ msgid "Rules"
+#~ msgstr "Kurallar"
+
+#~ msgid "You can add someone to a private thread by writing @username."
+#~ msgstr "@username yazarak birini özel bir ileti dizisine ekleyebilirsiniz."
+
+#~ msgid ""
+#~ "Tip: Don't include <i>Minetest</i>, "
+#~ "<i>mod</i>, or <i>modpack</i> anywhere in "
+#~ "the short description. It is unnecessary"
+#~ " and wastes characters."
+#~ msgstr ""
+#~ "İpucu: <i>Minetest</i>, <i>Mod</i> yada <i>Mod"
+#~ " paketlerini</i> kısa açıklamanın herhangi "
+#~ "bir yerinde dahil etmeyin. Gereksizdir "
+#~ "ve karakter israfına yol açar."
+
+#~ msgid "Please make sure you read ContentDB's <a href='/rules/'>rules</a>"
+#~ msgstr ""
+#~ "ContentDB'nin <a href=\"/rules/\">kurallarını</a> "
+#~ "okuduğunuzdan emin olun"
+
+#~ msgid ""
+#~ "This thread is only visible to its"
+#~ " creator, package maintainers, users of "
+#~ "Approver rank or above, and @mentioned"
+#~ " users."
+#~ msgstr ""
+#~ "Bu başlık yalnızca oluşturucusu, paket "
+#~ "bakımcıları, Onaylayıcı rütbesi veya üzeri "
+#~ "kullanıcılar ve @bahsedilen kullanıcılar "
+#~ "tarafından görülebilir."
+
+#~ msgid "What are you reporting? Why are you reporting it?"
+#~ msgstr "Neyi bildiriyorsunuz? Neden bildiriyorsunuz?"
+
+#~ msgid "Reports will be shared with ContentDB staff."
+#~ msgstr "Raporlar ContentDB personeli ile paylaşılacaktır."
+
+#~ msgid "Only the admin will be able to see who made the report."
+#~ msgstr "Sadece yönetici raporu kimin yaptığını görebilir."
+
+#~ msgid ""
+#~ "Only you, the package author, and "
+#~ "users of Approver rank and above "
+#~ "can read private threads."
+#~ msgstr ""
+#~ "Özel konuları yalnızca siz, paket yazarı"
+#~ " ve Onaylayıcı rütbesi ve üzerindeki "
+#~ "kullanıcılar okuyabilirsiniz."
+
+#~ msgid "I agree to the "
+#~ msgstr "Kabul ediyorum "
+

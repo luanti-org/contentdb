@@ -1,4 +1,4 @@
-# Translations template for PROJECT.
+# Slovenian translations for PROJECT.
 # Copyright (C) 2024 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
@@ -7,21 +7,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-10 15:52+0000\n"
+"POT-Creation-Date: 2025-09-23 10:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
 "Language: sl\n"
+"Language-Team: none\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 "
+"|| n%100==4 ? 2 : 3);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.15.0\n"
+"Generated-By: Babel 2.17.0\n"
 
-#: app/__init__.py:156
+#: app/__init__.py:155
 msgid "Banned:"
 msgstr ""
 
-#: app/__init__.py:158
+#: app/__init__.py:157
 msgid "You have been banned."
 msgstr ""
 
@@ -373,7 +375,7 @@ msgstr ""
 #. NOTE: tags: description for less_than_px
 #: app/_translations.py:116
 msgctxt "tags"
-msgid "Less than 16px"
+msgid "For less than 16px texture packs "
 msgstr ""
 
 #. NOTE: tags: title for library
@@ -805,7 +807,7 @@ msgstr ""
 #: app/templates/admin/warnings/list.html:28
 #: app/templates/collections/create_edit.html:56
 #: app/templates/collections/view.html:66 app/templates/modnames/list.html:16
-#: app/templates/packages/list.html:4 app/templates/todo/editor.html:46
+#: app/templates/packages/list.html:4 app/templates/todo/editor.html:68
 #: app/templates/users/list.html:22 app/templates/users/profile.html:265
 msgid "Packages"
 msgstr ""
@@ -820,7 +822,30 @@ msgstr ""
 msgid "%(delta)s ago"
 msgstr ""
 
-#: app/blueprints/api/endpoints.py:74 app/templates/index.html:104
+#: app/blueprints/admin/audit.py:31 app/blueprints/users/account.py:101
+#: app/blueprints/users/settings.py:324 app/templates/users/list.html:18
+msgid "Username"
+msgstr ""
+
+#: app/blueprints/admin/audit.py:32
+#: app/blueprints/packages/advanced_search.py:53
+msgid "Query"
+msgstr ""
+
+#: app/blueprints/admin/audit.py:33 app/blueprints/packages/releases.py:74
+#: app/blueprints/report/__init__.py:37
+#: app/templates/packages/release_edit.html:31
+#: app/templates/packages/release_view.html:31
+msgid "URL"
+msgstr ""
+
+#: app/blueprints/admin/audit.py:34 app/blueprints/zipgrep/__init__.py:38
+#: app/templates/base.html:74 app/templates/packages/advanced_search.html:34
+#: app/templates/packages/game_hub.html:35 app/templates/todo/tags.html:14
+msgid "Search"
+msgstr ""
+
+#: app/blueprints/api/endpoints.py:74 app/templates/index.html:105
 msgid "Featured"
 msgstr ""
 
@@ -841,17 +866,18 @@ msgstr ""
 
 #: app/blueprints/api/tokens.py:36 app/blueprints/collections/__init__.py:93
 #: app/blueprints/oauth/__init__.py:175 app/blueprints/packages/packages.py:253
-#: app/blueprints/packages/packages.py:552
-#: app/blueprints/packages/packages.py:648
-#: app/blueprints/packages/packages.py:736
+#: app/blueprints/packages/packages.py:549
+#: app/blueprints/packages/packages.py:645
+#: app/blueprints/packages/packages.py:733
 #: app/blueprints/packages/releases.py:66
 #: app/blueprints/packages/releases.py:81 app/blueprints/packages/reviews.py:63
-#: app/blueprints/packages/screenshots.py:36
-#: app/blueprints/packages/screenshots.py:42
-#: app/blueprints/packages/screenshots.py:47
-#: app/blueprints/users/account.py:193 app/blueprints/users/account.py:201
-#: app/blueprints/users/settings.py:79 app/blueprints/users/settings.py:148
-#: app/blueprints/users/settings.py:330 app/templates/users/modtools.html:111
+#: app/blueprints/packages/screenshots.py:37
+#: app/blueprints/packages/screenshots.py:43
+#: app/blueprints/packages/screenshots.py:48
+#: app/blueprints/report/__init__.py:173 app/blueprints/users/account.py:192
+#: app/blueprints/users/account.py:200 app/blueprints/users/settings.py:79
+#: app/blueprints/users/settings.py:148 app/blueprints/users/settings.py:330
+#: app/templates/users/modtools.html:111
 msgid "Save"
 msgstr ""
 
@@ -860,7 +886,7 @@ msgstr ""
 #: app/blueprints/packages/advanced_search.py:84
 #: app/blueprints/packages/releases.py:56
 #: app/blueprints/packages/releases.py:71 app/blueprints/packages/reviews.py:53
-#: app/blueprints/threads/__init__.py:282
+#: app/blueprints/threads/__init__.py:285
 #: app/templates/admin/languages/list.html:23
 #: app/templates/macros/reviews.html:144 app/templates/macros/topics.html:5
 #: app/templates/packages/release_edit.html:21
@@ -880,7 +906,6 @@ msgid "Page Content"
 msgstr ""
 
 #: app/blueprints/collections/__init__.py:85
-#: app/blueprints/threads/__init__.py:284
 #: app/templates/collections/view.html:51
 msgid "Private"
 msgstr ""
@@ -970,19 +995,19 @@ msgstr ""
 
 #: app/blueprints/packages/__init__.py:42
 #: app/templates/packages/releases_list.html:34
-#: app/templates/packages/view.html:675 app/templates/todo/editor.html:75
+#: app/templates/packages/view.html:675 app/templates/todo/editor.html:97
 msgid "Releases"
 msgstr ""
 
 #: app/blueprints/packages/__init__.py:47
 #: app/templates/packages/screenshots.html:4
-#: app/templates/packages/screenshots.html:14 app/templates/todo/editor.html:11
+#: app/templates/packages/screenshots.html:14 app/templates/todo/editor.html:33
 msgid "Screenshots"
 msgstr ""
 
 #: app/blueprints/packages/__init__.py:52
 #: app/templates/packages/edit_maintainers.html:8
-#: app/templates/packages/view.html:646 app/utils/minetest_hypertext.py:302
+#: app/templates/packages/view.html:646 app/utils/luanti_hypertext.py:302
 msgid "Maintainers"
 msgstr ""
 
@@ -1005,9 +1030,9 @@ msgstr ""
 msgid "Remove / Unpublish"
 msgstr ""
 
-#: app/blueprints/packages/__init__.py:80 app/logic/package_approval.py:123
-#: app/templates/packages/game_support.html:4
-#: app/utils/minetest_hypertext.py:275 app/utils/minetest_hypertext.py:277
+#: app/blueprints/packages/__init__.py:80 app/logic/package_approval.py:125
+#: app/templates/packages/game_support.html:4 app/utils/luanti_hypertext.py:275
+#: app/utils/luanti_hypertext.py:277
 msgid "Supported Games"
 msgstr ""
 
@@ -1037,13 +1062,10 @@ msgstr ""
 msgid "All content warnings"
 msgstr ""
 
-#: app/blueprints/packages/advanced_search.py:53
-msgid "Query"
-msgstr ""
-
 #: app/blueprints/packages/advanced_search.py:54
-#: app/blueprints/packages/packages.py:231 app/templates/packages/view.html:616
-#: app/utils/minetest_hypertext.py:263
+#: app/blueprints/packages/packages.py:231
+#: app/blueprints/zipgrep/__init__.py:36 app/templates/packages/view.html:616
+#: app/utils/luanti_hypertext.py:263
 msgid "Type"
 msgstr ""
 
@@ -1055,7 +1077,7 @@ msgstr ""
 #: app/blueprints/packages/advanced_search.py:57
 #: app/blueprints/packages/packages.py:238 app/templates/admin/tags/list.html:4
 #: app/templates/admin/tags/list.html:10 app/templates/todo/tags.html:38
-#: app/utils/minetest_hypertext.py:264
+#: app/utils/luanti_hypertext.py:264
 msgid "Tags"
 msgstr ""
 
@@ -1066,7 +1088,7 @@ msgstr ""
 
 #: app/blueprints/packages/advanced_search.py:63
 #: app/blueprints/packages/packages.py:240 app/templates/packages/view.html:627
-#: app/utils/minetest_hypertext.py:298
+#: app/utils/luanti_hypertext.py:298
 msgid "License"
 msgstr ""
 
@@ -1078,7 +1100,7 @@ msgstr ""
 #: app/templates/admin/storage.html:39
 #: app/templates/collections/create_edit.html:81
 #: app/templates/collections/list.html:39
-#: app/templates/collections/view.html:91 app/templates/index.html:48
+#: app/templates/collections/view.html:91 app/templates/index.html:49
 #: app/templates/macros/reviews.html:82 app/templates/macros/topics.html:52
 #: app/templates/packages/game_hub.html:5
 #: app/templates/packages/game_hub.html:25
@@ -1110,7 +1132,7 @@ msgstr ""
 msgid "Package score"
 msgstr ""
 
-#: app/blueprints/packages/advanced_search.py:86 app/templates/index.html:78
+#: app/blueprints/packages/advanced_search.py:86 app/templates/index.html:79
 #: app/templates/packages/reviews_list.html:4
 #: app/templates/packages/view.html:201 app/templates/packages/view.html:343
 #: app/templates/users/profile.html:279
@@ -1159,12 +1181,12 @@ msgid "Title (Human-readable)"
 msgstr ""
 
 #: app/blueprints/packages/packages.py:233
-#: app/blueprints/packages/packages.py:646
+#: app/blueprints/packages/packages.py:643
 msgid "Name (Technical)"
 msgstr ""
 
 #: app/blueprints/packages/packages.py:233
-#: app/blueprints/packages/packages.py:647
+#: app/blueprints/packages/packages.py:644
 #: app/templates/packages/create_edit.html:80
 msgid "Lower case letters (a-z), digits (0-9), and underscores (_) only"
 msgstr ""
@@ -1174,7 +1196,7 @@ msgid "Short Description (Plaintext)"
 msgstr ""
 
 #: app/blueprints/packages/packages.py:236 app/templates/packages/view.html:638
-#: app/utils/minetest_hypertext.py:300
+#: app/utils/luanti_hypertext.py:300
 msgid "Maintenance State"
 msgstr ""
 
@@ -1232,96 +1254,96 @@ msgstr ""
 msgid "A collection with a similar name already exists"
 msgstr ""
 
-#: app/blueprints/packages/packages.py:332
+#: app/blueprints/packages/packages.py:329
 #: app/blueprints/packages/releases.py:89
 msgid ""
 "You must add an email address to your account and confirm it before you "
 "can manage packages"
 msgstr ""
 
-#: app/blueprints/packages/packages.py:338
+#: app/blueprints/packages/packages.py:335
 msgid "Save draft"
 msgstr ""
 
-#: app/blueprints/packages/packages.py:346
+#: app/blueprints/packages/packages.py:343
 msgid "Unable to find that user"
 msgstr ""
 
-#: app/blueprints/packages/packages.py:350
-#: app/blueprints/packages/screenshots.py:137
+#: app/blueprints/packages/packages.py:347
+#: app/blueprints/packages/screenshots.py:138
 msgid "Permission denied"
 msgstr ""
 
-#: app/blueprints/packages/packages.py:409
-#: app/blueprints/packages/packages.py:503
-#: app/blueprints/packages/packages.py:525
+#: app/blueprints/packages/packages.py:406
+#: app/blueprints/packages/packages.py:500
+#: app/blueprints/packages/packages.py:522
 msgid "You don't have permission to do that"
 msgstr ""
 
-#: app/blueprints/packages/packages.py:444
+#: app/blueprints/packages/packages.py:441
 msgid "Please comment what changes are needed in the approval thread"
 msgstr ""
 
-#: app/blueprints/packages/packages.py:451
+#: app/blueprints/packages/packages.py:448
 msgid ""
 "Please comment in the approval thread so editors know what you have "
 "changed"
 msgstr ""
 
-#: app/blueprints/packages/packages.py:490
+#: app/blueprints/packages/packages.py:487
 #, python-format
 msgid "Set state to %(state)s"
 msgstr ""
 
-#: app/blueprints/packages/packages.py:520
+#: app/blueprints/packages/packages.py:517
 msgid "Deleted package"
 msgstr ""
 
-#: app/blueprints/packages/packages.py:542
+#: app/blueprints/packages/packages.py:539
 msgid "Unapproved package"
 msgstr ""
 
-#: app/blueprints/packages/packages.py:551
+#: app/blueprints/packages/packages.py:548
 msgid "Maintainers (Comma-separated)"
 msgstr ""
 
-#: app/blueprints/packages/packages.py:560
+#: app/blueprints/packages/packages.py:557
 msgid "You don't have permission to edit maintainers"
 msgstr ""
 
-#: app/blueprints/packages/packages.py:610
+#: app/blueprints/packages/packages.py:607
 msgid "You are not a maintainer"
 msgstr ""
 
-#: app/blueprints/packages/packages.py:613
+#: app/blueprints/packages/packages.py:610
 msgid "Package owners cannot remove themselves as maintainers"
 msgstr ""
 
-#: app/blueprints/packages/packages.py:645
+#: app/blueprints/packages/packages.py:642
 msgid "Author Name"
 msgstr ""
 
-#: app/blueprints/packages/packages.py:732
+#: app/blueprints/packages/packages.py:729
 msgid "Enable support detection based on dependencies (recommended)"
 msgstr ""
 
-#: app/blueprints/packages/packages.py:733
+#: app/blueprints/packages/packages.py:730
 msgid "Supported games"
 msgstr ""
 
-#: app/blueprints/packages/packages.py:734
+#: app/blueprints/packages/packages.py:731
 msgid "Unsupported games"
 msgstr ""
 
-#: app/blueprints/packages/packages.py:735
+#: app/blueprints/packages/packages.py:732
 msgid "Supports all games (unless stated) / is game independent"
 msgstr ""
 
-#: app/blueprints/packages/packages.py:751
+#: app/blueprints/packages/packages.py:748
 msgid "You need at least one release before you can edit game support"
 msgstr ""
 
-#: app/blueprints/packages/packages.py:755
+#: app/blueprints/packages/packages.py:752
 msgid "Mod(pack) needs to contain at least one mod. Please create a new release"
 msgstr ""
 
@@ -1336,7 +1358,7 @@ msgstr ""
 
 #: app/blueprints/packages/releases.py:59
 #: app/blueprints/packages/releases.py:61
-#: app/blueprints/packages/screenshots.py:35
+#: app/blueprints/packages/screenshots.py:36
 msgid "File Upload"
 msgstr ""
 
@@ -1346,20 +1368,14 @@ msgstr ""
 
 #: app/blueprints/packages/releases.py:62
 #: app/blueprints/packages/releases.py:77
-#: app/blueprints/packages/releases.py:217
+#: app/blueprints/packages/releases.py:218
 msgid "Minimum Luanti Version"
 msgstr ""
 
 #: app/blueprints/packages/releases.py:64
 #: app/blueprints/packages/releases.py:79
-#: app/blueprints/packages/releases.py:220
+#: app/blueprints/packages/releases.py:221
 msgid "Maximum Luanti Version"
-msgstr ""
-
-#: app/blueprints/packages/releases.py:74
-#: app/templates/packages/release_edit.html:31
-#: app/templates/packages/release_view.html:31
-msgid "URL"
 msgstr ""
 
 #: app/blueprints/packages/releases.py:75
@@ -1367,7 +1383,7 @@ msgid "Task ID"
 msgstr ""
 
 #: app/blueprints/packages/releases.py:76
-#: app/blueprints/packages/screenshots.py:41
+#: app/blueprints/packages/screenshots.py:42
 msgid "Is Approved"
 msgstr ""
 
@@ -1379,75 +1395,75 @@ msgstr ""
 msgid "Upload .zip file"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:216
+#: app/blueprints/packages/releases.py:217
 msgid "Set Min"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:219
+#: app/blueprints/packages/releases.py:220
 msgid "Set Max"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:222
+#: app/blueprints/packages/releases.py:223
 msgid "Only change values previously set as none"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:223
+#: app/blueprints/packages/releases.py:224
 msgid "Update"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:275
+#: app/blueprints/packages/releases.py:276
 #: app/templates/packages/update_config.html:25
 msgid "Trigger"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:276
+#: app/blueprints/packages/releases.py:277
 msgid "New Commit"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:277 app/templates/admin/tags/list.html:8
+#: app/blueprints/packages/releases.py:278 app/templates/admin/tags/list.html:8
 msgid "New Tag"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:279
+#: app/blueprints/packages/releases.py:280
 msgid "Branch name"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:280
+#: app/blueprints/packages/releases.py:281
 #: app/templates/packages/update_config.html:38
 msgid "Action"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:281
+#: app/blueprints/packages/releases.py:282
 msgid "Send notification and mark as outdated"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:281 app/logic/package_approval.py:104
+#: app/blueprints/packages/releases.py:282 app/logic/package_approval.py:107
 msgid "Create release"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:283
+#: app/blueprints/packages/releases.py:284
 msgid "Save Settings"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:284
+#: app/blueprints/packages/releases.py:285
 msgid "Disable Automation"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:323
+#: app/blueprints/packages/releases.py:324
 msgid "Please add a Git repository URL in order to set up automatic releases"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:339
+#: app/blueprints/packages/releases.py:340
 msgid "Deleted update configuration"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:347
+#: app/blueprints/packages/releases.py:348
 msgid "Now, please create an initial release"
 msgstr ""
 
 #: app/blueprints/packages/reviews.py:60 app/blueprints/threads/__init__.py:181
 #: app/blueprints/threads/__init__.py:182
-#: app/blueprints/threads/__init__.py:283
+#: app/blueprints/threads/__init__.py:286
 msgid "Comment"
 msgstr ""
 
@@ -1482,8 +1498,8 @@ msgstr ""
 
 #: app/blueprints/packages/reviews.py:94 app/blueprints/threads/__init__.py:207
 #: app/blueprints/threads/__init__.py:240
-#: app/blueprints/threads/__init__.py:335 app/blueprints/users/settings.py:114
-#: app/logic/packages.py:131
+#: app/blueprints/threads/__init__.py:333 app/blueprints/users/settings.py:114
+#: app/logic/packages.py:149
 msgid "Linking to blocked sites is not allowed"
 msgstr ""
 
@@ -1495,25 +1511,40 @@ msgstr ""
 msgid "You can't vote on your own reviews!"
 msgstr ""
 
-#: app/blueprints/packages/screenshots.py:34
-#: app/blueprints/packages/screenshots.py:40
+#: app/blueprints/packages/screenshots.py:35
+#: app/blueprints/packages/screenshots.py:41
 msgid "Title/Caption"
 msgstr ""
 
-#: app/blueprints/packages/screenshots.py:46
+#: app/blueprints/packages/screenshots.py:47
 #: app/templates/packages/screenshots.html:110
 msgid "Cover Image"
 msgstr ""
 
-#: app/blueprints/report/__init__.py:34 app/templates/users/modtools.html:79
+#: app/blueprints/report/__init__.py:35
+msgid "Category"
+msgstr ""
+
+#: app/blueprints/report/__init__.py:38
+msgid "Subject / Title"
+msgstr ""
+
+#: app/blueprints/report/__init__.py:39 app/templates/users/modtools.html:79
 msgid "Message"
 msgstr ""
 
-#: app/blueprints/report/__init__.py:35 app/templates/macros/threads.html:51
-#: app/templates/packages/view.html:706 app/templates/report/index.html:4
-#: app/templates/report/index.html:10 app/templates/users/account.html:91
-#: app/templates/users/profile.html:37
+#: app/blueprints/report/__init__.py:40
+msgid "Image Upload"
+msgstr ""
+
+#: app/blueprints/report/__init__.py:41 app/templates/macros/threads.html:51
+#: app/templates/packages/view.html:706 app/templates/report/report.html:4
+#: app/templates/users/account.html:90 app/templates/users/profile.html:37
 msgid "Report"
+msgstr ""
+
+#: app/blueprints/report/__init__.py:92 app/logic/screenshots.py:34
+msgid "a PNG, JPEG, or WebP image file"
 msgstr ""
 
 #: app/blueprints/threads/__init__.py:71
@@ -1548,20 +1579,20 @@ msgstr ""
 msgid "Please wait before commenting again"
 msgstr ""
 
-#: app/blueprints/threads/__init__.py:285
+#: app/blueprints/threads/__init__.py:287
 #: app/templates/macros/package_approval.html:56
 msgid "Open Thread"
 msgstr ""
 
-#: app/blueprints/threads/__init__.py:310
+#: app/blueprints/threads/__init__.py:309
 msgid "Unable to create thread!"
 msgstr ""
 
-#: app/blueprints/threads/__init__.py:316
+#: app/blueprints/threads/__init__.py:315
 msgid "An approval thread already exists! Consider replying there instead"
 msgstr ""
 
-#: app/blueprints/threads/__init__.py:320
+#: app/blueprints/threads/__init__.py:319
 msgid "Please wait before opening another thread"
 msgstr ""
 
@@ -1580,7 +1611,7 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#: app/blueprints/users/account.py:38 app/blueprints/zipgrep/__init__.py:37
+#: app/blueprints/users/account.py:38
 msgid "Remember me"
 msgstr ""
 
@@ -1614,19 +1645,14 @@ msgstr ""
 msgid "Display Name"
 msgstr ""
 
-#: app/blueprints/users/account.py:101 app/blueprints/users/settings.py:324
-#: app/templates/users/list.html:18
-msgid "Username"
-msgstr ""
-
-#: app/blueprints/users/account.py:102
+#: app/blueprints/users/account.py:103
 msgid ""
 "Only alphabetic letters (A-Za-z), numbers (0-9), underscores (_), minuses"
 " (-), and periods (.) allowed"
 msgstr ""
 
-#: app/blueprints/users/account.py:104 app/blueprints/users/account.py:153
-#: app/blueprints/users/account.py:189 app/blueprints/users/account.py:338
+#: app/blueprints/users/account.py:104 app/blueprints/users/account.py:152
+#: app/blueprints/users/account.py:188 app/blueprints/users/account.py:337
 #: app/blueprints/users/settings.py:147
 msgid "Email"
 msgstr ""
@@ -1635,106 +1661,102 @@ msgstr ""
 msgid "What is the result of the above calculation?"
 msgstr ""
 
-#: app/blueprints/users/account.py:107
-msgid "I agree"
-msgstr ""
-
-#: app/blueprints/users/account.py:108 app/templates/users/login.html:34
+#: app/blueprints/users/account.py:107 app/templates/users/login.html:34
 #: app/templates/users/register.html:4
 msgid "Register"
 msgstr ""
 
-#: app/blueprints/users/account.py:113
+#: app/blueprints/users/account.py:112
 msgid "Incorrect captcha answer"
 msgstr ""
 
-#: app/blueprints/users/account.py:154
+#: app/blueprints/users/account.py:153
 msgid "Reset Password"
 msgstr ""
 
-#: app/blueprints/users/account.py:180
+#: app/blueprints/users/account.py:179
 msgid "Unable to find account"
 msgstr ""
 
-#: app/blueprints/users/account.py:190 app/blueprints/users/account.py:198
+#: app/blueprints/users/account.py:189 app/blueprints/users/account.py:197
 msgid "New password"
 msgstr ""
 
-#: app/blueprints/users/account.py:191 app/blueprints/users/account.py:199
+#: app/blueprints/users/account.py:190 app/blueprints/users/account.py:198
 msgid "Verify password"
 msgstr ""
 
-#: app/blueprints/users/account.py:192 app/blueprints/users/account.py:200
+#: app/blueprints/users/account.py:191 app/blueprints/users/account.py:199
 msgid "Passwords must match"
 msgstr ""
 
-#: app/blueprints/users/account.py:197
+#: app/blueprints/users/account.py:196
 msgid "Old password"
 msgstr ""
 
-#: app/blueprints/users/account.py:208
+#: app/blueprints/users/account.py:207
 msgid "Passwords do not match"
 msgstr ""
 
-#: app/blueprints/users/account.py:219 app/blueprints/users/settings.py:175
+#: app/blueprints/users/account.py:218 app/blueprints/users/settings.py:175
 #: app/logic/users.py:51
 msgid "That email address has been unsubscribed/blacklisted, and cannot be used"
 msgstr ""
 
-#: app/blueprints/users/account.py:224 app/logic/users.py:46
+#: app/blueprints/users/account.py:223 app/logic/users.py:46
 msgid "Email already in use"
 msgstr ""
 
-#: app/blueprints/users/account.py:225 app/logic/users.py:47
+#: app/blueprints/users/account.py:224 app/logic/users.py:47
 #, python-format
 msgid ""
 "We were unable to create the account as the email is already in use by "
 "%(display_name)s. Try a different email address."
 msgstr ""
 
-#: app/blueprints/users/account.py:239 app/blueprints/users/account.py:243
+#: app/blueprints/users/account.py:238 app/blueprints/users/account.py:242
 msgid "Your password has been changed successfully."
 msgstr ""
 
-#: app/blueprints/users/account.py:258
+#: app/blueprints/users/account.py:257
 msgid "Old password is incorrect"
 msgstr ""
 
-#: app/blueprints/users/account.py:286
+#: app/blueprints/users/account.py:285
 msgid "Unknown verification token!"
 msgstr ""
 
-#: app/blueprints/users/account.py:290
+#: app/blueprints/users/account.py:289
 msgid "Token has expired"
 msgstr ""
 
-#: app/blueprints/users/account.py:304
+#: app/blueprints/users/account.py:303
 msgid "Another user is already using that email"
 msgstr ""
 
-#: app/blueprints/users/account.py:307
+#: app/blueprints/users/account.py:306
 msgid "Confirmed email change"
 msgstr ""
 
-#: app/blueprints/users/account.py:312
+#: app/blueprints/users/account.py:311
 msgid "Email address changed"
 msgstr ""
 
-#: app/blueprints/users/account.py:313
+#: app/blueprints/users/account.py:312
 msgid ""
 "Your email address has changed. If you didn't request this, please "
 "contact an administrator."
 msgstr ""
 
-#: app/blueprints/users/account.py:331
+#: app/blueprints/users/account.py:330
 msgid "You may now log in"
 msgstr ""
 
-#: app/blueprints/users/account.py:339
+#: app/blueprints/users/account.py:338
 msgid "Send"
 msgstr ""
 
-#: app/blueprints/users/account.py:370
+#: app/blueprints/users/account.py:369
 msgid ""
 "That email is now blacklisted. Please contact an admin if you wish to "
 "undo this."
@@ -1785,7 +1807,7 @@ msgstr ""
 msgid "Top reviewer"
 msgstr ""
 
-#: app/blueprints/users/profile.py:118
+#: app/blueprints/users/profile.py:119
 #, python-format
 msgid "%(display_name)s has written the most helpful reviews on ContentDB."
 msgstr ""
@@ -1798,7 +1820,7 @@ msgstr ""
 msgid "3rd most helpful reviewer"
 msgstr ""
 
-#: app/blueprints/users/profile.py:126
+#: app/blueprints/users/profile.py:127
 #, python-format
 msgid "This puts %(display_name)s in the top %(perc)s%%"
 msgstr ""
@@ -1921,87 +1943,81 @@ msgstr ""
 msgid "Can't promote a user to a rank higher than yourself!"
 msgstr ""
 
-#: app/blueprints/vcs/github.py:56
+#: app/blueprints/vcs/github.py:55
 msgid "Authorization failed [err=gh-oauth-login-failed]"
 msgstr ""
 
-#: app/blueprints/vcs/github.py:85
+#: app/blueprints/vcs/github.py:84
 msgid "Linked GitHub to account"
 msgstr ""
 
-#: app/blueprints/vcs/github.py:90
+#: app/blueprints/vcs/github.py:89
 #, python-format
 msgid "GitHub account is already associated with another user: %(username)s"
 msgstr ""
 
-#: app/blueprints/vcs/github.py:98 app/blueprints/vcs/github.py:124
+#: app/blueprints/vcs/github.py:97 app/blueprints/vcs/github.py:124
 msgid "Authorization failed [err=gh-login-failed]"
 msgstr ""
 
-#: app/blueprints/zipgrep/__init__.py:35
+#: app/blueprints/zipgrep/__init__.py:34
 msgid "Text to find (regex)"
 msgstr ""
 
-#: app/blueprints/zipgrep/__init__.py:36
+#: app/blueprints/zipgrep/__init__.py:35
 msgid "File filter"
 msgstr ""
 
-#: app/blueprints/zipgrep/__init__.py:38 app/templates/base.html:74
-#: app/templates/packages/advanced_search.html:34
-#: app/templates/packages/game_hub.html:35 app/templates/todo/tags.html:14
-msgid "Search"
-msgstr ""
-
-#: app/logic/package_approval.py:95
+#: app/logic/package_approval.py:98
 msgid "A package already exists with this name. Please see Policy and Guidance 3"
 msgstr ""
 
-#: app/logic/package_approval.py:99
+#: app/logic/package_approval.py:102
 msgid "You need to create a release before this package can be approved."
 msgstr ""
 
-#: app/logic/package_approval.py:101
+#: app/logic/package_approval.py:104
 msgid "Release is still importing, or has an error."
 msgstr ""
 
-#: app/logic/package_approval.py:105
+#: app/logic/package_approval.py:108
 msgid "Set up releases"
 msgstr ""
 
-#: app/logic/package_approval.py:112
+#: app/logic/package_approval.py:114
 msgid "You need to add at least one screenshot."
 msgstr ""
 
-#: app/logic/package_approval.py:117
+#: app/logic/package_approval.py:120
 #, python-format
 msgid ""
 "The following hard dependencies need to be added to ContentDB first: "
 "%(deps)s"
 msgstr ""
 
-#: app/logic/package_approval.py:121
+#: app/logic/package_approval.py:124
 msgid ""
 "What games does your package support? Please specify on the supported "
 "games page"
 msgstr ""
 
-#: app/logic/package_approval.py:126
+#: app/logic/package_approval.py:128
 msgid "Please wait for the license to be added to CDB."
 msgstr ""
 
-#: app/logic/package_approval.py:134
+#: app/logic/package_approval.py:136
 msgid "Please make sure that this package has the right to the names it uses."
 msgstr ""
 
-#: app/logic/package_approval.py:139
+#: app/logic/package_approval.py:140
 #, python-format
 msgid "Please make sure that this package has the right to the names %(names)s"
 msgstr ""
 
-#: app/logic/package_approval.py:140 app/templates/index.html:112
-#: app/templates/index.html:123 app/templates/index.html:134
-#: app/templates/index.html:145 app/templates/index.html:156
-#: app/templates/index.html:182 app/templates/packages/game_hub.html:42
+#: app/logic/package_approval.py:142 app/templates/index.html:113
+#: app/templates/index.html:124 app/templates/index.html:135
+#: app/templates/index.html:146 app/templates/index.html:157
+#: app/templates/index.html:183 app/templates/packages/game_hub.html:42
 #: app/templates/packages/game_hub.html:49
 #: app/templates/packages/game_hub.html:56
 #: app/templates/packages/game_hub.html:63
@@ -2009,35 +2025,35 @@ msgstr ""
 msgid "See more"
 msgstr ""
 
-#: app/logic/package_approval.py:145
+#: app/logic/package_approval.py:147
 msgid "Error: Another package already uses this forum topic!"
 msgstr ""
 
-#: app/logic/package_approval.py:150
+#: app/logic/package_approval.py:152
 msgid "Error: Forum topic author doesn't match package author."
 msgstr ""
 
-#: app/logic/package_approval.py:152
+#: app/logic/package_approval.py:154
 msgid ""
 "Warning: Forum topic not found. The topic may have been created since the"
 " last forum crawl."
 msgstr ""
 
-#: app/logic/packages.py:99
+#: app/logic/packages.py:114
 msgid ""
 "Name can only contain lower case letters (a-z), digits (0-9), and "
 "underscores (_)"
 msgstr ""
 
-#: app/logic/packages.py:112
+#: app/logic/packages.py:127
 msgid "You don't have permission to edit this package"
 msgstr ""
 
-#: app/logic/packages.py:116
+#: app/logic/packages.py:131
 msgid "You don't have permission to change the package name"
 msgstr ""
 
-#: app/logic/packages.py:140
+#: app/logic/packages.py:158
 msgid "You cannot change package type once approved"
 msgstr ""
 
@@ -2061,10 +2077,6 @@ msgstr ""
 
 #: app/logic/screenshots.py:32
 msgid "Too many requests, please wait before trying again"
-msgstr ""
-
-#: app/logic/screenshots.py:34
-msgid "a PNG, JPEG, or WebP image file"
 msgstr ""
 
 #: app/logic/screenshots.py:51
@@ -2104,6 +2116,35 @@ msgstr ""
 
 #: app/logic/users.py:40
 msgid "Unable to create an account as the username was used in the past."
+msgstr ""
+
+#: app/models/__init__.py:147
+msgid "Account deletion"
+msgstr ""
+
+#: app/models/__init__.py:149
+msgid "Copyright infringement / DMCA"
+msgstr ""
+
+#: app/models/__init__.py:151
+msgid "User behaviour, bullying, or abuse"
+msgstr ""
+
+#: app/models/__init__.py:153
+msgid "Illegal or harmful content"
+msgstr ""
+
+#: app/models/__init__.py:155
+msgid "Outdated/invalid review"
+msgstr ""
+
+#: app/models/__init__.py:157
+msgid "Appeal"
+msgstr ""
+
+#. NOTE: OTHER notification type
+#: app/models/__init__.py:159 app/models/users.py:469
+msgid "Other"
 msgstr ""
 
 #: app/models/packages.py:69
@@ -2255,17 +2296,17 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: app/models/packages.py:1385
+#: app/models/packages.py:1389
 #, python-format
 msgid "New commit %(hash)s found on the Git repo."
 msgstr ""
 
-#: app/models/packages.py:1389
+#: app/models/packages.py:1393
 #, python-format
 msgid "The last release was commit %(hash)s"
 msgstr ""
 
-#: app/models/packages.py:1395
+#: app/models/packages.py:1399
 #, python-format
 msgid "New tag %(tag_name)s found on the Git repo."
 msgstr ""
@@ -2299,7 +2340,7 @@ msgid "Editor"
 msgstr ""
 
 #. NOTE: BOT notification type
-#: app/models/users.py:60 app/models/users.py:455
+#: app/models/users.py:60 app/models/users.py:457
 msgid "Bot"
 msgstr ""
 
@@ -2312,128 +2353,123 @@ msgid "Admin"
 msgstr ""
 
 #. NOTE: PACKAGE_EDIT notification type
-#: app/models/users.py:440
+#: app/models/users.py:442
 msgid "Package Edit"
 msgstr ""
 
 #. NOTE: PACKAGE_APPROVAL notification type
-#: app/models/users.py:443
+#: app/models/users.py:445
 msgid "Package Approval"
 msgstr ""
 
 #. NOTE: NEW_THREAD notification type
-#: app/models/users.py:446 app/templates/threads/list.html:12
+#: app/models/users.py:448 app/templates/threads/list.html:12
 #: app/templates/threads/new.html:4
 msgid "New Thread"
 msgstr ""
 
 #. NOTE: NEW_REVIEW notification type
-#: app/models/users.py:449
+#: app/models/users.py:451
 msgid "New Review"
 msgstr ""
 
 #. NOTE: THREAD_REPLY notification type
-#: app/models/users.py:452
+#: app/models/users.py:454
 msgid "Thread Reply"
 msgstr ""
 
 #. NOTE: MAINTAINER notification type
-#: app/models/users.py:458 app/templates/macros/threads.html:27
+#: app/models/users.py:460 app/templates/macros/threads.html:27
 msgid "Maintainer"
 msgstr ""
 
 #. NOTE: EDITOR_ALERT notification type
-#: app/models/users.py:461
+#: app/models/users.py:463
 msgid "Editor Alert"
 msgstr ""
 
 #. NOTE: EDITOR_MISC notification type
-#: app/models/users.py:464
+#: app/models/users.py:466
 msgid "Editor Misc"
 msgstr ""
 
-#. NOTE: OTHER notification type
-#: app/models/users.py:467
-msgid "Other"
-msgstr ""
-
-#: app/models/users.py:477
+#: app/models/users.py:479
 msgid "This is a Package Edit notification."
 msgstr ""
 
-#: app/models/users.py:479
+#: app/models/users.py:481
 msgid "This is a Package Approval notification."
 msgstr ""
 
-#: app/models/users.py:481
+#: app/models/users.py:483
 msgid "This is a New Thread notification."
 msgstr ""
 
-#: app/models/users.py:483
+#: app/models/users.py:485
 msgid "This is a New Review notification."
 msgstr ""
 
-#: app/models/users.py:485
+#: app/models/users.py:487
 msgid "This is a Thread Reply notification."
 msgstr ""
 
-#: app/models/users.py:487
+#: app/models/users.py:489
 msgid "This is a Bot notification."
 msgstr ""
 
-#: app/models/users.py:489
+#: app/models/users.py:491
 msgid "This is a Maintainer change notification."
 msgstr ""
 
-#: app/models/users.py:491
+#: app/models/users.py:493
 msgid "This is an Editor Alert notification."
 msgstr ""
 
-#: app/models/users.py:493
+#: app/models/users.py:495
 msgid "This is an Editor Misc notification."
 msgstr ""
 
-#: app/models/users.py:495
+#: app/models/users.py:497
 msgid "This is an Other notification."
 msgstr ""
 
-#: app/models/users.py:502
+#: app/models/users.py:504
 msgid "When another user edits your packages, releases, etc."
 msgstr ""
 
-#: app/models/users.py:504
+#: app/models/users.py:506
 msgid "Notifications from editors related to the package approval process."
 msgstr ""
 
-#: app/models/users.py:506
+#: app/models/users.py:508
 msgid "When a thread is created on your package."
 msgstr ""
 
-#: app/models/users.py:508
+#: app/models/users.py:510
 msgid "When a user posts a review on your package."
 msgstr ""
 
-#: app/models/users.py:510
+#: app/models/users.py:512
 msgid "When someone replies to a thread you're watching."
 msgstr ""
 
-#: app/models/users.py:512
+#: app/models/users.py:514
 msgid "From a bot - for example, update notifications."
 msgstr ""
 
-#: app/models/users.py:514
+#: app/models/users.py:516
 msgid "When your package's maintainers change."
 msgstr ""
 
-#: app/models/users.py:516
+#: app/models/users.py:518
 msgid "For editors: Important alerts."
 msgstr ""
 
-#: app/models/users.py:518
+#: app/models/users.py:520
 msgid "For editors: Minor notifications, including new threads."
 msgstr ""
 
-#: app/models/users.py:520
+#: app/models/users.py:522
 msgid "Minor notifications not important enough for a dedicated category."
 msgstr ""
 
@@ -2456,7 +2492,7 @@ msgstr ""
 
 #: app/tasks/emails.py:165 app/templates/macros/forms.html:59
 #: app/templates/packages/create_edit.html:41
-#: app/templates/todo/editor.html:155
+#: app/templates/todo/editor.html:177
 msgid "View"
 msgstr ""
 
@@ -2541,7 +2577,7 @@ msgstr ""
 
 #: app/templates/admin/languages/list.html:4
 #: app/templates/admin/languages/list.html:10 app/templates/base.html:199
-#: app/templates/packages/view.html:620 app/utils/minetest_hypertext.py:288
+#: app/templates/packages/view.html:620 app/utils/luanti_hypertext.py:288
 msgid "Languages"
 msgstr ""
 
@@ -2558,7 +2594,7 @@ msgid "Contact Us"
 msgstr ""
 
 #: app/templates/base.html:262
-msgid "Rules"
+msgid "Terms of Service"
 msgstr ""
 
 #: app/templates/base.html:263
@@ -2578,7 +2614,7 @@ msgstr ""
 msgid "RSS / Feeds"
 msgstr ""
 
-#: app/templates/base.html:267 app/templates/users/register.html:40
+#: app/templates/base.html:267
 msgid "Privacy Policy"
 msgstr ""
 
@@ -2633,62 +2669,62 @@ msgstr ""
 msgid "Welcome"
 msgstr ""
 
-#: app/templates/index.html:53
+#: app/templates/index.html:54
 #, python-format
 msgid "<strong>%(title)s</strong> by %(author)s"
 msgstr ""
 
-#: app/templates/index.html:94 app/templates/packages/view.html:285
+#: app/templates/index.html:95 app/templates/packages/view.html:285
 msgid "Previous"
 msgstr ""
 
-#: app/templates/index.html:98 app/templates/packages/view.html:289
-#: app/templates/users/claim_forums.html:87
+#: app/templates/index.html:99 app/templates/packages/view.html:289
+#: app/templates/users/claim_forums.html:91
 msgid "Next"
 msgstr ""
 
-#: app/templates/index.html:108 app/templates/index.html:114
+#: app/templates/index.html:109 app/templates/index.html:115
 #: app/templates/packages/game_hub.html:44
 msgid "Recently Added"
 msgstr ""
 
-#: app/templates/index.html:119 app/templates/index.html:125
+#: app/templates/index.html:120 app/templates/index.html:126
 #: app/templates/packages/game_hub.html:51
 msgid "Recently Updated"
 msgstr ""
 
-#: app/templates/index.html:130 app/templates/index.html:136
+#: app/templates/index.html:131 app/templates/index.html:137
 msgid "Top Games"
 msgstr ""
 
-#: app/templates/index.html:141 app/templates/index.html:147
+#: app/templates/index.html:142 app/templates/index.html:148
 #: app/templates/packages/game_hub.html:58
 msgid "Top Mods"
 msgstr ""
 
-#: app/templates/index.html:152 app/templates/index.html:158
+#: app/templates/index.html:153 app/templates/index.html:159
 #: app/templates/packages/game_hub.html:65
 msgid "Top Texture Packs"
 msgstr ""
 
-#: app/templates/index.html:164
+#: app/templates/index.html:165
 msgid "Search by Tags"
 msgstr ""
 
-#: app/templates/index.html:178 app/templates/index.html:184
+#: app/templates/index.html:179 app/templates/index.html:185
 #: app/templates/packages/game_hub.html:72
 msgid "Highest Reviewed"
 msgstr ""
 
-#: app/templates/index.html:192
+#: app/templates/index.html:193
 msgid "All reviews"
 msgstr ""
 
-#: app/templates/index.html:194
+#: app/templates/index.html:195
 msgid "Recent Positive Reviews"
 msgstr ""
 
-#: app/templates/index.html:201
+#: app/templates/index.html:202
 #, python-format
 msgid "CDB has %(count)d packages, with a total of %(downloads)d downloads."
 msgstr ""
@@ -2845,6 +2881,7 @@ msgstr ""
 #: app/templates/collections/view.html:42 app/templates/macros/releases.html:68
 #: app/templates/packages/release_view.html:10
 #: app/templates/packages/view.html:123 app/templates/packages/view.html:262
+#: app/templates/report/view.html:17
 msgid "Edit"
 msgstr ""
 
@@ -2871,6 +2908,7 @@ msgid "You can replace the description with your own"
 msgstr ""
 
 #: app/templates/collections/create_edit.html:103
+#, python-brace-format
 msgid "Are you sure you want to remove {title}?"
 msgstr ""
 
@@ -3345,19 +3383,15 @@ msgstr ""
 msgid "You don't have permission to post."
 msgstr ""
 
-#: app/templates/macros/threads.html:181
-msgid "You can add someone to a private thread by writing @username."
-msgstr ""
-
-#: app/templates/macros/threads.html:199 app/templates/macros/threads.html:281
+#: app/templates/macros/threads.html:194 app/templates/macros/threads.html:276
 msgid "No threads found"
 msgstr ""
 
-#: app/templates/macros/threads.html:207
+#: app/templates/macros/threads.html:202
 msgid "Thread"
 msgstr ""
 
-#: app/templates/macros/threads.html:211
+#: app/templates/macros/threads.html:206
 msgid "Last Reply"
 msgstr ""
 
@@ -3395,7 +3429,7 @@ msgstr ""
 
 #: app/templates/macros/topics.html:18 app/templates/macros/topics.html:54
 #: app/templates/modnames/view.html:29 app/templates/packages/similar.html:40
-#: app/templates/todo/editor.html:160 app/templates/todo/editor.html:175
+#: app/templates/todo/editor.html:182 app/templates/todo/editor.html:197
 msgid "WIP"
 msgstr ""
 
@@ -3424,7 +3458,7 @@ msgstr ""
 #: app/templates/packages/game_support.html:42
 #: app/templates/packages/similar.html:38 app/templates/packages/view.html:492
 #: app/templates/packages/view.html:516 app/templates/packages/view.html:561
-#: app/templates/packages/view.html:593 app/templates/todo/editor.html:85
+#: app/templates/packages/view.html:593 app/templates/todo/editor.html:107
 #: app/templates/todo/game_support.html:45
 #, python-format
 msgid "%(title)s by %(display_name)s"
@@ -3563,6 +3597,7 @@ msgid "No applications created"
 msgstr ""
 
 #: app/templates/packages/advanced_search.html:13
+#: app/templates/zipgrep/search.html:20
 msgid "Use shift to select multiple. Leave selection empty to match any type."
 msgstr ""
 
@@ -3671,9 +3706,9 @@ msgstr ""
 
 #: app/templates/packages/create_edit.html:85
 msgid ""
-"Tip: Don't include <i>Minetest</i>, <i>mod</i>, or <i>modpack</i> "
-"anywhere in the short description. It is unnecessary and wastes "
-"characters."
+"Tip: Don't include <i>Luanti</i>, <i>Minetest</i>, <i>mod</i>, or "
+"<i>modpack</i> anywhere in the short description. It is unnecessary and "
+"wastes characters."
 msgstr ""
 
 #: app/templates/packages/create_edit.html:88
@@ -4297,7 +4332,9 @@ msgid "Post a review for %(title)s by %(author)s"
 msgstr ""
 
 #: app/templates/packages/review_create_edit.html:20
-msgid "Please make sure you read ContentDB's <a href='/rules/'>rules</a>"
+msgid ""
+"Please make sure you read ContentDB's <a href='/terms/'>Terms of "
+"Service</a>"
 msgstr ""
 
 #: app/templates/packages/review_create_edit.html:25
@@ -4558,8 +4595,8 @@ msgstr ""
 
 #: app/templates/packages/view.html:101 app/templates/threads/view.html:109
 msgid ""
-"This thread is only visible to its creator, package maintainers, users of"
-" Approver rank or above, and @mentioned users."
+"This thread is only visible to its creator, package maintainers, and "
+"users of Approver rank or above."
 msgstr ""
 
 #: app/templates/packages/view.html:214 app/templates/users/profile.html:95
@@ -4648,7 +4685,7 @@ msgstr ""
 msgid "Donate now"
 msgstr ""
 
-#: app/templates/packages/view.html:484 app/utils/minetest_hypertext.py:283
+#: app/templates/packages/view.html:484 app/utils/luanti_hypertext.py:283
 msgid "Dependencies"
 msgstr ""
 
@@ -4665,7 +4702,7 @@ msgid "Compatible Games"
 msgstr ""
 
 #: app/templates/packages/view.html:548 app/templates/packages/view.html:568
-#: app/utils/minetest_hypertext.py:275
+#: app/utils/luanti_hypertext.py:275
 msgid "No specific game required"
 msgstr ""
 
@@ -4697,7 +4734,7 @@ msgstr ""
 msgid "Technical Name"
 msgstr ""
 
-#: app/templates/packages/view.html:634 app/utils/minetest_hypertext.py:295
+#: app/templates/packages/view.html:634 app/utils/luanti_hypertext.py:295
 #, python-format
 msgid "%(code_license)s for code,<br>%(media_license)s for media."
 msgstr ""
@@ -4706,7 +4743,7 @@ msgstr ""
 msgid "Unknown"
 msgstr ""
 
-#: app/templates/packages/view.html:644 app/utils/minetest_hypertext.py:301
+#: app/templates/packages/view.html:644 app/utils/luanti_hypertext.py:301
 msgid "Added"
 msgstr ""
 
@@ -4714,7 +4751,7 @@ msgstr ""
 msgid "Remove myself"
 msgstr ""
 
-#: app/templates/packages/view.html:663 app/utils/minetest_hypertext.py:303
+#: app/templates/packages/view.html:663 app/utils/luanti_hypertext.py:303
 msgid "Provides"
 msgstr ""
 
@@ -4726,32 +4763,107 @@ msgstr ""
 msgid "See audit log"
 msgstr ""
 
-#: app/templates/report/index.html:15
+#: app/templates/report/list.html:4 app/templates/todo/editor.html:9
+msgid "Reports"
+msgstr ""
+
+#: app/templates/report/report.html:19
 msgid ""
 "Due to spam, we no longer accept reports from anonymous users on this "
 "form."
 msgstr ""
 
-#: app/templates/report/index.html:16
+#: app/templates/report/report.html:20
 msgid "Please sign in or contact the admin using the link below."
 msgstr ""
 
-#: app/templates/report/index.html:34
-msgid "What are you reporting? Why are you reporting it?"
+#: app/templates/report/report.html:30
+msgid ""
+"The full report will be visible to all ContentDB staff members, including"
+" editors and moderators."
 msgstr ""
 
-#: app/templates/report/index.html:38
-msgid "Reports will be shared with ContentDB staff."
+#: app/templates/report/report.html:31
+msgid ""
+"If you are reporting something by another user, we may discuss the report"
+" with them but will not disclose who reported it."
 msgstr ""
 
-#: app/templates/report/index.html:40
-msgid "Only the admin will be able to see who made the report."
+#: app/templates/report/report.html:32
+msgid ""
+"If you are reporting something by an editor or moderator, then you should"
+" email the admin or a moderator directly to hide your identity."
 msgstr ""
 
-#: app/templates/report/index.html:44
+#: app/templates/report/report.html:41
+msgid "Optional, usually not required"
+msgstr ""
+
+#: app/templates/report/report.html:44
 msgid ""
 "Found a bug? Please report on the package's issue tracker or in a thread "
 "instead."
+msgstr ""
+
+#: app/templates/report/report_received.html:4
+msgid "We have received your report"
+msgstr ""
+
+#: app/templates/report/report_received.html:13
+msgid "We aim to resolve your report quickly."
+msgstr ""
+
+#: app/templates/report/report_received.html:17
+msgid ""
+"If the report is about illegal or harmful content, we aim to resolve "
+"within 48 hours."
+msgstr ""
+
+#: app/templates/report/report_received.html:18
+msgid ""
+"If we find the content to be infringing, we will remove it and may warn "
+"or suspend the user."
+msgstr ""
+
+#: app/templates/report/report_received.html:23
+msgid ""
+"A private thread has been created for this report. You can use it to "
+"communicate with ContentDB staff and receive updates about the report."
+msgstr ""
+
+#: app/templates/report/report_received.html:27
+msgid ""
+"Due to limited resources, we may not contact you further about the report"
+" unless we need clarification."
+msgstr ""
+
+#: app/templates/report/report_received.html:30
+#, python-format
+msgid "For future reference, use report id: %(report_id)s."
+msgstr ""
+
+#: app/templates/report/report_received.html:36
+msgid "View thread"
+msgstr ""
+
+#: app/templates/report/report_received.html:38
+msgid "Back to home"
+msgstr ""
+
+#: app/templates/report/view.html:96
+msgid "Reopen"
+msgstr ""
+
+#: app/templates/report/view.html:98
+msgid "Completed (action taken)"
+msgstr ""
+
+#: app/templates/report/view.html:99
+msgid "Content removed"
+msgstr ""
+
+#: app/templates/report/view.html:100
+msgid "Invalid / close with no action"
 msgstr ""
 
 #: app/templates/tasks/view.html:5
@@ -4762,7 +4874,7 @@ msgstr ""
 msgid "Working…"
 msgstr ""
 
-#: app/templates/tasks/view.html:26
+#: app/templates/tasks/view.html:25
 msgid "Reload the page to check for updates."
 msgstr ""
 
@@ -4785,12 +4897,6 @@ msgstr ""
 msgid ""
 "If the package shouldn't be on CDB (eg: if it doesn't work at all), then "
 "you can let us know here."
-msgstr ""
-
-#: app/templates/threads/new.html:52
-msgid ""
-"Only you, the package author, and users of Approver rank and above can "
-"read private threads."
 msgstr ""
 
 #: app/templates/threads/user_comments.html:9
@@ -4836,15 +4942,15 @@ msgstr ""
 msgid "Plus approvers and editors"
 msgstr ""
 
-#: app/templates/threads/view.html:136
+#: app/templates/threads/view.html:141
 msgid "Is this review outdated?"
 msgstr ""
 
-#: app/templates/threads/view.html:137
+#: app/templates/threads/view.html:142
 msgid "For example, does it complain about issues you've already fixed?"
 msgstr ""
 
-#: app/templates/threads/view.html:138
+#: app/templates/threads/view.html:143
 #, python-format
 msgid "You can report outdated reviews by clicking %(flag)s on the review."
 msgstr ""
@@ -4853,64 +4959,64 @@ msgstr ""
 msgid "Editor Work Queue"
 msgstr ""
 
-#: app/templates/todo/editor.html:8
+#: app/templates/todo/editor.html:30
 msgid "Approval Queue"
 msgstr ""
 
-#: app/templates/todo/editor.html:15
+#: app/templates/todo/editor.html:37
 msgid "Approve All"
 msgstr ""
 
-#: app/templates/todo/editor.html:33
+#: app/templates/todo/editor.html:55
 msgid "No screenshots need approval."
 msgstr ""
 
-#: app/templates/todo/editor.html:65 app/templates/todo/editor.html:183
+#: app/templates/todo/editor.html:87 app/templates/todo/editor.html:205
 msgid "No packages need approval."
 msgstr ""
 
-#: app/templates/todo/editor.html:80
+#: app/templates/todo/editor.html:102
 msgid "Importing"
 msgstr ""
 
-#: app/templates/todo/editor.html:90
+#: app/templates/todo/editor.html:112
 msgid "No releases need approval."
 msgstr ""
 
-#: app/templates/todo/editor.html:100
+#: app/templates/todo/editor.html:122
 msgid "All done!"
 msgstr ""
 
-#: app/templates/todo/editor.html:105 app/templates/todo/editor.html:107
+#: app/templates/todo/editor.html:127 app/templates/todo/editor.html:129
 msgid "License Needed"
 msgstr ""
 
-#: app/templates/todo/editor.html:127
+#: app/templates/todo/editor.html:149
 msgid "Tag Packages"
 msgstr ""
 
-#: app/templates/todo/editor.html:130
+#: app/templates/todo/editor.html:152
 #, python-format
 msgid "%(total_to_tag)d / %(total_packages)d packages don't have any tags."
 msgstr ""
 
-#: app/templates/todo/editor.html:140
+#: app/templates/todo/editor.html:162
 msgid "View Tags"
 msgstr ""
 
-#: app/templates/todo/editor.html:147
+#: app/templates/todo/editor.html:169
 msgid "Unfulfilled Dependencies"
 msgstr ""
 
-#: app/templates/todo/editor.html:151
+#: app/templates/todo/editor.html:173
 msgid "Mod names that have hard dependers, but no packages providing them."
 msgstr ""
 
-#: app/templates/todo/editor.html:193 app/templates/users/account.html:102
+#: app/templates/todo/editor.html:215 app/templates/users/account.html:101
 msgid "View All"
 msgstr ""
 
-#: app/templates/todo/editor.html:196
+#: app/templates/todo/editor.html:218
 msgid "Recent Actions"
 msgstr ""
 
@@ -5180,31 +5286,31 @@ msgstr ""
 msgid "Disconnect"
 msgstr ""
 
-#: app/templates/users/account.html:70
+#: app/templates/users/account.html:69
 msgid "Link Github"
 msgstr ""
 
-#: app/templates/users/account.html:73
+#: app/templates/users/account.html:72
 msgid "None"
 msgstr ""
 
-#: app/templates/users/account.html:80
+#: app/templates/users/account.html:79
 msgid "Account Deletion and Deactivation"
 msgstr ""
 
-#: app/templates/users/account.html:84
+#: app/templates/users/account.html:83
 msgid "Delete or Deactivate"
 msgstr ""
 
-#: app/templates/users/account.html:87
+#: app/templates/users/account.html:86
 msgid "Account Deletion and Deactivation isn't available to users yet."
 msgstr ""
 
-#: app/templates/users/account.html:88
+#: app/templates/users/account.html:87
 msgid "Please raise a report to request account deletion."
 msgstr ""
 
-#: app/templates/users/account.html:95
+#: app/templates/users/account.html:94
 msgid "Recent Account Actions"
 msgstr ""
 
@@ -5283,68 +5389,76 @@ msgstr ""
 msgid "You can still <a href='%(url)s'>sign up without one</a>."
 msgstr ""
 
-#: app/templates/users/claim_forums.html:26
+#: app/templates/users/claim_forums.html:23
+#: app/templates/users/register.html:38
+msgid ""
+"By signing up, you agree to the <a href='/terms/' target='_blank'>Terms "
+"of Service</a> and <a href='/privacy_policy/' target='_blank'>Privacy "
+"Policy</a>."
+msgstr ""
+
+#: app/templates/users/claim_forums.html:30
 msgid "Option 1"
 msgstr ""
 
-#: app/templates/users/claim_forums.html:27
+#: app/templates/users/claim_forums.html:31
 msgid "Use GitHub field in forum profile"
-msgstr ""
-
-#: app/templates/users/claim_forums.html:35
-#: app/templates/users/claim_forums.html:64
-msgid "Enter your forum username here:"
 msgstr ""
 
 #: app/templates/users/claim_forums.html:39
 #: app/templates/users/claim_forums.html:68
+msgid "Enter your forum username here:"
+msgstr ""
+
+#: app/templates/users/claim_forums.html:43
+#: app/templates/users/claim_forums.html:72
 msgid "Forum username"
 msgstr ""
 
-#: app/templates/users/claim_forums.html:40
-#: app/templates/users/claim_forums.html:68
+#: app/templates/users/claim_forums.html:44
+#: app/templates/users/claim_forums.html:72
 #: app/templates/users/register.html:16
 msgid "Only a-zA-Z0-9._ allowed"
 msgstr ""
 
-#: app/templates/users/claim_forums.html:43
+#: app/templates/users/claim_forums.html:47
 msgid "You'll need to have the GitHub field in your forum profile filled out."
 msgstr ""
 
-#: app/templates/users/claim_forums.html:44
+#: app/templates/users/claim_forums.html:48
 msgid ""
 "Log into the forum and <a "
 "href='https://forum.luanti.org/ucp.php?i=173'>do that here</a>."
 msgstr ""
 
-#: app/templates/users/claim_forums.html:47
+#: app/templates/users/claim_forums.html:51
 msgid "Next: log in with GitHub"
 msgstr ""
 
-#: app/templates/users/claim_forums.html:55
+#: app/templates/users/claim_forums.html:59
 msgid "Option 2"
 msgstr ""
 
-#: app/templates/users/claim_forums.html:56
+#: app/templates/users/claim_forums.html:60
 msgid "Verification token"
 msgstr ""
 
-#: app/templates/users/claim_forums.html:71
+#: app/templates/users/claim_forums.html:75
 msgid ""
 "Go to <a "
 "href='https://forum.luanti.org/ucp.php?i=profile&mode=signature'>User "
 "Control Panel &gt; Profile &gt; Edit signature</a>"
 msgstr ""
 
-#: app/templates/users/claim_forums.html:75
+#: app/templates/users/claim_forums.html:79
 msgid "Paste this into your signature:"
 msgstr ""
 
-#: app/templates/users/claim_forums.html:81
+#: app/templates/users/claim_forums.html:85
 msgid "Click next so we can check it."
 msgstr ""
 
-#: app/templates/users/claim_forums.html:84
+#: app/templates/users/claim_forums.html:88
 msgid "Don't worry, you can remove it after this is done."
 msgstr ""
 
@@ -5604,10 +5718,6 @@ msgstr ""
 msgid "Please prove that you are human"
 msgstr ""
 
-#: app/templates/users/register.html:38
-msgid "I agree to the "
-msgstr ""
-
 #: app/templates/users/settings_email.html:4
 #, python-format
 msgid "Email and Notifications - %(username)s"
@@ -5732,27 +5842,31 @@ msgstr ""
 msgid "Last year"
 msgstr ""
 
-#: app/utils/minetest_hypertext.py:108
+#: app/utils/luanti_hypertext.py:108
 msgid "(view table in browser)"
 msgstr ""
 
-#: app/utils/minetest_hypertext.py:139
+#: app/utils/luanti_hypertext.py:139
 msgid "Image"
 msgstr ""
 
-#: app/utils/minetest_hypertext.py:259
+#: app/utils/luanti_hypertext.py:259
 msgid "none"
 msgstr ""
 
-#: app/utils/minetest_hypertext.py:280
+#: app/utils/luanti_hypertext.py:280
 msgid "Unsupported Games"
 msgstr ""
 
-#: app/utils/minetest_hypertext.py:284
+#: app/utils/luanti_hypertext.py:284
 msgid "Optional dependencies"
 msgstr ""
 
-#: app/utils/minetest_hypertext.py:340
+#: app/utils/luanti_hypertext.py:325
+msgid "Leave a review"
+msgstr ""
+
+#: app/utils/luanti_hypertext.py:346
 msgid "No reviews available."
 msgstr ""
 
@@ -5765,3 +5879,52 @@ msgid ""
 "Please consider enabling email notifications, you can customise how much "
 "is sent"
 msgstr ""
+
+#~ msgctxt "tags"
+#~ msgid "Less than 16px"
+#~ msgstr ""
+
+#~ msgid "I agree"
+#~ msgstr ""
+
+#~ msgid "Rules"
+#~ msgstr ""
+
+#~ msgid "You can add someone to a private thread by writing @username."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Tip: Don't include <i>Minetest</i>, "
+#~ "<i>mod</i>, or <i>modpack</i> anywhere in "
+#~ "the short description. It is unnecessary"
+#~ " and wastes characters."
+#~ msgstr ""
+
+#~ msgid "Please make sure you read ContentDB's <a href='/rules/'>rules</a>"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "This thread is only visible to its"
+#~ " creator, package maintainers, users of "
+#~ "Approver rank or above, and @mentioned"
+#~ " users."
+#~ msgstr ""
+
+#~ msgid "What are you reporting? Why are you reporting it?"
+#~ msgstr ""
+
+#~ msgid "Reports will be shared with ContentDB staff."
+#~ msgstr ""
+
+#~ msgid "Only the admin will be able to see who made the report."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Only you, the package author, and "
+#~ "users of Approver rank and above "
+#~ "can read private threads."
+#~ msgstr ""
+
+#~ msgid "I agree to the "
+#~ msgstr ""
+

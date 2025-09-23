@@ -7,24 +7,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-10 15:52+0000\n"
+"POT-Creation-Date: 2025-09-23 10:00+0100\n"
 "PO-Revision-Date: 2025-05-13 19:05+0000\n"
 "Last-Translator: Zacharias Tyllström <zacharias.tyllstrom@gmail.com>\n"
-"Language-Team: Swedish <https://hosted.weblate.org/projects/minetest/"
-"contentdb/sv/>\n"
 "Language: sv\n"
+"Language-Team: Swedish "
+"<https://hosted.weblate.org/projects/minetest/contentdb/sv/>\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.12-dev\n"
-"Generated-By: Babel 2.15.0\n"
+"Generated-By: Babel 2.17.0\n"
 
-#: app/__init__.py:156
+#: app/__init__.py:155
 msgid "Banned:"
 msgstr "Bannad:"
 
-#: app/__init__.py:158
+#: app/__init__.py:157
 msgid "You have been banned."
 msgstr "Du har blivit bannad."
 
@@ -95,8 +94,8 @@ msgid ""
 "For humorous content, meant as a novelty or joke, not to be taken "
 "seriously, and that is not meant to be used seriously or long-term."
 msgstr ""
-"För humoristiskt innehåll, avsett som en kul grej eller ett skämt, som inte "
-"ska tas på allvar och som inte är avsett att användas seriöst eller "
+"För humoristiskt innehåll, avsett som en kul grej eller ett skämt, som "
+"inte ska tas på allvar och som inte är avsett att användas seriöst eller "
 "långsiktigt."
 
 #. NOTE: tags: title for building
@@ -160,8 +159,8 @@ msgid ""
 "Requires futher installation steps, such as installing LuaRocks or "
 "editing the trusted mod setting"
 msgstr ""
-"Kräver ytterligare installationssteg, som att installera Luarocks eller att "
-"redigera inställningen för pålitna moddar"
+"Kräver ytterligare installationssteg, som att installera Luarocks eller "
+"att redigera inställningen för pålitna moddar"
 
 #. NOTE: tags: title for crafting
 #: app/_translations.py:48
@@ -189,9 +188,9 @@ msgid ""
 "content only available through a creative inventory, or provides tools "
 "that facilitate ingame creation and doesn't add difficulty or scarcity"
 msgstr ""
-"Skrivet specifikt för användning i kreativt läge. Lägger till innehåll som "
-"endast är tillgängligt i kreativt läge eller tillhandahåller verktyg som "
-"underlättar skapande i spelet och inte ökar svårighetsgraden"
+"Skrivet specifikt för användning i kreativt läge. Lägger till innehåll "
+"som endast är tillgängligt i kreativt läge eller tillhandahåller verktyg "
+"som underlättar skapande i spelet och inte ökar svårighetsgraden"
 
 #. NOTE: tags: title for custom_mapgen
 #: app/_translations.py:56
@@ -206,8 +205,8 @@ msgid ""
 "Contains a completely custom mapgen implemented in Lua, usually requires "
 "worlds to be set to the 'singlenode' mapgen."
 msgstr ""
-"Innehåller en helt anpassad mapgen implementerad i Lua, kräver vanligtvis "
-"att världar ställs in på ”singlenode”-mapgen."
+"Innehåller en helt anpassad mapgen implementerad i Lua, kräver vanligtvis"
+" att världar ställs in på ”singlenode”-mapgen."
 
 #. NOTE: tags: title for decorative
 #: app/_translations.py:60
@@ -244,7 +243,8 @@ msgstr "Utbildning"
 msgctxt "tags"
 msgid "Either has educational value, or is a tool to help teachers "
 msgstr ""
-"Antingen har pedagogiskt värde, eller är ett verktyg för att hjälpa lärare "
+"Antingen har pedagogiskt värde, eller är ett verktyg för att hjälpa "
+"lärare "
 
 #. NOTE: tags: title for environment
 #: app/_translations.py:72
@@ -379,7 +379,8 @@ msgid ""
 "For mods created for the Discord \"Weekly Challenges\" modding event in "
 "2021"
 msgstr ""
-"För moddar skapade för Discordens \"Weekly Challenges\"-moddingevent i 2021"
+"För moddar skapade för Discordens \"Weekly Challenges\"-moddingevent i "
+"2021"
 
 #. NOTE: tags: title for less_than_px
 #: app/_translations.py:114
@@ -390,8 +391,8 @@ msgstr "&lt;16px"
 #. NOTE: tags: description for less_than_px
 #: app/_translations.py:116
 msgctxt "tags"
-msgid "Less than 16px"
-msgstr "Texturpaket som är mindre än 16px"
+msgid "For less than 16px texture packs "
+msgstr ""
 
 #. NOTE: tags: title for library
 #: app/_translations.py:118
@@ -484,8 +485,8 @@ msgid ""
 "For games and such that are of their own kind, distinct and original in "
 "nature to others of the same category."
 msgstr ""
-"För spel och sådant som är unikt, distinkt och originellt jämfört med andra "
-"i sin kategori."
+"För spel och sådant som är unikt, distinkt och originellt jämfört med "
+"andra i sin kategori."
 
 #. NOTE: tags: title for plants_and_farming
 #: app/_translations.py:148
@@ -632,8 +633,8 @@ msgid ""
 "Allows the player to customize their character by changing the texture or"
 " adding accessories."
 msgstr ""
-"Tillåter spelaren att anpassa sin karaktär genom att ändra texturen eller "
-"lägga till tillbehör."
+"Tillåter spelaren att anpassa sin karaktär genom att ändra texturen eller"
+" lägga till tillbehör."
 
 #. NOTE: tags: title for sound_music
 #: app/_translations.py:192
@@ -695,7 +696,8 @@ msgid ""
 "difficulty level, or resources available through crafting, mining, ..."
 msgstr ""
 "Skriven specifikt för överlevnadsgameplay med ett fokus på spelbalans, "
-"svårighetsgrad eller resurser tillgängliga genom skapning, gruvbrytning, ..."
+"svårighetsgrad eller resurser tillgängliga genom skapning, gruvbrytning, "
+"..."
 
 #. NOTE: tags: title for technology
 #: app/_translations.py:210
@@ -734,8 +736,8 @@ msgid ""
 "Adds or changes transportation methods. Includes teleportation, vehicles,"
 " ridable mobs, transport infrastructure and thematic content"
 msgstr ""
-"Lägger till eller ändrar transportmetoder. Inkluderar teleportation, fordon, "
-"ridbara mobs, transportinfrastruktur och tematiskt innehåll"
+"Lägger till eller ändrar transportmetoder. Inkluderar teleportation, "
+"fordon, ridbara mobs, transportinfrastruktur och tematiskt innehåll"
 
 #. NOTE: tags: title for world_tools
 #: app/_translations.py:222
@@ -838,7 +840,7 @@ msgstr "Icke-tecknat våld. Kan vara mot fantasy- eller mänskliga karaktärer"
 #: app/templates/admin/warnings/list.html:28
 #: app/templates/collections/create_edit.html:56
 #: app/templates/collections/view.html:66 app/templates/modnames/list.html:16
-#: app/templates/packages/list.html:4 app/templates/todo/editor.html:46
+#: app/templates/packages/list.html:4 app/templates/todo/editor.html:68
 #: app/templates/users/list.html:22 app/templates/users/profile.html:265
 msgid "Packages"
 msgstr "Paket"
@@ -853,7 +855,30 @@ msgstr "%(package_type)s för %(game_name)s"
 msgid "%(delta)s ago"
 msgstr "%(delta)s sedan"
 
-#: app/blueprints/api/endpoints.py:74 app/templates/index.html:104
+#: app/blueprints/admin/audit.py:31 app/blueprints/users/account.py:101
+#: app/blueprints/users/settings.py:324 app/templates/users/list.html:18
+msgid "Username"
+msgstr "Användarnamn"
+
+#: app/blueprints/admin/audit.py:32
+#: app/blueprints/packages/advanced_search.py:53
+msgid "Query"
+msgstr "Förfrågan"
+
+#: app/blueprints/admin/audit.py:33 app/blueprints/packages/releases.py:74
+#: app/blueprints/report/__init__.py:37
+#: app/templates/packages/release_edit.html:31
+#: app/templates/packages/release_view.html:31
+msgid "URL"
+msgstr "URL"
+
+#: app/blueprints/admin/audit.py:34 app/blueprints/zipgrep/__init__.py:38
+#: app/templates/base.html:74 app/templates/packages/advanced_search.html:34
+#: app/templates/packages/game_hub.html:35 app/templates/todo/tags.html:14
+msgid "Search"
+msgstr "Sök"
+
+#: app/blueprints/api/endpoints.py:74 app/templates/index.html:105
 msgid "Featured"
 msgstr "Presenterad"
 
@@ -874,17 +899,18 @@ msgstr "Begränsa till paket"
 
 #: app/blueprints/api/tokens.py:36 app/blueprints/collections/__init__.py:93
 #: app/blueprints/oauth/__init__.py:175 app/blueprints/packages/packages.py:253
-#: app/blueprints/packages/packages.py:552
-#: app/blueprints/packages/packages.py:648
-#: app/blueprints/packages/packages.py:736
+#: app/blueprints/packages/packages.py:549
+#: app/blueprints/packages/packages.py:645
+#: app/blueprints/packages/packages.py:733
 #: app/blueprints/packages/releases.py:66
 #: app/blueprints/packages/releases.py:81 app/blueprints/packages/reviews.py:63
-#: app/blueprints/packages/screenshots.py:36
-#: app/blueprints/packages/screenshots.py:42
-#: app/blueprints/packages/screenshots.py:47
-#: app/blueprints/users/account.py:193 app/blueprints/users/account.py:201
-#: app/blueprints/users/settings.py:79 app/blueprints/users/settings.py:148
-#: app/blueprints/users/settings.py:330 app/templates/users/modtools.html:111
+#: app/blueprints/packages/screenshots.py:37
+#: app/blueprints/packages/screenshots.py:43
+#: app/blueprints/packages/screenshots.py:48
+#: app/blueprints/report/__init__.py:173 app/blueprints/users/account.py:192
+#: app/blueprints/users/account.py:200 app/blueprints/users/settings.py:79
+#: app/blueprints/users/settings.py:148 app/blueprints/users/settings.py:330
+#: app/templates/users/modtools.html:111
 msgid "Save"
 msgstr "Spara"
 
@@ -893,7 +919,7 @@ msgstr "Spara"
 #: app/blueprints/packages/advanced_search.py:84
 #: app/blueprints/packages/releases.py:56
 #: app/blueprints/packages/releases.py:71 app/blueprints/packages/reviews.py:53
-#: app/blueprints/threads/__init__.py:282
+#: app/blueprints/threads/__init__.py:285
 #: app/templates/admin/languages/list.html:23
 #: app/templates/macros/reviews.html:144 app/templates/macros/topics.html:5
 #: app/templates/packages/release_edit.html:21
@@ -913,7 +939,6 @@ msgid "Page Content"
 msgstr "Sidinnehåll"
 
 #: app/blueprints/collections/__init__.py:85
-#: app/blueprints/threads/__init__.py:284
 #: app/templates/collections/view.html:51
 msgid "Private"
 msgstr "Privat"
@@ -987,8 +1012,7 @@ msgstr "App-typ"
 
 #: app/blueprints/oauth/__init__.py:198
 msgid "An OAuth client with that title already exists. Please choose a new title."
-msgstr ""
-"En OAuth-klient med den titeln finns redan. Vänligen välj en annan titel."
+msgstr "En OAuth-klient med den titeln finns redan. Vänligen välj en annan titel."
 
 #: app/blueprints/oauth/__init__.py:262
 msgid "Revoked all user tokens"
@@ -1006,19 +1030,19 @@ msgstr "Översättning"
 
 #: app/blueprints/packages/__init__.py:42
 #: app/templates/packages/releases_list.html:34
-#: app/templates/packages/view.html:675 app/templates/todo/editor.html:75
+#: app/templates/packages/view.html:675 app/templates/todo/editor.html:97
 msgid "Releases"
 msgstr "Utgivningar"
 
 #: app/blueprints/packages/__init__.py:47
 #: app/templates/packages/screenshots.html:4
-#: app/templates/packages/screenshots.html:14 app/templates/todo/editor.html:11
+#: app/templates/packages/screenshots.html:14 app/templates/todo/editor.html:33
 msgid "Screenshots"
 msgstr "Skärmdumpar"
 
 #: app/blueprints/packages/__init__.py:52
 #: app/templates/packages/edit_maintainers.html:8
-#: app/templates/packages/view.html:646 app/utils/minetest_hypertext.py:302
+#: app/templates/packages/view.html:646 app/utils/luanti_hypertext.py:302
 msgid "Maintainers"
 msgstr "Underhållare"
 
@@ -1041,9 +1065,9 @@ msgstr "Dela och Emblem"
 msgid "Remove / Unpublish"
 msgstr "Ta bort / Avpublicera"
 
-#: app/blueprints/packages/__init__.py:80 app/logic/package_approval.py:123
-#: app/templates/packages/game_support.html:4
-#: app/utils/minetest_hypertext.py:275 app/utils/minetest_hypertext.py:277
+#: app/blueprints/packages/__init__.py:80 app/logic/package_approval.py:125
+#: app/templates/packages/game_support.html:4 app/utils/luanti_hypertext.py:275
+#: app/utils/luanti_hypertext.py:277
 msgid "Supported Games"
 msgstr "Stödda spel"
 
@@ -1073,13 +1097,10 @@ msgstr "Deprekerad"
 msgid "All content warnings"
 msgstr "Alla innehållsvarningar"
 
-#: app/blueprints/packages/advanced_search.py:53
-msgid "Query"
-msgstr "Förfrågan"
-
 #: app/blueprints/packages/advanced_search.py:54
-#: app/blueprints/packages/packages.py:231 app/templates/packages/view.html:616
-#: app/utils/minetest_hypertext.py:263
+#: app/blueprints/packages/packages.py:231
+#: app/blueprints/zipgrep/__init__.py:36 app/templates/packages/view.html:616
+#: app/utils/luanti_hypertext.py:263
 msgid "Type"
 msgstr "Typ"
 
@@ -1091,7 +1112,7 @@ msgstr "Skapare"
 #: app/blueprints/packages/advanced_search.py:57
 #: app/blueprints/packages/packages.py:238 app/templates/admin/tags/list.html:4
 #: app/templates/admin/tags/list.html:10 app/templates/todo/tags.html:38
-#: app/utils/minetest_hypertext.py:264
+#: app/utils/luanti_hypertext.py:264
 msgid "Tags"
 msgstr "Taggar"
 
@@ -1102,7 +1123,7 @@ msgstr "Innehållsvarningar"
 
 #: app/blueprints/packages/advanced_search.py:63
 #: app/blueprints/packages/packages.py:240 app/templates/packages/view.html:627
-#: app/utils/minetest_hypertext.py:298
+#: app/utils/luanti_hypertext.py:298
 msgid "License"
 msgstr "Licens"
 
@@ -1114,7 +1135,7 @@ msgstr "Stöder spel"
 #: app/templates/admin/storage.html:39
 #: app/templates/collections/create_edit.html:81
 #: app/templates/collections/list.html:39
-#: app/templates/collections/view.html:91 app/templates/index.html:48
+#: app/templates/collections/view.html:91 app/templates/index.html:49
 #: app/templates/macros/reviews.html:82 app/templates/macros/topics.html:52
 #: app/templates/packages/game_hub.html:5
 #: app/templates/packages/game_hub.html:25
@@ -1146,7 +1167,7 @@ msgstr "Sortera efter"
 msgid "Package score"
 msgstr "Paketpoäng"
 
-#: app/blueprints/packages/advanced_search.py:86 app/templates/index.html:78
+#: app/blueprints/packages/advanced_search.py:86 app/templates/index.html:79
 #: app/templates/packages/reviews_list.html:4
 #: app/templates/packages/view.html:201 app/templates/packages/view.html:343
 #: app/templates/users/profile.html:279
@@ -1195,12 +1216,12 @@ msgid "Title (Human-readable)"
 msgstr "Titel (Människoläsbar)"
 
 #: app/blueprints/packages/packages.py:233
-#: app/blueprints/packages/packages.py:646
+#: app/blueprints/packages/packages.py:643
 msgid "Name (Technical)"
 msgstr "Namn (Tekniskt)"
 
 #: app/blueprints/packages/packages.py:233
-#: app/blueprints/packages/packages.py:647
+#: app/blueprints/packages/packages.py:644
 #: app/templates/packages/create_edit.html:80
 msgid "Lower case letters (a-z), digits (0-9), and underscores (_) only"
 msgstr "Endast gemena bokstäver (a-z), siffror (0-9) och understreck (_)"
@@ -1210,7 +1231,7 @@ msgid "Short Description (Plaintext)"
 msgstr "Kort beskrivning (vanlig text)"
 
 #: app/blueprints/packages/packages.py:236 app/templates/packages/view.html:638
-#: app/utils/minetest_hypertext.py:300
+#: app/utils/luanti_hypertext.py:300
 msgid "Maintenance State"
 msgstr "Underhållsstatus"
 
@@ -1270,7 +1291,7 @@ msgstr "Paket finns redan"
 msgid "A collection with a similar name already exists"
 msgstr "En samling med liknande namn finns redan"
 
-#: app/blueprints/packages/packages.py:332
+#: app/blueprints/packages/packages.py:329
 #: app/blueprints/packages/releases.py:89
 msgid ""
 "You must add an email address to your account and confirm it before you "
@@ -1279,30 +1300,30 @@ msgstr ""
 "Du måste lägga till en mejladdress till ditt konto och bekräfta det innan"
 " du kan hantera paket"
 
-#: app/blueprints/packages/packages.py:338
+#: app/blueprints/packages/packages.py:335
 msgid "Save draft"
 msgstr "Spara utkast"
 
-#: app/blueprints/packages/packages.py:346
+#: app/blueprints/packages/packages.py:343
 msgid "Unable to find that user"
 msgstr "Kunde inte hitta den användaren"
 
-#: app/blueprints/packages/packages.py:350
-#: app/blueprints/packages/screenshots.py:137
+#: app/blueprints/packages/packages.py:347
+#: app/blueprints/packages/screenshots.py:138
 msgid "Permission denied"
 msgstr "Åtkomst nekad"
 
-#: app/blueprints/packages/packages.py:409
-#: app/blueprints/packages/packages.py:503
-#: app/blueprints/packages/packages.py:525
+#: app/blueprints/packages/packages.py:406
+#: app/blueprints/packages/packages.py:500
+#: app/blueprints/packages/packages.py:522
 msgid "You don't have permission to do that"
 msgstr "Du har inte tillåtelse att göra detta"
 
-#: app/blueprints/packages/packages.py:444
+#: app/blueprints/packages/packages.py:441
 msgid "Please comment what changes are needed in the approval thread"
 msgstr "Var snäll och kommentera vilka ändringar som behövs i godkänningstråden"
 
-#: app/blueprints/packages/packages.py:451
+#: app/blueprints/packages/packages.py:448
 msgid ""
 "Please comment in the approval thread so editors know what you have "
 "changed"
@@ -1310,60 +1331,60 @@ msgstr ""
 "Var snäll kommentera i godkännandetråden så redigerare vet vad du har "
 "ändrat"
 
-#: app/blueprints/packages/packages.py:490
+#: app/blueprints/packages/packages.py:487
 #, python-format
 msgid "Set state to %(state)s"
 msgstr "Ställ in tillstånd till %(state)s"
 
-#: app/blueprints/packages/packages.py:520
+#: app/blueprints/packages/packages.py:517
 msgid "Deleted package"
 msgstr "Borttaget paket"
 
-#: app/blueprints/packages/packages.py:542
+#: app/blueprints/packages/packages.py:539
 msgid "Unapproved package"
 msgstr "Ej godkänt paket"
 
-#: app/blueprints/packages/packages.py:551
+#: app/blueprints/packages/packages.py:548
 msgid "Maintainers (Comma-separated)"
 msgstr "Underhållare (Komma-separerat)"
 
-#: app/blueprints/packages/packages.py:560
+#: app/blueprints/packages/packages.py:557
 msgid "You don't have permission to edit maintainers"
 msgstr "Du har inte behörighet att redigera underhållare"
 
-#: app/blueprints/packages/packages.py:610
+#: app/blueprints/packages/packages.py:607
 msgid "You are not a maintainer"
 msgstr "Du är inte en underhållare"
 
-#: app/blueprints/packages/packages.py:613
+#: app/blueprints/packages/packages.py:610
 msgid "Package owners cannot remove themselves as maintainers"
 msgstr "Paketägare kan inte ta bort sig själva som underhållare"
 
-#: app/blueprints/packages/packages.py:645
+#: app/blueprints/packages/packages.py:642
 msgid "Author Name"
 msgstr "Ägarnamn"
 
-#: app/blueprints/packages/packages.py:732
+#: app/blueprints/packages/packages.py:729
 msgid "Enable support detection based on dependencies (recommended)"
 msgstr "Aktivera stöddetektering baserad på beroenden (rekommenderat)"
 
-#: app/blueprints/packages/packages.py:733
+#: app/blueprints/packages/packages.py:730
 msgid "Supported games"
 msgstr "Spel som stöds"
 
-#: app/blueprints/packages/packages.py:734
+#: app/blueprints/packages/packages.py:731
 msgid "Unsupported games"
 msgstr "Spel som ej stöds"
 
-#: app/blueprints/packages/packages.py:735
+#: app/blueprints/packages/packages.py:732
 msgid "Supports all games (unless stated) / is game independent"
 msgstr "Stödjer alla spel (om inget annat anges) / är speloberoende"
 
-#: app/blueprints/packages/packages.py:751
+#: app/blueprints/packages/packages.py:748
 msgid "You need at least one release before you can edit game support"
 msgstr "Du behöver åtminstonde en utgivning innan du kan redigera spelstöd"
 
-#: app/blueprints/packages/packages.py:755
+#: app/blueprints/packages/packages.py:752
 msgid "Mod(pack) needs to contain at least one mod. Please create a new release"
 msgstr ""
 "Modd(paket) behöver innehålla minst en modd. Vänligen skapa en ny "
@@ -1380,7 +1401,7 @@ msgstr "Metod"
 
 #: app/blueprints/packages/releases.py:59
 #: app/blueprints/packages/releases.py:61
-#: app/blueprints/packages/screenshots.py:35
+#: app/blueprints/packages/screenshots.py:36
 msgid "File Upload"
 msgstr "Filuppladdning"
 
@@ -1390,28 +1411,22 @@ msgstr "Git-referens (t.ex. commithash, branch eller tag)"
 
 #: app/blueprints/packages/releases.py:62
 #: app/blueprints/packages/releases.py:77
-#: app/blueprints/packages/releases.py:217
+#: app/blueprints/packages/releases.py:218
 msgid "Minimum Luanti Version"
 msgstr "Minsta Luantiversion"
 
 #: app/blueprints/packages/releases.py:64
 #: app/blueprints/packages/releases.py:79
-#: app/blueprints/packages/releases.py:220
+#: app/blueprints/packages/releases.py:221
 msgid "Maximum Luanti Version"
 msgstr "Högsta Luantiversion"
-
-#: app/blueprints/packages/releases.py:74
-#: app/templates/packages/release_edit.html:31
-#: app/templates/packages/release_view.html:31
-msgid "URL"
-msgstr "URL"
 
 #: app/blueprints/packages/releases.py:75
 msgid "Task ID"
 msgstr "Uppgifts-ID"
 
 #: app/blueprints/packages/releases.py:76
-#: app/blueprints/packages/screenshots.py:41
+#: app/blueprints/packages/screenshots.py:42
 msgid "Is Approved"
 msgstr "Är godkänd"
 
@@ -1423,77 +1438,77 @@ msgstr "Importera från Git"
 msgid "Upload .zip file"
 msgstr "Ladda upp .zip-fil"
 
-#: app/blueprints/packages/releases.py:216
+#: app/blueprints/packages/releases.py:217
 msgid "Set Min"
 msgstr "Sätt Min"
 
-#: app/blueprints/packages/releases.py:219
+#: app/blueprints/packages/releases.py:220
 msgid "Set Max"
 msgstr "Sätt Max"
 
-#: app/blueprints/packages/releases.py:222
+#: app/blueprints/packages/releases.py:223
 msgid "Only change values previously set as none"
 msgstr "Endast ändra värden tidigare satta som inget"
 
-#: app/blueprints/packages/releases.py:223
+#: app/blueprints/packages/releases.py:224
 msgid "Update"
 msgstr "Uppdatera"
 
-#: app/blueprints/packages/releases.py:275
+#: app/blueprints/packages/releases.py:276
 #: app/templates/packages/update_config.html:25
 msgid "Trigger"
 msgstr "Trigga"
 
-#: app/blueprints/packages/releases.py:276
+#: app/blueprints/packages/releases.py:277
 msgid "New Commit"
 msgstr "Ny commit"
 
-#: app/blueprints/packages/releases.py:277 app/templates/admin/tags/list.html:8
+#: app/blueprints/packages/releases.py:278 app/templates/admin/tags/list.html:8
 msgid "New Tag"
 msgstr "Ny tagg"
 
-#: app/blueprints/packages/releases.py:279
+#: app/blueprints/packages/releases.py:280
 msgid "Branch name"
 msgstr "Branchnamn"
 
-#: app/blueprints/packages/releases.py:280
+#: app/blueprints/packages/releases.py:281
 #: app/templates/packages/update_config.html:38
 msgid "Action"
 msgstr "Åtgärd"
 
-#: app/blueprints/packages/releases.py:281
+#: app/blueprints/packages/releases.py:282
 msgid "Send notification and mark as outdated"
 msgstr "Skicka notis och markera som föråldrad"
 
-#: app/blueprints/packages/releases.py:281 app/logic/package_approval.py:104
+#: app/blueprints/packages/releases.py:282 app/logic/package_approval.py:107
 msgid "Create release"
 msgstr "Skapa utgivning"
 
-#: app/blueprints/packages/releases.py:283
+#: app/blueprints/packages/releases.py:284
 msgid "Save Settings"
 msgstr "Spara inställningar"
 
-#: app/blueprints/packages/releases.py:284
+#: app/blueprints/packages/releases.py:285
 msgid "Disable Automation"
 msgstr "Inaktivera automatisering"
 
-#: app/blueprints/packages/releases.py:323
+#: app/blueprints/packages/releases.py:324
 msgid "Please add a Git repository URL in order to set up automatic releases"
 msgstr ""
 "Var snäll och lägg till en Git-repository för att ställa in automatiska "
 "utgivningar"
 
-#: app/blueprints/packages/releases.py:339
+#: app/blueprints/packages/releases.py:340
 msgid "Deleted update configuration"
 msgstr "Tog bort uppdateringskonfiguration"
 
-#: app/blueprints/packages/releases.py:347
+#: app/blueprints/packages/releases.py:348
 msgid "Now, please create an initial release"
 msgstr "Var snäll och skapa en första utgivning nu"
 
 #: app/blueprints/packages/reviews.py:60 app/blueprints/threads/__init__.py:181
 #: app/blueprints/threads/__init__.py:182
-#: app/blueprints/threads/__init__.py:283
+#: app/blueprints/threads/__init__.py:286
 msgid "Comment"
 msgstr "Kommentar"
 
@@ -1530,8 +1545,8 @@ msgstr ""
 
 #: app/blueprints/packages/reviews.py:94 app/blueprints/threads/__init__.py:207
 #: app/blueprints/threads/__init__.py:240
-#: app/blueprints/threads/__init__.py:335 app/blueprints/users/settings.py:114
-#: app/logic/packages.py:131
+#: app/blueprints/threads/__init__.py:333 app/blueprints/users/settings.py:114
+#: app/logic/packages.py:149
 msgid "Linking to blocked sites is not allowed"
 msgstr "Det är inte tillåtet att länka till blockerade webbplatser"
 
@@ -1543,26 +1558,41 @@ msgstr "Du kan inte rösta på recensionerna på ditt egna paket!"
 msgid "You can't vote on your own reviews!"
 msgstr "Du kan inte rösta på dina egna recensioner!"
 
-#: app/blueprints/packages/screenshots.py:34
-#: app/blueprints/packages/screenshots.py:40
+#: app/blueprints/packages/screenshots.py:35
+#: app/blueprints/packages/screenshots.py:41
 msgid "Title/Caption"
 msgstr "Titel/Undertitel"
 
-#: app/blueprints/packages/screenshots.py:46
+#: app/blueprints/packages/screenshots.py:47
 #: app/templates/packages/screenshots.html:110
 msgid "Cover Image"
 msgstr "Titelbild"
 
-#: app/blueprints/report/__init__.py:34 app/templates/users/modtools.html:79
+#: app/blueprints/report/__init__.py:35
+msgid "Category"
+msgstr ""
+
+#: app/blueprints/report/__init__.py:38
+msgid "Subject / Title"
+msgstr ""
+
+#: app/blueprints/report/__init__.py:39 app/templates/users/modtools.html:79
 msgid "Message"
 msgstr "Meddelande"
 
-#: app/blueprints/report/__init__.py:35 app/templates/macros/threads.html:51
-#: app/templates/packages/view.html:706 app/templates/report/index.html:4
-#: app/templates/report/index.html:10 app/templates/users/account.html:91
-#: app/templates/users/profile.html:37
+#: app/blueprints/report/__init__.py:40
+msgid "Image Upload"
+msgstr ""
+
+#: app/blueprints/report/__init__.py:41 app/templates/macros/threads.html:51
+#: app/templates/packages/view.html:706 app/templates/report/report.html:4
+#: app/templates/users/account.html:90 app/templates/users/profile.html:37
 msgid "Report"
 msgstr "Rapportera"
+
+#: app/blueprints/report/__init__.py:92 app/logic/screenshots.py:34
+msgid "a PNG, JPEG, or WebP image file"
+msgstr "en PNG, JPEG eller WebP-bildfil"
 
 #: app/blueprints/threads/__init__.py:71
 msgid "Already subscribed!"
@@ -1596,20 +1626,20 @@ msgstr "Kan inte ta bort trådens första inlägg!"
 msgid "Please wait before commenting again"
 msgstr "Vänta innan du kommenterar igen"
 
-#: app/blueprints/threads/__init__.py:285
+#: app/blueprints/threads/__init__.py:287
 #: app/templates/macros/package_approval.html:56
 msgid "Open Thread"
 msgstr "Öppna tråd"
 
-#: app/blueprints/threads/__init__.py:310
+#: app/blueprints/threads/__init__.py:309
 msgid "Unable to create thread!"
 msgstr "Kunde inte skapa tråd!"
 
-#: app/blueprints/threads/__init__.py:316
+#: app/blueprints/threads/__init__.py:315
 msgid "An approval thread already exists! Consider replying there instead"
 msgstr "En godkänningstråd finns redan! Överväg att svara där istället"
 
-#: app/blueprints/threads/__init__.py:320
+#: app/blueprints/threads/__init__.py:319
 msgid "Please wait before opening another thread"
 msgstr "Vänta innan du öppnar en ny tråd"
 
@@ -1628,7 +1658,7 @@ msgstr "Användarnamn eller E-mail"
 msgid "Password"
 msgstr "Lösenord"
 
-#: app/blueprints/users/account.py:38 app/blueprints/zipgrep/__init__.py:37
+#: app/blueprints/users/account.py:38
 msgid "Remember me"
 msgstr "Kom ihåg mig"
 
@@ -1662,12 +1692,7 @@ msgstr "Inloggning misslyckades"
 msgid "Display Name"
 msgstr "Visningsnamn"
 
-#: app/blueprints/users/account.py:101 app/blueprints/users/settings.py:324
-#: app/templates/users/list.html:18
-msgid "Username"
-msgstr "Användarnamn"
-
-#: app/blueprints/users/account.py:102
+#: app/blueprints/users/account.py:103
 msgid ""
 "Only alphabetic letters (A-Za-z), numbers (0-9), underscores (_), minuses"
 " (-), and periods (.) allowed"
@@ -1675,8 +1700,8 @@ msgstr ""
 "Endast alfabetiska bokstäver (A-Za-z), nummer (0-9), understreck (_), "
 "minus (-), och punkt (.) tillåtet"
 
-#: app/blueprints/users/account.py:104 app/blueprints/users/account.py:153
-#: app/blueprints/users/account.py:189 app/blueprints/users/account.py:338
+#: app/blueprints/users/account.py:104 app/blueprints/users/account.py:152
+#: app/blueprints/users/account.py:188 app/blueprints/users/account.py:337
 #: app/blueprints/users/settings.py:147
 msgid "Email"
 msgstr "E-mail"
@@ -1685,59 +1710,55 @@ msgstr "E-mail"
 msgid "What is the result of the above calculation?"
 msgstr "Vad är resultatet av beräkningen ovan?"
 
-#: app/blueprints/users/account.py:107
-msgid "I agree"
-msgstr "Jag godkänner"
-
-#: app/blueprints/users/account.py:108 app/templates/users/login.html:34
+#: app/blueprints/users/account.py:107 app/templates/users/login.html:34
 #: app/templates/users/register.html:4
 msgid "Register"
 msgstr "Registrera"
 
-#: app/blueprints/users/account.py:113
+#: app/blueprints/users/account.py:112
 msgid "Incorrect captcha answer"
 msgstr "Felaktigt CAPTCHA-svar"
 
-#: app/blueprints/users/account.py:154
+#: app/blueprints/users/account.py:153
 msgid "Reset Password"
 msgstr "Återställ lösenord"
 
-#: app/blueprints/users/account.py:180
+#: app/blueprints/users/account.py:179
 msgid "Unable to find account"
 msgstr "Kan inte hitta konto"
 
-#: app/blueprints/users/account.py:190 app/blueprints/users/account.py:198
+#: app/blueprints/users/account.py:189 app/blueprints/users/account.py:197
 msgid "New password"
 msgstr "Nytt lösenord"
 
-#: app/blueprints/users/account.py:191 app/blueprints/users/account.py:199
+#: app/blueprints/users/account.py:190 app/blueprints/users/account.py:198
 msgid "Verify password"
 msgstr "Verifiera lösenord"
 
-#: app/blueprints/users/account.py:192 app/blueprints/users/account.py:200
+#: app/blueprints/users/account.py:191 app/blueprints/users/account.py:199
 msgid "Passwords must match"
 msgstr "Lösenord måste stämma överrens"
 
-#: app/blueprints/users/account.py:197
+#: app/blueprints/users/account.py:196
 msgid "Old password"
 msgstr "Gammalt lösenord"
 
-#: app/blueprints/users/account.py:208
+#: app/blueprints/users/account.py:207
 msgid "Passwords do not match"
 msgstr "Lösenorden stämmer inte"
 
-#: app/blueprints/users/account.py:219 app/blueprints/users/settings.py:175
+#: app/blueprints/users/account.py:218 app/blueprints/users/settings.py:175
 #: app/logic/users.py:51
 msgid "That email address has been unsubscribed/blacklisted, and cannot be used"
 msgstr ""
 "Den mailaddressen har blivit avprenumererad/svartlistad och kan inte "
 "användas"
 
-#: app/blueprints/users/account.py:224 app/logic/users.py:46
+#: app/blueprints/users/account.py:223 app/logic/users.py:46
 msgid "Email already in use"
 msgstr "E-mail används redan"
 
-#: app/blueprints/users/account.py:225 app/logic/users.py:47
+#: app/blueprints/users/account.py:224 app/logic/users.py:47
 #, python-format
 msgid ""
 "We were unable to create the account as the email is already in use by "
@@ -1746,35 +1767,35 @@ msgstr ""
 "Vi misslyckades att skapa kontot eftersom E-mailen redan används av "
 "%(display_name)s. Försök med en annan mailaddress."
 
-#: app/blueprints/users/account.py:239 app/blueprints/users/account.py:243
+#: app/blueprints/users/account.py:238 app/blueprints/users/account.py:242
 msgid "Your password has been changed successfully."
 msgstr "Ditt lösenord har ändrats."
 
-#: app/blueprints/users/account.py:258
+#: app/blueprints/users/account.py:257
 msgid "Old password is incorrect"
 msgstr "Felaktigt gammalt lösenord"
 
-#: app/blueprints/users/account.py:286
+#: app/blueprints/users/account.py:285
 msgid "Unknown verification token!"
 msgstr "Okänd verifieringstoken!"
 
-#: app/blueprints/users/account.py:290
+#: app/blueprints/users/account.py:289
 msgid "Token has expired"
 msgstr "Token har gått ut"
 
-#: app/blueprints/users/account.py:304
+#: app/blueprints/users/account.py:303
 msgid "Another user is already using that email"
 msgstr "En annan användare använder redan den E-mailen"
 
-#: app/blueprints/users/account.py:307
+#: app/blueprints/users/account.py:306
 msgid "Confirmed email change"
 msgstr "Bekräftad mejländring"
 
-#: app/blueprints/users/account.py:312
+#: app/blueprints/users/account.py:311
 msgid "Email address changed"
 msgstr "Mejladress har ändrats"
 
-#: app/blueprints/users/account.py:313
+#: app/blueprints/users/account.py:312
 msgid ""
 "Your email address has changed. If you didn't request this, please "
 "contact an administrator."
@@ -1782,15 +1803,15 @@ msgstr ""
 "Din mejladress har ändrats. Om du inte har bett om detta, var vänligen "
 "kontakta en administratör."
 
-#: app/blueprints/users/account.py:331
+#: app/blueprints/users/account.py:330
 msgid "You may now log in"
 msgstr "Du kan logga in nu"
 
-#: app/blueprints/users/account.py:339
+#: app/blueprints/users/account.py:338
 msgid "Send"
 msgstr "Skicka"
 
-#: app/blueprints/users/account.py:370
+#: app/blueprints/users/account.py:369
 msgid ""
 "That email is now blacklisted. Please contact an admin if you wish to "
 "undo this."
@@ -1847,7 +1868,7 @@ msgstr "Okänd anspråkstyp"
 msgid "Top reviewer"
 msgstr "Högsta recensent"
 
-#: app/blueprints/users/profile.py:118
+#: app/blueprints/users/profile.py:119
 #, python-format
 msgid "%(display_name)s has written the most helpful reviews on ContentDB."
 msgstr ""
@@ -1862,7 +1883,7 @@ msgstr "Andra mest hjälpsamma recensent"
 msgid "3rd most helpful reviewer"
 msgstr "Tredje mest hjälpsamma recensent"
 
-#: app/blueprints/users/profile.py:126
+#: app/blueprints/users/profile.py:127
 #, python-format
 msgid "This puts %(display_name)s in the top %(perc)s%%"
 msgstr "Detta sätter %(display_name)s i topp %(perc)s%%"
@@ -1987,91 +2008,85 @@ msgstr "Rang"
 msgid "Can't promote a user to a rank higher than yourself!"
 msgstr "Kan inte flytta upp en användare till en rang högre än dig själv!"
 
-#: app/blueprints/vcs/github.py:56
+#: app/blueprints/vcs/github.py:55
 msgid "Authorization failed [err=gh-oauth-login-failed]"
 msgstr "Autentisering misslyckades [err=gh-oauth-login-failed]"
 
-#: app/blueprints/vcs/github.py:85
+#: app/blueprints/vcs/github.py:84
 msgid "Linked GitHub to account"
 msgstr "Länkat GitHub till konto"
 
-#: app/blueprints/vcs/github.py:90
+#: app/blueprints/vcs/github.py:89
 #, python-format
 msgid "GitHub account is already associated with another user: %(username)s"
 msgstr "Githubkonto är redan associerat med en annan användare: %(username)s"
 
-#: app/blueprints/vcs/github.py:98 app/blueprints/vcs/github.py:124
+#: app/blueprints/vcs/github.py:97 app/blueprints/vcs/github.py:124
 msgid "Authorization failed [err=gh-login-failed]"
 msgstr "Autentisering misslyckades [err=gh-login-failed]"
 
-#: app/blueprints/zipgrep/__init__.py:35
+#: app/blueprints/zipgrep/__init__.py:34
 msgid "Text to find (regex)"
 msgstr "Text att hitta (regex)"
 
-#: app/blueprints/zipgrep/__init__.py:36
+#: app/blueprints/zipgrep/__init__.py:35
 msgid "File filter"
 msgstr "Filfilter"
 
-#: app/blueprints/zipgrep/__init__.py:38 app/templates/base.html:74
-#: app/templates/packages/advanced_search.html:34
-#: app/templates/packages/game_hub.html:35 app/templates/todo/tags.html:14
-msgid "Search"
-msgstr "Sök"
-
-#: app/logic/package_approval.py:95
+#: app/logic/package_approval.py:98
 msgid "A package already exists with this name. Please see Policy and Guidance 3"
 msgstr ""
 "Ett paket existerar redan med detta namn. Var vänligen se Policy and "
 "Guidance 3"
 
-#: app/logic/package_approval.py:99
+#: app/logic/package_approval.py:102
 msgid "You need to create a release before this package can be approved."
 msgstr "Du måste skapa en utgivning innan detta paket kan godkännas."
 
-#: app/logic/package_approval.py:101
+#: app/logic/package_approval.py:104
 msgid "Release is still importing, or has an error."
 msgstr "Utgivning importeras fortfarande, eller har ett fel."
 
-#: app/logic/package_approval.py:105
+#: app/logic/package_approval.py:108
 msgid "Set up releases"
 msgstr "Sätt upp utgivningar"
 
-#: app/logic/package_approval.py:112
+#: app/logic/package_approval.py:114
 msgid "You need to add at least one screenshot."
 msgstr "Du behöver lägga till åtminstonde en skärmdump."
 
-#: app/logic/package_approval.py:117
+#: app/logic/package_approval.py:120
 #, python-format
 msgid ""
 "The following hard dependencies need to be added to ContentDB first: "
 "%(deps)s"
 msgstr "Följande hårda beroenden behöver läggas till i ContentDB först: %(deps)s"
 
-#: app/logic/package_approval.py:121
+#: app/logic/package_approval.py:124
 msgid ""
 "What games does your package support? Please specify on the supported "
 "games page"
 msgstr "Vilka spel stöder ditt paket? Vänligen ange på den stödda spel-sidan"
 
-#: app/logic/package_approval.py:126
+#: app/logic/package_approval.py:128
 msgid "Please wait for the license to be added to CDB."
 msgstr "Var snäll och vänta på att denna licens läggs till på CDB."
 
-#: app/logic/package_approval.py:134
+#: app/logic/package_approval.py:136
 msgid "Please make sure that this package has the right to the names it uses."
 msgstr "Var snäll och kontrollera att paketet har rätt till det namn den använder."
 
-#: app/logic/package_approval.py:139
+#: app/logic/package_approval.py:140
 #, python-format
 msgid "Please make sure that this package has the right to the names %(names)s"
 msgstr ""
 "Var snäll och kontrollera att paketet har rätt till att använda namnen "
 "%(names)s"
 
-#: app/logic/package_approval.py:140 app/templates/index.html:112
-#: app/templates/index.html:123 app/templates/index.html:134
-#: app/templates/index.html:145 app/templates/index.html:156
-#: app/templates/index.html:182 app/templates/packages/game_hub.html:42
+#: app/logic/package_approval.py:142 app/templates/index.html:113
+#: app/templates/index.html:124 app/templates/index.html:135
+#: app/templates/index.html:146 app/templates/index.html:157
+#: app/templates/index.html:183 app/templates/packages/game_hub.html:42
 #: app/templates/packages/game_hub.html:49
 #: app/templates/packages/game_hub.html:56
 #: app/templates/packages/game_hub.html:63
@@ -2079,15 +2094,15 @@ msgstr ""
 msgid "See more"
 msgstr "Se mer"
 
-#: app/logic/package_approval.py:145
+#: app/logic/package_approval.py:147
 msgid "Error: Another package already uses this forum topic!"
 msgstr "Fel: Ett annat paket använder redan den här forumtråden!"
 
-#: app/logic/package_approval.py:150
+#: app/logic/package_approval.py:152
 msgid "Error: Forum topic author doesn't match package author."
 msgstr "Fel: Forumtrådsstartaren stämmer inte överrens med paketskaparen."
 
-#: app/logic/package_approval.py:152
+#: app/logic/package_approval.py:154
 msgid ""
 "Warning: Forum topic not found. The topic may have been created since the"
 " last forum crawl."
@@ -2095,7 +2110,7 @@ msgstr ""
 "Varning: Forumtråd hittades inte. Ämnet kan ha skapats sedan sista "
 "forumskrapning."
 
-#: app/logic/packages.py:99
+#: app/logic/packages.py:114
 msgid ""
 "Name can only contain lower case letters (a-z), digits (0-9), and "
 "underscores (_)"
@@ -2103,15 +2118,15 @@ msgstr ""
 "Namn kan bara innehålla gemena bokstäver (a-z), siffror (0-9) och "
 "understreck (_)"
 
-#: app/logic/packages.py:112
+#: app/logic/packages.py:127
 msgid "You don't have permission to edit this package"
 msgstr "Du har inte behörighet att redigera detta paket"
 
-#: app/logic/packages.py:116
+#: app/logic/packages.py:131
 msgid "You don't have permission to change the package name"
 msgstr "Du har inte behörighet att ändra paketnamnet"
 
-#: app/logic/packages.py:140
+#: app/logic/packages.py:158
 msgid "You cannot change package type once approved"
 msgstr "Du kan inte ändra pakettyp när det har godkänts"
 
@@ -2138,10 +2153,6 @@ msgstr "Ogiltig commit-hash; den måste vara en 40 bokstäver lång base16-strä
 #: app/logic/screenshots.py:32
 msgid "Too many requests, please wait before trying again"
 msgstr "För många förfrågningar, vänta innan du försöker igen"
-
-#: app/logic/screenshots.py:34
-msgid "a PNG, JPEG, or WebP image file"
-msgstr "en PNG, JPEG eller WebP-bildfil"
 
 #: app/logic/screenshots.py:51
 #, python-format
@@ -2188,6 +2199,35 @@ msgid "Unable to create an account as the username was used in the past."
 msgstr ""
 "Det går inte att skapa ett konto eftersom användarnamnet har använts "
 "tidigare."
+
+#: app/models/__init__.py:147
+msgid "Account deletion"
+msgstr ""
+
+#: app/models/__init__.py:149
+msgid "Copyright infringement / DMCA"
+msgstr ""
+
+#: app/models/__init__.py:151
+msgid "User behaviour, bullying, or abuse"
+msgstr ""
+
+#: app/models/__init__.py:153
+msgid "Illegal or harmful content"
+msgstr ""
+
+#: app/models/__init__.py:155
+msgid "Outdated/invalid review"
+msgstr ""
+
+#: app/models/__init__.py:157
+msgid "Appeal"
+msgstr ""
+
+#. NOTE: OTHER notification type
+#: app/models/__init__.py:159 app/models/users.py:469
+msgid "Other"
+msgstr "Annat"
 
 #: app/models/packages.py:69
 msgid "Mod"
@@ -2310,15 +2350,15 @@ msgstr "Färdig, med buggfixar som görs efter behov"
 msgid ""
 "Finished, the maintainer doesn't intend to continue working on it or "
 "provide support"
-msgstr ""
-"Färdig, underhållaren tänker inte fortsätta arbeta på den eller ge support"
+msgstr "Färdig, underhållaren tänker inte fortsätta arbeta på den eller ge support"
 
 #: app/models/packages.py:185
 msgid ""
 "The maintainer doesn't recommend this package. See the description for "
 "more info"
 msgstr ""
-"Underhållaren rekommenderar inte detta paket. Se beskrivningen för mer info"
+"Underhållaren rekommenderar inte detta paket. Se beskrivningen för mer "
+"info"
 
 #: app/models/packages.py:231
 msgid "Submit for Approval"
@@ -2340,17 +2380,17 @@ msgstr "Godkänn"
 msgid "Delete"
 msgstr "Ta bort"
 
-#: app/models/packages.py:1385
+#: app/models/packages.py:1389
 #, python-format
 msgid "New commit %(hash)s found on the Git repo."
 msgstr "Ny commit %(hash)s finns på Git-repo:t."
 
-#: app/models/packages.py:1389
+#: app/models/packages.py:1393
 #, python-format
 msgid "The last release was commit %(hash)s"
 msgstr "Den sista utgivningen var commit %(hash)s"
 
-#: app/models/packages.py:1395
+#: app/models/packages.py:1399
 #, python-format
 msgid "New tag %(tag_name)s found on the Git repo."
 msgstr "Ny tagg %(tag_name)s finns på Git-repo:t."
@@ -2384,7 +2424,7 @@ msgid "Editor"
 msgstr "Redaktör"
 
 #. NOTE: BOT notification type
-#: app/models/users.py:60 app/models/users.py:455
+#: app/models/users.py:60 app/models/users.py:457
 msgid "Bot"
 msgstr "Bott"
 
@@ -2397,128 +2437,123 @@ msgid "Admin"
 msgstr "Administration"
 
 #. NOTE: PACKAGE_EDIT notification type
-#: app/models/users.py:440
+#: app/models/users.py:442
 msgid "Package Edit"
 msgstr "Paketredigering"
 
 #. NOTE: PACKAGE_APPROVAL notification type
-#: app/models/users.py:443
+#: app/models/users.py:445
 msgid "Package Approval"
 msgstr "Paketgodkänannde"
 
 #. NOTE: NEW_THREAD notification type
-#: app/models/users.py:446 app/templates/threads/list.html:12
+#: app/models/users.py:448 app/templates/threads/list.html:12
 #: app/templates/threads/new.html:4
 msgid "New Thread"
 msgstr "Ny tråd"
 
 #. NOTE: NEW_REVIEW notification type
-#: app/models/users.py:449
+#: app/models/users.py:451
 msgid "New Review"
 msgstr "Ny recension"
 
 #. NOTE: THREAD_REPLY notification type
-#: app/models/users.py:452
+#: app/models/users.py:454
 msgid "Thread Reply"
 msgstr "Trådsvar"
 
 #. NOTE: MAINTAINER notification type
-#: app/models/users.py:458 app/templates/macros/threads.html:27
+#: app/models/users.py:460 app/templates/macros/threads.html:27
 msgid "Maintainer"
 msgstr "Underhållare"
 
 #. NOTE: EDITOR_ALERT notification type
-#: app/models/users.py:461
+#: app/models/users.py:463
 msgid "Editor Alert"
 msgstr "Redaktörnotis"
 
 #. NOTE: EDITOR_MISC notification type
-#: app/models/users.py:464
+#: app/models/users.py:466
 msgid "Editor Misc"
 msgstr "Redaktör övrigt"
 
-#. NOTE: OTHER notification type
-#: app/models/users.py:467
-msgid "Other"
-msgstr "Annat"
-
-#: app/models/users.py:477
+#: app/models/users.py:479
 msgid "This is a Package Edit notification."
 msgstr "Detta är ett paketredigeringsmeddelande."
 
-#: app/models/users.py:479
+#: app/models/users.py:481
 msgid "This is a Package Approval notification."
 msgstr "Detta är en notifikation om godkännande av paket."
 
-#: app/models/users.py:481
+#: app/models/users.py:483
 msgid "This is a New Thread notification."
 msgstr "Detta är en notifikation om en ny tråd."
 
-#: app/models/users.py:483
+#: app/models/users.py:485
 msgid "This is a New Review notification."
 msgstr "Detta är en notifikation om en ny granskning."
 
-#: app/models/users.py:485
+#: app/models/users.py:487
 msgid "This is a Thread Reply notification."
 msgstr "Detta är en notifikation om ett nytt trådsvar."
 
-#: app/models/users.py:487
+#: app/models/users.py:489
 msgid "This is a Bot notification."
 msgstr "Detta är en notifikation från en Bot."
 
-#: app/models/users.py:489
+#: app/models/users.py:491
 msgid "This is a Maintainer change notification."
 msgstr "Detta är en notifikation angående ändringsmeddelande från förvaltare."
 
-#: app/models/users.py:491
+#: app/models/users.py:493
 msgid "This is an Editor Alert notification."
 msgstr "Detta är en notifikation angående meddelande från redaktör."
 
-#: app/models/users.py:493
+#: app/models/users.py:495
 msgid "This is an Editor Misc notification."
 msgstr "Detta är en notifikation angående övrigt meddelande från redaktör."
 
-#: app/models/users.py:495
+#: app/models/users.py:497
 msgid "This is an Other notification."
 msgstr "Detta är en övrig notifikation."
 
-#: app/models/users.py:502
+#: app/models/users.py:504
 msgid "When another user edits your packages, releases, etc."
 msgstr "När en användare redigerar dina paket, releaser, osv."
 
-#: app/models/users.py:504
+#: app/models/users.py:506
 msgid "Notifications from editors related to the package approval process."
 msgstr "Meddelanden från redaktörer som rör processen för godkännande av paket."
 
-#: app/models/users.py:506
+#: app/models/users.py:508
 msgid "When a thread is created on your package."
 msgstr "När en diskussionstråd skapas på ditt paket."
 
-#: app/models/users.py:508
+#: app/models/users.py:510
 msgid "When a user posts a review on your package."
 msgstr "När en användare lägger upp en recension på ditt paket."
 
-#: app/models/users.py:510
+#: app/models/users.py:512
 msgid "When someone replies to a thread you're watching."
 msgstr "När någon svarar på en tråd som du bevakar."
 
-#: app/models/users.py:512
+#: app/models/users.py:514
 msgid "From a bot - for example, update notifications."
 msgstr "Från en bot - t.ex. uppdateringsmeddelanden."
 
-#: app/models/users.py:514
+#: app/models/users.py:516
 msgid "When your package's maintainers change."
 msgstr "När förvaltarna av ditt paket förändras."
 
-#: app/models/users.py:516
+#: app/models/users.py:518
 msgid "For editors: Important alerts."
 msgstr "För redaktörer: Viktiga meddelanden."
 
-#: app/models/users.py:518
+#: app/models/users.py:520
 msgid "For editors: Minor notifications, including new threads."
 msgstr "För redaktörer: mindre viktiga notifikationer, inklusive nya trådar."
 
-#: app/models/users.py:520
+#: app/models/users.py:522
 msgid "Minor notifications not important enough for a dedicated category."
 msgstr "Notifikationer som inte är viktiga nog för en egen kategori."
 
@@ -2545,7 +2580,7 @@ msgstr "%(num)d nya notiser"
 
 #: app/tasks/emails.py:165 app/templates/macros/forms.html:59
 #: app/templates/packages/create_edit.html:41
-#: app/templates/todo/editor.html:155
+#: app/templates/todo/editor.html:177
 msgid "View"
 msgstr "Visa"
 
@@ -2632,7 +2667,7 @@ msgstr "Logga ut"
 
 #: app/templates/admin/languages/list.html:4
 #: app/templates/admin/languages/list.html:10 app/templates/base.html:199
-#: app/templates/packages/view.html:620 app/utils/minetest_hypertext.py:288
+#: app/templates/packages/view.html:620 app/utils/luanti_hypertext.py:288
 msgid "Languages"
 msgstr "Språk"
 
@@ -2649,8 +2684,8 @@ msgid "Contact Us"
 msgstr "Kontakta oss"
 
 #: app/templates/base.html:262
-msgid "Rules"
-msgstr "Regler"
+msgid "Terms of Service"
+msgstr ""
 
 #: app/templates/base.html:263
 msgid "Policy and Guidance"
@@ -2669,7 +2704,7 @@ msgstr "API"
 msgid "RSS / Feeds"
 msgstr "RSS / Flöden"
 
-#: app/templates/base.html:267 app/templates/users/register.html:40
+#: app/templates/base.html:267
 msgid "Privacy Policy"
 msgstr "Integritetspolicy"
 
@@ -2724,62 +2759,62 @@ msgstr "Vår integritetspolicy har uppdaterats (%(date)s)"
 msgid "Welcome"
 msgstr "Välkommen"
 
-#: app/templates/index.html:53
+#: app/templates/index.html:54
 #, python-format
 msgid "<strong>%(title)s</strong> by %(author)s"
 msgstr "<strong>%(title)s</strong> av %(author)s"
 
-#: app/templates/index.html:94 app/templates/packages/view.html:285
+#: app/templates/index.html:95 app/templates/packages/view.html:285
 msgid "Previous"
 msgstr "Föregående"
 
-#: app/templates/index.html:98 app/templates/packages/view.html:289
-#: app/templates/users/claim_forums.html:87
+#: app/templates/index.html:99 app/templates/packages/view.html:289
+#: app/templates/users/claim_forums.html:91
 msgid "Next"
 msgstr "Nästa"
 
-#: app/templates/index.html:108 app/templates/index.html:114
+#: app/templates/index.html:109 app/templates/index.html:115
 #: app/templates/packages/game_hub.html:44
 msgid "Recently Added"
 msgstr "Senast tillagd"
 
-#: app/templates/index.html:119 app/templates/index.html:125
+#: app/templates/index.html:120 app/templates/index.html:126
 #: app/templates/packages/game_hub.html:51
 msgid "Recently Updated"
 msgstr "Senast uppdaterad"
 
-#: app/templates/index.html:130 app/templates/index.html:136
+#: app/templates/index.html:131 app/templates/index.html:137
 msgid "Top Games"
 msgstr "Topp spel"
 
-#: app/templates/index.html:141 app/templates/index.html:147
+#: app/templates/index.html:142 app/templates/index.html:148
 #: app/templates/packages/game_hub.html:58
 msgid "Top Mods"
 msgstr "Topp moddar"
 
-#: app/templates/index.html:152 app/templates/index.html:158
+#: app/templates/index.html:153 app/templates/index.html:159
 #: app/templates/packages/game_hub.html:65
 msgid "Top Texture Packs"
 msgstr "Topp texturpaket"
 
-#: app/templates/index.html:164
+#: app/templates/index.html:165
 msgid "Search by Tags"
 msgstr "Sök från taggar"
 
-#: app/templates/index.html:178 app/templates/index.html:184
+#: app/templates/index.html:179 app/templates/index.html:185
 #: app/templates/packages/game_hub.html:72
 msgid "Highest Reviewed"
 msgstr "Högst recenserad"
 
-#: app/templates/index.html:192
+#: app/templates/index.html:193
 msgid "All reviews"
 msgstr "Alla recensioner"
 
-#: app/templates/index.html:194
+#: app/templates/index.html:195
 msgid "Recent Positive Reviews"
 msgstr "Senaste positiva recensioner"
 
-#: app/templates/index.html:201
+#: app/templates/index.html:202
 #, python-format
 msgid "CDB has %(count)d packages, with a total of %(downloads)d downloads."
 msgstr "CDB har %(count)d paket, med %(downloads)d nerladdningar totalt."
@@ -2940,6 +2975,7 @@ msgstr "Ingen token skapades"
 #: app/templates/collections/view.html:42 app/templates/macros/releases.html:68
 #: app/templates/packages/release_view.html:10
 #: app/templates/packages/view.html:123 app/templates/packages/view.html:262
+#: app/templates/report/view.html:17
 msgid "Edit"
 msgstr "Redigera"
 
@@ -2966,6 +3002,7 @@ msgid "You can replace the description with your own"
 msgstr "Du kan ersätta beskrivningen med din egna"
 
 #: app/templates/collections/create_edit.html:103
+#, python-brace-format
 msgid "Are you sure you want to remove {title}?"
 msgstr "Är du säker att du vill ta bort {title}?"
 
@@ -3474,19 +3511,15 @@ msgstr "Denna tråd har låsts."
 msgid "You don't have permission to post."
 msgstr "Du har inte behörighet att posta."
 
-#: app/templates/macros/threads.html:181
-msgid "You can add someone to a private thread by writing @username."
-msgstr "Du kan lägga till någon till en privat tråd genom att skriva @username."
-
-#: app/templates/macros/threads.html:199 app/templates/macros/threads.html:281
+#: app/templates/macros/threads.html:194 app/templates/macros/threads.html:276
 msgid "No threads found"
 msgstr "Inga trådar finns"
 
-#: app/templates/macros/threads.html:207
+#: app/templates/macros/threads.html:202
 msgid "Thread"
 msgstr "Tråd"
 
-#: app/templates/macros/threads.html:211
+#: app/templates/macros/threads.html:206
 msgid "Last Reply"
 msgstr "Senaste svar"
 
@@ -3524,7 +3557,7 @@ msgstr "Åtgärder"
 
 #: app/templates/macros/topics.html:18 app/templates/macros/topics.html:54
 #: app/templates/modnames/view.html:29 app/templates/packages/similar.html:40
-#: app/templates/todo/editor.html:160 app/templates/todo/editor.html:175
+#: app/templates/todo/editor.html:182 app/templates/todo/editor.html:197
 msgid "WIP"
 msgstr "Under arbete"
 
@@ -3553,7 +3586,7 @@ msgstr "Forumtrådar"
 #: app/templates/packages/game_support.html:42
 #: app/templates/packages/similar.html:38 app/templates/packages/view.html:492
 #: app/templates/packages/view.html:516 app/templates/packages/view.html:561
-#: app/templates/packages/view.html:593 app/templates/todo/editor.html:85
+#: app/templates/packages/view.html:593 app/templates/todo/editor.html:107
 #: app/templates/todo/game_support.html:45
 #, python-format
 msgid "%(title)s by %(display_name)s"
@@ -3666,16 +3699,15 @@ msgstr "Exempel auktoriserings-URL"
 msgid ""
 "Titles must be globally unique. For example, what's the name of your "
 "application?"
-msgstr ""
-"Titlar måste vara globalt unika. Vad heter till exempel din applikation?"
+msgstr "Titlar måste vara globalt unika. Vad heter till exempel din applikation?"
 
 #: app/templates/oauth/create_edit.html:68
 msgid ""
 "Shown to users when you request access to their account. For example, "
 "what does your application do?"
 msgstr ""
-"Visas för användare när du begär åtkomst till deras konto. Till exempel, vad "
-"gör din applikation?"
+"Visas för användare när du begär åtkomst till deras konto. Till exempel, "
+"vad gör din applikation?"
 
 #: app/templates/oauth/create_edit.html:70
 msgid "Where will you store your client_secret?"
@@ -3699,10 +3731,11 @@ msgid "No applications created"
 msgstr "Inga applikationer skapade"
 
 #: app/templates/packages/advanced_search.html:13
+#: app/templates/zipgrep/search.html:20
 msgid "Use shift to select multiple. Leave selection empty to match any type."
 msgstr ""
-"Använd shift för att välja flera. Lämna markeringen tom för att matcha med "
-"alla typer."
+"Använd shift för att välja flera. Lämna markeringen tom för att matcha "
+"med alla typer."
 
 #: app/templates/packages/advanced_search.html:14
 #: app/templates/packages/advanced_search.html:19
@@ -3816,12 +3849,10 @@ msgstr "Du behöver avpublicera paketet för att ändra namnet."
 
 #: app/templates/packages/create_edit.html:85
 msgid ""
-"Tip: Don't include <i>Minetest</i>, <i>mod</i>, or <i>modpack</i> "
-"anywhere in the short description. It is unnecessary and wastes "
-"characters."
+"Tip: Don't include <i>Luanti</i>, <i>Minetest</i>, <i>mod</i>, or "
+"<i>modpack</i> anywhere in the short description. It is unnecessary and "
+"wastes characters."
 msgstr ""
-"Tips: Inkludera inte <i>Minetest</i>, <i>mod</i> eller <i>modpack</i> "
-"någonstans i den korta beskrivningen, detta är onödigt."
 
 #: app/templates/packages/create_edit.html:88
 msgid ""
@@ -4469,7 +4500,8 @@ msgid ""
 "As an alternative to removing your package, you may wish to change the "
 "maintenance state."
 msgstr ""
-"Som ett alternativ till att ta bort ditt paket kan du ändra underhållsstatus."
+"Som ett alternativ till att ta bort ditt paket kan du ändra "
+"underhållsstatus."
 
 #: app/templates/packages/remove.html:38
 msgid ""
@@ -4530,8 +4562,10 @@ msgid "Post a review for %(title)s by %(author)s"
 msgstr "Lägg till en recension för %(title)s av %(author)s"
 
 #: app/templates/packages/review_create_edit.html:20
-msgid "Please make sure you read ContentDB's <a href='/rules/'>rules</a>"
-msgstr "Se till att du läser ContentDB:s <a href=\"/rules/\">regler</a>"
+msgid ""
+"Please make sure you read ContentDB's <a href='/terms/'>Terms of "
+"Service</a>"
+msgstr ""
 
 #: app/templates/packages/review_create_edit.html:25
 #: app/templates/threads/new.html:16
@@ -4673,8 +4707,8 @@ msgid ""
 "To provide translations for your package, you need to create .tr files "
 "and upload a new release."
 msgstr ""
-"Om du vill tillhandahålla översättningar för ditt paket måste du skapa .tr-"
-"filer och ladda upp en ny version."
+"Om du vill tillhandahålla översättningar för ditt paket måste du skapa "
+".tr-filer och ladda upp en ny version."
 
 #: app/templates/packages/translation.html:19
 msgid ""
@@ -4809,11 +4843,9 @@ msgstr "Icke-fri media"
 
 #: app/templates/packages/view.html:101 app/templates/threads/view.html:109
 msgid ""
-"This thread is only visible to its creator, package maintainers, users of"
-" Approver rank or above, and @mentioned users."
+"This thread is only visible to its creator, package maintainers, and "
+"users of Approver rank or above."
 msgstr ""
-"Denna tråd är endast synlig för skaparen, paketunderhållare, användare av"
-" Godkännarrang eller högre, och @nämnda användare."
 
 #: app/templates/packages/view.html:214 app/templates/users/profile.html:95
 msgid "Website"
@@ -4901,7 +4933,7 @@ msgstr "Gillar du detta paket? Donera för att stödja utvecklingen"
 msgid "Donate now"
 msgstr "Donera nu"
 
-#: app/templates/packages/view.html:484 app/utils/minetest_hypertext.py:283
+#: app/templates/packages/view.html:484 app/utils/luanti_hypertext.py:283
 msgid "Dependencies"
 msgstr "Beroenden"
 
@@ -4918,7 +4950,7 @@ msgid "Compatible Games"
 msgstr "Kompatibla Spel"
 
 #: app/templates/packages/view.html:548 app/templates/packages/view.html:568
-#: app/utils/minetest_hypertext.py:275
+#: app/utils/luanti_hypertext.py:275
 msgid "No specific game required"
 msgstr "Inget specifikt spel krävs"
 
@@ -4950,7 +4982,7 @@ msgstr "Information"
 msgid "Technical Name"
 msgstr "Tekniskt namn"
 
-#: app/templates/packages/view.html:634 app/utils/minetest_hypertext.py:295
+#: app/templates/packages/view.html:634 app/utils/luanti_hypertext.py:295
 #, python-format
 msgid "%(code_license)s for code,<br>%(media_license)s for media."
 msgstr "%(code_license)s för kod,<br>%(media_license)s för media."
@@ -4959,7 +4991,7 @@ msgstr "%(code_license)s för kod,<br>%(media_license)s för media."
 msgid "Unknown"
 msgstr "Okänd"
 
-#: app/templates/packages/view.html:644 app/utils/minetest_hypertext.py:301
+#: app/templates/packages/view.html:644 app/utils/luanti_hypertext.py:301
 msgid "Added"
 msgstr "Tillagd"
 
@@ -4967,7 +4999,7 @@ msgstr "Tillagd"
 msgid "Remove myself"
 msgstr "Ta bort mig själv"
 
-#: app/templates/packages/view.html:663 app/utils/minetest_hypertext.py:303
+#: app/templates/packages/view.html:663 app/utils/luanti_hypertext.py:303
 msgid "Provides"
 msgstr "Bidrar"
 
@@ -4979,35 +5011,110 @@ msgstr "Mer"
 msgid "See audit log"
 msgstr "Visa auditeringslogg"
 
-#: app/templates/report/index.html:15
+#: app/templates/report/list.html:4 app/templates/todo/editor.html:9
+msgid "Reports"
+msgstr ""
+
+#: app/templates/report/report.html:19
 msgid ""
 "Due to spam, we no longer accept reports from anonymous users on this "
 "form."
 msgstr "På grund av spam tillåter vi inte längre rapporter från anonyma användare."
 
-#: app/templates/report/index.html:16
+#: app/templates/report/report.html:20
 msgid "Please sign in or contact the admin using the link below."
 msgstr "Vänligen logga in eller kontakta administratören med länken nedan."
 
-#: app/templates/report/index.html:34
-msgid "What are you reporting? Why are you reporting it?"
-msgstr "Vad rapporterar du? Varför rapporterar du den?"
+#: app/templates/report/report.html:30
+msgid ""
+"The full report will be visible to all ContentDB staff members, including"
+" editors and moderators."
+msgstr ""
 
-#: app/templates/report/index.html:38
-msgid "Reports will be shared with ContentDB staff."
-msgstr "Rapporter kommer delas med ContentDB-personal."
+#: app/templates/report/report.html:31
+msgid ""
+"If you are reporting something by another user, we may discuss the report"
+" with them but will not disclose who reported it."
+msgstr ""
 
-#: app/templates/report/index.html:40
-msgid "Only the admin will be able to see who made the report."
-msgstr "Endast administratören kan se vem gjorde rapporten."
+#: app/templates/report/report.html:32
+msgid ""
+"If you are reporting something by an editor or moderator, then you should"
+" email the admin or a moderator directly to hide your identity."
+msgstr ""
 
-#: app/templates/report/index.html:44
+#: app/templates/report/report.html:41
+msgid "Optional, usually not required"
+msgstr ""
+
+#: app/templates/report/report.html:44
 msgid ""
 "Found a bug? Please report on the package's issue tracker or in a thread "
 "instead."
 msgstr ""
 "Har du hittat en bugg? Var snäll och rapportera den på paketets "
 "buggtracker eller i en tråd istället."
+
+#: app/templates/report/report_received.html:4
+msgid "We have received your report"
+msgstr ""
+
+#: app/templates/report/report_received.html:13
+msgid "We aim to resolve your report quickly."
+msgstr ""
+
+#: app/templates/report/report_received.html:17
+msgid ""
+"If the report is about illegal or harmful content, we aim to resolve "
+"within 48 hours."
+msgstr ""
+
+#: app/templates/report/report_received.html:18
+msgid ""
+"If we find the content to be infringing, we will remove it and may warn "
+"or suspend the user."
+msgstr ""
+
+#: app/templates/report/report_received.html:23
+msgid ""
+"A private thread has been created for this report. You can use it to "
+"communicate with ContentDB staff and receive updates about the report."
+msgstr ""
+
+#: app/templates/report/report_received.html:27
+msgid ""
+"Due to limited resources, we may not contact you further about the report"
+" unless we need clarification."
+msgstr ""
+
+#: app/templates/report/report_received.html:30
+#, python-format
+msgid "For future reference, use report id: %(report_id)s."
+msgstr ""
+
+#: app/templates/report/report_received.html:36
+msgid "View thread"
+msgstr ""
+
+#: app/templates/report/report_received.html:38
+msgid "Back to home"
+msgstr ""
+
+#: app/templates/report/view.html:96
+msgid "Reopen"
+msgstr ""
+
+#: app/templates/report/view.html:98
+msgid "Completed (action taken)"
+msgstr ""
+
+#: app/templates/report/view.html:99
+msgid "Content removed"
+msgstr ""
+
+#: app/templates/report/view.html:100
+msgid "Invalid / close with no action"
+msgstr ""
 
 #: app/templates/tasks/view.html:5
 msgid "Task Failed"
@@ -5017,7 +5124,7 @@ msgstr "Uppgift misslyckades"
 msgid "Working…"
 msgstr "Arbetar…"
 
-#: app/templates/tasks/view.html:26
+#: app/templates/tasks/view.html:25
 msgid "Reload the page to check for updates."
 msgstr "Ladda om sidan för att kontrollera efter uppdateringar."
 
@@ -5043,14 +5150,6 @@ msgid ""
 msgstr ""
 "Om paketet inte borde finnas på CDB (t.ex. om den över huvudtaget inte "
 "fungerar), kan du berätta det här."
-
-#: app/templates/threads/new.html:52
-msgid ""
-"Only you, the package author, and users of Approver rank and above can "
-"read private threads."
-msgstr ""
-"Endast du, paketskaparen, och användare av Godkännarrang och högre kan "
-"läsa privata trådar."
 
 #: app/templates/threads/user_comments.html:9
 #: app/templates/threads/user_comments.html:13
@@ -5095,15 +5194,15 @@ msgstr "Synlig till:"
 msgid "Plus approvers and editors"
 msgstr "Plus godkännare och redigerare"
 
-#: app/templates/threads/view.html:136
+#: app/templates/threads/view.html:141
 msgid "Is this review outdated?"
 msgstr "Är denna recension föråldrad?"
 
-#: app/templates/threads/view.html:137
+#: app/templates/threads/view.html:142
 msgid "For example, does it complain about issues you've already fixed?"
 msgstr "Till exempel, klagar den om problem du redan har fixat?"
 
-#: app/templates/threads/view.html:138
+#: app/templates/threads/view.html:143
 #, python-format
 msgid "You can report outdated reviews by clicking %(flag)s on the review."
 msgstr ""
@@ -5114,64 +5213,64 @@ msgstr ""
 msgid "Editor Work Queue"
 msgstr "Redigerararbetskö"
 
-#: app/templates/todo/editor.html:8
+#: app/templates/todo/editor.html:30
 msgid "Approval Queue"
 msgstr "Godkännarkö"
 
-#: app/templates/todo/editor.html:15
+#: app/templates/todo/editor.html:37
 msgid "Approve All"
 msgstr "Godkänn alla"
 
-#: app/templates/todo/editor.html:33
+#: app/templates/todo/editor.html:55
 msgid "No screenshots need approval."
 msgstr "Inga skärmdumpar behöver godkännande."
 
-#: app/templates/todo/editor.html:65 app/templates/todo/editor.html:183
+#: app/templates/todo/editor.html:87 app/templates/todo/editor.html:205
 msgid "No packages need approval."
 msgstr "Inga paket behöver godkännande."
 
-#: app/templates/todo/editor.html:80
+#: app/templates/todo/editor.html:102
 msgid "Importing"
 msgstr "Importerar"
 
-#: app/templates/todo/editor.html:90
+#: app/templates/todo/editor.html:112
 msgid "No releases need approval."
 msgstr "Inga utgivningar behöver godkännande."
 
-#: app/templates/todo/editor.html:100
+#: app/templates/todo/editor.html:122
 msgid "All done!"
 msgstr "Färdig!"
 
-#: app/templates/todo/editor.html:105 app/templates/todo/editor.html:107
+#: app/templates/todo/editor.html:127 app/templates/todo/editor.html:129
 msgid "License Needed"
 msgstr "Licens krävs"
 
-#: app/templates/todo/editor.html:127
+#: app/templates/todo/editor.html:149
 msgid "Tag Packages"
 msgstr "Tagga paket"
 
-#: app/templates/todo/editor.html:130
+#: app/templates/todo/editor.html:152
 #, python-format
 msgid "%(total_to_tag)d / %(total_packages)d packages don't have any tags."
 msgstr "%(total_to_tag)d / %(total_packages)d paket har inga taggar."
 
-#: app/templates/todo/editor.html:140
+#: app/templates/todo/editor.html:162
 msgid "View Tags"
 msgstr "Visa taggar"
 
-#: app/templates/todo/editor.html:147
+#: app/templates/todo/editor.html:169
 msgid "Unfulfilled Dependencies"
 msgstr "Ouppfyllda beroenden"
 
-#: app/templates/todo/editor.html:151
+#: app/templates/todo/editor.html:173
 msgid "Mod names that have hard dependers, but no packages providing them."
 msgstr "Moddnamn som har hårda beroenden, men inga paket som tillhandahåller dem."
 
-#: app/templates/todo/editor.html:193 app/templates/users/account.html:102
+#: app/templates/todo/editor.html:215 app/templates/users/account.html:101
 msgid "View All"
 msgstr "Visa alla"
 
-#: app/templates/todo/editor.html:196
+#: app/templates/todo/editor.html:218
 msgid "Recent Actions"
 msgstr "Senaste åtgärder"
 
@@ -5454,31 +5553,31 @@ msgstr "Visa ContentDB:s GitHub-behörigheter"
 msgid "Disconnect"
 msgstr "Koppla loss"
 
-#: app/templates/users/account.html:70
+#: app/templates/users/account.html:69
 msgid "Link Github"
 msgstr "Länka GitHub"
 
-#: app/templates/users/account.html:73
+#: app/templates/users/account.html:72
 msgid "None"
 msgstr "Inget"
 
-#: app/templates/users/account.html:80
+#: app/templates/users/account.html:79
 msgid "Account Deletion and Deactivation"
 msgstr "Kontoborttagning och deaktivering"
 
-#: app/templates/users/account.html:84
+#: app/templates/users/account.html:83
 msgid "Delete or Deactivate"
 msgstr "Ta bort eller deaktivera"
 
-#: app/templates/users/account.html:87
+#: app/templates/users/account.html:86
 msgid "Account Deletion and Deactivation isn't available to users yet."
 msgstr "Kontoborttagning och deaktivering är inte tillgängliga för användare än."
 
-#: app/templates/users/account.html:88
+#: app/templates/users/account.html:87
 msgid "Please raise a report to request account deletion."
 msgstr "Vänligen gör en anmälan för att be om kontoborttagning (på engelska)."
 
-#: app/templates/users/account.html:95
+#: app/templates/users/account.html:94
 msgid "Recent Account Actions"
 msgstr "Nyliga kontoåtgärder"
 
@@ -5504,8 +5603,8 @@ msgid ""
 "Note: protonmail is unsupported by ContentDB. <a "
 "href='https://forum.luanti.org/viewtopic.php?t=30709'>More info</a>."
 msgstr ""
-"Notera: Protonmail stöds inte av ContentDB. <a href=\"https://forum.luanti."
-"org/viewtopic.php?t=30709\">Mer info</a>."
+"Notera: Protonmail stöds inte av ContentDB. <a "
+"href=\"https://forum.luanti.org/viewtopic.php?t=30709\">Mer info</a>."
 
 #: app/templates/users/change_set_password.html:27
 #: app/templates/users/register.html:30
@@ -5567,35 +5666,43 @@ msgstr "Har du inte ett forumkonto?"
 msgid "You can still <a href='%(url)s'>sign up without one</a>."
 msgstr "Du kan fortfarande <a href=\"%(url)s\">registrera utan</a>."
 
-#: app/templates/users/claim_forums.html:26
+#: app/templates/users/claim_forums.html:23
+#: app/templates/users/register.html:38
+msgid ""
+"By signing up, you agree to the <a href='/terms/' target='_blank'>Terms "
+"of Service</a> and <a href='/privacy_policy/' target='_blank'>Privacy "
+"Policy</a>."
+msgstr ""
+
+#: app/templates/users/claim_forums.html:30
 msgid "Option 1"
 msgstr "Alternativ 1"
 
-#: app/templates/users/claim_forums.html:27
+#: app/templates/users/claim_forums.html:31
 msgid "Use GitHub field in forum profile"
 msgstr "Använd GitHub-fält i forumprofil"
 
-#: app/templates/users/claim_forums.html:35
-#: app/templates/users/claim_forums.html:64
+#: app/templates/users/claim_forums.html:39
+#: app/templates/users/claim_forums.html:68
 msgid "Enter your forum username here:"
 msgstr "Mata in ditt forumkonto här:"
 
-#: app/templates/users/claim_forums.html:39
-#: app/templates/users/claim_forums.html:68
+#: app/templates/users/claim_forums.html:43
+#: app/templates/users/claim_forums.html:72
 msgid "Forum username"
 msgstr "Forumanvändarnamn"
 
-#: app/templates/users/claim_forums.html:40
-#: app/templates/users/claim_forums.html:68
+#: app/templates/users/claim_forums.html:44
+#: app/templates/users/claim_forums.html:72
 #: app/templates/users/register.html:16
 msgid "Only a-zA-Z0-9._ allowed"
 msgstr "Endast a-zA-Z0-9._ tillåtet"
 
-#: app/templates/users/claim_forums.html:43
+#: app/templates/users/claim_forums.html:47
 msgid "You'll need to have the GitHub field in your forum profile filled out."
 msgstr "Du måste ha fyllt i GitHub-fältet i din forumprofil."
 
-#: app/templates/users/claim_forums.html:44
+#: app/templates/users/claim_forums.html:48
 msgid ""
 "Log into the forum and <a "
 "href='https://forum.luanti.org/ucp.php?i=173'>do that here</a>."
@@ -5603,36 +5710,37 @@ msgstr ""
 "Logga in till forumet och <a "
 "href=\"https://forum.luanti.org/ucp.php?i=173\">gör det här</a>."
 
-#: app/templates/users/claim_forums.html:47
+#: app/templates/users/claim_forums.html:51
 msgid "Next: log in with GitHub"
 msgstr "Nästa: logga in med GitHub"
 
-#: app/templates/users/claim_forums.html:55
+#: app/templates/users/claim_forums.html:59
 msgid "Option 2"
 msgstr "Alternativ 2"
 
-#: app/templates/users/claim_forums.html:56
+#: app/templates/users/claim_forums.html:60
 msgid "Verification token"
 msgstr "Verifieringstoken"
 
-#: app/templates/users/claim_forums.html:71
+#: app/templates/users/claim_forums.html:75
 msgid ""
 "Go to <a "
 "href='https://forum.luanti.org/ucp.php?i=profile&mode=signature'>User "
 "Control Panel &gt; Profile &gt; Edit signature</a>"
 msgstr ""
-"Gå till <a href=\"https://forum.luanti.org/ucp.php?i=profile&amp;mode="
-"signature\">User Control Panel &gt; Profile &gt; Edit signature</a>"
+"Gå till <a "
+"href=\"https://forum.luanti.org/ucp.php?i=profile&amp;mode=signature\">User"
+" Control Panel &gt; Profile &gt; Edit signature</a>"
 
-#: app/templates/users/claim_forums.html:75
+#: app/templates/users/claim_forums.html:79
 msgid "Paste this into your signature:"
 msgstr "Klistra in detta i din signatur:"
 
-#: app/templates/users/claim_forums.html:81
+#: app/templates/users/claim_forums.html:85
 msgid "Click next so we can check it."
 msgstr "Tryck på nästa så vi kan kontrollera det."
 
-#: app/templates/users/claim_forums.html:84
+#: app/templates/users/claim_forums.html:88
 msgid "Don't worry, you can remove it after this is done."
 msgstr "Oroa dig inte, du kan ta bort den efter detta är klart."
 
@@ -5908,10 +6016,6 @@ msgstr "Samma som användarnamn"
 msgid "Please prove that you are human"
 msgstr "Var vänlig visa du är en människa"
 
-#: app/templates/users/register.html:38
-msgid "I agree to the "
-msgstr "Jag accepterar "
-
 #: app/templates/users/settings_email.html:4
 #, python-format
 msgid "Email and Notifications - %(username)s"
@@ -6049,27 +6153,31 @@ msgstr "Detta år"
 msgid "Last year"
 msgstr "Förra året"
 
-#: app/utils/minetest_hypertext.py:108
+#: app/utils/luanti_hypertext.py:108
 msgid "(view table in browser)"
 msgstr "(visa tabell i webbläsaren)"
 
-#: app/utils/minetest_hypertext.py:139
+#: app/utils/luanti_hypertext.py:139
 msgid "Image"
 msgstr "Bild"
 
-#: app/utils/minetest_hypertext.py:259
+#: app/utils/luanti_hypertext.py:259
 msgid "none"
 msgstr "inget"
 
-#: app/utils/minetest_hypertext.py:280
+#: app/utils/luanti_hypertext.py:280
 msgid "Unsupported Games"
 msgstr "Spel som ej stöds"
 
-#: app/utils/minetest_hypertext.py:284
+#: app/utils/luanti_hypertext.py:284
 msgid "Optional dependencies"
 msgstr "Valfria beroenden"
 
-#: app/utils/minetest_hypertext.py:340
+#: app/utils/luanti_hypertext.py:325
+msgid "Leave a review"
+msgstr ""
+
+#: app/utils/luanti_hypertext.py:346
 msgid "No reviews available."
 msgstr "Inga recensioner tillgängliga."
 
@@ -6589,3 +6697,63 @@ msgstr ""
 
 #~ msgid "Luanti-Mods org only"
 #~ msgstr "Endast Luanti-Mods org"
+
+#~ msgctxt "tags"
+#~ msgid "Less than 16px"
+#~ msgstr "Texturpaket som är mindre än 16px"
+
+#~ msgid "I agree"
+#~ msgstr "Jag godkänner"
+
+#~ msgid "Rules"
+#~ msgstr "Regler"
+
+#~ msgid "You can add someone to a private thread by writing @username."
+#~ msgstr "Du kan lägga till någon till en privat tråd genom att skriva @username."
+
+#~ msgid ""
+#~ "Tip: Don't include <i>Minetest</i>, "
+#~ "<i>mod</i>, or <i>modpack</i> anywhere in "
+#~ "the short description. It is unnecessary"
+#~ " and wastes characters."
+#~ msgstr ""
+#~ "Tips: Inkludera inte <i>Minetest</i>, "
+#~ "<i>mod</i> eller <i>modpack</i> någonstans i"
+#~ " den korta beskrivningen, detta är "
+#~ "onödigt."
+
+#~ msgid "Please make sure you read ContentDB's <a href='/rules/'>rules</a>"
+#~ msgstr "Se till att du läser ContentDB:s <a href=\"/rules/\">regler</a>"
+
+#~ msgid ""
+#~ "This thread is only visible to its"
+#~ " creator, package maintainers, users of "
+#~ "Approver rank or above, and @mentioned"
+#~ " users."
+#~ msgstr ""
+#~ "Denna tråd är endast synlig för "
+#~ "skaparen, paketunderhållare, användare av "
+#~ "Godkännarrang eller högre, och @nämnda "
+#~ "användare."
+
+#~ msgid "What are you reporting? Why are you reporting it?"
+#~ msgstr "Vad rapporterar du? Varför rapporterar du den?"
+
+#~ msgid "Reports will be shared with ContentDB staff."
+#~ msgstr "Rapporter kommer delas med ContentDB-personal."
+
+#~ msgid "Only the admin will be able to see who made the report."
+#~ msgstr "Endast administratören kan se vem gjorde rapporten."
+
+#~ msgid ""
+#~ "Only you, the package author, and "
+#~ "users of Approver rank and above "
+#~ "can read private threads."
+#~ msgstr ""
+#~ "Endast du, paketskaparen, och användare "
+#~ "av Godkännarrang och högre kan läsa "
+#~ "privata trådar."
+
+#~ msgid "I agree to the "
+#~ msgstr "Jag accepterar "
+
