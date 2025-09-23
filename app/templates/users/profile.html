@@ -88,7 +88,7 @@
 					</a>
 				{% endif %}
 
-				{% if user.website_url %}
+				{% if user.website_url and user.check_perm(user, "LINK_TO_WEBSITE") %}
 					<a class="btn" href="{{ user.website_url }}" rel="ugc">
 						<i class="fas fa-globe-europe"></i>
 						<span class="count">
@@ -97,7 +97,7 @@
 					</a>
 				{% endif %}
 
-				{% if user.donate_url %}
+				{% if user.donate_url and user.check_perm(user, "LINK_TO_WEBSITE") %}
 					<a class="btn" href="{{ user.donate_url }}" rel="ugc">
 						<i class="fas fa-donate"></i>
 						<span class="count">

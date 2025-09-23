@@ -96,6 +96,7 @@ class Permission(enum.Enum):
 	CHANGE_USERNAMES   = "CHANGE_USERNAMES"
 	CHANGE_RANK        = "CHANGE_RANK"
 	CHANGE_EMAIL       = "CHANGE_EMAIL"
+	LINK_TO_WEBSITE    = "LINK_TO_WEBSITE"
 	SEE_THREAD         = "SEE_THREAD"
 	CREATE_THREAD      = "CREATE_THREAD"
 	COMMENT_THREAD     = "COMMENT_THREAD"
@@ -289,6 +290,8 @@ class User(db.Model, UserMixin):
 				return user.rank.at_least(UserRank.NEW_MEMBER)
 			else:
 				return user.rank.at_least(UserRank.MODERATOR) and user.rank.at_least(self.rank)
+		elif perm == Permission.LINK_TO_WEBSITE:
+			return user.rank.at_least(UserRank.MEMBER)
 		else:
 			raise Exception("Permission {} is not related to users".format(perm.name))
 

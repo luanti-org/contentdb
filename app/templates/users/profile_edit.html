@@ -67,6 +67,13 @@
 		{{ render_field(form.donate_url, tabindex=233) }}
 	{% endif %}
 
+	{% if not user.check_perm(user, "LINK_TO_WEBSITE") %}
+		<p>
+			{{ _("Website URLs will not be shown whilst you are a 'New Member'.") }}
+			{{ _("To become a full member, create a review, comment, or package and wait 7 days.") }}
+		</p>
+	{% endif %}
+
 	<p>
 		{{ render_submit_field(form.submit, tabindex=280) }}
 	</p>
