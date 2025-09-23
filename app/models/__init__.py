@@ -212,7 +212,7 @@ class Report(db.Model):
 			return False
 
 		if perm == Permission.SEE_REPORT:
-			return user.rank.at_least(UserRank.MODERATOR)
+			return user.rank.at_least(UserRank.EDITOR)
 		else:
 			raise Exception("Permission {} is not related to reports".format(perm.name))
 
