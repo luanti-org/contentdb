@@ -13,15 +13,15 @@
 			<div class="list-group">
 				<a class="list-group-item list-group-item-action" href="{{ url_for('users.list_all') }}">
 					<i class="fas fa-users me-2"></i>
-					User list
+					{{ _("User list") }}
 				</a>
-				{% if current_user.rank.at_least(current_user.rank.MODERATOR) %}
+				{% if current_user.rank.at_least(current_user.rank.APPROVER) %}
 					<a class="list-group-item list-group-item-action" href="{{ url_for('admin.audit') }}">
 						<i class="fas fa-user-clock me-2"></i>
 						{{ _("Audit Log") }}
 					</a>
 				{% endif %}
-				{% if current_user.rank.at_least(current_user.rank.MODERATOR) %}
+				{% if current_user.rank.at_least(current_user.rank.EDITOR) %}
 					<a class="list-group-item list-group-item-action" href="{{ url_for('report.list_all') }}">
 						<i class="fas fa-user-clock me-2"></i>
 						Reports

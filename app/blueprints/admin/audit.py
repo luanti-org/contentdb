@@ -35,7 +35,7 @@ class AuditForm(FlaskForm):
 
 
 @bp.route("/admin/audit/")
-@rank_required(UserRank.MODERATOR)
+@rank_required(UserRank.APPROVER)
 def audit():
 	page = get_int_or_abort(request.args.get("page"), 1)
 	num = min(40, get_int_or_abort(request.args.get("n"), 100))
@@ -55,6 +55,9 @@ def audit():
 
 	if url:
 		query = query.filter(AuditLogEntry.url.ilike(f"%{url}%"))
+
+	if not current_user.rank.at_least(UserRank.MODERATOR):
+		query = query.filter(AuditLogEntry.package)
 
 	pagination = query.paginate(page=page, per_page=num)
 	return render_template("admin/audit.html", log=pagination.items, pagination=pagination, form=form)

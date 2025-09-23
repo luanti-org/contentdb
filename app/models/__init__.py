@@ -124,7 +124,7 @@ class AuditLogEntry(db.Model):
 			raise Exception("Unknown permission given to AuditLogEntry.check_perm()")
 
 		if perm == Permission.VIEW_AUDIT_DESCRIPTION:
-			return user.rank.at_least(UserRank.APPROVER if self.package is not None else UserRank.MODERATOR)
+			return (self.package and user in self.package.maintainers) or user.rank.at_least(UserRank.APPROVER if self.package is not None else UserRank.MODERATOR)
 		else:
 			raise Exception("Permission {} is not related to audit log entries".format(perm.name))
 
