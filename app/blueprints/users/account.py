@@ -104,6 +104,7 @@ class RegisterForm(FlaskForm):
 	email    = StringField(lazy_gettext("Email"), [InputRequired(), Email()])
 	password = PasswordField(lazy_gettext("Password"), [InputRequired(), Length(12, 100)])
 	question  = StringField(lazy_gettext("What is the result of the above calculation?"), [InputRequired()])
+	first_name = StringField("First name", [])
 	submit   = SubmitField(lazy_gettext("Register"))
 
 
@@ -117,6 +118,8 @@ def handle_register(form):
 		return user
 	elif user is None:
 		return
+	elif form.first_name.data != "":
+		abort(500)
 
 	user.password = make_flask_login_password(form.password.data)
 
