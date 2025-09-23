@@ -20,7 +20,7 @@ import os
 import sys
 
 from flask import url_for
-from sqlalchemy import or_, and_
+from sqlalchemy import or_, and_, not_, func
 
 from app import app
 from app.models import User, db, UserRank, ThreadReply, Package, NotificationType
@@ -149,3 +149,37 @@ def import_github_user_ids():
 	db.session.commit()
 
 	print(f"Updated {count} users", file=sys.stderr)
+
+
+@celery.task()
+def do_delete_likely_spammers():
+	query = (User.query.filter(
+		and_(
+			User.rank == UserRank.NEW_MEMBER,
+			or_(
+				func.replace(User.website_url, ".", "").regexp_match(
+					func.concat("https?://[^/]*", User.username, ".*")),
+			),
+			or_(
+				User.website_url.ilike("%bet%"),
+				User.website_url.ilike("%win%"),
+				User.website_url.ilike("%88%"),
+				User.website_url.ilike("%luck%"),
+				User.website_url.ilike("%sport%"),
+				User.website_url.ilike("%lottery%"),
+				User.website_url.ilike("%casino%"),
+				User.website_url.ilike("%vip%"),
+				User.website_url.ilike("%assignment%"),
+			),
+			~User.packages.any(),
+			~User.replies.any(),
+			~User.reports.any(),
+			not_(or_(
+				User.website_url.ilike("%.github.io%"),
+				User.website_url.ilike("%.neocities.org%"),
+			)),
+		)))
+
+	for user in query.all():
+		db.session.delete(user)
+	db.session.commit()

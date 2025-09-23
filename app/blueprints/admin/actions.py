@@ -28,7 +28,7 @@ from app.tasks.emails import send_pending_digests
 from app.tasks.forumtasks import import_topic_list, check_all_forum_accounts
 from app.tasks.importtasks import import_repo_screenshot, check_zip_release, check_for_updates, update_all_game_support, \
 	import_languages, check_all_zip_files
-from app.tasks.usertasks import import_github_user_ids
+from app.tasks.usertasks import import_github_user_ids, do_delete_likely_spammers
 from app.tasks.pkgtasks import notify_about_git_forum_links, clear_removed_packages, check_package_for_broken_links, update_file_size_bytes
 from app.utils import add_notification, get_system_user
 
@@ -429,34 +429,6 @@ def check_for_broken_links():
 
 @action("DANGER: Delete likely spammers")
 def delete_likely_spammers():
-	query = (User.query.filter(
-		and_(
-			User.rank == UserRank.NEW_MEMBER,
-			or_(
-				func.replace(User.website_url, ".", "").regexp_match(func.concat("https?://[^/]*", User.username, ".*")),
-			),
-			or_(
-				User.website_url.ilike("%bet%"),
-				User.website_url.ilike("%win%"),
-				User.website_url.ilike("%88%"),
-				User.website_url.ilike("%luck%"),
-				User.website_url.ilike("%sport%"),
-				User.website_url.ilike("%lottery%"),
-				User.website_url.ilike("%casino%"),
-				User.website_url.ilike("%vip%"),
-				User.website_url.ilike("%assignment%"),
-			),
-			~User.packages.any(),
-			~User.replies.any(),
-			~User.reports.any(),
-			not_(or_(
-				User.website_url.ilike("%.github.io%"),
-				User.website_url.ilike("%.neocities.org%"),
-			)),
-		)))
-
-	cnt = query.count()
-	for user in query.all():
-		db.session.delete(user)
-	db.session.commit()
-	flash(f"Deleted {cnt} users", "success")
+	task_id = uuid()
+	do_delete_likely_spammers.apply_async((), task_id=task_id)
+	return redirect(url_for("tasks.check", id=task_id, r=url_for("admin.admin_page")))
