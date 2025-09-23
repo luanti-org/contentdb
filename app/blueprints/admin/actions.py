@@ -20,7 +20,7 @@ from typing import List
 import requests
 from celery import group, uuid
 from flask import redirect, url_for, flash, current_app
-from sqlalchemy import or_, and_
+from sqlalchemy import or_, and_, not_, func
 
 from app.models import PackageRelease, db, Package, PackageState, PackageScreenshot, MetaPackage, User, \
 	NotificationType, PackageUpdateConfig, License, UserRank, PackageType, Thread, AuditLogEntry, ReportAttachment
@@ -425,3 +425,38 @@ def delete_empty_threads():
 def check_for_broken_links():
 	for package in Package.query.filter_by(state=PackageState.APPROVED).all():
 		check_package_for_broken_links.delay(package.id)
+
+
+@action("DANGER: Delete likely spammers")
+def delete_likely_spammers():
+	query = (User.query.filter(
+		and_(
+			User.rank == UserRank.NEW_MEMBER,
+			or_(
+				func.replace(User.website_url, ".", "").regexp_match(func.concat("https?://[^/]*", User.username, ".*")),
+			),
+			or_(
+				User.website_url.ilike("%bet%"),
+				User.website_url.ilike("%win%"),
+				User.website_url.ilike("%88%"),
+				User.website_url.ilike("%luck%"),
+				User.website_url.ilike("%sport%"),
+				User.website_url.ilike("%lottery%"),
+				User.website_url.ilike("%casino%"),
+				User.website_url.ilike("%vip%"),
+				User.website_url.ilike("%assignment%"),
+			),
+			~User.packages.any(),
+			~User.replies.any(),
+			~User.reports.any(),
+			not_(or_(
+				User.website_url.ilike("%.github.io%"),
+				User.website_url.ilike("%.neocities.org%"),
+			)),
+		)))
+
+	cnt = query.count()
+	for user in query.all():
+		db.session.delete(user)
+	db.session.commit()
+	flash(f"Deleted {cnt} users", "success")
