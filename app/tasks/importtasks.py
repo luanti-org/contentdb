@@ -114,7 +114,7 @@ def post_release_check_update(self, release: PackageRelease, path):
 
 		if tree.name is not None and release.package.name != tree.name and tree.type == ContentType.MOD:
 			raise LuantiCheckError(f"Package name ({release.package.name}) does not match the name of the content in "
-								   f"the release (${tree.name}). Either change the package name on ContentDB or the "
+								   f"the release ({tree.name}). Either change the package name on ContentDB or the "
 								   f"name in the .conf of the content. Then make a new release")
 
 		cache = {}
