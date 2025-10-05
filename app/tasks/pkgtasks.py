@@ -19,7 +19,7 @@ import random
 import re
 import sys
 from time import sleep
-from urllib.parse import urlparse
+from urllib.parse import urlparse, urljoin
 from typing import Optional
 
 import requests
@@ -131,6 +131,7 @@ def _url_exists(url: str) -> str:
 def _check_for_dead_links(package: Package) -> dict[str, str]:
 	ignored_urls = set(app.config.get("LINK_CHECKER_IGNORED_URLS", ""))
 
+	base_url = package.get_url("packages.view", absolute=True)
 	links: set[Optional[str]] = {
 		package.repo,
 		package.website,
@@ -142,7 +143,7 @@ def _check_for_dead_links(package: Package) -> dict[str, str]:
 	}
 
 	if package.desc:
-		links.update(get_links(render_markdown(package.desc), package.get_url("packages.view", absolute=True)))
+		links.update(get_links(render_markdown(package.desc)))
 
 	print(f"Checking {package.title} ({len(links)} links) for broken links", file=sys.stderr)
 
@@ -152,14 +153,15 @@ def _check_for_dead_links(package: Package) -> dict[str, str]:
 		if link is None:
 			continue
 
-		url = urlparse(link)
+		abs_link = urljoin(base_url, link)
+		url = urlparse(abs_link)
 		if url.scheme != "http" and url.scheme != "https":
 			continue
 
 		if url.hostname in ignored_urls:
 			continue
 
-		res = _url_exists(link)
+		res = _url_exists(abs_link)
 		if res != "":
 			bad_urls[link] = res
 

@@ -15,7 +15,6 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from typing import Sequence
-from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 from jinja2.utils import markupsafe
 from markdown_it import MarkdownIt
@@ -107,7 +106,7 @@ def get_user_mentions(html: str) -> set:
 	return set([x.get("data-username") for x in links])
 
 
-def get_links(html: str, url: str) -> set:
+def get_links(html: str) -> set:
 	soup = BeautifulSoup(html, "html.parser")
 	links = soup.select("a[href]")
-	return set([urljoin(url, x.get("href")) for x in links])
+	return set([x.get("href") for x in links])
