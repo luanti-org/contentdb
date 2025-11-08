@@ -23,7 +23,7 @@ from sqlalchemy.sql.expression import func
 from sqlalchemy_searchable import search
 
 from .models import db, PackageType, Package, ForumTopic, License, LuantiRelease, PackageRelease, User, Tag, \
-	ContentWarning, PackageState, PackageDevState
+	ContentWarning, PackageState, PackageDevState, ReleaseState
 from .utils import is_yes, get_int_or_abort
 
 
