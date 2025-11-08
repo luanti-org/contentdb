@@ -59,6 +59,7 @@ gfm_like.make()
 md = MarkdownIt("gfm-like", {"highlight": highlight_code})
 md.use(anchors_plugin, permalink=True, permalinkSymbol="🔗", max_level=6)
 md.add_render_rule("fence", render_code)
+md.linkify.set({"fuzzy_link": False})
 init_mention(md)
 
 
