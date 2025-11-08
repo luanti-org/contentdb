@@ -99,7 +99,7 @@ def validate_package_for_approval(package: Package) -> List[PackageValidationNot
 		danger(lazy_gettext("A package already exists with this name. Please see Policy and Guidance 3"))
 
 	if package.releases.filter(PackageRelease.task_id.is_(None)).count() == 0:
-		latest_release = package.releases.first()
+		latest_release = package.releases.order_by(db.desc(PackageRelease.created_at)).first()
 		if latest_release is None:
 			danger(lazy_gettext("You need to create a release before this package can be approved."))  \
 				.add_button(package.get_url("packages.create_release"), lazy_gettext("Create release")) \
