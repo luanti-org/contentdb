@@ -98,12 +98,14 @@
 
 				{{ _("created %(date)s", date=rel.created_at | date) }}.
 			</small>
-			{% if (package.check_perm(current_user, "MAKE_RELEASE") or rel.check_perm(current_user, "APPROVE_RELEASE")) and rel.task_id %}
-				<a href="{{ url_for('tasks.check', id=rel.task_id, r=package.get_url('packages.view')) }}">
-					{{ _("Importing...") }}
-				</a>
-			{% elif not rel.approved %}
-				{{ _("Waiting for approval.") }}
+			{% if not rel.approved %}
+				{% if (package.check_perm(current_user, "MAKE_RELEASE") or rel.check_perm(current_user, "APPROVE_RELEASE")) and rel.task_id %}
+					<a href="{{ url_for('tasks.check', id=rel.task_id, r=package.get_url('packages.view')) }}">
+						{{ rel.state.title }}
+					</a>
+				{% else %}
+					{{ rel.state.title }}
+				{% endif %}
 			{% endif %}
 
 			{% if not rel.approved %}</i>{% endif %}

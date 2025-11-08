@@ -16,11 +16,13 @@
 
 from typing import List, Tuple, Union, Optional
 
+from flask import url_for
 from flask_babel import lazy_gettext, LazyString
 from sqlalchemy import and_, or_
 
 from app.models import Package, PackageType, PackageState, PackageRelease, db, MetaPackage, ForumTopic, User, \
-	Permission, UserRank
+	Permission, UserRank, ReleaseState
+from app.utils import get_bot_message_thread
 
 
 class PackageValidationNote:
@@ -92,20 +94,28 @@ def validate_package_for_approval(package: Package) -> List[PackageValidationNot
 
 	danger = template("danger", allow_approval=False, allow_submit=False)
 	warning = template("warning", allow_approval=True, allow_submit=True)
-	info = template("info", allow_approval=False, allow_submit=True)
 
 	if package.type != PackageType.MOD and is_package_name_taken(package.normalised_name):
 		danger(lazy_gettext("A package already exists with this name. Please see Policy and Guidance 3"))
 
 	if package.releases.filter(PackageRelease.task_id.is_(None)).count() == 0:
-		if package.releases.count() == 0:
-			message = lazy_gettext("You need to create a release before this package can be approved.")
-		else:
-			message = lazy_gettext("Release is still importing or has an error. Check the release or bot messages for more info.")
-
-		danger(message) \
-			.add_button(package.get_url("packages.create_release"), lazy_gettext("Create release")) \
-			.add_button(package.get_url("packages.setup_releases"), lazy_gettext("Set up releases"))
+		latest_release = package.releases.first()
+		if latest_release is None:
+			danger(lazy_gettext("You need to create a release before this package can be approved."))  \
+				.add_button(package.get_url("packages.create_release"), lazy_gettext("Create release")) \
+				.add_button(package.get_url("packages.setup_releases"), lazy_gettext("Set up releases"))
+		elif latest_release.state == ReleaseState.PROCESSING:
+			task_url = url_for("tasks.check", id=latest_release.task_id, r=package.get_url("packages.view"))
+			danger(lazy_gettext("Release is still importing. Please wait and reload the page.")) \
+				.add_button(task_url, lazy_gettext("View task"))
+		elif latest_release.state == ReleaseState.FAILED:
+			thread = get_bot_message_thread(package, False)
+			error_url = url_for("threads.view", id=thread.id) \
+				if thread \
+				else url_for("tasks.check", id=latest_release.task_id, r=package.get_url("packages.view"))
+			danger(lazy_gettext("Release validation failed. Please fix any issues and create a new release")) \
+				.add_button(error_url, lazy_gettext("View error")) \
+				.add_button(package.get_url("packages.create_release"), lazy_gettext("Create release"))
 
 		# Don't bother validating any more until we have a release
 		return retval

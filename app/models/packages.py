@@ -1087,6 +1087,49 @@ class LuantiRelease(db.Model):
 
 		return None
 
+class ReleaseState(enum.Enum):
+	PROCESSING = "Proccessing"
+	APPROVED  = "Approved"
+	FAILED = "Failed"
+	UNAPPROVED = "Approved"
+	ARCHIVED = "Archived"
+
+	def to_name(self):
+		return self.name.lower()
+
+	@property
+	def title(self):
+		if self == self.PROCESSING:
+			return lazy_gettext("Processing")
+		elif self == self.APPROVED:
+			return lazy_gettext("Approved")
+		elif self == self.FAILED:
+			return lazy_gettext("Failed")
+		elif self == self.UNAPPROVED:
+			return lazy_gettext("Waiting approval")
+		elif self == self.ARCHIVED:
+			return lazy_gettext("Archived")
+		else:
+			return self.value
+
+	def __str__(self):
+		return self.name
+
+	@classmethod
+	def get(cls, name):
+		try:
+			return ReleaseState[name.upper()]
+		except KeyError:
+			return None
+
+	@classmethod
+	def choices(cls):
+		return [(choice, choice.value) for choice in cls]
+
+	@classmethod
+	def coerce(cls, item):
+		return item if type(item) == ReleaseState else ReleaseState[item.upper()]
+
 
 class PackageRelease(db.Model):
 	id           = db.Column(db.Integer, primary_key=True)
@@ -1098,7 +1141,12 @@ class PackageRelease(db.Model):
 	title        = db.Column(db.String(100), nullable=False)
 	created_at  = db.Column(db.DateTime,    nullable=False)
 	url          = db.Column(db.String(200), nullable=False, default="")
-	approved     = db.Column(db.Boolean, nullable=False, default=False)
+	state     = db.Column(db.Enum(ReleaseState), nullable=False, default=ReleaseState.PROCESSING)
+
+	@property
+	def approved(self):
+		return self.state == ReleaseState.APPROVED
+
 	task_id      = db.Column(db.String(37), nullable=True)
 	commit_hash  = db.Column(db.String(41), nullable=True, default=None)
 	downloads    = db.Column(db.Integer, nullable=False, default=0)
@@ -1121,7 +1169,7 @@ class PackageRelease(db.Model):
 	max_rel    = db.relationship("LuantiRelease", foreign_keys=[max_rel_id])
 
 	# If the release is approved, then the task_id must be null and the url must be present
-	CK_approval_valid = db.CheckConstraint("not approved OR (task_id IS NULL AND (url = '') IS NOT FALSE)")
+	CK_approval_valid = db.CheckConstraint("state != 'APPROVED' OR (task_id IS NULL AND url != '' AND url IS NOT NULL)")
 
 	@property
 	def file_path(self):
@@ -1206,7 +1254,7 @@ class PackageRelease(db.Model):
 
 		assert self.task_id is None and self.url is not None and self.url != ""
 
-		self.approved = True
+		self.state = ReleaseState.APPROVED
 
 		if self.package.update_config:
 			self.package.update_config.outdated_at = None

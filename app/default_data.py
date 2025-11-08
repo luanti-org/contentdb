@@ -17,7 +17,7 @@
 import datetime
 
 from .models import User, UserRank, LuantiRelease, Tag, License, Notification, NotificationType, Package, \
-	PackageState, PackageType, PackageRelease, MetaPackage, Dependency
+	PackageState, PackageType, PackageRelease, MetaPackage, Dependency, ReleaseState
 from .utils import make_flask_login_password
 
 
@@ -108,7 +108,7 @@ def populate_test_data(session):
 	rel.name = "v1.0.0"
 	rel.title = "v1.0.0"
 	rel.url = "https://github.com/ezhh/handholds/archive/master.zip"
-	rel.approved = True
+	rel.state = ReleaseState.APPROVED
 	session.add(rel)
 
 	mod1 = Package()
@@ -146,7 +146,7 @@ awards.register_achievement("award_mesefind",{
 	rel.name = "v1.0.0"
 	rel.title = "v1.0.0"
 	rel.url = "https://github.com/rubenwardy/awards/archive/master.zip"
-	rel.approved = True
+	rel.state = ReleaseState.APPROVED
 	session.add(rel)
 
 	mod2 = Package()
@@ -260,7 +260,7 @@ No warranty is provided, express or implied, for any part of the project.
 	rel.title = "v1.0.0"
 	rel.max_rel = v4
 	rel.url = "https://github.com/ezhh/handholds/archive/master.zip"
-	rel.approved = True
+	rel.state = ReleaseState.APPROVED
 	session.add(rel)
 
 	mod = Package()
@@ -373,7 +373,7 @@ Uses the CTF PvP Engine.
 	rel.name = "v1.0.0"
 	rel.title = "v1.0.0"
 	rel.url = "https://github.com/rubenwardy/capturetheflag/archive/master.zip"
-	rel.approved = True
+	rel.state = ReleaseState.APPROVED
 	session.add(rel)
 
 
@@ -395,7 +395,7 @@ Uses the CTF PvP Engine.
 	rel.name = "v1.0.0"
 	rel.title = "v1.0.0"
 	rel.url = "http://mamadou3.free.fr/Minetest/PixelBOX.zip"
-	rel.approved = True
+	rel.state = ReleaseState.APPROVED
 	session.add(rel)
 
 	session.commit()

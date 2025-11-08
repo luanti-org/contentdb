@@ -30,7 +30,7 @@ from app.logic.graphs import get_package_stats, get_package_stats_for_user, get_
 from app.markdown import render_markdown
 from app.models import Tag, PackageState, PackageType, Package, db, PackageRelease, Permission, \
 	LuantiRelease, APIToken, PackageScreenshot, License, ContentWarning, User, PackageReview, Thread, Collection, \
-	PackageAlias, Language
+	PackageAlias, Language, ReleaseState
 from app.querybuilder import QueryBuilder
 from app.utils import is_package_page, get_int_or_abort, url_set_query, abs_url, is_yes, get_request_date, cached, \
 	cors_allowed
@@ -897,7 +897,7 @@ def updates():
 		PackageRelease.package_id,
 		func.max(PackageRelease.id).label('max_release_id'))
 			.select_from(PackageRelease)
-			.filter(PackageRelease.approved == True))
+			.filter(PackageRelease.state == ReleaseState.APPROVED))
 
 	if version:
 		latest_release_query = (latest_release_query

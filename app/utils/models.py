@@ -143,14 +143,13 @@ def add_replies(thread: Thread, user: User, message: str, continuation: str = "(
 		is_first = False
 
 
-def post_bot_message(package: Package, title: str, message: str, session=None):
+def get_bot_message_thread(package: Package, create_thread=False, session=None):
 	if session is None:
 		session = db.session
 
 	system_user = get_system_user()
-
 	thread = package.threads.filter_by(author=system_user).first()
-	if not thread:
+	if not thread and create_thread:
 		thread = Thread()
 		thread.package = package
 		thread.title = "Messages for '{}'".format(package.title)
@@ -159,6 +158,16 @@ def post_bot_message(package: Package, title: str, message: str, session=None):
 		thread.watchers.extend(package.maintainers)
 		session.add(thread)
 		session.flush()
+
+	return thread
+
+
+def post_bot_message(package: Package, title: str, message: str, session=None):
+	if session is None:
+		session = db.session
+
+	system_user = get_system_user()
+	thread = get_bot_message_thread(package, True, session)
 
 	add_replies(thread, system_user,
 			f"**{title}**\n\n{message}\n\nThis is an automated message, but you can reply if you need help",

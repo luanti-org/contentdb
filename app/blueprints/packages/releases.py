@@ -26,7 +26,7 @@ from wtforms_sqlalchemy.fields import QuerySelectField
 
 from app.logic.releases import do_create_vcs_release, LogicError, do_create_zip_release
 from app.models import Package, db, User, PackageState, Permission, UserRank, PackageDailyStats, LuantiRelease, \
-	PackageRelease, PackageUpdateTrigger, PackageUpdateConfig
+	PackageRelease, PackageUpdateTrigger, PackageUpdateConfig, ReleaseState
 from app.rediscache import has_key, set_temp_key, make_download_key
 from app.tasks.importtasks import check_update_config
 from app.utils import is_user_bot, is_package_page, nonempty_or_none, normalize_line_endings
@@ -204,7 +204,7 @@ def edit_release(package, id):
 		if form.approved.data:
 			release.approve(current_user)
 		elif canApprove:
-			release.approved = False
+			release.state = ReleaseState.UNAPPROVED
 
 		db.session.commit()
 		return redirect(package.get_url("packages.list_releases"))

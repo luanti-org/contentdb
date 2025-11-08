@@ -32,7 +32,7 @@ from sqlalchemy.dialects.postgresql import insert
 
 from app.models import AuditSeverity, db, NotificationType, PackageRelease, MetaPackage, Dependency, PackageType, \
 	LuantiRelease, Package, PackageState, PackageScreenshot, PackageUpdateTrigger, PackageUpdateConfig, \
-	PackageGameSupport, PackageTranslation, Language
+	PackageGameSupport, PackageTranslation, Language, ReleaseState
 from app.tasks import celery, TaskError
 from app.utils import random_string, post_bot_message, add_system_notification, add_system_audit_log, \
 	get_games_from_list, add_audit_log
@@ -243,11 +243,8 @@ def post_release_check_update(self, release: PackageRelease, path):
 		msg = f"{error_message}\n\n[View Release]({release.get_edit_url()}) | [View Task]({task_url})"
 		post_bot_message(release.package, f"Release {release.title} validation failed", msg)
 
-		if "Fails validation" not in release.title:
-			release.title += " (Fails validation)"
-
 		release.task_id = self.request.id
-		release.approved = False
+		release.state = ReleaseState.FAILED
 		db.session.commit()
 
 		raise TaskError(error_message)
@@ -330,7 +327,7 @@ def check_zip_release(self, id, path):
 
 	with get_temp_dir() as temp:
 		if not _safe_extract_zip(temp, path):
-			release.approved = False
+			release.state = ReleaseState.FAILED
 			db.session.commit()
 			raise Exception(f"Unsafe zip file at {path}")
 
