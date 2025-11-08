@@ -101,7 +101,7 @@ def validate_package_for_approval(package: Package) -> List[PackageValidationNot
 		if package.releases.count() == 0:
 			message = lazy_gettext("You need to create a release before this package can be approved.")
 		else:
-			message = lazy_gettext("Release is still importing, or has an error.")
+			message = lazy_gettext("Release is still importing or has an error. Check the release or bot messages for more info.")
 
 		danger(message) \
 			.add_button(package.get_url("packages.create_release"), lazy_gettext("Create release")) \
@@ -124,16 +124,14 @@ def validate_package_for_approval(package: Package) -> List[PackageValidationNot
 			"What games does your package support? Please specify on the supported games page", deps=missing_deps)) \
 			.add_button(package.get_url("packages.game_support"), lazy_gettext("Supported Games"))
 
-	if "Other" in package.license.name or "Other" in package.media_license.name:
-		info(lazy_gettext("Please wait for the license to be added to CDB."))
-
 	# Check similar mod name
 	conflicting_modnames = set()
 	if package.type != PackageType.TXP:
 		conflicting_modnames = get_conflicting_mod_names(package)
 
 	if len(conflicting_modnames) > 4:
-		warning(lazy_gettext("Please make sure that this package has the right to the names it uses."))
+		warning(lazy_gettext("Please make sure that this package has the right to the names it uses.")) \
+			.add_button(package.get_url('packages.similar'), lazy_gettext("See more"))
 	elif len(conflicting_modnames) > 0:
 		names_list = list(conflicting_modnames)
 		names_list.sort()
@@ -150,8 +148,6 @@ def validate_package_for_approval(package: Package) -> List[PackageValidationNot
 		if topic is not None:
 			if topic.author != package.author:
 				danger("<b>" + lazy_gettext("Error: Forum topic author doesn't match package author.") + "</b>")
-		elif package.type != PackageType.TXP:
-			warning(lazy_gettext("Warning: Forum topic not found. The topic may have been created since the last forum crawl."))
 
 	return retval
 
