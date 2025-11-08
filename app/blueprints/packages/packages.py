@@ -43,7 +43,7 @@ from . import bp, get_package_tabs
 from app.models import Package, Tag, db, User, Tags, PackageState, Permission, PackageType, MetaPackage, ForumTopic, \
 	Dependency, Thread, UserRank, PackageReview, PackageDevState, ContentWarning, License, AuditSeverity, \
 	PackageScreenshot, NotificationType, AuditLogEntry, PackageAlias, PackageProvides, PackageGameSupport, \
-	PackageDailyStats, Collection
+	PackageDailyStats, Collection, ReleaseState
 from app.utils import is_user_bot, get_int_or_abort, is_package_page, abs_url_for, add_audit_log, get_package_by_info, \
 	add_notification, get_system_user, rank_required, get_games_from_csv, get_daterange_options, \
 	post_to_approval_thread, normalize_line_endings
@@ -122,7 +122,7 @@ def get_releases(package):
 	if package.check_perm(current_user, Permission.MAKE_RELEASE):
 		return package.releases.limit(5)
 	else:
-		return package.releases.filter_by(approved=True).limit(5)
+		return package.releases.filter_by(state=ReleaseState.APPROVED).limit(5)
 
 
 @bp.route("/packages/<author>/")

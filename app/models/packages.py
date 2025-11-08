@@ -1087,6 +1087,7 @@ class LuantiRelease(db.Model):
 
 		return None
 
+
 class ReleaseState(enum.Enum):
 	PROCESSING = "Processing"
 	APPROVED = "Approved"

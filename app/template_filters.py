@@ -24,7 +24,7 @@ from markupsafe import Markup
 
 from . import app, utils
 from app.markdown import get_headings
-from .models import Permission, Package, PackageState, PackageRelease
+from .models import Permission, Package, PackageState, PackageRelease, ReleaseState
 from .utils import abs_url_for, url_set_query, url_set_anchor, url_current
 from .utils.luanti_hypertext import normalize_whitespace as do_normalize_whitespace
 
@@ -51,7 +51,7 @@ def inject_todo():
 	todo_list_count = None
 	if current_user and current_user.is_authenticated and current_user.can_access_todo_list():
 		todo_list_count = Package.query.filter_by(state=PackageState.READY_FOR_REVIEW).count()
-		todo_list_count += PackageRelease.query.filter_by(approved=False, task_id=None).count()
+		todo_list_count += PackageRelease.query.filter_by(state=ReleaseState.UNAPPROVED, task_id=None).count()
 
 	return dict(todo_list_count=todo_list_count)
 

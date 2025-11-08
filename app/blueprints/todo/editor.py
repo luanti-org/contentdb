@@ -20,7 +20,8 @@ from flask_login import current_user, login_required
 from sqlalchemy import or_, and_
 
 from app.models import Package, PackageState, PackageScreenshot, PackageUpdateConfig, ForumTopic, db, \
-	PackageRelease, Permission, UserRank, License, MetaPackage, Dependency, AuditLogEntry, Tag, LuantiRelease, Report
+	PackageRelease, Permission, UserRank, License, MetaPackage, Dependency, AuditLogEntry, Tag, LuantiRelease, Report, \
+	ReleaseState
 from app.querybuilder import QueryBuilder
 from app.utils import get_int_or_abort, is_yes, rank_required
 from . import bp
@@ -44,7 +45,7 @@ def view_editor():
 
 	releases = None
 	if can_approve_rel:
-		releases = PackageRelease.query.filter_by(approved=False, task_id=None).all()
+		releases = PackageRelease.query.filter_by(state=ReleaseState.UNAPPROVED, task_id=None).all()
 
 	screenshots = None
 	if can_approve_scn:

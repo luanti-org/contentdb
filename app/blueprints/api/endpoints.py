@@ -262,7 +262,7 @@ def markdown():
 @bp.route("/api/releases/")
 @cors_allowed
 def list_all_releases():
-	query = PackageRelease.query.filter_by(approved=True) \
+	query = PackageRelease.query.filter_by(state=ReleaseState.APPROVED) \
 			.filter(PackageRelease.package.has(state=PackageState.APPROVED)) \
 			.order_by(db.desc(PackageRelease.created_at))
 

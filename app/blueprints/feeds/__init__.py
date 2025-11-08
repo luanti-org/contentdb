@@ -19,7 +19,7 @@ from flask import Blueprint, jsonify, render_template, make_response
 from flask_babel import gettext
 
 from app.markdown import render_markdown
-from app.models import Package, PackageState, db, PackageRelease
+from app.models import Package, PackageState, db, PackageRelease, ReleaseState
 from app.utils import is_package_page, abs_url_for, cached, cors_allowed
 
 bp = Blueprint("feeds", __name__)
@@ -72,7 +72,7 @@ def _get_new_packages_feed(feed_url: str) -> dict:
 
 def _get_releases_feed(query, feed_url: str):
 	releases = (query
-		.filter(PackageRelease.package.has(state=PackageState.APPROVED), PackageRelease.approved==True)
+		.filter(PackageRelease.package.has(state=PackageState.APPROVED), PackageRelease.state == ReleaseState.APPROVED)
 		.order_by(db.desc(PackageRelease.created_at))
 		.limit(250)
 		.all())
