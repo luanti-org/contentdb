@@ -201,7 +201,7 @@ class QueryBuilder:
 
 	def get_releases(self):
 		releases_query = db.session.query(PackageRelease.package_id, func.max(PackageRelease.id)) \
-			.select_from(PackageRelease).filter(PackageRelease.approved) \
+			.select_from(PackageRelease).filter(PackageRelease.state == ReleaseState.APPROVED) \
 			.group_by(PackageRelease.package_id)
 
 		if self.version:
