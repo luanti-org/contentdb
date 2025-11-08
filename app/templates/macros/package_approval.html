@@ -30,25 +30,27 @@
 	</div>
 {% endfor %}
 
-<p class="alert alert-secondary">
-	{% if package.state == package.state.READY_FOR_REVIEW %}
-		{% if not package.get_download_release() %}
-			{{ _("Please wait for the release to be approved.") }}
-		{% elif package.check_perm(current_user, "APPROVE_NEW") %}
-			{{ _("You can now approve this package if you're ready.") }}
-		{% else %}
-			{{ _("Please wait for the package to be approved.") }}
-		{% endif %}
-	{% elif package.state.READY_FOR_REVIEW in package.get_next_states(current_user) %}
-		{% if package.check_perm(current_user, "EDIT_PACKAGE") %}
-			{{ _("You can now submit this package for approval if you're ready.") }}
-		{% else %}
-			{{ _("This package can be submitted for approval when ready.") }}
-		{% endif %}
-	{% else %}
-		{{ _("You need to fix the above errors before you can submit for review") }}
+{% if package.state == package.state.READY_FOR_REVIEW %}
+	{% if not package.get_download_release() %}
+		{% set approval_status_message = _("Please wait for the release to be approved.") %}
+	{% elif not package.check_perm(current_user, "APPROVE_NEW") %}
+		{% set approval_status_message = _("Please wait for the package to be approved.") %}
 	{% endif %}
+{% elif package.state.READY_FOR_REVIEW in package.get_next_states(current_user) %}
+	{% if package.check_perm(current_user, "EDIT_PACKAGE") %}
+		{% set approval_status_message = _("You can now submit this package for approval if you're ready.") %}
+	{% else %}
+		{% set approval_status_message = _("This package can be submitted for approval when ready.") %}
+	{% endif %}
+{% else %}
+	{% set approval_status_message = _("You need to fix the above errors before you can submit for review") %}
+{% endif %}
+
+{% if approval_status_message %}
+<p class="alert alert-secondary">
+	{{ approval_status_message }}
 </p>
+{% endif %}
 
 {% if not package.review_thread and (package.author == current_user or package.check_perm(current_user, "APPROVE_NEW")) %}
 	<div class="alert alert-secondary">
