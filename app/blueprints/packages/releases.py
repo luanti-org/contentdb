@@ -201,10 +201,11 @@ def edit_release(package, id):
 			if release.task_id is not None:
 				release.task_id = None
 
-		if form.approved.data:
-			release.approve(current_user)
-		elif canApprove:
-			release.state = ReleaseState.UNAPPROVED
+		if canApprove:
+			if form.approved.data:
+				release.approve(current_user)
+			else:
+				release.state = ReleaseState.UNAPPROVED
 
 		db.session.commit()
 		return redirect(package.get_url("packages.list_releases"))

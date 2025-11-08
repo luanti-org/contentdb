@@ -1246,7 +1246,9 @@ class PackageRelease(db.Model):
 		return f"{self.package.name}_{self.id}.zip"
 
 	def approve(self, user):
-		if not self.check_perm(user, Permission.APPROVE_RELEASE):
+		if (not self.check_perm(user, Permission.APPROVE_RELEASE) or
+				self.state == ReleaseState.PROCESSING or
+				self.state == ReleaseState.FAILED):
 			return False
 
 		if self.approved:
