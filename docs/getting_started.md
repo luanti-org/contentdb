@@ -30,7 +30,7 @@ Docker is the recommended way to develop and deploy ContentDB.
 
 6. Start docker images:
 
-		docker-compose up --build
+		docker compose up --build
 
 7. Setup database:
 
@@ -51,7 +51,7 @@ Docker is the recommended way to develop and deploy ContentDB.
 
 In the future, starting CDB is as simple as:
 
-	docker-compose up --build
+	docker compose up --build
 
 To hot/live update CDB whilst it is running, use:
 

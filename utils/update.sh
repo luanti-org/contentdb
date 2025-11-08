@@ -7,8 +7,8 @@
 
 set -e
 
-docker-compose build app
-docker-compose build worker
+docker compose build app
+docker compose build worker
 
-docker-compose up --no-deps -d app
-docker-compose up --no-deps --scale worker=4 -d worker
+docker compose up --no-deps -d app
+docker compose up --no-deps --scale worker=4 -d worker
