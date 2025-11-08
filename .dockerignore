@@ -1,6 +1,7 @@
 .git
 data*
 uploads
-*.pyc
-__pycache__
+**/*.pyc
+**/__pycache__
 env
+venv
