@@ -1088,10 +1088,10 @@ class LuantiRelease(db.Model):
 		return None
 
 class ReleaseState(enum.Enum):
-	PROCESSING = "Proccessing"
+	PROCESSING = "Processing"
 	APPROVED  = "Approved"
 	FAILED = "Failed"
-	UNAPPROVED = "Approved"
+	UNAPPROVED = "Waiting approval"
 	ARCHIVED = "Archived"
 
 	def to_name(self):
