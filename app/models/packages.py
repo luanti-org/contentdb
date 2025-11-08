@@ -1089,7 +1089,7 @@ class LuantiRelease(db.Model):
 
 class ReleaseState(enum.Enum):
 	PROCESSING = "Processing"
-	APPROVED  = "Approved"
+	APPROVED = "Approved"
 	FAILED = "Failed"
 	UNAPPROVED = "Waiting approval"
 	ARCHIVED = "Archived"
