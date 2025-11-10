@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-23 10:00+0100\n"
+"POT-Creation-Date: 2025-11-10 19:55+0000\n"
 "PO-Revision-Date: 2024-12-29 03:31+0000\n"
 "Last-Translator: Just Playing <aryadhisuma@gmail.com>\n"
 "Language: id\n"
@@ -369,14 +369,26 @@ msgctxt "tags"
 msgid "Entries to the 2024 Luanti Game Jam"
 msgstr "Pendaftaran untuk Luanti Game Jam 2024"
 
-#. NOTE: tags: title for jam_weekly_2021
+#. NOTE: tags: title for jam_game_2025
 #: app/_translations.py:110
+msgctxt "tags"
+msgid "Jam / Game 2025"
+msgstr ""
+
+#. NOTE: tags: description for jam_game_2025
+#: app/_translations.py:112
+msgctxt "tags"
+msgid "Entries to the 2025 Luanti Game Jam"
+msgstr ""
+
+#. NOTE: tags: title for jam_weekly_2021
+#: app/_translations.py:114
 msgctxt "tags"
 msgid "Jam / Weekly Challenges 2021"
 msgstr "Jam / Tantangan Mingguan 2021"
 
 #. NOTE: tags: description for jam_weekly_2021
-#: app/_translations.py:112
+#: app/_translations.py:116
 msgctxt "tags"
 msgid ""
 "For mods created for the Discord \"Weekly Challenges\" modding event in "
@@ -386,103 +398,103 @@ msgstr ""
 "tahun 2021"
 
 #. NOTE: tags: title for less_than_px
-#: app/_translations.py:114
+#: app/_translations.py:118
 msgctxt "tags"
 msgid "<16px"
 msgstr "&lt;16 px"
 
 #. NOTE: tags: description for less_than_px
-#: app/_translations.py:116
+#: app/_translations.py:120
 msgctxt "tags"
 msgid "For less than 16px texture packs "
 msgstr ""
 
 #. NOTE: tags: title for library
-#: app/_translations.py:118
+#: app/_translations.py:122
 msgctxt "tags"
 msgid "API / Library"
 msgstr "API / Pustaka"
 
 #. NOTE: tags: description for library
-#: app/_translations.py:120
+#: app/_translations.py:124
 msgctxt "tags"
 msgid "Primarily adds an API for other mods to use"
 msgstr "Utamanya menambahkan API untuk digunakan mod lain"
 
 #. NOTE: tags: title for magic
-#: app/_translations.py:122
+#: app/_translations.py:126
 msgctxt "tags"
 msgid "Magic / Enchanting"
 msgstr "Sihir / Mantra"
 
 #. NOTE: tags: title for mapgen
-#: app/_translations.py:124
+#: app/_translations.py:128
 msgctxt "tags"
 msgid "Mapgen / Biomes / Decoration"
 msgstr "Generator Peta / Bioma / Dekorasi"
 
 #. NOTE: tags: description for mapgen
-#: app/_translations.py:126
+#: app/_translations.py:130
 msgctxt "tags"
 msgid "New mapgen or changes mapgen"
 msgstr "Generator peta baru atau perubahan generator peta"
 
 #. NOTE: tags: title for mini-game
-#: app/_translations.py:128
+#: app/_translations.py:132
 msgctxt "tags"
 msgid "Mini-game"
 msgstr "Permainan Mini"
 
 #. NOTE: tags: description for mini-game
-#: app/_translations.py:130
+#: app/_translations.py:134
 msgctxt "tags"
 msgid "Adds a mini-game to be played within Luanti"
 msgstr "Menambahkan permainan mini untuk dimainkan dalam Luanti"
 
 #. NOTE: tags: title for mobs
-#: app/_translations.py:132
+#: app/_translations.py:136
 msgctxt "tags"
 msgid "Mobs / Animals / NPCs"
 msgstr "Massa / Hewan / NPC"
 
 #. NOTE: tags: description for mobs
-#: app/_translations.py:134
+#: app/_translations.py:138
 msgctxt "tags"
 msgid "Adds mobs, animals, and non-player characters"
 msgstr "Menambahkan massa, hewan, dan karakter non-pemain"
 
 #. NOTE: tags: title for mtg
-#: app/_translations.py:136
+#: app/_translations.py:140
 msgctxt "tags"
 msgid "Minetest Game improved"
 msgstr "Minetest Game yang ditingkatkan"
 
 #. NOTE: tags: description for mtg
-#: app/_translations.py:138
+#: app/_translations.py:142
 msgctxt "tags"
 msgid "Forks of Minetest Game"
 msgstr "Fork dari Minetest Game"
 
 #. NOTE: tags: title for multiplayer
-#: app/_translations.py:140
+#: app/_translations.py:144
 msgctxt "tags"
 msgid "Multiplayer-focused"
 msgstr "Multi-Pemain"
 
 #. NOTE: tags: description for multiplayer
-#: app/_translations.py:142
+#: app/_translations.py:146
 msgctxt "tags"
 msgid "Can/should only be used in multiplayer"
 msgstr "Dapat/seharusnya hanya digunakan dalam mode multipemain"
 
 #. NOTE: tags: title for oneofakind__original
-#: app/_translations.py:144
+#: app/_translations.py:148
 msgctxt "tags"
 msgid "One-of-a-kind / Original"
 msgstr "Unik / Asli"
 
 #. NOTE: tags: description for oneofakind__original
-#: app/_translations.py:146
+#: app/_translations.py:150
 msgctxt "tags"
 msgid ""
 "For games and such that are of their own kind, distinct and original in "
@@ -492,25 +504,25 @@ msgstr ""
 "berbeda dan orisinal dibandingkan permainan lain yang sejenis."
 
 #. NOTE: tags: title for plants_and_farming
-#: app/_translations.py:148
+#: app/_translations.py:152
 msgctxt "tags"
 msgid "Plants and Farming"
 msgstr "Tanaman dan Pertanian"
 
 #. NOTE: tags: description for plants_and_farming
-#: app/_translations.py:150
+#: app/_translations.py:154
 msgctxt "tags"
 msgid "Adds new plants or other farmable resources."
 msgstr "Menambahkan tanaman baru atau sumber daya baru yang dapat ditanam."
 
 #. NOTE: tags: title for player_effects
-#: app/_translations.py:152
+#: app/_translations.py:156
 msgctxt "tags"
 msgid "Player Effects / Power Ups"
 msgstr "Efek Pemain / Kekuatan"
 
 #. NOTE: tags: description for player_effects
-#: app/_translations.py:154
+#: app/_translations.py:158
 msgctxt "tags"
 msgid ""
 "For content that changes player effects, including physics, for example: "
@@ -520,25 +532,25 @@ msgstr ""
 "kecepatan, tinggi lompatan, atau gravitasi."
 
 #. NOTE: tags: title for puzzle
-#: app/_translations.py:156
+#: app/_translations.py:160
 msgctxt "tags"
 msgid "Puzzle"
 msgstr "Teka-Teki"
 
 #. NOTE: tags: description for puzzle
-#: app/_translations.py:158
+#: app/_translations.py:162
 msgctxt "tags"
 msgid "Focus on puzzle solving instead of combat"
 msgstr "Fokus pada penyelesaian teka-teki daripada pertarungan"
 
 #. NOTE: tags: title for pve
-#: app/_translations.py:160
+#: app/_translations.py:164
 msgctxt "tags"
 msgid "Player vs Environment (PvE)"
 msgstr "Pemain vs. Lingkungan (PvE)"
 
 #. NOTE: tags: description for pve
-#: app/_translations.py:162
+#: app/_translations.py:166
 msgctxt "tags"
 msgid ""
 "For content designed for one or more players that focus on combat against"
@@ -548,61 +560,61 @@ msgstr ""
 "pertarungan melawan dunia, massa, atau NPC."
 
 #. NOTE: tags: title for pvp
-#: app/_translations.py:164
+#: app/_translations.py:168
 msgctxt "tags"
 msgid "Player vs Player (PvP)"
 msgstr "Pemain vs. Pemain (PvP)"
 
 #. NOTE: tags: description for pvp
-#: app/_translations.py:166
+#: app/_translations.py:170
 msgctxt "tags"
 msgid "Designed to be played competitively against other players"
 msgstr "Dirancang untuk dimainkan secara kompetitif melawan pemain lain"
 
 #. NOTE: tags: title for seasonal
-#: app/_translations.py:168
+#: app/_translations.py:172
 msgctxt "tags"
 msgid "Seasonal"
 msgstr "Musim"
 
 #. NOTE: tags: description for seasonal
-#: app/_translations.py:170
+#: app/_translations.py:174
 msgctxt "tags"
 msgid "For content generally themed around a certain season or holiday"
 msgstr "Untuk konten yang umumnya bertema musim atau hari libur tertentu"
 
 #. NOTE: tags: title for server_tools
-#: app/_translations.py:172
+#: app/_translations.py:176
 msgctxt "tags"
 msgid "Server Moderation and Tools"
 msgstr "Moderasi dan Peralatan Server"
 
 #. NOTE: tags: description for server_tools
-#: app/_translations.py:174
+#: app/_translations.py:178
 msgctxt "tags"
 msgid "Helps with server maintenance and moderation"
 msgstr "Membantu pemeliharaan dan moderasi server"
 
 #. NOTE: tags: title for shooter
-#: app/_translations.py:176
+#: app/_translations.py:180
 msgctxt "tags"
 msgid "Shooter"
 msgstr "Penembak"
 
 #. NOTE: tags: description for shooter
-#: app/_translations.py:178
+#: app/_translations.py:182
 msgctxt "tags"
 msgid "First person shooters (FPS) and more"
 msgstr "Penembak orang pertama (FPS) dan lebih banyak lagi"
 
 #. NOTE: tags: title for simulation
-#: app/_translations.py:180
+#: app/_translations.py:184
 msgctxt "tags"
 msgid "Sims"
 msgstr "Simulasi"
 
 #. NOTE: tags: description for simulation
-#: app/_translations.py:182
+#: app/_translations.py:186
 msgctxt "tags"
 msgid ""
 "Mods and games that aim to simulate real life activity. Similar to "
@@ -612,25 +624,25 @@ msgstr ""
 " nyata. Mirip dengan SimCity/The Sims/OpenTTD/lainnya."
 
 #. NOTE: tags: title for singleplayer
-#: app/_translations.py:184
+#: app/_translations.py:188
 msgctxt "tags"
 msgid "Singleplayer-focused"
 msgstr "Pemain Tunggal"
 
 #. NOTE: tags: description for singleplayer
-#: app/_translations.py:186
+#: app/_translations.py:190
 msgctxt "tags"
 msgid "Content that can be played alone"
 msgstr "Konten yang dapat dimainkan sendiri"
 
 #. NOTE: tags: title for skins
-#: app/_translations.py:188
+#: app/_translations.py:192
 msgctxt "tags"
 msgid "Player customization / Skins"
 msgstr "Kustomisasi / Skin Pemain"
 
 #. NOTE: tags: description for skins
-#: app/_translations.py:190
+#: app/_translations.py:194
 msgctxt "tags"
 msgid ""
 "Allows the player to customize their character by changing the texture or"
@@ -640,43 +652,43 @@ msgstr ""
 "tekstur atau menambahkan aksesori."
 
 #. NOTE: tags: title for sound_music
-#: app/_translations.py:192
+#: app/_translations.py:196
 msgctxt "tags"
 msgid "Sounds / Music"
 msgstr "Suara / Musik"
 
 #. NOTE: tags: description for sound_music
-#: app/_translations.py:194
+#: app/_translations.py:198
 msgctxt "tags"
 msgid "Focuses on or adds new sounds or musical things"
 msgstr "Berfokus pada menambahkan suara atau hal musik baru"
 
 #. NOTE: tags: title for sports
-#: app/_translations.py:196
+#: app/_translations.py:200
 msgctxt "tags"
 msgid "Sports"
 msgstr "Olahraga"
 
 #. NOTE: tags: title for storage
-#: app/_translations.py:198
+#: app/_translations.py:202
 msgctxt "tags"
 msgid "Storage"
 msgstr "Penyimpanan"
 
 #. NOTE: tags: description for storage
-#: app/_translations.py:200
+#: app/_translations.py:204
 msgctxt "tags"
 msgid "Adds or improves item storage mechanics"
 msgstr "Menambahkan atau meningkatkan mekanika penyimpanan barang"
 
 #. NOTE: tags: title for strategy_rts
-#: app/_translations.py:202
+#: app/_translations.py:206
 msgctxt "tags"
 msgid "Strategy / RTS"
 msgstr "Strategi / RTS"
 
 #. NOTE: tags: description for strategy_rts
-#: app/_translations.py:204
+#: app/_translations.py:208
 msgctxt "tags"
 msgid ""
 "Games and mods with a heavy strategy component, whether real-time or "
@@ -686,13 +698,13 @@ msgstr ""
 "maupun bergilir"
 
 #. NOTE: tags: title for survival
-#: app/_translations.py:206
+#: app/_translations.py:210
 msgctxt "tags"
 msgid "Survival"
 msgstr "Bertahan Hidup"
 
 #. NOTE: tags: description for survival
-#: app/_translations.py:208
+#: app/_translations.py:212
 msgctxt "tags"
 msgid ""
 "Written specifically for survival gameplay with a focus on game-balance, "
@@ -703,37 +715,37 @@ msgstr ""
 " melalui kerajinan, penambangan, ..."
 
 #. NOTE: tags: title for technology
-#: app/_translations.py:210
+#: app/_translations.py:214
 msgctxt "tags"
 msgid "Machines / Electronics"
 msgstr "Mesin / Elektronik"
 
 #. NOTE: tags: description for technology
-#: app/_translations.py:212
+#: app/_translations.py:216
 msgctxt "tags"
 msgid "Adds machines useful in automation, tubes, or power."
 msgstr "Menambahkan mesin yang berguna dalam otomatisasi, tabung, atau daya."
 
 #. NOTE: tags: title for tools
-#: app/_translations.py:214
+#: app/_translations.py:218
 msgctxt "tags"
 msgid "Tools / Weapons / Armor"
 msgstr "Alat / Senjata / Zirah"
 
 #. NOTE: tags: description for tools
-#: app/_translations.py:216
+#: app/_translations.py:220
 msgctxt "tags"
 msgid "Adds or changes tools, weapons, and armor"
 msgstr "Menambahkan atau mengubah alat, senjata, dan zirah"
 
 #. NOTE: tags: title for transport
-#: app/_translations.py:218
+#: app/_translations.py:222
 msgctxt "tags"
 msgid "Transport"
 msgstr "Transportasi"
 
 #. NOTE: tags: description for transport
-#: app/_translations.py:220
+#: app/_translations.py:224
 msgctxt "tags"
 msgid ""
 "Adds or changes transportation methods. Includes teleportation, vehicles,"
@@ -744,97 +756,97 @@ msgstr ""
 "konten tematik"
 
 #. NOTE: tags: title for world_tools
-#: app/_translations.py:222
+#: app/_translations.py:226
 msgctxt "tags"
 msgid "World Maintenance and Tools"
 msgstr "Alat Pemeliharaan Dunia"
 
 #. NOTE: tags: description for world_tools
-#: app/_translations.py:224
+#: app/_translations.py:228
 msgctxt "tags"
 msgid "Tools to manage the world"
 msgstr "Alat untuk mengelola dunia"
 
 #. NOTE: content_warnings: title for alcohol_tobacco
-#: app/_translations.py:226
+#: app/_translations.py:230
 msgctxt "content_warnings"
 msgid "Alcohol / Tobacco"
 msgstr "Alkohol / Tembakau"
 
 #. NOTE: content_warnings: description for alcohol_tobacco
-#: app/_translations.py:228
+#: app/_translations.py:232
 msgctxt "content_warnings"
 msgid "Contains alcohol and/or tobacco"
 msgstr "Berisi alkohol dan/atau tembakau"
 
 #. NOTE: content_warnings: title for bad_language
-#: app/_translations.py:230
+#: app/_translations.py:234
 msgctxt "content_warnings"
 msgid "Bad Language"
 msgstr "Bahasa Kotor"
 
 #. NOTE: content_warnings: description for bad_language
-#: app/_translations.py:232
+#: app/_translations.py:236
 msgctxt "content_warnings"
 msgid "Contains swearing"
 msgstr "Berisi umpatan"
 
 #. NOTE: content_warnings: title for drugs
-#: app/_translations.py:234
+#: app/_translations.py:238
 msgctxt "content_warnings"
 msgid "Drugs"
 msgstr "Narkoba"
 
 #. NOTE: content_warnings: description for drugs
-#: app/_translations.py:236
+#: app/_translations.py:240
 msgctxt "content_warnings"
 msgid "Contains recreational drugs other than alcohol or tobacco"
 msgstr "Berisi obat-obatan rekreasi selain alkohol atau tembakau"
 
 #. NOTE: content_warnings: title for gambling
-#: app/_translations.py:238
+#: app/_translations.py:242
 msgctxt "content_warnings"
 msgid "Gambling"
 msgstr "Judi"
 
 #. NOTE: content_warnings: description for gambling
-#: app/_translations.py:240
+#: app/_translations.py:244
 msgctxt "content_warnings"
 msgid "Games of chance, gambling games, etc"
 msgstr "Permainan untung-untungan, permainan judi, dll"
 
 #. NOTE: content_warnings: title for gore
-#: app/_translations.py:242
+#: app/_translations.py:246
 msgctxt "content_warnings"
 msgid "Gore"
 msgstr "Kekejaman"
 
 #. NOTE: content_warnings: description for gore
-#: app/_translations.py:244
+#: app/_translations.py:248
 msgctxt "content_warnings"
 msgid "Blood, etc"
 msgstr "Darah, dll"
 
 #. NOTE: content_warnings: title for horror
-#: app/_translations.py:246
+#: app/_translations.py:250
 msgctxt "content_warnings"
 msgid "Fear / Horror"
 msgstr "Seram / Horor"
 
 #. NOTE: content_warnings: description for horror
-#: app/_translations.py:248
+#: app/_translations.py:252
 msgctxt "content_warnings"
 msgid "Shocking and scary content. May scare young children"
 msgstr "Konten yang mengejutkan dan menakutkan. Bisa menakuti anak kecil"
 
 #. NOTE: content_warnings: title for violence
-#: app/_translations.py:250
+#: app/_translations.py:254
 msgctxt "content_warnings"
 msgid "Violence"
 msgstr "Kekerasan"
 
 #. NOTE: content_warnings: description for violence
-#: app/_translations.py:252
+#: app/_translations.py:256
 msgctxt "content_warnings"
 msgid "Non-cartoon violence. May be towards fantasy or  human-like characters"
 msgstr ""
@@ -913,8 +925,8 @@ msgstr "Batasi ke paket"
 #: app/blueprints/packages/screenshots.py:37
 #: app/blueprints/packages/screenshots.py:43
 #: app/blueprints/packages/screenshots.py:48
-#: app/blueprints/report/__init__.py:173 app/blueprints/users/account.py:192
-#: app/blueprints/users/account.py:200 app/blueprints/users/settings.py:79
+#: app/blueprints/report/__init__.py:173 app/blueprints/users/account.py:195
+#: app/blueprints/users/account.py:203 app/blueprints/users/settings.py:79
 #: app/blueprints/users/settings.py:148 app/blueprints/users/settings.py:330
 #: app/templates/users/modtools.html:111
 msgid "Save"
@@ -1071,7 +1083,7 @@ msgstr "Bagikan dan Lencana"
 msgid "Remove / Unpublish"
 msgstr "Hapus / Batalkan Publikasi"
 
-#: app/blueprints/packages/__init__.py:80 app/logic/package_approval.py:125
+#: app/blueprints/packages/__init__.py:80 app/logic/package_approval.py:135
 #: app/templates/packages/game_support.html:4 app/utils/luanti_hypertext.py:275
 #: app/utils/luanti_hypertext.py:277
 msgid "Supported Games"
@@ -1419,13 +1431,13 @@ msgstr "Referensi Git (misal hash commit, branch, atau label)"
 
 #: app/blueprints/packages/releases.py:62
 #: app/blueprints/packages/releases.py:77
-#: app/blueprints/packages/releases.py:218
+#: app/blueprints/packages/releases.py:219
 msgid "Minimum Luanti Version"
 msgstr "Versi Luanti Minimum"
 
 #: app/blueprints/packages/releases.py:64
 #: app/blueprints/packages/releases.py:79
-#: app/blueprints/packages/releases.py:221
+#: app/blueprints/packages/releases.py:222
 msgid "Maximum Luanti Version"
 msgstr "Versi Luanti Maksimum"
 
@@ -1446,69 +1458,70 @@ msgstr "Impor dari Git"
 msgid "Upload .zip file"
 msgstr "Unggah berkas .zip"
 
-#: app/blueprints/packages/releases.py:217
+#: app/blueprints/packages/releases.py:218
 msgid "Set Min"
 msgstr "Atur Min"
 
-#: app/blueprints/packages/releases.py:220
+#: app/blueprints/packages/releases.py:221
 msgid "Set Max"
 msgstr "Atur Maks"
 
-#: app/blueprints/packages/releases.py:223
+#: app/blueprints/packages/releases.py:224
 msgid "Only change values previously set as none"
 msgstr "Hanya ubah nilai yang sebelumnya diatur kosong"
 
-#: app/blueprints/packages/releases.py:224
+#: app/blueprints/packages/releases.py:225
 msgid "Update"
 msgstr "Perbarui"
 
-#: app/blueprints/packages/releases.py:276
+#: app/blueprints/packages/releases.py:277
 #: app/templates/packages/update_config.html:25
 msgid "Trigger"
 msgstr "Pemicu"
 
-#: app/blueprints/packages/releases.py:277
+#: app/blueprints/packages/releases.py:278
 msgid "New Commit"
 msgstr "Commit Baru"
 
-#: app/blueprints/packages/releases.py:278 app/templates/admin/tags/list.html:8
+#: app/blueprints/packages/releases.py:279 app/templates/admin/tags/list.html:8
 msgid "New Tag"
 msgstr "Label Baru"
 
-#: app/blueprints/packages/releases.py:280
+#: app/blueprints/packages/releases.py:281
 msgid "Branch name"
 msgstr "Nama branch"
 
-#: app/blueprints/packages/releases.py:281
+#: app/blueprints/packages/releases.py:282
 #: app/templates/packages/update_config.html:38
 msgid "Action"
 msgstr "Tindakan"
 
-#: app/blueprints/packages/releases.py:282
+#: app/blueprints/packages/releases.py:283
 msgid "Send notification and mark as outdated"
 msgstr "Kirim pemberitahuan dan tandai sebagai usang"
 
-#: app/blueprints/packages/releases.py:282 app/logic/package_approval.py:107
+#: app/blueprints/packages/releases.py:283 app/logic/package_approval.py:105
+#: app/logic/package_approval.py:118
 msgid "Create release"
 msgstr "Buat rilisan"
 
-#: app/blueprints/packages/releases.py:284
+#: app/blueprints/packages/releases.py:285
 msgid "Save Settings"
 msgstr "Simpan Pengaturan"
 
-#: app/blueprints/packages/releases.py:285
+#: app/blueprints/packages/releases.py:286
 msgid "Disable Automation"
 msgstr "Matikan Automasi"
 
-#: app/blueprints/packages/releases.py:324
+#: app/blueprints/packages/releases.py:325
 msgid "Please add a Git repository URL in order to set up automatic releases"
 msgstr "Harap tambahkan URL repositori Git untuk menyiapkan rilisan otomatis"
 
-#: app/blueprints/packages/releases.py:340
+#: app/blueprints/packages/releases.py:341
 msgid "Deleted update configuration"
 msgstr "Konfigurasi pembaruan yang dihapus"
 
-#: app/blueprints/packages/releases.py:348
+#: app/blueprints/packages/releases.py:349
 msgid "Now, please create an initial release"
 msgstr "Sekarang, harap buat rilisan awalan"
 
@@ -1633,7 +1646,7 @@ msgid "Please wait before commenting again"
 msgstr "Harap tunggu sebelum berkomentar lagi"
 
 #: app/blueprints/threads/__init__.py:287
-#: app/templates/macros/package_approval.html:56
+#: app/templates/macros/package_approval.html:58
 msgid "Open Thread"
 msgstr "Buka Utas"
 
@@ -1669,7 +1682,7 @@ msgid "Remember me"
 msgstr "Ingat saya"
 
 #: app/blueprints/users/account.py:39 app/templates/base.html:190
-#: app/templates/donate/index.html:85 app/templates/users/login.html:4
+#: app/templates/donate/index.html:86 app/templates/users/login.html:4
 msgid "Sign in"
 msgstr "Masuk"
 
@@ -1706,8 +1719,8 @@ msgstr ""
 "Hanya huruf Latin (A-Za-z), angka (0-9), garis bawah (_), tanda hubung "
 "(-), dan titik (.) yang dibolehkan"
 
-#: app/blueprints/users/account.py:104 app/blueprints/users/account.py:152
-#: app/blueprints/users/account.py:188 app/blueprints/users/account.py:337
+#: app/blueprints/users/account.py:104 app/blueprints/users/account.py:155
+#: app/blueprints/users/account.py:191 app/blueprints/users/account.py:340
 #: app/blueprints/users/settings.py:147
 msgid "Email"
 msgstr "Surel"
@@ -1716,55 +1729,55 @@ msgstr "Surel"
 msgid "What is the result of the above calculation?"
 msgstr "Apa hasil dari perhitungan di atas?"
 
-#: app/blueprints/users/account.py:107 app/templates/users/login.html:34
+#: app/blueprints/users/account.py:108 app/templates/users/login.html:34
 #: app/templates/users/register.html:4
 msgid "Register"
 msgstr "Daftar"
 
-#: app/blueprints/users/account.py:112
+#: app/blueprints/users/account.py:113
 msgid "Incorrect captcha answer"
 msgstr "Jawaban captcha salah"
 
-#: app/blueprints/users/account.py:153
+#: app/blueprints/users/account.py:156
 msgid "Reset Password"
 msgstr "Reset Kata Sandi"
 
-#: app/blueprints/users/account.py:179
+#: app/blueprints/users/account.py:182
 msgid "Unable to find account"
 msgstr "Tidak dapat mencari akun"
 
-#: app/blueprints/users/account.py:189 app/blueprints/users/account.py:197
+#: app/blueprints/users/account.py:192 app/blueprints/users/account.py:200
 msgid "New password"
 msgstr "Kata sandi baru"
 
-#: app/blueprints/users/account.py:190 app/blueprints/users/account.py:198
+#: app/blueprints/users/account.py:193 app/blueprints/users/account.py:201
 msgid "Verify password"
 msgstr "Tulis ulang kata sandi"
 
-#: app/blueprints/users/account.py:191 app/blueprints/users/account.py:199
+#: app/blueprints/users/account.py:194 app/blueprints/users/account.py:202
 msgid "Passwords must match"
 msgstr "Kata sandi harus cocok"
 
-#: app/blueprints/users/account.py:196
+#: app/blueprints/users/account.py:199
 msgid "Old password"
 msgstr "Kata sandi lama"
 
-#: app/blueprints/users/account.py:207
+#: app/blueprints/users/account.py:210
 msgid "Passwords do not match"
 msgstr "Kata sandi tidak cocok"
 
-#: app/blueprints/users/account.py:218 app/blueprints/users/settings.py:175
+#: app/blueprints/users/account.py:221 app/blueprints/users/settings.py:175
 #: app/logic/users.py:51
 msgid "That email address has been unsubscribed/blacklisted, and cannot be used"
 msgstr ""
 "Alamat surel ini telah berhenti langganan/dilarang dan tidak dapat "
 "digunakan"
 
-#: app/blueprints/users/account.py:223 app/logic/users.py:46
+#: app/blueprints/users/account.py:226 app/logic/users.py:46
 msgid "Email already in use"
 msgstr "Surel telah digunakan"
 
-#: app/blueprints/users/account.py:224 app/logic/users.py:47
+#: app/blueprints/users/account.py:227 app/logic/users.py:47
 #, python-format
 msgid ""
 "We were unable to create the account as the email is already in use by "
@@ -1773,35 +1786,35 @@ msgstr ""
 "Kami tidak dapat membuat akun ini karena surel ini telah digunakan oleh "
 "%(display_name)s. Harap gunakan alamat surel yang berbeda."
 
-#: app/blueprints/users/account.py:238 app/blueprints/users/account.py:242
+#: app/blueprints/users/account.py:241 app/blueprints/users/account.py:245
 msgid "Your password has been changed successfully."
 msgstr "Kata sandi Anda telah berhasil diganti."
 
-#: app/blueprints/users/account.py:257
+#: app/blueprints/users/account.py:260
 msgid "Old password is incorrect"
 msgstr "Kata sandi lama salah"
 
-#: app/blueprints/users/account.py:285
+#: app/blueprints/users/account.py:288
 msgid "Unknown verification token!"
 msgstr "Token verifikasi tidak dikenal!"
 
-#: app/blueprints/users/account.py:289
+#: app/blueprints/users/account.py:292
 msgid "Token has expired"
 msgstr "Token telah kedaluwarsa"
 
-#: app/blueprints/users/account.py:303
+#: app/blueprints/users/account.py:306
 msgid "Another user is already using that email"
 msgstr "Pengguna lain telah menggunakan surel ini"
 
-#: app/blueprints/users/account.py:306
+#: app/blueprints/users/account.py:309
 msgid "Confirmed email change"
 msgstr "Konfirmasi perubahan surel"
 
-#: app/blueprints/users/account.py:311
+#: app/blueprints/users/account.py:314
 msgid "Email address changed"
 msgstr "Alamat surel diubah"
 
-#: app/blueprints/users/account.py:312
+#: app/blueprints/users/account.py:315
 msgid ""
 "Your email address has changed. If you didn't request this, please "
 "contact an administrator."
@@ -1809,15 +1822,15 @@ msgstr ""
 "Alamat surel Anda telah berubah. Jika Anda tidak melakukannya, harap "
 "hubungi administrator."
 
-#: app/blueprints/users/account.py:330
+#: app/blueprints/users/account.py:333
 msgid "You may now log in"
 msgstr "Anda dapat masuk sekarang"
 
-#: app/blueprints/users/account.py:338
+#: app/blueprints/users/account.py:341
 msgid "Send"
 msgstr "Kirim"
 
-#: app/blueprints/users/account.py:369
+#: app/blueprints/users/account.py:372
 msgid ""
 "That email is now blacklisted. Please contact an admin if you wish to "
 "undo this."
@@ -2039,29 +2052,41 @@ msgstr "Teks pencarian (regex)"
 msgid "File filter"
 msgstr "Filter berkas"
 
-#: app/logic/package_approval.py:98
+#: app/logic/package_approval.py:99
 msgid "A package already exists with this name. Please see Policy and Guidance 3"
 msgstr ""
 "Sebuah paket telah tersedia dengan nama ini. Harap lihat Kebijakan dan "
 "Panduan 3"
 
-#: app/logic/package_approval.py:102
+#: app/logic/package_approval.py:104
 msgid "You need to create a release before this package can be approved."
 msgstr "Anda perlu membuat rilisan sebelum paket ini dapat disetujui."
 
-#: app/logic/package_approval.py:104
-msgid "Release is still importing, or has an error."
-msgstr "Rilisan sedang mengimpor atau mengalami masalah."
-
-#: app/logic/package_approval.py:108
+#: app/logic/package_approval.py:106
 msgid "Set up releases"
 msgstr "Siapkan perilisan"
 
-#: app/logic/package_approval.py:114
+#: app/logic/package_approval.py:109
+msgid "Release is still importing. Please wait and reload the page."
+msgstr ""
+
+#: app/logic/package_approval.py:110
+msgid "View task"
+msgstr ""
+
+#: app/logic/package_approval.py:116
+msgid "Release validation failed. Please fix any issues and create a new release"
+msgstr ""
+
+#: app/logic/package_approval.py:117
+msgid "View error"
+msgstr ""
+
+#: app/logic/package_approval.py:124
 msgid "You need to add at least one screenshot."
 msgstr "Anda perlu setidaknya satu tangkapan layar."
 
-#: app/logic/package_approval.py:120
+#: app/logic/package_approval.py:130
 #, python-format
 msgid ""
 "The following hard dependencies need to be added to ContentDB first: "
@@ -2070,7 +2095,7 @@ msgstr ""
 "Dependensi wajib berikut perlu ditambahkan ke ContentDB terlebih dahulu: "
 "%(deps)s"
 
-#: app/logic/package_approval.py:124
+#: app/logic/package_approval.py:134
 msgid ""
 "What games does your package support? Please specify on the supported "
 "games page"
@@ -2078,23 +2103,15 @@ msgstr ""
 "Permainan apa saja yang didukung oleh paket Anda? Silakan atur di laman "
 "permainan yang didukung"
 
-#: app/logic/package_approval.py:128
-msgid "Please wait for the license to be added to CDB."
-msgstr "Harap tunggu lisensi ditambahkan ke CDB."
-
-#: app/logic/package_approval.py:136
+#: app/logic/package_approval.py:143
 msgid "Please make sure that this package has the right to the names it uses."
 msgstr "Harap pastikan paket ini memiliki izin untuk menggunakan namanya."
 
-#: app/logic/package_approval.py:140
-#, python-format
-msgid "Please make sure that this package has the right to the names %(names)s"
-msgstr "Harap pastikan paket ini memiliki izin untuk menggunakan nama %(names)s"
-
-#: app/logic/package_approval.py:142 app/templates/index.html:113
-#: app/templates/index.html:124 app/templates/index.html:135
-#: app/templates/index.html:146 app/templates/index.html:157
-#: app/templates/index.html:183 app/templates/packages/game_hub.html:42
+#: app/logic/package_approval.py:144 app/logic/package_approval.py:150
+#: app/templates/index.html:113 app/templates/index.html:124
+#: app/templates/index.html:135 app/templates/index.html:146
+#: app/templates/index.html:157 app/templates/index.html:183
+#: app/templates/packages/game_hub.html:42
 #: app/templates/packages/game_hub.html:49
 #: app/templates/packages/game_hub.html:56
 #: app/templates/packages/game_hub.html:63
@@ -2102,21 +2119,18 @@ msgstr "Harap pastikan paket ini memiliki izin untuk menggunakan nama %(names)s"
 msgid "See more"
 msgstr "Lihat lebih banyak"
 
-#: app/logic/package_approval.py:147
+#: app/logic/package_approval.py:148
+#, python-format
+msgid "Please make sure that this package has the right to the names %(names)s"
+msgstr "Harap pastikan paket ini memiliki izin untuk menggunakan nama %(names)s"
+
+#: app/logic/package_approval.py:155
 msgid "Error: Another package already uses this forum topic!"
 msgstr "Kesalahan: Paket lain telah menggunakan topik forum ini!"
 
-#: app/logic/package_approval.py:152
+#: app/logic/package_approval.py:160
 msgid "Error: Forum topic author doesn't match package author."
 msgstr "Kesalahan: Pembuat topik forum tidak cocok dengan pembuat paket."
-
-#: app/logic/package_approval.py:154
-msgid ""
-"Warning: Forum topic not found. The topic may have been created since the"
-" last forum crawl."
-msgstr ""
-"Peringatan: Topik forum tidak ditemukan. Topik mungkin dibuat sejak "
-"penjelajahan forum."
 
 #: app/logic/packages.py:114
 msgid ""
@@ -2206,32 +2220,36 @@ msgstr "Nama pengguna/tampilan ini telah digunakan. Harap pilih lainnya."
 msgid "Unable to create an account as the username was used in the past."
 msgstr "Tidak dapat membuat akun karena nama pengguna telah digunakan sebelumnya."
 
-#: app/models/__init__.py:147
+#: app/models/__init__.py:148
 msgid "Account deletion"
 msgstr ""
 
-#: app/models/__init__.py:149
+#: app/models/__init__.py:150
 msgid "Copyright infringement / DMCA"
 msgstr ""
 
-#: app/models/__init__.py:151
+#: app/models/__init__.py:152
 msgid "User behaviour, bullying, or abuse"
 msgstr ""
 
-#: app/models/__init__.py:153
+#: app/models/__init__.py:154
+msgid "Spam"
+msgstr ""
+
+#: app/models/__init__.py:156
 msgid "Illegal or harmful content"
 msgstr ""
 
-#: app/models/__init__.py:155
+#: app/models/__init__.py:158
 msgid "Outdated/invalid review"
 msgstr ""
 
-#: app/models/__init__.py:157
+#: app/models/__init__.py:160
 msgid "Appeal"
 msgstr ""
 
 #. NOTE: OTHER notification type
-#: app/models/__init__.py:159 app/models/users.py:469
+#: app/models/__init__.py:162 app/models/users.py:472
 msgid "Other"
 msgstr "Lainnya"
 
@@ -2392,17 +2410,38 @@ msgstr "Setujui"
 msgid "Delete"
 msgstr "Hapus"
 
-#: app/models/packages.py:1389
+#: app/models/packages.py:1104
+msgid "Processing"
+msgstr ""
+
+#: app/models/packages.py:1106 app/templates/packages/release_edit.html:50
+#: app/templates/packages/screenshot_edit.html:20
+msgid "Approved"
+msgstr "Disetujui"
+
+#: app/models/packages.py:1108
+msgid "Failed"
+msgstr ""
+
+#: app/models/packages.py:1110
+msgid "Waiting approval"
+msgstr ""
+
+#: app/models/packages.py:1112
+msgid "Archived"
+msgstr ""
+
+#: app/models/packages.py:1440
 #, python-format
 msgid "New commit %(hash)s found on the Git repo."
 msgstr "Commit baru %(hash)s ditemukan di repo Git."
 
-#: app/models/packages.py:1393
+#: app/models/packages.py:1444
 #, python-format
 msgid "The last release was commit %(hash)s"
 msgstr "Rilisan terakhir pada commit %(hash)s"
 
-#: app/models/packages.py:1399
+#: app/models/packages.py:1450
 #, python-format
 msgid "New tag %(tag_name)s found on the Git repo."
 msgstr "Tag baru %(tag_name)s ditemukan di repo Git."
@@ -2436,7 +2475,7 @@ msgid "Editor"
 msgstr "Penyunting"
 
 #. NOTE: BOT notification type
-#: app/models/users.py:60 app/models/users.py:457
+#: app/models/users.py:60 app/models/users.py:460
 msgid "Bot"
 msgstr "Bot"
 
@@ -2449,123 +2488,123 @@ msgid "Admin"
 msgstr "Admin"
 
 #. NOTE: PACKAGE_EDIT notification type
-#: app/models/users.py:442
+#: app/models/users.py:445
 msgid "Package Edit"
 msgstr "Penyuntingan Paket"
 
 #. NOTE: PACKAGE_APPROVAL notification type
-#: app/models/users.py:445
+#: app/models/users.py:448
 msgid "Package Approval"
 msgstr "Persetujuan Paket"
 
 #. NOTE: NEW_THREAD notification type
-#: app/models/users.py:448 app/templates/threads/list.html:12
+#: app/models/users.py:451 app/templates/threads/list.html:12
 #: app/templates/threads/new.html:4
 msgid "New Thread"
 msgstr "Utas Baru"
 
 #. NOTE: NEW_REVIEW notification type
-#: app/models/users.py:451
+#: app/models/users.py:454
 msgid "New Review"
 msgstr "Ulasan Baru"
 
 #. NOTE: THREAD_REPLY notification type
-#: app/models/users.py:454
+#: app/models/users.py:457
 msgid "Thread Reply"
 msgstr "Balasan Utas"
 
 #. NOTE: MAINTAINER notification type
-#: app/models/users.py:460 app/templates/macros/threads.html:27
+#: app/models/users.py:463 app/templates/macros/threads.html:27
 msgid "Maintainer"
 msgstr "Pengelola"
 
 #. NOTE: EDITOR_ALERT notification type
-#: app/models/users.py:463
+#: app/models/users.py:466
 msgid "Editor Alert"
 msgstr "Penyunting: Peringatan"
 
 #. NOTE: EDITOR_MISC notification type
-#: app/models/users.py:466
+#: app/models/users.py:469
 msgid "Editor Misc"
 msgstr "Penyunting: Lainnya"
 
-#: app/models/users.py:479
+#: app/models/users.py:482
 msgid "This is a Package Edit notification."
 msgstr "Ini adalah pemberitahuan Penyuntingan Paket."
 
-#: app/models/users.py:481
+#: app/models/users.py:484
 msgid "This is a Package Approval notification."
 msgstr "Ini adalah pemberitahuan Persetujuan Paket."
 
-#: app/models/users.py:483
+#: app/models/users.py:486
 msgid "This is a New Thread notification."
 msgstr "Ini adalah pemberitahuan Utas Baru."
 
-#: app/models/users.py:485
+#: app/models/users.py:488
 msgid "This is a New Review notification."
 msgstr "Ini adalah pemberitahuan Ulasan Baru."
 
-#: app/models/users.py:487
+#: app/models/users.py:490
 msgid "This is a Thread Reply notification."
 msgstr "Ini adalah pemberitahuan Balasan Utas."
 
-#: app/models/users.py:489
+#: app/models/users.py:492
 msgid "This is a Bot notification."
 msgstr "Ini adalah notifikasi Bot."
 
-#: app/models/users.py:491
+#: app/models/users.py:494
 msgid "This is a Maintainer change notification."
 msgstr "Ini adalah pemberitahuan perubahan Pengelola."
 
-#: app/models/users.py:493
+#: app/models/users.py:496
 msgid "This is an Editor Alert notification."
 msgstr "Ini adalah pemberitahuan Penyunting: Peringatan."
 
-#: app/models/users.py:495
+#: app/models/users.py:498
 msgid "This is an Editor Misc notification."
 msgstr "Ini adalah pemberitahuan Penyunting: Lainnya."
 
-#: app/models/users.py:497
+#: app/models/users.py:500
 msgid "This is an Other notification."
 msgstr "Ini adalah pemberitahuan Lainnya."
 
-#: app/models/users.py:504
+#: app/models/users.py:507
 msgid "When another user edits your packages, releases, etc."
 msgstr "Saat pengguna lain mengedit paket, rilisan, dll. Anda."
 
-#: app/models/users.py:506
+#: app/models/users.py:509
 msgid "Notifications from editors related to the package approval process."
 msgstr "Pemberitahuan dari penyunting terkait proses persetujuan paket."
 
-#: app/models/users.py:508
+#: app/models/users.py:511
 msgid "When a thread is created on your package."
 msgstr "Saat utas dibuat pada paket Anda."
 
-#: app/models/users.py:510
+#: app/models/users.py:513
 msgid "When a user posts a review on your package."
 msgstr "Saat pengguna mengirim ulasan tentang paket Anda."
 
-#: app/models/users.py:512
+#: app/models/users.py:515
 msgid "When someone replies to a thread you're watching."
 msgstr "Saat seseorang membalas utas yang Anda tonton."
 
-#: app/models/users.py:514
+#: app/models/users.py:517
 msgid "From a bot - for example, update notifications."
 msgstr "Dari bot - misalnya, pemberitahuan pembaruan."
 
-#: app/models/users.py:516
+#: app/models/users.py:519
 msgid "When your package's maintainers change."
 msgstr "Ketika pengelola paket Anda berubah."
 
-#: app/models/users.py:518
+#: app/models/users.py:521
 msgid "For editors: Important alerts."
 msgstr "Untuk penyunting: Peringatan penting."
 
-#: app/models/users.py:520
+#: app/models/users.py:523
 msgid "For editors: Minor notifications, including new threads."
 msgstr "Untuk penyunting: Pemberitahuan kecil, termasuk utas baru."
 
-#: app/models/users.py:522
+#: app/models/users.py:525
 msgid "Minor notifications not important enough for a dedicated category."
 msgstr "Pemberitahuan kecil tidak cukup penting untuk kategori khusus."
 
@@ -2701,8 +2740,8 @@ msgstr ""
 msgid "Policy and Guidance"
 msgstr "Kebijakan dan Panduan"
 
-#: app/templates/base.html:264 app/templates/donate/index.html:46
-#: app/templates/donate/index.html:70 app/templates/users/profile.html:104
+#: app/templates/base.html:264 app/templates/donate/index.html:47
+#: app/templates/donate/index.html:71 app/templates/users/profile.html:104
 msgid "Donate"
 msgstr "Donasi"
 
@@ -2837,6 +2876,10 @@ msgstr "Disebabkan oleh %(author)s."
 #: app/templates/admin/audit_view.html:20
 msgid "Caused by a deleted user."
 msgstr "Disebabkan oleh pengguna yang telah dihapus."
+
+#: app/templates/admin/list.html:16
+msgid "User list"
+msgstr ""
 
 #: app/templates/admin/send_bulk_email.html:4
 msgid "Send bulk email"
@@ -3086,20 +3129,20 @@ msgstr ""
 "Donasi adalah salah satu cara bagus untuk mendukung pembuat mod, seniman,"
 " dan pengembang permainan kesukaan Anda."
 
-#: app/templates/donate/index.html:37
+#: app/templates/donate/index.html:38
 #, python-format
 msgid "by %(author)s"
 msgstr "oleh %(author)s"
 
-#: app/templates/donate/index.html:42 app/templates/translate/index.html:38
+#: app/templates/donate/index.html:43 app/templates/translate/index.html:38
 msgid "View package"
 msgstr "Lihat paket"
 
-#: app/templates/donate/index.html:62
+#: app/templates/donate/index.html:63
 msgid "Support ContentDB"
 msgstr "Dukung ContentDB"
 
-#: app/templates/donate/index.html:64
+#: app/templates/donate/index.html:65
 msgid ""
 "You can donate to rubenwardy to cover ContentDB's costs and support "
 "future development."
@@ -3107,7 +3150,7 @@ msgstr ""
 "Anda dapat berdonasi kepada rubenwardy untuk menutupi biaya ContentDB dan"
 " mendukung pengembangan pada masa depan."
 
-#: app/templates/donate/index.html:67
+#: app/templates/donate/index.html:68
 msgid ""
 "For more information about the cost of ContentDB and what rubenwardy "
 "does, see his donation page:"
@@ -3115,11 +3158,11 @@ msgstr ""
 "Untuk informasi lebih lanjut tentang biaya ContentDB dan hal yang "
 "dilakukan rubenwardy, lihat halaman donasinya:"
 
-#: app/templates/donate/index.html:73
+#: app/templates/donate/index.html:74
 msgid "Based on your reviews / favorites"
 msgstr "Berdasarkan ulasan/favorit Anda"
 
-#: app/templates/donate/index.html:78
+#: app/templates/donate/index.html:79
 msgid ""
 "No reviewed packages accepting donations. Consider reviewing your "
 "favourite packages"
@@ -3127,15 +3170,15 @@ msgstr ""
 "Tidak ada paket diulas yang menerima donasi. Pertimbangkan mengulas paket"
 " favorit Anda"
 
-#: app/templates/donate/index.html:82
+#: app/templates/donate/index.html:83
 msgid "Sign in to see recommendations based on the packages you've reviewed"
 msgstr "Masuk untuk melihat saran berdasarkan paket yang telah Anda ulas"
 
-#: app/templates/donate/index.html:89
+#: app/templates/donate/index.html:90
 msgid "Top packages"
 msgstr "Paket teratas"
 
-#: app/templates/donate/index.html:93
+#: app/templates/donate/index.html:94
 #, python-format
 msgid "%(count)d packages are looking for donations"
 msgstr "%(count)d paket mencari donasi"
@@ -3289,37 +3332,33 @@ msgstr "Mulai menulis untuk melihat saran"
 msgid "State"
 msgstr "Status"
 
-#: app/templates/macros/package_approval.html:36
+#: app/templates/macros/package_approval.html:35
 msgid "Please wait for the release to be approved."
 msgstr "Harap tunggu rilisan disetujui."
 
-#: app/templates/macros/package_approval.html:38
-msgid "You can now approve this package if you're ready."
-msgstr "Anda dapat menyetujui paket ini jika Anda siap."
-
-#: app/templates/macros/package_approval.html:40
+#: app/templates/macros/package_approval.html:37
 msgid "Please wait for the package to be approved."
 msgstr "Harap tunggu paket disetujui."
 
-#: app/templates/macros/package_approval.html:44
+#: app/templates/macros/package_approval.html:41
 msgid "You can now submit this package for approval if you're ready."
 msgstr "Anda dapat mengirimkan paket ini untuk disetujui jika Anda siap."
 
-#: app/templates/macros/package_approval.html:46
+#: app/templates/macros/package_approval.html:43
 msgid "This package can be submitted for approval when ready."
 msgstr "Paket ini dapat dikirim untuk persetujuan jika Anda siap."
 
-#: app/templates/macros/package_approval.html:49
+#: app/templates/macros/package_approval.html:46
 msgid "You need to fix the above errors before you can submit for review"
 msgstr ""
 "Anda harus memperbaiki kesalahan di atas sebelum dapat dikirim untuk "
 "peninjauan"
 
-#: app/templates/macros/package_approval.html:59
+#: app/templates/macros/package_approval.html:61
 msgid "Package approval thread"
 msgstr "Utas persetujuan paket"
 
-#: app/templates/macros/package_approval.html:60
+#: app/templates/macros/package_approval.html:62
 msgid ""
 "You can open a thread if you have a question for the approver or package "
 "author."
@@ -3354,17 +3393,7 @@ msgstr "dibuat %(date)s"
 msgid "Edit / Approve"
 msgstr "Sunting / Setujui"
 
-#: app/templates/macros/releases.html:103
-#: app/templates/packages/release_edit.html:39
-#: app/templates/packages/release_view.html:41
-msgid "Importing..."
-msgstr "Mengimpor..."
-
-#: app/templates/macros/releases.html:106
-msgid "Waiting for approval."
-msgstr "Menunggu persetujuan."
-
-#: app/templates/macros/releases.html:113
+#: app/templates/macros/releases.html:115
 msgid "No releases available."
 msgstr "Tidak ada rilisan yang tersedia."
 
@@ -4237,15 +4266,15 @@ msgstr "Nama yang dapat dibaca manusia. Misalnya 1.0.0 - Pembaruan Kereta"
 msgid "Commit Hash"
 msgstr "Hash Commit"
 
+#: app/templates/packages/release_edit.html:39
+#: app/templates/packages/release_view.html:41
+msgid "Importing..."
+msgstr "Mengimpor..."
+
 #: app/templates/packages/release_edit.html:40
 #: app/templates/packages/release_view.html:42
 msgid "view task"
 msgstr "lihat tugas"
-
-#: app/templates/packages/release_edit.html:50
-#: app/templates/packages/screenshot_edit.html:20
-msgid "Approved"
-msgstr "Disetujui"
 
 #: app/templates/packages/release_edit.html:54
 msgid "Supported Luanti versions"
@@ -5022,10 +5051,6 @@ msgstr "Lebih banyak"
 msgid "See audit log"
 msgstr "Lihat log audit"
 
-#: app/templates/report/list.html:4 app/templates/todo/editor.html:9
-msgid "Reports"
-msgstr ""
-
 #: app/templates/report/report.html:19
 msgid ""
 "Due to spam, we no longer accept reports from anonymous users on this "
@@ -5223,6 +5248,10 @@ msgstr ""
 #: app/templates/todo/editor.html:4 app/templates/todo/todo_base.html:17
 msgid "Editor Work Queue"
 msgstr "Antrean Pekerjaan Penyunting"
+
+#: app/templates/todo/editor.html:9
+msgid "Reports"
+msgstr ""
 
 #: app/templates/todo/editor.html:30
 msgid "Approval Queue"
@@ -5690,7 +5719,7 @@ msgid "You can still <a href='%(url)s'>sign up without one</a>."
 msgstr "Anda masih dapat <a href=\"%(url)s\">mendaftar tanpa memilikinya</a>."
 
 #: app/templates/users/claim_forums.html:23
-#: app/templates/users/register.html:38
+#: app/templates/users/register.html:40
 msgid ""
 "By signing up, you agree to the <a href='/terms/' target='_blank'>Terms "
 "of Service</a> and <a href='/privacy_policy/' target='_blank'>Privacy "
@@ -6012,6 +6041,16 @@ msgstr "Informasi Profil"
 #: app/templates/users/profile_edit.html:62
 msgid "Pretending to be another user is grounds for a permanent ban"
 msgstr "Berpura-pura menjadi pengguna lain berakibat blokir permanen"
+
+#: app/templates/users/profile_edit.html:72
+msgid "Website URLs will not be shown whilst you are a 'New Member'."
+msgstr ""
+
+#: app/templates/users/profile_edit.html:73
+msgid ""
+"To become a full member, create a review, comment, or package and wait 7 "
+"days."
+msgstr ""
 
 #: app/templates/users/register.html:17
 msgid ""
@@ -7249,4 +7288,25 @@ msgstr ""
 
 #~ msgid "I agree to the "
 #~ msgstr "Saya setuju dengan "
+
+#~ msgid "Release is still importing, or has an error."
+#~ msgstr "Rilisan sedang mengimpor atau mengalami masalah."
+
+#~ msgid "Please wait for the license to be added to CDB."
+#~ msgstr "Harap tunggu lisensi ditambahkan ke CDB."
+
+#~ msgid ""
+#~ "Warning: Forum topic not found. The "
+#~ "topic may have been created since "
+#~ "the last forum crawl."
+#~ msgstr ""
+#~ "Peringatan: Topik forum tidak ditemukan. "
+#~ "Topik mungkin dibuat sejak penjelajahan "
+#~ "forum."
+
+#~ msgid "You can now approve this package if you're ready."
+#~ msgstr "Anda dapat menyetujui paket ini jika Anda siap."
+
+#~ msgid "Waiting for approval."
+#~ msgstr "Menunggu persetujuan."
 

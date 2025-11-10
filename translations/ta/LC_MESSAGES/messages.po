@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-23 10:00+0100\n"
+"POT-Creation-Date: 2025-11-10 19:55+0000\n"
 "PO-Revision-Date: 2025-06-22 06:49+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language: ta\n"
@@ -379,14 +379,26 @@ msgctxt "tags"
 msgid "Entries to the 2024 Luanti Game Jam"
 msgstr "2024 லுவாண்டி கேம் சாம் உள்ளீடுகள்"
 
-#. NOTE: tags: title for jam_weekly_2021
+#. NOTE: tags: title for jam_game_2025
 #: app/_translations.py:110
+msgctxt "tags"
+msgid "Jam / Game 2025"
+msgstr ""
+
+#. NOTE: tags: description for jam_game_2025
+#: app/_translations.py:112
+msgctxt "tags"
+msgid "Entries to the 2025 Luanti Game Jam"
+msgstr ""
+
+#. NOTE: tags: title for jam_weekly_2021
+#: app/_translations.py:114
 msgctxt "tags"
 msgid "Jam / Weekly Challenges 2021"
 msgstr "சாம் / வாராந்திர சவால்கள் 2021"
 
 #. NOTE: tags: description for jam_weekly_2021
-#: app/_translations.py:112
+#: app/_translations.py:116
 msgctxt "tags"
 msgid ""
 "For mods created for the Discord \"Weekly Challenges\" modding event in "
@@ -396,103 +408,103 @@ msgstr ""
 "உருவாக்கப்பட்ட மோட்சுக்கு"
 
 #. NOTE: tags: title for less_than_px
-#: app/_translations.py:114
+#: app/_translations.py:118
 msgctxt "tags"
 msgid "<16px"
 msgstr "&lt;16px"
 
 #. NOTE: tags: description for less_than_px
-#: app/_translations.py:116
+#: app/_translations.py:120
 msgctxt "tags"
 msgid "For less than 16px texture packs "
 msgstr ""
 
 #. NOTE: tags: title for library
-#: app/_translations.py:118
+#: app/_translations.py:122
 msgctxt "tags"
 msgid "API / Library"
 msgstr "பநிஇ / நூலகம்"
 
 #. NOTE: tags: description for library
-#: app/_translations.py:120
+#: app/_translations.py:124
 msgctxt "tags"
 msgid "Primarily adds an API for other mods to use"
 msgstr "முதன்மையாக மற்ற மோட்சைப் பயன்படுத்த பநிஇ சேர்க்கிறது"
 
 #. NOTE: tags: title for magic
-#: app/_translations.py:122
+#: app/_translations.py:126
 msgctxt "tags"
 msgid "Magic / Enchanting"
 msgstr "மந்திரம் / மயக்கும்"
 
 #. NOTE: tags: title for mapgen
-#: app/_translations.py:124
+#: app/_translations.py:128
 msgctxt "tags"
 msgid "Mapgen / Biomes / Decoration"
 msgstr "மேப்கென் / பயோம்கள் / ஒப்பனை"
 
 #. NOTE: tags: description for mapgen
-#: app/_translations.py:126
+#: app/_translations.py:130
 msgctxt "tags"
 msgid "New mapgen or changes mapgen"
 msgstr "புதிய மேப்சென் அல்லது மாற்றங்களை மாற்றுகிறது"
 
 #. NOTE: tags: title for mini-game
-#: app/_translations.py:128
+#: app/_translations.py:132
 msgctxt "tags"
 msgid "Mini-game"
 msgstr "மினி-விளையாட்டு"
 
 #. NOTE: tags: description for mini-game
-#: app/_translations.py:130
+#: app/_translations.py:134
 msgctxt "tags"
 msgid "Adds a mini-game to be played within Luanti"
 msgstr "லுவாண்டிக்குள் விளையாட ஒரு மினி-விளையாட்டைச் சேர்க்கிறது"
 
 #. NOTE: tags: title for mobs
-#: app/_translations.py:132
+#: app/_translations.py:136
 msgctxt "tags"
 msgid "Mobs / Animals / NPCs"
 msgstr "கும்பல் / விலங்குகள் / NPC கள்"
 
 #. NOTE: tags: description for mobs
-#: app/_translations.py:134
+#: app/_translations.py:138
 msgctxt "tags"
 msgid "Adds mobs, animals, and non-player characters"
 msgstr "கும்பல்கள், விலங்குகள் மற்றும் பிளேயர் அல்லாத எழுத்துக்களைச் சேர்க்கிறது"
 
 #. NOTE: tags: title for mtg
-#: app/_translations.py:136
+#: app/_translations.py:140
 msgctxt "tags"
 msgid "Minetest Game improved"
 msgstr "மின்டெச்ட் விளையாட்டு மேம்பட்டது"
 
 #. NOTE: tags: description for mtg
-#: app/_translations.py:138
+#: app/_translations.py:142
 msgctxt "tags"
 msgid "Forks of Minetest Game"
 msgstr "மின்டெச்ட் விளையாட்டின் ஃபோர்க்ச்"
 
 #. NOTE: tags: title for multiplayer
-#: app/_translations.py:140
+#: app/_translations.py:144
 msgctxt "tags"
 msgid "Multiplayer-focused"
 msgstr "மல்டிபிளேயர்-மையப்படுத்தப்பட்ட"
 
 #. NOTE: tags: description for multiplayer
-#: app/_translations.py:142
+#: app/_translations.py:146
 msgctxt "tags"
 msgid "Can/should only be used in multiplayer"
 msgstr "மல்டிபிளேயரில் மட்டுமே பயன்படுத்த முடியும்"
 
 #. NOTE: tags: title for oneofakind__original
-#: app/_translations.py:144
+#: app/_translations.py:148
 msgctxt "tags"
 msgid "One-of-a-kind / Original"
 msgstr "ஒரு வகையான / அசல்"
 
 #. NOTE: tags: description for oneofakind__original
-#: app/_translations.py:146
+#: app/_translations.py:150
 msgctxt "tags"
 msgid ""
 "For games and such that are of their own kind, distinct and original in "
@@ -502,25 +514,25 @@ msgstr ""
 " இயற்கையில் ஒரே வகையின் மற்றவர்களுக்கு."
 
 #. NOTE: tags: title for plants_and_farming
-#: app/_translations.py:148
+#: app/_translations.py:152
 msgctxt "tags"
 msgid "Plants and Farming"
 msgstr "தாவரங்கள் மற்றும் உழவு"
 
 #. NOTE: tags: description for plants_and_farming
-#: app/_translations.py:150
+#: app/_translations.py:154
 msgctxt "tags"
 msgid "Adds new plants or other farmable resources."
 msgstr "புதிய தாவரங்கள் அல்லது பிற விவசாய வளங்களை சேர்க்கிறது."
 
 #. NOTE: tags: title for player_effects
-#: app/_translations.py:152
+#: app/_translations.py:156
 msgctxt "tags"
 msgid "Player Effects / Power Ups"
 msgstr "பிளேயர் விளைவுகள் / பவர் அப்கள்"
 
 #. NOTE: tags: description for player_effects
-#: app/_translations.py:154
+#: app/_translations.py:158
 msgctxt "tags"
 msgid ""
 "For content that changes player effects, including physics, for example: "
@@ -530,25 +542,25 @@ msgstr ""
 "உள்ளடக்கத்திற்கு: விரைவு, சம்ப் உயரம் அல்லது ஈர்ப்பு."
 
 #. NOTE: tags: title for puzzle
-#: app/_translations.py:156
+#: app/_translations.py:160
 msgctxt "tags"
 msgid "Puzzle"
 msgstr "புதிர்"
 
 #. NOTE: tags: description for puzzle
-#: app/_translations.py:158
+#: app/_translations.py:162
 msgctxt "tags"
 msgid "Focus on puzzle solving instead of combat"
 msgstr "போருக்கு பதிலாக புதிர் தீர்க்குவதில் கவனம் செலுத்துங்கள்"
 
 #. NOTE: tags: title for pve
-#: app/_translations.py:160
+#: app/_translations.py:164
 msgctxt "tags"
 msgid "Player vs Environment (PvE)"
 msgstr "பிளேயர் Vs சுற்றுச்சூழல் (பி.வி.இ)"
 
 #. NOTE: tags: description for pve
-#: app/_translations.py:162
+#: app/_translations.py:166
 msgctxt "tags"
 msgid ""
 "For content designed for one or more players that focus on combat against"
@@ -558,25 +570,25 @@ msgstr ""
 " அல்லது அதற்கு மேற்பட்ட வீரர்களுக்காக வடிவமைக்கப்பட்ட உள்ளடக்கத்திற்காக."
 
 #. NOTE: tags: title for pvp
-#: app/_translations.py:164
+#: app/_translations.py:168
 msgctxt "tags"
 msgid "Player vs Player (PvP)"
 msgstr "பிளேயர் Vs பிளேயர் (பிவிபி)"
 
 #. NOTE: tags: description for pvp
-#: app/_translations.py:166
+#: app/_translations.py:170
 msgctxt "tags"
 msgid "Designed to be played competitively against other players"
 msgstr "மற்ற வீரர்களுக்கு எதிராக போட்டித்தன்மையுடன் விளையாட வடிவமைக்கப்பட்டுள்ளது"
 
 #. NOTE: tags: title for seasonal
-#: app/_translations.py:168
+#: app/_translations.py:172
 msgctxt "tags"
 msgid "Seasonal"
 msgstr "பருவகால"
 
 #. NOTE: tags: description for seasonal
-#: app/_translations.py:170
+#: app/_translations.py:174
 msgctxt "tags"
 msgid "For content generally themed around a certain season or holiday"
 msgstr ""
@@ -584,37 +596,37 @@ msgstr ""
 "சுற்றி கருப்பொருள்"
 
 #. NOTE: tags: title for server_tools
-#: app/_translations.py:172
+#: app/_translations.py:176
 msgctxt "tags"
 msgid "Server Moderation and Tools"
 msgstr "சேவையக மிதமான மற்றும் கருவிகள்"
 
 #. NOTE: tags: description for server_tools
-#: app/_translations.py:174
+#: app/_translations.py:178
 msgctxt "tags"
 msgid "Helps with server maintenance and moderation"
 msgstr "சேவையக பராமரிப்பு மற்றும் மிதமான தன்மைக்கு உதவுகிறது"
 
 #. NOTE: tags: title for shooter
-#: app/_translations.py:176
+#: app/_translations.py:180
 msgctxt "tags"
 msgid "Shooter"
 msgstr "துப்பாக்கி சுடும்"
 
 #. NOTE: tags: description for shooter
-#: app/_translations.py:178
+#: app/_translations.py:182
 msgctxt "tags"
 msgid "First person shooters (FPS) and more"
 msgstr "முதல் நபர் துப்பாக்கி சுடும் வீரர்கள் (எஃப்.பி.எச்) மற்றும் பல"
 
 #. NOTE: tags: title for simulation
-#: app/_translations.py:180
+#: app/_translations.py:184
 msgctxt "tags"
 msgid "Sims"
 msgstr "சிம்ச்"
 
 #. NOTE: tags: description for simulation
-#: app/_translations.py:182
+#: app/_translations.py:186
 msgctxt "tags"
 msgid ""
 "Mods and games that aim to simulate real life activity. Similar to "
@@ -625,25 +637,25 @@ msgstr ""
 "போன்றது."
 
 #. NOTE: tags: title for singleplayer
-#: app/_translations.py:184
+#: app/_translations.py:188
 msgctxt "tags"
 msgid "Singleplayer-focused"
 msgstr "சிங்கிள் பிளேயர்-மையப்படுத்தப்பட்ட"
 
 #. NOTE: tags: description for singleplayer
-#: app/_translations.py:186
+#: app/_translations.py:190
 msgctxt "tags"
 msgid "Content that can be played alone"
 msgstr "தனியாக விளையாடக்கூடிய உள்ளடக்கம்"
 
 #. NOTE: tags: title for skins
-#: app/_translations.py:188
+#: app/_translations.py:192
 msgctxt "tags"
 msgid "Player customization / Skins"
 msgstr "பிளேயர் தனிப்பயனாக்கம் / தோல்கள்"
 
 #. NOTE: tags: description for skins
-#: app/_translations.py:190
+#: app/_translations.py:194
 msgctxt "tags"
 msgid ""
 "Allows the player to customize their character by changing the texture or"
@@ -653,43 +665,43 @@ msgstr ""
 "தன்மையைத் தனிப்பயனாக்க அனுமதிக்கிறது."
 
 #. NOTE: tags: title for sound_music
-#: app/_translations.py:192
+#: app/_translations.py:196
 msgctxt "tags"
 msgid "Sounds / Music"
 msgstr "ஒலிகள் / இசை"
 
 #. NOTE: tags: description for sound_music
-#: app/_translations.py:194
+#: app/_translations.py:198
 msgctxt "tags"
 msgid "Focuses on or adds new sounds or musical things"
 msgstr "புதிய ஒலிகள் அல்லது இசை விசயங்களில் கவனம் செலுத்துகிறது அல்லது சேர்க்கிறது"
 
 #. NOTE: tags: title for sports
-#: app/_translations.py:196
+#: app/_translations.py:200
 msgctxt "tags"
 msgid "Sports"
 msgstr "விளையாட்டு"
 
 #. NOTE: tags: title for storage
-#: app/_translations.py:198
+#: app/_translations.py:202
 msgctxt "tags"
 msgid "Storage"
 msgstr "சேமிப்பு"
 
 #. NOTE: tags: description for storage
-#: app/_translations.py:200
+#: app/_translations.py:204
 msgctxt "tags"
 msgid "Adds or improves item storage mechanics"
 msgstr "உருப்படி சேமிப்பு இயக்கவியலைச் சேர்க்கிறது அல்லது மேம்படுத்துகிறது"
 
 #. NOTE: tags: title for strategy_rts
-#: app/_translations.py:202
+#: app/_translations.py:206
 msgctxt "tags"
 msgid "Strategy / RTS"
 msgstr "மூலோபாயம் / ஆர்.டி.எச்"
 
 #. NOTE: tags: description for strategy_rts
-#: app/_translations.py:204
+#: app/_translations.py:208
 msgctxt "tags"
 msgid ""
 "Games and mods with a heavy strategy component, whether real-time or "
@@ -699,13 +711,13 @@ msgstr ""
 " விளையாட்டுகள் மற்றும் மோட்கள்"
 
 #. NOTE: tags: title for survival
-#: app/_translations.py:206
+#: app/_translations.py:210
 msgctxt "tags"
 msgid "Survival"
 msgstr "உயிர்வாழ்வு"
 
 #. NOTE: tags: description for survival
-#: app/_translations.py:208
+#: app/_translations.py:212
 msgctxt "tags"
 msgid ""
 "Written specifically for survival gameplay with a focus on game-balance, "
@@ -713,37 +725,37 @@ msgid ""
 msgstr "விளையாட்டு-சமநிலை, தொல்லை நிலை அல்லது கைவினை, சுரங்க, ..."
 
 #. NOTE: tags: title for technology
-#: app/_translations.py:210
+#: app/_translations.py:214
 msgctxt "tags"
 msgid "Machines / Electronics"
 msgstr "இயந்திரங்கள் / மின்னணுவியல்"
 
 #. NOTE: tags: description for technology
-#: app/_translations.py:212
+#: app/_translations.py:216
 msgctxt "tags"
 msgid "Adds machines useful in automation, tubes, or power."
 msgstr "ஆட்டோமேசன், குழாய்கள் அல்லது சக்தியில் பயனுள்ள இயந்திரங்களைச் சேர்க்கிறது."
 
 #. NOTE: tags: title for tools
-#: app/_translations.py:214
+#: app/_translations.py:218
 msgctxt "tags"
 msgid "Tools / Weapons / Armor"
 msgstr "கருவிகள் / ஆயுதங்கள் / கவசம்"
 
 #. NOTE: tags: description for tools
-#: app/_translations.py:216
+#: app/_translations.py:220
 msgctxt "tags"
 msgid "Adds or changes tools, weapons, and armor"
 msgstr "கருவிகள், ஆயுதங்கள் மற்றும் கவசங்களைச் சேர்க்கிறது அல்லது மாற்றுகிறது"
 
 #. NOTE: tags: title for transport
-#: app/_translations.py:218
+#: app/_translations.py:222
 msgctxt "tags"
 msgid "Transport"
 msgstr "போக்குவரத்து"
 
 #. NOTE: tags: description for transport
-#: app/_translations.py:220
+#: app/_translations.py:224
 msgctxt "tags"
 msgid ""
 "Adds or changes transportation methods. Includes teleportation, vehicles,"
@@ -754,85 +766,85 @@ msgstr ""
 "கருப்பொருள் உள்ளடக்கம் ஆகியவை அடங்கும்"
 
 #. NOTE: tags: title for world_tools
-#: app/_translations.py:222
+#: app/_translations.py:226
 msgctxt "tags"
 msgid "World Maintenance and Tools"
 msgstr "உலக பராமரிப்பு மற்றும் கருவிகள்"
 
 #. NOTE: tags: description for world_tools
-#: app/_translations.py:224
+#: app/_translations.py:228
 msgctxt "tags"
 msgid "Tools to manage the world"
 msgstr "உலகை நிர்வகிப்பதற்கான கருவிகள்"
 
 #. NOTE: content_warnings: title for alcohol_tobacco
-#: app/_translations.py:226
+#: app/_translations.py:230
 msgctxt "content_warnings"
 msgid "Alcohol / Tobacco"
 msgstr "ஆல்கஆல் / புகையிலை"
 
 #. NOTE: content_warnings: description for alcohol_tobacco
-#: app/_translations.py:228
+#: app/_translations.py:232
 msgctxt "content_warnings"
 msgid "Contains alcohol and/or tobacco"
 msgstr "ஆல்கஆல் மற்றும்/அல்லது புகையிலை உள்ளது"
 
 #. NOTE: content_warnings: title for bad_language
-#: app/_translations.py:230
+#: app/_translations.py:234
 msgctxt "content_warnings"
 msgid "Bad Language"
 msgstr "மோசமான மொழி"
 
 #. NOTE: content_warnings: description for bad_language
-#: app/_translations.py:232
+#: app/_translations.py:236
 msgctxt "content_warnings"
 msgid "Contains swearing"
 msgstr "சத்தியப்பிரமாணம் உள்ளது"
 
 #. NOTE: content_warnings: title for drugs
-#: app/_translations.py:234
+#: app/_translations.py:238
 msgctxt "content_warnings"
 msgid "Drugs"
 msgstr "மருந்துகள்"
 
 #. NOTE: content_warnings: description for drugs
-#: app/_translations.py:236
+#: app/_translations.py:240
 msgctxt "content_warnings"
 msgid "Contains recreational drugs other than alcohol or tobacco"
 msgstr "ஆல்கஆல் அல்லது புகையிலை தவிர வேறு பொழுதுபோக்கு மருந்துகள் உள்ளன"
 
 #. NOTE: content_warnings: title for gambling
-#: app/_translations.py:238
+#: app/_translations.py:242
 msgctxt "content_warnings"
 msgid "Gambling"
 msgstr "சூதாட்டம்"
 
 #. NOTE: content_warnings: description for gambling
-#: app/_translations.py:240
+#: app/_translations.py:244
 msgctxt "content_warnings"
 msgid "Games of chance, gambling games, etc"
 msgstr "வாய்ப்பு, சூதாட்ட விளையாட்டுகள் போன்றவை"
 
 #. NOTE: content_warnings: title for gore
-#: app/_translations.py:242
+#: app/_translations.py:246
 msgctxt "content_warnings"
 msgid "Gore"
 msgstr "கோர்"
 
 #. NOTE: content_warnings: description for gore
-#: app/_translations.py:244
+#: app/_translations.py:248
 msgctxt "content_warnings"
 msgid "Blood, etc"
 msgstr "இரத்தம் போன்றவை"
 
 #. NOTE: content_warnings: title for horror
-#: app/_translations.py:246
+#: app/_translations.py:250
 msgctxt "content_warnings"
 msgid "Fear / Horror"
 msgstr "அச்சம் / அதிர்ச்சி"
 
 #. NOTE: content_warnings: description for horror
-#: app/_translations.py:248
+#: app/_translations.py:252
 msgctxt "content_warnings"
 msgid "Shocking and scary content. May scare young children"
 msgstr ""
@@ -840,13 +852,13 @@ msgstr ""
 "பயமுறுத்தலாம்"
 
 #. NOTE: content_warnings: title for violence
-#: app/_translations.py:250
+#: app/_translations.py:254
 msgctxt "content_warnings"
 msgid "Violence"
 msgstr "வன்முறை"
 
 #. NOTE: content_warnings: description for violence
-#: app/_translations.py:252
+#: app/_translations.py:256
 msgctxt "content_warnings"
 msgid "Non-cartoon violence. May be towards fantasy or  human-like characters"
 msgstr ""
@@ -925,8 +937,8 @@ msgstr "தொகுப்புக்கு வரம்பு"
 #: app/blueprints/packages/screenshots.py:37
 #: app/blueprints/packages/screenshots.py:43
 #: app/blueprints/packages/screenshots.py:48
-#: app/blueprints/report/__init__.py:173 app/blueprints/users/account.py:192
-#: app/blueprints/users/account.py:200 app/blueprints/users/settings.py:79
+#: app/blueprints/report/__init__.py:173 app/blueprints/users/account.py:195
+#: app/blueprints/users/account.py:203 app/blueprints/users/settings.py:79
 #: app/blueprints/users/settings.py:148 app/blueprints/users/settings.py:330
 #: app/templates/users/modtools.html:111
 msgid "Save"
@@ -1085,7 +1097,7 @@ msgstr "பங்கு மற்றும் பேட்ச்கள்"
 msgid "Remove / Unpublish"
 msgstr "அகற்று / வெளியிடவும்"
 
-#: app/blueprints/packages/__init__.py:80 app/logic/package_approval.py:125
+#: app/blueprints/packages/__init__.py:80 app/logic/package_approval.py:135
 #: app/templates/packages/game_support.html:4 app/utils/luanti_hypertext.py:275
 #: app/utils/luanti_hypertext.py:277
 msgid "Supported Games"
@@ -1437,13 +1449,13 @@ msgstr "அறிவிலி குறிப்பு (அதாவது: ஆ�
 
 #: app/blueprints/packages/releases.py:62
 #: app/blueprints/packages/releases.py:77
-#: app/blueprints/packages/releases.py:218
+#: app/blueprints/packages/releases.py:219
 msgid "Minimum Luanti Version"
 msgstr "குறைந்தபட்ச லுவாண்டி பதிப்பு"
 
 #: app/blueprints/packages/releases.py:64
 #: app/blueprints/packages/releases.py:79
-#: app/blueprints/packages/releases.py:221
+#: app/blueprints/packages/releases.py:222
 msgid "Maximum Luanti Version"
 msgstr "அதிகபட்ச லுவாண்டி பதிப்பு"
 
@@ -1464,69 +1476,70 @@ msgstr "Git இலிருந்து இறக்குமதி"
 msgid "Upload .zip file"
 msgstr ".Zip கோப்பைப் பதிவேற்றவும்"
 
-#: app/blueprints/packages/releases.py:217
+#: app/blueprints/packages/releases.py:218
 msgid "Set Min"
 msgstr "பார்த்தது"
 
-#: app/blueprints/packages/releases.py:220
+#: app/blueprints/packages/releases.py:221
 msgid "Set Max"
 msgstr "அதிகபட்சம் அமைக்கவும்"
 
-#: app/blueprints/packages/releases.py:223
+#: app/blueprints/packages/releases.py:224
 msgid "Only change values previously set as none"
 msgstr "முன்னர் எதுவுமில்லை என அமைக்கப்பட்ட மதிப்புகளை மட்டுமே மாற்றவும்"
 
-#: app/blueprints/packages/releases.py:224
+#: app/blueprints/packages/releases.py:225
 msgid "Update"
 msgstr "புதுப்பிப்பு"
 
-#: app/blueprints/packages/releases.py:276
+#: app/blueprints/packages/releases.py:277
 #: app/templates/packages/update_config.html:25
 msgid "Trigger"
 msgstr "தூண்டுதல்"
 
-#: app/blueprints/packages/releases.py:277
+#: app/blueprints/packages/releases.py:278
 msgid "New Commit"
 msgstr "புதிய கமிட்"
 
-#: app/blueprints/packages/releases.py:278 app/templates/admin/tags/list.html:8
+#: app/blueprints/packages/releases.py:279 app/templates/admin/tags/list.html:8
 msgid "New Tag"
 msgstr "புதிய குறிச்சொல்"
 
-#: app/blueprints/packages/releases.py:280
+#: app/blueprints/packages/releases.py:281
 msgid "Branch name"
 msgstr "கிளை பெயர்"
 
-#: app/blueprints/packages/releases.py:281
+#: app/blueprints/packages/releases.py:282
 #: app/templates/packages/update_config.html:38
 msgid "Action"
 msgstr "செயல்"
 
-#: app/blueprints/packages/releases.py:282
+#: app/blueprints/packages/releases.py:283
 msgid "Send notification and mark as outdated"
 msgstr "அறிவிப்பையும் குறிக்கவும் காலாவதியானது"
 
-#: app/blueprints/packages/releases.py:282 app/logic/package_approval.py:107
+#: app/blueprints/packages/releases.py:283 app/logic/package_approval.py:105
+#: app/logic/package_approval.py:118
 msgid "Create release"
 msgstr "வெளியீட்டை உருவாக்கவும்"
 
-#: app/blueprints/packages/releases.py:284
+#: app/blueprints/packages/releases.py:285
 msgid "Save Settings"
 msgstr "அமைப்புகளை சேமிக்கவும்"
 
-#: app/blueprints/packages/releases.py:285
+#: app/blueprints/packages/releases.py:286
 msgid "Disable Automation"
 msgstr "ஆட்டோமேசனை முடக்கு"
 
-#: app/blueprints/packages/releases.py:324
+#: app/blueprints/packages/releases.py:325
 msgid "Please add a Git repository URL in order to set up automatic releases"
 msgstr "தானியங்கி வெளியீடுகளை அமைக்க ஒரு அறிவிலி களஞ்சிய முகவரி ஐச் சேர்க்கவும்"
 
-#: app/blueprints/packages/releases.py:340
+#: app/blueprints/packages/releases.py:341
 msgid "Deleted update configuration"
 msgstr "புதுப்பிப்பு உள்ளமைவு நீக்கப்பட்டது"
 
-#: app/blueprints/packages/releases.py:348
+#: app/blueprints/packages/releases.py:349
 msgid "Now, please create an initial release"
 msgstr "இப்போது, ஆரம்ப வெளியீட்டை உருவாக்கவும்"
 
@@ -1652,7 +1665,7 @@ msgid "Please wait before commenting again"
 msgstr "மீண்டும் கருத்து தெரிவிப்பதற்கு முன் காத்திருங்கள்"
 
 #: app/blueprints/threads/__init__.py:287
-#: app/templates/macros/package_approval.html:56
+#: app/templates/macros/package_approval.html:58
 msgid "Open Thread"
 msgstr "திறந்த நூல்"
 
@@ -1690,7 +1703,7 @@ msgid "Remember me"
 msgstr "என்னை நினைவில் கொள்ளுங்கள்"
 
 #: app/blueprints/users/account.py:39 app/templates/base.html:190
-#: app/templates/donate/index.html:85 app/templates/users/login.html:4
+#: app/templates/donate/index.html:86 app/templates/users/login.html:4
 msgid "Sign in"
 msgstr "விடுபதிகை"
 
@@ -1727,8 +1740,8 @@ msgstr ""
 "அகரவரிசை எழுத்துக்கள் (A-ZA-Z), எண்கள் (0-9), அடிக்கோடிட்டுக் காட்டுதல் "
 "(_), கழித்தல் (-) மற்றும் காலங்கள் (.)"
 
-#: app/blueprints/users/account.py:104 app/blueprints/users/account.py:152
-#: app/blueprints/users/account.py:188 app/blueprints/users/account.py:337
+#: app/blueprints/users/account.py:104 app/blueprints/users/account.py:155
+#: app/blueprints/users/account.py:191 app/blueprints/users/account.py:340
 #: app/blueprints/users/settings.py:147
 msgid "Email"
 msgstr "மின்னஞ்சல்"
@@ -1737,55 +1750,55 @@ msgstr "மின்னஞ்சல்"
 msgid "What is the result of the above calculation?"
 msgstr "மேலே உள்ள கணக்கீட்டின் விளைவு என்ன?"
 
-#: app/blueprints/users/account.py:107 app/templates/users/login.html:34
+#: app/blueprints/users/account.py:108 app/templates/users/login.html:34
 #: app/templates/users/register.html:4
 msgid "Register"
 msgstr "பதிவு செய்யுங்கள்"
 
-#: app/blueprints/users/account.py:112
+#: app/blueprints/users/account.py:113
 msgid "Incorrect captcha answer"
 msgstr "தவறான கேப்ட்சா பதில்"
 
-#: app/blueprints/users/account.py:153
+#: app/blueprints/users/account.py:156
 msgid "Reset Password"
 msgstr "கடவுச்சொல்லை மீட்டமைக்கவும்"
 
-#: app/blueprints/users/account.py:179
+#: app/blueprints/users/account.py:182
 msgid "Unable to find account"
 msgstr "கணக்கைக் கண்டுபிடிக்க முடியவில்லை"
 
-#: app/blueprints/users/account.py:189 app/blueprints/users/account.py:197
+#: app/blueprints/users/account.py:192 app/blueprints/users/account.py:200
 msgid "New password"
 msgstr "புதிய கடவுச்சொல்"
 
-#: app/blueprints/users/account.py:190 app/blueprints/users/account.py:198
+#: app/blueprints/users/account.py:193 app/blueprints/users/account.py:201
 msgid "Verify password"
 msgstr "கடவுச்சொல்லை சரிபார்க்கவும்"
 
-#: app/blueprints/users/account.py:191 app/blueprints/users/account.py:199
+#: app/blueprints/users/account.py:194 app/blueprints/users/account.py:202
 msgid "Passwords must match"
 msgstr "கடவுச்சொற்கள் பொருந்த வேண்டும்"
 
-#: app/blueprints/users/account.py:196
+#: app/blueprints/users/account.py:199
 msgid "Old password"
 msgstr "பழைய கடவுச்சொல்"
 
-#: app/blueprints/users/account.py:207
+#: app/blueprints/users/account.py:210
 msgid "Passwords do not match"
 msgstr "கடவுச்சொற்கள் பொருந்தவில்லை"
 
-#: app/blueprints/users/account.py:218 app/blueprints/users/settings.py:175
+#: app/blueprints/users/account.py:221 app/blueprints/users/settings.py:175
 #: app/logic/users.py:51
 msgid "That email address has been unsubscribed/blacklisted, and cannot be used"
 msgstr ""
 "அந்த மின்னஞ்சல் முகவரி குழுவிலகப்படாத/தடுப்புப்பட்டியலில் உள்ளது, மேலும் "
 "பயன்படுத்த முடியாது"
 
-#: app/blueprints/users/account.py:223 app/logic/users.py:46
+#: app/blueprints/users/account.py:226 app/logic/users.py:46
 msgid "Email already in use"
 msgstr "ஏற்கனவே பயன்பாட்டில் உள்ள மின்னஞ்சல்"
 
-#: app/blueprints/users/account.py:224 app/logic/users.py:47
+#: app/blueprints/users/account.py:227 app/logic/users.py:47
 #, python-format
 msgid ""
 "We were unable to create the account as the email is already in use by "
@@ -1794,35 +1807,35 @@ msgstr ""
 "மின்னஞ்சல் ஏற்கனவே %(display_name)s மூலம் பயன்பாட்டில் இருப்பதால் கணக்கை "
 "உருவாக்க முடியவில்லை. வேறு மின்னஞ்சல் முகவரியை முயற்சிக்கவும்."
 
-#: app/blueprints/users/account.py:238 app/blueprints/users/account.py:242
+#: app/blueprints/users/account.py:241 app/blueprints/users/account.py:245
 msgid "Your password has been changed successfully."
 msgstr "உங்கள் கடவுச்சொல் வெற்றிகரமாக மாற்றப்பட்டுள்ளது."
 
-#: app/blueprints/users/account.py:257
+#: app/blueprints/users/account.py:260
 msgid "Old password is incorrect"
 msgstr "பழைய கடவுச்சொல் தவறானது"
 
-#: app/blueprints/users/account.py:285
+#: app/blueprints/users/account.py:288
 msgid "Unknown verification token!"
 msgstr "தெரியாத சரிபார்ப்பு டோக்கன்!"
 
-#: app/blueprints/users/account.py:289
+#: app/blueprints/users/account.py:292
 msgid "Token has expired"
 msgstr "கிள்ளாக்கு காலாவதியானது"
 
-#: app/blueprints/users/account.py:303
+#: app/blueprints/users/account.py:306
 msgid "Another user is already using that email"
 msgstr "மற்றொரு பயனர் ஏற்கனவே அந்த மின்னஞ்சலைப் பயன்படுத்துகிறார்"
 
-#: app/blueprints/users/account.py:306
+#: app/blueprints/users/account.py:309
 msgid "Confirmed email change"
 msgstr "உறுதிப்படுத்தப்பட்ட மின்னஞ்சல் மாற்றம்"
 
-#: app/blueprints/users/account.py:311
+#: app/blueprints/users/account.py:314
 msgid "Email address changed"
 msgstr "மின்னஞ்சல் முகவரி மாற்றப்பட்டது"
 
-#: app/blueprints/users/account.py:312
+#: app/blueprints/users/account.py:315
 msgid ""
 "Your email address has changed. If you didn't request this, please "
 "contact an administrator."
@@ -1830,15 +1843,15 @@ msgstr ""
 "உங்கள் மின்னஞ்சல் முகவரி மாறிவிட்டது. இதை நீங்கள் கோரவில்லை என்றால், "
 "தயவுசெய்து ஒரு நிர்வாகியை தொடர்பு கொள்ளவும்."
 
-#: app/blueprints/users/account.py:330
+#: app/blueprints/users/account.py:333
 msgid "You may now log in"
 msgstr "நீங்கள் இப்போது உள்நுழையலாம்"
 
-#: app/blueprints/users/account.py:338
+#: app/blueprints/users/account.py:341
 msgid "Send"
 msgstr "அனுப்பு"
 
-#: app/blueprints/users/account.py:369
+#: app/blueprints/users/account.py:372
 msgid ""
 "That email is now blacklisted. Please contact an admin if you wish to "
 "undo this."
@@ -2058,38 +2071,50 @@ msgstr "கண்டுபிடிக்க உரை (ரீசெக்ச்
 msgid "File filter"
 msgstr "கோப்பு வடிகட்டி"
 
-#: app/logic/package_approval.py:98
+#: app/logic/package_approval.py:99
 msgid "A package already exists with this name. Please see Policy and Guidance 3"
 msgstr ""
 "இந்த பெயருடன் ஏற்கனவே ஒரு தொகுப்பு உள்ளது. கொள்கை மற்றும் வழிகாட்டுதல் 3 "
 "ஐப் பார்க்கவும்"
 
-#: app/logic/package_approval.py:102
+#: app/logic/package_approval.py:104
 msgid "You need to create a release before this package can be approved."
 msgstr ""
 "இந்த தொகுப்பை அங்கீகரிப்பதற்கு முன்பு நீங்கள் ஒரு வெளியீட்டை உருவாக்க "
 "வேண்டும்."
 
-#: app/logic/package_approval.py:104
-msgid "Release is still importing, or has an error."
-msgstr "வெளியீடு இன்னும் இறக்குமதி செய்கிறது, அல்லது பிழை உள்ளது."
-
-#: app/logic/package_approval.py:108
+#: app/logic/package_approval.py:106
 msgid "Set up releases"
 msgstr "வெளியீடுகளை அமைக்கவும்"
 
-#: app/logic/package_approval.py:114
+#: app/logic/package_approval.py:109
+msgid "Release is still importing. Please wait and reload the page."
+msgstr ""
+
+#: app/logic/package_approval.py:110
+msgid "View task"
+msgstr ""
+
+#: app/logic/package_approval.py:116
+msgid "Release validation failed. Please fix any issues and create a new release"
+msgstr ""
+
+#: app/logic/package_approval.py:117
+msgid "View error"
+msgstr ""
+
+#: app/logic/package_approval.py:124
 msgid "You need to add at least one screenshot."
 msgstr "நீங்கள் குறைந்தது ஒரு திரை காட்சி சேர்க்க வேண்டும்."
 
-#: app/logic/package_approval.py:120
+#: app/logic/package_approval.py:130
 #, python-format
 msgid ""
 "The following hard dependencies need to be added to ContentDB first: "
 "%(deps)s"
 msgstr "பின்வரும் கடினமான சார்புகளை உள்ளடக்கத்தில் சேர்க்க வேண்டும்: %(deps)s"
 
-#: app/logic/package_approval.py:124
+#: app/logic/package_approval.py:134
 msgid ""
 "What games does your package support? Please specify on the supported "
 "games page"
@@ -2097,27 +2122,17 @@ msgstr ""
 "உங்கள் தொகுப்பு என்ன விளையாட்டுகளை ஆதரிக்கிறது? ஆதரிக்கப்பட்ட விளையாட்டு "
 "பக்கத்தில் குறிப்பிடவும்"
 
-#: app/logic/package_approval.py:128
-msgid "Please wait for the license to be added to CDB."
-msgstr "சி.டி.பியில் உரிமம் சேர்க்கப்படும் வரை காத்திருக்கவும்."
-
-#: app/logic/package_approval.py:136
+#: app/logic/package_approval.py:143
 msgid "Please make sure that this package has the right to the names it uses."
 msgstr ""
 "இந்த தொகுப்புக்கு அது பயன்படுத்தும் பெயர்களுக்கு உரிமை உண்டு என்பதை "
 "உறுதிப்படுத்தவும்."
 
-#: app/logic/package_approval.py:140
-#, python-format
-msgid "Please make sure that this package has the right to the names %(names)s"
-msgstr ""
-"தயவுசெய்து இந்தத் தொகுப்புக்கு %(names)s பெயர்களுக்கு உரிமை உண்டு என்பதை "
-"உறுதிப்படுத்திக் கொள்ளுங்கள்"
-
-#: app/logic/package_approval.py:142 app/templates/index.html:113
-#: app/templates/index.html:124 app/templates/index.html:135
-#: app/templates/index.html:146 app/templates/index.html:157
-#: app/templates/index.html:183 app/templates/packages/game_hub.html:42
+#: app/logic/package_approval.py:144 app/logic/package_approval.py:150
+#: app/templates/index.html:113 app/templates/index.html:124
+#: app/templates/index.html:135 app/templates/index.html:146
+#: app/templates/index.html:157 app/templates/index.html:183
+#: app/templates/packages/game_hub.html:42
 #: app/templates/packages/game_hub.html:49
 #: app/templates/packages/game_hub.html:56
 #: app/templates/packages/game_hub.html:63
@@ -2125,21 +2140,20 @@ msgstr ""
 msgid "See more"
 msgstr "மேலும் காண்க"
 
-#: app/logic/package_approval.py:147
+#: app/logic/package_approval.py:148
+#, python-format
+msgid "Please make sure that this package has the right to the names %(names)s"
+msgstr ""
+"தயவுசெய்து இந்தத் தொகுப்புக்கு %(names)s பெயர்களுக்கு உரிமை உண்டு என்பதை "
+"உறுதிப்படுத்திக் கொள்ளுங்கள்"
+
+#: app/logic/package_approval.py:155
 msgid "Error: Another package already uses this forum topic!"
 msgstr "பிழை: மற்றொரு தொகுப்பு ஏற்கனவே இந்த மன்ற தலைப்பைப் பயன்படுத்துகிறது!"
 
-#: app/logic/package_approval.py:152
+#: app/logic/package_approval.py:160
 msgid "Error: Forum topic author doesn't match package author."
 msgstr "பிழை: மன்ற தலைப்பு ஆசிரியர் தொகுப்பு ஆசிரியருடன் பொருந்தவில்லை."
-
-#: app/logic/package_approval.py:154
-msgid ""
-"Warning: Forum topic not found. The topic may have been created since the"
-" last forum crawl."
-msgstr ""
-"எச்சரிக்கை: மன்ற தலைப்பு காணப்படவில்லை. கடைசி மன்றம் வலம் வந்ததிலிருந்து "
-"தலைப்பு உருவாக்கப்பட்டிருக்கலாம்."
 
 #: app/logic/packages.py:114
 msgid ""
@@ -2235,32 +2249,36 @@ msgstr ""
 "பயனர்பெயர் கடந்த காலத்தில் பயன்படுத்தப்பட்டதால் ஒரு கணக்கை உருவாக்க "
 "முடியவில்லை."
 
-#: app/models/__init__.py:147
+#: app/models/__init__.py:148
 msgid "Account deletion"
 msgstr ""
 
-#: app/models/__init__.py:149
+#: app/models/__init__.py:150
 msgid "Copyright infringement / DMCA"
 msgstr ""
 
-#: app/models/__init__.py:151
+#: app/models/__init__.py:152
 msgid "User behaviour, bullying, or abuse"
 msgstr ""
 
-#: app/models/__init__.py:153
+#: app/models/__init__.py:154
+msgid "Spam"
+msgstr ""
+
+#: app/models/__init__.py:156
 msgid "Illegal or harmful content"
 msgstr ""
 
-#: app/models/__init__.py:155
+#: app/models/__init__.py:158
 msgid "Outdated/invalid review"
 msgstr ""
 
-#: app/models/__init__.py:157
+#: app/models/__init__.py:160
 msgid "Appeal"
 msgstr ""
 
 #. NOTE: OTHER notification type
-#: app/models/__init__.py:159 app/models/users.py:469
+#: app/models/__init__.py:162 app/models/users.py:472
 msgid "Other"
 msgstr "மற்றொன்று"
 
@@ -2421,17 +2439,38 @@ msgstr "ஒப்புதல்"
 msgid "Delete"
 msgstr "நீக்கு"
 
-#: app/models/packages.py:1389
+#: app/models/packages.py:1104
+msgid "Processing"
+msgstr ""
+
+#: app/models/packages.py:1106 app/templates/packages/release_edit.html:50
+#: app/templates/packages/screenshot_edit.html:20
+msgid "Approved"
+msgstr "அங்கீகரிக்கப்பட்டது"
+
+#: app/models/packages.py:1108
+msgid "Failed"
+msgstr ""
+
+#: app/models/packages.py:1110
+msgid "Waiting approval"
+msgstr ""
+
+#: app/models/packages.py:1112
+msgid "Archived"
+msgstr ""
+
+#: app/models/packages.py:1440
 #, python-format
 msgid "New commit %(hash)s found on the Git repo."
 msgstr "அறிவிலி ரெப்போவில் காணப்படும் புதிய கமிட் %(hash)s."
 
-#: app/models/packages.py:1393
+#: app/models/packages.py:1444
 #, python-format
 msgid "The last release was commit %(hash)s"
 msgstr "கடைசி வெளியீடு கமிட் %(hash)s"
 
-#: app/models/packages.py:1399
+#: app/models/packages.py:1450
 #, python-format
 msgid "New tag %(tag_name)s found on the Git repo."
 msgstr "அறிவிலி ரெப்போவில் புதிய குறிச்சொல் %(tag_name)s காணப்படுகின்றன."
@@ -2465,7 +2504,7 @@ msgid "Editor"
 msgstr "திருத்தி"
 
 #. NOTE: BOT notification type
-#: app/models/users.py:60 app/models/users.py:457
+#: app/models/users.py:60 app/models/users.py:460
 msgid "Bot"
 msgstr "போட்"
 
@@ -2478,123 +2517,123 @@ msgid "Admin"
 msgstr "நிர்வாகி"
 
 #. NOTE: PACKAGE_EDIT notification type
-#: app/models/users.py:442
+#: app/models/users.py:445
 msgid "Package Edit"
 msgstr "தொகுப்பு திருத்து"
 
 #. NOTE: PACKAGE_APPROVAL notification type
-#: app/models/users.py:445
+#: app/models/users.py:448
 msgid "Package Approval"
 msgstr "தொகுப்பு ஒப்புதல்"
 
 #. NOTE: NEW_THREAD notification type
-#: app/models/users.py:448 app/templates/threads/list.html:12
+#: app/models/users.py:451 app/templates/threads/list.html:12
 #: app/templates/threads/new.html:4
 msgid "New Thread"
 msgstr "புதிய நூல்"
 
 #. NOTE: NEW_REVIEW notification type
-#: app/models/users.py:451
+#: app/models/users.py:454
 msgid "New Review"
 msgstr "புதிய ஆய்வு"
 
 #. NOTE: THREAD_REPLY notification type
-#: app/models/users.py:454
+#: app/models/users.py:457
 msgid "Thread Reply"
 msgstr "நூல் பதில்"
 
 #. NOTE: MAINTAINER notification type
-#: app/models/users.py:460 app/templates/macros/threads.html:27
+#: app/models/users.py:463 app/templates/macros/threads.html:27
 msgid "Maintainer"
 msgstr "பராமரிப்பாளர்"
 
 #. NOTE: EDITOR_ALERT notification type
-#: app/models/users.py:463
+#: app/models/users.py:466
 msgid "Editor Alert"
 msgstr "ஆசிரியர் எச்சரிக்கை"
 
 #. NOTE: EDITOR_MISC notification type
-#: app/models/users.py:466
+#: app/models/users.py:469
 msgid "Editor Misc"
 msgstr "தலைமை ஆசிரியர்"
 
-#: app/models/users.py:479
+#: app/models/users.py:482
 msgid "This is a Package Edit notification."
 msgstr "இது ஒரு தொகுப்பு திருத்து அறிவிப்பு."
 
-#: app/models/users.py:481
+#: app/models/users.py:484
 msgid "This is a Package Approval notification."
 msgstr "இது ஒரு தொகுப்பு ஒப்புதல் அறிவிப்பு."
 
-#: app/models/users.py:483
+#: app/models/users.py:486
 msgid "This is a New Thread notification."
 msgstr "இது ஒரு புதிய நூல் அறிவிப்பு."
 
-#: app/models/users.py:485
+#: app/models/users.py:488
 msgid "This is a New Review notification."
 msgstr "இது ஒரு புதிய மறுஆய்வு அறிவிப்பு."
 
-#: app/models/users.py:487
+#: app/models/users.py:490
 msgid "This is a Thread Reply notification."
 msgstr "இது ஒரு நூல் பதில் அறிவிப்பு."
 
-#: app/models/users.py:489
+#: app/models/users.py:492
 msgid "This is a Bot notification."
 msgstr "இது ஒரு போட் அறிவிப்பு."
 
-#: app/models/users.py:491
+#: app/models/users.py:494
 msgid "This is a Maintainer change notification."
 msgstr "இது ஒரு பராமரிப்பு மாற்ற அறிவிப்பு."
 
-#: app/models/users.py:493
+#: app/models/users.py:496
 msgid "This is an Editor Alert notification."
 msgstr "இது ஒரு ஆசிரியர் எச்சரிக்கை அறிவிப்பு."
 
-#: app/models/users.py:495
+#: app/models/users.py:498
 msgid "This is an Editor Misc notification."
 msgstr "இது ஒரு ஆசிரியர் அறிவிப்பு."
 
-#: app/models/users.py:497
+#: app/models/users.py:500
 msgid "This is an Other notification."
 msgstr "இது வேறு அறிவிப்பு."
 
-#: app/models/users.py:504
+#: app/models/users.py:507
 msgid "When another user edits your packages, releases, etc."
 msgstr "மற்றொரு பயனர் உங்கள் தொகுப்புகள், வெளியீடுகள் போன்றவற்றைத் திருத்தும்போது."
 
-#: app/models/users.py:506
+#: app/models/users.py:509
 msgid "Notifications from editors related to the package approval process."
 msgstr "தொகுப்பு ஒப்புதல் செயல்முறை தொடர்பான ஆசிரியர்களிடமிருந்து அறிவிப்புகள்."
 
-#: app/models/users.py:508
+#: app/models/users.py:511
 msgid "When a thread is created on your package."
 msgstr "உங்கள் தொகுப்பில் ஒரு நூல் உருவாக்கப்படும் போது."
 
-#: app/models/users.py:510
+#: app/models/users.py:513
 msgid "When a user posts a review on your package."
 msgstr "ஒரு பயனர் உங்கள் தொகுப்பில் மதிப்பாய்வை இடுகையிடும்போது."
 
-#: app/models/users.py:512
+#: app/models/users.py:515
 msgid "When someone replies to a thread you're watching."
 msgstr "நீங்கள் பார்க்கும் ஒரு நூலுக்கு யாராவது பதிலளிக்கும்போது."
 
-#: app/models/users.py:514
+#: app/models/users.py:517
 msgid "From a bot - for example, update notifications."
 msgstr "ஒரு போட் - எடுத்துக்காட்டாக, அறிவிப்புகளைப் புதுப்பிக்கவும்."
 
-#: app/models/users.py:516
+#: app/models/users.py:519
 msgid "When your package's maintainers change."
 msgstr "உங்கள் தொகுப்பின் பராமரிப்பாளர்கள் மாறும்போது."
 
-#: app/models/users.py:518
+#: app/models/users.py:521
 msgid "For editors: Important alerts."
 msgstr "ஆசிரியர்களுக்கு: முக்கியமான விழிப்பூட்டல்கள்."
 
-#: app/models/users.py:520
+#: app/models/users.py:523
 msgid "For editors: Minor notifications, including new threads."
 msgstr "ஆசிரியர்களுக்கு: புதிய நூல்கள் உட்பட சிறிய அறிவிப்புகள்."
 
-#: app/models/users.py:522
+#: app/models/users.py:525
 msgid "Minor notifications not important enough for a dedicated category."
 msgstr "ஒரு பிரத்யேக வகைக்கு சிறிய அறிவிப்புகள் முக்கியமல்ல."
 
@@ -2732,8 +2771,8 @@ msgstr ""
 msgid "Policy and Guidance"
 msgstr "கொள்கை மற்றும் வழிகாட்டுதல்"
 
-#: app/templates/base.html:264 app/templates/donate/index.html:46
-#: app/templates/donate/index.html:70 app/templates/users/profile.html:104
+#: app/templates/base.html:264 app/templates/donate/index.html:47
+#: app/templates/donate/index.html:71 app/templates/users/profile.html:104
 msgid "Donate"
 msgstr "நன்கொடை"
 
@@ -2870,6 +2909,10 @@ msgstr "%(author)s காரணமாக ஏற்படுகிறது."
 #: app/templates/admin/audit_view.html:20
 msgid "Caused by a deleted user."
 msgstr "நீக்கப்பட்ட பயனரால் ஏற்படுகிறது."
+
+#: app/templates/admin/list.html:16
+msgid "User list"
+msgstr ""
 
 #: app/templates/admin/send_bulk_email.html:4
 msgid "Send bulk email"
@@ -3126,20 +3169,20 @@ msgstr ""
 "உங்களுக்கு பிடித்த மோடர்கள், கலைஞர்கள் மற்றும் விளையாட்டு உருவாக்குநர்களை"
 " ஆதரிக்க நன்கொடைகள் ஒரு சிறந்த வழியாகும்."
 
-#: app/templates/donate/index.html:37
+#: app/templates/donate/index.html:38
 #, python-format
 msgid "by %(author)s"
 msgstr "மூலம் %(author)s"
 
-#: app/templates/donate/index.html:42 app/templates/translate/index.html:38
+#: app/templates/donate/index.html:43 app/templates/translate/index.html:38
 msgid "View package"
 msgstr "தொகுப்பைக் காண்க"
 
-#: app/templates/donate/index.html:62
+#: app/templates/donate/index.html:63
 msgid "Support ContentDB"
 msgstr "உள்ளடக்கத்தை ஆதரிக்கவும்"
 
-#: app/templates/donate/index.html:64
+#: app/templates/donate/index.html:65
 msgid ""
 "You can donate to rubenwardy to cover ContentDB's costs and support "
 "future development."
@@ -3147,7 +3190,7 @@ msgstr ""
 "உள்ளடக்க டி.பியின் செலவுகளை ஈடுகட்டவும், எதிர்கால வளர்ச்சியை ஆதரிக்கவும் "
 "நீங்கள் ரூபன்வார்டிக்கு நன்கொடை அளிக்கலாம்."
 
-#: app/templates/donate/index.html:67
+#: app/templates/donate/index.html:68
 msgid ""
 "For more information about the cost of ContentDB and what rubenwardy "
 "does, see his donation page:"
@@ -3155,11 +3198,11 @@ msgstr ""
 "உள்ளடக்கத்தின் விலை மற்றும் ரூபன்வார்டி என்ன செய்கிறது என்பது பற்றிய "
 "கூடுதல் தகவலுக்கு, அவரது நன்கொடை பக்கத்தைப் பார்க்கவும்:"
 
-#: app/templates/donate/index.html:73
+#: app/templates/donate/index.html:74
 msgid "Based on your reviews / favorites"
 msgstr "உங்கள் மதிப்புரைகள் / பிடித்தவைகளின் அடிப்படையில்"
 
-#: app/templates/donate/index.html:78
+#: app/templates/donate/index.html:79
 msgid ""
 "No reviewed packages accepting donations. Consider reviewing your "
 "favourite packages"
@@ -3167,17 +3210,17 @@ msgstr ""
 "மதிப்பாய்வு செய்யப்பட்ட தொகுப்புகள் நன்கொடைகளை ஏற்றுக்கொள்ளவில்லை. "
 "உங்களுக்கு பிடித்த தொகுப்புகளை மதிப்பாய்வு செய்வதைக் கவனியுங்கள்"
 
-#: app/templates/donate/index.html:82
+#: app/templates/donate/index.html:83
 msgid "Sign in to see recommendations based on the packages you've reviewed"
 msgstr ""
 "நீங்கள் மதிப்பாய்வு செய்த தொகுப்புகளின் அடிப்படையில் பரிந்துரைகளைக் காண "
 "உள்நுழைக"
 
-#: app/templates/donate/index.html:89
+#: app/templates/donate/index.html:90
 msgid "Top packages"
 msgstr "சிறந்த தொகுப்புகள்"
 
-#: app/templates/donate/index.html:93
+#: app/templates/donate/index.html:94
 #, python-format
 msgid "%(count)d packages are looking for donations"
 msgstr "%(count)d தொகுப்புகள் நன்கொடைகளைத் தேடுகின்றன"
@@ -3330,37 +3373,33 @@ msgstr "பரிந்துரைகளைக் காண தட்டச்�
 msgid "State"
 msgstr "மாநிலம்"
 
-#: app/templates/macros/package_approval.html:36
+#: app/templates/macros/package_approval.html:35
 msgid "Please wait for the release to be approved."
 msgstr "வெளியீடு அங்கீகரிக்கப்படும் வரை காத்திருங்கள்."
 
-#: app/templates/macros/package_approval.html:38
-msgid "You can now approve this package if you're ready."
-msgstr "நீங்கள் தயாராக இருந்தால் இப்போது இந்த தொகுப்பை அங்கீகரிக்கலாம்."
-
-#: app/templates/macros/package_approval.html:40
+#: app/templates/macros/package_approval.html:37
 msgid "Please wait for the package to be approved."
 msgstr "தொகுப்பு அங்கீகரிக்கப்படும் வரை காத்திருங்கள்."
 
-#: app/templates/macros/package_approval.html:44
+#: app/templates/macros/package_approval.html:41
 msgid "You can now submit this package for approval if you're ready."
 msgstr ""
 "நீங்கள் தயாராக இருந்தால் இப்போது இந்த தொகுப்பை ஒப்புதலுக்காக "
 "சமர்ப்பிக்கலாம்."
 
-#: app/templates/macros/package_approval.html:46
+#: app/templates/macros/package_approval.html:43
 msgid "This package can be submitted for approval when ready."
 msgstr "இந்த தொகுப்பை தயாராக இருக்கும்போது ஒப்புதலுக்காக சமர்ப்பிக்க முடியும்."
 
-#: app/templates/macros/package_approval.html:49
+#: app/templates/macros/package_approval.html:46
 msgid "You need to fix the above errors before you can submit for review"
 msgstr "மதிப்பாய்வுக்கு சமர்ப்பிப்பதற்கு முன் மேலே உள்ள பிழைகளை சரிசெய்ய வேண்டும்"
 
-#: app/templates/macros/package_approval.html:59
+#: app/templates/macros/package_approval.html:61
 msgid "Package approval thread"
 msgstr "தொகுப்பு ஒப்புதல் நூல்"
 
-#: app/templates/macros/package_approval.html:60
+#: app/templates/macros/package_approval.html:62
 msgid ""
 "You can open a thread if you have a question for the approver or package "
 "author."
@@ -3395,17 +3434,7 @@ msgstr "உருவாக்கப்பட்டது %(date)s"
 msgid "Edit / Approve"
 msgstr "திருத்து / ஒப்புதல்"
 
-#: app/templates/macros/releases.html:103
-#: app/templates/packages/release_edit.html:39
-#: app/templates/packages/release_view.html:41
-msgid "Importing..."
-msgstr "இறக்குமதி ..."
-
-#: app/templates/macros/releases.html:106
-msgid "Waiting for approval."
-msgstr "ஒப்புதலுக்காக காத்திருக்கிறது."
-
-#: app/templates/macros/releases.html:113
+#: app/templates/macros/releases.html:115
 msgid "No releases available."
 msgstr "வெளியீடுகள் எதுவும் கிடைக்கவில்லை."
 
@@ -4298,15 +4327,15 @@ msgstr "மனிதனால் படிக்கக்கூடிய பெ�
 msgid "Commit Hash"
 msgstr "கமிட் ஆச்"
 
+#: app/templates/packages/release_edit.html:39
+#: app/templates/packages/release_view.html:41
+msgid "Importing..."
+msgstr "இறக்குமதி ..."
+
 #: app/templates/packages/release_edit.html:40
 #: app/templates/packages/release_view.html:42
 msgid "view task"
 msgstr "பணியைக் காண்க"
-
-#: app/templates/packages/release_edit.html:50
-#: app/templates/packages/screenshot_edit.html:20
-msgid "Approved"
-msgstr "அங்கீகரிக்கப்பட்டது"
 
 #: app/templates/packages/release_edit.html:54
 msgid "Supported Luanti versions"
@@ -5096,10 +5125,6 @@ msgstr "மேலும்"
 msgid "See audit log"
 msgstr "தணிக்கை பதிவைக் காண்க"
 
-#: app/templates/report/list.html:4 app/templates/todo/editor.html:9
-msgid "Reports"
-msgstr ""
-
 #: app/templates/report/report.html:19
 msgid ""
 "Due to spam, we no longer accept reports from anonymous users on this "
@@ -5303,6 +5328,10 @@ msgstr ""
 #: app/templates/todo/editor.html:4 app/templates/todo/todo_base.html:17
 msgid "Editor Work Queue"
 msgstr "ஆசிரியர் பணி வரிசை"
+
+#: app/templates/todo/editor.html:9
+msgid "Reports"
+msgstr ""
 
 #: app/templates/todo/editor.html:30
 msgid "Approval Queue"
@@ -5775,7 +5804,7 @@ msgid "You can still <a href='%(url)s'>sign up without one</a>."
 msgstr "நீங்கள் இன்னும் <a href=\"%(url)s\"> ஒன்று இல்லாமல் பதிவுபெறலாம் </a>."
 
 #: app/templates/users/claim_forums.html:23
-#: app/templates/users/register.html:38
+#: app/templates/users/register.html:40
 msgid ""
 "By signing up, you agree to the <a href='/terms/' target='_blank'>Terms "
 "of Service</a> and <a href='/privacy_policy/' target='_blank'>Privacy "
@@ -6099,6 +6128,16 @@ msgstr "சுயவிவர செய்தி"
 msgid "Pretending to be another user is grounds for a permanent ban"
 msgstr "மற்றொரு பயனராக நடிப்பது நிரந்தர தடைக்கான காரணங்கள்"
 
+#: app/templates/users/profile_edit.html:72
+msgid "Website URLs will not be shown whilst you are a 'New Member'."
+msgstr ""
+
+#: app/templates/users/profile_edit.html:73
+msgid ""
+"To become a full member, create a review, comment, or package and wait 7 "
+"days."
+msgstr ""
+
 #: app/templates/users/register.html:17
 msgid ""
 "Only alphanumeric characters, periods, underscores, and minuses are "
@@ -6369,4 +6408,25 @@ msgstr ""
 
 #~ msgid "I agree to the "
 #~ msgstr "நான் ஒப்புக்கொள்கிறேன் "
+
+#~ msgid "Release is still importing, or has an error."
+#~ msgstr "வெளியீடு இன்னும் இறக்குமதி செய்கிறது, அல்லது பிழை உள்ளது."
+
+#~ msgid "Please wait for the license to be added to CDB."
+#~ msgstr "சி.டி.பியில் உரிமம் சேர்க்கப்படும் வரை காத்திருக்கவும்."
+
+#~ msgid ""
+#~ "Warning: Forum topic not found. The "
+#~ "topic may have been created since "
+#~ "the last forum crawl."
+#~ msgstr ""
+#~ "எச்சரிக்கை: மன்ற தலைப்பு காணப்படவில்லை. கடைசி"
+#~ " மன்றம் வலம் வந்ததிலிருந்து தலைப்பு "
+#~ "உருவாக்கப்பட்டிருக்கலாம்."
+
+#~ msgid "You can now approve this package if you're ready."
+#~ msgstr "நீங்கள் தயாராக இருந்தால் இப்போது இந்த தொகுப்பை அங்கீகரிக்கலாம்."
+
+#~ msgid "Waiting for approval."
+#~ msgstr "ஒப்புதலுக்காக காத்திருக்கிறது."
 

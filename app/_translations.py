@@ -106,6 +106,10 @@ pgettext("tags", "Entries to the 2023 Minetest Game Jam ")
 pgettext("tags", "Jam / Game 2024")
 # NOTE: tags: description for jam_game_2024
 pgettext("tags", "Entries to the 2024 Luanti Game Jam")
+# NOTE: tags: title for jam_game_2025
+pgettext("tags", "Jam / Game 2025")
+# NOTE: tags: description for jam_game_2025
+pgettext("tags", "Entries to the 2025 Luanti Game Jam")
 # NOTE: tags: title for jam_weekly_2021
 pgettext("tags", "Jam / Weekly Challenges 2021")
 # NOTE: tags: description for jam_weekly_2021

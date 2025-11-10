@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-23 10:00+0100\n"
+"POT-Creation-Date: 2025-11-10 19:55+0000\n"
 "PO-Revision-Date: 2025-07-21 01:32+0000\n"
 "Last-Translator: Killercat103 <killercat103@densphere.com>\n"
 "Language: kmr\n"
@@ -352,14 +352,26 @@ msgctxt "tags"
 msgid "Entries to the 2024 Luanti Game Jam"
 msgstr ""
 
-#. NOTE: tags: title for jam_weekly_2021
+#. NOTE: tags: title for jam_game_2025
 #: app/_translations.py:110
+msgctxt "tags"
+msgid "Jam / Game 2025"
+msgstr ""
+
+#. NOTE: tags: description for jam_game_2025
+#: app/_translations.py:112
+msgctxt "tags"
+msgid "Entries to the 2025 Luanti Game Jam"
+msgstr ""
+
+#. NOTE: tags: title for jam_weekly_2021
+#: app/_translations.py:114
 msgctxt "tags"
 msgid "Jam / Weekly Challenges 2021"
 msgstr ""
 
 #. NOTE: tags: description for jam_weekly_2021
-#: app/_translations.py:112
+#: app/_translations.py:116
 msgctxt "tags"
 msgid ""
 "For mods created for the Discord \"Weekly Challenges\" modding event in "
@@ -367,103 +379,103 @@ msgid ""
 msgstr ""
 
 #. NOTE: tags: title for less_than_px
-#: app/_translations.py:114
+#: app/_translations.py:118
 msgctxt "tags"
 msgid "<16px"
 msgstr ""
 
 #. NOTE: tags: description for less_than_px
-#: app/_translations.py:116
+#: app/_translations.py:120
 msgctxt "tags"
 msgid "For less than 16px texture packs "
 msgstr ""
 
 #. NOTE: tags: title for library
-#: app/_translations.py:118
+#: app/_translations.py:122
 msgctxt "tags"
 msgid "API / Library"
 msgstr ""
 
 #. NOTE: tags: description for library
-#: app/_translations.py:120
+#: app/_translations.py:124
 msgctxt "tags"
 msgid "Primarily adds an API for other mods to use"
 msgstr ""
 
 #. NOTE: tags: title for magic
-#: app/_translations.py:122
+#: app/_translations.py:126
 msgctxt "tags"
 msgid "Magic / Enchanting"
 msgstr ""
 
 #. NOTE: tags: title for mapgen
-#: app/_translations.py:124
+#: app/_translations.py:128
 msgctxt "tags"
 msgid "Mapgen / Biomes / Decoration"
 msgstr ""
 
 #. NOTE: tags: description for mapgen
-#: app/_translations.py:126
+#: app/_translations.py:130
 msgctxt "tags"
 msgid "New mapgen or changes mapgen"
 msgstr ""
 
 #. NOTE: tags: title for mini-game
-#: app/_translations.py:128
+#: app/_translations.py:132
 msgctxt "tags"
 msgid "Mini-game"
 msgstr ""
 
 #. NOTE: tags: description for mini-game
-#: app/_translations.py:130
+#: app/_translations.py:134
 msgctxt "tags"
 msgid "Adds a mini-game to be played within Luanti"
 msgstr ""
 
 #. NOTE: tags: title for mobs
-#: app/_translations.py:132
+#: app/_translations.py:136
 msgctxt "tags"
 msgid "Mobs / Animals / NPCs"
 msgstr ""
 
 #. NOTE: tags: description for mobs
-#: app/_translations.py:134
+#: app/_translations.py:138
 msgctxt "tags"
 msgid "Adds mobs, animals, and non-player characters"
 msgstr ""
 
 #. NOTE: tags: title for mtg
-#: app/_translations.py:136
+#: app/_translations.py:140
 msgctxt "tags"
 msgid "Minetest Game improved"
 msgstr ""
 
 #. NOTE: tags: description for mtg
-#: app/_translations.py:138
+#: app/_translations.py:142
 msgctxt "tags"
 msgid "Forks of Minetest Game"
 msgstr ""
 
 #. NOTE: tags: title for multiplayer
-#: app/_translations.py:140
+#: app/_translations.py:144
 msgctxt "tags"
 msgid "Multiplayer-focused"
 msgstr ""
 
 #. NOTE: tags: description for multiplayer
-#: app/_translations.py:142
+#: app/_translations.py:146
 msgctxt "tags"
 msgid "Can/should only be used in multiplayer"
 msgstr ""
 
 #. NOTE: tags: title for oneofakind__original
-#: app/_translations.py:144
+#: app/_translations.py:148
 msgctxt "tags"
 msgid "One-of-a-kind / Original"
 msgstr ""
 
 #. NOTE: tags: description for oneofakind__original
-#: app/_translations.py:146
+#: app/_translations.py:150
 msgctxt "tags"
 msgid ""
 "For games and such that are of their own kind, distinct and original in "
@@ -471,25 +483,25 @@ msgid ""
 msgstr ""
 
 #. NOTE: tags: title for plants_and_farming
-#: app/_translations.py:148
+#: app/_translations.py:152
 msgctxt "tags"
 msgid "Plants and Farming"
 msgstr ""
 
 #. NOTE: tags: description for plants_and_farming
-#: app/_translations.py:150
+#: app/_translations.py:154
 msgctxt "tags"
 msgid "Adds new plants or other farmable resources."
 msgstr ""
 
 #. NOTE: tags: title for player_effects
-#: app/_translations.py:152
+#: app/_translations.py:156
 msgctxt "tags"
 msgid "Player Effects / Power Ups"
 msgstr ""
 
 #. NOTE: tags: description for player_effects
-#: app/_translations.py:154
+#: app/_translations.py:158
 msgctxt "tags"
 msgid ""
 "For content that changes player effects, including physics, for example: "
@@ -497,25 +509,25 @@ msgid ""
 msgstr ""
 
 #. NOTE: tags: title for puzzle
-#: app/_translations.py:156
+#: app/_translations.py:160
 msgctxt "tags"
 msgid "Puzzle"
 msgstr ""
 
 #. NOTE: tags: description for puzzle
-#: app/_translations.py:158
+#: app/_translations.py:162
 msgctxt "tags"
 msgid "Focus on puzzle solving instead of combat"
 msgstr ""
 
 #. NOTE: tags: title for pve
-#: app/_translations.py:160
+#: app/_translations.py:164
 msgctxt "tags"
 msgid "Player vs Environment (PvE)"
 msgstr ""
 
 #. NOTE: tags: description for pve
-#: app/_translations.py:162
+#: app/_translations.py:166
 msgctxt "tags"
 msgid ""
 "For content designed for one or more players that focus on combat against"
@@ -523,61 +535,61 @@ msgid ""
 msgstr ""
 
 #. NOTE: tags: title for pvp
-#: app/_translations.py:164
+#: app/_translations.py:168
 msgctxt "tags"
 msgid "Player vs Player (PvP)"
 msgstr ""
 
 #. NOTE: tags: description for pvp
-#: app/_translations.py:166
+#: app/_translations.py:170
 msgctxt "tags"
 msgid "Designed to be played competitively against other players"
 msgstr ""
 
 #. NOTE: tags: title for seasonal
-#: app/_translations.py:168
+#: app/_translations.py:172
 msgctxt "tags"
 msgid "Seasonal"
 msgstr ""
 
 #. NOTE: tags: description for seasonal
-#: app/_translations.py:170
+#: app/_translations.py:174
 msgctxt "tags"
 msgid "For content generally themed around a certain season or holiday"
 msgstr ""
 
 #. NOTE: tags: title for server_tools
-#: app/_translations.py:172
+#: app/_translations.py:176
 msgctxt "tags"
 msgid "Server Moderation and Tools"
 msgstr ""
 
 #. NOTE: tags: description for server_tools
-#: app/_translations.py:174
+#: app/_translations.py:178
 msgctxt "tags"
 msgid "Helps with server maintenance and moderation"
 msgstr ""
 
 #. NOTE: tags: title for shooter
-#: app/_translations.py:176
+#: app/_translations.py:180
 msgctxt "tags"
 msgid "Shooter"
 msgstr ""
 
 #. NOTE: tags: description for shooter
-#: app/_translations.py:178
+#: app/_translations.py:182
 msgctxt "tags"
 msgid "First person shooters (FPS) and more"
 msgstr ""
 
 #. NOTE: tags: title for simulation
-#: app/_translations.py:180
+#: app/_translations.py:184
 msgctxt "tags"
 msgid "Sims"
 msgstr ""
 
 #. NOTE: tags: description for simulation
-#: app/_translations.py:182
+#: app/_translations.py:186
 msgctxt "tags"
 msgid ""
 "Mods and games that aim to simulate real life activity. Similar to "
@@ -585,25 +597,25 @@ msgid ""
 msgstr ""
 
 #. NOTE: tags: title for singleplayer
-#: app/_translations.py:184
+#: app/_translations.py:188
 msgctxt "tags"
 msgid "Singleplayer-focused"
 msgstr ""
 
 #. NOTE: tags: description for singleplayer
-#: app/_translations.py:186
+#: app/_translations.py:190
 msgctxt "tags"
 msgid "Content that can be played alone"
 msgstr ""
 
 #. NOTE: tags: title for skins
-#: app/_translations.py:188
+#: app/_translations.py:192
 msgctxt "tags"
 msgid "Player customization / Skins"
 msgstr ""
 
 #. NOTE: tags: description for skins
-#: app/_translations.py:190
+#: app/_translations.py:194
 msgctxt "tags"
 msgid ""
 "Allows the player to customize their character by changing the texture or"
@@ -611,43 +623,43 @@ msgid ""
 msgstr ""
 
 #. NOTE: tags: title for sound_music
-#: app/_translations.py:192
+#: app/_translations.py:196
 msgctxt "tags"
 msgid "Sounds / Music"
 msgstr ""
 
 #. NOTE: tags: description for sound_music
-#: app/_translations.py:194
+#: app/_translations.py:198
 msgctxt "tags"
 msgid "Focuses on or adds new sounds or musical things"
 msgstr ""
 
 #. NOTE: tags: title for sports
-#: app/_translations.py:196
+#: app/_translations.py:200
 msgctxt "tags"
 msgid "Sports"
 msgstr ""
 
 #. NOTE: tags: title for storage
-#: app/_translations.py:198
+#: app/_translations.py:202
 msgctxt "tags"
 msgid "Storage"
 msgstr ""
 
 #. NOTE: tags: description for storage
-#: app/_translations.py:200
+#: app/_translations.py:204
 msgctxt "tags"
 msgid "Adds or improves item storage mechanics"
 msgstr ""
 
 #. NOTE: tags: title for strategy_rts
-#: app/_translations.py:202
+#: app/_translations.py:206
 msgctxt "tags"
 msgid "Strategy / RTS"
 msgstr ""
 
 #. NOTE: tags: description for strategy_rts
-#: app/_translations.py:204
+#: app/_translations.py:208
 msgctxt "tags"
 msgid ""
 "Games and mods with a heavy strategy component, whether real-time or "
@@ -655,13 +667,13 @@ msgid ""
 msgstr ""
 
 #. NOTE: tags: title for survival
-#: app/_translations.py:206
+#: app/_translations.py:210
 msgctxt "tags"
 msgid "Survival"
 msgstr ""
 
 #. NOTE: tags: description for survival
-#: app/_translations.py:208
+#: app/_translations.py:212
 msgctxt "tags"
 msgid ""
 "Written specifically for survival gameplay with a focus on game-balance, "
@@ -669,37 +681,37 @@ msgid ""
 msgstr ""
 
 #. NOTE: tags: title for technology
-#: app/_translations.py:210
+#: app/_translations.py:214
 msgctxt "tags"
 msgid "Machines / Electronics"
 msgstr ""
 
 #. NOTE: tags: description for technology
-#: app/_translations.py:212
+#: app/_translations.py:216
 msgctxt "tags"
 msgid "Adds machines useful in automation, tubes, or power."
 msgstr ""
 
 #. NOTE: tags: title for tools
-#: app/_translations.py:214
+#: app/_translations.py:218
 msgctxt "tags"
 msgid "Tools / Weapons / Armor"
 msgstr ""
 
 #. NOTE: tags: description for tools
-#: app/_translations.py:216
+#: app/_translations.py:220
 msgctxt "tags"
 msgid "Adds or changes tools, weapons, and armor"
 msgstr ""
 
 #. NOTE: tags: title for transport
-#: app/_translations.py:218
+#: app/_translations.py:222
 msgctxt "tags"
 msgid "Transport"
 msgstr ""
 
 #. NOTE: tags: description for transport
-#: app/_translations.py:220
+#: app/_translations.py:224
 msgctxt "tags"
 msgid ""
 "Adds or changes transportation methods. Includes teleportation, vehicles,"
@@ -707,97 +719,97 @@ msgid ""
 msgstr ""
 
 #. NOTE: tags: title for world_tools
-#: app/_translations.py:222
+#: app/_translations.py:226
 msgctxt "tags"
 msgid "World Maintenance and Tools"
 msgstr ""
 
 #. NOTE: tags: description for world_tools
-#: app/_translations.py:224
+#: app/_translations.py:228
 msgctxt "tags"
 msgid "Tools to manage the world"
 msgstr ""
 
 #. NOTE: content_warnings: title for alcohol_tobacco
-#: app/_translations.py:226
+#: app/_translations.py:230
 msgctxt "content_warnings"
 msgid "Alcohol / Tobacco"
 msgstr ""
 
 #. NOTE: content_warnings: description for alcohol_tobacco
-#: app/_translations.py:228
+#: app/_translations.py:232
 msgctxt "content_warnings"
 msgid "Contains alcohol and/or tobacco"
 msgstr ""
 
 #. NOTE: content_warnings: title for bad_language
-#: app/_translations.py:230
+#: app/_translations.py:234
 msgctxt "content_warnings"
 msgid "Bad Language"
 msgstr ""
 
 #. NOTE: content_warnings: description for bad_language
-#: app/_translations.py:232
+#: app/_translations.py:236
 msgctxt "content_warnings"
 msgid "Contains swearing"
 msgstr ""
 
 #. NOTE: content_warnings: title for drugs
-#: app/_translations.py:234
+#: app/_translations.py:238
 msgctxt "content_warnings"
 msgid "Drugs"
 msgstr ""
 
 #. NOTE: content_warnings: description for drugs
-#: app/_translations.py:236
+#: app/_translations.py:240
 msgctxt "content_warnings"
 msgid "Contains recreational drugs other than alcohol or tobacco"
 msgstr ""
 
 #. NOTE: content_warnings: title for gambling
-#: app/_translations.py:238
+#: app/_translations.py:242
 msgctxt "content_warnings"
 msgid "Gambling"
 msgstr ""
 
 #. NOTE: content_warnings: description for gambling
-#: app/_translations.py:240
+#: app/_translations.py:244
 msgctxt "content_warnings"
 msgid "Games of chance, gambling games, etc"
 msgstr ""
 
 #. NOTE: content_warnings: title for gore
-#: app/_translations.py:242
+#: app/_translations.py:246
 msgctxt "content_warnings"
 msgid "Gore"
 msgstr ""
 
 #. NOTE: content_warnings: description for gore
-#: app/_translations.py:244
+#: app/_translations.py:248
 msgctxt "content_warnings"
 msgid "Blood, etc"
 msgstr ""
 
 #. NOTE: content_warnings: title for horror
-#: app/_translations.py:246
+#: app/_translations.py:250
 msgctxt "content_warnings"
 msgid "Fear / Horror"
 msgstr ""
 
 #. NOTE: content_warnings: description for horror
-#: app/_translations.py:248
+#: app/_translations.py:252
 msgctxt "content_warnings"
 msgid "Shocking and scary content. May scare young children"
 msgstr ""
 
 #. NOTE: content_warnings: title for violence
-#: app/_translations.py:250
+#: app/_translations.py:254
 msgctxt "content_warnings"
 msgid "Violence"
 msgstr ""
 
 #. NOTE: content_warnings: description for violence
-#: app/_translations.py:252
+#: app/_translations.py:256
 msgctxt "content_warnings"
 msgid "Non-cartoon violence. May be towards fantasy or  human-like characters"
 msgstr ""
@@ -874,8 +886,8 @@ msgstr ""
 #: app/blueprints/packages/screenshots.py:37
 #: app/blueprints/packages/screenshots.py:43
 #: app/blueprints/packages/screenshots.py:48
-#: app/blueprints/report/__init__.py:173 app/blueprints/users/account.py:192
-#: app/blueprints/users/account.py:200 app/blueprints/users/settings.py:79
+#: app/blueprints/report/__init__.py:173 app/blueprints/users/account.py:195
+#: app/blueprints/users/account.py:203 app/blueprints/users/settings.py:79
 #: app/blueprints/users/settings.py:148 app/blueprints/users/settings.py:330
 #: app/templates/users/modtools.html:111
 msgid "Save"
@@ -1030,7 +1042,7 @@ msgstr ""
 msgid "Remove / Unpublish"
 msgstr ""
 
-#: app/blueprints/packages/__init__.py:80 app/logic/package_approval.py:125
+#: app/blueprints/packages/__init__.py:80 app/logic/package_approval.py:135
 #: app/templates/packages/game_support.html:4 app/utils/luanti_hypertext.py:275
 #: app/utils/luanti_hypertext.py:277
 msgid "Supported Games"
@@ -1368,13 +1380,13 @@ msgstr ""
 
 #: app/blueprints/packages/releases.py:62
 #: app/blueprints/packages/releases.py:77
-#: app/blueprints/packages/releases.py:218
+#: app/blueprints/packages/releases.py:219
 msgid "Minimum Luanti Version"
 msgstr ""
 
 #: app/blueprints/packages/releases.py:64
 #: app/blueprints/packages/releases.py:79
-#: app/blueprints/packages/releases.py:221
+#: app/blueprints/packages/releases.py:222
 msgid "Maximum Luanti Version"
 msgstr ""
 
@@ -1395,69 +1407,70 @@ msgstr ""
 msgid "Upload .zip file"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:217
+#: app/blueprints/packages/releases.py:218
 msgid "Set Min"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:220
+#: app/blueprints/packages/releases.py:221
 msgid "Set Max"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:223
+#: app/blueprints/packages/releases.py:224
 msgid "Only change values previously set as none"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:224
+#: app/blueprints/packages/releases.py:225
 msgid "Update"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:276
+#: app/blueprints/packages/releases.py:277
 #: app/templates/packages/update_config.html:25
 msgid "Trigger"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:277
+#: app/blueprints/packages/releases.py:278
 msgid "New Commit"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:278 app/templates/admin/tags/list.html:8
+#: app/blueprints/packages/releases.py:279 app/templates/admin/tags/list.html:8
 msgid "New Tag"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:280
+#: app/blueprints/packages/releases.py:281
 msgid "Branch name"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:281
+#: app/blueprints/packages/releases.py:282
 #: app/templates/packages/update_config.html:38
 msgid "Action"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:282
+#: app/blueprints/packages/releases.py:283
 msgid "Send notification and mark as outdated"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:282 app/logic/package_approval.py:107
+#: app/blueprints/packages/releases.py:283 app/logic/package_approval.py:105
+#: app/logic/package_approval.py:118
 msgid "Create release"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:284
+#: app/blueprints/packages/releases.py:285
 msgid "Save Settings"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:285
+#: app/blueprints/packages/releases.py:286
 msgid "Disable Automation"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:324
+#: app/blueprints/packages/releases.py:325
 msgid "Please add a Git repository URL in order to set up automatic releases"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:340
+#: app/blueprints/packages/releases.py:341
 msgid "Deleted update configuration"
 msgstr ""
 
-#: app/blueprints/packages/releases.py:348
+#: app/blueprints/packages/releases.py:349
 msgid "Now, please create an initial release"
 msgstr ""
 
@@ -1580,7 +1593,7 @@ msgid "Please wait before commenting again"
 msgstr ""
 
 #: app/blueprints/threads/__init__.py:287
-#: app/templates/macros/package_approval.html:56
+#: app/templates/macros/package_approval.html:58
 msgid "Open Thread"
 msgstr ""
 
@@ -1616,7 +1629,7 @@ msgid "Remember me"
 msgstr ""
 
 #: app/blueprints/users/account.py:39 app/templates/base.html:190
-#: app/templates/donate/index.html:85 app/templates/users/login.html:4
+#: app/templates/donate/index.html:86 app/templates/users/login.html:4
 msgid "Sign in"
 msgstr ""
 
@@ -1651,8 +1664,8 @@ msgid ""
 " (-), and periods (.) allowed"
 msgstr ""
 
-#: app/blueprints/users/account.py:104 app/blueprints/users/account.py:152
-#: app/blueprints/users/account.py:188 app/blueprints/users/account.py:337
+#: app/blueprints/users/account.py:104 app/blueprints/users/account.py:155
+#: app/blueprints/users/account.py:191 app/blueprints/users/account.py:340
 #: app/blueprints/users/settings.py:147
 msgid "Email"
 msgstr ""
@@ -1661,102 +1674,102 @@ msgstr ""
 msgid "What is the result of the above calculation?"
 msgstr ""
 
-#: app/blueprints/users/account.py:107 app/templates/users/login.html:34
+#: app/blueprints/users/account.py:108 app/templates/users/login.html:34
 #: app/templates/users/register.html:4
 msgid "Register"
 msgstr ""
 
-#: app/blueprints/users/account.py:112
+#: app/blueprints/users/account.py:113
 msgid "Incorrect captcha answer"
 msgstr ""
 
-#: app/blueprints/users/account.py:153
+#: app/blueprints/users/account.py:156
 msgid "Reset Password"
 msgstr ""
 
-#: app/blueprints/users/account.py:179
+#: app/blueprints/users/account.py:182
 msgid "Unable to find account"
 msgstr ""
 
-#: app/blueprints/users/account.py:189 app/blueprints/users/account.py:197
+#: app/blueprints/users/account.py:192 app/blueprints/users/account.py:200
 msgid "New password"
 msgstr ""
 
-#: app/blueprints/users/account.py:190 app/blueprints/users/account.py:198
+#: app/blueprints/users/account.py:193 app/blueprints/users/account.py:201
 msgid "Verify password"
 msgstr ""
 
-#: app/blueprints/users/account.py:191 app/blueprints/users/account.py:199
+#: app/blueprints/users/account.py:194 app/blueprints/users/account.py:202
 msgid "Passwords must match"
 msgstr ""
 
-#: app/blueprints/users/account.py:196
+#: app/blueprints/users/account.py:199
 msgid "Old password"
 msgstr ""
 
-#: app/blueprints/users/account.py:207
+#: app/blueprints/users/account.py:210
 msgid "Passwords do not match"
 msgstr ""
 
-#: app/blueprints/users/account.py:218 app/blueprints/users/settings.py:175
+#: app/blueprints/users/account.py:221 app/blueprints/users/settings.py:175
 #: app/logic/users.py:51
 msgid "That email address has been unsubscribed/blacklisted, and cannot be used"
 msgstr ""
 
-#: app/blueprints/users/account.py:223 app/logic/users.py:46
+#: app/blueprints/users/account.py:226 app/logic/users.py:46
 msgid "Email already in use"
 msgstr ""
 
-#: app/blueprints/users/account.py:224 app/logic/users.py:47
+#: app/blueprints/users/account.py:227 app/logic/users.py:47
 #, python-format
 msgid ""
 "We were unable to create the account as the email is already in use by "
 "%(display_name)s. Try a different email address."
 msgstr ""
 
-#: app/blueprints/users/account.py:238 app/blueprints/users/account.py:242
+#: app/blueprints/users/account.py:241 app/blueprints/users/account.py:245
 msgid "Your password has been changed successfully."
 msgstr ""
 
-#: app/blueprints/users/account.py:257
+#: app/blueprints/users/account.py:260
 msgid "Old password is incorrect"
 msgstr ""
 
-#: app/blueprints/users/account.py:285
+#: app/blueprints/users/account.py:288
 msgid "Unknown verification token!"
 msgstr ""
 
-#: app/blueprints/users/account.py:289
+#: app/blueprints/users/account.py:292
 msgid "Token has expired"
 msgstr ""
 
-#: app/blueprints/users/account.py:303
+#: app/blueprints/users/account.py:306
 msgid "Another user is already using that email"
 msgstr ""
 
-#: app/blueprints/users/account.py:306
+#: app/blueprints/users/account.py:309
 msgid "Confirmed email change"
 msgstr ""
 
-#: app/blueprints/users/account.py:311
+#: app/blueprints/users/account.py:314
 msgid "Email address changed"
 msgstr ""
 
-#: app/blueprints/users/account.py:312
+#: app/blueprints/users/account.py:315
 msgid ""
 "Your email address has changed. If you didn't request this, please "
 "contact an administrator."
 msgstr ""
 
-#: app/blueprints/users/account.py:330
+#: app/blueprints/users/account.py:333
 msgid "You may now log in"
 msgstr ""
 
-#: app/blueprints/users/account.py:338
+#: app/blueprints/users/account.py:341
 msgid "Send"
 msgstr ""
 
-#: app/blueprints/users/account.py:369
+#: app/blueprints/users/account.py:372
 msgid ""
 "That email is now blacklisted. Please contact an admin if you wish to "
 "undo this."
@@ -1968,56 +1981,60 @@ msgstr ""
 msgid "File filter"
 msgstr ""
 
-#: app/logic/package_approval.py:98
+#: app/logic/package_approval.py:99
 msgid "A package already exists with this name. Please see Policy and Guidance 3"
 msgstr ""
 
-#: app/logic/package_approval.py:102
+#: app/logic/package_approval.py:104
 msgid "You need to create a release before this package can be approved."
 msgstr ""
 
-#: app/logic/package_approval.py:104
-msgid "Release is still importing, or has an error."
-msgstr ""
-
-#: app/logic/package_approval.py:108
+#: app/logic/package_approval.py:106
 msgid "Set up releases"
 msgstr ""
 
-#: app/logic/package_approval.py:114
+#: app/logic/package_approval.py:109
+msgid "Release is still importing. Please wait and reload the page."
+msgstr ""
+
+#: app/logic/package_approval.py:110
+msgid "View task"
+msgstr ""
+
+#: app/logic/package_approval.py:116
+msgid "Release validation failed. Please fix any issues and create a new release"
+msgstr ""
+
+#: app/logic/package_approval.py:117
+msgid "View error"
+msgstr ""
+
+#: app/logic/package_approval.py:124
 msgid "You need to add at least one screenshot."
 msgstr ""
 
-#: app/logic/package_approval.py:120
+#: app/logic/package_approval.py:130
 #, python-format
 msgid ""
 "The following hard dependencies need to be added to ContentDB first: "
 "%(deps)s"
 msgstr ""
 
-#: app/logic/package_approval.py:124
+#: app/logic/package_approval.py:134
 msgid ""
 "What games does your package support? Please specify on the supported "
 "games page"
 msgstr ""
 
-#: app/logic/package_approval.py:128
-msgid "Please wait for the license to be added to CDB."
-msgstr ""
-
-#: app/logic/package_approval.py:136
+#: app/logic/package_approval.py:143
 msgid "Please make sure that this package has the right to the names it uses."
 msgstr ""
 
-#: app/logic/package_approval.py:140
-#, python-format
-msgid "Please make sure that this package has the right to the names %(names)s"
-msgstr ""
-
-#: app/logic/package_approval.py:142 app/templates/index.html:113
-#: app/templates/index.html:124 app/templates/index.html:135
-#: app/templates/index.html:146 app/templates/index.html:157
-#: app/templates/index.html:183 app/templates/packages/game_hub.html:42
+#: app/logic/package_approval.py:144 app/logic/package_approval.py:150
+#: app/templates/index.html:113 app/templates/index.html:124
+#: app/templates/index.html:135 app/templates/index.html:146
+#: app/templates/index.html:157 app/templates/index.html:183
+#: app/templates/packages/game_hub.html:42
 #: app/templates/packages/game_hub.html:49
 #: app/templates/packages/game_hub.html:56
 #: app/templates/packages/game_hub.html:63
@@ -2025,18 +2042,17 @@ msgstr ""
 msgid "See more"
 msgstr ""
 
-#: app/logic/package_approval.py:147
+#: app/logic/package_approval.py:148
+#, python-format
+msgid "Please make sure that this package has the right to the names %(names)s"
+msgstr ""
+
+#: app/logic/package_approval.py:155
 msgid "Error: Another package already uses this forum topic!"
 msgstr ""
 
-#: app/logic/package_approval.py:152
+#: app/logic/package_approval.py:160
 msgid "Error: Forum topic author doesn't match package author."
-msgstr ""
-
-#: app/logic/package_approval.py:154
-msgid ""
-"Warning: Forum topic not found. The topic may have been created since the"
-" last forum crawl."
 msgstr ""
 
 #: app/logic/packages.py:114
@@ -2118,32 +2134,36 @@ msgstr ""
 msgid "Unable to create an account as the username was used in the past."
 msgstr ""
 
-#: app/models/__init__.py:147
+#: app/models/__init__.py:148
 msgid "Account deletion"
 msgstr ""
 
-#: app/models/__init__.py:149
+#: app/models/__init__.py:150
 msgid "Copyright infringement / DMCA"
 msgstr ""
 
-#: app/models/__init__.py:151
+#: app/models/__init__.py:152
 msgid "User behaviour, bullying, or abuse"
 msgstr ""
 
-#: app/models/__init__.py:153
+#: app/models/__init__.py:154
+msgid "Spam"
+msgstr ""
+
+#: app/models/__init__.py:156
 msgid "Illegal or harmful content"
 msgstr ""
 
-#: app/models/__init__.py:155
+#: app/models/__init__.py:158
 msgid "Outdated/invalid review"
 msgstr ""
 
-#: app/models/__init__.py:157
+#: app/models/__init__.py:160
 msgid "Appeal"
 msgstr ""
 
 #. NOTE: OTHER notification type
-#: app/models/__init__.py:159 app/models/users.py:469
+#: app/models/__init__.py:162 app/models/users.py:472
 msgid "Other"
 msgstr ""
 
@@ -2296,17 +2316,38 @@ msgstr ""
 msgid "Delete"
 msgstr "Jê bibe"
 
-#: app/models/packages.py:1389
+#: app/models/packages.py:1104
+msgid "Processing"
+msgstr ""
+
+#: app/models/packages.py:1106 app/templates/packages/release_edit.html:50
+#: app/templates/packages/screenshot_edit.html:20
+msgid "Approved"
+msgstr ""
+
+#: app/models/packages.py:1108
+msgid "Failed"
+msgstr ""
+
+#: app/models/packages.py:1110
+msgid "Waiting approval"
+msgstr ""
+
+#: app/models/packages.py:1112
+msgid "Archived"
+msgstr ""
+
+#: app/models/packages.py:1440
 #, python-format
 msgid "New commit %(hash)s found on the Git repo."
 msgstr ""
 
-#: app/models/packages.py:1393
+#: app/models/packages.py:1444
 #, python-format
 msgid "The last release was commit %(hash)s"
 msgstr ""
 
-#: app/models/packages.py:1399
+#: app/models/packages.py:1450
 #, python-format
 msgid "New tag %(tag_name)s found on the Git repo."
 msgstr ""
@@ -2340,7 +2381,7 @@ msgid "Editor"
 msgstr ""
 
 #. NOTE: BOT notification type
-#: app/models/users.py:60 app/models/users.py:457
+#: app/models/users.py:60 app/models/users.py:460
 msgid "Bot"
 msgstr ""
 
@@ -2353,123 +2394,123 @@ msgid "Admin"
 msgstr ""
 
 #. NOTE: PACKAGE_EDIT notification type
-#: app/models/users.py:442
+#: app/models/users.py:445
 msgid "Package Edit"
 msgstr ""
 
 #. NOTE: PACKAGE_APPROVAL notification type
-#: app/models/users.py:445
+#: app/models/users.py:448
 msgid "Package Approval"
 msgstr ""
 
 #. NOTE: NEW_THREAD notification type
-#: app/models/users.py:448 app/templates/threads/list.html:12
+#: app/models/users.py:451 app/templates/threads/list.html:12
 #: app/templates/threads/new.html:4
 msgid "New Thread"
 msgstr ""
 
 #. NOTE: NEW_REVIEW notification type
-#: app/models/users.py:451
+#: app/models/users.py:454
 msgid "New Review"
 msgstr ""
 
 #. NOTE: THREAD_REPLY notification type
-#: app/models/users.py:454
+#: app/models/users.py:457
 msgid "Thread Reply"
 msgstr ""
 
 #. NOTE: MAINTAINER notification type
-#: app/models/users.py:460 app/templates/macros/threads.html:27
+#: app/models/users.py:463 app/templates/macros/threads.html:27
 msgid "Maintainer"
 msgstr ""
 
 #. NOTE: EDITOR_ALERT notification type
-#: app/models/users.py:463
+#: app/models/users.py:466
 msgid "Editor Alert"
 msgstr ""
 
 #. NOTE: EDITOR_MISC notification type
-#: app/models/users.py:466
+#: app/models/users.py:469
 msgid "Editor Misc"
 msgstr ""
 
-#: app/models/users.py:479
+#: app/models/users.py:482
 msgid "This is a Package Edit notification."
 msgstr ""
 
-#: app/models/users.py:481
+#: app/models/users.py:484
 msgid "This is a Package Approval notification."
 msgstr ""
 
-#: app/models/users.py:483
+#: app/models/users.py:486
 msgid "This is a New Thread notification."
 msgstr ""
 
-#: app/models/users.py:485
+#: app/models/users.py:488
 msgid "This is a New Review notification."
 msgstr ""
 
-#: app/models/users.py:487
+#: app/models/users.py:490
 msgid "This is a Thread Reply notification."
 msgstr ""
 
-#: app/models/users.py:489
+#: app/models/users.py:492
 msgid "This is a Bot notification."
 msgstr ""
 
-#: app/models/users.py:491
+#: app/models/users.py:494
 msgid "This is a Maintainer change notification."
 msgstr ""
 
-#: app/models/users.py:493
+#: app/models/users.py:496
 msgid "This is an Editor Alert notification."
 msgstr ""
 
-#: app/models/users.py:495
+#: app/models/users.py:498
 msgid "This is an Editor Misc notification."
 msgstr ""
 
-#: app/models/users.py:497
+#: app/models/users.py:500
 msgid "This is an Other notification."
 msgstr ""
 
-#: app/models/users.py:504
+#: app/models/users.py:507
 msgid "When another user edits your packages, releases, etc."
 msgstr ""
 
-#: app/models/users.py:506
+#: app/models/users.py:509
 msgid "Notifications from editors related to the package approval process."
 msgstr ""
 
-#: app/models/users.py:508
+#: app/models/users.py:511
 msgid "When a thread is created on your package."
 msgstr ""
 
-#: app/models/users.py:510
+#: app/models/users.py:513
 msgid "When a user posts a review on your package."
 msgstr ""
 
-#: app/models/users.py:512
+#: app/models/users.py:515
 msgid "When someone replies to a thread you're watching."
 msgstr ""
 
-#: app/models/users.py:514
+#: app/models/users.py:517
 msgid "From a bot - for example, update notifications."
 msgstr ""
 
-#: app/models/users.py:516
+#: app/models/users.py:519
 msgid "When your package's maintainers change."
 msgstr ""
 
-#: app/models/users.py:518
+#: app/models/users.py:521
 msgid "For editors: Important alerts."
 msgstr ""
 
-#: app/models/users.py:520
+#: app/models/users.py:523
 msgid "For editors: Minor notifications, including new threads."
 msgstr ""
 
-#: app/models/users.py:522
+#: app/models/users.py:525
 msgid "Minor notifications not important enough for a dedicated category."
 msgstr ""
 
@@ -2601,8 +2642,8 @@ msgstr ""
 msgid "Policy and Guidance"
 msgstr ""
 
-#: app/templates/base.html:264 app/templates/donate/index.html:46
-#: app/templates/donate/index.html:70 app/templates/users/profile.html:104
+#: app/templates/base.html:264 app/templates/donate/index.html:47
+#: app/templates/donate/index.html:71 app/templates/users/profile.html:104
 msgid "Donate"
 msgstr ""
 
@@ -2736,6 +2777,10 @@ msgstr ""
 
 #: app/templates/admin/audit_view.html:20
 msgid "Caused by a deleted user."
+msgstr ""
+
+#: app/templates/admin/list.html:16
+msgid "User list"
 msgstr ""
 
 #: app/templates/admin/send_bulk_email.html:4
@@ -2978,50 +3023,50 @@ msgid ""
 "game developers."
 msgstr ""
 
-#: app/templates/donate/index.html:37
+#: app/templates/donate/index.html:38
 #, python-format
 msgid "by %(author)s"
 msgstr ""
 
-#: app/templates/donate/index.html:42 app/templates/translate/index.html:38
+#: app/templates/donate/index.html:43 app/templates/translate/index.html:38
 msgid "View package"
 msgstr ""
 
-#: app/templates/donate/index.html:62
+#: app/templates/donate/index.html:63
 msgid "Support ContentDB"
 msgstr ""
 
-#: app/templates/donate/index.html:64
+#: app/templates/donate/index.html:65
 msgid ""
 "You can donate to rubenwardy to cover ContentDB's costs and support "
 "future development."
 msgstr ""
 
-#: app/templates/donate/index.html:67
+#: app/templates/donate/index.html:68
 msgid ""
 "For more information about the cost of ContentDB and what rubenwardy "
 "does, see his donation page:"
 msgstr ""
 
-#: app/templates/donate/index.html:73
+#: app/templates/donate/index.html:74
 msgid "Based on your reviews / favorites"
 msgstr ""
 
-#: app/templates/donate/index.html:78
+#: app/templates/donate/index.html:79
 msgid ""
 "No reviewed packages accepting donations. Consider reviewing your "
 "favourite packages"
 msgstr ""
 
-#: app/templates/donate/index.html:82
+#: app/templates/donate/index.html:83
 msgid "Sign in to see recommendations based on the packages you've reviewed"
 msgstr ""
 
-#: app/templates/donate/index.html:89
+#: app/templates/donate/index.html:90
 msgid "Top packages"
 msgstr ""
 
-#: app/templates/donate/index.html:93
+#: app/templates/donate/index.html:94
 #, python-format
 msgid "%(count)d packages are looking for donations"
 msgstr ""
@@ -3159,35 +3204,31 @@ msgstr ""
 msgid "State"
 msgstr ""
 
-#: app/templates/macros/package_approval.html:36
+#: app/templates/macros/package_approval.html:35
 msgid "Please wait for the release to be approved."
 msgstr ""
 
-#: app/templates/macros/package_approval.html:38
-msgid "You can now approve this package if you're ready."
-msgstr ""
-
-#: app/templates/macros/package_approval.html:40
+#: app/templates/macros/package_approval.html:37
 msgid "Please wait for the package to be approved."
 msgstr ""
 
-#: app/templates/macros/package_approval.html:44
+#: app/templates/macros/package_approval.html:41
 msgid "You can now submit this package for approval if you're ready."
 msgstr ""
 
-#: app/templates/macros/package_approval.html:46
+#: app/templates/macros/package_approval.html:43
 msgid "This package can be submitted for approval when ready."
 msgstr ""
 
-#: app/templates/macros/package_approval.html:49
+#: app/templates/macros/package_approval.html:46
 msgid "You need to fix the above errors before you can submit for review"
 msgstr ""
 
-#: app/templates/macros/package_approval.html:59
+#: app/templates/macros/package_approval.html:61
 msgid "Package approval thread"
 msgstr ""
 
-#: app/templates/macros/package_approval.html:60
+#: app/templates/macros/package_approval.html:62
 msgid ""
 "You can open a thread if you have a question for the approver or package "
 "author."
@@ -3220,17 +3261,7 @@ msgstr ""
 msgid "Edit / Approve"
 msgstr ""
 
-#: app/templates/macros/releases.html:103
-#: app/templates/packages/release_edit.html:39
-#: app/templates/packages/release_view.html:41
-msgid "Importing..."
-msgstr ""
-
-#: app/templates/macros/releases.html:106
-msgid "Waiting for approval."
-msgstr ""
-
-#: app/templates/macros/releases.html:113
+#: app/templates/macros/releases.html:115
 msgid "No releases available."
 msgstr ""
 
@@ -4041,14 +4072,14 @@ msgstr ""
 msgid "Commit Hash"
 msgstr ""
 
+#: app/templates/packages/release_edit.html:39
+#: app/templates/packages/release_view.html:41
+msgid "Importing..."
+msgstr ""
+
 #: app/templates/packages/release_edit.html:40
 #: app/templates/packages/release_view.html:42
 msgid "view task"
-msgstr ""
-
-#: app/templates/packages/release_edit.html:50
-#: app/templates/packages/screenshot_edit.html:20
-msgid "Approved"
 msgstr ""
 
 #: app/templates/packages/release_edit.html:54
@@ -4763,10 +4794,6 @@ msgstr ""
 msgid "See audit log"
 msgstr ""
 
-#: app/templates/report/list.html:4 app/templates/todo/editor.html:9
-msgid "Reports"
-msgstr ""
-
 #: app/templates/report/report.html:19
 msgid ""
 "Due to spam, we no longer accept reports from anonymous users on this "
@@ -4957,6 +4984,10 @@ msgstr ""
 
 #: app/templates/todo/editor.html:4 app/templates/todo/todo_base.html:17
 msgid "Editor Work Queue"
+msgstr ""
+
+#: app/templates/todo/editor.html:9
+msgid "Reports"
 msgstr ""
 
 #: app/templates/todo/editor.html:30
@@ -5390,7 +5421,7 @@ msgid "You can still <a href='%(url)s'>sign up without one</a>."
 msgstr ""
 
 #: app/templates/users/claim_forums.html:23
-#: app/templates/users/register.html:38
+#: app/templates/users/register.html:40
 msgid ""
 "By signing up, you agree to the <a href='/terms/' target='_blank'>Terms "
 "of Service</a> and <a href='/privacy_policy/' target='_blank'>Privacy "
@@ -5698,6 +5729,16 @@ msgstr ""
 msgid "Pretending to be another user is grounds for a permanent ban"
 msgstr ""
 
+#: app/templates/users/profile_edit.html:72
+msgid "Website URLs will not be shown whilst you are a 'New Member'."
+msgstr ""
+
+#: app/templates/users/profile_edit.html:73
+msgid ""
+"To become a full member, create a review, comment, or package and wait 7 "
+"days."
+msgstr ""
+
 #: app/templates/users/register.html:17
 msgid ""
 "Only alphanumeric characters, periods, underscores, and minuses are "
@@ -5926,5 +5967,23 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid "I agree to the "
+#~ msgstr ""
+
+#~ msgid "Release is still importing, or has an error."
+#~ msgstr ""
+
+#~ msgid "Please wait for the license to be added to CDB."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Warning: Forum topic not found. The "
+#~ "topic may have been created since "
+#~ "the last forum crawl."
+#~ msgstr ""
+
+#~ msgid "You can now approve this package if you're ready."
+#~ msgstr ""
+
+#~ msgid "Waiting for approval."
 #~ msgstr ""
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-23 10:00+0100\n"
+"POT-Creation-Date: 2025-11-10 19:55+0000\n"
 "PO-Revision-Date: 2025-04-14 05:11+0000\n"
 "Last-Translator: Matyáš Pilz <matys.pilz@gmail.com>\n"
 "Language: cs\n"
@@ -369,14 +369,26 @@ msgctxt "tags"
 msgid "Entries to the 2024 Luanti Game Jam"
 msgstr "Účastní se soutěže o Luanti hru roku 2024"
 
-#. NOTE: tags: title for jam_weekly_2021
+#. NOTE: tags: title for jam_game_2025
 #: app/_translations.py:110
+msgctxt "tags"
+msgid "Jam / Game 2025"
+msgstr ""
+
+#. NOTE: tags: description for jam_game_2025
+#: app/_translations.py:112
+msgctxt "tags"
+msgid "Entries to the 2025 Luanti Game Jam"
+msgstr ""
+
+#. NOTE: tags: title for jam_weekly_2021
+#: app/_translations.py:114
 msgctxt "tags"
 msgid "Jam / Weekly Challenges 2021"
 msgstr "Jam / týdenní soutěže v roce 2021"
 
 #. NOTE: tags: description for jam_weekly_2021
-#: app/_translations.py:112
+#: app/_translations.py:116
 msgctxt "tags"
 msgid ""
 "For mods created for the Discord \"Weekly Challenges\" modding event in "
@@ -386,103 +398,103 @@ msgstr ""
 "2021"
 
 #. NOTE: tags: title for less_than_px
-#: app/_translations.py:114
+#: app/_translations.py:118
 msgctxt "tags"
 msgid "<16px"
 msgstr "Méně než 16 pixelů"
 
 #. NOTE: tags: description for less_than_px
-#: app/_translations.py:116
+#: app/_translations.py:120
 msgctxt "tags"
 msgid "For less than 16px texture packs "
 msgstr ""
 
 #. NOTE: tags: title for library
-#: app/_translations.py:118
+#: app/_translations.py:122
 msgctxt "tags"
 msgid "API / Library"
 msgstr "API / knihovna"
 
 #. NOTE: tags: description for library
-#: app/_translations.py:120
+#: app/_translations.py:124
 msgctxt "tags"
 msgid "Primarily adds an API for other mods to use"
 msgstr "Přidává především API, které používají další mody"
 
 #. NOTE: tags: title for magic
-#: app/_translations.py:122
+#: app/_translations.py:126
 msgctxt "tags"
 msgid "Magic / Enchanting"
 msgstr "Čarování a enchanting"
 
 #. NOTE: tags: title for mapgen
-#: app/_translations.py:124
+#: app/_translations.py:128
 msgctxt "tags"
 msgid "Mapgen / Biomes / Decoration"
 msgstr "Generátor světa, biomy či dekorativní bloky"
 
 #. NOTE: tags: description for mapgen
-#: app/_translations.py:126
+#: app/_translations.py:130
 msgctxt "tags"
 msgid "New mapgen or changes mapgen"
 msgstr "Nový generátor světa či úprava geenrátora světa"
 
 #. NOTE: tags: title for mini-game
-#: app/_translations.py:128
+#: app/_translations.py:132
 msgctxt "tags"
 msgid "Mini-game"
 msgstr "Minihra"
 
 #. NOTE: tags: description for mini-game
-#: app/_translations.py:130
+#: app/_translations.py:134
 msgctxt "tags"
 msgid "Adds a mini-game to be played within Luanti"
 msgstr "Přidává minihru hratelnou přes Luanti"
 
 #. NOTE: tags: title for mobs
-#: app/_translations.py:132
+#: app/_translations.py:136
 msgctxt "tags"
 msgid "Mobs / Animals / NPCs"
 msgstr "Mobové, zvířata a postavy (NPC)"
 
 #. NOTE: tags: description for mobs
-#: app/_translations.py:134
+#: app/_translations.py:138
 msgctxt "tags"
 msgid "Adds mobs, animals, and non-player characters"
 msgstr "Přidává moby, zvířata a postavy (NPC)"
 
 #. NOTE: tags: title for mtg
-#: app/_translations.py:136
+#: app/_translations.py:140
 msgctxt "tags"
 msgid "Minetest Game improved"
 msgstr "Minetest hra vylepšena"
 
 #. NOTE: tags: description for mtg
-#: app/_translations.py:138
+#: app/_translations.py:142
 msgctxt "tags"
 msgid "Forks of Minetest Game"
 msgstr "Varianty hry Minetest Game (původní Minetest hry)"
 
 #. NOTE: tags: title for multiplayer
-#: app/_translations.py:140
+#: app/_translations.py:144
 msgctxt "tags"
 msgid "Multiplayer-focused"
 msgstr "Zaměřeno na hru více hráčů"
 
 #. NOTE: tags: description for multiplayer
-#: app/_translations.py:142
+#: app/_translations.py:146
 msgctxt "tags"
 msgid "Can/should only be used in multiplayer"
 msgstr "Může být využitou pouze ve hře více hráčů"
 
 #. NOTE: tags: title for oneofakind__original
-#: app/_translations.py:144
+#: app/_translations.py:148
 msgctxt "tags"
 msgid "One-of-a-kind / Original"
 msgstr "Jediný svého druhu / jedinečný"
 
 #. NOTE: tags: description for oneofakind__original
-#: app/_translations.py:146
+#: app/_translations.py:150
 msgctxt "tags"
 msgid ""
 "For games and such that are of their own kind, distinct and original in "
@@ -492,25 +504,25 @@ msgstr ""
 "vlastní samostatné kategorie."
 
 #. NOTE: tags: title for plants_and_farming
-#: app/_translations.py:148
+#: app/_translations.py:152
 msgctxt "tags"
 msgid "Plants and Farming"
 msgstr "Rostliny a farmaření"
 
 #. NOTE: tags: description for plants_and_farming
-#: app/_translations.py:150
+#: app/_translations.py:154
 msgctxt "tags"
 msgid "Adds new plants or other farmable resources."
 msgstr "Přidává nové rostliny či zemědělské suroviny."
 
 #. NOTE: tags: title for player_effects
-#: app/_translations.py:152
+#: app/_translations.py:156
 msgctxt "tags"
 msgid "Player Effects / Power Ups"
 msgstr "Efekty hráče (zvýšení výkonnosti)"
 
 #. NOTE: tags: description for player_effects
-#: app/_translations.py:154
+#: app/_translations.py:158
 msgctxt "tags"
 msgid ""
 "For content that changes player effects, including physics, for example: "
@@ -520,25 +532,25 @@ msgstr ""
 "rychlost, výška výskoku či gravitace."
 
 #. NOTE: tags: title for puzzle
-#: app/_translations.py:156
+#: app/_translations.py:160
 msgctxt "tags"
 msgid "Puzzle"
 msgstr "Puzzle, skládačka"
 
 #. NOTE: tags: description for puzzle
-#: app/_translations.py:158
+#: app/_translations.py:162
 msgctxt "tags"
 msgid "Focus on puzzle solving instead of combat"
 msgstr "Zaměřeno na hledání řešení hádanek či rébusů"
 
 #. NOTE: tags: title for pve
-#: app/_translations.py:160
+#: app/_translations.py:164
 msgctxt "tags"
 msgid "Player vs Environment (PvE)"
 msgstr "Hráč proti prostředí (PvE)"
 
 #. NOTE: tags: description for pve
-#: app/_translations.py:162
+#: app/_translations.py:166
 msgctxt "tags"
 msgid ""
 "For content designed for one or more players that focus on combat against"
@@ -548,25 +560,25 @@ msgstr ""
 "nástrahy či souboj s nepřátelskými stvořeními a postavami."
 
 #. NOTE: tags: title for pvp
-#: app/_translations.py:164
+#: app/_translations.py:168
 msgctxt "tags"
 msgid "Player vs Player (PvP)"
 msgstr "Hráč proti hráči (PvP)"
 
 #. NOTE: tags: description for pvp
-#: app/_translations.py:166
+#: app/_translations.py:170
 msgctxt "tags"
 msgid "Designed to be played competitively against other players"
 msgstr "Navrženo pro soutěžení hráče proti ostatním hráčům"
 
 #. NOTE: tags: title for seasonal
-#: app/_translations.py:168
+#: app/_translations.py:172
 msgctxt "tags"
 msgid "Seasonal"
 msgstr "Sezónní"
 
 #. NOTE: tags: description for seasonal
-#: app/_translations.py:170
+#: app/_translations.py:174
 msgctxt "tags"
 msgid "For content generally themed around a certain season or holiday"
 msgstr ""
@@ -574,37 +586,37 @@ msgstr ""
 "velikonoce"
 
 #. NOTE: tags: title for server_tools
-#: app/_translations.py:172
+#: app/_translations.py:176
 msgctxt "tags"
 msgid "Server Moderation and Tools"
 msgstr "Nástroje na správu a moderování serveru"
 
 #. NOTE: tags: description for server_tools
-#: app/_translations.py:174
+#: app/_translations.py:178
 msgctxt "tags"
 msgid "Helps with server maintenance and moderation"
 msgstr "Pomáhá server udržovat a moderovat"
 
 #. NOTE: tags: title for shooter
-#: app/_translations.py:176
+#: app/_translations.py:180
 msgctxt "tags"
 msgid "Shooter"
 msgstr "Střelec"
 
 #. NOTE: tags: description for shooter
-#: app/_translations.py:178
+#: app/_translations.py:182
 msgctxt "tags"
 msgid "First person shooters (FPS) and more"
 msgstr "Střelba z první osoby (FPS) a další"
 
 #. NOTE: tags: title for simulation
-#: app/_translations.py:180
+#: app/_translations.py:184
 msgctxt "tags"
 msgid "Sims"
 msgstr "Simulace"
 
 #. NOTE: tags: description for simulation
-#: app/_translations.py:182
+#: app/_translations.py:186
 msgctxt "tags"
 msgid ""
 "Mods and games that aim to simulate real life activity. Similar to "
@@ -614,25 +626,25 @@ msgstr ""
 " The Sims, OpenTTD a podobně"
 
 #. NOTE: tags: title for singleplayer
-#: app/_translations.py:184
+#: app/_translations.py:188
 msgctxt "tags"
 msgid "Singleplayer-focused"
 msgstr "Zaměřeno na hru jednoho hráče"
 
 #. NOTE: tags: description for singleplayer
-#: app/_translations.py:186
+#: app/_translations.py:190
 msgctxt "tags"
 msgid "Content that can be played alone"
 msgstr "Obsah, který lze hrát sám"
 
 #. NOTE: tags: title for skins
-#: app/_translations.py:188
+#: app/_translations.py:192
 msgctxt "tags"
 msgid "Player customization / Skins"
 msgstr "Úprava vzhledu hráče (skiny)"
 
 #. NOTE: tags: description for skins
-#: app/_translations.py:190
+#: app/_translations.py:194
 msgctxt "tags"
 msgid ""
 "Allows the player to customize their character by changing the texture or"
@@ -642,43 +654,43 @@ msgstr ""
 "přidáním doplňků (batoy, čepice a podobě)."
 
 #. NOTE: tags: title for sound_music
-#: app/_translations.py:192
+#: app/_translations.py:196
 msgctxt "tags"
 msgid "Sounds / Music"
 msgstr "Zvuky a hudba"
 
 #. NOTE: tags: description for sound_music
-#: app/_translations.py:194
+#: app/_translations.py:198
 msgctxt "tags"
 msgid "Focuses on or adds new sounds or musical things"
 msgstr "Zaměřeno na přidání nových zvuků a hudebních prvků"
 
 #. NOTE: tags: title for sports
-#: app/_translations.py:196
+#: app/_translations.py:200
 msgctxt "tags"
 msgid "Sports"
 msgstr "Sporty"
 
 #. NOTE: tags: title for storage
-#: app/_translations.py:198
+#: app/_translations.py:202
 msgctxt "tags"
 msgid "Storage"
 msgstr "Zásoba"
 
 #. NOTE: tags: description for storage
-#: app/_translations.py:200
+#: app/_translations.py:204
 msgctxt "tags"
 msgid "Adds or improves item storage mechanics"
 msgstr "Přidává či vylepšuje mechaniku zásoby věcí"
 
 #. NOTE: tags: title for strategy_rts
-#: app/_translations.py:202
+#: app/_translations.py:206
 msgctxt "tags"
 msgid "Strategy / RTS"
 msgstr "Strategie"
 
 #. NOTE: tags: description for strategy_rts
-#: app/_translations.py:204
+#: app/_translations.py:208
 msgctxt "tags"
 msgid ""
 "Games and mods with a heavy strategy component, whether real-time or "
@@ -688,13 +700,13 @@ msgstr ""
 "založené na tazích"
 
 #. NOTE: tags: title for survival
-#: app/_translations.py:206
+#: app/_translations.py:210
 msgctxt "tags"
 msgid "Survival"
 msgstr "Hra o přežití"
 
 #. NOTE: tags: description for survival
-#: app/_translations.py:208
+#: app/_translations.py:212
 msgctxt "tags"
 msgid ""
 "Written specifically for survival gameplay with a focus on game-balance, "
@@ -704,37 +716,37 @@ msgstr ""
 " úrovně náročnosti či vytvořitelné a těžitelné zdroje a podobně"
 
 #. NOTE: tags: title for technology
-#: app/_translations.py:210
+#: app/_translations.py:214
 msgctxt "tags"
 msgid "Machines / Electronics"
 msgstr "Stroje a elektronika"
 
 #. NOTE: tags: description for technology
-#: app/_translations.py:212
+#: app/_translations.py:216
 msgctxt "tags"
 msgid "Adds machines useful in automation, tubes, or power."
 msgstr "Přidává stroje využitelné v automatizaci, potrubí či silné zdroje."
 
 #. NOTE: tags: title for tools
-#: app/_translations.py:214
+#: app/_translations.py:218
 msgctxt "tags"
 msgid "Tools / Weapons / Armor"
 msgstr "Nástroje, zbraně a brnění"
 
 #. NOTE: tags: description for tools
-#: app/_translations.py:216
+#: app/_translations.py:220
 msgctxt "tags"
 msgid "Adds or changes tools, weapons, and armor"
 msgstr "Přidává či upravuje nástroje, zbraně a brnění"
 
 #. NOTE: tags: title for transport
-#: app/_translations.py:218
+#: app/_translations.py:222
 msgctxt "tags"
 msgid "Transport"
 msgstr "Doprava"
 
 #. NOTE: tags: description for transport
-#: app/_translations.py:220
+#: app/_translations.py:224
 msgctxt "tags"
 msgid ""
 "Adds or changes transportation methods. Includes teleportation, vehicles,"
@@ -745,97 +757,97 @@ msgstr ""
 "tematikou"
 
 #. NOTE: tags: title for world_tools
-#: app/_translations.py:222
+#: app/_translations.py:226
 msgctxt "tags"
 msgid "World Maintenance and Tools"
 msgstr "Údržba světa a nástroje"
 
 #. NOTE: tags: description for world_tools
-#: app/_translations.py:224
+#: app/_translations.py:228
 msgctxt "tags"
 msgid "Tools to manage the world"
 msgstr "Nástroje na správu světa"
 
 #. NOTE: content_warnings: title for alcohol_tobacco
-#: app/_translations.py:226
+#: app/_translations.py:230
 msgctxt "content_warnings"
 msgid "Alcohol / Tobacco"
 msgstr "Alkohol či tabákové výrobky"
 
 #. NOTE: content_warnings: description for alcohol_tobacco
-#: app/_translations.py:228
+#: app/_translations.py:232
 msgctxt "content_warnings"
 msgid "Contains alcohol and/or tobacco"
 msgstr "Obsahuje alkohol či tabákové výrobky"
 
 #. NOTE: content_warnings: title for bad_language
-#: app/_translations.py:230
+#: app/_translations.py:234
 msgctxt "content_warnings"
 msgid "Bad Language"
 msgstr "Nadávky"
 
 #. NOTE: content_warnings: description for bad_language
-#: app/_translations.py:232
+#: app/_translations.py:236
 msgctxt "content_warnings"
 msgid "Contains swearing"
 msgstr "Obsahuje nadávky"
 
 #. NOTE: content_warnings: title for drugs
-#: app/_translations.py:234
+#: app/_translations.py:238
 msgctxt "content_warnings"
 msgid "Drugs"
 msgstr "Drogy"
 
 #. NOTE: content_warnings: description for drugs
-#: app/_translations.py:236
+#: app/_translations.py:240
 msgctxt "content_warnings"
 msgid "Contains recreational drugs other than alcohol or tobacco"
 msgstr "Zahrnuje jiné drogy než alkohol či tabák"
 
 #. NOTE: content_warnings: title for gambling
-#: app/_translations.py:238
+#: app/_translations.py:242
 msgctxt "content_warnings"
 msgid "Gambling"
 msgstr "Hazardní hry"
 
 #. NOTE: content_warnings: description for gambling
-#: app/_translations.py:240
+#: app/_translations.py:244
 msgctxt "content_warnings"
 msgid "Games of chance, gambling games, etc"
 msgstr "Sázkové a hazardní hry"
 
 #. NOTE: content_warnings: title for gore
-#: app/_translations.py:242
+#: app/_translations.py:246
 msgctxt "content_warnings"
 msgid "Gore"
 msgstr "Násilí a krev"
 
 #. NOTE: content_warnings: description for gore
-#: app/_translations.py:244
+#: app/_translations.py:248
 msgctxt "content_warnings"
 msgid "Blood, etc"
 msgstr "Krev a podobně"
 
 #. NOTE: content_warnings: title for horror
-#: app/_translations.py:246
+#: app/_translations.py:250
 msgctxt "content_warnings"
 msgid "Fear / Horror"
 msgstr "Strach / horor"
 
 #. NOTE: content_warnings: description for horror
-#: app/_translations.py:248
+#: app/_translations.py:252
 msgctxt "content_warnings"
 msgid "Shocking and scary content. May scare young children"
 msgstr "Šokující a strašný obsah. Může vyděsit mladší děti"
 
 #. NOTE: content_warnings: title for violence
-#: app/_translations.py:250
+#: app/_translations.py:254
 msgctxt "content_warnings"
 msgid "Violence"
 msgstr "Násilí"
 
 #. NOTE: content_warnings: description for violence
-#: app/_translations.py:252
+#: app/_translations.py:256
 msgctxt "content_warnings"
 msgid "Non-cartoon violence. May be towards fantasy or  human-like characters"
 msgstr ""
@@ -914,8 +926,8 @@ msgstr "Omezit na balíček"
 #: app/blueprints/packages/screenshots.py:37
 #: app/blueprints/packages/screenshots.py:43
 #: app/blueprints/packages/screenshots.py:48
-#: app/blueprints/report/__init__.py:173 app/blueprints/users/account.py:192
-#: app/blueprints/users/account.py:200 app/blueprints/users/settings.py:79
+#: app/blueprints/report/__init__.py:173 app/blueprints/users/account.py:195
+#: app/blueprints/users/account.py:203 app/blueprints/users/settings.py:79
 #: app/blueprints/users/settings.py:148 app/blueprints/users/settings.py:330
 #: app/templates/users/modtools.html:111
 msgid "Save"
@@ -1072,7 +1084,7 @@ msgstr "Sdílet a odznaky"
 msgid "Remove / Unpublish"
 msgstr "Odeber / Učiň neveřejným"
 
-#: app/blueprints/packages/__init__.py:80 app/logic/package_approval.py:125
+#: app/blueprints/packages/__init__.py:80 app/logic/package_approval.py:135
 #: app/templates/packages/game_support.html:4 app/utils/luanti_hypertext.py:275
 #: app/utils/luanti_hypertext.py:277
 msgid "Supported Games"
@@ -1418,13 +1430,13 @@ msgstr "Git reference (např.: commit hash, branch, nebo tag)"
 
 #: app/blueprints/packages/releases.py:62
 #: app/blueprints/packages/releases.py:77
-#: app/blueprints/packages/releases.py:218
+#: app/blueprints/packages/releases.py:219
 msgid "Minimum Luanti Version"
 msgstr "Minimální verze Luantiu"
 
 #: app/blueprints/packages/releases.py:64
 #: app/blueprints/packages/releases.py:79
-#: app/blueprints/packages/releases.py:221
+#: app/blueprints/packages/releases.py:222
 msgid "Maximum Luanti Version"
 msgstr "Maximální verze Luantiu"
 
@@ -1445,71 +1457,72 @@ msgstr "Importovat z Gitu"
 msgid "Upload .zip file"
 msgstr "Nahrát .zip soubor"
 
-#: app/blueprints/packages/releases.py:217
+#: app/blueprints/packages/releases.py:218
 msgid "Set Min"
 msgstr "Nastavit minimum"
 
-#: app/blueprints/packages/releases.py:220
+#: app/blueprints/packages/releases.py:221
 msgid "Set Max"
 msgstr "Nastavit maximum"
 
-#: app/blueprints/packages/releases.py:223
+#: app/blueprints/packages/releases.py:224
 msgid "Only change values previously set as none"
 msgstr "Změnit pouze hodnoty předešle nastavené na \"none\""
 
-#: app/blueprints/packages/releases.py:224
+#: app/blueprints/packages/releases.py:225
 msgid "Update"
 msgstr "Aktualizovat"
 
-#: app/blueprints/packages/releases.py:276
+#: app/blueprints/packages/releases.py:277
 #: app/templates/packages/update_config.html:25
 msgid "Trigger"
 msgstr "Spustit"
 
-#: app/blueprints/packages/releases.py:277
+#: app/blueprints/packages/releases.py:278
 msgid "New Commit"
 msgstr "Nový Commit"
 
-#: app/blueprints/packages/releases.py:278 app/templates/admin/tags/list.html:8
+#: app/blueprints/packages/releases.py:279 app/templates/admin/tags/list.html:8
 msgid "New Tag"
 msgstr "Nový štítek"
 
-#: app/blueprints/packages/releases.py:280
+#: app/blueprints/packages/releases.py:281
 msgid "Branch name"
 msgstr "Název větve"
 
-#: app/blueprints/packages/releases.py:281
+#: app/blueprints/packages/releases.py:282
 #: app/templates/packages/update_config.html:38
 msgid "Action"
 msgstr "Akce"
 
-#: app/blueprints/packages/releases.py:282
+#: app/blueprints/packages/releases.py:283
 msgid "Send notification and mark as outdated"
 msgstr "Odeslat upozornění a označit jako zastaralé"
 
-#: app/blueprints/packages/releases.py:282 app/logic/package_approval.py:107
+#: app/blueprints/packages/releases.py:283 app/logic/package_approval.py:105
+#: app/logic/package_approval.py:118
 msgid "Create release"
 msgstr "Vytvořit vydání"
 
-#: app/blueprints/packages/releases.py:284
+#: app/blueprints/packages/releases.py:285
 msgid "Save Settings"
 msgstr "Uložit nastavení"
 
-#: app/blueprints/packages/releases.py:285
+#: app/blueprints/packages/releases.py:286
 msgid "Disable Automation"
 msgstr "Deaktivovat automatizaci"
 
-#: app/blueprints/packages/releases.py:324
+#: app/blueprints/packages/releases.py:325
 msgid "Please add a Git repository URL in order to set up automatic releases"
 msgstr ""
 "Prosím zadejte URL adresu Git repozitáře pro aktivaci automatického "
 "vydávání"
 
-#: app/blueprints/packages/releases.py:340
+#: app/blueprints/packages/releases.py:341
 msgid "Deleted update configuration"
 msgstr "Smazat aktualizaci nastavení"
 
-#: app/blueprints/packages/releases.py:348
+#: app/blueprints/packages/releases.py:349
 msgid "Now, please create an initial release"
 msgstr "Nyní prosím vytvořte prvotní vydání"
 
@@ -1634,7 +1647,7 @@ msgid "Please wait before commenting again"
 msgstr "Prosím vydržte, než budete moci znovu komentovat"
 
 #: app/blueprints/threads/__init__.py:287
-#: app/templates/macros/package_approval.html:56
+#: app/templates/macros/package_approval.html:58
 msgid "Open Thread"
 msgstr "Otevřít vlákno"
 
@@ -1670,7 +1683,7 @@ msgid "Remember me"
 msgstr "Pamatovat si mě"
 
 #: app/blueprints/users/account.py:39 app/templates/base.html:190
-#: app/templates/donate/index.html:85 app/templates/users/login.html:4
+#: app/templates/donate/index.html:86 app/templates/users/login.html:4
 msgid "Sign in"
 msgstr "Přihlásit se"
 
@@ -1707,8 +1720,8 @@ msgstr ""
 "Povoleny jsou pouze písmena (A-Za-z), čísla (0-9), podtržítko (_), mínus "
 "(-), a tečka (.)"
 
-#: app/blueprints/users/account.py:104 app/blueprints/users/account.py:152
-#: app/blueprints/users/account.py:188 app/blueprints/users/account.py:337
+#: app/blueprints/users/account.py:104 app/blueprints/users/account.py:155
+#: app/blueprints/users/account.py:191 app/blueprints/users/account.py:340
 #: app/blueprints/users/settings.py:147
 msgid "Email"
 msgstr "E-mail"
@@ -1717,55 +1730,55 @@ msgstr "E-mail"
 msgid "What is the result of the above calculation?"
 msgstr "Jaký je výsledek výše uvedeného výpočtu?"
 
-#: app/blueprints/users/account.py:107 app/templates/users/login.html:34
+#: app/blueprints/users/account.py:108 app/templates/users/login.html:34
 #: app/templates/users/register.html:4
 msgid "Register"
 msgstr "Registrovat"
 
-#: app/blueprints/users/account.py:112
+#: app/blueprints/users/account.py:113
 msgid "Incorrect captcha answer"
 msgstr "Špatně zadaná captcha"
 
-#: app/blueprints/users/account.py:153
+#: app/blueprints/users/account.py:156
 msgid "Reset Password"
 msgstr "Resetovat heslo"
 
-#: app/blueprints/users/account.py:179
+#: app/blueprints/users/account.py:182
 msgid "Unable to find account"
 msgstr "Nepodařilo se najít účet"
 
-#: app/blueprints/users/account.py:189 app/blueprints/users/account.py:197
+#: app/blueprints/users/account.py:192 app/blueprints/users/account.py:200
 msgid "New password"
 msgstr "Nové heslo"
 
-#: app/blueprints/users/account.py:190 app/blueprints/users/account.py:198
+#: app/blueprints/users/account.py:193 app/blueprints/users/account.py:201
 msgid "Verify password"
 msgstr "Ověřte heslo"
 
-#: app/blueprints/users/account.py:191 app/blueprints/users/account.py:199
+#: app/blueprints/users/account.py:194 app/blueprints/users/account.py:202
 msgid "Passwords must match"
 msgstr "Hesla se musí shodovat"
 
-#: app/blueprints/users/account.py:196
+#: app/blueprints/users/account.py:199
 msgid "Old password"
 msgstr "Staré heslo"
 
-#: app/blueprints/users/account.py:207
+#: app/blueprints/users/account.py:210
 msgid "Passwords do not match"
 msgstr "Hesla se neshodují"
 
-#: app/blueprints/users/account.py:218 app/blueprints/users/settings.py:175
+#: app/blueprints/users/account.py:221 app/blueprints/users/settings.py:175
 #: app/logic/users.py:51
 msgid "That email address has been unsubscribed/blacklisted, and cannot be used"
 msgstr ""
 "Tato e-mailová adresa byla odhlášena, nebo zařazena na černou listinu a "
 "nelze ji pro to použít"
 
-#: app/blueprints/users/account.py:223 app/logic/users.py:46
+#: app/blueprints/users/account.py:226 app/logic/users.py:46
 msgid "Email already in use"
 msgstr "Tento e-mail se již používá"
 
-#: app/blueprints/users/account.py:224 app/logic/users.py:47
+#: app/blueprints/users/account.py:227 app/logic/users.py:47
 #, python-format
 msgid ""
 "We were unable to create the account as the email is already in use by "
@@ -1774,35 +1787,35 @@ msgstr ""
 "Účet se nepodařilo vytvořit, protože e-mail %(display_name)s se již "
 "používá. Zkuste jinou e-mailovou adresu."
 
-#: app/blueprints/users/account.py:238 app/blueprints/users/account.py:242
+#: app/blueprints/users/account.py:241 app/blueprints/users/account.py:245
 msgid "Your password has been changed successfully."
 msgstr "Vaše heslo bylo úspěšně změněno."
 
-#: app/blueprints/users/account.py:257
+#: app/blueprints/users/account.py:260
 msgid "Old password is incorrect"
 msgstr "Staré heslo je špatně zadané"
 
-#: app/blueprints/users/account.py:285
+#: app/blueprints/users/account.py:288
 msgid "Unknown verification token!"
 msgstr "Neznámý ověřovací token!"
 
-#: app/blueprints/users/account.py:289
+#: app/blueprints/users/account.py:292
 msgid "Token has expired"
 msgstr "Platnost tokenu vypršela"
 
-#: app/blueprints/users/account.py:303
+#: app/blueprints/users/account.py:306
 msgid "Another user is already using that email"
 msgstr "Emailová adresa je již používána jiným uživatelem"
 
-#: app/blueprints/users/account.py:306
+#: app/blueprints/users/account.py:309
 msgid "Confirmed email change"
 msgstr "Potvrzená změna emailu"
 
-#: app/blueprints/users/account.py:311
+#: app/blueprints/users/account.py:314
 msgid "Email address changed"
 msgstr "Emailová adresa byla změněna"
 
-#: app/blueprints/users/account.py:312
+#: app/blueprints/users/account.py:315
 msgid ""
 "Your email address has changed. If you didn't request this, please "
 "contact an administrator."
@@ -1810,15 +1823,15 @@ msgstr ""
 "Vaše emailová adresa byla změněna. Pokud jste změnu nepožadoval, tak "
 "prosím kontaktujte administrátora."
 
-#: app/blueprints/users/account.py:330
+#: app/blueprints/users/account.py:333
 msgid "You may now log in"
 msgstr "Nyní se můžete přihlásit"
 
-#: app/blueprints/users/account.py:338
+#: app/blueprints/users/account.py:341
 msgid "Send"
 msgstr "Odeslat"
 
-#: app/blueprints/users/account.py:369
+#: app/blueprints/users/account.py:372
 msgid ""
 "That email is now blacklisted. Please contact an admin if you wish to "
 "undo this."
@@ -2036,29 +2049,41 @@ msgstr "Nalez text (regex)"
 msgid "File filter"
 msgstr "Filtr souborů"
 
-#: app/logic/package_approval.py:98
+#: app/logic/package_approval.py:99
 msgid "A package already exists with this name. Please see Policy and Guidance 3"
 msgstr ""
 "Již existuje balíček s uvedeným jménem. Projdi si prosím Zásady a pokyny,"
 " bod 3"
 
-#: app/logic/package_approval.py:102
+#: app/logic/package_approval.py:104
 msgid "You need to create a release before this package can be approved."
 msgstr "Než bude možné tento balíček schválit, musíte vytvořit vydání."
 
-#: app/logic/package_approval.py:104
-msgid "Release is still importing, or has an error."
-msgstr "Vydání se stále importuje, nebo došlo k chybě."
-
-#: app/logic/package_approval.py:108
+#: app/logic/package_approval.py:106
 msgid "Set up releases"
 msgstr "Nastavte vydání"
 
-#: app/logic/package_approval.py:114
+#: app/logic/package_approval.py:109
+msgid "Release is still importing. Please wait and reload the page."
+msgstr ""
+
+#: app/logic/package_approval.py:110
+msgid "View task"
+msgstr ""
+
+#: app/logic/package_approval.py:116
+msgid "Release validation failed. Please fix any issues and create a new release"
+msgstr ""
+
+#: app/logic/package_approval.py:117
+msgid "View error"
+msgstr ""
+
+#: app/logic/package_approval.py:124
 msgid "You need to add at least one screenshot."
 msgstr "Je třeba přiložit alespoń jeden snímek obrazovky."
 
-#: app/logic/package_approval.py:120
+#: app/logic/package_approval.py:130
 #, python-format
 msgid ""
 "The following hard dependencies need to be added to ContentDB first: "
@@ -2067,7 +2092,7 @@ msgstr ""
 "Sledované významnější souvislosti je třeba přidat do ContentDB nejdříve: "
 "%(deps)s"
 
-#: app/logic/package_approval.py:124
+#: app/logic/package_approval.py:134
 msgid ""
 "What games does your package support? Please specify on the supported "
 "games page"
@@ -2075,23 +2100,15 @@ msgstr ""
 "Které hry tvůj balíček podporuje? Prosím, upřesni na stránce s "
 "podporovanými hrami"
 
-#: app/logic/package_approval.py:128
-msgid "Please wait for the license to be added to CDB."
-msgstr "Prosím, vyčkej na přidání licence do Content DB."
-
-#: app/logic/package_approval.py:136
+#: app/logic/package_approval.py:143
 msgid "Please make sure that this package has the right to the names it uses."
 msgstr "Ujistěte se prosím, že tento balíček používá správné názvy."
 
-#: app/logic/package_approval.py:140
-#, python-format
-msgid "Please make sure that this package has the right to the names %(names)s"
-msgstr "Ujistěte se prosím, že tento balíček má oprávnění na tyto jména %(names)s"
-
-#: app/logic/package_approval.py:142 app/templates/index.html:113
-#: app/templates/index.html:124 app/templates/index.html:135
-#: app/templates/index.html:146 app/templates/index.html:157
-#: app/templates/index.html:183 app/templates/packages/game_hub.html:42
+#: app/logic/package_approval.py:144 app/logic/package_approval.py:150
+#: app/templates/index.html:113 app/templates/index.html:124
+#: app/templates/index.html:135 app/templates/index.html:146
+#: app/templates/index.html:157 app/templates/index.html:183
+#: app/templates/packages/game_hub.html:42
 #: app/templates/packages/game_hub.html:49
 #: app/templates/packages/game_hub.html:56
 #: app/templates/packages/game_hub.html:63
@@ -2099,21 +2116,18 @@ msgstr "Ujistěte se prosím, že tento balíček má oprávnění na tyto jmén
 msgid "See more"
 msgstr "Ukázat více"
 
-#: app/logic/package_approval.py:147
+#: app/logic/package_approval.py:148
+#, python-format
+msgid "Please make sure that this package has the right to the names %(names)s"
+msgstr "Ujistěte se prosím, že tento balíček má oprávnění na tyto jména %(names)s"
+
+#: app/logic/package_approval.py:155
 msgid "Error: Another package already uses this forum topic!"
 msgstr "Chyba: Toto téma již používá jiný balíček!"
 
-#: app/logic/package_approval.py:152
+#: app/logic/package_approval.py:160
 msgid "Error: Forum topic author doesn't match package author."
 msgstr "Chyba: Autor tématu se neshoduje s autorem balíčku."
-
-#: app/logic/package_approval.py:154
-msgid ""
-"Warning: Forum topic not found. The topic may have been created since the"
-" last forum crawl."
-msgstr ""
-"Upozornění: téma nebylo na foru nalezeno. Téma mohlo být vytvořeno dříve,"
-" než se forum načetlo."
 
 #: app/logic/packages.py:114
 msgid ""
@@ -2207,32 +2221,36 @@ msgstr ""
 msgid "Unable to create an account as the username was used in the past."
 msgstr "Nelze vytvořit účet s uživatelským jménem použitým již v minulosti."
 
-#: app/models/__init__.py:147
+#: app/models/__init__.py:148
 msgid "Account deletion"
 msgstr ""
 
-#: app/models/__init__.py:149
+#: app/models/__init__.py:150
 msgid "Copyright infringement / DMCA"
 msgstr ""
 
-#: app/models/__init__.py:151
+#: app/models/__init__.py:152
 msgid "User behaviour, bullying, or abuse"
 msgstr ""
 
-#: app/models/__init__.py:153
+#: app/models/__init__.py:154
+msgid "Spam"
+msgstr ""
+
+#: app/models/__init__.py:156
 msgid "Illegal or harmful content"
 msgstr ""
 
-#: app/models/__init__.py:155
+#: app/models/__init__.py:158
 msgid "Outdated/invalid review"
 msgstr ""
 
-#: app/models/__init__.py:157
+#: app/models/__init__.py:160
 msgid "Appeal"
 msgstr ""
 
 #. NOTE: OTHER notification type
-#: app/models/__init__.py:159 app/models/users.py:469
+#: app/models/__init__.py:162 app/models/users.py:472
 msgid "Other"
 msgstr "Ostatní"
 
@@ -2389,17 +2407,38 @@ msgstr "Schválit"
 msgid "Delete"
 msgstr "Vymazat"
 
-#: app/models/packages.py:1389
+#: app/models/packages.py:1104
+msgid "Processing"
+msgstr ""
+
+#: app/models/packages.py:1106 app/templates/packages/release_edit.html:50
+#: app/templates/packages/screenshot_edit.html:20
+msgid "Approved"
+msgstr "Schváleno"
+
+#: app/models/packages.py:1108
+msgid "Failed"
+msgstr ""
+
+#: app/models/packages.py:1110
+msgid "Waiting approval"
+msgstr ""
+
+#: app/models/packages.py:1112
+msgid "Archived"
+msgstr ""
+
+#: app/models/packages.py:1440
 #, python-format
 msgid "New commit %(hash)s found on the Git repo."
 msgstr "Byl nalezen nový %(hash)s v v Git úložišti."
 
-#: app/models/packages.py:1393
+#: app/models/packages.py:1444
 #, python-format
 msgid "The last release was commit %(hash)s"
 msgstr "Poslední vydání bylo svázáno %(hash)s"
 
-#: app/models/packages.py:1399
+#: app/models/packages.py:1450
 #, python-format
 msgid "New tag %(tag_name)s found on the Git repo."
 msgstr "Nový tag %(tag_name)s byl nalezen v Git repozitáři."
@@ -2433,7 +2472,7 @@ msgid "Editor"
 msgstr "Editor"
 
 #. NOTE: BOT notification type
-#: app/models/users.py:60 app/models/users.py:457
+#: app/models/users.py:60 app/models/users.py:460
 msgid "Bot"
 msgstr "Bot"
 
@@ -2446,123 +2485,123 @@ msgid "Admin"
 msgstr "Administrátor"
 
 #. NOTE: PACKAGE_EDIT notification type
-#: app/models/users.py:442
+#: app/models/users.py:445
 msgid "Package Edit"
 msgstr "Úprava balíčku"
 
 #. NOTE: PACKAGE_APPROVAL notification type
-#: app/models/users.py:445
+#: app/models/users.py:448
 msgid "Package Approval"
 msgstr "Schválení balíčku"
 
 #. NOTE: NEW_THREAD notification type
-#: app/models/users.py:448 app/templates/threads/list.html:12
+#: app/models/users.py:451 app/templates/threads/list.html:12
 #: app/templates/threads/new.html:4
 msgid "New Thread"
 msgstr "Nové vlákno"
 
 #. NOTE: NEW_REVIEW notification type
-#: app/models/users.py:451
+#: app/models/users.py:454
 msgid "New Review"
 msgstr "Nová hodnocení"
 
 #. NOTE: THREAD_REPLY notification type
-#: app/models/users.py:454
+#: app/models/users.py:457
 msgid "Thread Reply"
 msgstr "Odpovědět na vlákno"
 
 #. NOTE: MAINTAINER notification type
-#: app/models/users.py:460 app/templates/macros/threads.html:27
+#: app/models/users.py:463 app/templates/macros/threads.html:27
 msgid "Maintainer"
 msgstr "Správce"
 
 #. NOTE: EDITOR_ALERT notification type
-#: app/models/users.py:463
+#: app/models/users.py:466
 msgid "Editor Alert"
 msgstr "Upozornění editora"
 
 #. NOTE: EDITOR_MISC notification type
-#: app/models/users.py:466
+#: app/models/users.py:469
 msgid "Editor Misc"
 msgstr "Editor ostatního"
 
-#: app/models/users.py:479
+#: app/models/users.py:482
 msgid "This is a Package Edit notification."
 msgstr "Oznámení o upravení balíčku."
 
-#: app/models/users.py:481
+#: app/models/users.py:484
 msgid "This is a Package Approval notification."
 msgstr "Oznámení o schválení balíčku."
 
-#: app/models/users.py:483
+#: app/models/users.py:486
 msgid "This is a New Thread notification."
 msgstr "Toto je upozornění na nové vlákno."
 
-#: app/models/users.py:485
+#: app/models/users.py:488
 msgid "This is a New Review notification."
 msgstr "Toto je upozornění na recenzi."
 
-#: app/models/users.py:487
+#: app/models/users.py:490
 msgid "This is a Thread Reply notification."
 msgstr "Toto je upozornění na odpověď ve vlákně."
 
-#: app/models/users.py:489
+#: app/models/users.py:492
 msgid "This is a Bot notification."
 msgstr "Toto je upozornění bota."
 
-#: app/models/users.py:491
+#: app/models/users.py:494
 msgid "This is a Maintainer change notification."
 msgstr "Toto je oznámení o správcovské změně."
 
-#: app/models/users.py:493
+#: app/models/users.py:496
 msgid "This is an Editor Alert notification."
 msgstr "Zde je správcovské upozornění."
 
-#: app/models/users.py:495
+#: app/models/users.py:498
 msgid "This is an Editor Misc notification."
 msgstr "Zde je smíšené správcovské upozornění."
 
-#: app/models/users.py:497
+#: app/models/users.py:500
 msgid "This is an Other notification."
 msgstr "Toto je ostatní upozornění."
 
-#: app/models/users.py:504
+#: app/models/users.py:507
 msgid "When another user edits your packages, releases, etc."
 msgstr "Pokud jiný uživatel upraví tvůj balíček, vydání apod."
 
-#: app/models/users.py:506
+#: app/models/users.py:509
 msgid "Notifications from editors related to the package approval process."
 msgstr "Oznámení od správců, vztahující se k procesu schvalování balíčku."
 
-#: app/models/users.py:508
+#: app/models/users.py:511
 msgid "When a thread is created on your package."
 msgstr "Když je pro tvůj balíček vytvořeno vlákno."
 
-#: app/models/users.py:510
+#: app/models/users.py:513
 msgid "When a user posts a review on your package."
 msgstr "Když uživatel pošle zpětnou vazbu k tvému balíčku."
 
-#: app/models/users.py:512
+#: app/models/users.py:515
 msgid "When someone replies to a thread you're watching."
 msgstr "Když někdo odpoví na vlákno, které sleduješ."
 
-#: app/models/users.py:514
+#: app/models/users.py:517
 msgid "From a bot - for example, update notifications."
 msgstr "Od bota - pro příklad, aktualizace upozornění."
 
-#: app/models/users.py:516
+#: app/models/users.py:519
 msgid "When your package's maintainers change."
 msgstr "Když dojde ke změně údržbáře tvého balíčku."
 
-#: app/models/users.py:518
+#: app/models/users.py:521
 msgid "For editors: Important alerts."
 msgstr "Pro editory: důležité upozornění."
 
-#: app/models/users.py:520
+#: app/models/users.py:523
 msgid "For editors: Minor notifications, including new threads."
 msgstr "Pro správce: méně důležitá oznámení, zahrnující nová vlákna."
 
-#: app/models/users.py:522
+#: app/models/users.py:525
 msgid "Minor notifications not important enough for a dedicated category."
 msgstr "Méně důležitá oznámení, nevyžadující vlastní kategorii."
 
@@ -2698,8 +2737,8 @@ msgstr ""
 msgid "Policy and Guidance"
 msgstr "Pravidla a návody"
 
-#: app/templates/base.html:264 app/templates/donate/index.html:46
-#: app/templates/donate/index.html:70 app/templates/users/profile.html:104
+#: app/templates/base.html:264 app/templates/donate/index.html:47
+#: app/templates/donate/index.html:71 app/templates/users/profile.html:104
 msgid "Donate"
 msgstr "Darovat"
 
@@ -2834,6 +2873,10 @@ msgstr "Způsobené %(author)s."
 #: app/templates/admin/audit_view.html:20
 msgid "Caused by a deleted user."
 msgstr "Učiněno smazaným uživatelem."
+
+#: app/templates/admin/list.html:16
+msgid "User list"
+msgstr ""
 
 #: app/templates/admin/send_bulk_email.html:4
 msgid "Send bulk email"
@@ -3085,20 +3128,20 @@ msgstr ""
 "Dary jsou skvělý způsob, jak podpořit své oblíbené moddery, umělce a "
 "vývojáře her."
 
-#: app/templates/donate/index.html:37
+#: app/templates/donate/index.html:38
 #, python-format
 msgid "by %(author)s"
 msgstr "od %(author)s"
 
-#: app/templates/donate/index.html:42 app/templates/translate/index.html:38
+#: app/templates/donate/index.html:43 app/templates/translate/index.html:38
 msgid "View package"
 msgstr "Prohlídnout balíček"
 
-#: app/templates/donate/index.html:62
+#: app/templates/donate/index.html:63
 msgid "Support ContentDB"
 msgstr "Podpora ContentDB"
 
-#: app/templates/donate/index.html:64
+#: app/templates/donate/index.html:65
 msgid ""
 "You can donate to rubenwardy to cover ContentDB's costs and support "
 "future development."
@@ -3106,7 +3149,7 @@ msgstr ""
 "Můžeš přispět Rubenwardymu pro pokrytí nákladu ContentDB a podporu jejího"
 " vývoje do budoucna."
 
-#: app/templates/donate/index.html:67
+#: app/templates/donate/index.html:68
 msgid ""
 "For more information about the cost of ContentDB and what rubenwardy "
 "does, see his donation page:"
@@ -3114,11 +3157,11 @@ msgstr ""
 "Pro více informací ohledně nákladů na provoz ContentDB a odvedenou práci "
 "Rubenwardyho na ní se koukni na dárcovskou stránku:"
 
-#: app/templates/donate/index.html:73
+#: app/templates/donate/index.html:74
 msgid "Based on your reviews / favorites"
 msgstr "Založeno na zpetné vazbě a oblíbenosti"
 
-#: app/templates/donate/index.html:78
+#: app/templates/donate/index.html:79
 msgid ""
 "No reviewed packages accepting donations. Consider reviewing your "
 "favourite packages"
@@ -3126,17 +3169,17 @@ msgstr ""
 "Žádný ze zkontrolovaných balíčků nepřijímající dary. Zvaž opětovné "
 "projití svých oblíbených balíčků"
 
-#: app/templates/donate/index.html:82
+#: app/templates/donate/index.html:83
 msgid "Sign in to see recommendations based on the packages you've reviewed"
 msgstr ""
 "Chcete-li zobrazit doporučení na základě balíčků, které jste hodnotili, "
 "přihlaste se"
 
-#: app/templates/donate/index.html:89
+#: app/templates/donate/index.html:90
 msgid "Top packages"
 msgstr "Nejlepší balíčky"
 
-#: app/templates/donate/index.html:93
+#: app/templates/donate/index.html:94
 #, python-format
 msgid "%(count)d packages are looking for donations"
 msgstr "%(count)d balíčků hledá dárce"
@@ -3288,35 +3331,31 @@ msgstr "Chcete-li zobrazit návrhy, začněte psát"
 msgid "State"
 msgstr "Stav"
 
-#: app/templates/macros/package_approval.html:36
+#: app/templates/macros/package_approval.html:35
 msgid "Please wait for the release to be approved."
 msgstr "Počkejte prosím na schválení vydání."
 
-#: app/templates/macros/package_approval.html:38
-msgid "You can now approve this package if you're ready."
-msgstr "Nyní můžete tento balíček schválit, pokud jste připraveni."
-
-#: app/templates/macros/package_approval.html:40
+#: app/templates/macros/package_approval.html:37
 msgid "Please wait for the package to be approved."
 msgstr "Prosím počkejte na schválení balíčku."
 
-#: app/templates/macros/package_approval.html:44
+#: app/templates/macros/package_approval.html:41
 msgid "You can now submit this package for approval if you're ready."
 msgstr "Nyní můžete tento balíček odeslat ke schválení, pokud jste připraveni."
 
-#: app/templates/macros/package_approval.html:46
+#: app/templates/macros/package_approval.html:43
 msgid "This package can be submitted for approval when ready."
 msgstr "Až bude balíček připraven, bude jej možné odeslat ke schválení."
 
-#: app/templates/macros/package_approval.html:49
+#: app/templates/macros/package_approval.html:46
 msgid "You need to fix the above errors before you can submit for review"
 msgstr "Je třeba opravit chyby výše dříve, než potvrdíš zpětnou vazbu"
 
-#: app/templates/macros/package_approval.html:59
+#: app/templates/macros/package_approval.html:61
 msgid "Package approval thread"
 msgstr "Schvalovací vlákno"
 
-#: app/templates/macros/package_approval.html:60
+#: app/templates/macros/package_approval.html:62
 msgid ""
 "You can open a thread if you have a question for the approver or package "
 "author."
@@ -3351,17 +3390,7 @@ msgstr "vytvořeno %(date)s"
 msgid "Edit / Approve"
 msgstr "Editovat / Schválit"
 
-#: app/templates/macros/releases.html:103
-#: app/templates/packages/release_edit.html:39
-#: app/templates/packages/release_view.html:41
-msgid "Importing..."
-msgstr "Importuji..."
-
-#: app/templates/macros/releases.html:106
-msgid "Waiting for approval."
-msgstr "Čeká na schválení."
-
-#: app/templates/macros/releases.html:113
+#: app/templates/macros/releases.html:115
 msgid "No releases available."
 msgstr "Nejsou k dispozici žádná vydání."
 
@@ -4239,15 +4268,15 @@ msgstr "Plný název, např. 1.0.0 - Vylepšení železnice"
 msgid "Commit Hash"
 msgstr "Předat Hash"
 
+#: app/templates/packages/release_edit.html:39
+#: app/templates/packages/release_view.html:41
+msgid "Importing..."
+msgstr "Importuji..."
+
 #: app/templates/packages/release_edit.html:40
 #: app/templates/packages/release_view.html:42
 msgid "view task"
 msgstr "zobrazit úkol"
-
-#: app/templates/packages/release_edit.html:50
-#: app/templates/packages/screenshot_edit.html:20
-msgid "Approved"
-msgstr "Schváleno"
 
 #: app/templates/packages/release_edit.html:54
 msgid "Supported Luanti versions"
@@ -5002,10 +5031,6 @@ msgstr "Více"
 msgid "See audit log"
 msgstr "Prohlédni si zápis auditu"
 
-#: app/templates/report/list.html:4 app/templates/todo/editor.html:9
-msgid "Reports"
-msgstr ""
-
 #: app/templates/report/report.html:19
 msgid ""
 "Due to spam, we no longer accept reports from anonymous users on this "
@@ -5205,6 +5230,10 @@ msgstr ""
 #: app/templates/todo/editor.html:4 app/templates/todo/todo_base.html:17
 msgid "Editor Work Queue"
 msgstr "Řada práce editora"
+
+#: app/templates/todo/editor.html:9
+msgid "Reports"
+msgstr ""
 
 #: app/templates/todo/editor.html:30
 msgid "Approval Queue"
@@ -5665,7 +5694,7 @@ msgid "You can still <a href='%(url)s'>sign up without one</a>."
 msgstr "Můžete ponechat <a href=\"%(url)s\">registrace</a>."
 
 #: app/templates/users/claim_forums.html:23
-#: app/templates/users/register.html:38
+#: app/templates/users/register.html:40
 msgid ""
 "By signing up, you agree to the <a href='/terms/' target='_blank'>Terms "
 "of Service</a> and <a href='/privacy_policy/' target='_blank'>Privacy "
@@ -5987,6 +6016,16 @@ msgstr "Profilové informace"
 #: app/templates/users/profile_edit.html:62
 msgid "Pretending to be another user is grounds for a permanent ban"
 msgstr "Vydávání se za jiného uživatele je důvodem k trvalému banu"
+
+#: app/templates/users/profile_edit.html:72
+msgid "Website URLs will not be shown whilst you are a 'New Member'."
+msgstr ""
+
+#: app/templates/users/profile_edit.html:73
+msgid ""
+"To become a full member, create a review, comment, or package and wait 7 "
+"days."
+msgstr ""
 
 #: app/templates/users/register.html:17
 msgid ""
@@ -6398,4 +6437,25 @@ msgstr ""
 
 #~ msgid "I agree to the "
 #~ msgstr "Souhlasím. "
+
+#~ msgid "Release is still importing, or has an error."
+#~ msgstr "Vydání se stále importuje, nebo došlo k chybě."
+
+#~ msgid "Please wait for the license to be added to CDB."
+#~ msgstr "Prosím, vyčkej na přidání licence do Content DB."
+
+#~ msgid ""
+#~ "Warning: Forum topic not found. The "
+#~ "topic may have been created since "
+#~ "the last forum crawl."
+#~ msgstr ""
+#~ "Upozornění: téma nebylo na foru "
+#~ "nalezeno. Téma mohlo být vytvořeno "
+#~ "dříve, než se forum načetlo."
+
+#~ msgid "You can now approve this package if you're ready."
+#~ msgstr "Nyní můžete tento balíček schválit, pokud jste připraveni."
+
+#~ msgid "Waiting for approval."
+#~ msgstr "Čeká na schválení."
 
