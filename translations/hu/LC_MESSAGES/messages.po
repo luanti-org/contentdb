@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-09-23 10:00+0100\n"
-"PO-Revision-Date: 2025-07-05 21:02+0000\n"
-"Last-Translator: Kisbenedek Márton <martonkisbenedek@gmail.com>\n"
+"PO-Revision-Date: 2025-11-10 17:51+0000\n"
+"Last-Translator: Unacceptium <unacceptium@proton.me>\n"
+"Language-Team: Hungarian <https://hosted.weblate.org/projects/minetest/"
+"contentdb/hu/>\n"
 "Language: hu\n"
-"Language-Team: Hungarian "
-"<https://hosted.weblate.org/projects/minetest/contentdb/hu/>\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: app/__init__.py:155
@@ -402,7 +403,7 @@ msgstr "16 pixelnél kisebb"
 #: app/_translations.py:116
 msgctxt "tags"
 msgid "For less than 16px texture packs "
-msgstr ""
+msgstr "16 pixelnél kissebb textúracsomagokhoz "
 
 #. NOTE: tags: title for library
 #: app/_translations.py:118
@@ -7021,4 +7022,3 @@ msgstr ""
 
 #~ msgid "I agree to the "
 #~ msgstr ""
-
