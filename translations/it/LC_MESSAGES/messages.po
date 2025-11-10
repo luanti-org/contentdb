@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-09-23 10:00+0100\n"
-"PO-Revision-Date: 2024-09-21 12:33+0000\n"
-"Last-Translator: Francesco Rossi <zhu.gamedev@tutanota.com>\n"
+"PO-Revision-Date: 2025-09-24 13:02+0000\n"
+"Last-Translator: Ludus <alessio.desantis28@gmail.com>\n"
+"Language-Team: Italian <https://hosted.weblate.org/projects/minetest/"
+"contentdb/it/>\n"
 "Language: it\n"
-"Language-Team: Italian "
-"<https://hosted.weblate.org/projects/minetest/contentdb/it/>\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.14-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: app/__init__.py:155
@@ -331,7 +332,7 @@ msgstr "Jam / Giochi 2021"
 #: app/_translations.py:96
 msgctxt "tags"
 msgid "Entries to the 2021 Minetest Game Jam"
-msgstr ""
+msgstr "Partecipazioni alla Minetest Game Jam 2021"
 
 #. NOTE: tags: title for jam_game_2022
 #: app/_translations.py:98
@@ -343,7 +344,7 @@ msgstr " Jam / Giochi 2022"
 #: app/_translations.py:100
 msgctxt "tags"
 msgid "Entries to the 2022 Minetest Game Jam "
-msgstr ""
+msgstr "Partecipazioni alla Minetest Game Jam 2022 "
 
 #. NOTE: tags: title for jam_game_2023
 #: app/_translations.py:102
@@ -355,19 +356,19 @@ msgstr "Jam / Giochi 2023"
 #: app/_translations.py:104
 msgctxt "tags"
 msgid "Entries to the 2023 Minetest Game Jam "
-msgstr ""
+msgstr "Partecipazioni alla Minetest Game Jam 2023 "
 
 #. NOTE: tags: title for jam_game_2024
 #: app/_translations.py:106
 msgctxt "tags"
 msgid "Jam / Game 2024"
-msgstr ""
+msgstr "Jam / Giochi 2024"
 
 #. NOTE: tags: description for jam_game_2024
 #: app/_translations.py:108
 msgctxt "tags"
 msgid "Entries to the 2024 Luanti Game Jam"
-msgstr ""
+msgstr "Partecipazioni alla Luanti Game Jam 2024"
 
 #. NOTE: tags: title for jam_weekly_2021
 #: app/_translations.py:110
@@ -395,7 +396,7 @@ msgstr "&lt;16px"
 #: app/_translations.py:116
 msgctxt "tags"
 msgid "For less than 16px texture packs "
-msgstr ""
+msgstr "Per pacchetti di texture con dimensione inferiore a 16px. "
 
 #. NOTE: tags: title for library
 #: app/_translations.py:118
@@ -461,7 +462,7 @@ msgstr ""
 #: app/_translations.py:138
 msgctxt "tags"
 msgid "Forks of Minetest Game"
-msgstr ""
+msgstr "Forks di Minetest Game"
 
 #. NOTE: tags: title for multiplayer
 #: app/_translations.py:140
@@ -1584,11 +1585,11 @@ msgstr "Immagine di Copertina"
 
 #: app/blueprints/report/__init__.py:35
 msgid "Category"
-msgstr ""
+msgstr "Categoria"
 
 #: app/blueprints/report/__init__.py:38
 msgid "Subject / Title"
-msgstr ""
+msgstr "Nome / Titolo"
 
 #: app/blueprints/report/__init__.py:39 app/templates/users/modtools.html:79
 msgid "Message"
@@ -1596,7 +1597,7 @@ msgstr "Messaggio"
 
 #: app/blueprints/report/__init__.py:40
 msgid "Image Upload"
-msgstr ""
+msgstr "Carica un'immagine"
 
 #: app/blueprints/report/__init__.py:41 app/templates/macros/threads.html:51
 #: app/templates/packages/view.html:706 app/templates/report/report.html:4
@@ -2166,7 +2167,7 @@ msgstr ""
 
 #: app/logic/releases.py:41
 msgid "A release with this name already exists"
-msgstr ""
+msgstr "Un rilascio con questo nome esiste già"
 
 #: app/logic/releases.py:80
 msgid "Invalid commit hash; it must be a 40 character long base16 string"
@@ -2229,23 +2230,23 @@ msgstr ""
 
 #: app/models/__init__.py:147
 msgid "Account deletion"
-msgstr ""
+msgstr "Eliminazione account"
 
 #: app/models/__init__.py:149
 msgid "Copyright infringement / DMCA"
-msgstr ""
+msgstr "Violazione del diritto d'autore / segnalazione DMCA"
 
 #: app/models/__init__.py:151
 msgid "User behaviour, bullying, or abuse"
-msgstr ""
+msgstr "Comportamento dell'utente, molestie, o abusi"
 
 #: app/models/__init__.py:153
 msgid "Illegal or harmful content"
-msgstr ""
+msgstr "Contenuti illegali o dannosi"
 
 #: app/models/__init__.py:155
 msgid "Outdated/invalid review"
-msgstr ""
+msgstr "Recensione obsoleta/non valida"
 
 #: app/models/__init__.py:157
 msgid "Appeal"
@@ -2715,7 +2716,7 @@ msgstr "Contattaci"
 
 #: app/templates/base.html:262
 msgid "Terms of Service"
-msgstr ""
+msgstr "Termini di servizio"
 
 #: app/templates/base.html:263
 msgid "Policy and Guidance"
@@ -3740,6 +3741,8 @@ msgid ""
 "Titles must be globally unique. For example, what's the name of your "
 "application?"
 msgstr ""
+"I titoli dovrebbero essere unici a livello globale. Per esempio, qual è il "
+"nome della tua applicazione?"
 
 #: app/templates/oauth/create_edit.html:68
 msgid ""
@@ -3895,6 +3898,9 @@ msgid ""
 "<i>modpack</i> anywhere in the short description. It is unnecessary and "
 "wastes characters."
 msgstr ""
+"Suggerimento: non includere <i>Luanti</i>, <i>Minetest</i>, <i>mod</i> o "
+"<i>modpack</i> da nessuna parte nella descrizione breve. È inutile e spreca "
+"caratteri."
 
 #: app/templates/packages/create_edit.html:88
 msgid ""
@@ -5075,7 +5081,7 @@ msgstr "Mostra il log di audit"
 
 #: app/templates/report/list.html:4 app/templates/todo/editor.html:9
 msgid "Reports"
-msgstr ""
+msgstr "Segnalazioni"
 
 #: app/templates/report/report.html:19
 msgid ""
@@ -5100,6 +5106,8 @@ msgid ""
 "If you are reporting something by another user, we may discuss the report"
 " with them but will not disclose who reported it."
 msgstr ""
+"Se stai segnalando qualcosa riguardo a un altro utente, potremmo discutere "
+"la segnalazione con loro, ma non riveleremo chi l'ha effettuata."
 
 #: app/templates/report/report.html:32
 msgid ""
@@ -5109,7 +5117,7 @@ msgstr ""
 
 #: app/templates/report/report.html:41
 msgid "Optional, usually not required"
-msgstr ""
+msgstr "Opzionale, solitamente non richiesto"
 
 #: app/templates/report/report.html:44
 msgid ""
@@ -5121,17 +5129,19 @@ msgstr ""
 
 #: app/templates/report/report_received.html:4
 msgid "We have received your report"
-msgstr ""
+msgstr "Abbiamo ricevuto la tua segnalazione"
 
 #: app/templates/report/report_received.html:13
 msgid "We aim to resolve your report quickly."
-msgstr ""
+msgstr "Il nostro obiettivo è risolvere la tua segnalazione rapidamente."
 
 #: app/templates/report/report_received.html:17
 msgid ""
 "If the report is about illegal or harmful content, we aim to resolve "
 "within 48 hours."
 msgstr ""
+"Se la segnalazione riguarda contenuti illegali o dannosi, ci impegniamo a "
+"risolverla entro 48 ore."
 
 #: app/templates/report/report_received.html:18
 msgid ""
@@ -5144,25 +5154,30 @@ msgid ""
 "A private thread has been created for this report. You can use it to "
 "communicate with ContentDB staff and receive updates about the report."
 msgstr ""
+"È stata creata una discussione privata per questa segnalazione. Puoi usarla "
+"per comunicare con lo staff di ContentDB e ricevere aggiornamenti sulla "
+"segnalazione."
 
 #: app/templates/report/report_received.html:27
 msgid ""
 "Due to limited resources, we may not contact you further about the report"
 " unless we need clarification."
 msgstr ""
+"A causa di risorse limitate, potremmo non contattarti ulteriormente riguardo "
+"alla segnalazione, a meno che non abbiamo bisogno di chiarimenti."
 
 #: app/templates/report/report_received.html:30
 #, python-format
 msgid "For future reference, use report id: %(report_id)s."
-msgstr ""
+msgstr "Per riferimenti futuri, utilizza l’ID segnalazione: %(report_id)s."
 
 #: app/templates/report/report_received.html:36
 msgid "View thread"
-msgstr ""
+msgstr "Visualizza discussione"
 
 #: app/templates/report/report_received.html:38
 msgid "Back to home"
-msgstr ""
+msgstr "Ritorna alla home"
 
 #: app/templates/report/view.html:96
 msgid "Reopen"
@@ -5170,15 +5185,15 @@ msgstr ""
 
 #: app/templates/report/view.html:98
 msgid "Completed (action taken)"
-msgstr ""
+msgstr "Completato (azione effettuata)"
 
 #: app/templates/report/view.html:99
 msgid "Content removed"
-msgstr ""
+msgstr "Contenuto rimosso"
 
 #: app/templates/report/view.html:100
 msgid "Invalid / close with no action"
-msgstr ""
+msgstr "Non valido / chiuso senza azioni"
 
 #: app/templates/tasks/view.html:5
 msgid "Task Failed"
@@ -5410,7 +5425,7 @@ msgstr "Pacchetti che non supportano %(rel)s"
 #: app/templates/todo/outdated.html:16 app/templates/todo/screenshots.html:12
 #: app/templates/todo/screenshots.html:16
 msgid "Minetest-Mods org only"
-msgstr ""
+msgstr "Solo per Minetest-Mods org"
 
 #: app/templates/todo/mtver_support.html:25 app/templates/todo/outdated.html:24
 #: app/templates/todo/screenshots.html:24
@@ -6251,11 +6266,11 @@ msgstr "Dipendenze opzionali"
 
 #: app/utils/luanti_hypertext.py:325
 msgid "Leave a review"
-msgstr ""
+msgstr "Scrivi una recensione"
 
 #: app/utils/luanti_hypertext.py:346
 msgid "No reviews available."
-msgstr ""
+msgstr "Nessuna recensione disponibile."
 
 #: app/utils/user.py:51
 msgid "You have a lot of notifications, you should either read or clear them"
@@ -7148,4 +7163,3 @@ msgstr ""
 
 #~ msgid "I agree to the "
 #~ msgstr "Aderisco a "
-
