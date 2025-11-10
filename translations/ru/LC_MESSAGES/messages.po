@@ -8,16 +8,18 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-09-23 10:00+0100\n"
-"PO-Revision-Date: 2025-07-05 21:01+0000\n"
+"PO-Revision-Date: 2025-10-11 12:07+0000\n"
 "Last-Translator: BlackImpostor <SkyBuilderOFFICAL@yandex.ru>\n"
+"Language-Team: Russian <https://hosted.weblate.org/projects/minetest/"
+"contentdb/ru/>\n"
 "Language: ru\n"
-"Language-Team: Russian "
-"<https://hosted.weblate.org/projects/minetest/contentdb/ru/>\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural="
+"(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? "
+"1 : 2);\n"
+"X-Generator: Weblate 5.14-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: app/__init__.py:155
@@ -402,7 +404,7 @@ msgstr "&lt;16пикс"
 #: app/_translations.py:116
 msgctxt "tags"
 msgid "For less than 16px texture packs "
-msgstr ""
+msgstr "Пакеты текстур размером менее 16пикс "
 
 #. NOTE: tags: title for library
 #: app/_translations.py:118
@@ -1592,11 +1594,11 @@ msgstr "Обложка"
 
 #: app/blueprints/report/__init__.py:35
 msgid "Category"
-msgstr ""
+msgstr "Категория"
 
 #: app/blueprints/report/__init__.py:38
 msgid "Subject / Title"
-msgstr ""
+msgstr "Тема / Название"
 
 #: app/blueprints/report/__init__.py:39 app/templates/users/modtools.html:79
 msgid "Message"
@@ -1604,7 +1606,7 @@ msgstr "Сообщение"
 
 #: app/blueprints/report/__init__.py:40
 msgid "Image Upload"
-msgstr ""
+msgstr "Загрузка Изображения"
 
 #: app/blueprints/report/__init__.py:41 app/templates/macros/threads.html:51
 #: app/templates/packages/view.html:706 app/templates/report/report.html:4
@@ -2230,27 +2232,27 @@ msgstr ""
 
 #: app/models/__init__.py:147
 msgid "Account deletion"
-msgstr ""
+msgstr "Удаление аккаунта"
 
 #: app/models/__init__.py:149
 msgid "Copyright infringement / DMCA"
-msgstr ""
+msgstr "Нарушение авторских прав / DMCA"
 
 #: app/models/__init__.py:151
 msgid "User behaviour, bullying, or abuse"
-msgstr ""
+msgstr "Поведение пользователя, травля или оскорбления"
 
 #: app/models/__init__.py:153
 msgid "Illegal or harmful content"
-msgstr ""
+msgstr "Незаконный или вредоносный контент"
 
 #: app/models/__init__.py:155
 msgid "Outdated/invalid review"
-msgstr ""
+msgstr "Устаревший/недействительный отзыв"
 
 #: app/models/__init__.py:157
 msgid "Appeal"
-msgstr ""
+msgstr "Апелляция"
 
 #. NOTE: OTHER notification type
 #: app/models/__init__.py:159 app/models/users.py:469
@@ -2719,7 +2721,7 @@ msgstr "Связаться с нами"
 
 #: app/templates/base.html:262
 msgid "Terms of Service"
-msgstr ""
+msgstr "Условия Использования"
 
 #: app/templates/base.html:263
 msgid "Policy and Guidance"
@@ -3904,6 +3906,8 @@ msgid ""
 "<i>modpack</i> anywhere in the short description. It is unnecessary and "
 "wastes characters."
 msgstr ""
+"Совет: Не вставляйте <i>Luanti</i>, <i>Minetest</i>, <i>mod</i> или "
+"<i>modpack</i> в краткое описание. Это не нужно и только расходует символы."
 
 #: app/templates/packages/create_edit.html:88
 msgid ""
@@ -4621,6 +4625,8 @@ msgid ""
 "Please make sure you read ContentDB's <a href='/terms/'>Terms of "
 "Service</a>"
 msgstr ""
+"Пожалуйста, убедитесь, что вы ознакомились с <a href=\"/terms/\">Условиями "
+"Использования</a> ContentDB"
 
 #: app/templates/packages/review_create_edit.html:25
 #: app/templates/threads/new.html:16
@@ -4903,6 +4909,8 @@ msgid ""
 "This thread is only visible to its creator, package maintainers, and "
 "users of Approver rank or above."
 msgstr ""
+"Эта ветка доступна только ее создателю, сопровождающим пакетов и "
+"пользователям с рангом Утверждающего или выше."
 
 #: app/templates/packages/view.html:214 app/templates/users/profile.html:95
 msgid "Website"
@@ -5074,7 +5082,7 @@ msgstr "См. журнал аудита"
 
 #: app/templates/report/list.html:4 app/templates/todo/editor.html:9
 msgid "Reports"
-msgstr ""
+msgstr "Отчёты"
 
 #: app/templates/report/report.html:19
 msgid ""
@@ -5093,22 +5101,28 @@ msgid ""
 "The full report will be visible to all ContentDB staff members, including"
 " editors and moderators."
 msgstr ""
+"Полный отчёт будет доступен всем сотрудникам ContentDB, включая редакторов и "
+"модераторов."
 
 #: app/templates/report/report.html:31
 msgid ""
 "If you are reporting something by another user, we may discuss the report"
 " with them but will not disclose who reported it."
 msgstr ""
+"Если вы сообщаете о действиях другого пользователя, мы можем обсудить это с "
+"ним, но не раскроем, кто сообщил о нарушении."
 
 #: app/templates/report/report.html:32
 msgid ""
 "If you are reporting something by an editor or moderator, then you should"
 " email the admin or a moderator directly to hide your identity."
 msgstr ""
+"Если вы сообщаете о чём-то редактору или модератору, вам следует написать "
+"администратору или модератору напрямую, чтобы скрыть свою личность."
 
 #: app/templates/report/report.html:41
 msgid "Optional, usually not required"
-msgstr ""
+msgstr "Необязательно, обычно не требуется"
 
 #: app/templates/report/report.html:44
 msgid ""
@@ -5120,64 +5134,72 @@ msgstr ""
 
 #: app/templates/report/report_received.html:4
 msgid "We have received your report"
-msgstr ""
+msgstr "Мы получили ваш отчёт"
 
 #: app/templates/report/report_received.html:13
 msgid "We aim to resolve your report quickly."
-msgstr ""
+msgstr "Мы стремимся как можно быстрее рассмотреть ваше обращение."
 
 #: app/templates/report/report_received.html:17
 msgid ""
 "If the report is about illegal or harmful content, we aim to resolve "
 "within 48 hours."
 msgstr ""
+"Если сообщение касается незаконного или вредоносного контента, мы "
+"постараемся решить проблему в течение 48 часов."
 
 #: app/templates/report/report_received.html:18
 msgid ""
 "If we find the content to be infringing, we will remove it and may warn "
 "or suspend the user."
 msgstr ""
+"Если мы обнаружим нарушение авторских прав, мы удалим контент и можем "
+"предупредить пользователя или заблокировать его."
 
 #: app/templates/report/report_received.html:23
 msgid ""
 "A private thread has been created for this report. You can use it to "
 "communicate with ContentDB staff and receive updates about the report."
 msgstr ""
+"Для этого отчёта была создана закрытая ветка. Вы можете использовать её для "
+"общения с сотрудниками ContentDB и получения обновлений по отчёту."
 
 #: app/templates/report/report_received.html:27
 msgid ""
 "Due to limited resources, we may not contact you further about the report"
 " unless we need clarification."
 msgstr ""
+"Из-за ограниченности ресурсов мы не сможем связаться с вами по поводу "
+"отчёта, если только нам не потребуются разъяснения."
 
 #: app/templates/report/report_received.html:30
 #, python-format
 msgid "For future reference, use report id: %(report_id)s."
-msgstr ""
+msgstr "Для дальнейшего использования, обращайтесь к ID отчёта: %(report_id)s."
 
 #: app/templates/report/report_received.html:36
 msgid "View thread"
-msgstr ""
+msgstr "Посмотреть ветку"
 
 #: app/templates/report/report_received.html:38
 msgid "Back to home"
-msgstr ""
+msgstr "Назад домой"
 
 #: app/templates/report/view.html:96
 msgid "Reopen"
-msgstr ""
+msgstr "Возобновить"
 
 #: app/templates/report/view.html:98
 msgid "Completed (action taken)"
-msgstr ""
+msgstr "Завершено (принято решение)"
 
 #: app/templates/report/view.html:99
 msgid "Content removed"
-msgstr ""
+msgstr "Контент удалён"
 
 #: app/templates/report/view.html:100
 msgid "Invalid / close with no action"
-msgstr ""
+msgstr "Недействительно / закрыто без действий"
 
 #: app/templates/tasks/view.html:5
 msgid "Task Failed"
@@ -5743,6 +5765,9 @@ msgid ""
 "of Service</a> and <a href='/privacy_policy/' target='_blank'>Privacy "
 "Policy</a>."
 msgstr ""
+"Регистрируясь, вы соглашаетесь с <a href=\"/terms/\" target=\"_blank\""
+">Условиями Использования</a> и <a href=\"/privacy_policy/\" target=\"_blank\""
+">Политикой конфиденциальности</a>."
 
 #: app/templates/users/claim_forums.html:30
 msgid "Option 1"
@@ -6242,7 +6267,7 @@ msgstr "Опциональные зависимости"
 
 #: app/utils/luanti_hypertext.py:325
 msgid "Leave a review"
-msgstr ""
+msgstr "Оставить отзыв"
 
 #: app/utils/luanti_hypertext.py:346
 msgid "No reviews available."
@@ -7306,4 +7331,3 @@ msgstr ""
 
 #~ msgid "I agree to the "
 #~ msgstr "Я соглашаюсь "
-
