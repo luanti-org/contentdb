@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-09-23 10:00+0100\n"
-"PO-Revision-Date: 2025-03-10 13:52+0000\n"
+"PO-Revision-Date: 2025-10-12 15:07+0000\n"
 "Last-Translator: Siber <siber@users.noreply.hosted.weblate.org>\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/minetest/"
+"contentdb/tr/>\n"
 "Language: tr\n"
-"Language-Team: Turkish "
-"<https://hosted.weblate.org/projects/minetest/contentdb/tr/>\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.14-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: app/__init__.py:155
@@ -389,7 +390,7 @@ msgstr "&lt;16px"
 #: app/_translations.py:116
 msgctxt "tags"
 msgid "For less than 16px texture packs "
-msgstr ""
+msgstr "16px'den daha az doku paketleri için "
 
 #. NOTE: tags: title for library
 #: app/_translations.py:118
@@ -1564,11 +1565,11 @@ msgstr "Kapak Resmi"
 
 #: app/blueprints/report/__init__.py:35
 msgid "Category"
-msgstr ""
+msgstr "Kategori"
 
 #: app/blueprints/report/__init__.py:38
 msgid "Subject / Title"
-msgstr ""
+msgstr "Konu / Başlık"
 
 #: app/blueprints/report/__init__.py:39 app/templates/users/modtools.html:79
 msgid "Message"
@@ -1576,7 +1577,7 @@ msgstr "Mesaj"
 
 #: app/blueprints/report/__init__.py:40
 msgid "Image Upload"
-msgstr ""
+msgstr "Resim Yükleme"
 
 #: app/blueprints/report/__init__.py:41 app/templates/macros/threads.html:51
 #: app/templates/packages/view.html:706 app/templates/report/report.html:4
@@ -2191,27 +2192,27 @@ msgstr "Kullanıcı adı geçmişte kullanıldığı için hesap oluşturulamıy
 
 #: app/models/__init__.py:147
 msgid "Account deletion"
-msgstr ""
+msgstr "Hesabı Silme"
 
 #: app/models/__init__.py:149
 msgid "Copyright infringement / DMCA"
-msgstr ""
+msgstr "Telif hakkı ihlali / DMCA"
 
 #: app/models/__init__.py:151
 msgid "User behaviour, bullying, or abuse"
-msgstr ""
+msgstr "Kullanıcı davranışı, zorbalık veya istismar"
 
 #: app/models/__init__.py:153
 msgid "Illegal or harmful content"
-msgstr ""
+msgstr "Yaşa dışı ya da zararlı içerik"
 
 #: app/models/__init__.py:155
 msgid "Outdated/invalid review"
-msgstr ""
+msgstr "Eski/geçersiz inceleme"
 
 #: app/models/__init__.py:157
 msgid "Appeal"
-msgstr ""
+msgstr "Temyiz"
 
 #. NOTE: OTHER notification type
 #: app/models/__init__.py:159 app/models/users.py:469
@@ -2678,7 +2679,7 @@ msgstr "İletişim"
 
 #: app/templates/base.html:262
 msgid "Terms of Service"
-msgstr ""
+msgstr "Hizmet Şartları"
 
 #: app/templates/base.html:263
 msgid "Policy and Guidance"
@@ -3851,6 +3852,9 @@ msgid ""
 "<i>modpack</i> anywhere in the short description. It is unnecessary and "
 "wastes characters."
 msgstr ""
+"İpucu: Kısa açıklamada <i>Luanti</i>, <i>Minetest</i>, <i>mod</i> veya "
+"<i>modpack</i> kelimelerini kullanmayın. Bunlar gereksizdir ve karakter "
+"israfına neden olur."
 
 #: app/templates/packages/create_edit.html:88
 msgid ""
@@ -4559,6 +4563,8 @@ msgid ""
 "Please make sure you read ContentDB's <a href='/terms/'>Terms of "
 "Service</a>"
 msgstr ""
+"Lütfen ContentDB'nin <a href=\"‘/terms/’\">Hizmet Şartları</a>'nı "
+"okuduğunuzdan emin olun"
 
 #: app/templates/packages/review_create_edit.html:25
 #: app/templates/threads/new.html:16
@@ -4842,6 +4848,8 @@ msgid ""
 "This thread is only visible to its creator, package maintainers, and "
 "users of Approver rank or above."
 msgstr ""
+"Bu konu başlığı yalnızca oluşturucusu, paket yöneticileri ve Onaylayıcı veya "
+"üstü kullanıcılar tarafından görülebilir."
 
 #: app/templates/packages/view.html:214 app/templates/users/profile.html:95
 msgid "Website"
@@ -5013,7 +5021,7 @@ msgstr "Denetim günlüğüne bakın"
 
 #: app/templates/report/list.html:4 app/templates/todo/editor.html:9
 msgid "Reports"
-msgstr ""
+msgstr "Raporlar"
 
 #: app/templates/report/report.html:19
 msgid ""
@@ -5034,22 +5042,28 @@ msgid ""
 "The full report will be visible to all ContentDB staff members, including"
 " editors and moderators."
 msgstr ""
+"Raporun tamamı, editörler ve moderatörler dahil olmak üzere tüm ContentDB "
+"çalışanları tarafından görülebilir."
 
 #: app/templates/report/report.html:31
 msgid ""
 "If you are reporting something by another user, we may discuss the report"
 " with them but will not disclose who reported it."
 msgstr ""
+"Başka bir kullanıcı hakkında bir şey bildirirseniz, bildirimi o kullanıcıyla "
+"görüşebiliriz, ancak bildirimi kimin yaptığını açıklamayız."
 
 #: app/templates/report/report.html:32
 msgid ""
 "If you are reporting something by an editor or moderator, then you should"
 " email the admin or a moderator directly to hide your identity."
 msgstr ""
+"Bir editör veya moderatör tarafından bir şeyi bildiriyorsanız, kimliğinizi "
+"gizlemek için doğrudan yöneticiye veya moderatöre e-posta göndermelisiniz."
 
 #: app/templates/report/report.html:41
 msgid "Optional, usually not required"
-msgstr ""
+msgstr "İsteğe bağlı, genellikle gerekli değildir"
 
 #: app/templates/report/report.html:44
 msgid ""
@@ -5061,64 +5075,74 @@ msgstr ""
 
 #: app/templates/report/report_received.html:4
 msgid "We have received your report"
-msgstr ""
+msgstr "Raporunuzu aldık"
 
 #: app/templates/report/report_received.html:13
 msgid "We aim to resolve your report quickly."
-msgstr ""
+msgstr "Bildiriminizi hızlı bir şekilde çözmeyi hedefliyoruz."
 
 #: app/templates/report/report_received.html:17
 msgid ""
 "If the report is about illegal or harmful content, we aim to resolve "
 "within 48 hours."
 msgstr ""
+"Rapor yasa dışı veya zararlı içerikle ilgiliyse, 48 saat içinde çözüme "
+"kavuşturmayı hedefliyoruz."
 
 #: app/templates/report/report_received.html:18
 msgid ""
 "If we find the content to be infringing, we will remove it and may warn "
 "or suspend the user."
 msgstr ""
+"İçeriğin hak ihlali oluşturduğunu tespit edersek, içeriği kaldıracak ve "
+"kullanıcıyı uyaracak veya askıya alabiliriz."
 
 #: app/templates/report/report_received.html:23
 msgid ""
 "A private thread has been created for this report. You can use it to "
 "communicate with ContentDB staff and receive updates about the report."
 msgstr ""
+"Bu rapor için özel bir konu başlığı oluşturulmuştur. Bu başlığı kullanarak "
+"ContentDB personeli ile iletişim kurabilir ve raporla ilgili güncellemeleri "
+"alabilirsiniz."
 
 #: app/templates/report/report_received.html:27
 msgid ""
 "Due to limited resources, we may not contact you further about the report"
 " unless we need clarification."
 msgstr ""
+"Kaynakların sınırlı olması nedeniyle, açıklığa kavuşturulması gereken bir "
+"durum olmadıkça raporla ilgili olarak sizinle tekrar iletişime "
+"geçmeyebiliriz."
 
 #: app/templates/report/report_received.html:30
 #, python-format
 msgid "For future reference, use report id: %(report_id)s."
-msgstr ""
+msgstr "İleride başvurmak üzere rapor kimliğini kullanın: %(report_id)s."
 
 #: app/templates/report/report_received.html:36
 msgid "View thread"
-msgstr ""
+msgstr "Konuyu görüntüle"
 
 #: app/templates/report/report_received.html:38
 msgid "Back to home"
-msgstr ""
+msgstr "Ana sayfaya dön"
 
 #: app/templates/report/view.html:96
 msgid "Reopen"
-msgstr ""
+msgstr "Yeniden aç"
 
 #: app/templates/report/view.html:98
 msgid "Completed (action taken)"
-msgstr ""
+msgstr "Tamamlandı (eylem gerçekleştirildi)"
 
 #: app/templates/report/view.html:99
 msgid "Content removed"
-msgstr ""
+msgstr "İçerik kaldırıldı"
 
 #: app/templates/report/view.html:100
 msgid "Invalid / close with no action"
-msgstr ""
+msgstr "Geçersiz / işlem yapılmadan kapat"
 
 #: app/templates/tasks/view.html:5
 msgid "Task Failed"
@@ -5688,6 +5712,9 @@ msgid ""
 "of Service</a> and <a href='/privacy_policy/' target='_blank'>Privacy "
 "Policy</a>."
 msgstr ""
+"Kaydolarak, <a href=\"‘/terms/’\" target=\"‘_blank’\">Hizmet Şartları</a> ve "
+"<a href=\"‘/privacy_policy/’\" target=\"‘_blank’\">Gizlilik Politikası</"
+"a>'nı kabul etmiş olursunuz."
 
 #: app/templates/users/claim_forums.html:30
 msgid "Option 1"
@@ -6191,7 +6218,7 @@ msgstr "İsteğe bağlı bağımlılıklar"
 
 #: app/utils/luanti_hypertext.py:325
 msgid "Leave a review"
-msgstr ""
+msgstr "Yorum bırakın"
 
 #: app/utils/luanti_hypertext.py:346
 msgid "No reviews available."
@@ -7224,4 +7251,3 @@ msgstr ""
 
 #~ msgid "I agree to the "
 #~ msgstr "Kabul ediyorum "
-
