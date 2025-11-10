@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-09-23 10:00+0100\n"
-"PO-Revision-Date: 2025-05-13 19:05+0000\n"
-"Last-Translator: Zacharias Tyllström <zacharias.tyllstrom@gmail.com>\n"
+"PO-Revision-Date: 2025-10-15 22:07+0000\n"
+"Last-Translator: tygyh <jonis9898@hotmail.com>\n"
+"Language-Team: Swedish <https://hosted.weblate.org/projects/minetest/"
+"contentdb/sv/>\n"
 "Language: sv\n"
-"Language-Team: Swedish "
-"<https://hosted.weblate.org/projects/minetest/contentdb/sv/>\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.14-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: app/__init__.py:155
@@ -392,7 +393,7 @@ msgstr "&lt;16px"
 #: app/_translations.py:116
 msgctxt "tags"
 msgid "For less than 16px texture packs "
-msgstr ""
+msgstr "För mindre än 16px texturpaket "
 
 #. NOTE: tags: title for library
 #: app/_translations.py:118
@@ -1570,11 +1571,11 @@ msgstr "Titelbild"
 
 #: app/blueprints/report/__init__.py:35
 msgid "Category"
-msgstr ""
+msgstr "Kategori"
 
 #: app/blueprints/report/__init__.py:38
 msgid "Subject / Title"
-msgstr ""
+msgstr "Ämne / Titel"
 
 #: app/blueprints/report/__init__.py:39 app/templates/users/modtools.html:79
 msgid "Message"
@@ -1582,7 +1583,7 @@ msgstr "Meddelande"
 
 #: app/blueprints/report/__init__.py:40
 msgid "Image Upload"
-msgstr ""
+msgstr "Bilduppladdning"
 
 #: app/blueprints/report/__init__.py:41 app/templates/macros/threads.html:51
 #: app/templates/packages/view.html:706 app/templates/report/report.html:4
@@ -2202,23 +2203,23 @@ msgstr ""
 
 #: app/models/__init__.py:147
 msgid "Account deletion"
-msgstr ""
+msgstr "Konto-radering"
 
 #: app/models/__init__.py:149
 msgid "Copyright infringement / DMCA"
-msgstr ""
+msgstr "Upphovsrättsintrång / DMCA"
 
 #: app/models/__init__.py:151
 msgid "User behaviour, bullying, or abuse"
-msgstr ""
+msgstr "Användarbeteende, mobbning eller missbruk"
 
 #: app/models/__init__.py:153
 msgid "Illegal or harmful content"
-msgstr ""
+msgstr "Olagligt eller skadligt innehåll"
 
 #: app/models/__init__.py:155
 msgid "Outdated/invalid review"
-msgstr ""
+msgstr "Utdaterad/felaktig recension"
 
 #: app/models/__init__.py:157
 msgid "Appeal"
@@ -6756,4 +6757,3 @@ msgstr ""
 
 #~ msgid "I agree to the "
 #~ msgstr "Jag accepterar "
-
