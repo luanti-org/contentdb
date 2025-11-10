@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-09-23 10:00+0100\n"
-"PO-Revision-Date: 2025-01-24 03:06+0000\n"
-"Last-Translator: Miguel <mp0187595@tutamail.com>\n"
+"PO-Revision-Date: 2025-11-04 12:51+0000\n"
+"Last-Translator: Neyzer <neyzertoledo@gmail.com>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/minetest/"
+"contentdb/es/>\n"
 "Language: es\n"
-"Language-Team: Spanish "
-"<https://hosted.weblate.org/projects/minetest/contentdb/es/>\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: app/__init__.py:155
@@ -400,7 +401,7 @@ msgstr "&lt;16px"
 #: app/_translations.py:116
 msgctxt "tags"
 msgid "For less than 16px texture packs "
-msgstr ""
+msgstr "Para paquetes de texture menores a 16px "
 
 #. NOTE: tags: title for library
 #: app/_translations.py:118
@@ -1589,7 +1590,7 @@ msgstr "Imagen de portada"
 
 #: app/blueprints/report/__init__.py:35
 msgid "Category"
-msgstr ""
+msgstr "Categoría"
 
 #: app/blueprints/report/__init__.py:38
 msgid "Subject / Title"
@@ -1601,7 +1602,7 @@ msgstr "Mensaje"
 
 #: app/blueprints/report/__init__.py:40
 msgid "Image Upload"
-msgstr ""
+msgstr "Imagen Subida"
 
 #: app/blueprints/report/__init__.py:41 app/templates/macros/threads.html:51
 #: app/templates/packages/view.html:706 app/templates/report/report.html:4
@@ -1681,12 +1682,12 @@ msgstr "Contraseña"
 
 #: app/blueprints/users/account.py:38
 msgid "Remember me"
-msgstr "Recuérdame"
+msgstr "Recuérdeme"
 
 #: app/blueprints/users/account.py:39 app/templates/base.html:190
 #: app/templates/donate/index.html:85 app/templates/users/login.html:4
 msgid "Sign in"
-msgstr "Iniciar sesión"
+msgstr "Registrate"
 
 #: app/blueprints/users/account.py:45
 msgid "Incorrect email or password"
@@ -1718,8 +1719,8 @@ msgid ""
 "Only alphabetic letters (A-Za-z), numbers (0-9), underscores (_), minuses"
 " (-), and periods (.) allowed"
 msgstr ""
-"Solo letras alfabéticas (A-Za-z), números (0-9), guiones bajos (_), menos"
-" (-), y periodos (.) permitidos"
+"Solo letras alfabéticas (A-Za-z), números (0-9), guiones bajos (_), menos (-)"
+", y puntos (.) permitidos"
 
 #: app/blueprints/users/account.py:104 app/blueprints/users/account.py:152
 #: app/blueprints/users/account.py:188 app/blueprints/users/account.py:337
@@ -7027,4 +7028,3 @@ msgstr ""
 
 #~ msgid "I agree to the "
 #~ msgstr "Estoy de acuerdo con la "
-
