@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-09-23 10:00+0100\n"
-"PO-Revision-Date: 2025-09-28 18:02+0000\n"
-"Last-Translator: Денис <denissavchenko0@gmail.com>\n"
+"PO-Revision-Date: 2025-10-20 04:51+0000\n"
+"Last-Translator: Tarás Lavrentiev <fromkaniv@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/minetest/"
 "contentdb/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural="
+"(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? "
+"1 : 2);\n"
 "X-Generator: Weblate 5.14-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
@@ -81,7 +82,7 @@ msgstr "Для текстур, що мають розширення 64 пікс�
 #: app/_translations.py:22
 msgctxt "tags"
 msgid "Adventure / RPG"
-msgstr "Пригоди / RPG (Role-Playing Game — рольова гра)"
+msgstr "Пригоди / RPG"
 
 #. NOTE: tags: title for april_fools
 #: app/_translations.py:24
@@ -1100,7 +1101,7 @@ msgstr "Не безкоштовно"
 #: app/blueprints/packages/advanced_search.py:42 app/models/packages.py:630
 #: app/templates/packages/view.html:170
 msgid "Work in Progress"
-msgstr "В процесі розробки"
+msgstr "В розробці"
 
 #. NOTE: Package maintenance state
 #: app/blueprints/packages/advanced_search.py:43 app/models/packages.py:170
@@ -1627,11 +1628,11 @@ msgstr "Ви вже не підписані!"
 
 #: app/blueprints/threads/__init__.py:110
 msgid "Locked thread"
-msgstr "Заблокований ланцюжок"
+msgstr "Закритий ланцюжок"
 
 #: app/blueprints/threads/__init__.py:113
 msgid "Unlocked thread"
-msgstr "Ланцюжок розблокований"
+msgstr "Відкритий ланцюжок"
 
 #: app/blueprints/threads/__init__.py:162
 msgid "Cannot delete thread opening post!"
@@ -2549,7 +2550,7 @@ msgstr "Коли інший користувач редагує ваші пак�
 
 #: app/models/users.py:506
 msgid "Notifications from editors related to the package approval process."
-msgstr "Повідомлення від редакторів, що стосуються процесу затвердження пакунку."
+msgstr "Сповіщення від редакторів, що стосуються процесу затвердження пакунку."
 
 #: app/models/users.py:508
 msgid "When a thread is created on your package."
@@ -2713,7 +2714,7 @@ msgstr "Умови обслуговування"
 
 #: app/templates/base.html:263
 msgid "Policy and Guidance"
-msgstr "Політика та Настанови"
+msgstr "Політика та посібник"
 
 #: app/templates/base.html:264 app/templates/donate/index.html:46
 #: app/templates/donate/index.html:70 app/templates/users/profile.html:104
@@ -2730,7 +2731,7 @@ msgstr "RSS / Канали"
 
 #: app/templates/base.html:267
 msgid "Privacy Policy"
-msgstr "Політика Конфіденційності"
+msgstr "Політика конфіденційності"
 
 #: app/templates/base.html:269
 msgid "Report / DMCA"
@@ -3099,8 +3100,8 @@ msgid ""
 "Donations are a great way to support your favorite modders, artists, and "
 "game developers."
 msgstr ""
-"Пожертви – чудовий спосіб підтримати ваших улюблених моддерів, художників"
-" і розробників ігор."
+"Пожертви — це чудовий спосіб підтримати ваших улюблених творців модів, "
+"художників, і розробників ігор."
 
 #: app/templates/donate/index.html:37
 #, python-format
@@ -3128,8 +3129,8 @@ msgid ""
 "For more information about the cost of ContentDB and what rubenwardy "
 "does, see his donation page:"
 msgstr ""
-"Для отримання додаткової інформації про витрати ContentDB і діяльність "
-"rubenwardy відвідайте його сторінку пожертв:"
+"Для додаткової інформації про витрати ContentDB і діяльність rubenwardy, "
+"відвідайте його сторінку пожертв:"
 
 #: app/templates/donate/index.html:73
 msgid "Based on your reviews / favorites"
@@ -3517,8 +3518,8 @@ msgstr "Потрібно більше статистики?"
 #: app/templates/macros/stats.html:123
 msgid "Check out the ContentDB Grafana dashboard for CDB-wide stats"
 msgstr ""
-"Перевірте інформаційну панель ContentDB Grafana, щоб отримати статистику "
-"для всього CDB"
+"Перевірте інформаційну панель ContentDB Grafana, щоб отримати статистику для "
+"всієї CDB"
 
 #: app/templates/macros/stats.html:127
 msgid "ContentDB Grafana"
@@ -5102,7 +5103,7 @@ msgid ""
 "instead."
 msgstr ""
 "Знайшли помилку? Будь ласка, натомість повідомте про це у відстежувачі хиб "
-"або в ланцюжку."
+"або в ланцюжку пакунку."
 
 #: app/templates/report/report_received.html:4
 msgid "We have received your report"
@@ -5207,8 +5208,8 @@ msgid ""
 "If the package shouldn't be on CDB (eg: if it doesn't work at all), then "
 "you can let us know here."
 msgstr ""
-"Якщо пакунок не повинен бути на CDB (наприклад, якщо він взагалі не "
-"працює), ви можете повідомити нам про це тут."
+"Якщо пакунок не має бути в CDB (наприклад, якщо він взагалі не працює), ви "
+"можете повідомити нам про це тут."
 
 #: app/templates/threads/user_comments.html:9
 #: app/templates/threads/user_comments.html:13
@@ -5543,7 +5544,7 @@ msgstr "Список тем вашого форуму, які не мають в
 
 #: app/templates/todo/user.html:213
 msgid "Congrats! You don't have any topics which aren't on CDB."
-msgstr "Вітаю! У вас немає тем, яких немає на CDB."
+msgstr "Вітаю! У вас немає тем, яких немає в CDB."
 
 #: app/templates/translate/index.html:4
 msgid "Find packages to translate"
@@ -6182,8 +6183,8 @@ msgid ""
 "essential system emails.\n"
 "\t\t\t\t\tConsider editing your email notification preferences instead."
 msgstr ""
-"ContentDB більше не зможе надсилати повідомлення \"забули пароль\" та "
-"інші важливі системні повідомлення.\n"
+"ContentDB більше не зможе надсилати повідомлення «забули пароль» та інші "
+"важливі системні повідомлення.\n"
 "\t\t\t\t\tЗамість цього змініть свої налаштування сповіщень."
 
 #: app/templates/users/unsubscribe.html:50
