@@ -1,7 +1,7 @@
 from flask import render_template
 
 from . import bp
-from app.models import db, PackageUpdateConfig, Package, UserRank
+from app.models import db, PackageUpdateConfig, Package, UserRank, PackageState
 from app.utils import rank_required
 
 
@@ -13,5 +13,6 @@ def update_config():
 			.filter(PackageUpdateConfig.task_id != None)
 			.order_by(PackageUpdateConfig.last_checked_at.desc())
 			.join(PackageUpdateConfig.package)
+			.filter(Package.state == PackageState.APPROVED)
 			.all())
 	return render_template("admin/update_config.html", failing_packages=failing_packages)
