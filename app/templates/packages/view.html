@@ -432,6 +432,20 @@
 					{% endif %}
 				</div>
 
+				{% if package.check_perm(current_user, "MAKE_RELEASE") and package.update_config and package.update_config.task_id %}
+					{% set config = package.update_config %}
+					<div class="alert alert-warning">
+						<p class="mt-0 mb-3">
+							<b>{{ _("Git update detection failed") }}</b>
+						</p>
+						<div class="btn-group btn-group-sm my-0">
+							<a class="btn btn-warning" href="{{ url_for('tasks.check', id=package.update_config.task_id) }}">
+								{{ _("View task") }}
+							</a>
+						</div>
+					</div>
+				{% endif %}
+
 				{% if package.check_perm(current_user, "MAKE_RELEASE") and package.update_config and package.update_config.outdated_at %}
 					{% set config = package.update_config %}
 					<div class="alert alert-warning">
@@ -457,6 +471,7 @@
 						</div>
 					</div>
 				{% endif %}
+
 				{% if package_warning %}
 					<p class="alert alert-danger">
 						<a href="/help/non_free/" class="float-end">Info</a>

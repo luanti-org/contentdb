@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Update config
+{% endblock %}
+
+{% block content %}
+	<h2>{{ self.title() }}</h2>
+
+	<h3>Failing update configs</h3>
+
+	<div class="list-group">
+		{% for package in failing_packages %}
+			<div class="list-group-item">
+				<div class="row">
+					<div class="col-2 align-content-center">
+						<a href="{{ package.get_url('packages.view') }}">
+							{{ package.title }}
+						</a>
+					</div>
+					<div class="col align-content-center">
+						Last success: {{ package.update_config.last_checked_at | datetime }}
+					</div>
+					<div class="col-auto">
+						<a class="btn btn-sm btn-primary" href="{{ url_for('tasks.check', id=package.update_config.task_id) }}">
+							Task
+						</a>
+					</div>
+				</div>
+			</div>
+		{% else %}
+			<div class="list-group-item">
+				<i>No failing packages</i>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}

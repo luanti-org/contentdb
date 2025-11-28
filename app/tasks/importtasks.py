@@ -542,6 +542,7 @@ def check_update_config(self, package_id):
 	try:
 		check_update_config_impl(package)
 
+		package.update_config.task_id = None
 		package.update_config.last_checked_at = datetime.datetime.now()
 		db.session.commit()
 	except GitCommandError as e:
@@ -557,13 +558,10 @@ def check_update_config(self, package_id):
 			.replace("Cloning into '/tmp/", "Cloning into '") \
 			.strip()
 
-		msg = "Error: {}.\n\n[Change update configuration]({}) | [View task]({})" \
-			.format(err, package.get_url("packages.update_config"), url_for("tasks.check", id=self.request.id))
-
-		post_bot_message(package, "Failed to check git repository", msg)
-
+		db.session.rollback()
+		package.update_config.task_id = self.request.id
 		db.session.commit()
-		return
+		raise TaskError(err)
 
 
 @celery.task

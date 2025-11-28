@@ -1423,6 +1423,7 @@ class PackageUpdateConfig(db.Model):
 	outdated_at = db.Column(db.DateTime, nullable=True, default=None)
 
 	last_checked_at = db.Column(db.DateTime, nullable=True, default=None)
+	task_id = db.Column(db.String(37), nullable=True)
 
 	trigger     = db.Column(db.Enum(PackageUpdateTrigger), nullable=False, default=PackageUpdateTrigger.COMMIT)
 	ref         = db.Column(db.String(41), nullable=True, default=None)
