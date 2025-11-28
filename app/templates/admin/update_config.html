@@ -19,7 +19,12 @@
 						</a>
 					</div>
 					<div class="col align-content-center">
-						Last success: {{ package.update_config.last_checked_at | datetime }}
+						Last success:
+						{% if package.update_config.last_checked_at %}
+							{{ package.update_config.last_checked_at | datetime }}
+						{% else %}
+							never
+						{% endif %}
 					</div>
 					<div class="col-auto">
 						<a class="btn btn-sm btn-primary" href="{{ url_for('tasks.check', id=package.update_config.task_id) }}">
