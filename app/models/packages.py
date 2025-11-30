@@ -671,6 +671,7 @@ class Package(db.Model):
 			"long_description": meta["desc"],
 			"type": self.type.to_name(),
 			"created_at": self.created_at.isoformat(),
+			"approved_at": self.approved_at.isoformat() if self.approved_at else None,
 
 			"license": self.license.name,
 			"media_license": self.media_license.name,
@@ -698,6 +699,7 @@ class Package(db.Model):
 			"score": round(self.score * 10) / 10,
 			"downloads": self.downloads,
 
+			"supports_all_games": self.supports_all_games,
 			"game_support": [
 				{
 					"supports": support.supports,
