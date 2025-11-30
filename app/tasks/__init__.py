@@ -106,4 +106,4 @@ CELERYBEAT_SCHEDULE = {
 celery.conf.beat_schedule = CELERYBEAT_SCHEDULE
 
 
-from . import importtasks, forumtasks, emails, pkgtasks, usertasks
+from . import importtasks, forumtasks, emails, pkgtasks, usertasks, admintasks
