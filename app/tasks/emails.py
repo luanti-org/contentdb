@@ -11,11 +11,14 @@ from flask_babel import force_locale, gettext, lazy_gettext, LazyString
 from flask_mail import Message
 from markupsafe import escape
 
-from app import mail
+from app import mail, app
 from app.models import Notification, db, EmailSubscription, User
 from app.rediscache import increment_key
 from app.tasks import celery
 from app.utils import abs_url_for, abs_url, random_string
+
+
+reply_to = app.config.get("MAIL_REPLY_TO", None)
 
 
 def get_email_subscription(email):
@@ -30,12 +33,11 @@ def get_email_subscription(email):
 	return ret
 
 
-def gen_headers(sub: EmailSubscription, is_bulk: bool) -> Dict[str,str]:
-	headers = {"List-Help": f"<{abs_url_for('flatpage', path='help/faq/')}>", "List-Unsubscribe": f"<{sub.url}>"}
-
-	if is_bulk:
-		headers["Precedence"] = "Bulk"
-
+def gen_headers(sub: EmailSubscription) -> Dict[str, str]:
+	headers = {
+		"List-Help": f"<{abs_url_for('flatpage', path='help/faq/')}>",
+		"List-Unsubscribe": f"<{sub.url}>"
+	}
 	return headers
 
 
@@ -46,7 +48,7 @@ def send_verify_email(email, token, locale):
 		return
 
 	with force_locale(locale or "en"):
-		msg = Message("Confirm email address", recipients=[email], extra_headers=gen_headers(sub, False))
+		msg = Message("Confirm email address", recipients=[email], reply_to=reply_to, extra_headers=gen_headers(sub))
 
 		msg.body = """
 				This email has been sent to you because someone (hopefully you)
@@ -71,7 +73,7 @@ def send_unsubscribe_verify(email, locale):
 		return
 
 	with force_locale(locale or "en"):
-		msg = Message("Confirm unsubscribe", recipients=[email], extra_headers=gen_headers(sub, False))
+		msg = Message("Confirm unsubscribe", recipients=[email], reply_to=reply_to, extra_headers=gen_headers(sub))
 
 		msg.body = """
 					We're sorry to see you go. You just need to do one more thing before your email is blacklisted.
@@ -86,21 +88,18 @@ def send_unsubscribe_verify(email, locale):
 
 @celery.task(rate_limit="25/m")
 def send_email_with_reason(email: str, locale: str, subject: str, text: str, html: str,
-		reason: typing.Union[str, LazyString], conn: any):
+		reason: typing.Union[str, LazyString]):
 	sub = get_email_subscription(email)
 	if sub.blacklisted:
 		return
 
 	with force_locale(locale or "en"):
-		msg = Message(subject, recipients=[email], extra_headers=gen_headers(sub, conn is not None))
+		msg = Message(subject, recipients=[email], reply_to=reply_to, extra_headers=gen_headers(sub))
 
 		msg.body = text
 		html = html or f"<pre>{escape(text)}</pre>"
 		msg.html = render_template("emails/base.html", subject=subject, content=html, reason=reason, sub=sub)
-		if conn:
-			conn.send(msg)
-		else:
-			mail.send(msg)
+		mail.send(msg)
 		increment_key("emails_sent")
 
 
@@ -122,7 +121,7 @@ def send_single_email(notification, locale):
 		return
 
 	with force_locale(locale or "en"):
-		msg = Message(notification.title, recipients=[notification.user.email], extra_headers=gen_headers(sub, False))
+		msg = Message(notification.title, recipients=[notification.user.email], reply_to=reply_to, extra_headers=gen_headers(sub))
 
 		msg.body = """
 				New notification: {}
@@ -140,7 +139,7 @@ def send_single_email(notification, locale):
 		increment_key("emails_sent")
 
 
-def send_notification_digest(notifications: [Notification], locale):
+def send_notification_digest(notifications: typing.List[Notification], locale):
 	user = notifications[0].user
 
 	sub = get_email_subscription(user.email)
@@ -148,7 +147,7 @@ def send_notification_digest(notifications: [Notification], locale):
 		return
 
 	with force_locale(locale or "en"):
-		msg = Message(gettext("%(num)d new notifications", num=len(notifications)), recipients=[user.email])
+		msg = Message(gettext("%(num)d new notifications", num=len(notifications)), reply_to=reply_to, recipients=[user.email], extra_headers=gen_headers(sub))
 
 		msg.body = "".join(["<{}> {}\n{}: {}\n\n".format(notification.causer.display_name, notification.title, gettext("View"), abs_url(notification.url)) for notification in notifications])
 
@@ -202,9 +201,3 @@ def send_pending_notifications():
 				raise Exception(f"Failed to send email to {user.username} due to yandex spam filter") from e
 			else:
 				raise e
-
-@celery.task()
-def send_bulk_email(subject: str, text: str, html=None):
-	with mail.connect() as conn:
-		for user in User.query.filter(User.email.isnot(None)).all():
-			send_user_email(user.email, user.locale or "en", subject, text, html, conn)
