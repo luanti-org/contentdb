@@ -23,9 +23,6 @@
 		{{ render_field(form.email,
 				hint=_("Your email is needed to recover your account if you forget your password and to send (configurable) notifications. ") +
 					_("Your email will never be shared with a third-party.")) }}
-		<p>
-			{{ _("Note: protonmail is unsupported by ContentDB. <a href='https://forum.luanti.org/viewtopic.php?t=30709'>More info</a>.") }}
-		</p>
 
 		{{ render_field(form.password, hint=_("Must be at least 12 characters long.")) }}
 
