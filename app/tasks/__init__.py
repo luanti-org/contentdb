@@ -76,7 +76,7 @@ CELERYBEAT_SCHEDULE = {
 	},
 	'send_pending_notifications': {
 		'task': 'app.tasks.emails.send_pending_notifications',
-		'schedule': crontab(minute='*/5'), # every 5 minutes
+		'schedule': crontab(minute='*/15'), # every 15 minutes
 	},
 	'send_notification_digests': {
 		'task': 'app.tasks.emails.send_pending_digests',
