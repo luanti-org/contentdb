@@ -56,8 +56,9 @@ def report():
 		form.populate_obj(report)
 
 		if current_user.is_authenticated:
+			title = f"Report: {form.title.data}"
 			thread = Thread()
-			thread.title = f"Report: {form.title.data}"
+			thread.title = title if len(title) <= 100 else (title[:97] + "...")
 			thread.author = current_user
 			thread.private = True
 			thread.watchers.extend(User.query.filter(User.rank >= UserRank.MODERATOR).all())
