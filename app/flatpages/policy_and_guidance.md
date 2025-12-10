@@ -114,39 +114,22 @@ For help on doing copyright correctly, see the [Copyright help page](/help/copyr
 
 ### 4.2. Allowed Licenses
 
-**The use of licenses that do not allow derivatives or redistribution is not
-permitted. This includes CC-ND (No-Derivatives) and lots of closed source licenses.
-The use of licenses that discriminate between groups of people or forbid the use
-of the content on servers or singleplayer is also not permitted.**
+You must use a Free and Open Source software (FOSS) license approved by the
+[Free Software Foundation](https://www.gnu.org/philosophy/free-sw.en.html)
+or [Open Source Initiative](https://opensource.org/osd).
 
-However, closed sourced licenses are allowed if they allow the above.
-
-If the license you use is not on the list then please select "Other", and we'll
-get around to adding it. We reject custom/untested licenses and reserve the right
-to decide whether a license should be included.
-
-Please note that the definitions of "free" and "non-free" is the same as that
-of the [Free Software Foundation](https://www.gnu.org/philosophy/free-sw.en.html).
-
-### 4.3. Recommended Licenses
-
-It is highly recommended that you use a Free and Open Source software (FOSS)
-license. FOSS licenses result in a sharing community and will increase the
-number of potential users your package has. Using a closed source license will
-result in your package not being shown in Luanti by default. See the help page
-on [non-free licenses](/help/non_free/) for more information.
-
-It is recommended that you use a proper license for code with a warranty
-disclaimer, such as the (L)GPL or MIT. You should also use a proper media license
+We recommend that you use a license for code with a warranty disclaimer,
+such as the (L)GPL or MIT. You should also use a proper media license
 for media, such as a Creative Commons license.
 
-The use of WTFPL is discouraged as it doesn't contain a
-[valid warranty disclaimer](https://cubicspot.blogspot.com/2017/04/wtfpl-is-harmful-to-software-developers.html),
-and also includes swearing which prevents settings like schools from using your content.
-[Read more](/help/wtfpl/).
+We allow WTFPL, but it is discouraged as it doesn't contain a valid warranty
+disclaimer and also includes swearing which prevents settings like schools
+from using your content. [Read more](/help/wtfpl/).
 
 Public domain is not a valid license in many countries, please use CC0 or MIT instead.
 
+Note: there are some packages on ContentDB that do not use a FOSS license. These will
+be removed in the future.
 
 ## 5. Promotions and Advertisements (inc. asking for donations)
 
