@@ -103,7 +103,7 @@ class AuditLogEntry(db.Model):
 		self.description = description
 
 	def check_perm(self, user, perm):
-		if not user.is_authenticated:
+		if user is None or not user.is_authenticated:
 			return False
 
 		if type(perm) == str:
@@ -199,7 +199,7 @@ class Report(db.Model):
 			perm = Permission[perm]
 		elif type(perm) != Permission:
 			raise Exception("Unknown permission given to Report.check_perm()")
-		if not user.is_authenticated:
+		if user is None or not user.is_authenticated:
 			return False
 
 		if perm == Permission.SEE_REPORT:
@@ -274,7 +274,7 @@ class ForumTopic(db.Model):
 		}
 
 	def check_perm(self, user, perm):
-		if not user.is_authenticated:
+		if user is None or not user.is_authenticated:
 			return False
 
 		if type(perm) == str:

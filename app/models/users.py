@@ -254,7 +254,7 @@ class User(db.Model, UserMixin):
 			return get_gravatar(self.email or f"{self.username}@content.luanti.org")
 
 	def check_perm(self, user, perm):
-		if not user.is_authenticated:
+		if user is None or not user.is_authenticated:
 			return False
 
 		if type(perm) == str:

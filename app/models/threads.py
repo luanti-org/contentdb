@@ -82,7 +82,7 @@ class Thread(db.Model):
 		elif type(perm) != Permission:
 			raise Exception("Unknown permission given to Thread.check_perm()")
 
-		if not user.is_authenticated:
+		if user is None or not user.is_authenticated:
 			return perm == Permission.SEE_THREAD and not self.private
 
 		isMaintainer = user == self.author or (self.package is not None and self.package.author == user)
@@ -145,7 +145,7 @@ class ThreadReply(db.Model):
 		return self.thread.get_view_url(absolute) + "#reply-" + str(self.id)
 
 	def check_perm(self, user, perm):
-		if not user.is_authenticated:
+		if user is None or not user.is_authenticated:
 			return False
 
 		if type(perm) == str:
@@ -245,7 +245,7 @@ class PackageReview(db.Model):
 		self.score = 3 * (pos - neg) + 1
 
 	def check_perm(self, user, perm):
-		if not user.is_authenticated:
+		if user is None or not user.is_authenticated:
 			return False
 
 		if type(perm) == str:

@@ -772,7 +772,7 @@ class Package(db.Model):
 		if perm == Permission.VIEW_PACKAGE:
 			return self.state == PackageState.APPROVED or self.check_perm(user, Permission.EDIT_PACKAGE)
 
-		if not user.is_authenticated:
+		if user is None or not user.is_authenticated:
 			return False
 
 		is_owner = user == self.author
@@ -1256,6 +1256,9 @@ class PackageRelease(db.Model):
 		return True
 
 	def check_perm(self, user, perm):
+		if user is None or not user.is_authenticated:
+			return False
+
 		if not hasattr(user, "rank") or user.is_banned:
 			return False
 
