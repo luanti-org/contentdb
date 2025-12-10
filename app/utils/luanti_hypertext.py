@@ -316,6 +316,9 @@ def package_reviews_as_hypertext(package: Package, formspec_version: int = 7):
 	reviews = package.reviews.all()
 	for review in reviews:
 		review: PackageReview
+		if review.thread is None:
+			continue
+
 		html = render_markdown(review.thread.first_reply.comment)
 		content = html_to_luanti(html, package.get_url("packages.view", absolute=True),
 				formspec_version, False, f"review_{review.id}_")
