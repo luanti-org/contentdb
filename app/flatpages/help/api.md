@@ -590,3 +590,9 @@ Supported query parameters:
         * `links`: dictionary of anchor name to link URL.
         * `images`: dictionary of img name to image URL
         * `image_tooltips`: dictionary of img name to tooltip text.
+* GET `/api/uploads/`
+    * Returns a list of public uploads
+    * Array of dictionaries with fields:
+        * `url`: upload URL, relative. Might be absolute in the future so make sure to properly resolve.
+        * `created_at`: iso timestamp string
+        * `size`: file size in bytes 
