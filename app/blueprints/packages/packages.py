@@ -37,6 +37,7 @@ from app.utils import is_user_bot, get_int_or_abort, is_package_page, abs_url_fo
 	post_to_approval_thread, normalize_line_endings
 from app.logic.package_approval import validate_package_for_approval, can_move_to_state
 from app.logic.game_support import game_support_set
+from app.utils.models import create_session
 
 
 @bp.route("/packages/")
@@ -58,9 +59,10 @@ def list_all():
 			key = "tag/{}/{}".format(ip, tag.name)
 			if not has_key(key):
 				set_temp_key(key, "true")
-				Tag.query.filter_by(id=tag.id).update({
-						"views": Tag.views + 1
-					})
+				with create_session() as new_session:
+					new_session.query(Tag).filter_by(id=tag.id).update({
+							"views": Tag.views + 1
+						})
 
 		if edited:
 			db.session.commit()
