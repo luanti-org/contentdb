@@ -4,7 +4,9 @@
 	<subtitle>{{ feed["description"] }}</subtitle>
 	<link href="{{ feed["feed_url"] }}" rel="self" />
 	<link href="{{ feed["home_page_url"] }}" />
-	<updated>{{ feed["items"][0]["date_published"] }}</updated>
+	{% if feed["items"] %}
+		<updated>{{ feed["items"][0]["date_published"] }}</updated>
+	{% endif %}
 	<id>{{ feed["feed_url"] }}</id>
 	{% if feed["authors"] %}
 		<author>
