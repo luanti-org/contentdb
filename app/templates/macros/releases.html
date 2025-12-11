@@ -4,18 +4,17 @@
 			{{ rel.title }}
 			<span class="text-muted ms-1">
 				{% if rel.min_rel and rel.max_rel %}
-					[MT {{ rel.min_rel.name }}-{{ rel.max_rel.name }}]
+					[Luanti {{ rel.min_rel.name }}-{{ rel.max_rel.name }}]
 				{% elif rel.min_rel %}
-					[MT {{ rel.min_rel.name }}+]
+					[Luanti {{ rel.min_rel.name }}+]
 				{% elif rel.max_rel %}
-					[MT &le;{{ rel.max_rel.name }}]
+					[Luanti &le;{{ rel.max_rel.name }}]
 				{% endif %}
-			</span>
-			<span class="text-muted ms-1">
-				{{ rel.file_size }}
 			</span>
 			<br />
 			<small style="color:#999;">
+				{{ rel.file_size }}
+
 				{% if rel.commit_hash %}
 						[{{ rel.commit_hash | truncate(5, end='') }}]
 				{% endif %}
@@ -34,18 +33,17 @@
 				{{ rel.title }}
 				<span class="text-muted ms-1">
 					{% if rel.min_rel and rel.max_rel %}
-						[MT {{ rel.min_rel.name }}-{{ rel.max_rel.name }}]
+						[Luanti {{ rel.min_rel.name }}-{{ rel.max_rel.name }}]
 					{% elif rel.min_rel %}
-						[MT {{ rel.min_rel.name }}+]
+						[Luanti {{ rel.min_rel.name }}+]
 					{% elif rel.max_rel %}
-						[MT &le;{{ rel.max_rel.name }}]
+						[Luanti &le;{{ rel.max_rel.name }}]
 					{% endif %}
-				</span>
-				<span class="text-muted ms-1">
-					{{ rel.file_size }}
 				</span>
 				<br />
 				<small style="color:#999;">
+					{{ rel.file_size }}
+
 					{% if rel.commit_hash %}
 							[{{ rel.commit_hash | truncate(5, end='') }}]
 					{% endif %}
@@ -77,21 +75,19 @@
 
 			<span class="text-muted ms-1">
 				{% if rel.min_rel and rel.max_rel %}
-					[MT {{ rel.min_rel.name }}-{{ rel.max_rel.name }}]
+					[Luanti {{ rel.min_rel.name }}-{{ rel.max_rel.name }}]
 				{% elif rel.min_rel %}
-					[MT {{ rel.min_rel.name }}+]
+					[Luanti {{ rel.min_rel.name }}+]
 				{% elif rel.max_rel %}
-					[MT &le;{{ rel.max_rel.name }}]
+					[Luanti &le;{{ rel.max_rel.name }}]
 				{% endif %}
-			</span>
-
-			<span class="text-muted ms-1">
-				{{ rel.file_size }}
 			</span>
 
 			<br>
 
 			<small style="color:#999;">
+				{{ rel.file_size }}
+
 				{% if rel.commit_hash %}
 						[{{ rel.commit_hash | truncate(5, end='') }}]
 				{% endif %}
