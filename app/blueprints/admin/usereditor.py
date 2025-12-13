@@ -6,7 +6,7 @@ import datetime
 import typing
 import json
 
-from flask import render_template, request, flash
+from flask import render_template, request, flash, redirect, url_for
 from flask_login import current_user
 from flask_wtf import FlaskForm
 from sqlalchemy import and_
@@ -114,29 +114,9 @@ def calc_spammer_likelihood(user: User) -> float:
 	return score
 
 
-@bp.route("/admin/users/", methods=["GET", "POST"])
+@bp.route("/admin/users/")
 @rank_required(UserRank.MODERATOR)
 def user_editor():
-	if request.method == "POST" and current_user.rank.at_least(UserRank.ADMIN):
-		selected = request.form.getlist("selected")
-		for username in selected:
-			user: User = User.query.filter_by(username=username).first()
-			if user is None:
-				continue
-
-			msg = f"Deleted user {user.username} as spammer"
-			desc = f"{json.dumps(user.get_dict(), indent=4)}"
-			add_audit_log(AuditSeverity.MODERATION, current_user, msg, None, None, desc)
-
-			for pkg in user.packages.all():
-				pkg.review_thread = None
-				db.session.delete(pkg)
-
-			db.session.delete(user)
-		db.session.commit()
-
-		flash("Marked users for deletion", "success")
-
 	form = AuditForm(request.args)
 	query = User.query.filter(and_(User.rank >= form.min_rank.data, User.rank <= form.max_rank.data))
 
@@ -163,3 +143,32 @@ def user_editor():
 	scored_users = [[calc_spammer_likelihood(user), user] for user in users]
 	scored_users = sorted(scored_users, key=lambda x: x[0], reverse=True)
 	return render_template("admin/users.html", form=form, scored_users=scored_users)
+
+
+@bp.route("/admin/users/delete/", methods=["POST"])
+@rank_required(UserRank.MODERATOR)
+def user_editor_delete():
+	selected = request.form.getlist("selected")
+	confirmed = request.form.get("confirm", None)
+	if confirmed:
+		for username in selected:
+			user: User = User.query.filter_by(username=username).first()
+			if user is None:
+				continue
+
+			msg = f"Deleted user {user.username} as spammer"
+			desc = f"{json.dumps(user.get_dict(), indent=4)}"
+			add_audit_log(AuditSeverity.MODERATION, current_user, msg, None, None, desc)
+
+			for pkg in user.packages.all():
+				pkg.review_thread = None
+				db.session.delete(pkg)
+
+			db.session.delete(user)
+		db.session.commit()
+
+		flash(f"Deleted {len(selected)} users", "success")
+		return redirect(url_for("admin.user_editor"))
+
+	selected_users = User.query.filter(User.username.in_(selected)).all()
+	return render_template("admin/users_delete.html", selected=selected_users)

@@ -1,35 +1,14 @@
 {% extends "base.html" %}
 
 {% block title %}
-	Users
+	Delete {{ selected | length }} Users
 {% endblock %}
 
 {% block content %}
 	<h1>{{ self.title() }}</h1>
 
-	{% from "macros/forms.html" import render_field, render_checkbox_field, render_submit_field %}
-	<form method="GET" action="">
-		<div class="row">
-			<div class="col-md">
-				{{ render_field(form.min_rank) }}
-			</div>
-			<div class="col-md">
-				{{ render_field(form.max_rank) }}
-			</div>
-		</div>
-		{{ render_checkbox_field(form.hide_with_packages) }}
-		{{ render_checkbox_field(form.hide_with_anything) }}
-		{{ render_checkbox_field(form.hide_active) }}
-		{{ render_checkbox_field(form.hide_with_forums) }}
-		{{ render_submit_field(form.submit, class_="btn btn-primary mt-3") }}
-	</form>
-
-	<form method="POST" action="{{ url_for('admin.user_editor_delete') }}">
+	<form method="POST" action="">
 		<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-		<input class="btn btn-danger mt-5" type="submit" name="action" value="Delete selected">
-		<p class="my-4">
-			{{ scored_users | length }} matching query.
-		</p>
 		<div class="list-group">
 			<div class="list-group-item">
 				<div class="row">
@@ -48,16 +27,15 @@
 				</div>
 			</div>
 
-			{% for pair in scored_users %}
-				{% set user = pair[1] %}
+			{% for user in selected %}
 				<div class="list-group-item">
 					<div class="row">
 						<div class="col-auto">
 							<input type="checkbox" name="selected" value="{{ user.username }}"
-								aria-label="Select {{ user.username }}" {% if pair[0] >= 100 %}checked{%endif %}>
+								aria-label="Select {{ user.username }}" checked>
 						</div>
 						<div class="col-2">
-							<a class="{% if pair[0] >= 100 %}text-danger{% endif %}" target="_blank" href="{{ url_for('users.profile', username=user.username) }}">{{ user.username }}</a>
+							<a target="_blank" href="{{ url_for('users.profile', username=user.username) }}">{{ user.username }}</a>
 						</div>
 						<div class="col-2">{{ user.display_name }} </div>
 						<div class="col-2">
@@ -79,5 +57,8 @@
 				</div>
 			{% endfor %}
 		</div>
+
+		<input class="btn btn-danger mt-5" type="submit" name="confirm" value="Confirm">
+
 	</form>
 {% endblock %}
