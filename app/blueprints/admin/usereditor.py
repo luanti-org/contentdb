@@ -4,6 +4,7 @@
 
 import datetime
 import typing
+import json
 
 from flask import render_template, request, flash
 from flask_login import current_user
@@ -101,8 +102,8 @@ def calc_spammer_likelihood(user: User) -> float:
 	score += matches(user.donate_url, suspicious_words) * 120
 
 	score += matches(user.username, mild_words) * 20
-	score += matches(user.website_url, mild_words) * 100
-	score += matches(user.donate_url, mild_words) * 100
+	score += matches(user.website_url, mild_words) * 20
+	score += matches(user.donate_url, mild_words) * 20
 
 	score += 50 if user.website_url or user.donate_url else 0
 
@@ -119,13 +120,13 @@ def user_editor():
 	if request.method == "POST" and current_user.rank.at_least(UserRank.ADMIN):
 		selected = request.form.getlist("selected")
 		for username in selected:
-			user = User.query.filter_by(username=username).first()
+			user: User = User.query.filter_by(username=username).first()
 			if user is None:
 				continue
 
-			msg = "Deleted user {} as spammer".format(user.username)
-			flash(msg, "success")
-			add_audit_log(AuditSeverity.MODERATION, current_user, msg, None)
+			msg = f"Deleted user {user.username} as spammer"
+			desc = f"{json.dumps(user.get_dict(), indent=4)}"
+			add_audit_log(AuditSeverity.MODERATION, current_user, msg, None, None, desc)
 
 			for pkg in user.packages.all():
 				pkg.review_thread = None
