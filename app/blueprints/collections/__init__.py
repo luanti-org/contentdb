@@ -12,8 +12,11 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, BooleanField, SubmitField, FieldList, HiddenField, TextAreaField
 from wtforms.validators import InputRequired, Length, Optional, Regexp
 
+from app import render_markdown
+from app.markdown import get_links
 from app.models import Collection, db, Package, Permission, CollectionPackage, User, UserRank, AuditSeverity
-from app.utils import nonempty_or_none, normalize_line_endings, should_return_json
+from app.tasks.webhooktasks import post_discord_webhook
+from app.utils import nonempty_or_none, normalize_line_endings, should_return_json, abs_url_for
 from app.utils.models import is_package_page, add_audit_log, create_session
 
 bp = Blueprint("collections", __name__)
@@ -139,18 +142,28 @@ def handle_create_edit(collection: Collection, form: CollectionForm,
 	severity = AuditSeverity.NORMAL if author == current_user else AuditSeverity.EDITOR
 	name = form.name.data if collection else regex_invalid_chars.sub("", form.title.data.lower().replace(" ", "_"))
 
+	links = get_links(render_markdown(form.long_description.data)) if form.long_description.data else set()
+	if not current_user.rank.at_least(UserRank.MEMBER) and len(links) != 0:
+		flash(gettext("New members cannot put links in collection descriptions.") + " " +
+			gettext("To become a full member, create a review, comment, or package and wait 7 days."), "danger")
+
+		modtools = abs_url_for("users.modtools", username=current_user.username)
+		post_discord_webhook.delay(current_user.username,
+			f"Attempted to create collection with links:\n\n{'\n'.join(links)}\n\n{modtools}", True)
+		return None
+
 	if collection is None or name != collection.name:
 		if Collection.query \
 				.filter(Collection.name == name, Collection.author == author) \
 				.count() > 0:
 			flash(gettext("A collection with a similar title already exists"), "danger")
-			return
+			return None
 
 		if Package.query \
 				.filter(Package.name == name, Package.author == author) \
 				.count() > 0:
 			flash(gettext("Unable to create collection as a package with that name already exists"), "danger")
-			return
+			return None
 
 	if collection is None:
 		collection = Collection()
