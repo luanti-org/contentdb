@@ -549,6 +549,7 @@ class Notification(db.Model):
 	package    = db.relationship("Package", foreign_keys=[package_id], back_populates="notifications")
 
 	created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+	read_at = db.Column(db.DateTime, nullable=True, default=None)
 
 	def __init__(self, user, causer, type, title, url, package=None):
 		if len(title) > 100:

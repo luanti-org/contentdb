@@ -4,29 +4,7 @@
 	{{ _("Notifications") }}
 {% endblock %}
 
-{% block content %}
-	{% if current_user.notifications %}
-		<form method="post" action="{{ url_for('notifications.clear') }}" class="float-end">
-			<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-			<input type="submit" class="btn btn-primary" value="Clear All" />
-		</form>
-		<a href="{{ url_for('users.email_notifications', username=current_user.username) }}" class="btn btn-secondary float-end me-3">
-			{{ _("Edit email notification settings") }}
-		</a>
-	{% endif %}
-
-	<h1>{{ self.title() }}</h1>
-
-	{% if current_user.notifications %}
-	<p>
-		{{ _("Newest first.") }}
-	</p>
-	{% endif %}
-
-	{% if editor_notifications %}
-		<h2>{{ _("Your Notifications") }}</h2>
-	{% endif %}
-
+{% macro render_notifications(notifications) %}
 	<div class="list-group mt-3">
 		{% for n in notifications %}
 			<a class="list-group-item list-group-item-action" href="{{ n.url }}">
@@ -45,7 +23,11 @@
 					{% endif %}
 
 					<div class="col-sm">
-						{{ n.title}}
+						{{ n.title }}
+					</div>
+
+					<div class="col-sm-auto text-muted text-end">
+						{{ n.created_at | datetime }}
 					</div>
 
 					<div class="col-sm-auto text-muted text-end">
@@ -61,43 +43,49 @@
 			<p class="list-group-item"><i>{{ _("No notifications") }}</i></p>
 		{% endfor %}
 	</div>
+{% endmacro %}
+
+{% block content %}
+	{% if current_user.notifications %}
+		<form method="post" action="{{ url_for('notifications.read_all') }}" class="float-end">
+			<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+			<input type="submit" class="btn btn-primary" value="{{ _('Mark all as read') }}" />
+		</form>
+		<form method="post" action="{{ url_for('notifications.delete_all') }}" class="float-end me-3">
+			<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+			<input type="submit" class="btn btn-danger" value="{{ _('Delete all') }}" />
+		</form>
+		<a href="{{ url_for('users.email_notifications', username=current_user.username) }}" class="btn btn-secondary float-end me-3">
+			{{ _("Edit email notification settings") }}
+		</a>
+	{% endif %}
+
+	<h1>{{ self.title() }}</h1>
+
+	{% set url = url_for("notifications.list_all") %}
+	<div class="btn-group mb-4">
+		<a class="btn {% if not show_read %}btn-primary{% else %}btn-secondary{% endif %}" href="{{ url }}">
+			{{ _("Unread") }}
+			<span class="badge bg-dark ms-2">
+				{{ unread_count }}
+			</span>
+		</a>
+		<a class="btn {% if show_read %}btn-primary{% else %}btn-secondary{% endif %}" href="{{ url }}?read=1">
+			{{ _("Read") }}
+			<span class="badge bg-dark ms-2">
+				{{ read_count }}
+			</span>
+		</a>
+	</div>
+
+	{% if editor_notifications %}
+		<h2>{{ _("Your Notifications") }}</h2>
+	{% endif %}
+
+	{{ render_notifications(notifications) }}
 
 	{% if editor_notifications %}
 		<h2>{{ _("Editor/Approver Notifications") }}</h2>
-
-		<div class="list-group mt-3">
-			{% for n in editor_notifications %}
-				<a class="list-group-item list-group-item-action" href="{{ n.url }}">
-					<div class="row">
-						{% if n.package %}
-							<div class="col-sm-auto text-muted">
-								<img
-									class="img-fluid"
-									style="max-height: 22px; max-width: 22px;"
-									src="{{ n.package.get_thumb_or_placeholder() }}" />
-
-								<span class="ps-2">
-									{{ n.package.title }}
-								</span>
-							</div>
-						{% endif %}
-
-						<div class="col-sm">
-							{{ n.title}}
-						</div>
-
-						<div class="col-sm-auto text-muted text-end">
-							<span class="pe-2">{{ n.causer.display_name }}</span>
-							<img
-								class="img-fluid user-photo img-thumbnail img-thumbnail-1"
-								style="max-height: 22px;"
-								src="{{ n.causer.get_profile_pic_url() }}" />
-						</div>
-					</div>
-				</a>
-			{% else %}
-				<p class="list-group-item"><i>{{ _("No notifications") }}</i></p>
-			{% endfor %}
-		</div>
+		{{ render_notifications(editor_notifications) }}
 	{% endif %}
 {% endblock %}

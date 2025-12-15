@@ -3,6 +3,7 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 import typing
+import datetime
 from functools import wraps
 from typing import List
 
@@ -90,8 +91,11 @@ def add_audit_log(severity: AuditSeverity, causer: User, title: str, url: typing
 
 def clear_notifications(url):
 	if current_user.is_authenticated:
-		Notification.query.filter_by(user=current_user, url=url).delete()
-		db.session.commit()
+		with create_session() as session:
+			session.query(Notification).filter_by(user=current_user, url=url, read_at=None).update({
+				"read_at": datetime.datetime.utcnow()
+			})
+			session.commit()
 
 
 def get_system_user():
