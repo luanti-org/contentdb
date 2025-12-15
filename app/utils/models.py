@@ -76,9 +76,10 @@ def add_notification(target, causer: User, type: NotificationType, title: str, u
 		pass
 
 	if target.rank.at_least(UserRank.NEW_MEMBER) and target != causer:
-		session.query(Notification) \
-				.filter_by(user=target, causer=causer, type=type, title=title, url=url, package=package) \
-				.delete()
+		(session.query(Notification)
+				.filter_by(user=target, causer=causer, type=type, title=title, url=url, package=package)
+				.filter(Notification.read_at.is_(None))
+				.delete())
 		notif = Notification(target, causer, type, title, url, package)
 		session.add(notif)
 
