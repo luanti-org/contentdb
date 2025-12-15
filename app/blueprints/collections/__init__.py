@@ -148,8 +148,9 @@ def handle_create_edit(collection: Collection, form: CollectionForm,
 			gettext("To become a full member, create a review, comment, or package and wait 7 days."), "danger")
 
 		modtools = abs_url_for("users.modtools", username=current_user.username)
+		links_list = '\n'.join(links)
 		post_discord_webhook.delay(current_user.username,
-			f"Attempted to create collection with links:\n\n{'\n'.join(links)}\n\n{modtools}", True)
+			f"Attempted to create collection with links:\n\n{links_list}\n\n{modtools}", True)
 		return None
 
 	if collection is None or name != collection.name:
