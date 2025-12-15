@@ -11,7 +11,7 @@ from flask import url_for
 from sqlalchemy import or_, and_, not_, func
 
 from app import app
-from app.models import User, db, UserRank, ThreadReply, Package, NotificationType
+from app.models import User, db, UserRank, ThreadReply, Package, Notification, NotificationType
 from app.utils import random_string
 from app.utils.models import create_session, add_notification, get_system_user
 from app.tasks import celery, TaskError
@@ -137,3 +137,10 @@ def import_github_user_ids():
 	db.session.commit()
 
 	print(f"Updated {count} users", file=sys.stderr)
+
+
+@celery.task()
+def delete_old_notifications():
+	one_month_ago = datetime.datetime.now() - datetime.timedelta(weeks=4)
+	Notification.query.filter(Notification.read_at < one_month_ago).delete()
+	db.session.commit()

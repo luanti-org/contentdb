@@ -90,6 +90,10 @@ CELERYBEAT_SCHEDULE = {
 		'task': 'app.tasks.usertasks.upgrade_new_members',
 		'schedule': crontab(minute=10, hour=3), # 0310
 	},
+	'delete_old_notifications': {
+		'task': 'app.tasks.usertasks.delete_old_notifications',
+		'schedule': crontab(minute=10, hour=3),  # 0310
+	},
 }
 celery.conf.beat_schedule = CELERYBEAT_SCHEDULE
 
