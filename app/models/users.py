@@ -176,7 +176,7 @@ class User(db.Model, UserMixin):
 	donate_url    = db.Column(db.String(255), nullable=True, default=None)
 
 	# Content
-	notifications = db.relationship("Notification", foreign_keys="Notification.user_id",
+	notifications = db.relationship("Notification", foreign_keys="Notification.user_id", lazy="dynamic",
 									order_by=desc(text("Notification.created_at")), back_populates="user", cascade="all, delete, delete-orphan")
 	caused_notifications = db.relationship("Notification", foreign_keys="Notification.causer_id",
 										   back_populates="causer", cascade="all, delete, delete-orphan", lazy="dynamic")

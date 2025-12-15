@@ -166,7 +166,7 @@ def send_notification_digest(notifications: typing.List[Notification], locale):
 def send_pending_digests():
 	for user in User.query.filter(User.notifications.any(emailed=False)).all():
 		to_send = []
-		for notification in user.notifications:
+		for notification in user.notifications.all():
 			if not notification.emailed and notification.can_send_digest():
 				to_send.append(notification)
 				notification.emailed = True

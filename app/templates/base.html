@@ -109,16 +109,16 @@
 							<a class="nav-link notification-icon"
 										href="{{ url_for('notifications.list_all') }}"
 										title="{{ _('Notifications') }}">
-								{% if current_user.notifications %}
+								{% set notification_count = current_user.notifications.filter_by(read_at=None).count() %}
+								{% if notification_count > 0 %}
 									<i class="fas fa-bell"></i>
-									{% set num_notifs = current_user.notifications | length %}
-									{% if num_notifs > 60 %}
+									{% if notification_count > 60 %}
 										<span class="badge rounded-pill badge-notify badge-emoji">
 											😢
 										</span>
 									{% else %}
 										<span class="badge rounded-pill badge-notify">
-											{{ num_notifs }}
+											{{ notification_count }}
 										</span>
 									{% endif %}
 								{% else %}

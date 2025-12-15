@@ -33,7 +33,7 @@ def post_login(user: User, next_url):
 	if not current_user.password:
 		return redirect(url_for("users.set_password"))
 
-	notif_count = len(user.notifications)
+	notif_count = user.notifications.count()
 	if notif_count > 0:
 		if notif_count >= 10:
 			flash(gettext("You have a lot of notifications, you should either read or clear them"), "info")
