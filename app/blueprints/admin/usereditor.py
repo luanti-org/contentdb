@@ -109,7 +109,6 @@ def calc_spammer_likelihood(user: User) -> float:
 
 	score -= matches(user.username, good_words) * 120
 	score -= matches(user.website_url, good_words) * 120
-	score += -200 if user.forums_username else 0
 
 	return score
 
