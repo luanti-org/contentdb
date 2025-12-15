@@ -554,6 +554,9 @@ def check_update_config(self, package_id):
 
 @celery.task
 def check_for_updates():
+	if not app.config.get("ENABLE_GIT_UPDATE_DETECTION", True):
+		return
+
 	for update_config in PackageUpdateConfig.query.all():
 		update_config: PackageUpdateConfig
 
