@@ -46,7 +46,7 @@
 {% endmacro %}
 
 {% block content %}
-	{% if notifications or editor_notifications %}
+	{% if notifications %}
 		<form method="post" action="{{ url_for('notifications.read_all') }}" class="float-end">
 			<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 			<input type="submit" class="btn btn-primary" value="{{ _('Mark all as read') }}" />
@@ -78,14 +78,5 @@
 		</a>
 	</div>
 
-	{% if editor_notifications %}
-		<h2>{{ _("Your Notifications") }}</h2>
-	{% endif %}
-
 	{{ render_notifications(notifications) }}
-
-	{% if editor_notifications %}
-		<h2>{{ _("Editor/Approver Notifications") }}</h2>
-		{{ render_notifications(editor_notifications) }}
-	{% endif %}
 {% endblock %}

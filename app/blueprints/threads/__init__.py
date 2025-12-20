@@ -256,9 +256,6 @@ def view(id):
 		add_notification(thread.watchers, current_user, NotificationType.THREAD_REPLY, msg, thread.get_view_url(), thread.package)
 
 		if thread.author == get_system_user():
-			approvers = User.query.filter(User.rank >= UserRank.APPROVER).all()
-			add_notification(approvers, current_user, NotificationType.EDITOR_MISC, msg,
-							 thread.get_view_url(), thread.package)
 			post_discord_webhook.delay(current_user.display_name,
 					"Replied to bot messages: {}".format(thread.get_view_url(absolute=True)), True)
 
@@ -360,12 +357,12 @@ def new():
 			if package is not None:
 				add_notification(package.maintainers, current_user, NotificationType.NEW_THREAD, notif_msg, thread.get_view_url(), package)
 
-			approvers = User.query.filter(User.rank >= UserRank.APPROVER).all()
-			add_notification(approvers, current_user, NotificationType.EDITOR_MISC, notif_msg, thread.get_view_url(), package)
-
 			if is_review_thread:
 				post_discord_webhook.delay(current_user.display_name,
 						"Opened approval thread: {}".format(thread.get_view_url(absolute=True)), True)
+			else:
+				post_discord_webhook.delay(current_user.display_name,
+						"New thread: {}".format(thread.get_view_url(absolute=True)), True)
 
 			db.session.commit()
 
