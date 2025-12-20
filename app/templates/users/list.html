@@ -21,12 +21,17 @@
 			<div class="col-sm-1 text-center">
 				{{ _("Packages") }}
 			</div>
+
+			<div class="col-sm-1 text-center">
+				{{ _("Downloads") }}
+			</div>
 		</div>
 	</div>
 
 	{% for pair in users %}
 		{% set user = pair[0] %}
-		{% set count_pkgs = pair[1] %}
+		{% set package_count = pair[1] %}
+		{% set package_downloads = pair[2] %}
 
 		<a class="list-group-item list-group-item-action" href="{{ url_for('users.profile', username=user.username) }}">
 			<div class="row">
@@ -59,7 +64,11 @@
 				</span>
 
 				<div class="col-sm-1 text-center">
-					<b>{{ count_pkgs }}</b>
+					<b>{{ package_count }}</b>
+				</div>
+
+				<div class="col-sm-1 text-center">
+					<b>{{ package_downloads }}</b>
 				</div>
 			</div>
 		</a>

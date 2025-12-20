@@ -9,6 +9,7 @@ from flask import redirect, url_for, abort, render_template, request
 from flask_babel import gettext
 from flask_login import current_user, login_required
 from sqlalchemy import func, text, and_
+from sqlalchemy.sql.functions import coalesce
 
 from app.models import User, db, Package, PackageReview, PackageState, PackageType, UserRank, Collection
 from app.utils import get_daterange_options
@@ -19,12 +20,15 @@ from . import bp
 
 @bp.route("/users/", methods=["GET"])
 def list_all():
-	query = (db.session.query(User, func.count(Package.id).label("package_count"))
+	query = (db.session.query(User, func.count(Package.id).label("package_count"),
+				func.sum(coalesce(Package.downloads, 0)).label("package_downloads"))
 			.select_from(User).outerjoin(Package, and_(Package.author_id == User.id, Package.state == 'APPROVED'))
 			.group_by(User.id))
 
 	if request.args.get("sort") == "packages":
 		query = query.order_by(db.desc("package_count"))
+	elif request.args.get("sort") == "downloads":
+		query = query.order_by(db.desc("package_downloads"))
 	else:
 		query = query.order_by(db.desc(User.rank), db.asc(User.display_name))
 
