@@ -69,19 +69,28 @@
 				<div class="list-group list-group-flush">
 					{% for p in packages %}
 						<a href="{{ p.get_url('packages.view') }}" class="list-group-item list-group-item-action">
-							<span class="float-end" title="Created {{ p.created_at | full_datetime }}">
-								<small>
-									{{ p.created_at | timedelta }} ago
-								</small>
-							</span>
-
-							{% if "Other" in p.license.name or "Other" in p.media_license.name %}
-								<span class="me-2 badge bg-info">License</span>
-							{% else %}
-								<span class="me-2 badge bg-success">Ready</span>
-							{% endif %}
-
-							{{ p.title }} by {{ p.author.display_name }}
+							<div class="row align-items-center">
+								<div class="col-auto">
+									{% if "Other" in p.license.name or "Other" in p.media_license.name %}
+										<span class="badge bg-info">License</span>
+									{% else %}
+										<span class="badge bg-success">Ready</span>
+									{% endif %}
+								</div>
+								<div class="col">
+									{{ p.title }} by {{ p.author.display_name }}
+								</div>
+								{% if p.review_thread %}
+									<div class="col-auto">
+										<i class="fas fa-comment float-end text-muted"></i>
+									</div>
+								{% endif %}
+								<div class="col-auto" title="Created {{ p.created_at | full_datetime }}">
+									<small>
+										{{ p.created_at | timedelta }} ago
+									</small>
+								</div>
+							</div>
 						</a>
 					{% else %}
 						<li class="list-group-item"><i>{{ _("No packages need approval.") }}</i></li>
