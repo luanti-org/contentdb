@@ -8,7 +8,7 @@ from typing import Optional, Tuple, List
 from flask import redirect, url_for, abort, render_template, request
 from flask_babel import gettext
 from flask_login import current_user, login_required
-from sqlalchemy import func, text
+from sqlalchemy import func, text, and_
 
 from app.models import User, db, Package, PackageReview, PackageState, PackageType, UserRank, Collection
 from app.utils import get_daterange_options
@@ -19,10 +19,16 @@ from . import bp
 
 @bp.route("/users/", methods=["GET"])
 def list_all():
-	users = db.session.query(User, func.count(Package.id)) \
-			.select_from(User).outerjoin(Package) \
-			.order_by(db.desc(User.rank), db.asc(User.display_name)) \
-			.group_by(User.id).all()
+	query = (db.session.query(User, func.count(Package.id).label("package_count"))
+			.select_from(User).outerjoin(Package, and_(Package.author_id == User.id, Package.state == 'APPROVED'))
+			.group_by(User.id))
+
+	if request.args.get("sort") == "packages":
+		query = query.order_by(db.desc("package_count"))
+	else:
+		query = query.order_by(db.desc(User.rank), db.asc(User.display_name))
+
+	users = query.all()
 
 	return render_template("users/list.html", users=users)
 
