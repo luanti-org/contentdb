@@ -259,6 +259,9 @@ def view(id):
 			post_discord_webhook.delay(current_user.display_name,
 					"Replied to bot messages: {}".format(thread.get_view_url(absolute=True)), True)
 
+		if thread.package and thread.package.review_thread_id == thread.id:
+			thread.package.approval_thread_stale = False
+
 		db.session.commit()
 
 		return redirect(thread.get_view_url())

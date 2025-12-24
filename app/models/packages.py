@@ -423,6 +423,7 @@ class Package(db.Model):
 	review_thread_id = db.Column(db.Integer, db.ForeignKey("thread.id"), nullable=True, default=None)
 	review_thread    = db.relationship("Thread", uselist=False, foreign_keys=[review_thread_id],
 			back_populates="is_review_thread", post_update=True)
+	approval_thread_stale = db.Column(db.Boolean, nullable=False, default=False)
 
 	# Supports all games by default, may have unsupported games
 	supports_all_games = db.Column(db.Boolean, nullable=False, default=False)

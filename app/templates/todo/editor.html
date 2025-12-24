@@ -122,22 +122,38 @@
 	</div>
 
 	{% if unanswered_approval_threads %}
-		<h2 class="mb-4">Unanswered approval threads</h2>
+		<h2 class="mb-4" id="unanswered-approval-threads">Unanswered approval threads</h2>
 		<p class="text-muted">
 			Approval threads where the latest reply is the maintainer.
 		</p>
 		<nav class="list-group">
 			{% for row in unanswered_approval_threads %}
-				{% set package_title = row[0] %}
-				{% set package_state = row[1] %}
-				{% set thread_id = row[2] %}
-				{% set created_at = row[3] %}
-				<a class="list-group-item list-group-item-action" href="{{ url_for('threads.view',  id=thread_id) }}">
-					<i class="fas fa-comment me-3"></i>
-					<span class="float-end" title="{{ created_at | datetime }}">{{ created_at | timedelta }}</span>
-					<span class="me-3 badge {% if package_state.name == 'READY_FOR_REVIEW' %}bg-success{% else %}bg-danger{% endif %}">{{ package_state.value }}</span>
-					{{ package_title }}
-				</a>
+				{% set package_id = row[0] %}
+				{% set package_title = row[1] %}
+				{% set package_state = row[2] %}
+				{% set thread_id = row[3] %}
+				{% set created_at = row[4] %}
+				<div class="list-group-item">
+					<div class="row">
+						<div class="col">
+							<i class="fas fa-comment me-3"></i>
+							<span class="me-3 badge {% if package_state.name == 'READY_FOR_REVIEW' %}bg-success{% else %}bg-danger{% endif %}">{{ package_state.value }}</span>
+							<a href="{{ url_for('threads.view', id=thread_id) }}">
+								{{ package_title }}
+							</a>
+						</div>
+						<div class="col-auto" title="{{ created_at | datetime }}">
+							{{ created_at | timedelta }}
+						</div>
+						<form class="col-auto" action="{{ url_for('todo.mark_approval_thread_stale', pid=package_id) }}" method="POST">
+							<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+							<button type="submit" class="btn btn-sm btn-danger" aria-label="{{ _('Remove') }}">
+								<i class="fas fa-trash"></i>
+							</button>
+						</form>
+					</div>
+
+				</div>
 			{% endfor %}
 		</nav>
 	{% endif %}

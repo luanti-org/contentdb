@@ -3,7 +3,7 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 
-from flask import redirect, url_for, abort, render_template, request
+from flask import redirect, url_for, abort, render_template, request, flash
 from flask_login import current_user, login_required
 from sqlalchemy import or_, and_
 
@@ -14,6 +14,7 @@ from app.querybuilder import QueryBuilder
 from app.utils import get_int_or_abort, is_yes, rank_required
 from . import bp
 from sqlalchemy import select, and_
+
 
 def get_unanswered_approval_threads():
 	latest_reply = (
@@ -37,6 +38,7 @@ def get_unanswered_approval_threads():
 
 	return (
 		db.session.query(
+			Package.id,
 			Package.title,
 			Package.state,
 			Thread.id,
@@ -48,6 +50,7 @@ def get_unanswered_approval_threads():
 		.where(
 			and_(
 				latest_reply.c.author_id.not_in(approvers),
+				~Package.approval_thread_stale,
 				Package.state != PackageState.APPROVED,
 				Package.state != PackageState.DELETED,
 				Package.state != PackageState.WIP,
@@ -250,3 +253,17 @@ def topics_mismatch():
 			missing_topics=missing_topics,
 			packages_bad_author=packages_bad_author,
 			packages_bad_title=packages_bad_title)
+
+
+@bp.route("/todo/mark-approval-thread-stale/", methods=["POST"])
+@rank_required(UserRank.EDITOR)
+def mark_approval_thread_stale():
+	pid = request.args.get("pid")
+	package = Package.query.get(pid)
+	if package:
+		package.approval_thread_stale = True
+		db.session.commit()
+	else:
+		flash("No such package", "danger")
+
+	return redirect(url_for("todo.view_editor") + "#unanswered-approval-threads")
