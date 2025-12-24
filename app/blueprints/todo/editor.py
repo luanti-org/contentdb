@@ -9,9 +9,9 @@ from sqlalchemy import or_, and_
 
 from app.models import Package, PackageState, PackageScreenshot, PackageUpdateConfig, ForumTopic, db, \
 	PackageRelease, Permission, UserRank, License, MetaPackage, Dependency, AuditLogEntry, Tag, LuantiRelease, Report, \
-	ReleaseState, User, ThreadReply, Thread
+	ReleaseState, User, ThreadReply, Thread, AuditSeverity
 from app.querybuilder import QueryBuilder
-from app.utils import get_int_or_abort, is_yes, rank_required
+from app.utils import get_int_or_abort, is_yes, rank_required, add_audit_log
 from . import bp
 from sqlalchemy import select, and_
 
@@ -262,6 +262,10 @@ def mark_approval_thread_stale():
 	package = Package.query.get(pid)
 	if package:
 		package.approval_thread_stale = True
+
+		msg = f"Marked approval thread as stale"
+		add_audit_log(AuditSeverity.EDITOR, current_user, msg, url_for("threads.view", id=package.review_thread_id), package)
+
 		db.session.commit()
 	else:
 		flash("No such package", "danger")
