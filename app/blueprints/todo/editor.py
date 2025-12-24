@@ -21,7 +21,8 @@ def get_unanswered_approval_threads():
 		select(
 			ThreadReply.thread_id,
 			ThreadReply.author_id,
-			ThreadReply.created_at
+			ThreadReply.created_at,
+			ThreadReply.is_status_update,
 		)
 		.distinct(ThreadReply.thread_id)
 		.order_by(
@@ -50,6 +51,7 @@ def get_unanswered_approval_threads():
 		.where(
 			and_(
 				latest_reply.c.author_id.not_in(approvers),
+				~latest_reply.c.is_status_update,
 				~Package.approval_thread_stale,
 				Package.state != PackageState.APPROVED,
 				Package.state != PackageState.DELETED,
