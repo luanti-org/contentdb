@@ -53,7 +53,7 @@ def get_unanswered_approval_threads():
 				~Package.approval_thread_stale,
 				Package.state != PackageState.APPROVED,
 				Package.state != PackageState.DELETED,
-				Package.state != PackageState.WIP,
+				Package.state != PackageState.READY_FOR_REVIEW,
 			)
 		)
 		.order_by(db.desc(latest_reply.c.created_at))
