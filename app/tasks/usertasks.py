@@ -11,7 +11,7 @@ from flask import url_for
 from sqlalchemy import or_, and_, not_, func
 
 from app import app
-from app.models import User, db, UserRank, ThreadReply, Package, Notification, NotificationType
+from app.models import User, db, UserRank, Thread, Package, Notification, NotificationType
 from app.utils import random_string
 from app.utils.models import create_session, add_notification, get_system_user
 from app.tasks import celery, TaskError
@@ -35,7 +35,7 @@ def upgrade_new_members():
 		threshold = datetime.datetime.now() - datetime.timedelta(days=7)
 
 		session.query(User).filter(and_(User.rank == UserRank.NEW_MEMBER, or_(
-				User.replies.any(ThreadReply.created_at < threshold),
+				User.threads.any(Thread.created_at < threshold),
 				User.packages.any(Package.approved_at < threshold)))).update({"rank": UserRank.MEMBER}, synchronize_session=False)
 
 		session.commit()
