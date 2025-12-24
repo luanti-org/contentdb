@@ -9,7 +9,7 @@ import json
 from flask import render_template, request, flash, redirect, url_for
 from flask_login import current_user
 from flask_wtf import FlaskForm
-from sqlalchemy import and_
+from sqlalchemy import and_, or_
 from wtforms import SubmitField, SelectField, BooleanField
 from wtforms.validators import Optional
 
@@ -25,6 +25,7 @@ class AuditForm(FlaskForm):
 			default=UserRank.ADMIN)
 	hide_with_packages = BooleanField("Hide with approved packages", default=False)
 	hide_with_anything = BooleanField("Hide with any content", default=False)
+	show_with_anything = BooleanField("Show only with content", default=False)
 	hide_active = BooleanField("Hide with activity in last year", default=False)
 	hide_with_forums = BooleanField("Hide with forum account", default=False)
 	submit = SubmitField("Search", name=None)
@@ -38,6 +39,7 @@ mild_words = {
 	"vip",
 	"club",
 	"king",
+	"prestige",
 }
 
 suspicious_words = {
@@ -76,7 +78,10 @@ suspicious_words = {
 	"auction",
 	"claims",
 	"prestigesouthernstar",
+	"prestigesevergreen",
 	"slicemaster",
+	"clinic",
+	"daniel wyatt",
 }
 
 good_words = {
@@ -131,6 +136,15 @@ def user_editor():
 		))
 	elif form.hide_with_packages.data:
 		query = query.filter(~User.packages.any(state=PackageState.APPROVED))
+
+	if form.show_with_anything.data:
+		query = query.filter(or_(
+			User.packages.any(),
+			User.replies.any(),
+			User.reports.any(),
+			User.collections.any(),
+			User.reviews.any(),
+		))
 
 	if form.hide_active.data:
 		one_year_ago = datetime.datetime.now() - datetime.timedelta(days=365)
