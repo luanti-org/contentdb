@@ -75,6 +75,8 @@ suspicious_words = {
 	"accident",
 	"auction",
 	"claims",
+	"prestigesouthernstar",
+	"slicemaster",
 }
 
 good_words = {
