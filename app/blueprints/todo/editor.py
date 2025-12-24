@@ -9,10 +9,53 @@ from sqlalchemy import or_, and_
 
 from app.models import Package, PackageState, PackageScreenshot, PackageUpdateConfig, ForumTopic, db, \
 	PackageRelease, Permission, UserRank, License, MetaPackage, Dependency, AuditLogEntry, Tag, LuantiRelease, Report, \
-	ReleaseState
+	ReleaseState, User, ThreadReply, Thread
 from app.querybuilder import QueryBuilder
 from app.utils import get_int_or_abort, is_yes, rank_required
 from . import bp
+from sqlalchemy import select, and_
+
+def get_unanswered_approval_threads():
+	latest_reply = (
+		select(
+			ThreadReply.thread_id,
+			ThreadReply.author_id,
+			ThreadReply.created_at
+		)
+		.distinct(ThreadReply.thread_id)
+		.order_by(
+			ThreadReply.thread_id,
+			ThreadReply.id.desc()
+		)
+		.subquery("latest_reply")
+	)
+
+	approvers = (
+		select(User.id)
+		.where(User.rank >= UserRank.APPROVER)
+	)
+
+	return (
+		db.session.query(
+			Package.title,
+			Package.state,
+			Thread.id,
+			latest_reply.c.created_at,
+		)
+		.select_from(Package)
+		.join(Thread, Thread.id == Package.review_thread_id)
+		.join(latest_reply, latest_reply.c.thread_id == Thread.id)
+		.where(
+			and_(
+				latest_reply.c.author_id.not_in(approvers),
+				Package.state != PackageState.APPROVED,
+				Package.state != PackageState.DELETED,
+				Package.state != PackageState.WIP,
+			)
+		)
+		.order_by(db.desc(latest_reply.c.created_at))
+		.all()
+	)
 
 
 @bp.route("/todo/", methods=["GET", "POST"])
@@ -74,11 +117,14 @@ def view_editor():
 
 	reports = Report.query.filter_by(is_resolved=False).order_by(db.asc(Report.created_at)).all() if current_user.rank.at_least(UserRank.EDITOR) else None
 
+	unanswered_approval_threads = get_unanswered_approval_threads()
+
 	return render_template("todo/editor.html", current_tab="editor",
 			packages=packages, wip_packages=wip_packages, releases=releases, screenshots=screenshots,
 			can_approve_new=can_approve_new, can_approve_rel=can_approve_rel, can_approve_scn=can_approve_scn,
 			license_needed=license_needed, total_packages=total_packages, total_to_tag=total_to_tag,
-			unfulfilled_meta_packages=unfulfilled_meta_packages, audit_log=audit_log, reports=reports)
+			unfulfilled_meta_packages=unfulfilled_meta_packages, audit_log=audit_log, reports=reports,
+			unanswered_approval_threads=unanswered_approval_threads)
 
 
 @bp.route("/todo/tags/")

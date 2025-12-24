@@ -80,11 +80,6 @@
 								<div class="col">
 									{{ p.title }} by {{ p.author.display_name }}
 								</div>
-								{% if p.review_thread %}
-									<div class="col-auto">
-										<i class="fas fa-comment float-end text-muted"></i>
-									</div>
-								{% endif %}
 								<div class="col-auto" title="Created {{ p.created_at | full_datetime }}">
 									<small>
 										{{ p.created_at | timedelta }} ago
@@ -126,7 +121,28 @@
 		{% endif %}
 	</div>
 
-	{% if not (packages or screenshots or releases) %}
+	{% if unanswered_approval_threads %}
+		<h2 class="mb-4">Unanswered approval threads</h2>
+		<p class="text-muted">
+			Approval threads where the latest reply is the maintainer.
+		</p>
+		<nav class="list-group">
+			{% for row in unanswered_approval_threads %}
+				{% set package_title = row[0] %}
+				{% set package_state = row[1] %}
+				{% set thread_id = row[2] %}
+				{% set created_at = row[3] %}
+				<a class="list-group-item list-group-item-action" href="{{ url_for('threads.view',  id=thread_id) }}">
+					<i class="fas fa-comment me-3"></i>
+					<span class="float-end" title="{{ created_at | datetime }}">{{ created_at | timedelta }}</span>
+					<span class="me-3 badge {% if package_state.name == 'READY_FOR_REVIEW' %}bg-success{% else %}bg-danger{% endif %}">{{ package_state.value }}</span>
+					{{ package_title }}
+				</a>
+			{% endfor %}
+		</nav>
+	{% endif %}
+
+	{% if not (packages or screenshots or releases or unanswered_approval_threads) %}
 		<p>
 			<i>{{ _("All done!") }}</i>
 		</p>
