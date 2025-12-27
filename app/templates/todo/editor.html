@@ -37,9 +37,9 @@
 					<input class="btn btn-sm btn-primary" type="submit" value="{{ _('Approve All') }}" />
 				</form>
 			</h3>
-			<ul class="card-body d-flex p-0 flex-row flex-wrap justify-content-start align-content-start p-4">
+			<ul class="card-body d-flex p-0 flex-row flex-wrap gap-2 justify-content-start align-content-start p-4">
 				{% for s in screenshots %}
-					<li class="packagetile flex-fill"><a href="{{ s.get_edit_url() }}"
+					<li class="packagetile flex-fill" style="min-width: 250px;"><a href="{{ s.get_edit_url() }}"
 						style="background-image: url({{ s.get_thumb_url(3) }});">
 						<div class="packagegridscrub"></div>
 						<div class="packagegridinfo">
