@@ -31,7 +31,7 @@
 {% endmacro %}
 
 {% block content %}
-	{% if grouped %}
+	{% if grouped or notifications %}
 		<form method="post" action="{{ url_for('notifications.read_all') }}" class="float-end">
 			<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 			<input type="submit" class="btn btn-primary" value="{{ _('Mark all as read') }}" />
@@ -48,29 +48,52 @@
 	<h1>{{ self.title() }}</h1>
 
 	{% set url = url_for("notifications.list_all") %}
-	<div class="btn-group mb-4">
-		<a class="btn {% if not show_read %}btn-primary{% else %}btn-secondary{% endif %}" href="{{ url }}">
-			{{ _("Unread") }}
-			<span class="badge bg-dark ms-2">
-				{{ unread_count }}
-			</span>
-		</a>
-		<a class="btn {% if show_read %}btn-primary{% else %}btn-secondary{% endif %}" href="{{ url }}?read=1">
-			{{ _("Read") }}
-			<span class="badge bg-dark ms-2">
-				{{ read_count }}
-			</span>
-		</a>
+	<div class="btn-toolbar" role="toolbar">
+		<div class="btn-group me-2" role="group">
+			<a class="btn {% if not show_read %}btn-primary{% else %}btn-secondary{% endif %}" href="{{ url_set_query(read=0) }}">
+				{{ _("Unread") }}
+				<span class="badge bg-dark ms-2">
+					{{ unread_count }}
+				</span>
+			</a>
+			<a class="btn {% if show_read %}btn-primary{% else %}btn-secondary{% endif %}" href="{{ url_set_query(read=1) }}">
+				{{ _("Read") }}
+				<span class="badge bg-dark ms-2">
+					{{ read_count }}
+				</span>
+			</a>
+		</div>
+		<div class="align-self-center ms-3 me-2">
+			{{ _("Group by") }}
+		</div>
+		<div class="btn-group me-2" role="group" aria-label="Second group">
+			<a class="btn {% if group == 'package' %}btn-primary{% else %}btn-secondary{% endif %}" href="{{ url_set_query(group='package') }}">
+				{{ _("Package") }}
+			</a>
+			<a class="btn {% if group == 'date' %}btn-primary{% else %}btn-secondary{% endif %}" href="{{ url_set_query(group='date') }}">
+				{{ _("Date") }}
+			</a>
+		</div>
 	</div>
 
-	{% for group in grouped %}
-		<div class="card mt-4">
-			<h3 class="card-header">
-				{% if group[0] %}{{ group[1][0].package.title }}{% else %}{{ _("Other") }}{% endif %}
-			</h3>
-			<div class="list-group list-group-flush">
-				{{ render_notifications(group[1]) }}
+	<div class="btn-group mb-4">
+
+	</div>
+
+	{% if grouped %}
+		{% for group in grouped %}
+			<div class="card mt-4">
+				<h3 class="card-header">
+					{% if group[0] %}{{ group[1][0].package.title }}{% else %}{{ _("Other") }}{% endif %}
+				</h3>
+				<div class="list-group list-group-flush">
+					{{ render_notifications(group[1]) }}
+				</div>
 			</div>
+		{% endfor %}
+	{% elif notifications %}
+		<div class="list-group mt-3">
+			{{ render_notifications(notifications) }}
 		</div>
-	{% endfor %}
+	{% endif %}
 {% endblock %}

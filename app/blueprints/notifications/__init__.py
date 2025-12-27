@@ -9,6 +9,7 @@ from flask_login import current_user, login_required
 from sqlalchemy import desc
 
 from app.models import db, Notification
+from app.utils import is_yes
 
 bp = Blueprint("notifications", __name__)
 
@@ -19,7 +20,7 @@ def list_all():
 	query = (Notification.query.filter(Notification.user == current_user)
 			.order_by(desc(Notification.package_id), desc(Notification.created_at)))
 
-	show_read = request.args.get("read", False)
+	show_read = is_yes(request.args.get("read", "0"))
 	if show_read:
 		query = query.filter(Notification.read_at.is_not(None))
 	else:
@@ -28,10 +29,18 @@ def list_all():
 	read_count = Notification.query.filter(Notification.user == current_user, Notification.read_at.is_not(None)).count()
 	unread_count = Notification.query.filter(Notification.user == current_user, Notification.read_at.is_(None)).count()
 
-	grouped = list(map(lambda x: [x[0], list(x[1])], groupby(query.all(), lambda x: x.package_id)))
-	grouped.sort(key=lambda x: x[1][0].created_at, reverse=True)
+	notifications = None
+	grouped = None
+
+	group = request.args.get("group", "package")
+	if group == "package":
+		grouped = list(map(lambda x: [x[0], list(x[1])], groupby(query.all(), lambda x: x.package_id)))
+		grouped.sort(key=lambda x: x[1][0].created_at, reverse=True)
+	else:
+		notifications = query.all()
+
 	return render_template("notifications/list.html",
-			grouped=grouped,
+			notifications=notifications, grouped=grouped, group=group,
 			show_read=show_read, read_count=read_count, unread_count=unread_count)
 
 
