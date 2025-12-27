@@ -5,44 +5,29 @@
 {% endblock %}
 
 {% macro render_notifications(notifications) %}
-	<div class="list-group mt-3">
-		{% for n in notifications %}
-			<a class="list-group-item list-group-item-action" href="{{ n.url }}">
-				<div class="row">
-					{% if n.package %}
-						<div class="col-sm-auto text-muted" style="min-width: 200px;">
-							<img
-								class="img-fluid"
-								style="max-height: 22px; max-width: 22px;"
-								src="{{ n.package.get_thumb_or_placeholder() }}" />
-
-							<span class="ps-2">
-								{{ n.package.title }}
-							</span>
-						</div>
-					{% endif %}
-
-					<div class="col-sm">
-						{{ n.title }}
-					</div>
-
-					<div class="col-sm-auto text-muted text-end">
-						{{ n.created_at | datetime }}
-					</div>
-
-					<div class="col-sm-auto text-muted text-end">
-						<span class="pe-2">{{ n.causer.display_name }}</span>
-						<img
-							class="img-fluid user-photo img-thumbnail img-thumbnail-1"
-							style="max-height: 22px;"
-							src="{{ n.causer.get_profile_pic_url() }}" />
-					</div>
+	{% for n in notifications %}
+		<a class="list-group-item list-group-item-action" href="{{ n.url }}">
+			<div class="row">
+				<div class="col-sm">
+					{{ n.title }}
 				</div>
-			</a>
-		{% else %}
-			<p class="list-group-item"><i>{{ _("No notifications") }}</i></p>
-		{% endfor %}
-	</div>
+
+				<div class="col-sm-auto text-muted text-end">
+					{{ n.created_at | datetime }}
+				</div>
+
+				<div class="col-sm-auto text-muted text-end">
+					<span class="pe-2">{{ n.causer.display_name }}</span>
+					<img
+						class="img-fluid user-photo img-thumbnail img-thumbnail-1"
+						style="max-height: 22px;"
+						src="{{ n.causer.get_profile_pic_url() }}" />
+				</div>
+			</div>
+		</a>
+	{% else %}
+		<p class="list-group-item"><i>{{ _("No notifications") }}</i></p>
+	{% endfor %}
 {% endmacro %}
 
 {% block content %}
@@ -79,7 +64,13 @@
 	</div>
 
 	{% for group in grouped %}
-		<h3>{% if group[0] %}{{ group[1][0].package.title }}{% else %}{{ _("Other") }}{% endif %}</h3>
-		{{ render_notifications(group[1]) }}
+		<div class="card mt-4">
+			<h3 class="card-header">
+				{% if group[0] %}{{ group[1][0].package.title }}{% else %}{{ _("Other") }}{% endif %}
+			</h3>
+			<div class="list-group list-group-flush">
+				{{ render_notifications(group[1]) }}
+			</div>
+		</div>
 	{% endfor %}
 {% endblock %}
