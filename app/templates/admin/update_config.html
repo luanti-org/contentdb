@@ -18,6 +18,9 @@
 							{{ package.title }}
 						</a>
 					</div>
+					<div class="col-2">
+						{{ package.repo | domain }}
+					</div>
 					<div class="col align-content-center">
 						Last success:
 						{% if package.update_config.last_checked_at %}
