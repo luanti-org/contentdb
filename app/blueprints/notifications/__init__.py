@@ -3,6 +3,7 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 import datetime
+from itertools import groupby
 from flask import Blueprint, render_template, redirect, url_for, request
 from flask_login import current_user, login_required
 from sqlalchemy import desc
@@ -16,7 +17,7 @@ bp = Blueprint("notifications", __name__)
 @login_required
 def list_all():
 	query = (Notification.query.filter(Notification.user == current_user)
-			.order_by(desc(Notification.created_at)))
+			.order_by(desc(Notification.package_id), desc(Notification.created_at)))
 
 	show_read = request.args.get("read", False)
 	if show_read:
@@ -27,8 +28,10 @@ def list_all():
 	read_count = Notification.query.filter(Notification.user == current_user, Notification.read_at.is_not(None)).count()
 	unread_count = Notification.query.filter(Notification.user == current_user, Notification.read_at.is_(None)).count()
 
+	grouped = list(map(lambda x: [x[0], list(x[1])], groupby(query.all(), lambda x: x.package_id)))
+	grouped.sort(key=lambda x: x[1][0].created_at, reverse=True)
 	return render_template("notifications/list.html",
-			notifications=query.all(),
+			grouped=grouped,
 			show_read=show_read, read_count=read_count, unread_count=unread_count)
 
 

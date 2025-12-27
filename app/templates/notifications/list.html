@@ -46,7 +46,7 @@
 {% endmacro %}
 
 {% block content %}
-	{% if notifications %}
+	{% if grouped %}
 		<form method="post" action="{{ url_for('notifications.read_all') }}" class="float-end">
 			<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 			<input type="submit" class="btn btn-primary" value="{{ _('Mark all as read') }}" />
@@ -78,5 +78,8 @@
 		</a>
 	</div>
 
-	{{ render_notifications(notifications) }}
+	{% for group in grouped %}
+		<h3>{% if group[0] %}{{ group[1][0].package.title }}{% else %}{{ _("Other") }}{% endif %}</h3>
+		{{ render_notifications(group[1]) }}
+	{% endfor %}
 {% endblock %}
