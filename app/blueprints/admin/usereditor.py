@@ -11,6 +11,7 @@ from flask_login import current_user
 from flask_wtf import FlaskForm
 from sqlalchemy import and_, or_
 from wtforms import SubmitField, SelectField, BooleanField
+from wtforms.fields.datetime import DateField
 from wtforms.validators import Optional
 
 from app.models import db, UserRank, User, PackageState, AuditSeverity, AuditLogEntry
@@ -28,6 +29,7 @@ class AuditForm(FlaskForm):
 	show_with_anything = BooleanField("Show only with content", default=False)
 	hide_active = BooleanField("Hide with activity in last year", default=False)
 	hide_with_forums = BooleanField("Hide with forum account", default=False)
+	after = DateField("Signed up after", [Optional()])
 	submit = SubmitField("Search", name=None)
 
 
@@ -82,6 +84,7 @@ suspicious_words = {
 	"slicemaster",
 	"clinic",
 	"daniel wyatt",
+	"app-dev",
 }
 
 good_words = {
@@ -152,6 +155,9 @@ def user_editor():
 
 	if form.hide_with_forums.data:
 		query = query.filter(User.forums_username.is_(None))
+
+	if form.after.data:
+		query = query.filter(User.created_at >= form.after.data)
 
 	users = query.all()
 
