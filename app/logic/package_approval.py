@@ -111,6 +111,9 @@ def validate_package_for_approval(package: Package) -> List[PackageValidationNot
 	if package.screenshots.count() == 0:
 		danger(lazy_gettext("You need to add at least one screenshot."))
 
+	if package.ai_disclosure is None:
+		danger(lazy_gettext("You need to answer the AI Disclosure in the edit package form"))
+
 	missing_deps = package.get_missing_hard_dependencies_query().all()
 	if len(missing_deps) > 0:
 		missing_deps = ", ".join([ x.name for x in missing_deps])
