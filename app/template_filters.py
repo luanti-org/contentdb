@@ -10,10 +10,10 @@ from flask_babel import format_timedelta, gettext, get_locale
 from flask_login import current_user
 from markupsafe import Markup
 
-from . import app, utils
+from . import app
 from app.markdown import get_headings
 from .models import Permission, Package, PackageState, PackageRelease, ReleaseState
-from app.utils.flask import abs_url_for, url_set_query, url_set_anchor, url_current
+from app.utils.flask import abs_url_for, url_set_query, url_set_anchor, url_current, abs_url as do_abs_url
 from app.utils.luanti_hypertext import normalize_whitespace as do_normalize_whitespace
 
 
@@ -94,7 +94,7 @@ def timedelta(value):
 
 @app.template_filter()
 def abs_url(url):
-	return utils.abs_url(url)
+	return do_abs_url(url)
 
 
 @app.template_filter()
