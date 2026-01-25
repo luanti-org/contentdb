@@ -11,7 +11,7 @@ from flask_login import UserMixin
 from sqlalchemy import desc, text
 
 from . import db
-from app.utils import truncate_string
+from app.utils.misc import truncate_string
 
 
 class UserRank(enum.Enum):

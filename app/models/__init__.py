@@ -7,7 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_searchable import make_searchable
 
 from app import app
-from app.utils import truncate_string
+from app.utils.misc import truncate_string
 
 # Initialise database
 
