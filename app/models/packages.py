@@ -258,6 +258,7 @@ class PackageState(enum.Enum):
 
 
 class PackageAIDisclosure(enum.Enum):
+	UNKNOWN = "Unknown"
 	NONE = "None"
 	ASSISTED = "Assisted"
 	GENERATED = "Generated"
@@ -274,7 +275,9 @@ class PackageAIDisclosure(enum.Enum):
 
 	@property
 	def title(self):
-		if self == PackageAIDisclosure.NONE:
+		if self == PackageAIDisclosure.UNKNOWN:
+			return lazy_gettext("Unknown")
+		elif self == PackageAIDisclosure.NONE:
 			return lazy_gettext("None")
 		elif self == PackageAIDisclosure.ASSISTED:
 			return lazy_gettext("AI-assisted")
@@ -285,7 +288,9 @@ class PackageAIDisclosure(enum.Enum):
 
 	@property
 	def description(self):
-		if self == PackageAIDisclosure.NONE:
+		if self == PackageAIDisclosure.UNKNOWN:
+			return ""
+		elif self == PackageAIDisclosure.NONE:
 			return lazy_gettext("No AI tools were used in the creation of this package")
 		elif self == PackageAIDisclosure.ASSISTED:
 			return lazy_gettext("AI tools were used for code completion or minor use cases")
@@ -302,16 +307,19 @@ class PackageAIDisclosure(enum.Enum):
 			return None
 
 	@classmethod
-	def choices(cls, with_none):
-		ret = [(choice, f"{choice.title}: {choice.description}") for choice in cls]
-		if with_none:
-			ret.insert(0, (None, ""))
+	def choices(cls):
+		def build_label(choice):
+			if choice == PackageAIDisclosure.UNKNOWN:
+				return ""
+			return f"{choice.title}: {choice.description}"
+
+		ret = [(choice, build_label(choice)) for choice in cls]
 		return ret
 
 	@classmethod
 	def coerce(cls, item):
 		if item is None or (isinstance(item, str) and item.upper() == "NULL"):
-			return None
+			return PackageAIDisclosure.UNKNOWN
 		return item if type(item) == PackageAIDisclosure else PackageAIDisclosure[item.upper()]
 
 
@@ -713,7 +721,7 @@ class Package(db.Model):
 
 			"state": self.state.name,
 			"dev_state": self.dev_state.name if self.dev_state else None,
-			"ai_disclosure": self.ai_disclosure.name if self.ai_disclosure else None,
+			"ai_disclosure": self.ai_disclosure.name if self.ai_disclosure != PackageAIDisclosure.UNKNOWN else None,
 
 			"name": self.name,
 			"title": meta["title"],

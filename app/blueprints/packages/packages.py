@@ -227,7 +227,7 @@ class PackageForm(FlaskForm):
 	short_desc       = StringField(lazy_gettext("Short Description (Plaintext)"), [InputRequired(), Length(1,200)])
 
 	dev_state = SelectField(lazy_gettext("Maintenance State"), [DataRequired()], choices=PackageDevState.choices(with_none=True), coerce=PackageDevState.coerce)
-	ai_disclosure = SelectField(lazy_gettext("AI Disclosure"), [DataRequired()], choices=PackageAIDisclosure.choices(with_none=True), coerce=PackageAIDisclosure.coerce)
+	ai_disclosure = SelectField(lazy_gettext("AI Disclosure"), [DataRequired()], choices=PackageAIDisclosure.choices(), coerce=PackageAIDisclosure.coerce)
 
 	tags             = QuerySelectMultipleField(lazy_gettext('Tags'), query_factory=lambda: Tag.query.order_by(db.asc(Tag.name)), get_pk=lambda a: a.id, get_label=make_label)
 	content_warnings = QuerySelectMultipleField(lazy_gettext('Content Warnings'), query_factory=lambda: ContentWarning.query.order_by(db.asc(ContentWarning.name)), get_pk=lambda a: a.id, get_label=make_label)

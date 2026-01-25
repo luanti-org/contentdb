@@ -9,7 +9,7 @@ from flask_babel import lazy_gettext, LazyString
 from sqlalchemy import and_, or_
 
 from app.models import Package, PackageType, PackageState, PackageRelease, db, MetaPackage, ForumTopic, User, \
-	Permission, UserRank, ReleaseState
+	Permission, UserRank, ReleaseState, PackageAIDisclosure
 from app.utils.models import get_bot_message_thread
 
 
@@ -111,7 +111,7 @@ def validate_package_for_approval(package: Package) -> List[PackageValidationNot
 	if package.screenshots.count() == 0:
 		danger(lazy_gettext("You need to add at least one screenshot."))
 
-	if package.ai_disclosure is None:
+	if package.ai_disclosure == PackageAIDisclosure.UNKNOWN:
 		danger(lazy_gettext("You need to answer the AI Disclosure in the edit package form"))
 
 	missing_deps = package.get_missing_hard_dependencies_query().all()
