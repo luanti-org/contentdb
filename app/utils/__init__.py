@@ -47,6 +47,13 @@ def normalize_line_endings(value: Optional[str]) -> Optional[str]:
 	return value.replace("\r\n", "\n")
 
 
+def truncate_string(value: str, max_length: int) -> str:
+	if len(value) <= max_length:
+		return value
+
+	return value[:max_length - 1] + "…"
+
+
 def should_return_json():
 	return "application/json" in request.accept_mimetypes and \
 			not "text/html" in request.accept_mimetypes

@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_searchable import make_searchable
 
 from app import app
+from app.utils import truncate_string
 
 # Initialise database
 
@@ -90,14 +91,12 @@ class AuditLogEntry(db.Model):
 	description = db.Column(db.Text, nullable=True, default=None)
 
 	def __init__(self, causer, severity, title, url, package=None, description=None):
-		if len(title) > 100:
-			if description is None:
-				description = title[99:]
-			title = title[:99] + "…"
+		if description is None and len(title) > 100:
+			description = title[99:]
 
 		self.causer   = causer
 		self.severity = severity
-		self.title    = title
+		self.title    = truncate_string(title, 100)
 		self.url      = url
 		self.package  = package
 		self.description = description

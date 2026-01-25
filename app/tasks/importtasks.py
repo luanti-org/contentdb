@@ -23,7 +23,7 @@ from app.models import AuditSeverity, db, NotificationType, PackageRelease, Meta
 	PackageGameSupport, PackageTranslation, Language, ReleaseState
 from app.tasks import celery, TaskError
 from app.utils import random_string, post_bot_message, add_system_notification, add_system_audit_log, \
-	get_games_from_list, add_audit_log
+	get_games_from_list, add_audit_log, truncate_string
 from app.utils.git import clone_repo, get_latest_tag, get_latest_commit, get_temp_dir, get_release_notes
 from .luanticheck import build_tree, LuantiCheckError, ContentType, PackageTreeNode
 from .webhooktasks import post_discord_webhook
@@ -259,8 +259,8 @@ def update_translations(package: Package, tree: PackageTreeNode):
 	raw_translations = tree.get_translations(tree.get("textdomain", tree.name), allowed_languages=allowed_languages)
 	for raw_translation in raw_translations:
 		to_update = {
-			"title": raw_translation.entries.get(tree.get("title", package.title)),
-			"short_desc": raw_translation.entries.get(tree.get("description", package.short_desc)),
+			"title": truncate_string(raw_translation.entries.get(tree.get("title", package.title)), 100),
+			"short_desc": truncate_string(raw_translation.entries.get(tree.get("description", package.short_desc)), 200),
 		}
 
 		PackageTranslation.query \

@@ -11,6 +11,7 @@ from flask_login import UserMixin
 from sqlalchemy import desc, text
 
 from . import db
+from app.utils import truncate_string
 
 
 class UserRank(enum.Enum):
@@ -552,13 +553,11 @@ class Notification(db.Model):
 	read_at = db.Column(db.DateTime, nullable=True, default=None)
 
 	def __init__(self, user, causer, type, title, url, package=None):
-		if len(title) > 100:
-			title = title[:99] + "…"
-
 		self.user    = user
 		self.causer  = causer
 		self.type    = type
 		self.title   = title
+		self.title   = truncate_string(title, 100)
 		self.url     = url
 		self.package = package
 
