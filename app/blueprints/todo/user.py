@@ -202,6 +202,7 @@ def all_ai_disclosure(username: Optional[str] = None):
 	if request.method == "POST":
 		for package in missing_ai_disclosure:
 			package.ai_disclosure = PackageAIDisclosure.NONE
+			add_audit_log(AuditSeverity.NORMAL, current_user, f"Set AI disclosure to None", package.get_url("packages.view"), package)
 		db.session.commit()
 		return redirect(url_for("todo.view_user", username=username))
 	else:
