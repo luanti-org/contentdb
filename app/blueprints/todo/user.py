@@ -2,14 +2,15 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
+from typing import Optional
 from celery import uuid
-from flask import redirect, url_for, abort, render_template, flash
+from flask import request, redirect, url_for, abort, render_template, flash
 from flask_babel import gettext
 from flask_login import current_user, login_required
 from sqlalchemy import or_, and_
 
 from app.models import User, Package, PackageState, PackageScreenshot, PackageUpdateConfig, ForumTopic, db, \
-	PackageRelease, Permission, NotificationType, AuditSeverity, UserRank, PackageType
+	PackageRelease, Permission, NotificationType, AuditSeverity, UserRank, PackageType, PackageAIDisclosure
 from app.tasks.importtasks import make_vcs_release
 from app.utils.models import add_notification, add_audit_log
 from . import bp
@@ -44,6 +45,8 @@ def view_user(username=None):
 					Package.update_config.has(PackageUpdateConfig.outdated_at.isnot(None))) \
 			.order_by(db.asc(Package.title)).all()
 
+	missing_ai_disclosure = user.maintained_packages.filter_by(state=PackageState.APPROVED, ai_disclosure=PackageAIDisclosure.UNKNOWN).all()
+
 	missing_game_support = user.maintained_packages.filter(
 			Package.state != PackageState.DELETED,
 			Package.type.in_([PackageType.MOD, PackageType.TXP]),
@@ -72,6 +75,7 @@ def view_user(username=None):
 
 	return render_template("todo/user.html", current_tab="user", user=user,
 			unapproved_packages=unapproved_packages, outdated_packages=outdated_packages,
+			missing_ai_disclosure=missing_ai_disclosure,
 			missing_game_support=missing_game_support, needs_tags=needs_tags, topics_to_add=topics_to_add,
 			packages_with_no_screenshots=packages_with_no_screenshots,
 			packages_with_small_screenshots=packages_with_small_screenshots,
@@ -180,3 +184,25 @@ def confirm_supports_all_games(username=None):
 
 	flash(gettext("Done"), "success")
 	return redirect(url_for("todo.all_game_support", username=current_user.username))
+
+
+@bp.route("/user/ai-disclosure/")
+@bp.route("/users/<username>/ai-disclosure/", methods=["GET", "POST"])
+@login_required
+def all_ai_disclosure(username: Optional[str] = None):
+	if username is None:
+		return redirect(url_for("todo.all_ai_disclosure", username=current_user.username))
+	user: User = User.query.filter_by(username=username).one_or_404()
+	if current_user != user and not current_user.rank.at_least(UserRank.EDITOR):
+		abort(403)
+
+	missing_ai_disclosure = user.maintained_packages.filter_by(state=PackageState.APPROVED,
+			ai_disclosure=PackageAIDisclosure.UNKNOWN).all()
+
+	if request.method == "POST":
+		for package in missing_ai_disclosure:
+			package.ai_disclosure = PackageAIDisclosure.NONE
+		db.session.commit()
+		return redirect(url_for("todo.view_user", username=username))
+	else:
+		return render_template("todo/all_ai_disclosure.html", user=user, missing_ai_disclosure=missing_ai_disclosure)

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+	{{ _("Missing AI Disclosure") }}
+{% endblock %}
+
+{% block content %}
+	<h1 class="mb-5">{{ self.title() }}</h1>
+	<div class="list-group mt-3 mb-5">
+		{% for package in missing_ai_disclosure %}
+			<a class="list-group-item list-group-item-action text-muted" href="{{ package.get_url('packages.create_edit') }}">
+				<img
+					class="img-fluid"
+					style="max-height: 22px; max-width: 22px;"
+					src="{{ package.get_thumb_or_placeholder() }}" />
+
+				<span class="ps-2">
+					{{ package.title }}
+				</span>
+			</a>
+		{% else %}
+			<p class="text-muted">{{ _("Nothing to do :)") }}</p>
+		{% endfor %}
+	</div>
+	{% if missing_ai_disclosure %}
+		<form method="post" action="">
+			<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+			<input type="submit" class="btn btn-primary" value="{{  _('Mark all as no AI used') }}" />
+		</form>
+	{% endif %}
+{% endblock %}

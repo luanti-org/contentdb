@@ -63,6 +63,30 @@
 	{% from "macros/todo.html" import render_outdated_packages %}
 	{{ render_outdated_packages(outdated_packages, current_user) }}
 
+	{% if missing_ai_disclosure %}
+		<div class="mb-5"></div>
+		<a class="btn btn-secondary float-end" href="{{ url_for('todo.all_ai_disclosure', username=user.username) }}">
+			{{ _("Bulk update AI disclosure") }}
+		</a>
+		<h2>{{ _("Missing AI Disclosure") }}</h2>
+		<div class="list-group mt-3 mb-5">
+			{% for package in missing_ai_disclosure %}
+				<a class="list-group-item list-group-item-action text-muted" href="{{ package.get_url('packages.create_edit') }}">
+					<img
+						class="img-fluid"
+						style="max-height: 22px; max-width: 22px;"
+						src="{{ package.get_thumb_or_placeholder() }}" />
+
+					<span class="ps-2">
+						{{ package.title }}
+					</span>
+				</a>
+			{% else %}
+				<p class="text-muted">{{ _("Nothing to do :)") }}</p>
+			{% endfor %}
+		</div>
+	{% endif %}
+
 	<div class="mb-4"></div>
 
 	<a class="btn btn-secondary float-end" href="/help/game_support/">
