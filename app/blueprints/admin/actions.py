@@ -10,9 +10,11 @@ import requests
 from celery import group, uuid
 from flask import redirect, url_for, flash, current_app
 from sqlalchemy import or_, and_, not_, func
+from flask_login import current_user
 
 from app.models import PackageRelease, db, Package, PackageState, PackageScreenshot, MetaPackage, User, \
-	NotificationType, PackageUpdateConfig, License, UserRank, PackageType, Thread, AuditLogEntry, ReportAttachment
+	NotificationType, PackageUpdateConfig, License, UserRank, PackageType, Thread, AuditLogEntry, ReportAttachment, \
+	PackageAIDisclosure, AuditSeverity
 from app.tasks.admintasks import delete_empty_threads
 from app.tasks.emails import send_pending_digests
 from app.tasks.forumtasks import import_topic_list, check_all_forum_accounts
@@ -20,7 +22,7 @@ from app.tasks.importtasks import import_repo_screenshot, check_zip_release, che
 	import_languages, check_all_zip_files
 from app.tasks.usertasks import import_github_user_ids
 from app.tasks.pkgtasks import notify_about_git_forum_links, clear_removed_packages, check_package_for_broken_links, update_file_size_bytes
-from app.utils.models import add_notification, get_system_user
+from app.utils.models import add_notification, get_system_user, add_audit_log
 
 actions = {}
 
@@ -407,3 +409,21 @@ def do_delete_empty_threads():
 def check_for_broken_links():
 	for package in Package.query.filter_by(state=PackageState.APPROVED).all():
 		check_package_for_broken_links.delay(package.id)
+
+
+@action("DANGER: Update AI disclosure for old packages")
+def old_package_ai_disclosure():
+	cutoff = datetime.date(2022, 3, 1)
+	stmt = (
+		db.session.query(Package)
+		.filter(
+			~Package.releases.any(PackageRelease.created_at > cutoff),
+			Package.ai_disclosure == PackageAIDisclosure.UNKNOWN,
+		)
+		.all()
+	)
+	for package in stmt:
+		package.ai_disclosure = PackageAIDisclosure.NONE
+		add_audit_log(AuditSeverity.NORMAL, current_user, f"Set AI disclosure to None", package.get_url("packages.view"), package)
+
+	return redirect(url_for("admin.admin_page"))
