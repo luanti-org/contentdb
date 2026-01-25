@@ -6,7 +6,7 @@ from flask import render_template, abort
 from sqlalchemy.orm import joinedload
 
 from . import bp
-from app.utils import is_package_page
+from app.utils.models import is_package_page
 from app.models import Package, PackageType, PackageState, db, PackageRelease
 
 

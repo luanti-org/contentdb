@@ -11,7 +11,8 @@ from wtforms.validators import InputRequired, Length, Optional, Regexp
 
 from . import bp
 from app.models import Permission, Tag, db, AuditSeverity
-from app.utils import add_audit_log, normalize_line_endings
+from app.utils.models import add_audit_log
+from app.utils.misc import normalize_line_endings
 
 
 @bp.route("/tags/")

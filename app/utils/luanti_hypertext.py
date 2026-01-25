@@ -11,7 +11,7 @@ from flask_babel import gettext
 
 from app.markdown import render_markdown
 from app.models import Package, PackageType, PackageReview
-from app.utils import abs_url_for
+from app.utils.flask import abs_url_for
 
 
 def normalize_whitespace(x):

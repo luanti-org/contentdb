@@ -10,7 +10,7 @@ from sqlalchemy import and_, or_
 
 from app.models import Package, PackageType, PackageState, PackageRelease, db, MetaPackage, ForumTopic, User, \
 	Permission, UserRank, ReleaseState
-from app.utils import get_bot_message_thread
+from app.utils.models import get_bot_message_thread
 
 
 class PackageValidationNote:

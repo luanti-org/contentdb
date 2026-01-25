@@ -7,7 +7,7 @@ from typing import List, Dict, Optional, Tuple
 import sqlalchemy
 
 from app.models import PackageType, Package, PackageState, PackageGameSupport
-from app.utils import post_bot_message
+from app.utils.models import post_bot_message
 
 
 minetest_game_mods = {

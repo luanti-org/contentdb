@@ -20,8 +20,9 @@ from app.models import Tag, PackageState, PackageType, Package, db, PackageRelea
 	LuantiRelease, APIToken, PackageScreenshot, License, ContentWarning, User, PackageReview, Thread, Collection, \
 	PackageAlias, Language, ReleaseState
 from app.querybuilder import QueryBuilder
-from app.utils import is_package_page, get_int_or_abort, url_set_query, abs_url, is_yes, get_request_date, cached, \
-	cors_allowed
+from app.utils.models import is_package_page
+from app.utils.flask import get_int_or_abort, url_set_query, abs_url, get_request_date, cached, cors_allowed
+from app.utils.misc import is_yes
 from app.utils.luanti_hypertext import html_to_luanti, package_info_as_hypertext, package_reviews_as_hypertext
 from . import bp
 from .auth import is_api_authd

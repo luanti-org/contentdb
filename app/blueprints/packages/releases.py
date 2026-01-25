@@ -17,7 +17,9 @@ from app.models import Package, db, User, PackageState, Permission, UserRank, Pa
 	PackageRelease, PackageUpdateTrigger, PackageUpdateConfig, ReleaseState
 from app.rediscache import has_key, set_temp_key, make_download_key
 from app.tasks.importtasks import check_update_config
-from app.utils import is_user_bot, is_package_page, nonempty_or_none, normalize_line_endings
+from app.utils.models import is_package_page
+from app.utils.flask import is_user_bot
+from app.utils.misc import nonempty_or_none, normalize_line_endings
 from . import bp, get_package_tabs
 
 

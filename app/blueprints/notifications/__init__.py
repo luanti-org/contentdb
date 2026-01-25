@@ -9,7 +9,7 @@ from flask_login import current_user, login_required
 from sqlalchemy import desc
 
 from app.models import db, Notification
-from app.utils import is_yes
+from app.utils.misc import is_yes
 
 bp = Blueprint("notifications", __name__)
 

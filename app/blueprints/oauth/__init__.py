@@ -16,7 +16,8 @@ from wtforms.validators import InputRequired, Length, Optional
 from app import csrf
 from app.blueprints.users.settings import get_setting_tabs
 from app.models import db, OAuthClient, User, Permission, APIToken, AuditSeverity, UserRank
-from app.utils import random_string, add_audit_log
+from app.utils.misc import random_string
+from app.utils.models import add_audit_log
 
 bp = Blueprint("oauth", __name__)
 

@@ -12,6 +12,8 @@ from sqlalchemy.orm import column_property
 from . import db
 from .users import Permission, UserRank, User
 from .packages import Package
+from app.utils.flask import abs_url_for
+
 
 watchers = db.Table("watchers",
 	db.Column("user_id", db.Integer, db.ForeignKey("user.id"), primary_key=True),
@@ -65,7 +67,6 @@ class Thread(db.Model):
 
 	def get_view_url(self, absolute=False):
 		if absolute:
-			from app.utils import abs_url_for
 			return abs_url_for("threads.view", id=self.id)
 		else:
 			return url_for("threads.view", id=self.id, _external=False)
@@ -192,8 +193,6 @@ class PackageReview(db.Model):
 		return pos, neg, user_vote.is_positive if user_vote else None
 
 	def as_dict(self, include_package=False):
-		from app.utils import abs_url_for
-
 		pos, neg, _user = self.get_totals()
 		ret = {
 			"is_positive": self.rating > 3,

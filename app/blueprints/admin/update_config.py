@@ -6,7 +6,7 @@ from flask import render_template
 
 from . import bp
 from app.models import db, PackageUpdateConfig, Package, UserRank, PackageState
-from app.utils import rank_required
+from app.utils.user import rank_required
 
 
 @bp.route("/admin/update_config/")

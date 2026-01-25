@@ -12,7 +12,10 @@ from flask_babel import lazy_gettext, LazyString
 from app.logic.LogicError import LogicError
 from app.models import User, Package, PackageType, MetaPackage, Tag, ContentWarning, db, Permission, AuditSeverity, \
 	License, PackageDevState, PackageState
-from app.utils import add_audit_log, has_blocked_domains, diff_dictionaries, describe_difference, normalize_line_endings
+from app.utils.models import add_audit_log
+from app.utils.flask import has_blocked_domains
+from app.utils.difference import diff_dictionaries, describe_difference
+from app.utils.misc import normalize_line_endings
 from app.utils.url import clean_youtube_url
 
 

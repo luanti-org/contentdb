@@ -12,7 +12,7 @@ from wtforms.validators import InputRequired, Length
 from wtforms_sqlalchemy.fields import QuerySelectField
 
 from app.models import db, User, APIToken, Permission
-from app.utils import random_string
+from app.utils.misc import random_string
 from . import bp
 from ..users.settings import get_setting_tabs
 

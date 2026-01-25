@@ -11,7 +11,7 @@ from sqlalchemy import or_, and_
 from app.models import User, Package, PackageState, PackageScreenshot, PackageUpdateConfig, ForumTopic, db, \
 	PackageRelease, Permission, NotificationType, AuditSeverity, UserRank, PackageType
 from app.tasks.importtasks import make_vcs_release
-from app.utils import add_notification, add_audit_log
+from app.utils.models import add_notification, add_audit_log
 from . import bp
 
 

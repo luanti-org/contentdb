@@ -32,9 +32,12 @@ from app.models import Package, Tag, db, User, Tags, PackageState, Permission, P
 	Dependency, Thread, UserRank, PackageReview, PackageDevState, ContentWarning, License, AuditSeverity, \
 	PackageScreenshot, NotificationType, AuditLogEntry, PackageAlias, PackageProvides, PackageGameSupport, \
 	PackageDailyStats, Collection, ReleaseState
-from app.utils import is_user_bot, get_int_or_abort, is_package_page, abs_url_for, add_audit_log, get_package_by_info, \
-	add_notification, get_system_user, rank_required, get_games_from_csv, get_daterange_options, \
-	post_to_approval_thread, normalize_line_endings
+from app.utils.models import is_package_page, add_audit_log, get_package_by_info, \
+	add_notification, get_system_user, get_games_from_csv, \
+	post_to_approval_thread
+from app.utils.user import rank_required
+from app.utils.flask import is_user_bot, get_int_or_abort, abs_url_for, get_daterange_options
+from app.utils.misc import normalize_line_endings
 from app.logic.package_approval import validate_package_for_approval, can_move_to_state
 from app.logic.game_support import game_support_set
 from app.utils.models import create_session

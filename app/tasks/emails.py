@@ -15,7 +15,8 @@ from app import mail, app
 from app.models import Notification, db, EmailSubscription, User
 from app.rediscache import increment_key
 from app.tasks import celery
-from app.utils import abs_url_for, abs_url, random_string
+from app.utils.flask import abs_url_for, abs_url
+from app.utils.misc import random_string
 
 
 reply_to = app.config.get("MAIL_REPLY_TO", None)

@@ -10,7 +10,7 @@ from wtforms import StringField, BooleanField, SubmitField, SelectMultipleField
 from wtforms.validators import InputRequired, Length, Optional
 
 from app.tasks import celery
-from app.utils import rank_required
+from app.utils.user import rank_required
 
 bp = Blueprint("zipgrep", __name__)
 

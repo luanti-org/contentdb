@@ -13,8 +13,8 @@ from markupsafe import Markup
 from . import app, utils
 from app.markdown import get_headings
 from .models import Permission, Package, PackageState, PackageRelease, ReleaseState
-from .utils import abs_url_for, url_set_query, url_set_anchor, url_current
-from .utils.luanti_hypertext import normalize_whitespace as do_normalize_whitespace
+from app.utils.flask import abs_url_for, url_set_query, url_set_anchor, url_current
+from app.utils.luanti_hypertext import normalize_whitespace as do_normalize_whitespace
 
 
 @app.context_processor

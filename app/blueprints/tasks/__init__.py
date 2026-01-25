@@ -9,7 +9,7 @@ from app import csrf
 from app.models import UserRank
 from app.tasks import celery
 from app.tasks.importtasks import get_meta
-from app.utils import should_return_json
+from app.utils.flask import should_return_json
 
 bp = Blueprint("tasks", __name__)
 

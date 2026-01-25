@@ -12,7 +12,7 @@ from sqlalchemy import func, text, and_
 from sqlalchemy.sql.functions import coalesce
 
 from app.models import User, db, Package, PackageReview, PackageState, PackageType, UserRank, Collection
-from app.utils import get_daterange_options
+from app.utils.flask import get_daterange_options
 from app.tasks.forumtasks import check_forum_account
 
 from . import bp

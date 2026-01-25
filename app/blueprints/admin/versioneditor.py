@@ -9,7 +9,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, SubmitField
 from wtforms.validators import InputRequired, Length
 
-from app.utils import rank_required, add_audit_log
+from app.utils.user import rank_required
+from app.utils.models import add_audit_log
 from . import bp
 from app.models import UserRank, LuantiRelease, db, AuditSeverity
 

@@ -16,7 +16,8 @@ from app import render_markdown
 from app.markdown import get_links
 from app.models import Collection, db, Package, Permission, CollectionPackage, User, UserRank, AuditSeverity
 from app.tasks.webhooktasks import post_discord_webhook
-from app.utils import nonempty_or_none, normalize_line_endings, should_return_json, abs_url_for
+from app.utils.misc import nonempty_or_none, normalize_line_endings
+from app.utils.flask import should_return_json, abs_url_for
 from app.utils.models import is_package_page, add_audit_log, create_session
 
 bp = Blueprint("collections", __name__)

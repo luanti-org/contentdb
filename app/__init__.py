@@ -150,7 +150,8 @@ def check_for_ban():
 			models.db.session.commit()
 
 
-from .utils import clear_notifications, is_safe_url, create_session
+from app.utils.flask import is_safe_url
+from app.utils.models import clear_notifications, create_session
 
 
 @app.before_request

@@ -13,8 +13,9 @@ from wtforms import StringField, SubmitField, BooleanField, PasswordField, valid
 from wtforms.validators import InputRequired, Length, Regexp, DataRequired, Optional, Email, EqualTo
 
 from app.tasks.emails import send_verify_email, send_anon_email, send_unsubscribe_verify, send_user_email
-from app.utils import random_string, make_flask_login_password, is_safe_url, check_password_hash, add_audit_log, \
-	nonempty_or_none, post_login
+from app.utils.misc import random_string, nonempty_or_none
+from app.utils.models import add_audit_log
+from app.utils.user import make_flask_login_password, is_safe_url, check_password_hash, post_login
 from . import bp
 from app.models import User, AuditSeverity, db, EmailSubscription, UserEmailVerification
 from app.logic.users import create_user

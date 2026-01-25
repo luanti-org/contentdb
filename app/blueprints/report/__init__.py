@@ -13,8 +13,10 @@ from wtforms.validators import InputRequired, Length, Optional, DataRequired
 from app.logic.uploads import upload_file
 from app.models import User, UserRank, Report, db, AuditSeverity, ReportCategory, Thread, Permission, ReportAttachment
 from app.tasks.webhooktasks import post_discord_webhook
-from app.utils import (is_no, abs_url_samesite, normalize_line_endings, rank_required, add_audit_log, abs_url_for,
-					   random_string, add_replies)
+from app.utils.flask import abs_url_samesite, abs_url_for
+from app.utils.misc import is_no, normalize_line_endings, random_string
+from app.utils.user import rank_required
+from app.utils.models import add_audit_log, add_replies
 
 bp = Blueprint("report", __name__)
 

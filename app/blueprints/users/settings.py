@@ -15,7 +15,10 @@ from app.models import User, AuditSeverity, db, UserRank, PackageAlias, EmailSub
 	UserEmailVerification, Permission, NotificationType, UserBan
 from app.tasks.emails import send_verify_email
 from app.tasks.usertasks import update_github_user_id
-from app.utils import nonempty_or_none, add_audit_log, random_string, rank_required, has_blocked_domains
+from app.utils.misc import nonempty_or_none, random_string
+from app.utils.models import add_audit_log
+from app.utils.user import rank_required
+from app.utils.flask import has_blocked_domains
 from . import bp
 
 

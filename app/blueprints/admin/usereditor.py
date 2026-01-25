@@ -15,7 +15,8 @@ from wtforms.fields.datetime import DateField
 from wtforms.validators import Optional
 
 from app.models import db, UserRank, User, PackageState, AuditSeverity, AuditLogEntry
-from app.utils import rank_required, add_audit_log
+from app.utils.user import rank_required
+from app.utils.models import add_audit_log
 from . import bp
 
 

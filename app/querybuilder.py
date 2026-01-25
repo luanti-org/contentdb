@@ -12,7 +12,8 @@ from sqlalchemy_searchable import search
 
 from .models import db, PackageType, Package, ForumTopic, License, LuantiRelease, PackageRelease, User, Tag, \
 	ContentWarning, PackageState, PackageDevState, ReleaseState
-from .utils import is_yes, get_int_or_abort
+from app.utils.misc import is_yes
+from app.utils.flask import get_int_or_abort
 
 
 class QueryBuilder:

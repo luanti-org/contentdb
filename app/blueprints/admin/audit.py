@@ -10,7 +10,8 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import Optional, Length
 
 from app.models import db, AuditLogEntry, UserRank, User, Permission
-from app.utils import rank_required, get_int_or_abort
+from app.utils.flask import get_int_or_abort
+from app.utils.user import rank_required
 
 from . import bp
 

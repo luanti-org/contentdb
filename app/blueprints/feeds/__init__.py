@@ -8,7 +8,8 @@ from flask_babel import gettext
 
 from app.markdown import render_markdown
 from app.models import Package, PackageState, db, PackageRelease, ReleaseState
-from app.utils import is_package_page, abs_url_for, cached, cors_allowed
+from app.utils.models import is_package_page
+from app.utils.flask import abs_url_for, cached, cors_allowed
 
 bp = Blueprint("feeds", __name__)
 
@@ -106,7 +107,9 @@ def _atomify(feed):
 @cached(1800)
 def all_json():
 	feed = _get_all_feed(abs_url_for("feeds.all_json"))
-	return jsonify(feed)
+	res = jsonify(feed)
+	res.mimetype = "application/feed+json"
+	return res
 
 
 @bp.route("/feeds/all.atom")

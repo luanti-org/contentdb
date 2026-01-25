@@ -7,8 +7,10 @@ from flask_login import current_user, login_user
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, BooleanField
 from wtforms.validators import InputRequired, Length, Optional
-from app.utils import rank_required, add_audit_log, add_notification, get_system_user, nonempty_or_none, \
-	get_int_or_abort
+from app.utils.models import add_audit_log, add_notification, get_system_user
+from app.utils.misc import nonempty_or_none
+from app.utils.user import rank_required
+from app.utils.flask import get_int_or_abort
 from sqlalchemy import func
 from . import bp
 from .actions import actions

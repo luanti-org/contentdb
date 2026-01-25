@@ -8,7 +8,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SubmitField
 from wtforms.validators import InputRequired, Length, Optional, Regexp
 
-from app.utils import rank_required, normalize_line_endings
+from app.utils.user import rank_required
+from app.utils.misc import normalize_line_endings
 from . import bp
 from app.models import UserRank, ContentWarning, db
 

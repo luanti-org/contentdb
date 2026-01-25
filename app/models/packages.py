@@ -19,6 +19,7 @@ from sqlalchemy_utils.types import TSVectorType
 from app import app
 from . import db
 from .users import Permission, UserRank, User
+from app.utils.flask import abs_url_for, abs_url
 
 
 class PackageQuery(Query, SearchQueryMixin):
@@ -705,7 +706,6 @@ class Package(db.Model):
 		screenshot = self.main_screenshot
 		url = screenshot.get_thumb_url(level, format) if screenshot is not None else None
 		if abs:
-			from app.utils import abs_url
 			return abs_url(url)
 		else:
 			return url
@@ -716,13 +716,11 @@ class Package(db.Model):
 
 	def get_url(self, endpoint, absolute=False, **kwargs):
 		if absolute:
-			from app.utils import abs_url_for
 			return abs_url_for(endpoint, author=self.author.username, name=self.name, **kwargs)
 		else:
 			return url_for(endpoint, author=self.author.username, name=self.name, **kwargs)
 
 	def get_shield_url(self, type):
-		from app.utils import abs_url_for
 		return abs_url_for("packages.shield",
 				author=self.author.username, name=self.name, type=type)
 
@@ -741,7 +739,6 @@ class Package(db.Model):
 			return None
 
 		if absolute:
-			from app.utils import abs_url_for
 			return abs_url_for("thumbnails.youtube", id_=id_)
 		else:
 			return url_for("thumbnails.youtube", id_=id_)

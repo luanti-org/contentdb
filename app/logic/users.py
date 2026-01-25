@@ -10,7 +10,7 @@ from sqlalchemy import or_
 from werkzeug import Response
 
 from app.models import User, UserRank, PackageAlias, EmailSubscription, UserNotificationPreferences, db
-from app.utils import is_username_valid
+from app.utils.user import is_username_valid
 from app.tasks.emails import send_anon_email
 
 

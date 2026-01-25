@@ -8,7 +8,8 @@ from flask_login import current_user
 from . import bp
 from flask import redirect, render_template, session, request, flash, url_for
 from app.models import db, User, UserRank
-from app.utils import random_string, login_user_set_active
+from app.utils.misc import random_string
+from app.utils.user import login_user_set_active
 from app.tasks.forumtasks import check_forum_account
 from app.utils.phpbbparser import get_profile
 

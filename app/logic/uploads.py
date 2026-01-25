@@ -9,7 +9,7 @@ from flask_babel import lazy_gettext, LazyString
 
 from app import app
 from app.logic.LogicError import LogicError
-from app.utils import random_string
+from app.utils.misc import random_string
 
 
 def get_extension(filename):

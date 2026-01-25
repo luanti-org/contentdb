@@ -6,7 +6,7 @@ import datetime
 
 from .models import User, UserRank, LuantiRelease, Tag, License, Notification, NotificationType, Package, \
 	PackageState, PackageType, PackageRelease, MetaPackage, Dependency, ReleaseState
-from .utils import make_flask_login_password
+from .utils.user import make_flask_login_password
 
 
 def populate(session):

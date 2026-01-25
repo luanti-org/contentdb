@@ -22,8 +22,9 @@ from app.models import AuditSeverity, db, NotificationType, PackageRelease, Meta
 	LuantiRelease, Package, PackageState, PackageScreenshot, PackageUpdateTrigger, PackageUpdateConfig, \
 	PackageGameSupport, PackageTranslation, Language, ReleaseState
 from app.tasks import celery, TaskError
-from app.utils import random_string, post_bot_message, add_system_notification, add_system_audit_log, \
-	get_games_from_list, add_audit_log, truncate_string
+from app.utils.misc import random_string, truncate_string
+from app.utils.models import post_bot_message, add_system_notification, add_system_audit_log, \
+	get_games_from_list, add_audit_log
 from app.utils.git import clone_repo, get_latest_tag, get_latest_commit, get_temp_dir, get_release_notes
 from .luanticheck import build_tree, LuantiCheckError, ContentType, PackageTreeNode
 from .webhooktasks import post_discord_webhook

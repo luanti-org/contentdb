@@ -8,11 +8,9 @@ from functools import wraps
 from urllib.parse import urljoin, urlparse, urlunparse
 
 import user_agents
-from flask import request, abort, url_for, Response
+from flask import request, abort, url_for, Response, current_app
 from flask_babel import LazyString, lazy_gettext
 from werkzeug.datastructures import MultiDict
-
-from app import app
 
 
 def is_safe_url(target):
@@ -25,16 +23,16 @@ def is_safe_url(target):
 # These are given to Jinja in template_filters.py
 
 def abs_url_for(endpoint: str, **kwargs):
-	scheme = "https" if app.config["BASE_URL"][:5] == "https" else "http"
+	scheme = "https" if current_app.config["BASE_URL"][:5] == "https" else "http"
 	return url_for(endpoint, _external=True, _scheme=scheme, **kwargs)
 
 
 def abs_url(path):
-	return urljoin(app.config["BASE_URL"], path)
+	return urljoin(current_app.config["BASE_URL"], path)
 
 
 def abs_url_samesite(path):
-	base = urlparse(app.config["BASE_URL"])
+	base = urlparse(current_app.config["BASE_URL"])
 	return urlunparse(base._replace(path=path))
 
 
@@ -174,3 +172,24 @@ def cors_allowed(f):
 		res.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
 		return res
 	return inner
+
+
+def should_return_json():
+	return "application/json" in request.accept_mimetypes and \
+			not "text/html" in request.accept_mimetypes
+
+
+def has_blocked_domains(text: str, username: str, location: str) -> bool:
+	if text is None:
+		return False
+
+	blocked_domains = current_app.config["BLOCKED_DOMAINS"]
+	for domain in blocked_domains:
+		if domain in text:
+			from app.tasks.webhooktasks import post_discord_webhook
+			post_discord_webhook.delay(username,
+					f"Attempted to post blocked domain {domain} in {location}",
+					True)
+			return True
+
+	return False

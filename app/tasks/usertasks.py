@@ -12,7 +12,7 @@ from sqlalchemy import or_, and_, not_, func
 
 from app import app
 from app.models import User, db, UserRank, Thread, Package, Notification, NotificationType
-from app.utils import random_string
+from app.utils.misc import random_string
 from app.utils.models import create_session, add_notification, get_system_user
 from app.tasks import celery, TaskError
 

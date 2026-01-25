@@ -15,7 +15,9 @@ from app import github, csrf
 from app.blueprints.api.support import error, api_create_vcs_release
 from app.logic.users import create_user
 from app.models import db, User, APIToken, AuditSeverity
-from app.utils import abs_url_for, add_audit_log, login_user_set_active, is_safe_url
+from app.utils.flask import abs_url_for, is_safe_url
+from app.utils.models import add_audit_log
+from app.utils.user import login_user_set_active
 from . import bp
 from .common import get_packages_for_vcs_and_token
 

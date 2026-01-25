@@ -12,6 +12,7 @@ from sqlalchemy import desc, text
 
 from . import db
 from app.utils.misc import truncate_string
+from app.utils.flask import abs_url_for
 
 
 class UserRank(enum.Enum):
@@ -392,7 +393,6 @@ class EmailSubscription(db.Model):
 
 	@property
 	def url(self):
-		from app.utils import abs_url_for
 		return abs_url_for('users.unsubscribe', token=self.token)
 
 

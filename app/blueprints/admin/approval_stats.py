@@ -8,7 +8,7 @@ from flask import render_template, request, abort, redirect, url_for, jsonify
 from . import bp
 from app.logic.approval_stats import get_approval_statistics
 from app.models import UserRank
-from app.utils import rank_required
+from app.utils.user import rank_required
 
 
 @bp.route("/admin/approval_stats/")

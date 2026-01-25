@@ -16,9 +16,9 @@ from app import app
 from sqlalchemy import or_, and_
 
 from app.markdown import get_links, render_markdown
-from app.models import db, Package, PackageState, PackageRelease, PackageScreenshot, AuditLogEntry, AuditSeverity
+from app.models import db, Package, PackageState, PackageRelease, PackageScreenshot, AuditLogEntry
 from app.tasks import celery, TaskError
-from app.utils import post_bot_message, post_to_approval_thread, get_system_user, add_audit_log
+from app.utils.models import post_bot_message, post_to_approval_thread, get_system_user
 
 
 @celery.task()

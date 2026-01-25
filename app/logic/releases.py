@@ -11,9 +11,10 @@ from flask_babel import lazy_gettext
 
 from app.logic.LogicError import LogicError
 from app.logic.uploads import upload_file
-from app.models import PackageRelease, db, Permission, User, Package, LuantiRelease
+from app.models import PackageRelease, db, Permission, User, Package, LuantiRelease, AuditSeverity
 from app.tasks.importtasks import make_vcs_release, check_zip_release
-from app.utils import AuditSeverity, add_audit_log, nonempty_or_none, normalize_line_endings
+from app.utils.models import add_audit_log
+from app.utils.misc import nonempty_or_none, normalize_line_endings
 
 
 def check_can_create_release(user: User, package: Package, name: str):

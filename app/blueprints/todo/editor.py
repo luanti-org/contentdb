@@ -11,7 +11,9 @@ from app.models import Package, PackageState, PackageScreenshot, PackageUpdateCo
 	PackageRelease, Permission, UserRank, License, MetaPackage, Dependency, AuditLogEntry, Tag, LuantiRelease, Report, \
 	ReleaseState, User, ThreadReply, Thread, AuditSeverity
 from app.querybuilder import QueryBuilder
-from app.utils import get_int_or_abort, is_yes, rank_required, add_audit_log
+from app.utils.misc import is_yes
+from app.utils.user import rank_required
+from app.utils.models import add_audit_log
 from . import bp
 from sqlalchemy import select, and_
 

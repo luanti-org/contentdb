@@ -16,7 +16,7 @@ from app.logic.LogicError import LogicError
 from app.logic.screenshots import do_create_screenshot, do_order_screenshots
 from . import bp, get_package_tabs
 from app.models import Permission, db, PackageScreenshot
-from app.utils import is_package_page
+from app.utils.models import is_package_page
 
 
 class CreateScreenshotForm(FlaskForm):

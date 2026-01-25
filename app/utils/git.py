@@ -16,7 +16,7 @@ from urllib.parse import urlsplit
 from git import GitCommandError
 
 from app.tasks import TaskError
-from app.utils import random_string, normalize_line_endings
+from app.utils.misc import random_string, normalize_line_endings
 
 
 def generate_git_url(urlstr):

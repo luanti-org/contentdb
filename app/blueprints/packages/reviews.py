@@ -16,8 +16,10 @@ from wtforms_sqlalchemy.fields import QuerySelectField
 from app.models import db, PackageReview, Thread, ThreadReply, NotificationType, PackageReviewVote, Package, UserRank, \
 	Permission, AuditSeverity, PackageState, Language
 from app.tasks.webhooktasks import post_discord_webhook
-from app.utils import is_package_page, add_notification, get_int_or_abort, is_yes, is_safe_url, rank_required, \
-	add_audit_log, has_blocked_domains, should_return_json, normalize_line_endings
+from app.utils.models import is_package_page, add_notification, add_audit_log
+from app.utils.flask import get_int_or_abort, is_safe_url, has_blocked_domains, should_return_json
+from app.utils.user import rank_required
+from app.utils.misc import is_yes, normalize_line_endings
 from . import bp
 
 

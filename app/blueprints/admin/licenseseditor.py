@@ -9,7 +9,9 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, BooleanField, SubmitField, URLField
 from wtforms.validators import InputRequired, Length, Optional
 
-from app.utils import rank_required, nonempty_or_none, add_audit_log
+from app.utils.user import rank_required
+from app.utils.misc import nonempty_or_none
+from app.utils.models import add_audit_log
 from . import bp
 from app.models import UserRank, License, db, AuditSeverity
 

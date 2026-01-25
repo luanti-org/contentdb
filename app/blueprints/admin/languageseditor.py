@@ -10,7 +10,9 @@ from wtforms import StringField, TextAreaField, SubmitField
 from wtforms.validators import InputRequired, Length, Optional
 
 from app.models import db, AuditSeverity, UserRank, Language, Package, PackageState, PackageTranslation
-from app.utils import add_audit_log, rank_required, normalize_line_endings
+from app.utils.models import add_audit_log
+from app.utils.user import rank_required
+from app.utils.misc import normalize_line_endings
 from . import bp
 
 

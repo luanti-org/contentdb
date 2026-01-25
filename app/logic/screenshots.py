@@ -9,7 +9,7 @@ from flask_babel import lazy_gettext
 from app.logic.LogicError import LogicError
 from app.logic.uploads import upload_file
 from app.models import User, Package, PackageScreenshot, Permission, NotificationType, db, AuditSeverity
-from app.utils import add_notification, add_audit_log
+from app.utils.models import add_notification, add_audit_log
 from app.utils.image import get_image_size
 
 

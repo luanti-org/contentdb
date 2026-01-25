@@ -20,7 +20,7 @@ from app.tasks.importtasks import import_repo_screenshot, check_zip_release, che
 	import_languages, check_all_zip_files
 from app.tasks.usertasks import import_github_user_ids
 from app.tasks.pkgtasks import notify_about_git_forum_links, clear_removed_packages, check_package_for_broken_links, update_file_size_bytes
-from app.utils import add_notification, get_system_user
+from app.utils.models import add_notification, get_system_user
 
 actions = {}
 

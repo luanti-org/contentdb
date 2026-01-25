@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
-
+import re
 from functools import wraps
 from typing import Optional
 
@@ -11,8 +11,17 @@ from flask_login import login_user, current_user
 from passlib.handlers.bcrypt import bcrypt
 from flask import redirect, url_for, abort, flash
 
-from app.utils import is_safe_url
+from app.utils.flask import is_safe_url
 from app.models import User, UserRank, UserNotificationPreferences, db
+
+
+def is_username_valid(username: str) -> bool:
+	return username is not None and len(username) >= 2 and \
+			re.match(r"^[A-Za-z0-9._-]*$", username) and not re.match(r"^\.*$", username)
+
+
+def make_valid_username(username: str) -> str:
+	return re.sub(r"[^A-Za-z0-9._-]+", "_", username)
 
 
 def check_password_hash(stored, given):

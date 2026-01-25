@@ -4,7 +4,7 @@
 
 import user_agents
 
-from app.utils import make_valid_username
+from app.utils.user import make_valid_username
 
 
 def test_make_valid_username():

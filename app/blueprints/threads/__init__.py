@@ -14,12 +14,12 @@ bp = Blueprint("threads", __name__)
 from flask_login import current_user, login_required
 from app.models import Package, db, User, Permission, Thread, UserRank, AuditSeverity, \
 	NotificationType, ThreadReply
-from app.utils import add_notification, is_yes, add_audit_log, get_system_user, has_blocked_domains, \
-	normalize_line_endings
+from app.utils.models import add_notification, add_audit_log, get_system_user
+from app.utils.misc import is_yes, normalize_line_endings
+from app.utils.flask import has_blocked_domains, get_int_or_abort
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SubmitField
 from wtforms.validators import InputRequired, Length
-from app.utils import get_int_or_abort
 
 
 @bp.route("/threads/")

@@ -13,7 +13,7 @@ from sqlalchemy import or_
 
 from app.models import User, db, PackageType, ForumTopic
 from app.tasks import celery
-from app.utils import make_valid_username
+from app.utils.user import make_valid_username
 from app.utils.phpbbparser import get_profile, get_topics_from_forum
 from .usertasks import set_profile_picture_from_url, update_github_user_id_raw
 
