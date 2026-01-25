@@ -414,16 +414,14 @@ def check_for_broken_links():
 @action("DANGER: Update AI disclosure for old packages")
 def old_package_ai_disclosure():
 	cutoff = datetime.date(2022, 3, 1)
-	stmt = (
-		db.session.query(Package)
-		.filter(
-			~Package.releases.any(PackageRelease.created_at > cutoff),
-			Package.ai_disclosure == PackageAIDisclosure.UNKNOWN,
-		)
-		.all()
-	)
-	for package in stmt:
+	packages = Package.query.filter(
+		~Package.releases.any(PackageRelease.created_at > cutoff),
+		Package.ai_disclosure == PackageAIDisclosure.UNKNOWN,
+	).all()
+	for package in packages:
 		package.ai_disclosure = PackageAIDisclosure.NONE
 		add_audit_log(AuditSeverity.NORMAL, current_user, f"Set AI disclosure to None", package.get_url("packages.view"), package)
+
+	db.session.commit()
 
 	return redirect(url_for("admin.admin_page"))
