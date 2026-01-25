@@ -627,6 +627,13 @@
 					{{ _("Information") }}
 				</h3>
 
+				{% if package.ai_disclosure and package.ai_disclosure.show_warning %}
+					<p class="alert alert-info">
+						<strong>{{ package.ai_disclosure.title }}:</strong>
+						{{ package.ai_disclosure.description }}
+					</p>
+				{% endif %}
+
 				<dl>
 					<dt>{{ _("Type") }}</dt>
 					<dd>{{ package.type.text }}</dd>

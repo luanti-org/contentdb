@@ -29,6 +29,8 @@ def get_hide_choices():
 		("nonfree", gettext("Non-free")),
 		("wip", gettext("Work in Progress")),
 		("deprecated", gettext("Deprecated")),
+		("genai", gettext("AI-generated")),
+		("anyai", gettext("AI-generated or AI-assisted")),
 		("*", gettext("All content warnings")),
 	]
 	content_warnings = ContentWarning.query.order_by(db.asc(ContentWarning.name)).all()

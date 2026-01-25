@@ -744,6 +744,14 @@ def json_schema():
 					"LOOKING_FOR_MAINTAINER"
 				]
 			},
+			"ai_disclosure": {
+				"description": "AI disclosure",
+				"enum": [
+					"NONE",
+					"ASSISTED",
+					"GENERATED",
+				]
+			},
 			"tags": {
 				"description": "Package Tags",
 				"type": "array",

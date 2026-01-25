@@ -11,7 +11,7 @@ from sqlalchemy.sql.expression import func
 from sqlalchemy_searchable import search
 
 from .models import db, PackageType, Package, ForumTopic, License, LuantiRelease, PackageRelease, User, Tag, \
-	ContentWarning, PackageState, PackageDevState, ReleaseState
+	ContentWarning, PackageState, PackageDevState, ReleaseState, PackageAIDisclosure
 from app.utils.misc import is_yes
 from app.utils.flask import get_int_or_abort
 
@@ -254,6 +254,14 @@ class QueryBuilder:
 
 		for tag in self.hide_tags:
 			query = query.filter(~Package.tags.contains(tag))
+
+		if "genai" in self.hide_flags or "anyai" in self.hide_flags:
+			self.hide_flags.discard("genai")
+			query = query.filter(Package.ai_disclosure != PackageAIDisclosure.GENERATED)
+
+			if "anyai" in self.hide_flags:
+				self.hide_flags.discard("anyai")
+				query = query.filter(Package.ai_disclosure != PackageAIDisclosure.ASSISTED)
 
 		if "*" in self.hide_flags:
 			query = query.filter(~ Package.content_warnings.any())

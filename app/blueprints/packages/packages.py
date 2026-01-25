@@ -31,7 +31,7 @@ from . import bp, get_package_tabs
 from app.models import Package, Tag, db, User, Tags, PackageState, Permission, PackageType, MetaPackage, ForumTopic, \
 	Dependency, Thread, UserRank, PackageReview, PackageDevState, ContentWarning, License, AuditSeverity, \
 	PackageScreenshot, NotificationType, AuditLogEntry, PackageAlias, PackageProvides, PackageGameSupport, \
-	PackageDailyStats, Collection, ReleaseState
+	PackageDailyStats, Collection, ReleaseState, PackageAIDisclosure
 from app.utils.models import is_package_page, add_audit_log, get_package_by_info, \
 	add_notification, get_system_user, get_games_from_csv, \
 	post_to_approval_thread
@@ -226,7 +226,8 @@ class PackageForm(FlaskForm):
 	name             = StringField(lazy_gettext("Name (Technical)"), [InputRequired(), Length(1, 100), Regexp("^[a-z0-9_]+$", 0, lazy_gettext("Lower case letters (a-z), digits (0-9), and underscores (_) only"))])
 	short_desc       = StringField(lazy_gettext("Short Description (Plaintext)"), [InputRequired(), Length(1,200)])
 
-	dev_state        = SelectField(lazy_gettext("Maintenance State"), [DataRequired()], choices=PackageDevState.choices(with_none=True), coerce=PackageDevState.coerce)
+	dev_state = SelectField(lazy_gettext("Maintenance State"), [DataRequired()], choices=PackageDevState.choices(with_none=True), coerce=PackageDevState.coerce)
+	ai_disclosure = SelectField(lazy_gettext("AI Disclosure"), [DataRequired()], choices=PackageAIDisclosure.choices(with_none=True), coerce=PackageAIDisclosure.coerce)
 
 	tags             = QuerySelectMultipleField(lazy_gettext('Tags'), query_factory=lambda: Tag.query.order_by(db.asc(Tag.name)), get_pk=lambda a: a.id, get_label=make_label)
 	content_warnings = QuerySelectMultipleField(lazy_gettext('Content Warnings'), query_factory=lambda: ContentWarning.query.order_by(db.asc(ContentWarning.name)), get_pk=lambda a: a.id, get_label=make_label)
@@ -285,6 +286,7 @@ def handle_create_edit(package: typing.Optional[Package], form: PackageForm, aut
 			"name": form.name.data,
 			"short_desc": form.short_desc.data,
 			"dev_state": form.dev_state.data,
+			"ai_disclosure": form.ai_disclosure.data,
 			"tags": form.tags.raw_data,
 			"content_warnings": form.content_warnings.raw_data,
 			"license": form.license.data,

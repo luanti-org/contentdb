@@ -257,6 +257,64 @@ class PackageState(enum.Enum):
 		return item if type(item) == PackageState else PackageState[item.upper()]
 
 
+class PackageAIDisclosure(enum.Enum):
+	NONE = "None"
+	ASSISTED = "Assisted"
+	GENERATED = "Generated"
+
+	def to_name(self):
+		return self.name.lower()
+
+	def __str__(self):
+		return self.name
+
+	@property
+	def show_warning(self):
+		return self == PackageAIDisclosure.ASSISTED or self == PackageAIDisclosure.GENERATED
+
+	@property
+	def title(self):
+		if self == PackageAIDisclosure.NONE:
+			return lazy_gettext("None")
+		elif self == PackageAIDisclosure.ASSISTED:
+			return lazy_gettext("AI-assisted")
+		elif self == PackageAIDisclosure.GENERATED:
+			return lazy_gettext("AI-generated")
+		else:
+			assert False
+
+	@property
+	def description(self):
+		if self == PackageAIDisclosure.NONE:
+			return lazy_gettext("No AI tools were used in the creation of this package")
+		elif self == PackageAIDisclosure.ASSISTED:
+			return lazy_gettext("AI tools were used for code completion or minor use cases")
+		elif self == PackageAIDisclosure.GENERATED:
+			return lazy_gettext("This package contains AI-generated assets or code")
+		else:
+			assert False
+
+	@classmethod
+	def get(cls, name):
+		try:
+			return PackageAIDisclosure[name.upper()]
+		except KeyError:
+			return None
+
+	@classmethod
+	def choices(cls, with_none):
+		ret = [(choice, f"{choice.title}: {choice.description}") for choice in cls]
+		if with_none:
+			ret.insert(0, (None, ""))
+		return ret
+
+	@classmethod
+	def coerce(cls, item):
+		if item is None or (isinstance(item, str) and item.upper() == "NULL"):
+			return None
+		return item if type(item) == PackageAIDisclosure else PackageAIDisclosure[item.upper()]
+
+
 PackageProvides = db.Table("provides",
 	db.Column("package_id",    db.Integer, db.ForeignKey("package.id"), primary_key=True),
 	db.Column("metapackage_id", db.Integer, db.ForeignKey("meta_package.id"), primary_key=True)
@@ -412,6 +470,7 @@ class Package(db.Model):
 
 	state     = db.Column(db.Enum(PackageState), nullable=False, default=PackageState.WIP)
 	dev_state = db.Column(db.Enum(PackageDevState), nullable=True, default=None)
+	ai_disclosure = db.Column(db.Enum(PackageAIDisclosure), nullable=True, default=None)
 
 	@property
 	def approved(self):
@@ -654,6 +713,7 @@ class Package(db.Model):
 
 			"state": self.state.name,
 			"dev_state": self.dev_state.name if self.dev_state else None,
+			"ai_disclosure": self.ai_disclosure.name if self.ai_disclosure else None,
 
 			"name": self.name,
 			"title": meta["title"],

@@ -20,6 +20,8 @@ A flag can be:
 * `wip`: packages marked as Work in Progress
 * `deprecated`: packages marked as Deprecated
 * A content warning, given below.
+* `genai`: to hide AI-generated content.
+* `anyai`: to hide AI-generated and AI-assisted content.
 * `*`: hides all content warnings.
 
 There are also two meta-flags, which are designed so that we can change how different platforms filter the package list

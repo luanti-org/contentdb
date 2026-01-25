@@ -90,6 +90,7 @@ curl -X DELETE https://content.luanti.org/api/delete-token/ \
         * `short_description`
         * `dev_state`: One of `WIP`, `BETA`, `ACTIVELY_DEVELOPED`, `MAINTENANCE_ONLY`, `AS_IS`, `DEPRECATED`,
             `LOOKING_FOR_MAINTAINER`.
+        * `ai_disclosure`: One of `NONE`, `ASSISTED`, `GENERATED`.
         * `tags`: List of [tag](#tags) names.
         * `content_warnings`: List of [content warning](#content-warnings) names.
         * `license`: A [license](#licenses) name.

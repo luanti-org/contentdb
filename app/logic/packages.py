@@ -11,7 +11,7 @@ from flask_babel import lazy_gettext, LazyString
 
 from app.logic.LogicError import LogicError
 from app.models import User, Package, PackageType, MetaPackage, Tag, ContentWarning, db, Permission, AuditSeverity, \
-	License, PackageDevState, PackageState
+	License, PackageDevState, PackageState, PackageAIDisclosure
 from app.utils.models import add_audit_log
 from app.utils.flask import has_blocked_domains
 from app.utils.difference import diff_dictionaries, describe_difference
@@ -44,6 +44,7 @@ ALLOWED_FIELDS = {
 	"short_description": str,
 	"short_desc": str,
 	"dev_state": AnyType,
+	"ai_disclosure": AnyType,
 	"tags": list,
 	"content_warnings": list,
 	"license": AnyType,
@@ -151,6 +152,9 @@ def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, 
 	if "dev_state" in data:
 		data["dev_state"] = PackageDevState.coerce(data["dev_state"])
 
+	if "ai_disclosure" in data:
+		data["ai_disclosure"] = PackageAIDisclosure.coerce(data["ai_disclosure"])
+
 	if "license" in data:
 		data["license"] = get_license(data["license"])
 
@@ -165,7 +169,7 @@ def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, 
 		if "dQw4w9WgXcQ" in data["video_url"]:
 			raise LogicError(403, "Never gonna give you up / Never gonna let you down / Never gonna run around and desert you")
 
-	for key in ["name", "title", "short_desc", "desc", "dev_state", "license", "media_license",
+	for key in ["name", "title", "short_desc", "desc", "dev_state", "ai_disclosure", "license", "media_license",
 			"repo", "website", "issueTracker", "forums", "video_url", "donate_url", "translation_url"]:
 		if key in data:
 			setattr(package, key, data[key])

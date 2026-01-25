@@ -65,6 +65,7 @@ It should be a JSON dictionary with one or more of the following optional keys:
 * `short_description`
 * `dev_state`: One of `WIP`, `BETA`, `ACTIVELY_DEVELOPED`, `MAINTENANCE_ONLY`, `AS_IS`, `DEPRECATED`,
     `LOOKING_FOR_MAINTAINER`.
+* `ai_disclosure`: One of `NONE`, `ASSISTED`, `GENERATED`.
 * `tags`: List of tag names, see [/api/tags/](/api/tags/).
 * `content_warnings`: List of content warning names, see [/api/content_warnings/](/api/content_warnings/).
 * `license`: A license name, see [/api/licenses/](/api/licenses/).
