@@ -5,7 +5,10 @@
 from typing import Optional
 import secrets
 
-def truncate_string(value: str, max_length: int) -> str:
+def truncate_string(value: Optional[str], max_length: int) -> Optional[str]:
+	if value is None:
+		return None
+
 	if len(value) <= max_length:
 		return value
 
