@@ -8,84 +8,86 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-11-10 19:55+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
+"PO-Revision-Date: 2026-02-04 21:01+0000\n"
+"Last-Translator: Vesel Sem <veselsem@users.noreply.hosted.weblate.org>\n"
+"Language-Team: Slovenian <https://hosted.weblate.org/projects/minetest/"
+"contentdb/sl/>\n"
 "Language: sl\n"
-"Language-Team: none\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 "
-"|| n%100==4 ? 2 : 3);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 5.16-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: app/__init__.py:155
 msgid "Banned:"
-msgstr ""
+msgstr "Prepovedano:"
 
 #: app/__init__.py:157
 msgid "You have been banned."
-msgstr ""
+msgstr "V ste bili prepovedani."
 
 #. NOTE: tags: title for 128px
 #: app/_translations.py:6
 msgctxt "tags"
 msgid "128px+"
-msgstr ""
+msgstr "128px+"
 
 #. NOTE: tags: description for 128px
 #: app/_translations.py:8
 msgctxt "tags"
 msgid "For 128px or higher texture packs"
-msgstr ""
+msgstr "Za teksturne pakete velikosti 128px ali več"
 
 #. NOTE: tags: title for 16px
 #: app/_translations.py:10
 msgctxt "tags"
 msgid "16px"
-msgstr ""
+msgstr "16px"
 
 #. NOTE: tags: description for 16px
 #: app/_translations.py:12
 msgctxt "tags"
 msgid "For 16px texture packs"
-msgstr ""
+msgstr "Za teksturne pakete velikosti 16px ali več"
 
 #. NOTE: tags: title for 32px
 #: app/_translations.py:14
 msgctxt "tags"
 msgid "32px"
-msgstr ""
+msgstr "32px"
 
 #. NOTE: tags: description for 32px
 #: app/_translations.py:16
 msgctxt "tags"
 msgid "For 32px texture packs"
-msgstr ""
+msgstr "Za teksturne pakete velikosti 32px"
 
 #. NOTE: tags: title for 64px
 #: app/_translations.py:18
 msgctxt "tags"
 msgid "64px"
-msgstr ""
+msgstr "64px"
 
 #. NOTE: tags: description for 64px
 #: app/_translations.py:20
 msgctxt "tags"
 msgid "For 64px texture packs"
-msgstr ""
+msgstr "Za teksturne pakete velikosti 64px"
 
 #. NOTE: tags: title for adventure__rpg
 #: app/_translations.py:22
 msgctxt "tags"
 msgid "Adventure / RPG"
-msgstr ""
+msgstr "Pustolovščina / RPG"
 
 #. NOTE: tags: title for april_fools
 #: app/_translations.py:24
 msgctxt "tags"
 msgid "Joke"
-msgstr ""
+msgstr "Šale"
 
 #. NOTE: tags: description for april_fools
 #: app/_translations.py:26
@@ -94,60 +96,64 @@ msgid ""
 "For humorous content, meant as a novelty or joke, not to be taken "
 "seriously, and that is not meant to be used seriously or long-term."
 msgstr ""
+"Za humoristično vsebino, mišljeno kot novost ali šala, ki je ne smemo jemati "
+"resno in ki ni namenjena resni ali dolgoročni uporabi."
 
 #. NOTE: tags: title for building
 #: app/_translations.py:28
 msgctxt "tags"
 msgid "Building"
-msgstr ""
+msgstr "Gradnja"
 
 #. NOTE: tags: description for building
 #: app/_translations.py:30
 msgctxt "tags"
 msgid "Focuses on building, such as adding new materials or nodes"
-msgstr ""
+msgstr "Osredotoča se na gradnjo, kot je dodajanje novih materialov ali vozlišč"
 
 #. NOTE: tags: title for building_mechanics
 #: app/_translations.py:32
 msgctxt "tags"
 msgid "Building Mechanics and Tools"
-msgstr ""
+msgstr "Gradbena mehanika in orodja"
 
 #. NOTE: tags: description for building_mechanics
 #: app/_translations.py:34
 msgctxt "tags"
 msgid "Adds game mechanics or tools that change how players build."
 msgstr ""
+"Dodaja mehaniko igre ali orodja, ki spreminjajo način kako igralci gradijo."
 
 #. NOTE: tags: title for chat
 #: app/_translations.py:36
 msgctxt "tags"
 msgid "Chat / Commands"
-msgstr ""
+msgstr "Klepet / Ukazi"
 
 #. NOTE: tags: description for chat
 #: app/_translations.py:38
 msgctxt "tags"
 msgid "Focus on player chat/communication or console interaction."
 msgstr ""
+"Osredotočite se na klepet/komunikacijo igralcev ali interakcijo s konzolo."
 
 #. NOTE: tags: title for commerce
 #: app/_translations.py:40
 msgctxt "tags"
 msgid "Commerce / Economy"
-msgstr ""
+msgstr "Trgovina / Gospodarstvo"
 
 #. NOTE: tags: description for commerce
 #: app/_translations.py:42
 msgctxt "tags"
 msgid "Related to economies, money, and trading"
-msgstr ""
+msgstr "Povezano z gospodarstvom, denarjem in trgovanjem"
 
 #. NOTE: tags: title for complex_installation
 #: app/_translations.py:44
 msgctxt "tags"
 msgid "Complex installation"
-msgstr ""
+msgstr "Zahtevna namestitev"
 
 #. NOTE: tags: description for complex_installation
 #: app/_translations.py:46
@@ -156,24 +162,26 @@ msgid ""
 "Requires futher installation steps, such as installing LuaRocks or "
 "editing the trusted mod setting"
 msgstr ""
+"Zahteva nadaljnje korake namestitve, kot je namestitev LuaRocks ali urejanje "
+"nastavitve zaupanja vrednega moda"
 
 #. NOTE: tags: title for crafting
 #: app/_translations.py:48
 msgctxt "tags"
 msgid "Crafting"
-msgstr ""
+msgstr "Izdelava"
 
 #. NOTE: tags: description for crafting
 #: app/_translations.py:50
 msgctxt "tags"
 msgid "Big changes to crafting gameplay"
-msgstr ""
+msgstr "Velike spremembe v ustvarjanju"
 
 #. NOTE: tags: title for creative
 #: app/_translations.py:52
 msgctxt "tags"
 msgid "Creative"
-msgstr ""
+msgstr "Ustvarjalno"
 
 #. NOTE: tags: description for creative
 #: app/_translations.py:54
@@ -183,12 +191,16 @@ msgid ""
 "content only available through a creative inventory, or provides tools "
 "that facilitate ingame creation and doesn't add difficulty or scarcity"
 msgstr ""
+"Napisano posebej ali izključno za uporabo v ustvarjalnem načinu. Dodaja "
+"vsebino, ki je na voljo le prek ustvarjalnega inventarja, ali ponuja orodja, "
+"ki olajšajo ustvarjanje v igri in ne dodaja težavnosti ali pomanjkanja "
+"(dobrin …)"
 
 #. NOTE: tags: title for custom_mapgen
 #: app/_translations.py:56
 msgctxt "tags"
 msgid "Custom mapgen"
-msgstr ""
+msgstr "Generator zemljevidov po meri"
 
 #. NOTE: tags: description for custom_mapgen
 #: app/_translations.py:58
@@ -197,48 +209,52 @@ msgid ""
 "Contains a completely custom mapgen implemented in Lua, usually requires "
 "worlds to be set to the 'singlenode' mapgen."
 msgstr ""
+"Vsebuje popolnoma prilagojen generator zemljevidov, implementiran v Lua, "
+"običajno zahteva, da so svetovi nastavljeni na generator zemljevidov "
+"„singlenode“."
 
 #. NOTE: tags: title for decorative
 #: app/_translations.py:60
 msgctxt "tags"
 msgid "Decorative"
-msgstr ""
+msgstr "Okrasno"
 
 #. NOTE: tags: description for decorative
 #: app/_translations.py:62
 msgctxt "tags"
 msgid "Adds nodes with no other purpose than for use in building"
 msgstr ""
+"Dodaja vozlišča brez drugega namena kot za uporabo pri gradnji (okrasitev)"
 
 #. NOTE: tags: title for developer_tools
 #: app/_translations.py:64
 msgctxt "tags"
 msgid "Developer Tools"
-msgstr ""
+msgstr "Orodja za razvijalce"
 
 #. NOTE: tags: description for developer_tools
 #: app/_translations.py:66
 msgctxt "tags"
 msgid "Tools for game and mod developers"
-msgstr ""
+msgstr "Orodja za razvijalce iger in modov"
 
 #. NOTE: tags: title for education
 #: app/_translations.py:68
 msgctxt "tags"
 msgid "Education"
-msgstr ""
+msgstr "Izobraževanje"
 
 #. NOTE: tags: description for education
 #: app/_translations.py:70
 msgctxt "tags"
 msgid "Either has educational value, or is a tool to help teachers "
-msgstr ""
+msgstr "Ima bodisi izobraževalno vrednost bodisi je orodje za pomoč učiteljem "
 
 #. NOTE: tags: title for environment
 #: app/_translations.py:72
 msgctxt "tags"
 msgid "Environment / Weather"
-msgstr ""
+msgstr "Okolje / Vreme"
 
 #. NOTE: tags: description for environment
 #: app/_translations.py:74
@@ -247,18 +263,20 @@ msgid ""
 "Improves the world, adding weather, ambient sounds, or other environment "
 "mechanics"
 msgstr ""
+"Izboljša svet z dodajanjem vremena, zvokov iz okolice ali drugih mehanik "
+"okolja"
 
 #. NOTE: tags: title for food
 #: app/_translations.py:76
 msgctxt "tags"
 msgid "Food / Drinks"
-msgstr ""
+msgstr "Hrana / Pijače"
 
 #. NOTE: tags: title for gui
 #: app/_translations.py:78
 msgctxt "tags"
 msgid "GUI"
-msgstr ""
+msgstr "GUI"
 
 #. NOTE: tags: description for gui
 #: app/_translations.py:80
@@ -267,108 +285,110 @@ msgid ""
 "For content whose main utility or features are provided within a GUI, on-"
 "screen menu, or similar"
 msgstr ""
+"Za vsebino, katere glavna uporabnost ali funkcije so na voljo v grafičnem "
+"uporabniškem vmesniku, zaslonskem meniju ali podobnem"
 
 #. NOTE: tags: title for hud
 #: app/_translations.py:82
 msgctxt "tags"
 msgid "HUD"
-msgstr ""
+msgstr "HUD"
 
 #. NOTE: tags: description for hud
 #: app/_translations.py:84
 msgctxt "tags"
 msgid "For mods that grant the player extra information in the HUD"
-msgstr ""
+msgstr "Za modifikacije, ki igralcu omogočajo dodatne informacije v HUD-u"
 
 #. NOTE: tags: title for inventory
 #: app/_translations.py:86
 msgctxt "tags"
 msgid "Inventory"
-msgstr ""
+msgstr "Inventar"
 
 #. NOTE: tags: description for inventory
 #: app/_translations.py:88
 msgctxt "tags"
 msgid "Changes the inventory GUI"
-msgstr ""
+msgstr "Spremeni grafični uporabniški vmesnik inventarja"
 
 #. NOTE: tags: title for jam_combat_mod
 #: app/_translations.py:90
 msgctxt "tags"
 msgid "Jam / Combat 2020"
-msgstr ""
+msgstr "Jam / Combat 2020"
 
 #. NOTE: tags: description for jam_combat_mod
 #: app/_translations.py:92
 msgctxt "tags"
 msgid "For mods created for the Discord \"Combat\" modding event in 2020"
-msgstr ""
+msgstr "Za mode, ustvarjene za modderski dogodek Discord „Combat\" leta 2020"
 
 #. NOTE: tags: title for jam_game_2021
 #: app/_translations.py:94
 msgctxt "tags"
 msgid "Jam / Game 2021"
-msgstr ""
+msgstr "Jam / Game 2021"
 
 #. NOTE: tags: description for jam_game_2021
 #: app/_translations.py:96
 msgctxt "tags"
 msgid "Entries to the 2021 Minetest Game Jam"
-msgstr ""
+msgstr "Kandidati za Minetest Game Jam 2021"
 
 #. NOTE: tags: title for jam_game_2022
 #: app/_translations.py:98
 msgctxt "tags"
 msgid " Jam / Game 2022"
-msgstr ""
+msgstr " Jam / Game 2022"
 
 #. NOTE: tags: description for jam_game_2022
 #: app/_translations.py:100
 msgctxt "tags"
 msgid "Entries to the 2022 Minetest Game Jam "
-msgstr ""
+msgstr "Kandidati za Minetest Game Jam 2022 "
 
 #. NOTE: tags: title for jam_game_2023
 #: app/_translations.py:102
 msgctxt "tags"
 msgid "Jam / Game 2023"
-msgstr ""
+msgstr "Jam / Game 2023"
 
 #. NOTE: tags: description for jam_game_2023
 #: app/_translations.py:104
 msgctxt "tags"
 msgid "Entries to the 2023 Minetest Game Jam "
-msgstr ""
+msgstr "Kandidati za Minetest Game Jam 2023 "
 
 #. NOTE: tags: title for jam_game_2024
 #: app/_translations.py:106
 msgctxt "tags"
 msgid "Jam / Game 2024"
-msgstr ""
+msgstr "Jam / Game 2024"
 
 #. NOTE: tags: description for jam_game_2024
 #: app/_translations.py:108
 msgctxt "tags"
 msgid "Entries to the 2024 Luanti Game Jam"
-msgstr ""
+msgstr "Kandidati za Luanti Game Jam 2024"
 
 #. NOTE: tags: title for jam_game_2025
 #: app/_translations.py:110
 msgctxt "tags"
 msgid "Jam / Game 2025"
-msgstr ""
+msgstr "Jam / Game 2025"
 
 #. NOTE: tags: description for jam_game_2025
 #: app/_translations.py:112
 msgctxt "tags"
 msgid "Entries to the 2025 Luanti Game Jam"
-msgstr ""
+msgstr "Kandidati za Luanti Game Jam 2025"
 
 #. NOTE: tags: title for jam_weekly_2021
 #: app/_translations.py:114
 msgctxt "tags"
 msgid "Jam / Weekly Challenges 2021"
-msgstr ""
+msgstr "Jam / Tedenski izzivi 2021"
 
 #. NOTE: tags: description for jam_weekly_2021
 #: app/_translations.py:116
@@ -377,102 +397,103 @@ msgid ""
 "For mods created for the Discord \"Weekly Challenges\" modding event in "
 "2021"
 msgstr ""
+"Za mode, ustvarjene za modderski dogodek Discord „Tedenski izzivi\" leta 2021"
 
 #. NOTE: tags: title for less_than_px
 #: app/_translations.py:118
 msgctxt "tags"
 msgid "<16px"
-msgstr ""
+msgstr "<16px"
 
 #. NOTE: tags: description for less_than_px
 #: app/_translations.py:120
 msgctxt "tags"
 msgid "For less than 16px texture packs "
-msgstr ""
+msgstr "Za teksturne pakete velikosti manj kot 16px "
 
 #. NOTE: tags: title for library
 #: app/_translations.py:122
 msgctxt "tags"
 msgid "API / Library"
-msgstr ""
+msgstr "API / Knjižnica"
 
 #. NOTE: tags: description for library
 #: app/_translations.py:124
 msgctxt "tags"
 msgid "Primarily adds an API for other mods to use"
-msgstr ""
+msgstr "Predvsem doda API za uporabo drugih modov"
 
 #. NOTE: tags: title for magic
 #: app/_translations.py:126
 msgctxt "tags"
 msgid "Magic / Enchanting"
-msgstr ""
+msgstr "Magija / Čaranje"
 
 #. NOTE: tags: title for mapgen
 #: app/_translations.py:128
 msgctxt "tags"
 msgid "Mapgen / Biomes / Decoration"
-msgstr ""
+msgstr "Generator terena / Biomi /Dekoracija"
 
 #. NOTE: tags: description for mapgen
 #: app/_translations.py:130
 msgctxt "tags"
 msgid "New mapgen or changes mapgen"
-msgstr ""
+msgstr "Novi generatorji terena oziroma spremembe le teh"
 
 #. NOTE: tags: title for mini-game
 #: app/_translations.py:132
 msgctxt "tags"
 msgid "Mini-game"
-msgstr ""
+msgstr "Mini-igre"
 
 #. NOTE: tags: description for mini-game
 #: app/_translations.py:134
 msgctxt "tags"
 msgid "Adds a mini-game to be played within Luanti"
-msgstr ""
+msgstr "Doda mini-igre, ki jih je mogoče igrati z Luantijem"
 
 #. NOTE: tags: title for mobs
 #: app/_translations.py:136
 msgctxt "tags"
 msgid "Mobs / Animals / NPCs"
-msgstr ""
+msgstr "Mobi / Živali / NPC-ji"
 
 #. NOTE: tags: description for mobs
 #: app/_translations.py:138
 msgctxt "tags"
 msgid "Adds mobs, animals, and non-player characters"
-msgstr ""
+msgstr "Doda Love, živali in ne igralske osebnosti"
 
 #. NOTE: tags: title for mtg
 #: app/_translations.py:140
 msgctxt "tags"
 msgid "Minetest Game improved"
-msgstr ""
+msgstr "Izboljšava Minetest Game"
 
 #. NOTE: tags: description for mtg
 #: app/_translations.py:142
 msgctxt "tags"
 msgid "Forks of Minetest Game"
-msgstr ""
+msgstr "Veje od Minetest Game"
 
 #. NOTE: tags: title for multiplayer
 #: app/_translations.py:144
 msgctxt "tags"
 msgid "Multiplayer-focused"
-msgstr ""
+msgstr "Osredotočeno za večigralcev"
 
 #. NOTE: tags: description for multiplayer
 #: app/_translations.py:146
 msgctxt "tags"
 msgid "Can/should only be used in multiplayer"
-msgstr ""
+msgstr "Uporabljati se sme/mora le v večigralskem načinu"
 
 #. NOTE: tags: title for oneofakind__original
 #: app/_translations.py:148
 msgctxt "tags"
 msgid "One-of-a-kind / Original"
-msgstr ""
+msgstr "Unikatno / Izvirno"
 
 #. NOTE: tags: description for oneofakind__original
 #: app/_translations.py:150
@@ -480,25 +501,25 @@ msgctxt "tags"
 msgid ""
 "For games and such that are of their own kind, distinct and original in "
 "nature to others of the same category."
-msgstr ""
+msgstr "Za igre in drugo, ki izvirno od drugih v isti kategoriji."
 
 #. NOTE: tags: title for plants_and_farming
 #: app/_translations.py:152
 msgctxt "tags"
 msgid "Plants and Farming"
-msgstr ""
+msgstr "Rastline in kmetijstvo"
 
 #. NOTE: tags: description for plants_and_farming
 #: app/_translations.py:154
 msgctxt "tags"
 msgid "Adds new plants or other farmable resources."
-msgstr ""
+msgstr "Dodaja nove rastline in druge pripomočke za kmetijstvo."
 
 #. NOTE: tags: title for player_effects
 #: app/_translations.py:156
 msgctxt "tags"
 msgid "Player Effects / Power Ups"
-msgstr ""
+msgstr "Učinki za igralca"
 
 #. NOTE: tags: description for player_effects
 #: app/_translations.py:158
@@ -507,24 +528,26 @@ msgid ""
 "For content that changes player effects, including physics, for example: "
 "speed, jump height or gravity."
 msgstr ""
+"Za vsebino, ki spreminja učinke igralca, vključno s fiziko, na primer: "
+"hitrost, višino skoka ali gravitacijo."
 
 #. NOTE: tags: title for puzzle
 #: app/_translations.py:160
 msgctxt "tags"
 msgid "Puzzle"
-msgstr ""
+msgstr "Sestavljanka"
 
 #. NOTE: tags: description for puzzle
 #: app/_translations.py:162
 msgctxt "tags"
 msgid "Focus on puzzle solving instead of combat"
-msgstr ""
+msgstr "Osredotočite se na reševanje ugank namesto na boj"
 
 #. NOTE: tags: title for pve
 #: app/_translations.py:164
 msgctxt "tags"
 msgid "Player vs Environment (PvE)"
-msgstr ""
+msgstr "Igralec proti okolju (PvE)"
 
 #. NOTE: tags: description for pve
 #: app/_translations.py:166
@@ -533,60 +556,63 @@ msgid ""
 "For content designed for one or more players that focus on combat against"
 " the world, mobs, or NPCs."
 msgstr ""
+"Za vsebino, zasnovano za enega ali več igralcev, ki se osredotoča na boj "
+"proti svetu, pošastim ali NPC-jem (ne igralskim likom)."
 
 #. NOTE: tags: title for pvp
 #: app/_translations.py:168
 msgctxt "tags"
 msgid "Player vs Player (PvP)"
-msgstr ""
+msgstr "Igralec proti igralcu (PvP)"
 
 #. NOTE: tags: description for pvp
 #: app/_translations.py:170
 msgctxt "tags"
 msgid "Designed to be played competitively against other players"
-msgstr ""
+msgstr "Zasnovano za tekmovalno igranje proti drugim igralcem (boj)"
 
 #. NOTE: tags: title for seasonal
 #: app/_translations.py:172
 msgctxt "tags"
 msgid "Seasonal"
-msgstr ""
+msgstr "Sezonske vsebine"
 
 #. NOTE: tags: description for seasonal
 #: app/_translations.py:174
 msgctxt "tags"
 msgid "For content generally themed around a certain season or holiday"
 msgstr ""
+"Za vsebino, ki je običajno osredotočena na določen letni čas ali praznik"
 
 #. NOTE: tags: title for server_tools
 #: app/_translations.py:176
 msgctxt "tags"
 msgid "Server Moderation and Tools"
-msgstr ""
+msgstr "Moderiranje strežnika in orodja"
 
 #. NOTE: tags: description for server_tools
 #: app/_translations.py:178
 msgctxt "tags"
 msgid "Helps with server maintenance and moderation"
-msgstr ""
+msgstr "Pomoč pri vzdrževanju in moderiranju strežnikov"
 
 #. NOTE: tags: title for shooter
 #: app/_translations.py:180
 msgctxt "tags"
 msgid "Shooter"
-msgstr ""
+msgstr "Streljačina"
 
 #. NOTE: tags: description for shooter
 #: app/_translations.py:182
 msgctxt "tags"
 msgid "First person shooters (FPS) and more"
-msgstr ""
+msgstr "Prvoosebni strelec (FPS) in več"
 
 #. NOTE: tags: title for simulation
 #: app/_translations.py:184
 msgctxt "tags"
 msgid "Sims"
-msgstr ""
+msgstr "Simulacije"
 
 #. NOTE: tags: description for simulation
 #: app/_translations.py:186
@@ -595,24 +621,26 @@ msgid ""
 "Mods and games that aim to simulate real life activity. Similar to "
 "SimCity/The Sims/OpenTTD/etc."
 msgstr ""
+"Modi in igre, ki simulirajo dejavnosti v resničnem življenju. Podobno kot "
+"SimCity/The Sims/OpenTTD/itd."
 
 #. NOTE: tags: title for singleplayer
 #: app/_translations.py:188
 msgctxt "tags"
 msgid "Singleplayer-focused"
-msgstr ""
+msgstr "Osredotočeno na enega igralca"
 
 #. NOTE: tags: description for singleplayer
 #: app/_translations.py:190
 msgctxt "tags"
 msgid "Content that can be played alone"
-msgstr ""
+msgstr "Vsebina, ki jo je mogoče predvajati kot igro za enega igralca ..."
 
 #. NOTE: tags: title for skins
 #: app/_translations.py:192
 msgctxt "tags"
 msgid "Player customization / Skins"
-msgstr ""
+msgstr "Prilagoditev igralca / Preobleke"
 
 #. NOTE: tags: description for skins
 #: app/_translations.py:194
@@ -621,42 +649,44 @@ msgid ""
 "Allows the player to customize their character by changing the texture or"
 " adding accessories."
 msgstr ""
+"Igralcu omogoča prilagoditev lika s spreminjanjem teksture ali dodajanjem "
+"dodatkov."
 
 #. NOTE: tags: title for sound_music
 #: app/_translations.py:196
 msgctxt "tags"
 msgid "Sounds / Music"
-msgstr ""
+msgstr "Zvoki / Glasba"
 
 #. NOTE: tags: description for sound_music
 #: app/_translations.py:198
 msgctxt "tags"
 msgid "Focuses on or adds new sounds or musical things"
-msgstr ""
+msgstr "Osredotočeno na dodajanje nove glasbe in drugih glasbenih reči"
 
 #. NOTE: tags: title for sports
 #: app/_translations.py:200
 msgctxt "tags"
 msgid "Sports"
-msgstr ""
+msgstr "Šport"
 
 #. NOTE: tags: title for storage
 #: app/_translations.py:202
 msgctxt "tags"
 msgid "Storage"
-msgstr ""
+msgstr "Shramba"
 
 #. NOTE: tags: description for storage
 #: app/_translations.py:204
 msgctxt "tags"
 msgid "Adds or improves item storage mechanics"
-msgstr ""
+msgstr "Doda ali izboljša mehaniko shranjevanja predmetov"
 
 #. NOTE: tags: title for strategy_rts
 #: app/_translations.py:206
 msgctxt "tags"
 msgid "Strategy / RTS"
-msgstr ""
+msgstr "Strategija / RTS"
 
 #. NOTE: tags: description for strategy_rts
 #: app/_translations.py:208
@@ -665,12 +695,14 @@ msgid ""
 "Games and mods with a heavy strategy component, whether real-time or "
 "turn-based"
 msgstr ""
+"Igre in modi z močno strateško komponento, bodisi v realnem času bodisi na "
+"poteze"
 
 #. NOTE: tags: title for survival
 #: app/_translations.py:210
 msgctxt "tags"
 msgid "Survival"
-msgstr ""
+msgstr "Preživetje"
 
 #. NOTE: tags: description for survival
 #: app/_translations.py:212
@@ -679,36 +711,38 @@ msgid ""
 "Written specifically for survival gameplay with a focus on game-balance, "
 "difficulty level, or resources available through crafting, mining, ..."
 msgstr ""
+"Napisano posebej za igranje preživetja s poudarkom na ravnovesju igre, "
+"težavnostni stopnji ali virih, ki so na voljo z izdelavo, rudarjenjem, ..."
 
 #. NOTE: tags: title for technology
 #: app/_translations.py:214
 msgctxt "tags"
 msgid "Machines / Electronics"
-msgstr ""
+msgstr "Stroji / Elektronika"
 
 #. NOTE: tags: description for technology
 #: app/_translations.py:216
 msgctxt "tags"
 msgid "Adds machines useful in automation, tubes, or power."
-msgstr ""
+msgstr "Dodaja cevi, stroje uporabne v avtomatizaciji in energetiki."
 
 #. NOTE: tags: title for tools
 #: app/_translations.py:218
 msgctxt "tags"
 msgid "Tools / Weapons / Armor"
-msgstr ""
+msgstr "Orodja / Orožja / Oklepi"
 
 #. NOTE: tags: description for tools
 #: app/_translations.py:220
 msgctxt "tags"
 msgid "Adds or changes tools, weapons, and armor"
-msgstr ""
+msgstr "Dodaja ali spremeni orodja, orožja in oklepe"
 
 #. NOTE: tags: title for transport
 #: app/_translations.py:222
 msgctxt "tags"
 msgid "Transport"
-msgstr ""
+msgstr "Prevoz"
 
 #. NOTE: tags: description for transport
 #: app/_translations.py:224
@@ -717,102 +751,106 @@ msgid ""
 "Adds or changes transportation methods. Includes teleportation, vehicles,"
 " ridable mobs, transport infrastructure and thematic content"
 msgstr ""
+"Dodaja ali spremeni načine prevoza. Vključuje teleportacijo, vozila, jahače, "
+"bitja, prometno infrastrukturo in tematsko vsebino"
 
 #. NOTE: tags: title for world_tools
 #: app/_translations.py:226
 msgctxt "tags"
 msgid "World Maintenance and Tools"
-msgstr ""
+msgstr "Orodja za svet in vzdrževanje sveta"
 
 #. NOTE: tags: description for world_tools
 #: app/_translations.py:228
 msgctxt "tags"
 msgid "Tools to manage the world"
-msgstr ""
+msgstr "Orodja za upravljanje sveta"
 
 #. NOTE: content_warnings: title for alcohol_tobacco
 #: app/_translations.py:230
 msgctxt "content_warnings"
 msgid "Alcohol / Tobacco"
-msgstr ""
+msgstr "Alkohol / Tobak"
 
 #. NOTE: content_warnings: description for alcohol_tobacco
 #: app/_translations.py:232
 msgctxt "content_warnings"
 msgid "Contains alcohol and/or tobacco"
-msgstr ""
+msgstr "Vsebuje alkohol in/ali tobak"
 
 #. NOTE: content_warnings: title for bad_language
 #: app/_translations.py:234
 msgctxt "content_warnings"
 msgid "Bad Language"
-msgstr ""
+msgstr "Nespodoben jezik"
 
 #. NOTE: content_warnings: description for bad_language
 #: app/_translations.py:236
 msgctxt "content_warnings"
 msgid "Contains swearing"
-msgstr ""
+msgstr "Vsebuje kletvice, žalitve ..."
 
 #. NOTE: content_warnings: title for drugs
 #: app/_translations.py:238
 msgctxt "content_warnings"
 msgid "Drugs"
-msgstr ""
+msgstr "Droge"
 
 #. NOTE: content_warnings: description for drugs
 #: app/_translations.py:240
 msgctxt "content_warnings"
 msgid "Contains recreational drugs other than alcohol or tobacco"
-msgstr ""
+msgstr "Vsebuje rekreativne droge, razen alkohola ali tobaka"
 
 #. NOTE: content_warnings: title for gambling
 #: app/_translations.py:242
 msgctxt "content_warnings"
 msgid "Gambling"
-msgstr ""
+msgstr "Kockanje"
 
 #. NOTE: content_warnings: description for gambling
 #: app/_translations.py:244
 msgctxt "content_warnings"
 msgid "Games of chance, gambling games, etc"
-msgstr ""
+msgstr "Igre na srečo, hazarderske igre itd."
 
 #. NOTE: content_warnings: title for gore
 #: app/_translations.py:246
 msgctxt "content_warnings"
 msgid "Gore"
-msgstr ""
+msgstr "Kri"
 
 #. NOTE: content_warnings: description for gore
 #: app/_translations.py:248
 msgctxt "content_warnings"
 msgid "Blood, etc"
-msgstr ""
+msgstr "Kri itd."
 
 #. NOTE: content_warnings: title for horror
 #: app/_translations.py:250
 msgctxt "content_warnings"
 msgid "Fear / Horror"
-msgstr ""
+msgstr "Groza / Strah"
 
 #. NOTE: content_warnings: description for horror
 #: app/_translations.py:252
 msgctxt "content_warnings"
 msgid "Shocking and scary content. May scare young children"
-msgstr ""
+msgstr "Šokantna in strašljiva vsebina. Lahko prestraši majhne otroke"
 
 #. NOTE: content_warnings: title for violence
 #: app/_translations.py:254
 msgctxt "content_warnings"
 msgid "Violence"
-msgstr ""
+msgstr "Nasilje"
 
 #. NOTE: content_warnings: description for violence
 #: app/_translations.py:256
 msgctxt "content_warnings"
 msgid "Non-cartoon violence. May be towards fantasy or  human-like characters"
 msgstr ""
+"Nasilje, ki ni risano. Lahko je usmerjeno proti fantazijskim ali človeku "
+"podobnim likom"
 
 #: app/querybuilder.py:60 app/templates/admin/languages/list.html:27
 #: app/templates/admin/tags/list.html:34
@@ -822,44 +860,44 @@ msgstr ""
 #: app/templates/packages/list.html:4 app/templates/todo/editor.html:68
 #: app/templates/users/list.html:22 app/templates/users/profile.html:265
 msgid "Packages"
-msgstr ""
+msgstr "Paketi"
 
 #: app/querybuilder.py:75
 #, python-format
 msgid "%(package_type)s for %(game_name)s"
-msgstr ""
+msgstr "%(package_type)s za %(game_name)s"
 
 #: app/template_filters.py:92
 #, python-format
 msgid "%(delta)s ago"
-msgstr ""
+msgstr "%(delta)s nazaj"
 
 #: app/blueprints/admin/audit.py:31 app/blueprints/users/account.py:101
 #: app/blueprints/users/settings.py:324 app/templates/users/list.html:18
 msgid "Username"
-msgstr ""
+msgstr "Uporabniško ime"
 
 #: app/blueprints/admin/audit.py:32
 #: app/blueprints/packages/advanced_search.py:53
 msgid "Query"
-msgstr ""
+msgstr "Poizvedba"
 
 #: app/blueprints/admin/audit.py:33 app/blueprints/packages/releases.py:74
 #: app/blueprints/report/__init__.py:37
 #: app/templates/packages/release_edit.html:31
 #: app/templates/packages/release_view.html:31
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: app/blueprints/admin/audit.py:34 app/blueprints/zipgrep/__init__.py:38
 #: app/templates/base.html:74 app/templates/packages/advanced_search.html:34
 #: app/templates/packages/game_hub.html:35 app/templates/todo/tags.html:14
 msgid "Search"
-msgstr ""
+msgstr "Iskanje"
 
 #: app/blueprints/api/endpoints.py:74 app/templates/index.html:105
 msgid "Featured"
-msgstr ""
+msgstr "Izpostavljeno"
 
 #: app/blueprints/api/tokens.py:33
 #: app/blueprints/packages/advanced_search.py:83
@@ -870,11 +908,11 @@ msgstr ""
 #: app/templates/packages/release_edit.html:20
 #: app/templates/packages/release_view.html:22
 msgid "Name"
-msgstr ""
+msgstr "Ime"
 
 #: app/blueprints/api/tokens.py:34
 msgid "Limit to package"
-msgstr ""
+msgstr "Omejitev na paket"
 
 #: app/blueprints/api/tokens.py:36 app/blueprints/collections/__init__.py:93
 #: app/blueprints/oauth/__init__.py:175 app/blueprints/packages/packages.py:253
@@ -891,7 +929,7 @@ msgstr ""
 #: app/blueprints/users/settings.py:148 app/blueprints/users/settings.py:330
 #: app/templates/users/modtools.html:111
 msgid "Save"
-msgstr ""
+msgstr "Shrani"
 
 #: app/blueprints/collections/__init__.py:80
 #: app/blueprints/oauth/__init__.py:168
@@ -905,208 +943,210 @@ msgstr ""
 #: app/templates/packages/release_view.html:23
 #: app/templates/packages/translation.html:42
 msgid "Title"
-msgstr ""
+msgstr "Naslov"
 
 #: app/blueprints/collections/__init__.py:83
 #: app/blueprints/collections/__init__.py:88
 #: app/templates/packages/translation.html:45
 msgid "Short Description"
-msgstr ""
+msgstr "Kratek opis"
 
 #: app/blueprints/collections/__init__.py:84
 msgid "Page Content"
-msgstr ""
+msgstr "Vsebina strani"
 
 #: app/blueprints/collections/__init__.py:85
 #: app/templates/collections/view.html:51
 msgid "Private"
-msgstr ""
+msgstr "Zasebno"
 
 #: app/blueprints/collections/__init__.py:86
 msgid "Pinned to my profile"
-msgstr ""
+msgstr "Pripeto na moj profil"
 
 #: app/blueprints/collections/__init__.py:158
 msgid "A collection with a similar title already exists"
-msgstr ""
+msgstr "Zbirka s podobnim naslovom že obstaja"
 
 #: app/blueprints/collections/__init__.py:164
 msgid "Unable to create collection as a package with that name already exists"
-msgstr ""
+msgstr "Zbirke ni mogoče ustvariti, ker paket s tem imenom že obstaja"
 
 #: app/blueprints/collections/__init__.py:310
 msgid "Added package to collection"
-msgstr ""
+msgstr "Paket je bil dodan v zbirko paketov"
 
 #: app/blueprints/collections/__init__.py:312
 msgid "Removed package from collection"
-msgstr ""
+msgstr "Paket je odstranjen iz zbirke paketov"
 
 #: app/blueprints/collections/__init__.py:331
 msgid "Added package to favorites collection"
-msgstr ""
+msgstr "Paket je bil dodan v zbirko priljubljenih paketov"
 
 #: app/blueprints/collections/__init__.py:333
 msgid "(Public, change from Profile > My Collections)"
-msgstr ""
+msgstr "(Javno, sprememba v Profil > Moje zbirke)"
 
 #: app/blueprints/collections/__init__.py:337
 msgid "Removed package from favorites collection"
-msgstr ""
+msgstr "Paket je bil odstranjen iz zbirke priljubljenih paketov"
 
 #: app/blueprints/feeds/__init__.py:32 app/templates/index.html:8
 msgid "Welcome to the best place to find Luanti mods, games, and texture packs"
 msgstr ""
+"Dobrodošli na najboljšem kraju za iskanje modov, iger in teksturnih paketov "
+"Luanti"
 
 #: app/blueprints/feeds/__init__.py:70 app/templates/base.html:29
 #: app/templates/base.html:36
 msgid "ContentDB new packages"
-msgstr ""
+msgstr "Novi paketi v ContentDB-ju"
 
 #: app/blueprints/feeds/__init__.py:98 app/templates/base.html:31
 #: app/templates/base.html:38
 msgid "ContentDB package updates"
-msgstr ""
+msgstr "Posodobljeni paketi v ContentDB-ju"
 
 #: app/blueprints/feeds/__init__.py:107 app/templates/base.html:27
 #: app/templates/base.html:34
 msgid "ContentDB all"
-msgstr ""
+msgstr "Vse v ContentDB-ju"
 
 #: app/blueprints/oauth/__init__.py:169 app/templates/admin/tags/list.html:26
 #: app/templates/admin/warnings/list.html:24
 #: app/templates/users/settings_email.html:52
 msgid "Description"
-msgstr ""
+msgstr "Opis"
 
 #: app/blueprints/oauth/__init__.py:170
 msgid "Redirect URL"
-msgstr ""
+msgstr "Naslov URL za preusmerjanje"
 
 #: app/blueprints/oauth/__init__.py:171
 msgid "App Type"
-msgstr ""
+msgstr "Vrsta aplikacije"
 
 #: app/blueprints/oauth/__init__.py:198
 msgid "An OAuth client with that title already exists. Please choose a new title."
-msgstr ""
+msgstr "Odjemalec OAuth s tem imenom že obstaja. Izberite novo ime."
 
 #: app/blueprints/oauth/__init__.py:262
 msgid "Revoked all user tokens"
-msgstr ""
+msgstr "Preklicani vsi uporabniški žetoni"
 
 #: app/blueprints/packages/__init__.py:32
 #: app/templates/packages/create_edit.html:29
 msgid "Edit Details"
-msgstr ""
+msgstr "Uredi podrobnosti"
 
 #: app/blueprints/packages/__init__.py:37
 #: app/templates/packages/translation.html:4
 msgid "Translation"
-msgstr ""
+msgstr "Prevod"
 
 #: app/blueprints/packages/__init__.py:42
 #: app/templates/packages/releases_list.html:34
 #: app/templates/packages/view.html:675 app/templates/todo/editor.html:97
 msgid "Releases"
-msgstr ""
+msgstr "Izdaje"
 
 #: app/blueprints/packages/__init__.py:47
 #: app/templates/packages/screenshots.html:4
 #: app/templates/packages/screenshots.html:14 app/templates/todo/editor.html:33
 msgid "Screenshots"
-msgstr ""
+msgstr "Posnetki zaslona"
 
 #: app/blueprints/packages/__init__.py:52
 #: app/templates/packages/edit_maintainers.html:8
 #: app/templates/packages/view.html:646 app/utils/luanti_hypertext.py:302
 msgid "Maintainers"
-msgstr ""
+msgstr "Vzdrževalci"
 
 #: app/blueprints/packages/__init__.py:57 app/templates/admin/list.html:21
 #: app/templates/base.html:173 app/templates/packages/audit.html:4
 msgid "Audit Log"
-msgstr ""
+msgstr "Dnevnik sprememb"
 
 #: app/blueprints/packages/__init__.py:62 app/templates/base.html:164
 #: app/templates/packages/stats.html:4 app/templates/packages/stats.html:23
 #: app/templates/packages/view.html:243 app/templates/users/profile.html:148
 msgid "Statistics"
-msgstr ""
+msgstr "Statistika"
 
 #: app/blueprints/packages/__init__.py:67 app/templates/packages/share.html:4
 msgid "Share and Badges"
-msgstr ""
+msgstr "Deli in značke"
 
 #: app/blueprints/packages/__init__.py:72
 msgid "Remove / Unpublish"
-msgstr ""
+msgstr "Odstrani / Prekliči objavo"
 
 #: app/blueprints/packages/__init__.py:80 app/logic/package_approval.py:135
 #: app/templates/packages/game_support.html:4 app/utils/luanti_hypertext.py:275
 #: app/utils/luanti_hypertext.py:277
 msgid "Supported Games"
-msgstr ""
+msgstr "Podprte igre"
 
 #: app/blueprints/packages/advanced_search.py:39
 msgid "Android Default"
-msgstr ""
+msgstr "Privzeto za Android"
 
 #: app/blueprints/packages/advanced_search.py:40
 msgid "Desktop Default"
-msgstr ""
+msgstr "Privzeto za namizje"
 
 #: app/blueprints/packages/advanced_search.py:41
 msgid "Non-free"
-msgstr ""
+msgstr "Neprosto"
 
 #: app/blueprints/packages/advanced_search.py:42 app/models/packages.py:630
 #: app/templates/packages/view.html:170
 msgid "Work in Progress"
-msgstr ""
+msgstr "Delo v teku"
 
 #. NOTE: Package maintenance state
 #: app/blueprints/packages/advanced_search.py:43 app/models/packages.py:170
 msgid "Deprecated"
-msgstr ""
+msgstr "Zastarelo"
 
 #: app/blueprints/packages/advanced_search.py:44
 msgid "All content warnings"
-msgstr ""
+msgstr "Vsa opozorila glede vsebine"
 
 #: app/blueprints/packages/advanced_search.py:54
 #: app/blueprints/packages/packages.py:231
 #: app/blueprints/zipgrep/__init__.py:36 app/templates/packages/view.html:616
 #: app/utils/luanti_hypertext.py:263
 msgid "Type"
-msgstr ""
+msgstr "Vrsta"
 
 #: app/blueprints/packages/advanced_search.py:56
 #: app/templates/macros/topics.html:6 app/templates/packages/view.html:184
 msgid "Author"
-msgstr ""
+msgstr "Avtor"
 
 #: app/blueprints/packages/advanced_search.py:57
 #: app/blueprints/packages/packages.py:238 app/templates/admin/tags/list.html:4
 #: app/templates/admin/tags/list.html:10 app/templates/todo/tags.html:38
 #: app/utils/luanti_hypertext.py:264
 msgid "Tags"
-msgstr ""
+msgstr "Oznake"
 
 #: app/blueprints/packages/advanced_search.py:60
 #: app/blueprints/packages/packages.py:239
 msgid "Content Warnings"
-msgstr ""
+msgstr "Opozorila glede vsebine"
 
 #: app/blueprints/packages/advanced_search.py:63
 #: app/blueprints/packages/packages.py:240 app/templates/packages/view.html:627
 #: app/utils/luanti_hypertext.py:298
 msgid "License"
-msgstr ""
+msgstr "Licence"
 
 #: app/blueprints/packages/advanced_search.py:67
 msgid "Supports Game"
-msgstr ""
+msgstr "Podprte igre"
 
 #: app/blueprints/packages/advanced_search.py:71
 #: app/templates/admin/storage.html:39
@@ -1120,151 +1160,153 @@ msgstr ""
 #: app/templates/packages/similar.html:22 app/templates/translate/index.html:28
 #, python-format
 msgid "%(title)s by %(author)s"
-msgstr ""
+msgstr "%(title)s od %(author)s"
 
 #: app/blueprints/packages/advanced_search.py:72
 #: app/blueprints/packages/reviews.py:54
 #: app/templates/packages/translation.html:39
 msgid "Language"
-msgstr ""
+msgstr "Jezik"
 
 #: app/blueprints/packages/advanced_search.py:76
 msgid "Hide Tags and Content Warnings"
-msgstr ""
+msgstr "Skrij oznake in opozorila glede vsebine"
 
 #: app/blueprints/packages/advanced_search.py:77
 msgid "Luanti Version"
-msgstr ""
+msgstr "Različica Luantija"
 
 #: app/blueprints/packages/advanced_search.py:81
 msgid "Sort by"
-msgstr ""
+msgstr "Razvrsti glede"
 
 #: app/blueprints/packages/advanced_search.py:85
 msgid "Package score"
-msgstr ""
+msgstr "Ocena paketa"
 
 #: app/blueprints/packages/advanced_search.py:86 app/templates/index.html:79
 #: app/templates/packages/reviews_list.html:4
 #: app/templates/packages/view.html:201 app/templates/packages/view.html:343
 #: app/templates/users/profile.html:279
 msgid "Reviews"
-msgstr ""
+msgstr "Ocene"
 
 #: app/blueprints/packages/advanced_search.py:87
 #: app/templates/packages/view.html:191 app/templates/users/profile.html:242
 msgid "Downloads"
-msgstr ""
+msgstr "Prenosi"
 
 #: app/blueprints/packages/advanced_search.py:88
 msgid "Created At"
-msgstr ""
+msgstr "Ustvarjeno ob"
 
 #: app/blueprints/packages/advanced_search.py:89
 msgid "Approved At"
-msgstr ""
+msgstr "Odobreno ob"
 
 #: app/blueprints/packages/advanced_search.py:90
 msgid "Last Release"
-msgstr ""
+msgstr "Zadnja različica"
 
 #: app/blueprints/packages/advanced_search.py:92
 msgid "Order"
-msgstr ""
+msgstr "Vrstni red"
 
 #: app/blueprints/packages/advanced_search.py:93
 msgid "Descending"
-msgstr ""
+msgstr "Padajoče"
 
 #: app/blueprints/packages/advanced_search.py:94
 msgid "Ascending"
-msgstr ""
+msgstr "Naraščajoče"
 
 #: app/blueprints/packages/advanced_search.py:96
 msgid "Random order"
-msgstr ""
+msgstr "Naključni vrstni red"
 
 #: app/blueprints/packages/packages.py:216
 msgid "No download available."
-msgstr ""
+msgstr "Noben prenos ni na voljo."
 
 #: app/blueprints/packages/packages.py:232
 msgid "Title (Human-readable)"
-msgstr ""
+msgstr "Naslov (berljiv za ljudi)"
 
 #: app/blueprints/packages/packages.py:233
 #: app/blueprints/packages/packages.py:643
 msgid "Name (Technical)"
-msgstr ""
+msgstr "Naslov (tehniški)"
 
 #: app/blueprints/packages/packages.py:233
 #: app/blueprints/packages/packages.py:644
 #: app/templates/packages/create_edit.html:80
 msgid "Lower case letters (a-z), digits (0-9), and underscores (_) only"
-msgstr ""
+msgstr "Samo male črke (a–z), številke (0–9) in podčrtaji (_)"
 
 #: app/blueprints/packages/packages.py:234
 msgid "Short Description (Plaintext)"
-msgstr ""
+msgstr "Kratek opis (golo besedilo)"
 
 #: app/blueprints/packages/packages.py:236 app/templates/packages/view.html:638
 #: app/utils/luanti_hypertext.py:300
 msgid "Maintenance State"
-msgstr ""
+msgstr "Status vzdrževanja"
 
 #: app/blueprints/packages/packages.py:241
 msgid "Media License"
-msgstr ""
+msgstr "Licence za medijske datoteke"
 
 #: app/blueprints/packages/packages.py:243
 msgid "Long Description (Markdown)"
-msgstr ""
+msgstr "Dolg opis (markdown)"
 
 #: app/blueprints/packages/packages.py:245
 msgid "VCS Repository URL"
-msgstr ""
+msgstr "URL repozitorija VCS"
 
 #: app/blueprints/packages/packages.py:246 app/blueprints/users/settings.py:77
 msgid "Website URL"
-msgstr ""
+msgstr "URL spletne strani"
 
 #: app/blueprints/packages/packages.py:247
 msgid "Issue Tracker URL"
-msgstr ""
+msgstr "URL za sledilnik težav"
 
 #: app/blueprints/packages/packages.py:248
 msgid "Forum Topic ID"
-msgstr ""
+msgstr "ID teme foruma"
 
 #: app/blueprints/packages/packages.py:249
 msgid "Video URL"
-msgstr ""
+msgstr "URL videoposnetka"
 
 #: app/blueprints/packages/packages.py:250
 msgid "Donate URL"
-msgstr ""
+msgstr "URL za donacije"
 
 #: app/blueprints/packages/packages.py:251
 msgid "Translation URL"
-msgstr ""
+msgstr "URL za prevode"
 
 #: app/blueprints/packages/packages.py:257
 msgid "_game is not an allowed name"
-msgstr ""
+msgstr "_game je prepovedano ime"
 
 #: app/blueprints/packages/packages.py:267
 msgid ""
 "Package already exists, but is removed. Please contact ContentDB staff to"
 " restore the package"
 msgstr ""
+"Paket že obstaja, vendar je bil odstranjen. Za obnovitev paketa se obrnite "
+"na osebje ContentDB-ja"
 
 #: app/blueprints/packages/packages.py:273
 msgid "Package already exists"
-msgstr ""
+msgstr "Paket že obstaja"
 
 #: app/blueprints/packages/packages.py:279
 msgid "A collection with a similar name already exists"
-msgstr ""
+msgstr "Zbirka s podobnim imenom že obstaja"
 
 #: app/blueprints/packages/packages.py:329
 #: app/blueprints/packages/releases.py:89
@@ -1272,453 +1314,465 @@ msgid ""
 "You must add an email address to your account and confirm it before you "
 "can manage packages"
 msgstr ""
+"Preden lahko upravljate pakete, morate v svoj račun dodati e-poštni naslov "
+"in ga potrditi"
 
 #: app/blueprints/packages/packages.py:335
 msgid "Save draft"
-msgstr ""
+msgstr "Shrani osnutek"
 
 #: app/blueprints/packages/packages.py:343
 msgid "Unable to find that user"
-msgstr ""
+msgstr "Tega uporabnika ni mogoče najti"
 
 #: app/blueprints/packages/packages.py:347
 #: app/blueprints/packages/screenshots.py:138
 msgid "Permission denied"
-msgstr ""
+msgstr "Dovoljenje zavrnjeno"
 
 #: app/blueprints/packages/packages.py:406
 #: app/blueprints/packages/packages.py:500
 #: app/blueprints/packages/packages.py:522
 msgid "You don't have permission to do that"
-msgstr ""
+msgstr "Nimate dovoljenj za to dejanje"
 
 #: app/blueprints/packages/packages.py:441
 msgid "Please comment what changes are needed in the approval thread"
-msgstr ""
+msgstr "Prosim, komentirajte, katere spremembe so potrebne v temi za odobritve"
 
 #: app/blueprints/packages/packages.py:448
 msgid ""
 "Please comment in the approval thread so editors know what you have "
 "changed"
 msgstr ""
+"Prosim, komentirajte v temi za odobritve, da bodo uredniki vedeli, kaj ste "
+"spremenili"
 
 #: app/blueprints/packages/packages.py:487
 #, python-format
 msgid "Set state to %(state)s"
-msgstr ""
+msgstr "Nastavi stanje na %(state)s"
 
 #: app/blueprints/packages/packages.py:517
 msgid "Deleted package"
-msgstr ""
+msgstr "Izbrisan paket"
 
 #: app/blueprints/packages/packages.py:539
 msgid "Unapproved package"
-msgstr ""
+msgstr "Neodobren paket"
 
 #: app/blueprints/packages/packages.py:548
 msgid "Maintainers (Comma-separated)"
-msgstr ""
+msgstr "Vzdrževalci (ločeni z vejico)"
 
 #: app/blueprints/packages/packages.py:557
 msgid "You don't have permission to edit maintainers"
-msgstr ""
+msgstr "Nimate dovoljenj za urejanje vzdrževalcev"
 
 #: app/blueprints/packages/packages.py:607
 msgid "You are not a maintainer"
-msgstr ""
+msgstr "Niste vzdrževalec"
 
 #: app/blueprints/packages/packages.py:610
 msgid "Package owners cannot remove themselves as maintainers"
-msgstr ""
+msgstr "Lastniki paketov se ne morejo odstraniti kot vzdrževalci"
 
 #: app/blueprints/packages/packages.py:642
 msgid "Author Name"
-msgstr ""
+msgstr "Ime avtorja"
 
 #: app/blueprints/packages/packages.py:729
 msgid "Enable support detection based on dependencies (recommended)"
-msgstr ""
+msgstr "Omogoči zaznavanje podpore na podlagi odvisnosti (priporočeno)"
 
 #: app/blueprints/packages/packages.py:730
 msgid "Supported games"
-msgstr ""
+msgstr "Podprte igre"
 
 #: app/blueprints/packages/packages.py:731
 msgid "Unsupported games"
-msgstr ""
+msgstr "Nepodprte igre"
 
 #: app/blueprints/packages/packages.py:732
 msgid "Supports all games (unless stated) / is game independent"
-msgstr ""
+msgstr "Podpira vse igre (razen če je navedeno drugače) / je neodvisno od igre"
 
 #: app/blueprints/packages/packages.py:748
 msgid "You need at least one release before you can edit game support"
-msgstr ""
+msgstr "Preden lahko urejate podporo za igro, potrebujete vsaj eno izdajo"
 
 #: app/blueprints/packages/packages.py:752
 msgid "Mod(pack) needs to contain at least one mod. Please create a new release"
 msgstr ""
+"Mod ali paket modov (prilagoditev) mora vsebovati vsaj en mod. Prosimo, "
+"ustvarite novo izdajo"
 
 #: app/blueprints/packages/releases.py:57
 #: app/blueprints/packages/releases.py:72
 msgid "Release Notes"
-msgstr ""
+msgstr "Opombe ob izdaji"
 
 #: app/blueprints/packages/releases.py:59
 msgid "Method"
-msgstr ""
+msgstr "Metode"
 
 #: app/blueprints/packages/releases.py:59
 #: app/blueprints/packages/releases.py:61
 #: app/blueprints/packages/screenshots.py:36
 msgid "File Upload"
-msgstr ""
+msgstr "Nalaganje datotek"
 
 #: app/blueprints/packages/releases.py:60
 msgid "Git reference (ie: commit hash, branch, or tag)"
-msgstr ""
+msgstr "Referenca za Git (npr. zgoščena vrednost zapisa, veja ali oznaka)"
 
 #: app/blueprints/packages/releases.py:62
 #: app/blueprints/packages/releases.py:77
 #: app/blueprints/packages/releases.py:219
 msgid "Minimum Luanti Version"
-msgstr ""
+msgstr "Najnižja različica Luantija"
 
 #: app/blueprints/packages/releases.py:64
 #: app/blueprints/packages/releases.py:79
 #: app/blueprints/packages/releases.py:222
 msgid "Maximum Luanti Version"
-msgstr ""
+msgstr "Največja različica Luantija"
 
 #: app/blueprints/packages/releases.py:75
 msgid "Task ID"
-msgstr ""
+msgstr "ID opravila"
 
 #: app/blueprints/packages/releases.py:76
 #: app/blueprints/packages/screenshots.py:42
 msgid "Is Approved"
-msgstr ""
+msgstr "Je odobreno"
 
 #: app/blueprints/packages/releases.py:98
 msgid "Import from Git"
-msgstr ""
+msgstr "Uvozi iz Gita"
 
 #: app/blueprints/packages/releases.py:98
 msgid "Upload .zip file"
-msgstr ""
+msgstr "Naloži datoteko .zip"
 
 #: app/blueprints/packages/releases.py:218
 msgid "Set Min"
-msgstr ""
+msgstr "Nastavi minimalno"
 
 #: app/blueprints/packages/releases.py:221
 msgid "Set Max"
-msgstr ""
+msgstr "Nastavi maksimalno"
 
 #: app/blueprints/packages/releases.py:224
 msgid "Only change values previously set as none"
-msgstr ""
+msgstr "Spremeni samo vrednosti, ki so bile predhodno nastavljene kot nič"
 
 #: app/blueprints/packages/releases.py:225
 msgid "Update"
-msgstr ""
+msgstr "Posodobitev"
 
 #: app/blueprints/packages/releases.py:277
 #: app/templates/packages/update_config.html:25
 msgid "Trigger"
-msgstr ""
+msgstr "Sprožilec"
 
 #: app/blueprints/packages/releases.py:278
 msgid "New Commit"
-msgstr ""
+msgstr "Nova sprememba"
 
 #: app/blueprints/packages/releases.py:279 app/templates/admin/tags/list.html:8
 msgid "New Tag"
-msgstr ""
+msgstr "Nova oznaka"
 
 #: app/blueprints/packages/releases.py:281
 msgid "Branch name"
-msgstr ""
+msgstr "Ime veje"
 
 #: app/blueprints/packages/releases.py:282
 #: app/templates/packages/update_config.html:38
 msgid "Action"
-msgstr ""
+msgstr "Dejanje"
 
 #: app/blueprints/packages/releases.py:283
 msgid "Send notification and mark as outdated"
-msgstr ""
+msgstr "Pošlji obvestilo in označi kot zastarelo"
 
 #: app/blueprints/packages/releases.py:283 app/logic/package_approval.py:105
 #: app/logic/package_approval.py:118
 msgid "Create release"
-msgstr ""
+msgstr "Ustvari izdajo"
 
 #: app/blueprints/packages/releases.py:285
 msgid "Save Settings"
-msgstr ""
+msgstr "Shrani nastavitve"
 
 #: app/blueprints/packages/releases.py:286
 msgid "Disable Automation"
-msgstr ""
+msgstr "Onemogoči avtomacijo"
 
 #: app/blueprints/packages/releases.py:325
 msgid "Please add a Git repository URL in order to set up automatic releases"
-msgstr ""
+msgstr "Za nastavitev samodejnih izdaj dodajte URL repozitorija Git"
 
 #: app/blueprints/packages/releases.py:341
 msgid "Deleted update configuration"
-msgstr ""
+msgstr "Izbrisana konfiguracija posodobitve"
 
 #: app/blueprints/packages/releases.py:349
 msgid "Now, please create an initial release"
-msgstr ""
+msgstr "Ustvarite začetno izdajo"
 
 #: app/blueprints/packages/reviews.py:60 app/blueprints/threads/__init__.py:181
 #: app/blueprints/threads/__init__.py:182
 #: app/blueprints/threads/__init__.py:286
 msgid "Comment"
-msgstr ""
+msgstr "Komentar"
 
 #: app/blueprints/packages/reviews.py:61
 msgid "Rating"
-msgstr ""
+msgstr "Ocena"
 
 #: app/blueprints/packages/reviews.py:62 app/templates/macros/reviews.html:125
 #: app/templates/macros/reviews.html:179
 msgid "Yes"
-msgstr ""
+msgstr "Da"
 
 #: app/blueprints/packages/reviews.py:62 app/templates/macros/reviews.html:130
 #: app/templates/macros/reviews.html:183
 msgid "Neutral"
-msgstr ""
+msgstr "Nevrtalno"
 
 #: app/blueprints/packages/reviews.py:62 app/templates/macros/reviews.html:135
 #: app/templates/macros/reviews.html:187
 msgid "No"
-msgstr ""
+msgstr "Ne"
 
 #: app/blueprints/packages/reviews.py:71
 msgid "You can't review your own package!"
-msgstr ""
+msgstr "Svojega paketa ne morete oceniti!"
 
 #: app/blueprints/packages/reviews.py:81
 msgid ""
 "You've reviewed too many packages recently. Please wait before trying "
 "again, and consider making your reviews more detailed"
 msgstr ""
+"V zadnjem času ste ocenili preveč paketov. Pred ponovnim poskusom počakajte "
+"in razmislite o tem, da bi svoje ocene naredili podrobnejše"
 
 #: app/blueprints/packages/reviews.py:94 app/blueprints/threads/__init__.py:207
 #: app/blueprints/threads/__init__.py:240
 #: app/blueprints/threads/__init__.py:333 app/blueprints/users/settings.py:114
 #: app/logic/packages.py:149
 msgid "Linking to blocked sites is not allowed"
-msgstr ""
+msgstr "Povezave do blokiranih spletnih mest niso dovoljene"
 
 #: app/blueprints/packages/reviews.py:199
 msgid "You can't vote on the reviews on your own package!"
-msgstr ""
+msgstr "Za ocene lastnega paketa ne morete glasovati!"
 
 #: app/blueprints/packages/reviews.py:206
 msgid "You can't vote on your own reviews!"
-msgstr ""
+msgstr "Za lastne ocene ne morete glasovati!"
 
 #: app/blueprints/packages/screenshots.py:35
 #: app/blueprints/packages/screenshots.py:41
 msgid "Title/Caption"
-msgstr ""
+msgstr "Naslov/podnapis"
 
 #: app/blueprints/packages/screenshots.py:47
 #: app/templates/packages/screenshots.html:110
 msgid "Cover Image"
-msgstr ""
+msgstr "Naslovna slika"
 
 #: app/blueprints/report/__init__.py:35
 msgid "Category"
-msgstr ""
+msgstr "Kategorija"
 
 #: app/blueprints/report/__init__.py:38
 msgid "Subject / Title"
-msgstr ""
+msgstr "Zadeva / Naslov"
 
 #: app/blueprints/report/__init__.py:39 app/templates/users/modtools.html:79
 msgid "Message"
-msgstr ""
+msgstr "Sporočilo"
 
 #: app/blueprints/report/__init__.py:40
 msgid "Image Upload"
-msgstr ""
+msgstr "Naloži sliko"
 
 #: app/blueprints/report/__init__.py:41 app/templates/macros/threads.html:51
 #: app/templates/packages/view.html:706 app/templates/report/report.html:4
 #: app/templates/users/account.html:90 app/templates/users/profile.html:37
 msgid "Report"
-msgstr ""
+msgstr "Prijava"
 
 #: app/blueprints/report/__init__.py:92 app/logic/screenshots.py:34
 msgid "a PNG, JPEG, or WebP image file"
-msgstr ""
+msgstr "slikovna datoteka PNG, JPEG ali WebP"
 
 #: app/blueprints/threads/__init__.py:71
 msgid "Already subscribed!"
-msgstr ""
+msgstr "Ste že naročeni!"
 
 #: app/blueprints/threads/__init__.py:73
 msgid "Subscribed to thread"
-msgstr ""
+msgstr "Naročeni ste na nit"
 
 #: app/blueprints/threads/__init__.py:88
 msgid "Unsubscribed!"
-msgstr ""
+msgstr "Ste odjavljeni!"
 
 #: app/blueprints/threads/__init__.py:92
 msgid "Already not subscribed!"
-msgstr ""
+msgstr "Niste še naročeni!"
 
 #: app/blueprints/threads/__init__.py:110
 msgid "Locked thread"
-msgstr ""
+msgstr "Zaklenjena nit"
 
 #: app/blueprints/threads/__init__.py:113
 msgid "Unlocked thread"
-msgstr ""
+msgstr "Odklenjena tema"
 
 #: app/blueprints/threads/__init__.py:162
 msgid "Cannot delete thread opening post!"
-msgstr ""
+msgstr "Objave ob odprtju teme ni mogoče izbrisati!"
 
 #: app/blueprints/threads/__init__.py:236
 msgid "Please wait before commenting again"
-msgstr ""
+msgstr "Počakajte pred ponovnim komentiranjem"
 
 #: app/blueprints/threads/__init__.py:287
 #: app/templates/macros/package_approval.html:58
 msgid "Open Thread"
-msgstr ""
+msgstr "Odpri temo"
 
 #: app/blueprints/threads/__init__.py:309
 msgid "Unable to create thread!"
-msgstr ""
+msgstr "Ni mogoče ustvariti teme!"
 
 #: app/blueprints/threads/__init__.py:315
 msgid "An approval thread already exists! Consider replying there instead"
 msgstr ""
+"Tema za odobritev že obstaja! Razmislite o tem, da namesto tega odgovorite "
+"tam"
 
 #: app/blueprints/threads/__init__.py:319
 msgid "Please wait before opening another thread"
-msgstr ""
+msgstr "Počakajte pred odpiranjem nove teme"
 
 #: app/blueprints/todo/user.py:193
 #: app/templates/collections/package_add_to.html:46
 msgid "Done"
-msgstr ""
+msgstr "Končano"
 
 #: app/blueprints/users/account.py:36 app/templates/users/login.html:15
 msgid "Username or email"
-msgstr ""
+msgstr "Uporabniško ime ali e-pošta"
 
 #: app/blueprints/users/account.py:37 app/blueprints/users/account.py:105
 #: app/templates/users/account.html:14 app/templates/users/login.html:16
 #: app/templates/users/modtools.html:52
 msgid "Password"
-msgstr ""
+msgstr "Geslo"
 
 #: app/blueprints/users/account.py:38
 msgid "Remember me"
-msgstr ""
+msgstr "Zapovni si me"
 
 #: app/blueprints/users/account.py:39 app/templates/base.html:190
 #: app/templates/donate/index.html:86 app/templates/users/login.html:4
 msgid "Sign in"
-msgstr ""
+msgstr "Prijava"
 
 #: app/blueprints/users/account.py:45
 msgid "Incorrect email or password"
-msgstr ""
+msgstr "Nepravilen e-naslov ali geslo"
 
 #: app/blueprints/users/account.py:52
 #, python-format
 msgid "User %(username)s does not exist"
-msgstr ""
+msgstr "Uporabnik %(username)s ne obstaja"
 
 #: app/blueprints/users/account.py:55
 msgid "Incorrect password. Did you set one?"
-msgstr ""
+msgstr "Napačno geslo. Ste ga pravilno nastavili?"
 
 #: app/blueprints/users/account.py:58
 msgid "You need to confirm the registration email"
-msgstr ""
+msgstr "Potrditi morate e-poštni naslov za registracijo"
 
 #: app/blueprints/users/account.py:66
 msgid "Login failed"
-msgstr ""
+msgstr "Prijava je spodletela"
 
 #: app/blueprints/users/account.py:100 app/blueprints/users/settings.py:76
 msgid "Display Name"
-msgstr ""
+msgstr "Prikazano ime"
 
 #: app/blueprints/users/account.py:103
 msgid ""
 "Only alphabetic letters (A-Za-z), numbers (0-9), underscores (_), minuses"
 " (-), and periods (.) allowed"
 msgstr ""
+"Dovoljene so samo črke abecede (A-z), številke (0-9), podčrtaji (_), minusi "
+"(-) in pike (.)"
 
 #: app/blueprints/users/account.py:104 app/blueprints/users/account.py:155
 #: app/blueprints/users/account.py:191 app/blueprints/users/account.py:340
 #: app/blueprints/users/settings.py:147
 msgid "Email"
-msgstr ""
+msgstr "E-pošta"
 
 #: app/blueprints/users/account.py:106
 msgid "What is the result of the above calculation?"
-msgstr ""
+msgstr "Kakšen je rezultat zgornjega računa?"
 
 #: app/blueprints/users/account.py:108 app/templates/users/login.html:34
 #: app/templates/users/register.html:4
 msgid "Register"
-msgstr ""
+msgstr "Registracija"
 
 #: app/blueprints/users/account.py:113
 msgid "Incorrect captcha answer"
-msgstr ""
+msgstr "Napravilen odgovor captcha"
 
 #: app/blueprints/users/account.py:156
 msgid "Reset Password"
-msgstr ""
+msgstr "Ponastavi geslo"
 
 #: app/blueprints/users/account.py:182
 msgid "Unable to find account"
-msgstr ""
+msgstr "Račun ni najden"
 
 #: app/blueprints/users/account.py:192 app/blueprints/users/account.py:200
 msgid "New password"
-msgstr ""
+msgstr "Novo geslo"
 
 #: app/blueprints/users/account.py:193 app/blueprints/users/account.py:201
 msgid "Verify password"
-msgstr ""
+msgstr "Ponovi geslo"
 
 #: app/blueprints/users/account.py:194 app/blueprints/users/account.py:202
 msgid "Passwords must match"
-msgstr ""
+msgstr "Geslo se morata ujemati"
 
 #: app/blueprints/users/account.py:199
 msgid "Old password"
-msgstr ""
+msgstr "Staro geslo"
 
 #: app/blueprints/users/account.py:210
 msgid "Passwords do not match"
-msgstr ""
+msgstr "Gesli se ne ujemata"
 
 #: app/blueprints/users/account.py:221 app/blueprints/users/settings.py:175
 #: app/logic/users.py:51
 msgid "That email address has been unsubscribed/blacklisted, and cannot be used"
-msgstr ""
+msgstr "Ta e-poštni naslov je na črnem seznamu in ga ni mogoče uporabiti"
 
 #: app/blueprints/users/account.py:226 app/logic/users.py:46
 msgid "Email already in use"
-msgstr ""
+msgstr "E-naslov je že uporabljen"
 
 #: app/blueprints/users/account.py:227 app/logic/users.py:47
 #, python-format
@@ -1726,309 +1780,325 @@ msgid ""
 "We were unable to create the account as the email is already in use by "
 "%(display_name)s. Try a different email address."
 msgstr ""
+"Računa ni bilo mogoče ustvariti, ker %(display_name)s že uporablja ta e-"
+"poštni naslov. Poskusite z drugim e-poštnim naslovom."
 
 #: app/blueprints/users/account.py:241 app/blueprints/users/account.py:245
 msgid "Your password has been changed successfully."
-msgstr ""
+msgstr "Geslo je bilo uspešno spremenjeno."
 
 #: app/blueprints/users/account.py:260
 msgid "Old password is incorrect"
-msgstr ""
+msgstr "Sato geslo je napačno"
 
 #: app/blueprints/users/account.py:288
 msgid "Unknown verification token!"
-msgstr ""
+msgstr "Neznan žeton za preverjanje!"
 
 #: app/blueprints/users/account.py:292
 msgid "Token has expired"
-msgstr ""
+msgstr "Žeton je potekel"
 
 #: app/blueprints/users/account.py:306
 msgid "Another user is already using that email"
-msgstr ""
+msgstr "Ta e-poštni naslov že uporablja drugi uporabnik"
 
 #: app/blueprints/users/account.py:309
 msgid "Confirmed email change"
-msgstr ""
+msgstr "Potrjena je sprememba e-pošte"
 
 #: app/blueprints/users/account.py:314
 msgid "Email address changed"
-msgstr ""
+msgstr "E-poštni naslov je bil spremenjen"
 
 #: app/blueprints/users/account.py:315
 msgid ""
 "Your email address has changed. If you didn't request this, please "
 "contact an administrator."
 msgstr ""
+"Vaš e-poštni naslov se je spremenil. Če tega niste zahtevali, se obrnite na "
+"skrbnika."
 
 #: app/blueprints/users/account.py:333
 msgid "You may now log in"
-msgstr ""
+msgstr "Zdaj se lahko prijavite"
 
 #: app/blueprints/users/account.py:341
 msgid "Send"
-msgstr ""
+msgstr "Pošlji"
 
 #: app/blueprints/users/account.py:372
 msgid ""
 "That email is now blacklisted. Please contact an admin if you wish to "
 "undo this."
 msgstr ""
+"Ta e-poštni naslov je zdaj na črni listi. Če želite to razveljaviti, se "
+"obrnite na skrbnika."
 
 #: app/blueprints/users/claim.py:46
 msgid "User has already been claimed"
-msgstr ""
+msgstr "Uporabnik je že bil zahtevan"
 
 #: app/blueprints/users/claim.py:50
 msgid ""
 "Unable to get GitHub username for user. Make sure the forum account "
 "exists."
 msgstr ""
+"Uporabniškega imena GitHub za uporabnika ni mogoče pridobiti. Prepričajte "
+"se, da forumski račun obstaja."
 
 #: app/blueprints/users/claim.py:66
 msgid ""
 "A ContentDB user with that name already exists. Please contact an admin "
 "to link to your forum account"
 msgstr ""
+"Uporabnik ContentDB s tem imenom že obstaja. Za povezavo z vašim forumskim "
+"računom se obrnite na skrbnika"
 
 #: app/blueprints/users/claim.py:75
 msgid "That user has already been claimed!"
-msgstr ""
+msgstr "Ta uporabnik je že bil zahtevan!"
 
 #: app/blueprints/users/claim.py:88
 #, python-format
 msgid "Error whilst attempting to access forums: %(message)s"
-msgstr ""
+msgstr "Napaka pri poskusu dostopa do forumov: %(message)s"
 
 #: app/blueprints/users/claim.py:92
 msgid "Unable to get forum signature - does the user exist?"
-msgstr ""
+msgstr "Podpisa na forumu ni mogoče dobiti - ali uporabnik obstaja?"
 
 #: app/blueprints/users/claim.py:107
 msgid "Unable to login as user"
-msgstr ""
+msgstr "Ni se mogoče prijaviti kot uporabnik"
 
 #: app/blueprints/users/claim.py:113
 msgid "Could not find the key in your signature!"
-msgstr ""
+msgstr "V vašem podpisu ni mogoče najti ključa!"
 
 #: app/blueprints/users/claim.py:116
 msgid "Unknown claim type"
-msgstr ""
+msgstr "Neznana vrsta zahtevka"
 
 #: app/blueprints/users/profile.py:117
 msgid "Top reviewer"
-msgstr ""
+msgstr "Najboljši ocenjevalec"
 
 #: app/blueprints/users/profile.py:119
 #, python-format
 msgid "%(display_name)s has written the most helpful reviews on ContentDB."
-msgstr ""
+msgstr "%(display_name)s je napisal/a najbolj koristne ocene na ContentDB-ju."
 
 #: app/blueprints/users/profile.py:123
 msgid "2nd most helpful reviewer"
-msgstr ""
+msgstr "Drugi najboljši ocenjevalec"
 
 #: app/blueprints/users/profile.py:125
 msgid "3rd most helpful reviewer"
-msgstr ""
+msgstr "Tretji najboljši ocenjevalec"
 
 #: app/blueprints/users/profile.py:127
 #, python-format
 msgid "This puts %(display_name)s in the top %(perc)s%%"
-msgstr ""
+msgstr "To uvrsti %(display_name)s med prvih %(perc)s%%"
 
 #: app/blueprints/users/profile.py:130
 #, python-format
 msgid "Top %(perc)s%% reviewer"
-msgstr ""
+msgstr "Najboljši ocenjevalec (%(perc)s%%)"
 
 #: app/blueprints/users/profile.py:131
 #, python-format
 msgid "Only %(place)d users have written more helpful reviews."
-msgstr ""
+msgstr "Samo %(place)d uporabnikov je napisalo bolj koristne ocene."
 
 #: app/blueprints/users/profile.py:136
 msgid "Consider writing more helpful reviews to get a medal."
-msgstr ""
+msgstr "Razmislite o pisanju bolj koristnih ocen, da si prislužite medaljo."
 
 #: app/blueprints/users/profile.py:138
 #, python-format
 msgid "You are in place %(place)s."
-msgstr ""
+msgstr "Vi ste na %(place)s. mestu."
 
 #: app/blueprints/users/profile.py:188
 #, python-format
 msgid "Your packages have %(downloads)d downloads in total."
-msgstr ""
+msgstr "Vaši paketi imajo skupno %(downloads)d prenosov."
 
 #: app/blueprints/users/profile.py:189
 msgid "First medal is at 50k."
-msgstr ""
+msgstr "Prva medalja je pri 50 000."
 
 #: app/blueprints/users/profile.py:194
 msgid ">300k downloads"
-msgstr ""
+msgstr "&gt;300 000 prenosov"
 
 #: app/blueprints/users/profile.py:197
 msgid ">100k downloads"
-msgstr ""
+msgstr "&gt;100 000 prenosov"
 
 #: app/blueprints/users/profile.py:200
 msgid ">75k downloads"
-msgstr ""
+msgstr "&gt;75 000 prenosov"
 
 #: app/blueprints/users/profile.py:203
 msgid ">50k downloads"
-msgstr ""
+msgstr "&gt;50 000 prenosov"
 
 #: app/blueprints/users/profile.py:204
 #, python-format
 msgid "Has received %(downloads)d downloads across all packages."
-msgstr ""
+msgstr "Prejel je %(downloads)d prenosov v vseh paketih."
 
 #: app/blueprints/users/settings.py:38 app/templates/users/profile.html:26
 #: app/templates/users/profile_edit.html:8
 msgid "Edit Profile"
-msgstr ""
+msgstr "Uredi profil"
 
 #: app/blueprints/users/settings.py:43 app/templates/users/account.html:12
 msgid "Account and Security"
-msgstr ""
+msgstr "Račun in varnost"
 
 #: app/blueprints/users/settings.py:48
 #: app/templates/users/settings_email.html:12
 msgid "Email and Notifications"
-msgstr ""
+msgstr "E-pošta in obvestila"
 
 #: app/blueprints/users/settings.py:53 app/templates/api/list_tokens.html:10
 msgid "API Tokens"
-msgstr ""
+msgstr "API žetoni"
 
 #: app/blueprints/users/settings.py:61 app/templates/oauth/list_clients.html:10
 msgid "OAuth2 Applications"
-msgstr ""
+msgstr "OAuth2 aplikacije"
 
 #: app/blueprints/users/settings.py:68 app/templates/users/modtools.html:4
 #: app/templates/users/modtools.html:8 app/templates/users/profile.html:44
 msgid "Moderator Tools"
-msgstr ""
+msgstr "Orodja za moderatorje"
 
 #: app/blueprints/users/settings.py:78
 msgid "Donation URL"
-msgstr ""
+msgstr "URL za donacije"
 
 #: app/blueprints/users/settings.py:94 app/blueprints/users/settings.py:101
 msgid "A user already has that name"
-msgstr ""
+msgstr "To ime je že uporabljeno"
 
 #: app/blueprints/users/settings.py:264
 msgid "Removed GitHub account"
-msgstr ""
+msgstr "Odstrani GitHub račun"
 
 #: app/blueprints/users/settings.py:266
 msgid ""
 "You need to add an email address and password before you can remove your "
 "GitHub account"
 msgstr ""
+"Preden lahko odstranite svoj račun GitHub, morate dodati e-poštni naslov in "
+"geslo."
 
 #: app/blueprints/users/settings.py:279
 msgid "Users with moderator rank or above cannot be deleted"
-msgstr ""
+msgstr "Uporabnikov z moderatorskimi pravicami ali višjimi ni mogoče izbrisati"
 
 #: app/blueprints/users/settings.py:325
 msgid "Display name"
-msgstr ""
+msgstr "Prikazano ime"
 
 #: app/blueprints/users/settings.py:326
 msgid "Forums Username"
-msgstr ""
+msgstr "Uporabniško ime za forum"
 
 #: app/blueprints/users/settings.py:327
 msgid "GitHub Username"
-msgstr ""
+msgstr "Uporabniško ime za GitHub"
 
 #: app/blueprints/users/settings.py:328 app/templates/users/list.html:14
 msgid "Rank"
-msgstr ""
+msgstr "Stopnja"
 
 #: app/blueprints/users/settings.py:381
 msgid "Can't promote a user to a rank higher than yourself!"
-msgstr ""
+msgstr "Uporabnika ne moreš povišati na višjo stopnjo od sebe!"
 
 #: app/blueprints/vcs/github.py:55
 msgid "Authorization failed [err=gh-oauth-login-failed]"
-msgstr ""
+msgstr "Avtorizacija ni uspela [err=gh-oauth-login-failed]"
 
 #: app/blueprints/vcs/github.py:84
 msgid "Linked GitHub to account"
-msgstr ""
+msgstr "Povezano GitHub z računom"
 
 #: app/blueprints/vcs/github.py:89
 #, python-format
 msgid "GitHub account is already associated with another user: %(username)s"
-msgstr ""
+msgstr "Račun GitHub je že povezan z drugim uporabnikom: %(username)s"
 
 #: app/blueprints/vcs/github.py:97 app/blueprints/vcs/github.py:124
 msgid "Authorization failed [err=gh-login-failed]"
-msgstr ""
+msgstr "Avtorizacija je spodletela [err=gh-login-failed]"
 
 #: app/blueprints/zipgrep/__init__.py:34
 msgid "Text to find (regex)"
-msgstr ""
+msgstr "Besedilo za iskanje (regex)"
 
 #: app/blueprints/zipgrep/__init__.py:35
 msgid "File filter"
-msgstr ""
+msgstr "Filter datotek"
 
 #: app/logic/package_approval.py:99
 msgid "A package already exists with this name. Please see Policy and Guidance 3"
-msgstr ""
+msgstr "Paket s tem imenom že obstaja. Glejte Pravilnik in smernice 3"
 
 #: app/logic/package_approval.py:104
 msgid "You need to create a release before this package can be approved."
-msgstr ""
+msgstr "Preden bo ta paket odobren, morate ustvariti izdajo."
 
 #: app/logic/package_approval.py:106
 msgid "Set up releases"
-msgstr ""
+msgstr "Nastavitev izdaj"
 
 #: app/logic/package_approval.py:109
 msgid "Release is still importing. Please wait and reload the page."
-msgstr ""
+msgstr "Izdaja se še vedno uvaža. Počakajte in osvežite stran."
 
 #: app/logic/package_approval.py:110
 msgid "View task"
-msgstr ""
+msgstr "Ogled opravil"
 
 #: app/logic/package_approval.py:116
 msgid "Release validation failed. Please fix any issues and create a new release"
 msgstr ""
+"Preverjanje izdaje je spodletelo. Odpravite morebitne težave in ustvarite "
+"novo izdajo"
 
 #: app/logic/package_approval.py:117
 msgid "View error"
-msgstr ""
+msgstr "Ogled napak"
 
 #: app/logic/package_approval.py:124
 msgid "You need to add at least one screenshot."
-msgstr ""
+msgstr "Dodati morate vsaj en posnetek zaslona."
 
 #: app/logic/package_approval.py:130
 #, python-format
 msgid ""
 "The following hard dependencies need to be added to ContentDB first: "
 "%(deps)s"
-msgstr ""
+msgstr "Najprej je treba v ContentDB dodati naslednje trde odvisnosti: %(deps)s"
 
 #: app/logic/package_approval.py:134
 msgid ""
 "What games does your package support? Please specify on the supported "
 "games page"
 msgstr ""
+"Katere igre podpira vaš paket? Prosimo, navedite na strani s podprtimi igrami"
 
 #: app/logic/package_approval.py:143
 msgid "Please make sure that this package has the right to the names it uses."
 msgstr ""
+"Prosimo, prepričajte se, da ima ta paket pravice do imen, ki jih uporablja."
 
 #: app/logic/package_approval.py:144 app/logic/package_approval.py:150
 #: app/templates/index.html:113 app/templates/index.html:124
@@ -2040,60 +2110,63 @@ msgstr ""
 #: app/templates/packages/game_hub.html:63
 #: app/templates/packages/game_hub.html:70
 msgid "See more"
-msgstr ""
+msgstr "Glej več"
 
 #: app/logic/package_approval.py:148
 #, python-format
 msgid "Please make sure that this package has the right to the names %(names)s"
-msgstr ""
+msgstr "Prosimo, prepričajte se, da ima ta paket pravico do imena %(names)s"
 
 #: app/logic/package_approval.py:155
 msgid "Error: Another package already uses this forum topic!"
-msgstr ""
+msgstr "Napaka: To temo foruma že uporablja drug paket!"
 
 #: app/logic/package_approval.py:160
 msgid "Error: Forum topic author doesn't match package author."
-msgstr ""
+msgstr "Napaka: Avtor teme na forumu se ne ujema z avtorjem paketa."
 
 #: app/logic/packages.py:114
 msgid ""
 "Name can only contain lower case letters (a-z), digits (0-9), and "
 "underscores (_)"
-msgstr ""
+msgstr "Ime lahko vsebuje samo male črke (a–z), številke (0–9) in podčrtaje (_)"
 
 #: app/logic/packages.py:127
 msgid "You don't have permission to edit this package"
-msgstr ""
+msgstr "Nimate dovoljenja za urejanje tega paketa"
 
 #: app/logic/packages.py:131
 msgid "You don't have permission to change the package name"
-msgstr ""
+msgstr "Nimate dovoljenja za spremembo imena paketa"
 
 #: app/logic/packages.py:158
 msgid "You cannot change package type once approved"
-msgstr ""
+msgstr "Ko je vrsta paketa odobrena, je ni mogoče spremeniti"
 
 #: app/logic/releases.py:33
 msgid "You don't have permission to make releases"
-msgstr ""
+msgstr "Nimate dovoljenja za objavljanje izdaj"
 
 #: app/logic/releases.py:38
 msgid ""
 "You've created too many releases for this package in the last 5 minutes, "
 "please wait before trying again"
 msgstr ""
+"V zadnjih 5 minutah ste ustvarili preveč izdaj za ta paket, počakajte, "
+"preden poskusite znova"
 
 #: app/logic/releases.py:41
 msgid "A release with this name already exists"
-msgstr ""
+msgstr "Izdaja s tem imenom že obstaja"
 
 #: app/logic/releases.py:80
 msgid "Invalid commit hash; it must be a 40 character long base16 string"
 msgstr ""
+"Neveljavna zgoščena vrednost zapisa; mora biti niz base16, dolg 40 znakov"
 
 #: app/logic/screenshots.py:32
 msgid "Too many requests, please wait before trying again"
-msgstr ""
+msgstr "Preveč zahtev. Počakajte pred ponovnimi poskusi"
 
 #: app/logic/screenshots.py:51
 #, python-format
@@ -2101,23 +2174,25 @@ msgid ""
 "Screenshot is too small, it should be at least %(width)s by %(height)s "
 "pixels"
 msgstr ""
+"Posnetek zaslona je premajhen, moral bi imeti vsaj %(width)s x %(height)s "
+"slikovnih pik"
 
 #: app/logic/uploads.py:58
 #, python-format
 msgid "Please upload %(file_desc)s"
-msgstr ""
+msgstr "Naložite %(file_desc)s"
 
 #: app/logic/uploads.py:61
 msgid "Uploaded image isn't actually an image"
-msgstr ""
+msgstr "Naložena slika v resnici ni slika"
 
 #: app/logic/users.py:15
 msgid "Username is invalid"
-msgstr ""
+msgstr "Uporabniško ime je neveljavno"
 
 #: app/logic/users.py:26
 msgid "An account already exists for that username but hasn't been claimed yet."
-msgstr ""
+msgstr "Za to uporabniško ime že obstaja račun, vendar še ni bil prevzet."
 
 #: app/logic/users.py:29
 #, python-format
@@ -2125,184 +2200,190 @@ msgid ""
 "Unable to create an account as the username is already taken. If you "
 "meant to log in, you need to connect %(provider)s to your account first"
 msgstr ""
+"Računa ni mogoče ustvariti, ker je uporabniško ime že zasedeno. Če ste se "
+"želeli prijaviti, morate najprej povezati %(provider)s s svojim računom"
 
 #: app/logic/users.py:33
 msgid "That username/display name is already in use, please choose another."
-msgstr ""
+msgstr "To uporabniško ime/prikazno ime je že zasedeno, izberite drugo."
 
 #: app/logic/users.py:40
 msgid "Unable to create an account as the username was used in the past."
 msgstr ""
+"Računa ni mogoče ustvariti, ker je bilo uporabniško ime že uporabljeno v "
+"preteklosti."
 
 #: app/models/__init__.py:148
 msgid "Account deletion"
-msgstr ""
+msgstr "Izbris računa"
 
 #: app/models/__init__.py:150
 msgid "Copyright infringement / DMCA"
-msgstr ""
+msgstr "Kršitev avtorskih pravic / DMCA"
 
 #: app/models/__init__.py:152
 msgid "User behaviour, bullying, or abuse"
-msgstr ""
+msgstr "Vedenje uporabnikov, ustrahovanje ali zloraba"
 
 #: app/models/__init__.py:154
 msgid "Spam"
-msgstr ""
+msgstr "Neželena pošta"
 
 #: app/models/__init__.py:156
 msgid "Illegal or harmful content"
-msgstr ""
+msgstr "Nezakonita ali škodljiva vsebina"
 
 #: app/models/__init__.py:158
 msgid "Outdated/invalid review"
-msgstr ""
+msgstr "Zastarela/neveljavna ocena"
 
 #: app/models/__init__.py:160
 msgid "Appeal"
-msgstr ""
+msgstr "Pritožba"
 
 #. NOTE: OTHER notification type
 #: app/models/__init__.py:162 app/models/users.py:472
 msgid "Other"
-msgstr ""
+msgstr "Ostalo"
 
 #: app/models/packages.py:69
 msgid "Mod"
-msgstr ""
+msgstr "Mod"
 
 #: app/models/packages.py:71
 msgid "Game"
-msgstr ""
+msgstr "Igra"
 
 #: app/models/packages.py:73
 msgid "Texture Pack"
-msgstr ""
+msgstr "Paket tekstur"
 
 #: app/models/packages.py:78 app/templates/base.html:53
 #: app/templates/modnames/view.html:14
 msgid "Mods"
-msgstr ""
+msgstr "Modi"
 
 #: app/models/packages.py:80 app/templates/base.html:56
 #: app/templates/modnames/view.html:17
 msgid "Games"
-msgstr ""
+msgstr "Igre"
 
 #: app/models/packages.py:82 app/templates/base.html:59
 msgid "Texture Packs"
-msgstr ""
+msgstr "Paket tekstur"
 
 #: app/models/packages.py:87
 msgid "Top mod"
-msgstr ""
+msgstr "Najboljši modi"
 
 #: app/models/packages.py:89
 msgid "Top game"
-msgstr ""
+msgstr "Najboljše igre"
 
 #: app/models/packages.py:91
 msgid "Top texture pack"
-msgstr ""
+msgstr "Najboljši paketi tekstur"
 
 #: app/models/packages.py:94
 #, python-format
 msgid "Top %(place)d mod"
-msgstr ""
+msgstr "%(place)d najboljši mod"
 
 #: app/models/packages.py:96
 #, python-format
 msgid "Top %(place)d game"
-msgstr ""
+msgstr "%(place)d najboljša igra"
 
 #: app/models/packages.py:98
 #, python-format
 msgid "Top %(place)d texture pack"
-msgstr ""
+msgstr "%(place)d najboljši paket tekstur"
 
 #: app/models/packages.py:102
 #, python-format
 msgid "%(display_name)s has a mod placed at #%(place)d."
-msgstr ""
+msgstr "%(display_name)s ima modifikacijo na %(place)d mestu."
 
 #: app/models/packages.py:105
 #, python-format
 msgid "%(display_name)s has a game placed at #%(place)d."
-msgstr ""
+msgstr "%(display_name)s ima igro na %(place)d mestu."
 
 #: app/models/packages.py:108
 #, python-format
 msgid "%(display_name)s has a texture pack placed at #%(place)d."
-msgstr ""
+msgstr "%(display_name)s ima paket tekstur na %(place)d mestu."
 
 #: app/models/packages.py:114
 msgid "Do you recommend this mod?"
-msgstr ""
+msgstr "Ali priporočate ta mod?"
 
 #: app/models/packages.py:116
 msgid "Do you recommend this game?"
-msgstr ""
+msgstr "Ali priporočate to igro?"
 
 #: app/models/packages.py:118
 msgid "Do you recommend this texture pack?"
-msgstr ""
+msgstr "Ali priporočate ta paket tekstur?"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:155 app/models/packages.py:173
 msgid "Looking for Maintainer"
-msgstr ""
+msgstr "Iščemo vzdrževalca"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:158
 msgid "Beta"
-msgstr ""
+msgstr "Beta"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:161
 msgid "Actively Developed"
-msgstr ""
+msgstr "V aktivnem razvoju"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:164
 msgid "Maintenance Only"
-msgstr ""
+msgstr "Samo v vzdrževanju"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:167
 msgid "As-is"
-msgstr ""
+msgstr "Tako kot je (videno-kupljeno)"
 
 #: app/models/packages.py:177
 msgid "Under active development, and may break worlds/things without warning"
-msgstr ""
+msgstr "V aktivnem razvoju se lahko brez opozorila pokvarijo svetovi/stvari"
 
 #: app/models/packages.py:179
 msgid "Fully playable, but with some breakages/changes expected"
-msgstr ""
+msgstr "Popolnoma igralno, vendar z nekaj pričakovanimi napakami/spremembami"
 
 #: app/models/packages.py:181
 msgid "Finished, with bug fixes being made as needed"
-msgstr ""
+msgstr "Končano, po potrebi se odpravljajo napake"
 
 #: app/models/packages.py:183
 msgid ""
 "Finished, the maintainer doesn't intend to continue working on it or "
 "provide support"
 msgstr ""
+"Končano, vzdrževalec ne namerava nadaljevati dela na njem ali zagotavljati "
+"podpore"
 
 #: app/models/packages.py:185
 msgid ""
 "The maintainer doesn't recommend this package. See the description for "
 "more info"
-msgstr ""
+msgstr "Vzdrževalec ne priporoča tega paketa. Za več informacij glejte opis"
 
 #: app/models/packages.py:231
 msgid "Submit for Approval"
-msgstr ""
+msgstr "Pošlji v odobritev"
 
 #: app/models/packages.py:233
 msgid "Approve"
-msgstr ""
+msgstr "Odobritev"
 
 #: app/models/packages.py:235 app/templates/api/create_edit_token.html:17
 #: app/templates/collections/delete.html:14
@@ -2314,232 +2395,235 @@ msgstr ""
 #: app/templates/threads/delete_thread.html:19
 #: app/templates/threads/view.html:50 app/templates/users/delete.html:34
 msgid "Delete"
-msgstr ""
+msgstr "Izbriši"
 
 #: app/models/packages.py:1104
 msgid "Processing"
-msgstr ""
+msgstr "Obdelovanje"
 
 #: app/models/packages.py:1106 app/templates/packages/release_edit.html:50
 #: app/templates/packages/screenshot_edit.html:20
 msgid "Approved"
-msgstr ""
+msgstr "Odobreno"
 
 #: app/models/packages.py:1108
 msgid "Failed"
-msgstr ""
+msgstr "Spodletelo"
 
 #: app/models/packages.py:1110
 msgid "Waiting approval"
-msgstr ""
+msgstr "Čakanje na odobritev"
 
 #: app/models/packages.py:1112
 msgid "Archived"
-msgstr ""
+msgstr "Arhivirano"
 
 #: app/models/packages.py:1440
 #, python-format
 msgid "New commit %(hash)s found on the Git repo."
-msgstr ""
+msgstr "V repozitoriju Git so bile najdene nove %(hash)s vrednosti zapisov."
 
 #: app/models/packages.py:1444
 #, python-format
 msgid "The last release was commit %(hash)s"
-msgstr ""
+msgstr "Zadnja različica temelji na uveljavitvi %(hash)s"
 
 #: app/models/packages.py:1450
 #, python-format
 msgid "New tag %(tag_name)s found on the Git repo."
-msgstr ""
+msgstr "V repozitoriju Git je bila najdena nova oznaka %(tag_name)s."
 
 #: app/models/users.py:46
 msgid "Banned"
-msgstr ""
+msgstr "Prepovedano"
 
 #: app/models/users.py:48
 msgid "Not Joined"
-msgstr ""
+msgstr "Ni se pridružil/a"
 
 #: app/models/users.py:50
 msgid "New Member"
-msgstr ""
+msgstr "Nov član"
 
 #: app/models/users.py:52
 msgid "Member"
-msgstr ""
+msgstr "Član"
 
 #: app/models/users.py:54
 msgid "Trusted Member"
-msgstr ""
+msgstr "Zaupanje vredni člani"
 
 #: app/models/users.py:56
 msgid "Approver"
-msgstr ""
+msgstr "Odobritelj"
 
 #: app/models/users.py:58
 msgid "Editor"
-msgstr ""
+msgstr "Urednik"
 
 #. NOTE: BOT notification type
 #: app/models/users.py:60 app/models/users.py:460
 msgid "Bot"
-msgstr ""
+msgstr "Vrsta obvestila bota"
 
 #: app/models/users.py:62
 msgid "Moderator"
-msgstr ""
+msgstr "Moderator"
 
 #: app/models/users.py:64 app/templates/base.html:178
 msgid "Admin"
-msgstr ""
+msgstr "Skrbnik"
 
 #. NOTE: PACKAGE_EDIT notification type
 #: app/models/users.py:445
 msgid "Package Edit"
-msgstr ""
+msgstr "Uredi paket"
 
 #. NOTE: PACKAGE_APPROVAL notification type
 #: app/models/users.py:448
 msgid "Package Approval"
-msgstr ""
+msgstr "Odobritev paketa"
 
 #. NOTE: NEW_THREAD notification type
 #: app/models/users.py:451 app/templates/threads/list.html:12
 #: app/templates/threads/new.html:4
 msgid "New Thread"
-msgstr ""
+msgstr "Nova tema"
 
 #. NOTE: NEW_REVIEW notification type
 #: app/models/users.py:454
 msgid "New Review"
-msgstr ""
+msgstr "Nova ocena"
 
 #. NOTE: THREAD_REPLY notification type
 #: app/models/users.py:457
 msgid "Thread Reply"
-msgstr ""
+msgstr "Odgovor na temo"
 
 #. NOTE: MAINTAINER notification type
 #: app/models/users.py:463 app/templates/macros/threads.html:27
 msgid "Maintainer"
-msgstr ""
+msgstr "Vzdrževalec"
 
 #. NOTE: EDITOR_ALERT notification type
 #: app/models/users.py:466
 msgid "Editor Alert"
-msgstr ""
+msgstr "Opozorilo urednika"
 
 #. NOTE: EDITOR_MISC notification type
 #: app/models/users.py:469
 msgid "Editor Misc"
-msgstr ""
+msgstr "Urednik raznih stvari"
 
 #: app/models/users.py:482
 msgid "This is a Package Edit notification."
-msgstr ""
+msgstr "To je obvestilo o urejanju paketa."
 
 #: app/models/users.py:484
 msgid "This is a Package Approval notification."
-msgstr ""
+msgstr "To je obvestilo o odobritvi paketa."
 
 #: app/models/users.py:486
 msgid "This is a New Thread notification."
-msgstr ""
+msgstr "To je obvestilo o novi temi."
 
 #: app/models/users.py:488
 msgid "This is a New Review notification."
-msgstr ""
+msgstr "To je obvestilo o novi oceni."
 
 #: app/models/users.py:490
 msgid "This is a Thread Reply notification."
-msgstr ""
+msgstr "To je obvestilo o odgovoru v temi."
 
 #: app/models/users.py:492
 msgid "This is a Bot notification."
-msgstr ""
+msgstr "To je obvestilo bota."
 
 #: app/models/users.py:494
 msgid "This is a Maintainer change notification."
-msgstr ""
+msgstr "To je obvestilo o spremembi vzdrževalca."
 
 #: app/models/users.py:496
 msgid "This is an Editor Alert notification."
-msgstr ""
+msgstr "To je obvestilo urednika."
 
 #: app/models/users.py:498
 msgid "This is an Editor Misc notification."
-msgstr ""
+msgstr "To je obvestilo urednika."
 
 #: app/models/users.py:500
 msgid "This is an Other notification."
-msgstr ""
+msgstr "To je drugo obvestilo."
 
 #: app/models/users.py:507
 msgid "When another user edits your packages, releases, etc."
-msgstr ""
+msgstr "Ko drug uporabnik ureja vaše pakete, izdaje itd."
 
 #: app/models/users.py:509
 msgid "Notifications from editors related to the package approval process."
-msgstr ""
+msgstr "Obvestila urednikov v zvezi s postopkom odobritve paketa."
 
 #: app/models/users.py:511
 msgid "When a thread is created on your package."
-msgstr ""
+msgstr "Ko je na vašem paketu ustvarjena nit."
 
 #: app/models/users.py:513
 msgid "When a user posts a review on your package."
-msgstr ""
+msgstr "Ko uporabnik objavi oceno o vašem paketu."
 
 #: app/models/users.py:515
 msgid "When someone replies to a thread you're watching."
-msgstr ""
+msgstr "Ko nekdo odgovori na nit, ki jo spremljaš."
 
 #: app/models/users.py:517
 msgid "From a bot - for example, update notifications."
-msgstr ""
+msgstr "Iz bota – na primer obvestila o posodobitvah."
 
 #: app/models/users.py:519
 msgid "When your package's maintainers change."
-msgstr ""
+msgstr "Ko se vzdrževalci vašega paketa spremenijo."
 
 #: app/models/users.py:521
 msgid "For editors: Important alerts."
-msgstr ""
+msgstr "Za urednike: Pomembna opozorila."
 
 #: app/models/users.py:523
 msgid "For editors: Minor notifications, including new threads."
-msgstr ""
+msgstr "Za urednike: Manjša obvestila, vključno z novimi temami."
 
 #: app/models/users.py:525
 msgid "Minor notifications not important enough for a dedicated category."
-msgstr ""
+msgstr "Manj pomembna obvestila za namensko kategorijo niso dovolj pomembna."
 
 #: app/tasks/emails.py:122
 msgid ""
 "You are receiving this email because you are a registered user of "
 "ContentDB."
 msgstr ""
+"To e-poštno sporočilo prejemate, ker ste registrirani uporabnik ContentDB-ja."
 
 #: app/tasks/emails.py:128 app/templates/emails/verify.html:30
 msgid ""
 "You are receiving this email because someone (hopefully you) entered your"
 " email address as a user's email."
 msgstr ""
+"To e-poštno sporočilo prejemate, ker je nekdo (upajmo, da vi) vnesel vaš e-"
+"poštni naslov kot uporabnikov e-poštni naslov."
 
 #: app/tasks/emails.py:163
 #, python-format
 msgid "%(num)d new notifications"
-msgstr ""
+msgstr "%(num)d novih obvestil"
 
 #: app/tasks/emails.py:165 app/templates/macros/forms.html:59
 #: app/templates/packages/create_edit.html:41
 #: app/templates/todo/editor.html:177
 msgid "View"
-msgstr ""
+msgstr "Ogled"
 
 #: app/tasks/emails.py:168
 msgid "Manage email settings"
-msgstr ""
+msgstr "Upravljaj nastavitve e-pošte"
 
 #: app/tasks/emails.py:170 app/templates/emails/base.html:63
 #: app/templates/emails/notification.html:34
@@ -2549,21 +2633,23 @@ msgstr ""
 #: app/templates/threads/view.html:41 app/templates/users/unsubscribe.html:4
 #: app/templates/users/unsubscribe.html:61
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Odjavi se"
 
 #: app/templates/404.html:4
 msgid "Page not found"
-msgstr ""
+msgstr "Stran ni najdena"
 
 #: app/templates/404.html:10
 msgid ""
 "That page could not be found. The link may be broken, the page may have "
 "been deleted, or you may not have access to it."
 msgstr ""
+"Te strani ni bilo mogoče najti. Povezava morda ne deluje, stran je bila "
+"morda izbrisana ali pa do nje nimate dostopa."
 
 #: app/templates/base.html:62
 msgid "Random"
-msgstr ""
+msgstr "Naključno"
 
 #: app/templates/base.html:65 app/templates/base.html:259
 #: app/templates/packages/bulk_update_conf.html:8
@@ -2572,355 +2658,359 @@ msgstr ""
 #: app/templates/todo/game_support.html:8 app/templates/todo/user.html:45
 #: app/templates/todo/user.html:69
 msgid "Help"
-msgstr ""
+msgstr "Pomoč"
 
 #: app/templates/base.html:72
 #, python-format
 msgid "Search %(type)s"
-msgstr ""
+msgstr "Iskanje %(type)s"
 
 #: app/templates/base.html:72 app/templates/todo/tags.html:11
 #: app/templates/todo/tags.html:13
 msgid "Search all packages"
-msgstr ""
+msgstr "Išči v vseh paketih"
 
 #: app/templates/base.html:89
 msgid "Work Queue"
-msgstr ""
+msgstr "Delovna čakalna vrsta"
 
 #: app/templates/base.html:102 app/templates/base.html:154
 msgid "To do list"
-msgstr ""
+msgstr "Seznam opravil"
 
 #: app/templates/base.html:111 app/templates/notifications/list.html:4
 msgid "Notifications"
-msgstr ""
+msgstr "Obvestila"
 
 #: app/templates/base.html:132
 msgid "Add Package"
-msgstr ""
+msgstr "Dodaj paket"
 
 #: app/templates/base.html:149
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: app/templates/base.html:159
 msgid "My Collections"
-msgstr ""
+msgstr "Moja zbirka"
 
 #: app/templates/base.html:183 app/templates/packages/release_new.html:12
 msgid "Settings"
-msgstr ""
+msgstr "Nastavitve"
 
 #: app/templates/base.html:186
 msgid "Sign out"
-msgstr ""
+msgstr "Odjava"
 
 #: app/templates/admin/languages/list.html:4
 #: app/templates/admin/languages/list.html:10 app/templates/base.html:199
 #: app/templates/packages/view.html:620 app/utils/luanti_hypertext.py:288
 msgid "Languages"
-msgstr ""
+msgstr "Jeziki"
 
 #: app/templates/base.html:216 app/templates/translate/index.html:76
 msgid "Help translate ContentDB"
-msgstr ""
+msgstr "Pomagajte prevesti ContentDB"
 
 #: app/templates/base.html:260
 msgid "About"
-msgstr ""
+msgstr "O"
 
 #: app/templates/base.html:261
 msgid "Contact Us"
-msgstr ""
+msgstr "Kontakt z nami"
 
 #: app/templates/base.html:262
 msgid "Terms of Service"
-msgstr ""
+msgstr "Pogoji storitve"
 
 #: app/templates/base.html:263
 msgid "Policy and Guidance"
-msgstr ""
+msgstr "Politike in smernice"
 
 #: app/templates/base.html:264 app/templates/donate/index.html:47
 #: app/templates/donate/index.html:71 app/templates/users/profile.html:104
 msgid "Donate"
-msgstr ""
+msgstr "Donirajte"
 
 #: app/templates/base.html:265
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: app/templates/base.html:266
 msgid "RSS / Feeds"
-msgstr ""
+msgstr "RSS / Viri"
 
 #: app/templates/base.html:267
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Politika zasebnosti"
 
 #: app/templates/base.html:269
 msgid "Report / DMCA"
-msgstr ""
+msgstr "Poročilo / DMCA"
 
 #: app/templates/base.html:271 app/templates/packages/advanced_search.html:4
 msgid "Advanced Search"
-msgstr ""
+msgstr "Napredno iskanje"
 
 #: app/templates/base.html:272
 msgid "User List"
-msgstr ""
+msgstr "Seznam uporabnikov"
 
 #: app/templates/base.html:273 app/templates/packages/view.html:197
 #: app/templates/packages/view.html:695 app/templates/threads/list.html:4
 msgid "Threads"
-msgstr ""
+msgstr "Teme"
 
 #: app/templates/base.html:274 app/templates/collections/list.html:7
 #: app/templates/collections/list.html:26
 msgid "Collections"
-msgstr ""
+msgstr "Zbirke"
 
 #: app/templates/base.html:275 app/templates/donate/index.html:4
 msgid "Support Creators"
-msgstr ""
+msgstr "Podpri ustvarjalce"
 
 #: app/templates/base.html:276
 msgid "Translate Packages"
-msgstr ""
+msgstr "Prevedi pakete"
 
 #: app/templates/base.html:277
 msgid "Source Code"
-msgstr ""
+msgstr "Izvorna koda"
 
 #: app/templates/base.html:283
 msgid "Show non-free packages"
-msgstr ""
+msgstr "Pokaži neproste pakete"
 
 #: app/templates/base.html:285
 msgid "Hide non-free packages"
-msgstr ""
+msgstr "Skrij neproste pakete"
 
 #: app/templates/base.html:290
 #, python-format
 msgid "Our privacy policy has been updated (%(date)s)"
-msgstr ""
+msgstr "Naša politika zasebnosti je bila posodobljena (%(date)s)"
 
 #: app/templates/index.html:4
 msgid "Welcome"
-msgstr ""
+msgstr "Dobrodošli"
 
 #: app/templates/index.html:54
 #, python-format
 msgid "<strong>%(title)s</strong> by %(author)s"
-msgstr ""
+msgstr "<strong>%(title)s</strong> od %(author)s"
 
 #: app/templates/index.html:95 app/templates/packages/view.html:285
 msgid "Previous"
-msgstr ""
+msgstr "Prejšnji"
 
 #: app/templates/index.html:99 app/templates/packages/view.html:289
 #: app/templates/users/claim_forums.html:91
 msgid "Next"
-msgstr ""
+msgstr "Naslednji"
 
 #: app/templates/index.html:109 app/templates/index.html:115
 #: app/templates/packages/game_hub.html:44
 msgid "Recently Added"
-msgstr ""
+msgstr "Nedavno dodano"
 
 #: app/templates/index.html:120 app/templates/index.html:126
 #: app/templates/packages/game_hub.html:51
 msgid "Recently Updated"
-msgstr ""
+msgstr "Nedavno posodobljeno"
 
 #: app/templates/index.html:131 app/templates/index.html:137
 msgid "Top Games"
-msgstr ""
+msgstr "Najboljše igre"
 
 #: app/templates/index.html:142 app/templates/index.html:148
 #: app/templates/packages/game_hub.html:58
 msgid "Top Mods"
-msgstr ""
+msgstr "Najboljši modi"
 
 #: app/templates/index.html:153 app/templates/index.html:159
 #: app/templates/packages/game_hub.html:65
 msgid "Top Texture Packs"
-msgstr ""
+msgstr "Najboljši paketi tekstur"
 
 #: app/templates/index.html:165
 msgid "Search by Tags"
-msgstr ""
+msgstr "Išči glede oznak"
 
 #: app/templates/index.html:179 app/templates/index.html:185
 #: app/templates/packages/game_hub.html:72
 msgid "Highest Reviewed"
-msgstr ""
+msgstr "Najboljše ocene"
 
 #: app/templates/index.html:193
 msgid "All reviews"
-msgstr ""
+msgstr "Vse ocene"
 
 #: app/templates/index.html:195
 msgid "Recent Positive Reviews"
-msgstr ""
+msgstr "Nedavne pozitivne ocene"
 
 #: app/templates/index.html:202
 #, python-format
 msgid "CDB has %(count)d packages, with a total of %(downloads)d downloads."
-msgstr ""
+msgstr "CDB ima %(count)d paketov, s skupno %(downloads)d prenosov."
 
 #: app/templates/admin/audit_view.html:16
 #, python-format
 msgid "Caused by %(author)s."
-msgstr ""
+msgstr "Povzročitelj: %(author)s."
 
 #: app/templates/admin/audit_view.html:20
 msgid "Caused by a deleted user."
-msgstr ""
+msgstr "Vzrok je bil izbrisan uporabnik."
 
 #: app/templates/admin/list.html:16
 msgid "User list"
-msgstr ""
+msgstr "Seznam uporabnikov"
 
 #: app/templates/admin/send_bulk_email.html:4
 msgid "Send bulk email"
-msgstr ""
+msgstr "Pošlji množično e-pošto"
 
 #: app/templates/admin/send_bulk_notification.html:4
 msgid "Send bulk notification"
-msgstr ""
+msgstr "Pošlji množično obvestilo"
 
 #: app/templates/admin/send_email.html:4
 #, python-format
 msgid "Send email to %(username)s"
-msgstr ""
+msgstr "Pošlji e-pošto %(username)s"
 
 #: app/templates/admin/storage.html:18
 #: app/templates/packages/create_edit.html:66
 #: app/templates/packages/game_support.html:20
 #: app/templates/threads/view.html:101 app/templates/todo/tags.html:36
 msgid "Package"
-msgstr ""
+msgstr "Paket"
 
 #: app/templates/admin/storage.html:62
 #: app/templates/collections/create_edit.html:61
 #: app/templates/threads/user_comments.html:80
 msgid "No results"
-msgstr ""
+msgstr "Ni razultata"
 
 #: app/templates/admin/languages/list.html:19
 msgid "Id"
-msgstr ""
+msgstr "Id"
 
 #: app/templates/admin/languages/list.html:33
 msgid "Has ContentDB translation?"
-msgstr ""
+msgstr "Ima ContentDB prevod?"
 
 #: app/templates/admin/licenses/list.html:8
 msgid "New License"
-msgstr ""
+msgstr "Nova licenca"
 
 #: app/templates/admin/licenses/list.html:10
 msgid "Licenses"
-msgstr ""
+msgstr "Licenca"
 
 #: app/templates/admin/tags/list.html:30
 msgid "Views"
-msgstr ""
+msgstr "Ogledi"
 
 #: app/templates/admin/versions/list.html:4
 #: app/templates/admin/versions/list.html:10
 msgid "Luanti Versions"
-msgstr ""
+msgstr "Različice Luanti"
 
 #: app/templates/admin/versions/list.html:8
 msgid "New Version"
-msgstr ""
+msgstr "Nova različica"
 
 #: app/templates/admin/warnings/list.html:4
 #: app/templates/admin/warnings/list.html:10
 msgid "Warnings"
-msgstr ""
+msgstr "Opozorila"
 
 #: app/templates/admin/warnings/list.html:8
 msgid "New Warning"
-msgstr ""
+msgstr "Novo opozorilo"
 
 #: app/templates/api/create_edit_token.html:5
 #: app/templates/oauth/create_edit.html:5
 #, python-format
 msgid "Edit - %(name)s"
-msgstr ""
+msgstr "Uredi - %(name)s"
 
 #: app/templates/api/create_edit_token.html:7
 msgid "Create API Token"
-msgstr ""
+msgstr "Ustvari API žeton"
 
 #: app/templates/api/create_edit_token.html:25
 #, python-format
 msgid "This token was created by the application '%(title)s' by %(author)s."
-msgstr ""
+msgstr "Ta žeton je ustvarila aplikacija „%(title)s'“avtorja %(author)s."
 
 #: app/templates/api/create_edit_token.html:26
 msgid "Click 'Delete' to revoke access."
-msgstr ""
+msgstr "Kliknite „Izbriši“, da prekličete dostop."
 
 #: app/templates/api/create_edit_token.html:30
 msgid "API Tokens allow scripts to act on your behalf."
-msgstr ""
+msgstr "Žetoni API-ja omogočajo skriptolam, da delujejo v vašem imenu."
 
 #: app/templates/api/create_edit_token.html:31
 msgid ""
 "Be careful with what/whom you share tokens with, as you are responsible "
 "for your account's actions."
 msgstr ""
+"Bodite previdni pri tem, s kom delite žetone, saj ste odgovorni za dejanja "
+"na svojem računu."
 
 #: app/templates/api/create_edit_token.html:36
 msgid "Access Token"
-msgstr ""
+msgstr "Žeton za dostop"
 
 #: app/templates/api/create_edit_token.html:39
 msgid ""
 "For security reasons, access tokens will only be shown once. Reset the "
 "token if it is lost."
 msgstr ""
+"Zaradi varnostnih razlogov bodo dostopni žetoni prikazani samo enkrat. Če "
+"žeton izgubite, ga ponastavite."
 
 #: app/templates/api/create_edit_token.html:46
 msgid "Reset"
-msgstr ""
+msgstr "Ponastavi"
 
 #: app/templates/api/create_edit_token.html:56
 msgid "Human-readable name to tell tokens apart."
-msgstr ""
+msgstr "Človeku berljivo ime za razlikovanje žetonov."
 
 #: app/templates/api/create_edit_token.html:57
 msgid "Recommended: Only allows token to interact with a particular package."
-msgstr ""
+msgstr "Priporočeno: Žetonu dovoljuje interakcijo le z določenim paketom."
 
 #: app/templates/api/list_tokens.html:4
 #, python-format
 msgid "API Tokens | %(username)s"
-msgstr ""
+msgstr "Žetoni API | %(username)s"
 
 #: app/templates/api/list_tokens.html:8 app/templates/collections/list.html:21
 #: app/templates/macros/topics.html:29 app/templates/oauth/list_clients.html:8
 #: app/templates/packages/alias_list.html:13
 #: app/templates/packages/releases_list.html:29
 msgid "Create"
-msgstr ""
+msgstr "Ustvari"
 
 #: app/templates/api/list_tokens.html:9
 msgid "API Documentation"
-msgstr ""
+msgstr "Dokumentacija API-ja"
 
 #: app/templates/api/list_tokens.html:17
 msgid "Application"
-msgstr ""
+msgstr "Uporaba"
 
 #: app/templates/api/list_tokens.html:24
 msgid "No tokens created"
-msgstr ""
+msgstr "Ni ustvarjenih žetonov"
 
 #: app/templates/collections/create_edit.html:5
 #: app/templates/collections/view.html:42 app/templates/macros/releases.html:68
@@ -2928,46 +3018,46 @@ msgstr ""
 #: app/templates/packages/view.html:123 app/templates/packages/view.html:262
 #: app/templates/report/view.html:17
 msgid "Edit"
-msgstr ""
+msgstr "Uredi"
 
 #: app/templates/collections/create_edit.html:7
 msgid "New Collection"
-msgstr ""
+msgstr "Nova zbirka"
 
 #: app/templates/collections/create_edit.html:32
 msgid "Users won't be redirected when going to the old URL"
-msgstr ""
+msgstr "Uporabniki ne bodo preusmerjeni, ko bodo obiskali stari URL"
 
 #: app/templates/collections/create_edit.html:46
 msgid "This requires the collection to be public"
-msgstr ""
+msgstr "To zahteva, da je zbirka javna"
 
 #: app/templates/collections/create_edit.html:76
 #: app/templates/packages/remove.html:36 app/templates/packages/remove.html:90
 #: app/templates/packages/view.html:135
 msgid "Remove"
-msgstr ""
+msgstr "Odstrani"
 
 #: app/templates/collections/create_edit.html:89
 msgid "You can replace the description with your own"
-msgstr ""
+msgstr "Opis lahko zamenjate s svojim"
 
 #: app/templates/collections/create_edit.html:103
 #, python-brace-format
 msgid "Are you sure you want to remove {title}?"
-msgstr ""
+msgstr "Ali ste prepričani, da želite odstraniti {title}?"
 
 #: app/templates/collections/delete.html:4
 #, python-format
 msgid "Delete collection \"%(title)s\" by %(author)s"
-msgstr ""
+msgstr "Izbriši zbirko »%(title)s« avtorja %(author)s"
 
 #: app/templates/collections/delete.html:12
 #: app/templates/threads/delete_reply.html:16
 #: app/templates/threads/delete_thread.html:16
 #: app/templates/users/delete.html:13
 msgid "Deleting is permanent"
-msgstr ""
+msgstr "Brisanje je trajno"
 
 #: app/templates/collections/delete.html:13
 #: app/templates/oauth/authorize.html:71 app/templates/packages/remove.html:88
@@ -2975,115 +3065,126 @@ msgstr ""
 #: app/templates/threads/delete_thread.html:18
 #: app/templates/users/delete.html:30
 msgid "Cancel"
-msgstr ""
+msgstr "Prekliči"
 
 #: app/templates/collections/list.html:5 app/templates/collections/list.html:24
 #: app/templates/collections/view.html:27
 #, python-format
 msgid "%(author)s's collections"
-msgstr ""
+msgstr "Zbirke avtorja %(author)s"
 
 #: app/templates/collections/list.html:49
 msgid "No collections"
-msgstr ""
+msgstr "Ni zbirk"
 
 #: app/templates/collections/package_add_to.html:4
 #, python-format
 msgid "Add %(package_title)s to a collection"
-msgstr ""
+msgstr "Dodaj %(package_title)s v zbirko"
 
 #: app/templates/collections/package_add_to.html:9
 msgid "Create Collection"
-msgstr ""
+msgstr "Ustvari zbirko"
 
 #: app/templates/collections/package_add_to.html:39
 msgid "You don't have any collections"
-msgstr ""
+msgstr "Nimate nobene zbirke"
 
 #: app/templates/collections/view.html:33
 msgid "Make a copy"
-msgstr ""
+msgstr "Ustvari kopijo"
 
 #: app/templates/collections/view.html:54
 #, python-format
 msgid "A collection by %(author)s"
-msgstr ""
+msgstr "Zbirka avtorja %(author)s"
 
 #: app/templates/collections/view.html:69
 msgid "To add a package, go to the package's page and click 'Add to collection'"
 msgstr ""
+"Če želite dodati paket, pojdite na stran paketa in kliknite »Dodaj v zbirko«"
 
 #: app/templates/donate/index.html:8
 msgid "Some content creators are accepting donations for their work."
-msgstr ""
+msgstr "Nekateri ustvarjalci vsebin sprejemajo donacije za svoje delo."
 
 #: app/templates/donate/index.html:9
 msgid ""
 "Donations are a great way to support your favorite modders, artists, and "
 "game developers."
 msgstr ""
+"Donacije so odličen način za podporo vašim najljubšim modderjem, umetnikom "
+"in razvijalcem iger."
 
 #: app/templates/donate/index.html:38
 #, python-format
 msgid "by %(author)s"
-msgstr ""
+msgstr "od %(author)s"
 
 #: app/templates/donate/index.html:43 app/templates/translate/index.html:38
 msgid "View package"
-msgstr ""
+msgstr "Ogled paketa"
 
 #: app/templates/donate/index.html:63
 msgid "Support ContentDB"
-msgstr ""
+msgstr "Podarite ContentDB"
 
 #: app/templates/donate/index.html:65
 msgid ""
 "You can donate to rubenwardy to cover ContentDB's costs and support "
 "future development."
 msgstr ""
+"Z donacijo rubenwardyiju lahko pokrijete stroške ContentDB in podprete "
+"prihodnji razvoj."
 
 #: app/templates/donate/index.html:68
 msgid ""
 "For more information about the cost of ContentDB and what rubenwardy "
 "does, see his donation page:"
 msgstr ""
+"Za več informacij o stroških ContentDB in o tem, kaj rubenwardy počne, si "
+"oglejte njegovo stran za donacije:"
 
 #: app/templates/donate/index.html:74
 msgid "Based on your reviews / favorites"
-msgstr ""
+msgstr "Na podlagi vaših ocen / priljubljenih"
 
 #: app/templates/donate/index.html:79
 msgid ""
 "No reviewed packages accepting donations. Consider reviewing your "
 "favourite packages"
 msgstr ""
+"Ni ocenjenih paketov, ki sprejemajo donacije. Razmislite o ocenjevanju "
+"svojih najljubših paketov"
 
 #: app/templates/donate/index.html:83
 msgid "Sign in to see recommendations based on the packages you've reviewed"
 msgstr ""
+"Prijavite se, če si želite ogledati priporočila na podlagi paketov, ki ste "
+"jih pregledali"
 
 #: app/templates/donate/index.html:90
 msgid "Top packages"
-msgstr ""
+msgstr "Najboljši paketi"
 
 #: app/templates/donate/index.html:94
 #, python-format
 msgid "%(count)d packages are looking for donations"
-msgstr ""
+msgstr "%(count)d paketov išče donacije"
 
 #: app/templates/emails/notification.html:10
 #, python-format
 msgid "From %(username)s and on package %(package)s."
-msgstr ""
+msgstr "Od uporabnika %(username)s in v paketu %(package)s."
 
 #: app/templates/emails/notification.html:13
 #, python-format
 msgid "From %(username)s."
-msgstr ""
+msgstr "Od %(username)s."
 
 #: app/templates/emails/notification.html:19
 msgid "View Notification"
-msgstr ""
+msgstr "Ogled obvestil"
 
 #: app/templates/emails/notification.html:26
 #: app/templates/emails/notification_digest.html:46
@@ -3091,263 +3192,279 @@ msgid ""
 "You are receiving this email because you are a registered user of "
 "ContentDB, and have email notifications enabled."
 msgstr ""
+"To e-poštno sporočilo prejemate, ker ste registrirani uporabnik ContentDB-ja "
+"in imate omogočena e-poštna obvestila."
 
 #: app/templates/emails/notification.html:30
 #: app/templates/emails/notification_digest.html:50
 msgid "Manage your preferences"
-msgstr ""
+msgstr "Upravljajte svoje nastavitve"
 
 #: app/templates/emails/notification_digest.html:14
 #: app/templates/emails/notification_digest.html:31
 #, python-format
 msgid "from %(username)s."
-msgstr ""
+msgstr "od %(username)s."
 
 #: app/templates/emails/notification_digest.html:24
 msgid "Other Notifications"
-msgstr ""
+msgstr "Druga obvestila"
 
 #: app/templates/emails/notification_digest.html:39
 msgid "View Notifications"
-msgstr ""
+msgstr "Ogled obvestil"
 
 #: app/templates/emails/unable_to_find_account.html:2
 msgid ""
 "We were unable to perform the password reset as we could not find an "
 "account associated with this email."
 msgstr ""
+"Ponastavitve gesla ni bilo mogoče izvesti, ker nismo našli računa, "
+"povezanega s tem e-poštnim naslovom."
 
 #: app/templates/emails/unable_to_find_account.html:5
 msgid ""
 "This may be because you used another email with your account, or because "
 "you never confirmed your email."
 msgstr ""
+"To je morda zato, ker ste s svojim računom uporabili drug e-poštni naslov "
+"ali pa ga niste nikoli potrdili."
 
 #: app/templates/emails/unable_to_find_account.html:8
 msgid "You can use GitHub to log in if it is associated with your account."
-msgstr ""
+msgstr "Za prijavo lahko uporabite GitHub, če je povezan z vašim računom."
 
 #: app/templates/emails/unable_to_find_account.html:9
 msgid "Otherwise, you may need to contact the admin for help."
 msgstr ""
+"V nasprotnem primeru se boste morda morali za pomoč obrniti na "
+"administratorja."
 
 #: app/templates/emails/unable_to_find_account.html:12
 msgid ""
 "If you weren't expecting to receive this email, then you can safely "
 "ignore it."
 msgstr ""
+"Če niste pričakovali tega e-poštnega sporočila, ga lahko varno prezrete."
 
 #: app/templates/emails/verify.html:4
 #: app/templates/emails/verify_unsubscribe.html:5
 msgid "Hello!"
-msgstr ""
+msgstr "Živjo!"
 
 #: app/templates/emails/verify.html:7
 msgid ""
 "This email has been sent to you because someone (hopefully you) has "
 "entered your email address as a user's email."
 msgstr ""
+"To e-poštno sporočilo vam je bilo poslano, ker je nekdo (upajmo, da vi) "
+"vnesel vaš e-poštni naslov kot uporabniški e-poštni naslov."
 
 #: app/templates/emails/verify.html:11
 msgid "If it wasn't you, then just delete this email."
-msgstr ""
+msgstr "Če niste bil to vi, potem preprosto izbrišite to e-pošto."
 
 #: app/templates/emails/verify.html:15
 msgid "If this was you, then please click this link to confirm the address:"
-msgstr ""
+msgstr "Če ste bili to vi, kliknite to povezavo, da potrdite naslov:"
 
 #: app/templates/emails/verify.html:19
 msgid "Confirm Email Address"
-msgstr ""
+msgstr "Potrdite e-poštni naslov"
 
 #: app/templates/emails/verify.html:23
 #: app/templates/emails/verify_unsubscribe.html:17
 msgid "Or paste this into your browser:"
-msgstr ""
+msgstr "Ali pa prilepite to v brskalnik:"
 
 #: app/templates/emails/verify_unsubscribe.html:9
 msgid ""
 "We're sorry to see you go. You just need to do one more thing before your"
 " email is blacklisted."
 msgstr ""
+"Žal nam je, da odhajate. Samo še eno stvar morate storiti, preden bo vaš e-"
+"poštni naslov uvrščen na črno listo."
 
 #: app/templates/emails/verify_unsubscribe.html:23
 msgid ""
 "You are receiving this email because someone (hopefully you) entered your"
 " email address in the unsubscribe form."
 msgstr ""
+"To e-poštno sporočilo prejemate, ker je nekdo (upajmo, da vi) v obrazec za "
+"izbris računa vnesel vaš e-poštni naslov."
 
 #: app/templates/macros/audit_log.html:13
 #, python-format
 msgid "Severity: %(sev)s."
-msgstr ""
+msgstr "Resnost: %(sev)s."
 
 #: app/templates/macros/audit_log.html:32
 msgid "Deleted User"
-msgstr ""
+msgstr "Izbrisan uporabnik"
 
 #: app/templates/macros/audit_log.html:64
 msgid "No audit log entries."
-msgstr ""
+msgstr "Ni vnosov v dnevnik nadzora."
 
 #: app/templates/macros/forms.html:21 app/templates/macros/reviews.html:151
 #: app/templates/packages/remove.html:80 app/templates/packages/view.html:486
 #: app/templates/users/modtools.html:86
 msgid "Required"
-msgstr ""
+msgstr "Zahtevano"
 
 #: app/templates/macros/forms.html:122
 msgid "Start typing to see suggestions"
-msgstr ""
+msgstr "Začnite tipkati, da si ogledate predloge"
 
 #: app/templates/macros/package_approval.html:5 app/templates/todo/user.html:35
 msgid "State"
-msgstr ""
+msgstr "Država"
 
 #: app/templates/macros/package_approval.html:35
 msgid "Please wait for the release to be approved."
-msgstr ""
+msgstr "Počakajte na odobritev izdaje."
 
 #: app/templates/macros/package_approval.html:37
 msgid "Please wait for the package to be approved."
-msgstr ""
+msgstr "Počakajte na odobritev paketa."
 
 #: app/templates/macros/package_approval.html:41
 msgid "You can now submit this package for approval if you're ready."
-msgstr ""
+msgstr "Če ste pripravljeni, lahko zdaj ta paket oddate v odobritev."
 
 #: app/templates/macros/package_approval.html:43
 msgid "This package can be submitted for approval when ready."
-msgstr ""
+msgstr "Ta paket se lahko predloži v odobritev, ko bo pripravljen."
 
 #: app/templates/macros/package_approval.html:46
 msgid "You need to fix the above errors before you can submit for review"
-msgstr ""
+msgstr "Preden lahko pošljete v pregled, morate odpraviti zgornje napake"
 
 #: app/templates/macros/package_approval.html:61
 msgid "Package approval thread"
-msgstr ""
+msgstr "Tema za odobritev paketa"
 
 #: app/templates/macros/package_approval.html:62
 msgid ""
 "You can open a thread if you have a question for the approver or package "
 "author."
 msgstr ""
+"Če imate vprašanje za odobritelja ali avtorja paketa, lahko odprete temo."
 
 #: app/templates/macros/packagegridtile.html:26
 msgid "<b>Warning:</b> Non-free code and media."
-msgstr ""
+msgstr "<b>Opozorilo:</b> Koda in mediji niso prosti."
 
 #: app/templates/macros/packagegridtile.html:30
 msgid "<b>Warning:</b> Non-free code."
-msgstr ""
+msgstr "<b>Opozorilo:</b> Koda ni prosta."
 
 #: app/templates/macros/packagegridtile.html:34
 msgid "<b>Warning:</b> Non-free media."
-msgstr ""
+msgstr "<b>Opozorilo:</b> Mediji niso prosti."
 
 #: app/templates/macros/packagegridtile.html:46
 #: app/templates/translate/index.html:56
 msgid "No packages available"
-msgstr ""
+msgstr "Paketi niso na voljo"
 
 #: app/templates/macros/releases.html:23 app/templates/macros/releases.html:53
 #: app/templates/macros/releases.html:99
 #, python-format
 msgid "created %(date)s"
-msgstr ""
+msgstr "ustvarjeno %(date)s"
 
 #: app/templates/macros/releases.html:66
 msgid "Edit / Approve"
-msgstr ""
+msgstr "Uredi / Odobri"
 
 #: app/templates/macros/releases.html:115
 msgid "No releases available."
-msgstr ""
+msgstr "Nobena izdaja ni na voljo."
 
 #: app/templates/macros/reviews.html:7
 msgid "Helpful"
-msgstr ""
+msgstr "Koristno"
 
 #: app/templates/macros/reviews.html:13
 msgid "Unhelpful"
-msgstr ""
+msgstr "Nekoristno"
 
 #: app/templates/macros/reviews.html:91
 #, python-format
 msgid "%(num)d comments"
-msgstr ""
+msgstr "%(num)d komentarjev"
 
 #: app/templates/macros/reviews.html:103
 msgid "No reviews, yet."
-msgstr ""
+msgstr "Ni še ocen."
 
 #: app/templates/macros/reviews.html:113 app/templates/macros/reviews.html:167
 #: app/templates/packages/review_create_edit.html:4
 msgid "Review"
-msgstr ""
+msgstr "Ocena"
 
 #: app/templates/macros/reviews.html:140
 #: app/templates/packages/review_create_edit.html:51
 msgid "Why or why not? Try to be constructive"
-msgstr ""
+msgstr "Zakaj ali zakaj ne? Poskusite biti konstruktivni"
 
 #: app/templates/macros/reviews.html:157
 msgid "Post Review"
-msgstr ""
+msgstr "Objavi oceno"
 
 #: app/templates/macros/reviews.html:193
 msgid "Report an issue"
-msgstr ""
+msgstr "Prijavi težavo"
 
 #: app/templates/macros/reviews.html:197
 msgid "Ask a question"
-msgstr ""
+msgstr "Postavite vprašanje"
 
 #: app/templates/macros/stats.html:15 app/templates/macros/stats.html:20
 #, python-format
 msgid "%(display_name)s's packages"
-msgstr ""
+msgstr "Paketi uporabnika %(display_name)s"
 
 #: app/templates/macros/stats.html:36
 msgid "Date range..."
-msgstr ""
+msgstr "Razpon podatkov ..."
 
 #: app/templates/macros/stats.html:50
 msgid "Downloads, past 7 days"
-msgstr ""
+msgstr "Prenosi, zadnjih 7 dni"
 
 #: app/templates/macros/stats.html:53
 msgid "Downloads, past 30 days"
-msgstr ""
+msgstr "Prenosi, zadnjih 30 dni"
 
 #: app/templates/macros/stats.html:56
 msgid "Downloads from $1 to $2"
-msgstr ""
+msgstr "Prenosi od $1 do $2"
 
 #: app/templates/macros/stats.html:59
 msgid "$1 per day"
-msgstr ""
+msgstr "$1 prenosov na dan"
 
 #: app/templates/macros/stats.html:64
 msgid "JavaScript is required to display charts and statistics"
-msgstr ""
+msgstr "Za prikaz grafikonov in statistike je potreben JavaScript"
 
 #: app/templates/macros/stats.html:73
 msgid "Lifetime unique downloads"
-msgstr ""
+msgstr "Edinstveni prenosi v življenjskem obdobju"
 
 #: app/templates/macros/stats.html:83
 msgid "Loading..."
-msgstr ""
+msgstr "Nalaganje …"
 
 #: app/templates/macros/stats.html:86
 msgid "No data"
-msgstr ""
+msgstr "Ni podatkov"
 
 #: app/templates/macros/stats.html:91
 msgid "Downloads by Package"
-msgstr ""
+msgstr "Prenosi po paketih"
 
 #: app/templates/macros/stats.html:93 app/templates/macros/stats.html:100
 #: app/templates/macros/stats.html:112
@@ -3355,135 +3472,139 @@ msgid ""
 "This is a stacked area graph. For total downloads, look at the combined "
 "height."
 msgstr ""
+"To je naloženi površinski graf. Za skupno število prenosov si oglejte skupno "
+"višino."
 
 #: app/templates/macros/stats.html:98
 msgid "Downloads by Client"
-msgstr ""
+msgstr "Prenosi po odjemalcih"
 
 #: app/templates/macros/stats.html:104
 msgid "Downloads by Reason"
-msgstr ""
+msgstr "Prenosi po razlogih"
 
 #: app/templates/macros/stats.html:106
 msgid "<b>New Install</b>: the user clicked [Install] inside of Luanti."
-msgstr ""
+msgstr "<b>Nova namestitev</b>: uporabnik je kliknil [Namesti] v Luantiju."
 
 #: app/templates/macros/stats.html:107
 msgid "<b>Dependency</b>: was installed automatically to fulfill a dependency."
-msgstr ""
+msgstr "<b>Odvisnost</b>: je bila nameščena samodejno za izpolnitev odvisnosti."
 
 #: app/templates/macros/stats.html:108
 msgid "<b>Update</b>: download was to update the package."
-msgstr ""
+msgstr "<b>Posodobitev</b>: prenos je bil namenjen posodobitvi paketa."
 
 #: app/templates/macros/stats.html:109
 msgid ""
 "<b>Other / Unknown</b>: downloaded by a web browser or an outdated Luanti"
 " version (before 5.5)."
 msgstr ""
+"<b>Drugo / Neznano</b>: preneseno s spletnim brskalnikom ali zastarelo "
+"različico Luantija (pred 5.5)."
 
 #: app/templates/macros/stats.html:121
 msgid "Need more stats?"
-msgstr ""
+msgstr "Potrebujete več statistike?"
 
 #: app/templates/macros/stats.html:123
 msgid "Check out the ContentDB Grafana dashboard for CDB-wide stats"
-msgstr ""
+msgstr "Za statistiko celotne CDB si oglejte nadzorno ploščo ContentDB Grafana"
 
 #: app/templates/macros/stats.html:127
 msgid "ContentDB Grafana"
-msgstr ""
+msgstr "ContentDB Grafana"
 
 #: app/templates/macros/threads.html:122
 msgid "This thread has been locked by a moderator."
-msgstr ""
+msgstr "To temo je zaklenil moderator."
 
 #: app/templates/macros/threads.html:132
 msgid "Reply"
-msgstr ""
+msgstr "Odgovori"
 
 #: app/templates/macros/threads.html:153
 msgid "Please wait before commenting again."
-msgstr ""
+msgstr "Počakajte pred ponovnim komentiranjem."
 
 #: app/templates/macros/threads.html:159
 msgid "This thread has been locked."
-msgstr ""
+msgstr "Ta tema je zaklenjena."
 
 #: app/templates/macros/threads.html:161
 msgid "You don't have permission to post."
-msgstr ""
+msgstr "Nimate dovoljenja za objavo."
 
 #: app/templates/macros/threads.html:194 app/templates/macros/threads.html:276
 msgid "No threads found"
-msgstr ""
+msgstr "Ni najdenih tem"
 
 #: app/templates/macros/threads.html:202
 msgid "Thread"
-msgstr ""
+msgstr "Tema"
 
 #: app/templates/macros/threads.html:206
 msgid "Last Reply"
-msgstr ""
+msgstr "Zadnji odgovor"
 
 #: app/templates/macros/todo.html:21
 #, python-format
 msgid "On %(trigger)s, do %(action)s"
-msgstr ""
+msgstr "Ob %(trigger)s, izvedi %(action)s"
 
 #: app/templates/macros/todo.html:35 app/templates/packages/view.html:129
 #: app/templates/packages/view.html:451
 msgid "Release"
-msgstr ""
+msgstr "Izdaja"
 
 #: app/templates/macros/todo.html:42
 msgid "Repo"
-msgstr ""
+msgstr "Repozitorij"
 
 #: app/templates/macros/todo.html:48
 #: app/templates/packages/releases_list.html:13
 #: app/templates/packages/view.html:455
 msgid "Update settings"
-msgstr ""
+msgstr "Posodbi nastavitve"
 
 #: app/templates/macros/todo.html:55 app/templates/macros/todo.html:85
 msgid "No outdated packages."
-msgstr ""
+msgstr "Brez zastarelih paketov."
 
 #: app/templates/macros/topics.html:8
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 #: app/templates/macros/topics.html:9
 msgid "Actions"
-msgstr ""
+msgstr "Dejanja"
 
 #: app/templates/macros/topics.html:18 app/templates/macros/topics.html:54
 #: app/templates/modnames/view.html:29 app/templates/packages/similar.html:40
 #: app/templates/todo/editor.html:182 app/templates/todo/editor.html:197
 msgid "WIP"
-msgstr ""
+msgstr "Delo v teku"
 
 #: app/templates/modnames/list.html:4 app/templates/modnames/view.html:4
 msgid "Mod Names"
-msgstr ""
+msgstr "Ime moda"
 
 #: app/templates/modnames/list.html:37
 msgid "No mod names found."
-msgstr ""
+msgstr "Ni najdenih imen modov."
 
 #: app/templates/modnames/view.html:10
 #, python-format
 msgid "Mod Name \"%(name)s\""
-msgstr ""
+msgstr "Ime moda „%(name)s“"
 
 #: app/templates/modnames/view.html:12
 msgid "Provided By"
-msgstr ""
+msgstr "Zagotovljeno s strani"
 
 #: app/templates/modnames/view.html:21
 msgid "Forum Topics"
-msgstr ""
+msgstr "Teme foruma"
 
 #: app/templates/modnames/view.html:27 app/templates/oauth/authorize.html:32
 #: app/templates/packages/game_support.html:42
@@ -3493,76 +3614,76 @@ msgstr ""
 #: app/templates/todo/game_support.html:45
 #, python-format
 msgid "%(title)s by %(display_name)s"
-msgstr ""
+msgstr "%(title)s od %(display_name)s"
 
 #: app/templates/modnames/view.html:35
 msgid "Required By"
-msgstr ""
+msgstr "Zahtevano od"
 
 #: app/templates/modnames/view.html:38
 msgid "Optionally Used By"
-msgstr ""
+msgstr "Izbirno uporablja"
 
 #: app/templates/notifications/list.html:14
 msgid "Edit email notification settings"
-msgstr ""
+msgstr "Urejanje nastavitev e-poštnih obvestil"
 
 #: app/templates/notifications/list.html:22
 msgid "Newest first."
-msgstr ""
+msgstr "Najprej najnovejši."
 
 #: app/templates/notifications/list.html:27
 msgid "Your Notifications"
-msgstr ""
+msgstr "Vaša obvestila"
 
 #: app/templates/notifications/list.html:61
 #: app/templates/notifications/list.html:99
 msgid "No notifications"
-msgstr ""
+msgstr "Brez obvestil"
 
 #: app/templates/notifications/list.html:66
 msgid "Editor/Approver Notifications"
-msgstr ""
+msgstr "Obvestila urednika/odobritelja"
 
 #: app/templates/oauth/authorize.html:4
 #, python-format
 msgid "Authorize %(title)s"
-msgstr ""
+msgstr "Avtoriziraj %(title)s"
 
 #: app/templates/oauth/authorize.html:35
 #, python-format
 msgid "wants to access your %(name)s account"
-msgstr ""
+msgstr "želi dostopati do vašega računa %(name)s"
 
 #: app/templates/oauth/authorize.html:46
 msgid "Verified application"
-msgstr ""
+msgstr "Preverjena aplikacija"
 
 #: app/templates/oauth/authorize.html:49
 msgid "ContentDB trusts this application"
-msgstr ""
+msgstr "ContentDB zaupa tej aplikaciji"
 
 #: app/templates/oauth/authorize.html:60
 msgid "Public data only"
-msgstr ""
+msgstr "Samo javni podatki"
 
 #: app/templates/oauth/authorize.html:63
 msgid "Read-only access to your public data"
-msgstr ""
+msgstr "Dostop samo za branje vaših javnih podatkov"
 
 #: app/templates/oauth/authorize.html:76
 msgid "Authorize"
-msgstr ""
+msgstr "Avtoriziraj"
 
 #: app/templates/oauth/authorize.html:85
 #, python-format
 msgid "About %(title)s"
-msgstr ""
+msgstr "O %(title)s"
 
 #: app/templates/oauth/authorize.html:91
 #: app/templates/oauth/create_edit.html:26
 msgid "Application isn't approved yet"
-msgstr ""
+msgstr "Vloga še ni odobrena"
 
 #: app/templates/oauth/authorize.html:93
 #: app/templates/oauth/create_edit.html:28
@@ -3570,159 +3691,173 @@ msgid ""
 "To allow users other than yourself to log in, you'll need to contact "
 "ContentDB staff and ask them to approve your app."
 msgstr ""
+"Če želite dovoliti prijavo drugim uporabnikom, se morate obrniti na osebje "
+"ContentDB-ja in jih prositi za odobritev vaše aplikacije."
 
 #: app/templates/oauth/create_edit.html:7
 msgid "Create OAuth Client"
-msgstr ""
+msgstr "Ustvari odjemalca OAuth"
 
 #: app/templates/oauth/create_edit.html:36
 #, python-format
 msgid "Your application has %(count)d users"
-msgstr ""
+msgstr "Vaša aplikacija ima %(count)d uporabnikov"
 
 #: app/templates/oauth/create_edit.html:37
 msgid "Revoke all user tokens"
-msgstr ""
+msgstr "Prekliči vse uporabniške žetone"
 
 #: app/templates/oauth/create_edit.html:51
 msgid ""
 "You must keep the secret safe. If you are unable, set the app type to "
 "'client-side'."
 msgstr ""
+"Skrivnost morate varovati. Če tega ne morete storiti, nastavite vrsto "
+"aplikacije na »na strani odjemalca«."
 
 #: app/templates/oauth/create_edit.html:56
 msgid "Example Authorize URL"
-msgstr ""
+msgstr "Primer URL-ja za avtorizacijo"
 
 #: app/templates/oauth/create_edit.html:67
 msgid ""
 "Titles must be globally unique. For example, what's the name of your "
 "application?"
 msgstr ""
+"Naslovi morajo biti globalno edinstveni. Na primer, kako se imenuje vaša "
+"aplikacija?"
 
 #: app/templates/oauth/create_edit.html:68
 msgid ""
 "Shown to users when you request access to their account. For example, "
 "what does your application do?"
 msgstr ""
+"Prikazano uporabnikom, ko zahtevate dostop do njihovega računa. Na primer, "
+"kaj počne vaša aplikacija?"
 
 #: app/templates/oauth/create_edit.html:70
 msgid "Where will you store your client_secret?"
-msgstr ""
+msgstr "Kam boste shranili svojo skrivnost client_secret?"
 
 #: app/templates/oauth/list_clients.html:4
 #, python-format
 msgid "OAuth2 Applications | %(username)s"
-msgstr ""
+msgstr "Aplikacije OAuth2 | %(username)s"
 
 #: app/templates/oauth/list_clients.html:9
 msgid "OAuth2 Documentation"
-msgstr ""
+msgstr "Dokumentacija OAuth2"
 
 #: app/templates/oauth/list_clients.html:16
 msgid "Unpublished"
-msgstr ""
+msgstr "Neobjavljeno"
 
 #: app/templates/oauth/list_clients.html:22
 msgid "No applications created"
-msgstr ""
+msgstr "Ni ustvarjenih aplikacij"
 
 #: app/templates/packages/advanced_search.html:13
 #: app/templates/zipgrep/search.html:20
 msgid "Use shift to select multiple. Leave selection empty to match any type."
 msgstr ""
+"Za izbiro več elementov uporabite tipko Shift. Za ujemanje poljubne vrste "
+"pustite izbor prazen."
 
 #: app/templates/packages/advanced_search.html:14
 #: app/templates/packages/advanced_search.html:19
 #: app/templates/packages/advanced_search.html:20
 #: app/templates/packages/advanced_search.html:21
 msgid "Use shift to select multiple."
-msgstr ""
+msgstr "Za izbiro več elementov uporabite tipko Shift."
 
 #: app/templates/packages/advanced_search.html:17
 msgid "Tags and Content Warnings"
-msgstr ""
+msgstr "Oznake in opozorila o vsebini"
 
 #: app/templates/packages/advanced_search.html:23
 msgid "Compatibility"
-msgstr ""
+msgstr "Združljivost"
 
 #: app/templates/packages/advanced_search.html:28
 msgid "Sorting"
-msgstr ""
+msgstr "Razvrščanje"
 
 #: app/templates/packages/alias_create_edit.html:4
 msgid "Alias"
-msgstr ""
+msgstr "Vzdevek"
 
 #: app/templates/packages/alias_create_edit.html:13
 msgid "Back to Aliases"
-msgstr ""
+msgstr "Nazaj k vzdevkom"
 
 #: app/templates/packages/alias_list.html:4
 msgid "Aliases"
-msgstr ""
+msgstr "Vzdevki"
 
 #: app/templates/packages/alias_list.html:15
 #, python-format
 msgid "Aliases for %(title)s by %(author)s"
-msgstr ""
+msgstr "Vzdevki za %(title)s avtorja %(author)s"
 
 #: app/templates/packages/alias_list.html:24
 msgid "No aliases"
-msgstr ""
+msgstr "Ni vzdevkov"
 
 #: app/templates/packages/bulk_update_conf.html:4
 #, python-format
 msgid "Git Update Detection for %(username)s"
-msgstr ""
+msgstr "Zaznavanje posodobitev Gita za %(username)s"
 
 #: app/templates/packages/bulk_update_conf.html:10
 msgid "Packages with Update Settings"
-msgstr ""
+msgstr "Paketi z nastavitvami posodobitev"
 
 #: app/templates/packages/bulk_update_conf.html:16
 msgid "Bulk Set Update Settings"
-msgstr ""
+msgstr "Nastavitve množičnega posodabljanja"
 
 #: app/templates/packages/bulk_update_conf.html:18
 msgid "This will set the update settings for all packages with a Git repo."
 msgstr ""
+"S tem boste nastavili nastavitve posodabljanja za vse pakete z repozitorijem "
+"Git."
 
 #: app/templates/packages/bulk_update_conf.html:27
 #: app/templates/packages/release_new.html:51
 #: app/templates/packages/update_config.html:33
 msgid "Leave blank to use default branch"
-msgstr ""
+msgstr "Za uporabo privzete veje pustite prazno"
 
 #: app/templates/packages/bulk_update_conf.html:29
 #: app/templates/packages/update_config.html:35
 msgid "Currently, the branch name field is only used by the New Commit trigger."
-msgstr ""
+msgstr "Trenutno polje z imenom veje uporablja samo sprožilec New Commit."
 
 #: app/templates/packages/create_edit.html:5
 #, python-format
 msgid "Edit - %(title)s"
-msgstr ""
+msgstr "Uredi - %(title)s"
 
 #: app/templates/packages/create_edit.html:10
 #: app/templates/packages/create_edit.html:32
 msgid "Create Package"
-msgstr ""
+msgstr "Ustvari paket"
 
 #: app/templates/packages/create_edit.html:43
 msgid "Have you read the Package Inclusion Policy and Guidance yet?"
-msgstr ""
+msgstr "Ste že prebrali Pravilnik in navodila za vključitev paketov?"
 
 #: app/templates/packages/create_edit.html:47
 msgid "Read more"
-msgstr ""
+msgstr "Preberi več"
 
 #: app/templates/packages/create_edit.html:49
 msgid ""
 "You can include a .cdb.json file in your package to update these details "
 "automatically."
 msgstr ""
+"V paket lahko vključite datoteko .cdb.json, da se ti podatki samodejno "
+"posodobijo."
 
 #: app/templates/packages/create_edit.html:55
 msgid ""
@@ -3730,10 +3865,13 @@ msgid ""
 "features\n"
 "\t\t\tsuch as finding metadata from git, and autocompletion."
 msgstr ""
+"lJavaScript je potreben za izboljšanje uporabniškega vmesnika in za "
+"funkcije,\n"
+"\t\t\tkot sta iskanje metapodatkov iz gita in samodejno dokončanje."
 
 #: app/templates/packages/create_edit.html:78
 msgid "You need to unpublish the package to change the name."
-msgstr ""
+msgstr "Za spremembo imena morate preklicati objavo paketa."
 
 #: app/templates/packages/create_edit.html:85
 msgid ""
@@ -3741,206 +3879,237 @@ msgid ""
 "<i>modpack</i> anywhere in the short description. It is unnecessary and "
 "wastes characters."
 msgstr ""
+"Nasvet: V kratkem opisu ne vključujte <i>Luanti</i>, <i>Minetest</i>, <i>"
+"mod</i> ali <i>modpack</i>. To je nepotrebno in izgublja znake."
 
 #: app/templates/packages/create_edit.html:88
 msgid ""
 "Please choose 'Work in Progress' if your package is unstable, and "
 "shouldn't be recommended to all players"
 msgstr ""
+"Izberite »Delo v teku«, če je vaš paket nestabilen in ga ne priporočate vsem "
+"igralcem"
 
 #: app/templates/packages/create_edit.html:93
 msgid "If there is no media, set the Media License to the same as the License."
 msgstr ""
+"Če ni medijskih vsebin , nastavite licenco za medije na enako vrednost kot "
+"licenco."
 
 #: app/templates/packages/create_edit.html:97
 msgid ""
 "There's no need to link to the package on ContentDB in the long "
 "description, the user is already here!"
 msgstr ""
+"V dolgem opisu ni treba povezovati paketa na ContentDB, uporabnik je že "
+"tukaj!"
 
 #: app/templates/packages/create_edit.html:100
 msgid ""
 "There's no need to include the forum topic in the long description, it's "
 "already shown on the page."
 msgstr ""
+"Teme foruma ni treba vključiti v dolg opis, saj je že prikazana na strani."
 
 #: app/templates/packages/create_edit.html:103
 msgid ""
 "There's no need to include the repository URL in the long description, "
 "it's already shown on the page."
 msgstr ""
+"V dolgem opisu ni treba vključiti URL-ja repozitorija, saj je že prikazan na "
+"strani."
 
 #: app/templates/packages/create_edit.html:107
 msgid "What to write in the long description"
-msgstr ""
+msgstr "Kaj napisati v dolgem opisu"
 
 #: app/templates/packages/create_edit.html:113
 msgid "Repository and Links"
-msgstr ""
+msgstr "Repozitorij in povezave"
 
 #: app/templates/packages/create_edit.html:116
 msgid "Do you have a Git repository?"
-msgstr ""
+msgstr "Ali imate Git repozitorij?"
 
 #: app/templates/packages/create_edit.html:118
 msgid "Having a repository is optional"
-msgstr ""
+msgstr "Imeti repozitorij ni obvezno"
 
 #: app/templates/packages/create_edit.html:121
 msgid ""
 "If you do have a repository, enter the URL below. Otherwise, leave blank "
 "and click skip."
 msgstr ""
+"Če imate repozitorij, vnesite spodnji URL. V nasprotnem primeru pustite "
+"prazno in kliknite preskoči."
 
 #: app/templates/packages/create_edit.html:126
 msgid "HTTP URL to a Git, Mercurial, or other repository"
-msgstr ""
+msgstr "HTTP URL do Gita, Mercuriala ali drugega repozitorija"
 
 #: app/templates/packages/create_edit.html:129
 msgid "Next (Autoimport)"
-msgstr ""
+msgstr "Naprej (samodejni uvoz)"
 
 #: app/templates/packages/create_edit.html:130
 msgid "Skip"
-msgstr ""
+msgstr "Preskoči"
 
 #: app/templates/packages/create_edit.html:134
 msgid "Importing... (This may take a while)"
-msgstr ""
+msgstr "Uvažanje ... (To lahko traja nekaj časa)"
 
 #: app/templates/packages/create_edit.html:137
 msgid "Where should users report issues?"
-msgstr ""
+msgstr "Kam naj uporabniki prijavijo težave?"
 
 #: app/templates/packages/create_edit.html:141
 msgid "Paste a forum topic URL"
-msgstr ""
+msgstr "Prilepite URL teme foruma"
 
 #: app/templates/packages/create_edit.html:143
 msgid "YouTube videos will be shown in an embed."
-msgstr ""
+msgstr "Videoposnetki na YouTubu bodo prikazani v vdelani obliki."
 
 #: app/templates/packages/create_edit.html:144
 msgid "If blank, the author's donation URL will be used instead."
-msgstr ""
+msgstr "Če je prazno, bo namesto tega uporabljen avtorjev URL za donacijo."
 
 #: app/templates/packages/create_edit.html:145
 msgid "How can users translate your package? ie: weblate URL or a help page"
 msgstr ""
+"Kako lahko uporabniki prevedejo vaš paket? Npr.: URL spletne strani ali "
+"stran s pomočjo"
 
 #: app/templates/packages/create_edit.html:150
 msgid ""
 "You need to save a draft before you can add releases and screenshots. "
 "You'll be able to edit the package again before submitting for approval."
 msgstr ""
+"Preden lahko dodate izdaje in posnetke zaslona, morate shraniti osnutek. "
+"Paket boste lahko ponovno uredili, preden ga pošljete v odobritev."
 
 #: app/templates/packages/edit_maintainers.html:4
 msgid "Edit Maintainers"
-msgstr ""
+msgstr "Urejanje vzdrževalcev"
 
 #: app/templates/packages/edit_maintainers.html:11
 msgid "Maintainers are given write access to the package."
-msgstr ""
+msgstr "Vzdrževalci imajo dostop za pisanje v paket."
 
 #: app/templates/packages/edit_maintainers.html:12
 msgid ""
 "Depending on their rank, they will be able to edit the package, create "
 "releases and screenshots, and read private threads."
 msgstr ""
+"Glede na svojo stopnjo bodo lahko urejali paket, ustvarjali izdaje in "
+"posnetke zaslona ter brali zasebne teme."
 
 #: app/templates/packages/edit_maintainers.html:13
 msgid ""
 "Maintainers cannot add or remove other maintainers, but can remove "
 "themselves."
 msgstr ""
+"Vzdrževalci ne morejo dodajati ali odstranjevati drugih vzdrževalcev, lahko "
+"pa odstranijo sebe."
 
 #: app/templates/packages/game_hub.html:4
 #: app/templates/packages/game_hub.html:23
 msgid "Community Hub"
-msgstr ""
+msgstr "Center skupnosti"
 
 #: app/templates/packages/game_hub.html:9
 #, python-format
 msgid "Mods and texture packs for %(title)s"
-msgstr ""
+msgstr "Modifikacije in teksturni paketi za %(title)s"
 
 #: app/templates/packages/game_hub.html:31
 #: app/templates/packages/game_hub.html:34
 #, python-format
 msgid "Search for packages for %(title)s"
-msgstr ""
+msgstr "Iskanje paketov za %(title)s"
 
 #: app/templates/packages/game_support.html:9
 msgid "Documentation"
-msgstr ""
+msgstr "Dokumentacija"
 
 #: app/templates/packages/game_support.html:13
 msgid ""
 "Game support is configured using the package's .conf file. See the "
 "documentation for more info"
 msgstr ""
+"Podpora za igre je konfigurirana z uporabo datoteke .conf paketa. Za več "
+"informacij glejte dokumentacijo"
 
 #: app/templates/packages/game_support.html:23
 #: app/templates/packages/view.html:220 app/templates/translate/index.html:48
 msgid "Source"
-msgstr ""
+msgstr "Izvorna koda"
 
 #: app/templates/packages/game_support.html:26
 msgid "Supported?"
-msgstr ""
+msgstr "Podprto?"
 
 #: app/templates/packages/game_support.html:33
 msgid "Supports all games (unless excluded by unsupported_games)"
-msgstr ""
+msgstr "Podpira vse igre (razen če jih izključujete preko unsupported_games)"
 
 #: app/templates/packages/game_support.html:47
 msgid "Detected from dependencies"
-msgstr ""
+msgstr "Zaznano iz odvisnosti"
 
 #: app/templates/packages/game_support.html:49
 msgid "Overridden on ContentDB"
-msgstr ""
+msgstr "Preglaseno na ContentDB-ju"
 
 #: app/templates/packages/game_support.html:68
 msgid "Unknown. Please either add supported games or check 'Supports all games'"
 msgstr ""
+"Neznano. Prosimo, dodajte podprte igre ali označite možnost »Podpira vse igre"
+"«"
 
 #: app/templates/packages/game_support.html:75
 #, python-format
 msgid "Generated %(conf)s lines"
-msgstr ""
+msgstr "Ustvarjenih %(conf)s vrstic"
 
 #: app/templates/packages/game_support.html:89
 msgid ""
 "You need to manually define at least one supported game before you can "
 "turn this off."
-msgstr ""
+msgstr "Preden lahko to izklopite, morate ročno določiti vsaj eno podprto igro."
 
 #: app/templates/packages/game_support.html:96
 msgid ""
 "When checked, this indicates that this package should support all games, "
 "unless excluded by unsupported_games."
 msgstr ""
+"Ko je označeno, to pomeni, da bi moral ta paket podpirati vse igre, razen če "
+"jih izključuje unsupported_games."
 
 #: app/templates/packages/game_support.html:97
 msgid ""
 "You can check this and still specify games in supported_games that you've"
 " tested."
 msgstr ""
+"To lahko označite in še vedno določite igre v supported_games, ki ste jih "
+"preizkusili."
 
 #: app/templates/packages/game_support.html:101
 msgid "It's not possible for texture packs to support all games."
-msgstr ""
+msgstr "Ni mogoče, da bi teksturni paketi podpirali vse igre."
 
 #: app/templates/packages/game_support.html:105
 msgid ""
 "The package depends on a game-specific mod, and so cannot support all "
 "games."
 msgstr ""
+"Paket je odvisen od moda, specifičnega za igro, zato ne more podpirati vseh "
+"iger."
 
 #: app/templates/packages/game_support.html:111
 msgid "Overrides"
-msgstr ""
+msgstr "Preglasitve"
 
 #: app/templates/packages/game_support.html:114
 #, python-format
@@ -3948,6 +4117,8 @@ msgid ""
 "It's best to add supported/unsupported games to %(conf)s, but in the "
 "meantime you can add them here."
 msgstr ""
+"Najbolje je, da podprte/nepodprte igre dodate v %(conf)s, medtem pa jih "
+"lahko dodate tukaj."
 
 #: app/templates/packages/game_support.html:116
 #, python-format
@@ -3955,142 +4126,151 @@ msgid ""
 "Adding to %(conf)s allows users who install outside ContentDB to benefit "
 "as well."
 msgstr ""
+"Dodajanje v %(conf)s omogoča tudi uporabnikom, ki nameščajo program zunaj "
+"ContentDB, da izkoristijo to možnost."
 
 #: app/templates/packages/game_support.html:119
 #: app/templates/packages/game_support.html:120
 msgid "Comma-separated game names, ex: minetest_game, nodecore"
-msgstr ""
+msgstr "Imena iger, ločena z vejicami, npr.: minetest_game, nodecore"
 
 #: app/templates/packages/gone.html:19
 msgid "Package Removed"
-msgstr ""
+msgstr "Paket je odstranjen"
 
 #: app/templates/packages/gone.html:21
 msgid "This package has been unpublished."
-msgstr ""
+msgstr "Ta paket je bil odstranjen z objave."
 
 #: app/templates/packages/gone.html:22
 msgid ""
 "It may have been removed by choice of the author, or by ContentDB staff "
 "due to a problem."
 msgstr ""
+"Morda je bil odstranjen po lastni izbiri avtorja ali s strani osebja "
+"ContentDB zaradi težave."
 
 #: app/templates/packages/gone.html:25 app/templates/packages/gone.html:35
 msgid "Package Undergoing Review"
-msgstr ""
+msgstr "Paket v pregledu"
 
 #: app/templates/packages/gone.html:27
 msgid "This package is currently undergoing review"
-msgstr ""
+msgstr "Ta paket je trenutno v pregledu."
 
 #: app/templates/packages/gone.html:30
 msgid "Package Not Yet Submitted"
-msgstr ""
+msgstr "Paket še ni bil oddan"
 
 #: app/templates/packages/gone.html:32
 msgid "This package has been created but hasn't been submitted for approval yet."
-msgstr ""
+msgstr "Ta paket je bil ustvarjen, vendar še ni bil poslan v odobritev."
 
 #: app/templates/packages/gone.html:37
 msgid ""
 "This package is currently undergoing review, and changes are needed "
 "before it can be added."
 msgstr ""
+"Ta paket je trenutno v pregledu in pred dodajanjem so potrebne spremembe."
 
 #: app/templates/packages/gone.html:41
 msgid "Please check back again later."
-msgstr ""
+msgstr "Prosimo, preverite znova pozneje."
 
 #: app/templates/packages/gone.html:43
 msgid "Or, if you're the author, log in to see more information."
-msgstr ""
+msgstr "Če ste avtor, se prijavite za ogled več informacij."
 
 #: app/templates/packages/gone.html:48
 msgid "Login"
-msgstr ""
+msgstr "Prijava"
 
 #: app/templates/packages/list.html:21
 #, python-format
 msgid "Did you mean to search for packages by %(authors)s?"
-msgstr ""
+msgstr "Ste želeli iskati pakete po %(authors)s?"
 
 #: app/templates/packages/list.html:26
 msgid "Filter by tags"
-msgstr ""
+msgstr "Filtriraj po oznakah"
 
 #: app/templates/packages/list.html:59
 msgid "More content from the forums"
-msgstr ""
+msgstr "Več vsebine s forumov"
 
 #: app/templates/packages/package_base.html:14
 #: app/templates/packages/screenshots.html:93
 msgid "Thumbnail"
-msgstr ""
+msgstr "Sličica"
 
 #: app/templates/packages/release_bulk_change.html:4
 msgid "Bulk Change Releases"
-msgstr ""
+msgstr "Izdaje množičnih sprememb"
 
 #: app/templates/packages/release_bulk_change.html:11
 msgid "Use this page to set the min and max of all releases for your package."
 msgstr ""
+"Na tej strani nastavite najmanjše in največje število vseh izdaj za vaš "
+"paket."
 
 #: app/templates/packages/release_bulk_change.html:29
 #: app/templates/packages/release_edit.html:62
 #: app/templates/packages/release_new.html:70
 msgid "Maximum must be greater than or equal to the minimum!"
-msgstr ""
+msgstr "Največja vrednost mora biti večja ali enaka najmanjši!"
 
 #: app/templates/packages/release_bulk_change.html:33
 msgid ""
 "Note: Min and max versions will be used to hide the package on\n"
 "\t\t\tplatforms not within the range."
 msgstr ""
+"Opomba: Za skrivanje paketa na platformah, ki niso znotraj obsega, bosta\n"
+"\t\t\tuporabljeni različici Min in Max."
 
 #: app/templates/packages/release_bulk_change.html:36
 #: app/templates/packages/release_edit.html:78
 #: app/templates/packages/release_new.html:92
 msgid "Leave both as None if in doubt."
-msgstr ""
+msgstr "Če ste v dvomih, pustite oboje kot brez."
 
 #: app/templates/packages/release_edit.html:4
 msgid "Edit release"
-msgstr ""
+msgstr "Uredi izdajo"
 
 #: app/templates/packages/release_edit.html:15
 #: app/templates/packages/release_new.html:42
 msgid "Release short name. Eg: 1.0.0 or 2018-05-28"
-msgstr ""
+msgstr "Kratko ime izdaje. Npr.: 1.0.0 ali 2018-05-28"
 
 #: app/templates/packages/release_edit.html:16
 #: app/templates/packages/release_new.html:43
 msgid "Human-readable name. Eg: 1.0.0 - The Trains Update"
-msgstr ""
+msgstr "Ime, ki ga lahko bere človek. Npr.: 1.0.0 - Posodobitev vlakov"
 
 #: app/templates/packages/release_edit.html:35
 #: app/templates/packages/release_view.html:35
 msgid "Commit Hash"
-msgstr ""
+msgstr "Zgoščena vrednost za prispevke"
 
 #: app/templates/packages/release_edit.html:39
 #: app/templates/packages/release_view.html:41
 msgid "Importing..."
-msgstr ""
+msgstr "Uvažanje ..."
 
 #: app/templates/packages/release_edit.html:40
 #: app/templates/packages/release_view.html:42
 msgid "view task"
-msgstr ""
+msgstr "ogled opravil"
 
 #: app/templates/packages/release_edit.html:54
 msgid "Supported Luanti versions"
-msgstr ""
+msgstr "Podprte različice Luantija"
 
 #: app/templates/packages/release_edit.html:68
 #: app/templates/packages/release_new.html:76
 #, python-format
 msgid "Are you sure your package doesn't work on versions after %(version)s?"
-msgstr ""
+msgstr "Ste prepričani, da vaš paket ne deluje na različicah po %(version)s?"
 
 #: app/templates/packages/release_edit.html:70
 #: app/templates/packages/release_new.html:78
@@ -4098,6 +4278,8 @@ msgid ""
 "Only set the maximum version if you know that it doesn't work on newer "
 "Luanti versions."
 msgstr ""
+"Najvišjo različico nastavite le, če veste, da ne deluje na novejših "
+"različicah Luantija."
 
 #: app/templates/packages/release_edit.html:71
 #: app/templates/packages/release_new.html:79
@@ -4105,6 +4287,8 @@ msgid ""
 "Don't set the maximum version just because you haven't tested it on newer"
 " versions."
 msgstr ""
+"Ne nastavljajte najvišje različice samo zato, ker je niste preizkusili na "
+"novejših različicah."
 
 #: app/templates/packages/release_edit.html:75
 #: app/templates/packages/release_new.html:89
@@ -4112,62 +4296,70 @@ msgid ""
 "Set the minimum and maximum Luanti versions supported.\n"
 "\t\t\tThis release will be hidden to clients outside of that range. "
 msgstr ""
+"Nastavite najmanjše in največje število podprtih različic Luanti.\n"
+" \t\t\tTa izdaja bo skrita za odjemalce zunaj tega obsega. "
 
 #: app/templates/packages/release_edit.html:80
 msgid ""
 "You can <a href='/help/package_config/'>set this automatically</a> in the"
 " .conf of your package."
 msgstr ""
+"To lahko <a href=\"/help/package_config/\">nastavite samodejno</a> v "
+"datoteki .conf vašega paketa."
 
 #: app/templates/packages/release_edit.html:87
 msgid "Delete Release"
-msgstr ""
+msgstr "Izbriši izdajo"
 
 #: app/templates/packages/release_edit.html:93
 msgid "This is permanent."
-msgstr ""
+msgstr "To je trajno."
 
 #: app/templates/packages/release_edit.html:94
 msgid ""
 "Any associated uploads will not be deleted immediately, but the release "
 "will no longer be listed."
 msgstr ""
+"Vsi povezani naloženi elementi ne bodo takoj izbrisani, vendar izdaja ne bo "
+"več navedena."
 
 #: app/templates/packages/release_edit.html:99
 msgid "You cannot delete the latest release; please create a newer one first."
-msgstr ""
+msgstr "Najnovejše izdaje ne morete izbrisati; najprej ustvarite novejšo."
 
 #: app/templates/packages/release_new.html:4
 #: app/templates/packages/release_new.html:8
 msgid "Create a release"
-msgstr ""
+msgstr "Ustvari izdajo"
 
 #: app/templates/packages/release_new.html:14
 msgid "You have automatic releases enabled."
-msgstr ""
+msgstr "Omogočene so samodejne izdaje."
 
 #: app/templates/packages/release_new.html:16
 msgid "You have Git update notifications enabled."
-msgstr ""
+msgstr "Omogočena so vam obvestila o posodobitvah Gita."
 
 #: app/templates/packages/release_new.html:17
 msgid "You can enable automatic updates in the update settings."
-msgstr ""
+msgstr "Samodejne posodobitve lahko omogočite v nastavitvah posodobitev."
 
 #: app/templates/packages/release_new.html:23
 msgid "Set up"
-msgstr ""
+msgstr "Vzpostavi"
 
 #: app/templates/packages/release_new.html:26
 msgid ""
 "You can create releases automatically when you push commits or tags to "
 "your repository."
 msgstr ""
+"Izdaje lahko ustvarite samodejno, ko v repozitorij potisnete spremembe ali "
+"oznake."
 
 #: app/templates/packages/release_new.html:28
 #: app/templates/packages/release_wizard.html:69
 msgid "Add Git repo"
-msgstr ""
+msgstr "Dodaj Git repozitorij"
 
 #: app/templates/packages/release_new.html:31
 #: app/templates/packages/release_wizard.html:59
@@ -4175,18 +4367,20 @@ msgid ""
 "Using Git would allow you to create releases automatically when you push "
 "code or tags."
 msgstr ""
+"Z uporabo Gita bi lahko samodejno ustvarili izdaje, ko objavite kodo ali "
+"oznake."
 
 #: app/templates/packages/release_new.html:40
 msgid "1. Name release"
-msgstr ""
+msgstr "1. Ime izdaje"
 
 #: app/templates/packages/release_new.html:43
 msgid "Same as name"
-msgstr ""
+msgstr "Enako kot ime"
 
 #: app/templates/packages/release_new.html:46
 msgid "2. Set the content"
-msgstr ""
+msgstr "2. Nastavite vsebino"
 
 #: app/templates/packages/release_new.html:58
 msgid ""
@@ -4194,10 +4388,13 @@ msgid ""
 "and Releases Guide</a> for\n"
 "\t\t\ttips on customising releases."
 msgstr ""
+"Za nasvete o prilagajanju izdaj si\n"
+"\t\t\toglejte <a href=\"/help/package_config/\">Vodnik za konfiguracijo "
+"paketov in izdaje</a>."
 
 #: app/templates/packages/release_new.html:62
 msgid "3. Supported Luanti versions"
-msgstr ""
+msgstr "3. Podprte različice Luantija"
 
 #: app/templates/packages/release_new.html:84
 msgid ""
@@ -4205,26 +4402,31 @@ msgid ""
 "automatically</a>,\n"
 "\t\t\twhich will override your selection."
 msgstr ""
+"Datoteka .conf vašega paketa lahko to <a href=\"/help/package_config/\">"
+"nastavi samodejno</a>,\n"
+"\t\t\tkar bo preglasilo vašo izbiro."
 
 #: app/templates/packages/release_wizard.html:4
 msgid "How do you want to create releases?"
-msgstr ""
+msgstr "Kako želite ustvariti izdaje?"
 
 #: app/templates/packages/release_wizard.html:9
 #: app/templates/packages/release_wizard.html:75
 msgid "Later"
-msgstr ""
+msgstr "Kasneje"
 
 #: app/templates/packages/release_wizard.html:14
 #, python-format
 msgid "A release is a single downloadable version of your %(title)s."
-msgstr ""
+msgstr "Izdaja je ena sama prenosljiva različica vaših %(title)s."
 
 #: app/templates/packages/release_wizard.html:15
 msgid ""
 "You need to create releases even if you use a rolling release development"
 " cycle, as Luanti needs them to check for updates."
 msgstr ""
+"Izdaje morate ustvariti, tudi če uporabljate tekoči razvojni cikel izdaj, "
+"saj jih Luanti potrebuje za preverjanje posodobitev."
 
 #: app/templates/packages/release_wizard.html:20
 #: app/templates/packages/update_config.html:12
@@ -4232,62 +4434,66 @@ msgid ""
 "When you push a change to your Git repository, ContentDB can create a new"
 " release automatically or send you a reminder."
 msgstr ""
+"Ko v repozitorij Git pošljete spremembo, lahko ContentDB samodejno ustvari "
+"novo izdajo ali vam pošlje opomnik."
 
 #: app/templates/packages/release_wizard.html:21
 msgid ""
 "ContentDB will check your Git repository every day, but you can use "
 "webhooks or the API for faster updates."
 msgstr ""
+"ContentDB bo vsak dan preverjal vaš Git repozitorij, vendar lahko za "
+"hitrejše posodobitve uporabite spletne kavlje ali API."
 
 #: app/templates/packages/release_wizard.html:25
 #: app/templates/packages/release_wizard.html:64
 msgid "This can be changed later."
-msgstr ""
+msgstr "To se lahko kasneje spremeni."
 
 #: app/templates/packages/release_wizard.html:31
 msgid "Automatically (Recommended)"
-msgstr ""
+msgstr "Samodejno (priporočeno)"
 
 #: app/templates/packages/release_wizard.html:34
 msgid "Rolling Release"
-msgstr ""
+msgstr "Sproščanje izdaje"
 
 #: app/templates/packages/release_wizard.html:37
 msgid "On Git Tag"
-msgstr ""
+msgstr "Na oznaki Git"
 
 #: app/templates/packages/release_wizard.html:46
 msgid "Manually"
-msgstr ""
+msgstr "Ročno"
 
 #: app/templates/packages/release_wizard.html:49
 msgid "With reminders"
-msgstr ""
+msgstr "Z opomniki"
 
 #: app/templates/packages/release_wizard.html:52
 msgid "No reminders"
-msgstr ""
+msgstr "Ni opomnikov"
 
 #: app/templates/packages/release_wizard.html:60
 msgid "Unfortunately, you will otherwise need to create a release manually."
-msgstr ""
+msgstr "Žal boste sicer morali izdajo ustvariti ročno."
 
 #: app/templates/packages/release_wizard.html:72
 msgid "Create releases manually"
-msgstr ""
+msgstr "Ročno ustvari izdajo"
 
 #: app/templates/packages/releases_list.html:4
 #, python-format
 msgid "Releases - %(title)s"
-msgstr ""
+msgstr "Izdaje - %(title)s"
 
 #: app/templates/packages/releases_list.html:18
 msgid "Set up automatic releases"
-msgstr ""
+msgstr "Nastavi samodejnih izdaj"
 
 #: app/templates/packages/releases_list.html:24
 msgid "Bulk update"
-msgstr ""
+msgstr "Množična posodobitev"
 
 #: app/templates/packages/releases_list.html:48
 #, python-format
@@ -4295,21 +4501,23 @@ msgid ""
 "Total storage usage is %(total_size)d MB (releases %(release_size)d MB, "
 "screenshots %(screenshot_size)d MB)"
 msgstr ""
+"Skupna poraba prostora za shranjevanje je %(total_size)d MB (izdaje %"
+"(release_size)d MB, posnetki zaslona %(screenshot_size)d MB)"
 
 #: app/templates/packages/remove.html:4
 #, python-format
 msgid "Remove %(title)s"
-msgstr ""
+msgstr "Odstrani %(title)s"
 
 #: app/templates/packages/remove.html:12
 msgid "Change maintenance state"
-msgstr ""
+msgstr "Spremi stanje vzdrževanja"
 
 #: app/templates/packages/remove.html:14
 msgid ""
 "As an alternative to removing your package, you may wish to change the "
 "maintenance state."
-msgstr ""
+msgstr "Namesto odstranitve paketa lahko spremenite stanje vzdrževanja."
 
 #: app/templates/packages/remove.html:38
 msgid ""
@@ -4321,92 +4529,102 @@ msgid ""
 "\t\t\tlater point. ContentDB staff can restore removed packages, if "
 "needed."
 msgstr ""
+"Da bi se izognili izgubi podatkov, paketov ne morete trajno izbrisati.\n"
+"\t\t\tLahko jih odstranite iz ContentDB, zaradi česar ne bodo vidni nobenemu "
+"uporabniku.\n"
+"\t\t\tOdstranjene pakete je mogoče trajno izbrisati pozneje.\n"
+"\t\t\tOsebje ContentDB lahko po potrebi obnovi odstranjene pakete."
 
 #: app/templates/packages/remove.html:46
 msgid ""
 "Unapproving a package will put it back into Draft, where\n"
 "\t\t\t\tit can be submitted for approval again."
 msgstr ""
+"Če paket n odobren, ga vrnite v osnutek,\n"
+"\t\t\t\tkjer ga je mogoče ponovno poslati v odobritev."
 
 #: app/templates/packages/remove.html:51
 msgid "You don't need to delete a package just to change something."
-msgstr ""
+msgstr "Ni vam treba izbrisati paketa samo zato, da bi nekaj spremenili."
 
 #: app/templates/packages/remove.html:52
 msgid "Click 'Edit' at the top right of the package page."
-msgstr ""
+msgstr "V zgornjem desnem kotu na strani paketa kliknite „Uredi“."
 
 #: app/templates/packages/remove.html:60
 msgid "and"
-msgstr ""
+msgstr "in"
 
 #: app/templates/packages/remove.html:66
 #, python-format
 msgid "Removing this package will break the following mods: %(names)s"
-msgstr ""
+msgstr "Odstranitev tega paketa bo pokvarila naslednje mode: %(names)s"
 
 #: app/templates/packages/remove.html:73
 msgid "Reason"
-msgstr ""
+msgstr "Razlog"
 
 #: app/templates/packages/remove.html:84
 msgid "Reason for unapproval / deletion, this is shown in the audit log"
-msgstr ""
+msgstr "Razlog za zavrnitev/izbris, ki je prikazan v dnevniku revizije"
 
 #: app/templates/packages/remove.html:93
 msgid "Unpublish"
-msgstr ""
+msgstr "Prekliči objavo"
 
 #: app/templates/packages/review_create_edit.html:17
 #, python-format
 msgid "Post a review for %(title)s by %(author)s"
-msgstr ""
+msgstr "Objavite oceno za %(title)s avtorja %(author)s"
 
 #: app/templates/packages/review_create_edit.html:20
 msgid ""
 "Please make sure you read ContentDB's <a href='/terms/'>Terms of "
 "Service</a>"
-msgstr ""
+msgstr "Prosimo, preberite <a href=\"/terms/\">pogoje storitve</a> za ContentDB"
 
 #: app/templates/packages/review_create_edit.html:25
 #: app/templates/threads/new.html:16
 #, python-format
 msgid "Found a bug? Post on the <a href='%(url)s'>issue tracker</a> instead."
 msgstr ""
+"Ste našli hrošča? Objavite ga v <a href=\"%(url)s\">sledilniku težav</a>."
 
 #: app/templates/packages/review_create_edit.html:55
 msgid "What language are you writing your review in?"
-msgstr ""
+msgstr "V katerem jeziku pišete svoje mnenje?"
 
 #: app/templates/packages/review_create_edit.html:68
 msgid "Delete review."
-msgstr ""
+msgstr "Izbriši mnenje."
 
 #: app/templates/packages/review_create_edit.html:69
 msgid ""
 "This will convert the review into a thread, keeping the comments but "
 "removing its effect on the package's rating."
 msgstr ""
+"S tem se bo ocena pretvorila v nit, komentarji pa bodo ohranjeni, vendar ne "
+"bodo več vplivali na oceno paketa."
 
 #: app/templates/packages/review_votes.html:4
 #: app/templates/packages/view.html:371
 msgid "Review Votes"
-msgstr ""
+msgstr "Glasovi za pregled"
 
 #: app/templates/packages/review_votes.html:13
 #, python-format
 msgid "Review votes on %(title)s by %(author)s"
-msgstr ""
+msgstr "Glasovi za pregled %(title)s avtorja %(author)s"
 
 #: app/templates/packages/screenshot_edit.html:4
 #: app/templates/packages/screenshot_edit.html:11
 msgid "Edit screenshot"
-msgstr ""
+msgstr "Uredi posnetke zaslona"
 
 #: app/templates/packages/screenshot_new.html:4
 #: app/templates/packages/screenshot_new.html:8
 msgid "Add a screenshot"
-msgstr ""
+msgstr "Dodaj posnetke zaslona"
 
 #: app/templates/packages/screenshot_new.html:10
 #: app/templates/todo/user.html:125
@@ -4415,120 +4633,128 @@ msgid ""
 "The recommended resolution is 1920x1080, and screenshots must be at least"
 " %(width)dx%(height)d."
 msgstr ""
+"Priporočena ločljivost je 1920 x 1080, posnetki zaslona pa morajo biti vsaj %"
+"(width)d x %(height)d."
 
 #: app/templates/packages/screenshots.html:11
 msgid "Add Image"
-msgstr ""
+msgstr "Dodaj sliko"
 
 #: app/templates/packages/screenshots.html:36 app/templates/todo/user.html:129
 msgid "Way too small"
-msgstr ""
+msgstr "Premajhen"
 
 #: app/templates/packages/screenshots.html:40 app/templates/todo/user.html:132
 msgid "Too small"
-msgstr ""
+msgstr "Premajhen"
 
 #: app/templates/packages/screenshots.html:44 app/templates/todo/user.html:135
 msgid "Not HD"
-msgstr ""
+msgstr "Ni HD"
 
 #: app/templates/packages/screenshots.html:50
 msgid "Awaiting approval"
-msgstr ""
+msgstr "Čakanje na odobritev"
 
 #: app/templates/packages/screenshots.html:69
 #: app/templates/packages/screenshots.html:123
 msgid "No screenshots."
-msgstr ""
+msgstr "Ni posnetkov zaslona."
 
 #: app/templates/packages/screenshots.html:78
 msgid "Save Order"
-msgstr ""
+msgstr "Shrani naročilo"
 
 #: app/templates/packages/screenshots.html:83
 msgid "Reordering requires JavaScript."
-msgstr ""
+msgstr "Za prerazporejanje je potreben JavaScript."
 
 #: app/templates/packages/screenshots.html:88
 msgid "Client Preview"
-msgstr ""
+msgstr "Predogled odjemalca"
 
 #: app/templates/packages/screenshots.html:90
 msgid "The first screenshot in the list above will be the package thumbnail."
-msgstr ""
+msgstr "Prvi posnetek zaslona na zgornjem seznamu bo sličica paketa."
 
 #: app/templates/packages/screenshots.html:127
 msgid "Videos"
-msgstr ""
+msgstr "Slikovni posnetki"
 
 #: app/templates/packages/screenshots.html:129
 msgid "You can set a video on the Edit Details page"
-msgstr ""
+msgstr "Videoposnetek lahko nastavite na strani Urejanje podrobnosti"
 
 #: app/templates/packages/share.html:10
 msgid "Links"
-msgstr ""
+msgstr "Povezave"
 
 #: app/templates/packages/share.html:13
 msgid "Review link"
-msgstr ""
+msgstr "Povezava za pregled"
 
 #: app/templates/packages/share.html:18
 msgid "Badges"
-msgstr ""
+msgstr "Značke"
 
 #: app/templates/packages/similar.html:4
 msgid "Modname Uniqueness"
-msgstr ""
+msgstr "Edinstvenost imena moda"
 
 #: app/templates/packages/similar.html:12
 msgid "Packages sharing provided mods"
-msgstr ""
+msgstr "Modifikacije, ki jih ponuja skupna raba paketov"
 
 #: app/templates/packages/similar.html:14
 msgid "This package contains modnames that are present in the following packages:"
-msgstr ""
+msgstr "Ta paket vsebuje imena modov, ki so prisotna v naslednjih paketih:"
 
 #: app/templates/packages/similar.html:32
 msgid "Similar Forum Topics"
-msgstr ""
+msgstr "Podobne teme foruma"
 
 #: app/templates/packages/stats.html:18
 msgid "Download (.csv)"
-msgstr ""
+msgstr "Prenos (.csv)"
 
 #: app/templates/packages/translation.html:18
 msgid ""
 "To provide translations for your package, you need to create .tr files "
 "and upload a new release."
 msgstr ""
+"Če želite zagotoviti prevode za svoj paket, morate ustvariti datoteke .tr in "
+"naložiti novo izdajo."
 
 #: app/templates/packages/translation.html:19
 msgid ""
 "For information on how to do this, see the modding book chapter and "
 "lua_api.md"
 msgstr ""
+"Za informacije o tem, kako to storiti, glejte poglavje v knjigi o modiranju "
+"in  v lua_api.md"
 
 #: app/templates/packages/translation.html:23
 msgid "Translation - Luanti Modding Book"
-msgstr ""
+msgstr "Prevod - Knjiga za modiranje Luantija"
 
 #: app/templates/packages/translation.html:26
 msgid "Translating content meta - lua_api.md"
-msgstr ""
+msgstr "Prevajanje metapodatkov vsebine - lua_api.md"
 
 #: app/templates/packages/translation.html:31
 #, python-format
 msgid "%(title)s is available in %(num)d languages."
-msgstr ""
+msgstr "%(title)s je na voljo v %(num)d jezikih."
 
 #: app/templates/packages/translation.html:32
 msgid "ContentDB reads translations from locale files (.tr) in your package."
 msgstr ""
+"ContentDB bere prevode iz datotek z lokalnimi nastavitvami (.tr) v vašem "
+"paketu."
 
 #: app/templates/packages/translation.html:89
 msgid "Translation template"
-msgstr ""
+msgstr "Predloga za prevod"
 
 #: app/templates/packages/translation.html:91
 #, python-format
@@ -4536,374 +4762,406 @@ msgid ""
 "To quickly add support for ContentDB package translation, create a file "
 "at %(location)s with the following content:"
 msgstr ""
+"Za hitro dodajanje podpore za prevajanje paketov ContentDB ustvarite "
+"datoteko na lokaciji %(location)s z naslednjo vsebino:"
 
 #: app/templates/packages/translation.html:102
 msgid "With games, you also need to name the textdomain in game.conf:"
 msgstr ""
+"Pri igrah morate v datoteki game.conf poimenovati tudi besedilno domeno "
+"(textdomain):"
 
 #: app/templates/packages/translation.html:106
 msgid "Replace mymod with the name of mod / textdomain you chose."
-msgstr ""
+msgstr "Zamenjajte mymod z imenom moda / textdomaina, ki ste ga izbrali."
 
 #: app/templates/packages/update_config.html:4
 #: app/templates/packages/update_config.html:9
 msgid "Configure Git Update Detection"
-msgstr ""
+msgstr "Konfiguriraj zaznavanje posodobitev Gita"
 
 #: app/templates/packages/update_config.html:16
 msgid ""
 "ContentDB will poll your Git repository every day, if your package is "
 "approved."
 msgstr ""
+"ContentDB bo vsak dan preverjal vaš Git repozitorij, če je vaš paket odobren."
 
 #: app/templates/packages/update_config.html:17
 msgid "You should consider using webhooks or the API for faster releases."
-msgstr ""
+msgstr "Za hitrejše izdaje razmislite o uporabi spletnih kavljev ali API-ja."
 
 #: app/templates/packages/update_config.html:18
 msgid ""
 "Git Update Detection is clever enough to not create a release again if "
 "you've already created it manually or using webhooks/the API."
 msgstr ""
+"Zaznavanje posodobitev Git je dovolj pametno, da ne ustvari več izdaje, če "
+"ste jo že ustvarili ročno ali z uporabo spletnih kavljev/API-ja."
 
 #: app/templates/packages/update_config.html:28
 msgid "The trigger is the event that triggers the action."
-msgstr ""
+msgstr "Sprožilec je dogodek, ki sproži dejanje."
 
 #: app/templates/packages/update_config.html:41
 msgid "The action to perform when the trigger happens."
-msgstr ""
+msgstr "Dejanje, ki se izvede, ko se sproži sprožilec."
 
 #: app/templates/packages/update_config.html:42
 msgid ""
 "Once a package is marked as outdated, you won't receive any more "
 "notifications until it is marked up to date."
 msgstr ""
+"Ko je paket označen kot zastarel, ne boste prejemali več obvestil, dokler ne "
+"bo označen kot posodobljen."
 
 #: app/templates/packages/view.html:22 app/templates/packages/view.html:25
 #, python-format
 msgid "%(title)s releases"
-msgstr ""
+msgstr "%(title)s izdaje"
 
 #: app/templates/packages/view.html:49
 msgid "Download"
-msgstr ""
+msgstr "Prenos"
 
 #: app/templates/packages/view.html:56
 #, python-format
 msgid "Luanti %(min)s - %(max)s"
-msgstr ""
+msgstr "Luanti %(min)s - %(max)s"
 
 #: app/templates/packages/view.html:58
 #, python-format
 msgid "For Luanti %(min)s and above"
-msgstr ""
+msgstr "Za Luanti %(min)s ali novejši"
 
 #: app/templates/packages/view.html:60
 #, python-format
 msgid "Luanti %(max)s and below"
-msgstr ""
+msgstr "Za Luantu %(max)s ali starejši"
 
 #: app/templates/packages/view.html:70
 msgid "How do I install this?"
-msgstr ""
+msgstr "Kako namestiti?"
 
 #: app/templates/packages/view.html:76
 msgid "No downloads available"
-msgstr ""
+msgstr "Ni prenosov"
 
 #: app/templates/packages/view.html:83
 msgid "Non-free code and media"
-msgstr ""
+msgstr "Neprosta koda in mediji"
 
 #: app/templates/packages/view.html:85
 msgid "Non-free code"
-msgstr ""
+msgstr "Neprosta koda"
 
 #: app/templates/packages/view.html:87
 msgid "Non-free media"
-msgstr ""
+msgstr "Neprosti mediji"
 
 #: app/templates/packages/view.html:101 app/templates/threads/view.html:109
 msgid ""
 "This thread is only visible to its creator, package maintainers, and "
 "users of Approver rank or above."
 msgstr ""
+"Ta tema je vidna samo njenemu ustvarjalcu, vzdrževalcem paketa in "
+"uporabnikom z stopnjo odobritelj ali višjo."
 
 #: app/templates/packages/view.html:214 app/templates/users/profile.html:95
 msgid "Website"
-msgstr ""
+msgstr "Spletna stran"
 
 #: app/templates/packages/view.html:226 app/templates/users/profile.html:77
 msgid "Forums"
-msgstr ""
+msgstr "Forumi"
 
 #: app/templates/packages/view.html:232
 msgid "Issue Tracker"
-msgstr ""
+msgstr "Sledilnik hroščev"
 
 #: app/templates/packages/view.html:238 app/templates/translate/index.html:43
 msgid "Translate"
-msgstr ""
+msgstr "Prevedi"
 
 #: app/templates/packages/view.html:304
 msgid "Thumbnail for video"
-msgstr ""
+msgstr "Sličica za posnetek"
 
 #: app/templates/packages/view.html:321
 msgid "Awaiting review"
-msgstr ""
+msgstr "Čaka na pregled"
 
 #: app/templates/packages/view.html:351 app/templates/threads/view.html:82
 msgid "Edit Review"
-msgstr ""
+msgstr "Uredi oceno"
 
 #: app/templates/packages/view.html:356
 msgid "You can't review your own package."
-msgstr ""
+msgstr "Ne morete oceniti svojega paketa."
 
 #: app/templates/packages/view.html:366
 msgid "Package needs to be approved before it can be reviewed."
-msgstr ""
+msgstr "Paket mora biti odobren, preden ga je mogoče oceniti."
 
 #: app/templates/packages/view.html:377
 msgid "Used By"
-msgstr ""
+msgstr "Uporablja ga"
 
 #: app/templates/packages/view.html:383
 msgid "Content"
-msgstr ""
+msgstr "Vsebina"
 
 #: app/templates/packages/view.html:385 app/templates/packages/view.html:479
 msgid "View content for game"
-msgstr ""
+msgstr "Ogled vsebine za igro"
 
 #: app/templates/packages/view.html:398
 #, python-format
 msgid "Release notes for %(title)s"
-msgstr ""
+msgstr "Opombe ob izdaji za %(title)s"
 
 #: app/templates/packages/view.html:411
 msgid "Favorite"
-msgstr ""
+msgstr "Priljubljeno"
 
 #: app/templates/packages/view.html:420
 msgid "Add to collection..."
-msgstr ""
+msgstr "Dodaj v zbirko ..."
 
 #: app/templates/packages/view.html:428
 #, python-format
 msgid "View %(count)d collections"
-msgstr ""
+msgstr "Ogled %(count)d zbirk"
 
 #: app/templates/packages/view.html:439
 msgid "Package may be outdated"
-msgstr ""
+msgstr "Paket je morda zastarel"
 
 #: app/templates/packages/view.html:446
 msgid "Only visible to the author and Editors."
-msgstr ""
+msgstr "Vidno samo avtorju in urednikom."
 
 #: app/templates/packages/view.html:463
 msgid "Warning"
-msgstr ""
+msgstr "Opozorilo"
 
 #: app/templates/packages/view.html:469
 msgid "Like this package? Help support its development by making a donation"
-msgstr ""
+msgstr "Vam je všeč ta paket? Pomagajte podpreti njegov razvoj z donacijo"
 
 #: app/templates/packages/view.html:472
 msgid "Donate now"
-msgstr ""
+msgstr "Donirajte zdaj"
 
 #: app/templates/packages/view.html:484 app/utils/luanti_hypertext.py:283
 msgid "Dependencies"
-msgstr ""
+msgstr "Odvisnosti"
 
 #: app/templates/packages/view.html:504
 msgid "No required dependencies"
-msgstr ""
+msgstr "Ni zahtevanih odvisnosti"
 
 #: app/templates/packages/view.html:510
 msgid "Optional"
-msgstr ""
+msgstr "Izbirno"
 
 #: app/templates/packages/view.html:543
 msgid "Compatible Games"
-msgstr ""
+msgstr "Združljive igre"
 
 #: app/templates/packages/view.html:548 app/templates/packages/view.html:568
 #: app/utils/luanti_hypertext.py:275
 msgid "No specific game required"
-msgstr ""
+msgstr "Ni potrebna posebna igra"
 
 #: app/templates/packages/view.html:551
 msgid "Tested with:"
-msgstr ""
+msgstr "Testirano z:"
 
 #: app/templates/packages/view.html:573
 msgid "Is the above correct?"
-msgstr ""
+msgstr "Je zgoraj navedeno pravilno?"
 
 #: app/templates/packages/view.html:574
 msgid "You need to either confirm this or tell ContentDB about supported games"
-msgstr ""
+msgstr "To morate bodisi potrditi bodisi obvestiti ContentDB o podprtih igrah"
 
 #: app/templates/packages/view.html:586
 msgid "Does not work with:"
-msgstr ""
+msgstr "Ne deluje z:"
 
 #: app/templates/packages/view.html:606
 msgid "Please specify compatible games"
-msgstr ""
+msgstr "Navedite združljive igre"
 
 #: app/templates/packages/view.html:612
 msgid "Information"
-msgstr ""
+msgstr "Informacije"
 
 #: app/templates/packages/view.html:618
 msgid "Technical Name"
-msgstr ""
+msgstr "Tehnično ime"
 
 #: app/templates/packages/view.html:634 app/utils/luanti_hypertext.py:295
 #, python-format
 msgid "%(code_license)s for code,<br>%(media_license)s for media."
-msgstr ""
+msgstr "%(code_license)s za kodo,<br>%(media_license)s za medije."
 
 #: app/templates/packages/view.html:642
 msgid "Unknown"
-msgstr ""
+msgstr "Neznano"
 
 #: app/templates/packages/view.html:644 app/utils/luanti_hypertext.py:301
 msgid "Added"
-msgstr ""
+msgstr "Dodano"
 
 #: app/templates/packages/view.html:658
 msgid "Remove myself"
-msgstr ""
+msgstr "Odstrani me"
 
 #: app/templates/packages/view.html:663 app/utils/luanti_hypertext.py:303
 msgid "Provides"
-msgstr ""
+msgstr "Zagotavlja"
 
 #: app/templates/packages/view.html:685
 msgid "More"
-msgstr ""
+msgstr "Več"
 
 #: app/templates/packages/view.html:714
 msgid "See audit log"
-msgstr ""
+msgstr "Glejte dnevnik nadzora"
 
 #: app/templates/report/report.html:19
 msgid ""
 "Due to spam, we no longer accept reports from anonymous users on this "
 "form."
 msgstr ""
+"Zaradi neželene pošte ne sprejemamo več prijav anonimnih uporabnikov na tem "
+"obrazcu."
 
 #: app/templates/report/report.html:20
 msgid "Please sign in or contact the admin using the link below."
 msgstr ""
+"Prosimo, prijavite se ali kontaktirajte administratorja prek spodnje "
+"povezave."
 
 #: app/templates/report/report.html:30
 msgid ""
 "The full report will be visible to all ContentDB staff members, including"
 " editors and moderators."
 msgstr ""
+"Celotno poročilo bo vidno vsem članom osebja ContentDB-ja, vključno z "
+"uredniki in moderatorji."
 
 #: app/templates/report/report.html:31
 msgid ""
 "If you are reporting something by another user, we may discuss the report"
 " with them but will not disclose who reported it."
 msgstr ""
+"Če prijavljate nekaj od drugega uporabnika, se lahko o prijavi pogovorimo z "
+"njim, vendar ne bomo razkrili, kdo je prijavo prijavil."
 
 #: app/templates/report/report.html:32
 msgid ""
 "If you are reporting something by an editor or moderator, then you should"
 " email the admin or a moderator directly to hide your identity."
 msgstr ""
+"Če prijavljate nekaj, kar je urednik ali moderator, potem morate poslati e-"
+"pošto neposredno administratorju ali moderatorju, da skrijete svojo "
+"identiteto."
 
 #: app/templates/report/report.html:41
 msgid "Optional, usually not required"
-msgstr ""
+msgstr "Neobvezno, običajno ni obvezno"
 
 #: app/templates/report/report.html:44
 msgid ""
 "Found a bug? Please report on the package's issue tracker or in a thread "
 "instead."
 msgstr ""
+"Ste našli hrošča? Prosimo, da ga prijavite v sledilniku težav paketa ali v "
+"temi."
 
 #: app/templates/report/report_received.html:4
 msgid "We have received your report"
-msgstr ""
+msgstr "Prejeli smo vaše poročilo"
 
 #: app/templates/report/report_received.html:13
 msgid "We aim to resolve your report quickly."
-msgstr ""
+msgstr "Vašo prijavo si prizadevamo rešiti hitro."
 
 #: app/templates/report/report_received.html:17
 msgid ""
 "If the report is about illegal or harmful content, we aim to resolve "
 "within 48 hours."
 msgstr ""
+"Če se prijava nanaša na nezakonito ali škodljivo vsebino, si prizadevamo, da "
+"jo rešimo v 48 urah."
 
 #: app/templates/report/report_received.html:18
 msgid ""
 "If we find the content to be infringing, we will remove it and may warn "
 "or suspend the user."
 msgstr ""
+"Če ugotovimo, da vsebina krši avtorske pravice, jo bomo odstranili in "
+"uporabnika lahko opozorimo ali suspendiramo."
 
 #: app/templates/report/report_received.html:23
 msgid ""
 "A private thread has been created for this report. You can use it to "
 "communicate with ContentDB staff and receive updates about the report."
 msgstr ""
+"Za to poročilo je bila ustvarjena zasebna nit. Uporabite jo lahko za "
+"komunikacijo z osebjem ContentDB-ja in prejemanje posodobitev o poročilu."
 
 #: app/templates/report/report_received.html:27
 msgid ""
 "Due to limited resources, we may not contact you further about the report"
 " unless we need clarification."
 msgstr ""
+"Zaradi omejenih virov vas morda ne bomo kontaktirali glede poročila, razen "
+"če bomo potrebovali pojasnila."
 
 #: app/templates/report/report_received.html:30
 #, python-format
 msgid "For future reference, use report id: %(report_id)s."
-msgstr ""
+msgstr "Za poznejšo uporabo uporabite ID poročila: %(report_id)s."
 
 #: app/templates/report/report_received.html:36
 msgid "View thread"
-msgstr ""
+msgstr "Ogled teme"
 
 #: app/templates/report/report_received.html:38
 msgid "Back to home"
-msgstr ""
+msgstr "Nazaj domov"
 
 #: app/templates/report/view.html:96
 msgid "Reopen"
-msgstr ""
+msgstr "Ponovno odprto"
 
 #: app/templates/report/view.html:98
 msgid "Completed (action taken)"
-msgstr ""
+msgstr "Zaključeno (ukrep sprejet)"
 
 #: app/templates/report/view.html:99
 msgid "Content removed"
-msgstr ""
+msgstr "Vsebina je odstranjena"
 
 #: app/templates/report/view.html:100
 msgid "Invalid / close with no action"
-msgstr ""
+msgstr "Neveljavno / zaprto brez dejanja"
 
 #: app/templates/tasks/view.html:5
 msgid "Task Failed"
-msgstr ""
+msgstr "Naloga ni uspela"
 
 #: app/templates/tasks/view.html:7
 msgid "Working…"
-msgstr ""
+msgstr "Delo …"
 
 #: app/templates/tasks/view.html:25
 msgid "Reload the page to check for updates."
-msgstr ""
+msgstr "Ponovno naložite stran, da preverite za posodobitve."
 
 #: app/templates/threads/delete_reply.html:4
 #, python-format
@@ -5986,4 +6244,3 @@ msgstr ""
 
 #~ msgid "Waiting for approval."
 #~ msgstr ""
-
