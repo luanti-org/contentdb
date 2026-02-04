@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-11-10 19:55+0000\n"
 "PO-Revision-Date: 2026-01-25 07:33+0000\n"
-"Last-Translator: Joaquín Villalba <joaco-mono@hotmail.com>\n"
+"Last-Translator: Neyzer <neyzertoledo@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/minetest/"
 "contentdb/es/>\n"
 "Language: es\n"
@@ -1607,7 +1607,7 @@ msgstr "Categoría"
 
 #: app/blueprints/report/__init__.py:38
 msgid "Subject / Title"
-msgstr "Asunto/Título"
+msgstr "Asunto / Titulo"
 
 #: app/blueprints/report/__init__.py:39 app/templates/users/modtools.html:79
 msgid "Message"
