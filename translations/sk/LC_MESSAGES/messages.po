@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-11-10 19:55+0000\n"
-"PO-Revision-Date: 2025-09-15 12:01+0000\n"
-"Last-Translator: Pexauteau Santander <pexauteau@gmail.com>\n"
+"PO-Revision-Date: 2026-01-12 10:01+0000\n"
+"Last-Translator: Lukáš Lizák <lukas.lizak15@gmail.com>\n"
+"Language-Team: Slovak <https://hosted.weblate.org/projects/minetest/"
+"contentdb/sk/>\n"
 "Language: sk\n"
-"Language-Team: Slovak "
-"<https://hosted.weblate.org/projects/minetest/contentdb/sk/>\n"
-"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
+"X-Generator: Weblate 5.15.1\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: app/__init__.py:155
@@ -231,7 +232,7 @@ msgstr "Nástroje pre vývojárov"
 #: app/_translations.py:66
 msgctxt "tags"
 msgid "Tools for game and mod developers"
-msgstr "Nástroje pre vývojárov hry a modifikácií"
+msgstr "Nástroje pre vývojárov hier a módov"
 
 #. NOTE: tags: title for education
 #: app/_translations.py:68
@@ -293,7 +294,9 @@ msgstr "Ukazovatele (HUD)"
 #: app/_translations.py:84
 msgctxt "tags"
 msgid "For mods that grant the player extra information in the HUD"
-msgstr "Úpravy, ktoré umožňujú hráčovi vidieť informácie naviac v ukazovateli HUD"
+msgstr ""
+"Pre módy, ktoré umožňujú hráčovi vidieť informácie naviac v hernom rozhraní "
+"(HUD)"
 
 #. NOTE: tags: title for inventory
 #: app/_translations.py:86
@@ -317,7 +320,7 @@ msgstr "Jam / Boj 2020"
 #: app/_translations.py:92
 msgctxt "tags"
 msgid "For mods created for the Discord \"Combat\" modding event in 2020"
-msgstr "Pre modifikácie z Discord udalosti \"Combat\" v roku 2020"
+msgstr "Pre módy vytvorené pre Discord udalosť \"Combat\" v roku 2020"
 
 #. NOTE: tags: title for jam_game_2021
 #: app/_translations.py:94
@@ -392,8 +395,7 @@ msgid ""
 "For mods created for the Discord \"Weekly Challenges\" modding event in "
 "2021"
 msgstr ""
-"Modifikácie vytvorené pre udalosť na Discorde vo \" Weekly Challenges\" z"
-" roku 2021"
+"Pre módy vytvorené pre Discord udalosť \"Weekly Challenges\" z roku 2021"
 
 #. NOTE: tags: title for less_than_px
 #: app/_translations.py:118
@@ -417,7 +419,7 @@ msgstr "API / Knižnice"
 #: app/_translations.py:124
 msgctxt "tags"
 msgid "Primarily adds an API for other mods to use"
-msgstr "Primárne dodáva API pre použitie u iných modifikácií"
+msgstr "Primárne dodáva API pre použitie u iných módov"
 
 #. NOTE: tags: title for magic
 #: app/_translations.py:126
@@ -429,13 +431,13 @@ msgstr "Mágia / Očarovanie"
 #: app/_translations.py:128
 msgctxt "tags"
 msgid "Mapgen / Biomes / Decoration"
-msgstr "Generovanie mapy / Prostredia / Ozdoby"
+msgstr "Generovanie mapy / Biómy / Ozdoby"
 
 #. NOTE: tags: description for mapgen
 #: app/_translations.py:130
 msgctxt "tags"
 msgid "New mapgen or changes mapgen"
-msgstr "Nový generátor mapy alebo zmena generovania"
+msgstr "Nový generátor mapy alebo zmena generovania mapy"
 
 #. NOTE: tags: title for mini-game
 #: app/_translations.py:132
@@ -585,7 +587,7 @@ msgstr "Pre obsah zameraný hlavne na konkrétne ročné obdobia alebo sviatky"
 #: app/_translations.py:176
 msgctxt "tags"
 msgid "Server Moderation and Tools"
-msgstr "Správa servera a iné nástroje"
+msgstr "Moderovanie Servera a Nástroje"
 
 #. NOTE: tags: description for server_tools
 #: app/_translations.py:178
@@ -618,8 +620,8 @@ msgid ""
 "Mods and games that aim to simulate real life activity. Similar to "
 "SimCity/The Sims/OpenTTD/etc."
 msgstr ""
-"Modifikácie a hry, ktoré sa zameriavajú na simuláciu skutočných životných"
-" aktivít. Podobajú sa na SimCity/The Sims/OpenTTD/ atď."
+"Módy a hry, ktoré sa zameriavajú na simuláciu skutočných životných aktivít. "
+"Podobajú sa na SimCity/The Sims/OpenTTD/ atď."
 
 #. NOTE: tags: title for singleplayer
 #: app/_translations.py:188
@@ -692,8 +694,8 @@ msgid ""
 "Games and mods with a heavy strategy component, whether real-time or "
 "turn-based"
 msgstr ""
-"Hry a modifikácie so silným strategickým komponentom, či už ide o priebeh"
-" v reálnom čase alebo o ťahové hry"
+"Hry a módy so silným strategickým komponentom, či už ide o priebeh v reálnom "
+"čase alebo o ťahové hry"
 
 #. NOTE: tags: title for survival
 #: app/_translations.py:210
@@ -990,8 +992,7 @@ msgstr "Balíček bol odstránený zo zbierky obľúbených"
 #: app/blueprints/feeds/__init__.py:32 app/templates/index.html:8
 msgid "Welcome to the best place to find Luanti mods, games, and texture packs"
 msgstr ""
-"Vitaj na najlepšom mieste kde nájdeš modifikácie, hry a balíky textúr pre"
-" Luanti"
+"Vitaj na najlepšom mieste kde nájdeš módy, hry a balíky textúr pre Luanti"
 
 #: app/blueprints/feeds/__init__.py:70 app/templates/base.html:29
 #: app/templates/base.html:36
@@ -1161,7 +1162,7 @@ msgstr "%(title)s od %(author)s"
 #: app/blueprints/packages/reviews.py:54
 #: app/templates/packages/translation.html:39
 msgid "Language"
-msgstr "Jazyk"
+msgstr "Jazyk (Language)"
 
 #: app/blueprints/packages/advanced_search.py:76
 msgid "Hide Tags and Content Warnings"
@@ -1399,8 +1400,8 @@ msgstr "Potrebuješ aspoň jedno vydanie než budeš môcť upraviť podporu hry
 #: app/blueprints/packages/packages.py:752
 msgid "Mod(pack) needs to contain at least one mod. Please create a new release"
 msgstr ""
-"Modifikácia(balíček) musí obsahovať aspoň jednu modifikáciu. Prosím, "
-"vytvor nové vydanie"
+"Mód (balíček módov) musí obsahovať aspoň jeden mód. Prosím, vytvor nové "
+"vydanie"
 
 #: app/blueprints/packages/releases.py:57
 #: app/blueprints/packages/releases.py:72
@@ -1473,11 +1474,11 @@ msgstr "Spúšťač"
 
 #: app/blueprints/packages/releases.py:278
 msgid "New Commit"
-msgstr "Nový prídavok"
+msgstr "Nový Prídavok"
 
 #: app/blueprints/packages/releases.py:279 app/templates/admin/tags/list.html:8
 msgid "New Tag"
-msgstr "Nový tag"
+msgstr "Nový Tag"
 
 #: app/blueprints/packages/releases.py:281
 msgid "Branch name"
@@ -1724,7 +1725,7 @@ msgstr "Aký je výsledok výpočtu vyššie?"
 #: app/blueprints/users/account.py:108 app/templates/users/login.html:34
 #: app/templates/users/register.html:4
 msgid "Register"
-msgstr "Zaregistrovať"
+msgstr "Zaregistrovať sa"
 
 #: app/blueprints/users/account.py:113
 msgid "Incorrect captcha answer"
@@ -1971,7 +1972,7 @@ msgstr "Aplikácie dvojfaktorového overenia"
 #: app/blueprints/users/settings.py:68 app/templates/users/modtools.html:4
 #: app/templates/users/modtools.html:8 app/templates/users/profile.html:44
 msgid "Moderator Tools"
-msgstr "Nástroje moderácie"
+msgstr "Nástroje Moderácie"
 
 #: app/blueprints/users/settings.py:78
 msgid "Donation URL"
@@ -2255,7 +2256,7 @@ msgstr "Balíček textúr"
 #: app/models/packages.py:78 app/templates/base.html:53
 #: app/templates/modnames/view.html:14
 msgid "Mods"
-msgstr "Rozšírenia"
+msgstr "Módy"
 
 #: app/models/packages.py:80 app/templates/base.html:56
 #: app/templates/modnames/view.html:17
@@ -2268,7 +2269,7 @@ msgstr "Balíčky textúr"
 
 #: app/models/packages.py:87
 msgid "Top mod"
-msgstr "Najlepšia modifikácia"
+msgstr "Top Mód"
 
 #: app/models/packages.py:89
 msgid "Top game"
@@ -2281,7 +2282,7 @@ msgstr "Najlepší balíček textúr"
 #: app/models/packages.py:94
 #, python-format
 msgid "Top %(place)d mod"
-msgstr "Naj %(place)d modifikácia"
+msgstr "Top %(place)d mód"
 
 #: app/models/packages.py:96
 #, python-format
@@ -2296,7 +2297,7 @@ msgstr "Naj %(place)d balíček textúr"
 #: app/models/packages.py:102
 #, python-format
 msgid "%(display_name)s has a mod placed at #%(place)d."
-msgstr "%(display_name)s pridal/a modifikáciu v #%(place)d."
+msgstr "%(display_name)s pridal/a mód v #%(place)d."
 
 #: app/models/packages.py:105
 #, python-format
@@ -2310,7 +2311,7 @@ msgstr "%(display_name)s pridal/a balíček textúr do %(place)d."
 
 #: app/models/packages.py:114
 msgid "Do you recommend this mod?"
-msgstr "Doporučiť túto modifikáciu?"
+msgstr "Odporúčaš tento mód?"
 
 #: app/models/packages.py:116
 msgid "Do you recommend this game?"
@@ -2417,7 +2418,7 @@ msgstr ""
 #: app/models/packages.py:1440
 #, python-format
 msgid "New commit %(hash)s found on the Git repo."
-msgstr "Bol nájdený nový vklad %(hash)s v Git úložisku."
+msgstr "Bol nájdený nový prídavok %(hash)s v Git úložisku."
 
 #: app/models/packages.py:1444
 #, python-format
@@ -2439,7 +2440,7 @@ msgstr "Nepripojené"
 
 #: app/models/users.py:50
 msgid "New Member"
-msgstr "Nový člen"
+msgstr "Nový Člen"
 
 #: app/models/users.py:52
 msgid "Member"
@@ -2489,7 +2490,7 @@ msgstr "Nové vlákno"
 #. NOTE: NEW_REVIEW notification type
 #: app/models/users.py:454
 msgid "New Review"
-msgstr "Nový posudok"
+msgstr "Nový Posudok"
 
 #. NOTE: THREAD_REPLY notification type
 #: app/models/users.py:457
@@ -2525,7 +2526,7 @@ msgstr "Toto je upozornenie na nové vlákno."
 
 #: app/models/users.py:488
 msgid "This is a New Review notification."
-msgstr "Toto je upozornenie na nový posudok."
+msgstr "Toto je upozornenie na Nový Posudok."
 
 #: app/models/users.py:490
 msgid "This is a Thread Reply notification."
@@ -2822,7 +2823,7 @@ msgstr "Najlepšie hry"
 #: app/templates/index.html:142 app/templates/index.html:148
 #: app/templates/packages/game_hub.html:58
 msgid "Top Mods"
-msgstr "Najlepšie rozšírenia"
+msgstr "Top Módy"
 
 #: app/templates/index.html:153 app/templates/index.html:159
 #: app/templates/packages/game_hub.html:65
@@ -3107,8 +3108,8 @@ msgid ""
 "Donations are a great way to support your favorite modders, artists, and "
 "game developers."
 msgstr ""
-"Príspevky sú skvelou možnosťou ako podporiť svojho obľúbeného "
-"modifikátora, umelca a vývojára."
+"Príspevky sú skvelou možnosťou ako podporiť svojho obľúbeného moddera, "
+"umelca a vývojára."
 
 #: app/templates/donate/index.html:38
 #, python-format
@@ -3501,7 +3502,7 @@ msgstr "ContentDB Grafana"
 
 #: app/templates/macros/threads.html:122
 msgid "This thread has been locked by a moderator."
-msgstr "Toto vlákno bolo uzamknuté správcom."
+msgstr "Túto diskusiu uzamkol moderátor."
 
 #: app/templates/macros/threads.html:132
 msgid "Reply"
@@ -3571,16 +3572,16 @@ msgstr "Práca stále prebieha (WIP)"
 
 #: app/templates/modnames/list.html:4 app/templates/modnames/view.html:4
 msgid "Mod Names"
-msgstr "Názvy rozšírení"
+msgstr "Názvy Módov"
 
 #: app/templates/modnames/list.html:37
 msgid "No mod names found."
-msgstr "Nenašli sa žadne názvy rozšírení."
+msgstr "Nenašli sa žadne mená módov."
 
 #: app/templates/modnames/view.html:10
 #, python-format
 msgid "Mod Name \"%(name)s\""
-msgstr "Názov rozšírenia \"%(name)s\""
+msgstr "Názov Módu \"%(name)s\""
 
 #: app/templates/modnames/view.html:12
 msgid "Provided By"
@@ -3849,6 +3850,8 @@ msgid ""
 "<i>modpack</i> anywhere in the short description. It is unnecessary and "
 "wastes characters."
 msgstr ""
+"Tip: Nezahŕňajte <i>Luanti</i>, <i>Minetest</i>, <i>mod</i>, or <i>modpack</"
+"i> nikde v krátkom popise. Je to nepotrebné a mrhá to písmenami."
 
 #: app/templates/packages/create_edit.html:88
 msgid ""
@@ -3976,7 +3979,7 @@ msgstr "Spoločenské centrum"
 #: app/templates/packages/game_hub.html:9
 #, python-format
 msgid "Mods and texture packs for %(title)s"
-msgstr "Modifikačné balíky a balíky textúr pre %(title)s"
+msgstr "Módy a balíky textúr pre %(title)s"
 
 #: app/templates/packages/game_hub.html:31
 #: app/templates/packages/game_hub.html:34
@@ -4051,6 +4054,8 @@ msgid ""
 "The package depends on a game-specific mod, and so cannot support all "
 "games."
 msgstr ""
+"Tento balík závisí od módu špecifického pre konkrétnu hru, a preto "
+"nepodporuje všetky hry."
 
 #: app/templates/packages/game_support.html:111
 msgid "Overrides"
@@ -4489,7 +4494,7 @@ msgstr ""
 #: app/templates/packages/remove.html:66
 #, python-format
 msgid "Removing this package will break the following mods: %(names)s"
-msgstr ""
+msgstr "Odstránenie tohto balíka znefunkční nasledujúce módy: %(names)s"
 
 #: app/templates/packages/remove.html:73
 msgid "Reason"
@@ -4631,11 +4636,11 @@ msgstr "Odznaky"
 
 #: app/templates/packages/similar.html:4
 msgid "Modname Uniqueness"
-msgstr "Výnimočnosť názvu módu"
+msgstr "Výnimočnosť Názvu Módu"
 
 #: app/templates/packages/similar.html:12
 msgid "Packages sharing provided mods"
-msgstr "Balíky zdieľajúce poskytované rozšírenia"
+msgstr "Balíky zdieľajúce poskytované módy"
 
 #: app/templates/packages/similar.html:14
 msgid "This package contains modnames that are present in the following packages:"
@@ -4662,10 +4667,11 @@ msgid ""
 "For information on how to do this, see the modding book chapter and "
 "lua_api.md"
 msgstr ""
+"Pre informácie ako toto spraviť, pozri kapitolu módovacia kniha a lua_api.md"
 
 #: app/templates/packages/translation.html:23
 msgid "Translation - Luanti Modding Book"
-msgstr ""
+msgstr "Preklad - Luanti Módovacia Kniha"
 
 #: app/templates/packages/translation.html:26
 msgid "Translating content meta - lua_api.md"
@@ -4697,7 +4703,7 @@ msgstr ""
 
 #: app/templates/packages/translation.html:106
 msgid "Replace mymod with the name of mod / textdomain you chose."
-msgstr ""
+msgstr "Nahraď mymod s názvom módu / textovej domény tvojho výberu."
 
 #: app/templates/packages/update_config.html:4
 #: app/templates/packages/update_config.html:9
@@ -4879,15 +4885,15 @@ msgstr "Prispieť"
 
 #: app/templates/packages/view.html:484 app/utils/luanti_hypertext.py:283
 msgid "Dependencies"
-msgstr "Nevyhnutné doplnky"
+msgstr "Vyžadované módy"
 
 #: app/templates/packages/view.html:504
 msgid "No required dependencies"
-msgstr "Nevyžadujú sa nevyhnutné doplnky"
+msgstr "Žiadne vyžadované módy"
 
 #: app/templates/packages/view.html:510
 msgid "Optional"
-msgstr "Voliteľné"
+msgstr "Nepovinné"
 
 #: app/templates/packages/view.html:543
 msgid "Compatible Games"
@@ -4972,6 +4978,8 @@ msgid ""
 "The full report will be visible to all ContentDB staff members, including"
 " editors and moderators."
 msgstr ""
+"Celá správa bude viditeľná pre všetkých zamestnancov ContentDB vrátane "
+"editorov a moderátorov."
 
 #: app/templates/report/report.html:31
 msgid ""
@@ -4984,6 +4992,9 @@ msgid ""
 "If you are reporting something by an editor or moderator, then you should"
 " email the admin or a moderator directly to hide your identity."
 msgstr ""
+"Ak nahlasujete niečo prostredníctvom editora alebo moderátora, mali by ste "
+"poslať e-mail priamo administrátorovi alebo moderátorovi, aby ste skryli "
+"svoju identitu."
 
 #: app/templates/report/report.html:41
 msgid "Optional, usually not required"
@@ -5068,7 +5079,7 @@ msgstr "Pracujem…"
 
 #: app/templates/tasks/view.html:25
 msgid "Reload the page to check for updates."
-msgstr "Obnov stránku a skontroluj novinky."
+msgstr "Obnov stránku na skontrolovanie aktualizácii."
 
 #: app/templates/threads/delete_reply.html:4
 #, python-format
@@ -5204,13 +5215,12 @@ msgstr "Pozri tagy"
 
 #: app/templates/todo/editor.html:169
 msgid "Unfulfilled Dependencies"
-msgstr "Nesplnené nevyhnutné doplnky"
+msgstr "Chýbajú Vyžadované Módy"
 
 #: app/templates/todo/editor.html:173
 msgid "Mod names that have hard dependers, but no packages providing them."
 msgstr ""
-"Názvy rozšírení, ktoré majú prísne závislosti, ale žiadne balíčky ich "
-"neponúkajú."
+"Názvy módov, ktoré majú prísne závislosti, ale žiadne balíčky ich neponúkajú."
 
 #: app/templates/todo/editor.html:215 app/templates/users/account.html:101
 msgid "View All"
@@ -5227,7 +5237,7 @@ msgstr ""
 
 #: app/templates/todo/game_support.html:11 app/templates/todo/user.html:77
 msgid "You should specify the games supported by your mods and texture packs."
-msgstr ""
+msgstr "Mali by ste špecifikovať hry, ktoré vaše módy a textúry podporujú."
 
 #: app/templates/todo/game_support.html:12 app/templates/todo/user.html:78
 msgid "Specifying game support makes it easier for players to find your content."
@@ -5279,7 +5289,7 @@ msgstr "Balíčky, ktoré nepodporujú %(rel)s"
 #: app/templates/todo/outdated.html:16 app/templates/todo/screenshots.html:12
 #: app/templates/todo/screenshots.html:16
 msgid "Minetest-Mods org only"
-msgstr ""
+msgstr "Len Minetest-Mods org"
 
 #: app/templates/todo/mtver_support.html:25 app/templates/todo/outdated.html:24
 #: app/templates/todo/screenshots.html:24
@@ -5434,7 +5444,7 @@ msgstr ""
 
 #: app/templates/translate/index.html:65
 msgid "How to translate a mod / game"
-msgstr ""
+msgstr "Ako preložiť nejaký mód / hru"
 
 #: app/templates/translate/index.html:73
 msgid "ContentDB"
@@ -7057,4 +7067,3 @@ msgstr ""
 
 #~ msgid "Waiting for approval."
 #~ msgstr "Čaká na schválenie."
-
