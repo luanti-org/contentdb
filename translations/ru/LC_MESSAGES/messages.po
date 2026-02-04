@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-11-10 19:55+0000\n"
-"PO-Revision-Date: 2025-10-11 12:07+0000\n"
+"PO-Revision-Date: 2025-12-02 21:00+0000\n"
 "Last-Translator: BlackImpostor <SkyBuilderOFFICAL@yandex.ru>\n"
+"Language-Team: Russian <https://hosted.weblate.org/projects/minetest/"
+"contentdb/ru/>\n"
 "Language: ru\n"
-"Language-Team: Russian "
-"<https://hosted.weblate.org/projects/minetest/contentdb/ru/>\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Weblate 5.15-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: app/__init__.py:155
@@ -380,13 +381,13 @@ msgstr "Участники события 2024 Luanti Game Jam"
 #: app/_translations.py:110
 msgctxt "tags"
 msgid "Jam / Game 2025"
-msgstr ""
+msgstr "Джэм / Игра 2025"
 
 #. NOTE: tags: description for jam_game_2025
 #: app/_translations.py:112
 msgctxt "tags"
 msgid "Entries to the 2025 Luanti Game Jam"
-msgstr ""
+msgstr "Участники события 2025 Luanti Game Jam"
 
 #. NOTE: tags: title for jam_weekly_2021
 #: app/_translations.py:114
@@ -2083,18 +2084,21 @@ msgstr "Настройка релизов"
 #: app/logic/package_approval.py:109
 msgid "Release is still importing. Please wait and reload the page."
 msgstr ""
+"Релиз всё ещё импортируется. Пожалуйста, подождите и перезагрузите страницу."
 
 #: app/logic/package_approval.py:110
 msgid "View task"
-msgstr ""
+msgstr "Посмотреть прогресс"
 
 #: app/logic/package_approval.py:116
 msgid "Release validation failed. Please fix any issues and create a new release"
 msgstr ""
+"Валидация релиза провалилась. Пожалуйста, исправьте все проблемы и создайте "
+"новый релиз"
 
 #: app/logic/package_approval.py:117
 msgid "View error"
-msgstr ""
+msgstr "Посмотреть ошибку"
 
 #: app/logic/package_approval.py:124
 msgid "You need to add at least one screenshot."
@@ -2256,7 +2260,7 @@ msgstr "Поведение пользователя, травля или оск�
 
 #: app/models/__init__.py:154
 msgid "Spam"
-msgstr ""
+msgstr "Спам"
 
 #: app/models/__init__.py:156
 msgid "Illegal or harmful content"
@@ -2432,7 +2436,7 @@ msgstr "Удалить"
 
 #: app/models/packages.py:1104
 msgid "Processing"
-msgstr ""
+msgstr "В процессе"
 
 #: app/models/packages.py:1106 app/templates/packages/release_edit.html:50
 #: app/templates/packages/screenshot_edit.html:20
@@ -2441,15 +2445,15 @@ msgstr "Одобрено"
 
 #: app/models/packages.py:1108
 msgid "Failed"
-msgstr ""
+msgstr "Не удалось"
 
 #: app/models/packages.py:1110
 msgid "Waiting approval"
-msgstr ""
+msgstr "Ожидание одобрения"
 
 #: app/models/packages.py:1112
 msgid "Archived"
-msgstr ""
+msgstr "Архивирован"
 
 #: app/models/packages.py:1440
 #, python-format
@@ -2905,7 +2909,7 @@ msgstr "Вызвано удалённым пользователем."
 
 #: app/templates/admin/list.html:16
 msgid "User list"
-msgstr ""
+msgstr "Список пользователей"
 
 #: app/templates/admin/send_bulk_email.html:4
 msgid "Send bulk email"
@@ -6115,12 +6119,16 @@ msgstr "Выдавать себя за другого пользователя -
 #: app/templates/users/profile_edit.html:72
 msgid "Website URLs will not be shown whilst you are a 'New Member'."
 msgstr ""
+"Пока вы являетесь 'Новым Пользователем', URL-адреса веб-сайтов отображаться "
+"не будут."
 
 #: app/templates/users/profile_edit.html:73
 msgid ""
 "To become a full member, create a review, comment, or package and wait 7 "
 "days."
 msgstr ""
+"Чтобы стать полным пользователем, сделайте отзыв, оставьте комментарий, или "
+"создайте дополнение и подождите 7 дней."
 
 #: app/templates/users/register.html:17
 msgid ""
@@ -7391,4 +7399,3 @@ msgstr ""
 
 #~ msgid "Waiting for approval."
 #~ msgstr "Ожидает проверки."
-
