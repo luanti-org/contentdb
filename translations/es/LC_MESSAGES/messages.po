@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-11-10 19:55+0000\n"
 "PO-Revision-Date: 2026-01-25 07:33+0000\n"
-"Last-Translator: Neyzer <neyzertoledo@gmail.com>\n"
+"Last-Translator: Joaquín Villalba <joaco-mono@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/minetest/"
 "contentdb/es/>\n"
 "Language: es\n"
@@ -1607,7 +1607,7 @@ msgstr "Categoría"
 
 #: app/blueprints/report/__init__.py:38
 msgid "Subject / Title"
-msgstr "Asunto / Titulo"
+msgstr "Asunto / Título"
 
 #: app/blueprints/report/__init__.py:39 app/templates/users/modtools.html:79
 msgid "Message"
@@ -2081,19 +2081,21 @@ msgstr "Configurar versiones"
 
 #: app/logic/package_approval.py:109
 msgid "Release is still importing. Please wait and reload the page."
-msgstr ""
+msgstr "La versión aún se está importando. Espere y recargue la página."
 
 #: app/logic/package_approval.py:110
 msgid "View task"
-msgstr ""
+msgstr "Ver tarea"
 
 #: app/logic/package_approval.py:116
 msgid "Release validation failed. Please fix any issues and create a new release"
 msgstr ""
+"Error en la validación de la versión. Corrija los problemas y cree una nueva "
+"versión"
 
 #: app/logic/package_approval.py:117
 msgid "View error"
-msgstr ""
+msgstr "Ver error"
 
 #: app/logic/package_approval.py:124
 msgid "You need to add at least one screenshot."
@@ -2244,31 +2246,31 @@ msgstr ""
 
 #: app/models/__init__.py:148
 msgid "Account deletion"
-msgstr ""
+msgstr "Borrar cuenta"
 
 #: app/models/__init__.py:150
 msgid "Copyright infringement / DMCA"
-msgstr ""
+msgstr "Infracción de derechos de autor / DMCA"
 
 #: app/models/__init__.py:152
 msgid "User behaviour, bullying, or abuse"
-msgstr ""
+msgstr "Comportamiento del usuario, acoso o abuso"
 
 #: app/models/__init__.py:154
 msgid "Spam"
-msgstr ""
+msgstr "Spam"
 
 #: app/models/__init__.py:156
 msgid "Illegal or harmful content"
-msgstr ""
+msgstr "Contenido ilegal o dañino"
 
 #: app/models/__init__.py:158
 msgid "Outdated/invalid review"
-msgstr ""
+msgstr "Reseña obsoleta o inválida"
 
 #: app/models/__init__.py:160
 msgid "Appeal"
-msgstr ""
+msgstr "Apelar"
 
 #. NOTE: OTHER notification type
 #: app/models/__init__.py:162 app/models/users.py:472
@@ -2430,7 +2432,7 @@ msgstr "Borrar"
 
 #: app/models/packages.py:1104
 msgid "Processing"
-msgstr ""
+msgstr "Procesando"
 
 #: app/models/packages.py:1106 app/templates/packages/release_edit.html:50
 #: app/templates/packages/screenshot_edit.html:20
@@ -2439,15 +2441,15 @@ msgstr "Aprobado"
 
 #: app/models/packages.py:1108
 msgid "Failed"
-msgstr ""
+msgstr "Fallido"
 
 #: app/models/packages.py:1110
 msgid "Waiting approval"
-msgstr ""
+msgstr "Esperando aprobación"
 
 #: app/models/packages.py:1112
 msgid "Archived"
-msgstr ""
+msgstr "Archivado"
 
 #: app/models/packages.py:1440
 #, python-format
@@ -2758,7 +2760,7 @@ msgstr "Contáctenos"
 
 #: app/templates/base.html:262
 msgid "Terms of Service"
-msgstr ""
+msgstr "Términos de Servicio"
 
 #: app/templates/base.html:263
 msgid "Policy and Guidance"
@@ -2903,7 +2905,7 @@ msgstr "Causado por un usuario borrado."
 
 #: app/templates/admin/list.html:16
 msgid "User list"
-msgstr ""
+msgstr "Lista de usuarios"
 
 #: app/templates/admin/send_bulk_email.html:4
 msgid "Send bulk email"
@@ -3937,6 +3939,8 @@ msgid ""
 "<i>modpack</i> anywhere in the short description. It is unnecessary and "
 "wastes characters."
 msgstr ""
+"Consejo: No incluyas <i>Luanti</i>, <i>Minetest</i>, <i>mod</i> ni <i>"
+"modpack</i> en la descripción corta. Es innecesario y desperdicia caracteres."
 
 #: app/templates/packages/create_edit.html:88
 msgid ""
@@ -4664,6 +4668,8 @@ msgid ""
 "Please make sure you read ContentDB's <a href='/terms/'>Terms of "
 "Service</a>"
 msgstr ""
+"Asegúrese de leer los <a href=\"/terms/\">Términos de Servicio</a> de "
+"ContentDB"
 
 #: app/templates/packages/review_create_edit.html:25
 #: app/templates/threads/new.html:16
