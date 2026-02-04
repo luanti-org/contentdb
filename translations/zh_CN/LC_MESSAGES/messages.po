@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-11-10 19:55+0000\n"
-"PO-Revision-Date: 2025-10-02 18:02+0000\n"
-"Last-Translator: y5nw <y5nw@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2025-12-04 08:00+0000\n"
+"Last-Translator: IFRFSX <1079092922@qq.com>\n"
+"Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
+"projects/minetest/contentdb/zh_Hans/>\n"
 "Language: zh_CN\n"
-"Language-Team: Chinese (Simplified Han script) "
-"<https://hosted.weblate.org/projects/minetest/contentdb/zh_Hans/>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.15-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: app/__init__.py:155
@@ -388,7 +389,7 @@ msgstr "&lt;16px"
 #: app/_translations.py:120
 msgctxt "tags"
 msgid "For less than 16px texture packs "
-msgstr ""
+msgstr "适用于小于16像素的纹理包 "
 
 #. NOTE: tags: title for library
 #: app/_translations.py:122
@@ -1536,7 +1537,7 @@ msgstr "封面图像"
 
 #: app/blueprints/report/__init__.py:35
 msgid "Category"
-msgstr ""
+msgstr "类别"
 
 #: app/blueprints/report/__init__.py:38
 msgid "Subject / Title"
@@ -1995,19 +1996,19 @@ msgstr "设置发行版"
 
 #: app/logic/package_approval.py:109
 msgid "Release is still importing. Please wait and reload the page."
-msgstr ""
+msgstr "发布（版本）仍在导入中。请稍候并重新加载页面。"
 
 #: app/logic/package_approval.py:110
 msgid "View task"
-msgstr ""
+msgstr "查看任务"
 
 #: app/logic/package_approval.py:116
 msgid "Release validation failed. Please fix any issues and create a new release"
-msgstr ""
+msgstr "发布验证失败。请修复所有问题并创建一个新的发布版本"
 
 #: app/logic/package_approval.py:117
 msgid "View error"
-msgstr ""
+msgstr "查看错误"
 
 #: app/logic/package_approval.py:124
 msgid "You need to add at least one screenshot."
@@ -2140,27 +2141,27 @@ msgstr "删除账号"
 
 #: app/models/__init__.py:150
 msgid "Copyright infringement / DMCA"
-msgstr ""
+msgstr "版权侵犯 / DMCA"
 
 #: app/models/__init__.py:152
 msgid "User behaviour, bullying, or abuse"
-msgstr ""
+msgstr "用户行为、欺凌或滥用"
 
 #: app/models/__init__.py:154
 msgid "Spam"
-msgstr ""
+msgstr "垃圾信息"
 
 #: app/models/__init__.py:156
 msgid "Illegal or harmful content"
-msgstr ""
+msgstr "非法或有害内容"
 
 #: app/models/__init__.py:158
 msgid "Outdated/invalid review"
-msgstr ""
+msgstr "过时/无效的评论"
 
 #: app/models/__init__.py:160
 msgid "Appeal"
-msgstr ""
+msgstr "申诉"
 
 #. NOTE: OTHER notification type
 #: app/models/__init__.py:162 app/models/users.py:472
@@ -6891,4 +6892,3 @@ msgstr "请考虑启用电子邮件通知，您可以自定义发送的数量"
 
 #~ msgid "Waiting for approval."
 #~ msgstr "等待批准。"
-
