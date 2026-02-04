@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-11-10 19:55+0000\n"
-"PO-Revision-Date: 2025-11-10 17:51+0000\n"
-"Last-Translator: Unacceptium <unacceptium@proton.me>\n"
+"PO-Revision-Date: 2025-11-25 10:51+0000\n"
+"Last-Translator: Gergely Polonkai <gergely@polonkai.eu>\n"
+"Language-Team: Hungarian <https://hosted.weblate.org/projects/minetest/"
+"contentdb/hu/>\n"
 "Language: hu\n"
-"Language-Team: Hungarian "
-"<https://hosted.weblate.org/projects/minetest/contentdb/hu/>\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: app/__init__.py:155
@@ -380,13 +381,13 @@ msgstr "A 2024-es Luanti Game Jam résztvevői"
 #: app/_translations.py:110
 msgctxt "tags"
 msgid "Jam / Game 2025"
-msgstr ""
+msgstr "Jam / Játék 2025"
 
 #. NOTE: tags: description for jam_game_2025
 #: app/_translations.py:112
 msgctxt "tags"
 msgid "Entries to the 2025 Luanti Game Jam"
-msgstr ""
+msgstr "A 2025-ös Luanti Game Jam résztvevői"
 
 #. NOTE: tags: title for jam_weekly_2021
 #: app/_translations.py:114
@@ -1207,12 +1208,10 @@ msgid "Downloads"
 msgstr "Letöltések"
 
 #: app/blueprints/packages/advanced_search.py:88
-#, fuzzy
 msgid "Created At"
 msgstr "Készítve"
 
 #: app/blueprints/packages/advanced_search.py:89
-#, fuzzy
 msgid "Approved At"
 msgstr "Jóváhagyva"
 
@@ -1602,11 +1601,11 @@ msgstr "Borítókép"
 
 #: app/blueprints/report/__init__.py:35
 msgid "Category"
-msgstr ""
+msgstr "Kategória"
 
 #: app/blueprints/report/__init__.py:38
 msgid "Subject / Title"
-msgstr ""
+msgstr "Tárgy / Cím"
 
 #: app/blueprints/report/__init__.py:39 app/templates/users/modtools.html:79
 msgid "Message"
@@ -1614,7 +1613,7 @@ msgstr "Üzenet"
 
 #: app/blueprints/report/__init__.py:40
 msgid "Image Upload"
-msgstr ""
+msgstr "Képfeltöltés"
 
 #: app/blueprints/report/__init__.py:41 app/templates/macros/threads.html:51
 #: app/templates/packages/view.html:706 app/templates/report/report.html:4
@@ -7081,4 +7080,3 @@ msgstr ""
 
 #~ msgid "Waiting for approval."
 #~ msgstr ""
-
