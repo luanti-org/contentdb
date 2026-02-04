@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-11-10 19:55+0000\n"
-"PO-Revision-Date: 2022-08-25 11:19+0000\n"
-"Last-Translator: Văn Chí <chiv8331@gmail.com>\n"
+"PO-Revision-Date: 2025-11-21 00:51+0000\n"
+"Last-Translator: Nguyễn Phạm Hải Đăng <abcsgamers@gmail.com>\n"
+"Language-Team: Vietnamese <https://hosted.weblate.org/projects/minetest/"
+"contentdb/vi/>\n"
 "Language: vi\n"
-"Language-Team: Vietnamese "
-"<https://hosted.weblate.org/projects/minetest/contentdb/vi/>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.15-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: app/__init__.py:155
@@ -25,13 +26,13 @@ msgstr "Đã bị cấm:"
 
 #: app/__init__.py:157
 msgid "You have been banned."
-msgstr "Bạn đã và đang bị cấm."
+msgstr "Bạn đã bị cấm."
 
 #. NOTE: tags: title for 128px
 #: app/_translations.py:6
 msgctxt "tags"
 msgid "128px+"
-msgstr ""
+msgstr "128px+"
 
 #. NOTE: tags: description for 128px
 #: app/_translations.py:8
@@ -44,52 +45,49 @@ msgstr "Gói Kết cấu Hàng đầu"
 #: app/_translations.py:10
 msgctxt "tags"
 msgid "16px"
-msgstr ""
+msgstr "16px"
 
 #. NOTE: tags: description for 16px
 #: app/_translations.py:12
-#, fuzzy
 msgctxt "tags"
 msgid "For 16px texture packs"
-msgstr "Gói Kết cấu Hàng đầu"
+msgstr "Gói Kết cấu 16px Hàng đầu"
 
 #. NOTE: tags: title for 32px
 #: app/_translations.py:14
 msgctxt "tags"
 msgid "32px"
-msgstr ""
+msgstr "32px"
 
 #. NOTE: tags: description for 32px
 #: app/_translations.py:16
-#, fuzzy
 msgctxt "tags"
 msgid "For 32px texture packs"
-msgstr "Gói Kết cấu Hàng đầu"
+msgstr "Dành cho gói kết cấu 32px"
 
 #. NOTE: tags: title for 64px
 #: app/_translations.py:18
 msgctxt "tags"
 msgid "64px"
-msgstr ""
+msgstr "64px"
 
 #. NOTE: tags: description for 64px
 #: app/_translations.py:20
-#, fuzzy
 msgctxt "tags"
 msgid "For 64px texture packs"
-msgstr "Gói Kết cấu Hàng đầu"
+msgstr "Dành cho gói kết cấu 64px"
 
 #. NOTE: tags: title for adventure__rpg
 #: app/_translations.py:22
 msgctxt "tags"
 msgid "Adventure / RPG"
-msgstr ""
+msgstr "Phiêu lưu / RPG"
 
 #. NOTE: tags: title for april_fools
 #: app/_translations.py:24
 msgctxt "tags"
 msgid "Joke"
-msgstr ""
+msgstr "Trò đùa cá tháng tư"
 
 #. NOTE: tags: description for april_fools
 #: app/_translations.py:26
@@ -98,12 +96,14 @@ msgid ""
 "For humorous content, meant as a novelty or joke, not to be taken "
 "seriously, and that is not meant to be used seriously or long-term."
 msgstr ""
+"Đối với nội dung hài hước, có ý nghĩa là mới lạ hoặc trò đùa, không được coi "
+"trọng và không có ý định sử dụng nghiêm túc hoặc lâu dài."
 
 #. NOTE: tags: title for building
 #: app/_translations.py:28
 msgctxt "tags"
 msgid "Building"
-msgstr ""
+msgstr "Xây dựng"
 
 #. NOTE: tags: description for building
 #: app/_translations.py:30
@@ -7014,4 +7014,3 @@ msgstr "Xin hãy cho phép email thông báo, bạn có thể tùy chỉnh bao n
 
 #~ msgid "Waiting for approval."
 #~ msgstr "Chờ phê duyệt."
-
