@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-11-10 19:55+0000\n"
-"PO-Revision-Date: 2026-01-12 10:01+0000\n"
-"Last-Translator: Lukáš Lizák <lukas.lizak15@gmail.com>\n"
+"PO-Revision-Date: 2026-01-17 22:01+0000\n"
+"Last-Translator: Pexauteau Santander <pexauteau@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/minetest/"
 "contentdb/sk/>\n"
 "Language: sk\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.15.1\n"
+"X-Generator: Weblate 5.15.2\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: app/__init__.py:155
@@ -38,7 +38,7 @@ msgstr "128+ pixelov"
 #: app/_translations.py:8
 msgctxt "tags"
 msgid "For 128px or higher texture packs"
-msgstr "Balíčky 128 pixelových a vyšších textúr"
+msgstr "Balíčky textúr 128 pixelov a vyššie"
 
 #. NOTE: tags: title for 16px
 #: app/_translations.py:10
@@ -50,7 +50,7 @@ msgstr "16 pixelov"
 #: app/_translations.py:12
 msgctxt "tags"
 msgid "For 16px texture packs"
-msgstr "Balíčky 16 pixelových textúr"
+msgstr "Balíčky textúr 16 pixelov"
 
 #. NOTE: tags: title for 32px
 #: app/_translations.py:14
@@ -62,7 +62,7 @@ msgstr "32 pixelov"
 #: app/_translations.py:16
 msgctxt "tags"
 msgid "For 32px texture packs"
-msgstr "Balíčky 32 pixelových textúr"
+msgstr "Balíčky textúr 32 pixelov"
 
 #. NOTE: tags: title for 64px
 #: app/_translations.py:18
@@ -74,7 +74,7 @@ msgstr "64 pixelov"
 #: app/_translations.py:20
 msgctxt "tags"
 msgid "For 64px texture packs"
-msgstr "Balíčky 64 pixelových textúr"
+msgstr "Balíčky textúr 64 pixelov"
 
 #. NOTE: tags: title for adventure__rpg
 #: app/_translations.py:22
@@ -108,7 +108,7 @@ msgstr "Budovanie"
 #: app/_translations.py:30
 msgctxt "tags"
 msgid "Focuses on building, such as adding new materials or nodes"
-msgstr "Sústreďuje sa na budovanie, napríklad pridaním nových materiálov či kociek"
+msgstr "Zamerané na budovanie; pridáva nové materiály či kocky"
 
 #. NOTE: tags: title for building_mechanics
 #: app/_translations.py:32
@@ -180,7 +180,7 @@ msgstr "Veľké zmeny pre vytváranie"
 #: app/_translations.py:52
 msgctxt "tags"
 msgid "Creative"
-msgstr "Pre tvorivý svet"
+msgstr "Tvorivý režim"
 
 #. NOTE: tags: description for creative
 #: app/_translations.py:54
@@ -190,9 +190,9 @@ msgid ""
 "content only available through a creative inventory, or provides tools "
 "that facilitate ingame creation and doesn't add difficulty or scarcity"
 msgstr ""
-"Vytvorené zvlášť alebo výnimočne pre použitie v kreatívnom režime. "
-"Pridáva obsah dostupný iba v kreatívnej ponuke alebo pridáva nástroje, "
-"ktoré uľahčujú tvorenie v hre a nepridávajú obtiažnosť alebo nedostatok"
+"Vytvorené zvlášť alebo výnimočne pre použitie v tvorivom režime. Pridáva "
+"obsah dostupný iba v tvorivej ponuke alebo pridáva nástroje, ktoré uľahčujú "
+"tvorenie v hre a nepridávajú obtiažnosť alebo nedostatok"
 
 #. NOTE: tags: title for custom_mapgen
 #: app/_translations.py:56
@@ -220,7 +220,7 @@ msgstr "Ozdoby"
 #: app/_translations.py:62
 msgctxt "tags"
 msgid "Adds nodes with no other purpose than for use in building"
-msgstr "Pridáva kocky iba s úmyslom na budovanie"
+msgstr "Pridáva kocky iba na budovanie"
 
 #. NOTE: tags: title for developer_tools
 #: app/_translations.py:64
@@ -232,7 +232,7 @@ msgstr "Nástroje pre vývojárov"
 #: app/_translations.py:66
 msgctxt "tags"
 msgid "Tools for game and mod developers"
-msgstr "Nástroje pre vývojárov hier a módov"
+msgstr "Nástroje pre vývojárov hier a úprav"
 
 #. NOTE: tags: title for education
 #: app/_translations.py:68
@@ -308,85 +308,85 @@ msgstr "Inventár"
 #: app/_translations.py:88
 msgctxt "tags"
 msgid "Changes the inventory GUI"
-msgstr "Zmeny GUI inventára"
+msgstr "Mení užívateľské rozhranie inventára"
 
 #. NOTE: tags: title for jam_combat_mod
 #: app/_translations.py:90
 msgctxt "tags"
 msgid "Jam / Combat 2020"
-msgstr "Jam / Boj 2020"
+msgstr "Výzva / Boj 2020"
 
 #. NOTE: tags: description for jam_combat_mod
 #: app/_translations.py:92
 msgctxt "tags"
 msgid "For mods created for the Discord \"Combat\" modding event in 2020"
-msgstr "Pre módy vytvorené pre Discord udalosť \"Combat\" v roku 2020"
+msgstr "Pre úpravy vytvorené pre Discord udalosť \"Combat\" v roku 2020"
 
 #. NOTE: tags: title for jam_game_2021
 #: app/_translations.py:94
 msgctxt "tags"
 msgid "Jam / Game 2021"
-msgstr "Jam / Hra 2020"
+msgstr "Výzva / Hra 2020"
 
 #. NOTE: tags: description for jam_game_2021
 #: app/_translations.py:96
 msgctxt "tags"
 msgid "Entries to the 2021 Minetest Game Jam"
-msgstr "Hry navrhnuté pre Minetest Game Jam 2021"
+msgstr "Hry navrhnuté pre Minetest Game Výzvu roku 2021"
 
 #. NOTE: tags: title for jam_game_2022
 #: app/_translations.py:98
 msgctxt "tags"
 msgid " Jam / Game 2022"
-msgstr " Jam / Hra 2022"
+msgstr " Výzva / Hra 2022"
 
 #. NOTE: tags: description for jam_game_2022
 #: app/_translations.py:100
 msgctxt "tags"
 msgid "Entries to the 2022 Minetest Game Jam "
-msgstr "Hry navrhnuté pre Minetest Game Jam 2022 "
+msgstr "Hry navrhnuté pre Minetest Game výzvu roku 2022 "
 
 #. NOTE: tags: title for jam_game_2023
 #: app/_translations.py:102
 msgctxt "tags"
 msgid "Jam / Game 2023"
-msgstr "Jam / Hra 2023"
+msgstr "Výzva / Hra 2023"
 
 #. NOTE: tags: description for jam_game_2023
 #: app/_translations.py:104
 msgctxt "tags"
 msgid "Entries to the 2023 Minetest Game Jam "
-msgstr "Hry navrhnuté pre Minetest Game Jam 2023 "
+msgstr "Hry navrhnuté pre Minetest Game výzvu roku 2023 "
 
 #. NOTE: tags: title for jam_game_2024
 #: app/_translations.py:106
 msgctxt "tags"
 msgid "Jam / Game 2024"
-msgstr ""
+msgstr "Výzva 2024"
 
 #. NOTE: tags: description for jam_game_2024
 #: app/_translations.py:108
 msgctxt "tags"
 msgid "Entries to the 2024 Luanti Game Jam"
-msgstr ""
+msgstr "Príspevky do Luanti výzvy za rok 2024"
 
 #. NOTE: tags: title for jam_game_2025
 #: app/_translations.py:110
 msgctxt "tags"
 msgid "Jam / Game 2025"
-msgstr ""
+msgstr "Výzva 2025"
 
 #. NOTE: tags: description for jam_game_2025
 #: app/_translations.py:112
 msgctxt "tags"
 msgid "Entries to the 2025 Luanti Game Jam"
-msgstr ""
+msgstr "Príspevky do Luanti výzvy pre rok 2025"
 
 #. NOTE: tags: title for jam_weekly_2021
 #: app/_translations.py:114
 msgctxt "tags"
 msgid "Jam / Weekly Challenges 2021"
-msgstr "Jam / Týždenné výzvy 2021"
+msgstr "Výzva / Týždenné výzvy 2021"
 
 #. NOTE: tags: description for jam_weekly_2021
 #: app/_translations.py:116
@@ -395,7 +395,7 @@ msgid ""
 "For mods created for the Discord \"Weekly Challenges\" modding event in "
 "2021"
 msgstr ""
-"Pre módy vytvorené pre Discord udalosť \"Weekly Challenges\" z roku 2021"
+"Pre úpravy vytvorené pre Discord udalosť \"Weekly Challenges\" z roku 2021"
 
 #. NOTE: tags: title for less_than_px
 #: app/_translations.py:118
@@ -407,7 +407,7 @@ msgstr "Menej než 16 pixelov"
 #: app/_translations.py:120
 msgctxt "tags"
 msgid "For less than 16px texture packs "
-msgstr ""
+msgstr "Pre balíčky textúr s rozlíšením menším než 16px. "
 
 #. NOTE: tags: title for library
 #: app/_translations.py:122
@@ -419,7 +419,7 @@ msgstr "API / Knižnice"
 #: app/_translations.py:124
 msgctxt "tags"
 msgid "Primarily adds an API for other mods to use"
-msgstr "Primárne dodáva API pre použitie u iných módov"
+msgstr "Primárne dodáva API pre použitie u iných úprav"
 
 #. NOTE: tags: title for magic
 #: app/_translations.py:126
@@ -467,19 +467,19 @@ msgstr "Pridáva škodnú, zvieratá a nehrateľné postavy"
 #: app/_translations.py:140
 msgctxt "tags"
 msgid "Minetest Game improved"
-msgstr ""
+msgstr "Vylepšenie Minetest hry"
 
 #. NOTE: tags: description for mtg
 #: app/_translations.py:142
 msgctxt "tags"
 msgid "Forks of Minetest Game"
-msgstr ""
+msgstr "Odnože Minetest hry"
 
 #. NOTE: tags: title for multiplayer
 #: app/_translations.py:144
 msgctxt "tags"
 msgid "Multiplayer-focused"
-msgstr "S ohľadom na hry viacerých hráčov"
+msgstr "Pre hry viacerých hráčov"
 
 #. NOTE: tags: description for multiplayer
 #: app/_translations.py:146
@@ -507,7 +507,7 @@ msgstr ""
 #: app/_translations.py:152
 msgctxt "tags"
 msgid "Plants and Farming"
-msgstr "Rastliny a záhradkárstvo"
+msgstr "Rastliny a zahradničenie"
 
 #. NOTE: tags: description for plants_and_farming
 #: app/_translations.py:154
@@ -575,7 +575,7 @@ msgstr "Navrhnuté pre súťaživosť medzi hráčmi"
 #: app/_translations.py:172
 msgctxt "tags"
 msgid "Seasonal"
-msgstr "Sezónny"
+msgstr "Ročné obdobia"
 
 #. NOTE: tags: description for seasonal
 #: app/_translations.py:174
@@ -587,7 +587,7 @@ msgstr "Pre obsah zameraný hlavne na konkrétne ročné obdobia alebo sviatky"
 #: app/_translations.py:176
 msgctxt "tags"
 msgid "Server Moderation and Tools"
-msgstr "Moderovanie Servera a Nástroje"
+msgstr "Správa Servera a Nástroje"
 
 #. NOTE: tags: description for server_tools
 #: app/_translations.py:178
@@ -620,8 +620,8 @@ msgid ""
 "Mods and games that aim to simulate real life activity. Similar to "
 "SimCity/The Sims/OpenTTD/etc."
 msgstr ""
-"Módy a hry, ktoré sa zameriavajú na simuláciu skutočných životných aktivít. "
-"Podobajú sa na SimCity/The Sims/OpenTTD/ atď."
+"Úpravy a hry, ktoré sa zameriavajú na simuláciu skutočných životných "
+"aktivít. Podobajú sa na SimCity/The Sims/OpenTTD/ atď."
 
 #. NOTE: tags: title for singleplayer
 #: app/_translations.py:188
@@ -1025,7 +1025,7 @@ msgstr "Druh aplikácie"
 
 #: app/blueprints/oauth/__init__.py:198
 msgid "An OAuth client with that title already exists. Please choose a new title."
-msgstr ""
+msgstr "OAuth klient s týmto názvom už existuje. Prosím, vyber iný názov."
 
 #: app/blueprints/oauth/__init__.py:262
 msgid "Revoked all user tokens"
@@ -1582,11 +1582,11 @@ msgstr "Náhľadový obrázok"
 
 #: app/blueprints/report/__init__.py:35
 msgid "Category"
-msgstr ""
+msgstr "Kategória"
 
 #: app/blueprints/report/__init__.py:38
 msgid "Subject / Title"
-msgstr ""
+msgstr "Subjekt / Titulka"
 
 #: app/blueprints/report/__init__.py:39 app/templates/users/modtools.html:79
 msgid "Message"
@@ -1594,7 +1594,7 @@ msgstr "Správa"
 
 #: app/blueprints/report/__init__.py:40
 msgid "Image Upload"
-msgstr ""
+msgstr "Nahrať obrázok"
 
 #: app/blueprints/report/__init__.py:41 app/templates/macros/threads.html:51
 #: app/templates/packages/view.html:706 app/templates/report/report.html:4
@@ -2058,18 +2058,20 @@ msgstr "Nastav vydania"
 #: app/logic/package_approval.py:109
 msgid "Release is still importing. Please wait and reload the page."
 msgstr ""
+"Toto vydanie sa stále nahráva. Prosím vyčkaj a znovu načítaj túto stránku."
 
 #: app/logic/package_approval.py:110
 msgid "View task"
-msgstr ""
+msgstr "Pozri úlohu"
 
 #: app/logic/package_approval.py:116
 msgid "Release validation failed. Please fix any issues and create a new release"
 msgstr ""
+"Kontrola tohto vydania zlyhala. Prosím, oprav chyby a vytvor nové vydanie"
 
 #: app/logic/package_approval.py:117
 msgid "View error"
-msgstr ""
+msgstr "Pozri chybovú správu"
 
 #: app/logic/package_approval.py:124
 msgid "You need to add at least one screenshot."
@@ -2151,7 +2153,7 @@ msgstr ""
 
 #: app/logic/releases.py:41
 msgid "A release with this name already exists"
-msgstr ""
+msgstr "Vydanie s týmto názvom už existuje"
 
 #: app/logic/releases.py:80
 msgid "Invalid commit hash; it must be a 40 character long base16 string"
@@ -2210,31 +2212,31 @@ msgstr ""
 
 #: app/models/__init__.py:148
 msgid "Account deletion"
-msgstr ""
+msgstr "Vymazanie účtu"
 
 #: app/models/__init__.py:150
 msgid "Copyright infringement / DMCA"
-msgstr ""
+msgstr "Porušenie autorských práv / DMCA"
 
 #: app/models/__init__.py:152
 msgid "User behaviour, bullying, or abuse"
-msgstr ""
+msgstr "Správanie používateľov, šikana alebo zneužívanie"
 
 #: app/models/__init__.py:154
 msgid "Spam"
-msgstr ""
+msgstr "Spam"
 
 #: app/models/__init__.py:156
 msgid "Illegal or harmful content"
-msgstr ""
+msgstr "Nelegálny alebo škodlivý obsah"
 
 #: app/models/__init__.py:158
 msgid "Outdated/invalid review"
-msgstr ""
+msgstr "Zastaraná/neplatná recenzia"
 
 #: app/models/__init__.py:160
 msgid "Appeal"
-msgstr ""
+msgstr "Odvolať sa"
 
 #. NOTE: OTHER notification type
 #: app/models/__init__.py:162 app/models/users.py:472
@@ -2396,7 +2398,7 @@ msgstr "Vymazať"
 
 #: app/models/packages.py:1104
 msgid "Processing"
-msgstr ""
+msgstr "Spracovávanie"
 
 #: app/models/packages.py:1106 app/templates/packages/release_edit.html:50
 #: app/templates/packages/screenshot_edit.html:20
@@ -2405,15 +2407,15 @@ msgstr "Schválené"
 
 #: app/models/packages.py:1108
 msgid "Failed"
-msgstr ""
+msgstr "Zlyhanie"
 
 #: app/models/packages.py:1110
 msgid "Waiting approval"
-msgstr ""
+msgstr "Čaká sa na schválenie"
 
 #: app/models/packages.py:1112
 msgid "Archived"
-msgstr ""
+msgstr "Archivované"
 
 #: app/models/packages.py:1440
 #, python-format
@@ -2554,43 +2556,44 @@ msgstr "Toto sú ostatné upozornenia."
 
 #: app/models/users.py:507
 msgid "When another user edits your packages, releases, etc."
-msgstr ""
+msgstr "V prípade, keď iný používateľ upraví tvoj balíček, vydanie, atď."
 
 #: app/models/users.py:509
 msgid "Notifications from editors related to the package approval process."
 msgstr ""
+"Oznámenia od upravovateľov, ktoré súvisia so schvaľovacím procesom balíčka."
 
 #: app/models/users.py:511
 msgid "When a thread is created on your package."
-msgstr ""
+msgstr "Ak je vytvorené vlákno k tvojmu balíčku."
 
 #: app/models/users.py:513
 msgid "When a user posts a review on your package."
-msgstr ""
+msgstr "Ak nejaký používateľ pošle recenziu k tvojmu balíčku."
 
 #: app/models/users.py:515
 msgid "When someone replies to a thread you're watching."
-msgstr ""
+msgstr "Ak niekto odpovie vo vlákne, ktoré sleduješ."
 
 #: app/models/users.py:517
 msgid "From a bot - for example, update notifications."
-msgstr ""
+msgstr "Od bota - napr. aktualizácia upozornení."
 
 #: app/models/users.py:519
 msgid "When your package's maintainers change."
-msgstr ""
+msgstr "Ak sa zmení správca tvojho balíčka."
 
 #: app/models/users.py:521
 msgid "For editors: Important alerts."
-msgstr ""
+msgstr "Pre upravovateľov: Dôležité upozornenia."
 
 #: app/models/users.py:523
 msgid "For editors: Minor notifications, including new threads."
-msgstr ""
+msgstr "Pre upravovateľov: Menšie upozornenia, vrátane nových vláken."
 
 #: app/models/users.py:525
 msgid "Minor notifications not important enough for a dedicated category."
-msgstr ""
+msgstr "Menšie upozornenia, nedostatočne dôležité pre priradenú kategóriu."
 
 #: app/tasks/emails.py:122
 msgid ""
@@ -2688,7 +2691,7 @@ msgstr "Prehľad"
 
 #: app/templates/base.html:159
 msgid "My Collections"
-msgstr ""
+msgstr "Moja zbierka"
 
 #: app/templates/base.html:183 app/templates/packages/release_new.html:12
 msgid "Settings"
@@ -2702,7 +2705,7 @@ msgstr "Odhlásiť"
 #: app/templates/admin/languages/list.html:10 app/templates/base.html:199
 #: app/templates/packages/view.html:620 app/utils/luanti_hypertext.py:288
 msgid "Languages"
-msgstr ""
+msgstr "Jazyky"
 
 #: app/templates/base.html:216 app/templates/translate/index.html:76
 msgid "Help translate ContentDB"
@@ -2714,11 +2717,11 @@ msgstr "Opis"
 
 #: app/templates/base.html:261
 msgid "Contact Us"
-msgstr ""
+msgstr "Kontaktuj nás"
 
 #: app/templates/base.html:262
 msgid "Terms of Service"
-msgstr ""
+msgstr "Podmienky používania"
 
 #: app/templates/base.html:263
 msgid "Policy and Guidance"
@@ -2735,7 +2738,7 @@ msgstr "API"
 
 #: app/templates/base.html:266
 msgid "RSS / Feeds"
-msgstr ""
+msgstr "RSS / Vlákna"
 
 #: app/templates/base.html:267
 msgid "Privacy Policy"
@@ -2747,7 +2750,7 @@ msgstr "Nahlásiť / DMCA"
 
 #: app/templates/base.html:271 app/templates/packages/advanced_search.html:4
 msgid "Advanced Search"
-msgstr ""
+msgstr "Pokročilé vyhľadávanie"
 
 #: app/templates/base.html:272
 msgid "User List"
@@ -2761,15 +2764,15 @@ msgstr "Vlákna"
 #: app/templates/base.html:274 app/templates/collections/list.html:7
 #: app/templates/collections/list.html:26
 msgid "Collections"
-msgstr ""
+msgstr "Zbierky"
 
 #: app/templates/base.html:275 app/templates/donate/index.html:4
 msgid "Support Creators"
-msgstr ""
+msgstr "Podpor tvorcov"
 
 #: app/templates/base.html:276
 msgid "Translate Packages"
-msgstr ""
+msgstr "Preklad balíčkov"
 
 #: app/templates/base.html:277
 msgid "Source Code"
@@ -2777,16 +2780,16 @@ msgstr "Zdrojový kód"
 
 #: app/templates/base.html:283
 msgid "Show non-free packages"
-msgstr ""
+msgstr "Ukázať platené balíčky"
 
 #: app/templates/base.html:285
 msgid "Hide non-free packages"
-msgstr ""
+msgstr "Skryť platené balíčky"
 
 #: app/templates/base.html:290
 #, python-format
 msgid "Our privacy policy has been updated (%(date)s)"
-msgstr ""
+msgstr "Naše Pravidlá ochrany boli aktualizované (%(date)s)"
 
 #: app/templates/index.html:4
 msgid "Welcome"
@@ -2841,7 +2844,7 @@ msgstr "Najviac hodnotené"
 
 #: app/templates/index.html:193
 msgid "All reviews"
-msgstr ""
+msgstr "Všetky recenzie"
 
 #: app/templates/index.html:195
 msgid "Recent Positive Reviews"
@@ -2863,7 +2866,7 @@ msgstr "Spôsobené vymazaným užívateľom."
 
 #: app/templates/admin/list.html:16
 msgid "User list"
-msgstr ""
+msgstr "Zoznam používateľov"
 
 #: app/templates/admin/send_bulk_email.html:4
 msgid "Send bulk email"
@@ -2889,15 +2892,15 @@ msgstr "Balík"
 #: app/templates/collections/create_edit.html:61
 #: app/templates/threads/user_comments.html:80
 msgid "No results"
-msgstr ""
+msgstr "Žiadne výsledky"
 
 #: app/templates/admin/languages/list.html:19
 msgid "Id"
-msgstr ""
+msgstr "Identifikátor (ID)"
 
 #: app/templates/admin/languages/list.html:33
 msgid "Has ContentDB translation?"
-msgstr ""
+msgstr "Má ContentDB preklad?"
 
 #: app/templates/admin/licenses/list.html:8
 msgid "New License"
@@ -2942,11 +2945,11 @@ msgstr "Vytvoriť API token"
 #: app/templates/api/create_edit_token.html:25
 #, python-format
 msgid "This token was created by the application '%(title)s' by %(author)s."
-msgstr ""
+msgstr "Tento token bol vytvorený aplikáciou '%(title)s' od %(author)s."
 
 #: app/templates/api/create_edit_token.html:26
 msgid "Click 'Delete' to revoke access."
-msgstr ""
+msgstr "Klikni na 'Zmazať' pre odoberanie prístupu."
 
 #: app/templates/api/create_edit_token.html:30
 msgid "API Tokens allow scripts to act on your behalf."
@@ -3002,7 +3005,7 @@ msgstr "API dokumentácia"
 
 #: app/templates/api/list_tokens.html:17
 msgid "Application"
-msgstr ""
+msgstr "Aplikácia"
 
 #: app/templates/api/list_tokens.html:24
 msgid "No tokens created"
@@ -3018,15 +3021,15 @@ msgstr "Upraviť"
 
 #: app/templates/collections/create_edit.html:7
 msgid "New Collection"
-msgstr ""
+msgstr "Nová zbierka"
 
 #: app/templates/collections/create_edit.html:32
 msgid "Users won't be redirected when going to the old URL"
-msgstr ""
+msgstr "Používatelia nebudú presmerovaní, keď použijú starú adresu odkazu URL"
 
 #: app/templates/collections/create_edit.html:46
 msgid "This requires the collection to be public"
-msgstr ""
+msgstr "Vyžaduje sa, aby bola zbierka verejná"
 
 #: app/templates/collections/create_edit.html:76
 #: app/templates/packages/remove.html:36 app/templates/packages/remove.html:90
@@ -3036,17 +3039,17 @@ msgstr "Odstrániť"
 
 #: app/templates/collections/create_edit.html:89
 msgid "You can replace the description with your own"
-msgstr ""
+msgstr "Môžeš zmeniť tento popis svojím vlastným"
 
 #: app/templates/collections/create_edit.html:103
 #, python-brace-format
 msgid "Are you sure you want to remove {title}?"
-msgstr ""
+msgstr "Si si istý/á, že chceš odstrániť {title}?"
 
 #: app/templates/collections/delete.html:4
 #, python-format
 msgid "Delete collection \"%(title)s\" by %(author)s"
-msgstr ""
+msgstr "Vymazať zbierku \"%(title)s\" od %(author)s"
 
 #: app/templates/collections/delete.html:12
 #: app/templates/threads/delete_reply.html:16
@@ -3067,37 +3070,38 @@ msgstr "Zrušiť"
 #: app/templates/collections/view.html:27
 #, python-format
 msgid "%(author)s's collections"
-msgstr ""
+msgstr "%(author)s zbierky"
 
 #: app/templates/collections/list.html:49
 msgid "No collections"
-msgstr ""
+msgstr "Žiadne zbierky"
 
 #: app/templates/collections/package_add_to.html:4
 #, python-format
 msgid "Add %(package_title)s to a collection"
-msgstr ""
+msgstr "Pridaj %(package_title)s do zbierky"
 
 #: app/templates/collections/package_add_to.html:9
 msgid "Create Collection"
-msgstr ""
+msgstr "Vytvoriť zbierku"
 
 #: app/templates/collections/package_add_to.html:39
 msgid "You don't have any collections"
-msgstr ""
+msgstr "Nemáš žiadne zbierky"
 
 #: app/templates/collections/view.html:33
 msgid "Make a copy"
-msgstr ""
+msgstr "Vytvoriť kópiu"
 
 #: app/templates/collections/view.html:54
 #, python-format
 msgid "A collection by %(author)s"
-msgstr ""
+msgstr "Zbierka od %(author)s"
 
 #: app/templates/collections/view.html:69
 msgid "To add a package, go to the package's page and click 'Add to collection'"
 msgstr ""
+"Pre pridanie balíčka, prejdi na stránku balíčka a klikni 'Pridať do zbierky'"
 
 #: app/templates/donate/index.html:8
 msgid "Some content creators are accepting donations for their work."
@@ -3122,29 +3126,34 @@ msgstr "Pozri balík"
 
 #: app/templates/donate/index.html:63
 msgid "Support ContentDB"
-msgstr ""
+msgstr "Podporiť ContentDB"
 
 #: app/templates/donate/index.html:65
 msgid ""
 "You can donate to rubenwardy to cover ContentDB's costs and support "
 "future development."
 msgstr ""
+"Môžeš poslať dar Rubenwardy na pokrytie nákladov ContentDB stránok a na "
+"podporu ich budúcich vylepšení."
 
 #: app/templates/donate/index.html:68
 msgid ""
 "For more information about the cost of ContentDB and what rubenwardy "
 "does, see his donation page:"
 msgstr ""
+"Ak chceš viac informácií o nákladoch ContentDB a čo Rubenwardy robí, pozri "
+"sa na jeho darcovskú stránku:"
 
 #: app/templates/donate/index.html:74
 msgid "Based on your reviews / favorites"
-msgstr ""
+msgstr "Na základe tvojich reakcií / obľúbených"
 
 #: app/templates/donate/index.html:79
 msgid ""
 "No reviewed packages accepting donations. Consider reviewing your "
 "favourite packages"
 msgstr ""
+"Neprezreté balíčky prijímajúce dary. Skús pozrieť svoje obľúbené balíčky"
 
 #: app/templates/donate/index.html:83
 msgid "Sign in to see recommendations based on the packages you've reviewed"
@@ -3224,6 +3233,8 @@ msgstr "Pre vstup môžeš použiť GitHub v prípade, že je prepojený s tvoji
 #: app/templates/emails/unable_to_find_account.html:9
 msgid "Otherwise, you may need to contact the admin for help."
 msgstr ""
+"V opačnom prípade budeš možno potrebovať skontaktovať administrátora a "
+"požiadať o pomoc."
 
 #: app/templates/emails/unable_to_find_account.html:12
 msgid ""
@@ -3322,7 +3333,7 @@ msgstr "Tento balík môže byť odoslaný na schválenie ak je pripravený."
 
 #: app/templates/macros/package_approval.html:46
 msgid "You need to fix the above errors before you can submit for review"
-msgstr ""
+msgstr "Musíš opraviť chyby uvedené vyššie než budeš môcť požiadať o overenie"
 
 #: app/templates/macros/package_approval.html:61
 msgid "Package approval thread"
@@ -3400,11 +3411,11 @@ msgstr "Post recenzia"
 
 #: app/templates/macros/reviews.html:193
 msgid "Report an issue"
-msgstr ""
+msgstr "Nahlásiť problém"
 
 #: app/templates/macros/reviews.html:197
 msgid "Ask a question"
-msgstr ""
+msgstr "Opýtať sa"
 
 #: app/templates/macros/stats.html:15 app/templates/macros/stats.html:20
 #, python-format
@@ -3413,7 +3424,7 @@ msgstr "Balíčky %(display_name)s"
 
 #: app/templates/macros/stats.html:36
 msgid "Date range..."
-msgstr ""
+msgstr "Časové rozpätie..."
 
 #: app/templates/macros/stats.html:50
 msgid "Downloads, past 7 days"
@@ -3425,11 +3436,11 @@ msgstr "Stiahnutí za posledných 30 dní"
 
 #: app/templates/macros/stats.html:56
 msgid "Downloads from $1 to $2"
-msgstr ""
+msgstr "Stiahnutia od $1 do $2"
 
 #: app/templates/macros/stats.html:59
 msgid "$1 per day"
-msgstr ""
+msgstr "$1 na deň"
 
 #: app/templates/macros/stats.html:64
 msgid "JavaScript is required to display charts and statistics"
@@ -3498,7 +3509,7 @@ msgstr "Pozri ContentDB Grafana prehľad pre viac CDB štatistík"
 
 #: app/templates/macros/stats.html:127
 msgid "ContentDB Grafana"
-msgstr "ContentDB Grafana"
+msgstr "Grafana pre ContentDB"
 
 #: app/templates/macros/threads.html:122
 msgid "This thread has been locked by a moderator."
@@ -3633,42 +3644,42 @@ msgstr "Úpravy/Schvaľovanie upozornení"
 #: app/templates/oauth/authorize.html:4
 #, python-format
 msgid "Authorize %(title)s"
-msgstr ""
+msgstr "Uviesť %(title)s"
 
 #: app/templates/oauth/authorize.html:35
 #, python-format
 msgid "wants to access your %(name)s account"
-msgstr ""
+msgstr "žiada prístup k tvojmu účtu %(name)s"
 
 #: app/templates/oauth/authorize.html:46
 msgid "Verified application"
-msgstr ""
+msgstr "Overená požiadavka"
 
 #: app/templates/oauth/authorize.html:49
 msgid "ContentDB trusts this application"
-msgstr ""
+msgstr "ContentDB dôveruje tejto aplikácii"
 
 #: app/templates/oauth/authorize.html:60
 msgid "Public data only"
-msgstr ""
+msgstr "Iba verejné dáta"
 
 #: app/templates/oauth/authorize.html:63
 msgid "Read-only access to your public data"
-msgstr ""
+msgstr "Prístup k tvojim údajom iba na čítanie"
 
 #: app/templates/oauth/authorize.html:76
 msgid "Authorize"
-msgstr ""
+msgstr "Oprávniť"
 
 #: app/templates/oauth/authorize.html:85
 #, python-format
 msgid "About %(title)s"
-msgstr ""
+msgstr "Info o %(title)s"
 
 #: app/templates/oauth/authorize.html:91
 #: app/templates/oauth/create_edit.html:26
 msgid "Application isn't approved yet"
-msgstr ""
+msgstr "Aplikácia zatiaľ nie je schválená"
 
 #: app/templates/oauth/authorize.html:93
 #: app/templates/oauth/create_edit.html:28
@@ -3676,86 +3687,95 @@ msgid ""
 "To allow users other than yourself to log in, you'll need to contact "
 "ContentDB staff and ask them to approve your app."
 msgstr ""
+"Povoliť iným používateľom než si ty sám aby sa prihlásili, budeš musieť "
+"kontaktovať správcov ContentDB a vyžiadať si schválenie svojej aplikácie."
 
 #: app/templates/oauth/create_edit.html:7
 msgid "Create OAuth Client"
-msgstr ""
+msgstr "Vytvoriť OAuth klienta"
 
 #: app/templates/oauth/create_edit.html:36
 #, python-format
 msgid "Your application has %(count)d users"
-msgstr ""
+msgstr "Tvoja aplikácia má %(count)d používateľov"
 
 #: app/templates/oauth/create_edit.html:37
 msgid "Revoke all user tokens"
-msgstr ""
+msgstr "Odobrať tokeny všetkých používateľov"
 
 #: app/templates/oauth/create_edit.html:51
 msgid ""
 "You must keep the secret safe. If you are unable, set the app type to "
 "'client-side'."
 msgstr ""
+"Heslo je potrebné udržiavať v bezpečí. Ak to nedokážeš, nastav typ aplikácie "
+"na 'client-side'."
 
 #: app/templates/oauth/create_edit.html:56
 msgid "Example Authorize URL"
-msgstr ""
+msgstr "Príklad autorizačnej URL"
 
 #: app/templates/oauth/create_edit.html:67
 msgid ""
 "Titles must be globally unique. For example, what's the name of your "
 "application?"
 msgstr ""
+"Názvy musia byť všade jedinečné. Napríklad, aký je názov tvojej aplikácie?"
 
 #: app/templates/oauth/create_edit.html:68
 msgid ""
 "Shown to users when you request access to their account. For example, "
 "what does your application do?"
 msgstr ""
+"Viditeľné pre používateľov, ak žiadaš prístup k ich účtom. Napríklad, čo "
+"tvoja aplikácia dokáže?"
 
 #: app/templates/oauth/create_edit.html:70
 msgid "Where will you store your client_secret?"
-msgstr ""
+msgstr "Kam uložíš heslo svojho klienta?"
 
 #: app/templates/oauth/list_clients.html:4
 #, python-format
 msgid "OAuth2 Applications | %(username)s"
-msgstr ""
+msgstr "OAuth2 Aplikácií | %(username)s"
 
 #: app/templates/oauth/list_clients.html:9
 msgid "OAuth2 Documentation"
-msgstr ""
+msgstr "OAuth2 Dokumentácia"
 
 #: app/templates/oauth/list_clients.html:16
 msgid "Unpublished"
-msgstr ""
+msgstr "Nezverejnené"
 
 #: app/templates/oauth/list_clients.html:22
 msgid "No applications created"
-msgstr ""
+msgstr "Bez aplikácií"
 
 #: app/templates/packages/advanced_search.html:13
 #: app/templates/zipgrep/search.html:20
 msgid "Use shift to select multiple. Leave selection empty to match any type."
 msgstr ""
+"Použi kláves Shift pre výber viacerých. Ponechaj výber prázdny ak požaduješ "
+"akýkoľvek typ."
 
 #: app/templates/packages/advanced_search.html:14
 #: app/templates/packages/advanced_search.html:19
 #: app/templates/packages/advanced_search.html:20
 #: app/templates/packages/advanced_search.html:21
 msgid "Use shift to select multiple."
-msgstr ""
+msgstr "Použi kláves Shift pre výber viacerých."
 
 #: app/templates/packages/advanced_search.html:17
 msgid "Tags and Content Warnings"
-msgstr ""
+msgstr "Upozornenia príznakov a obsahu"
 
 #: app/templates/packages/advanced_search.html:23
 msgid "Compatibility"
-msgstr ""
+msgstr "Súlad"
 
 #: app/templates/packages/advanced_search.html:28
 msgid "Sorting"
-msgstr ""
+msgstr "Triedenie"
 
 #: app/templates/packages/alias_create_edit.html:4
 msgid "Alias"
@@ -3829,6 +3849,8 @@ msgid ""
 "You can include a .cdb.json file in your package to update these details "
 "automatically."
 msgstr ""
+"Pre automatickú aktualizáciu týchto detailov môžes vložiť súbor .cdb.json do "
+"svojho balíčka."
 
 #: app/templates/packages/create_edit.html:55
 msgid ""
@@ -3842,7 +3864,7 @@ msgstr ""
 
 #: app/templates/packages/create_edit.html:78
 msgid "You need to unpublish the package to change the name."
-msgstr ""
+msgstr "Na zmenu názvu musíš odobrať zverejnenie balíčka."
 
 #: app/templates/packages/create_edit.html:85
 msgid ""
@@ -3870,22 +3892,28 @@ msgid ""
 "There's no need to link to the package on ContentDB in the long "
 "description, the user is already here!"
 msgstr ""
+"Nie je potrebné prepojiť to k balíčku na ContentDB vo veľkom popisku, "
+"užívateľ je už tu!"
 
 #: app/templates/packages/create_edit.html:100
 msgid ""
 "There's no need to include the forum topic in the long description, it's "
 "already shown on the page."
 msgstr ""
+"Nie je potrebné vložiť tému z fóra do rozšíreného popisu, ten sa už objavuje "
+"na stránke."
 
 #: app/templates/packages/create_edit.html:103
 msgid ""
 "There's no need to include the repository URL in the long description, "
 "it's already shown on the page."
 msgstr ""
+"Nie je potrebné vložiť URL depozitára v širšom popise, to sa už zobrazuje na "
+"stránke."
 
 #: app/templates/packages/create_edit.html:107
 msgid "What to write in the long description"
-msgstr ""
+msgstr "Čo uviesť v širšom popise"
 
 #: app/templates/packages/create_edit.html:113
 msgid "Repository and Links"
@@ -3893,21 +3921,23 @@ msgstr "Úložisko a Odkazy"
 
 #: app/templates/packages/create_edit.html:116
 msgid "Do you have a Git repository?"
-msgstr ""
+msgstr "Vlastníš depozitár v Git?"
 
 #: app/templates/packages/create_edit.html:118
 msgid "Having a repository is optional"
-msgstr ""
+msgstr "Vlastniť depozitár je dobrovoľné"
 
 #: app/templates/packages/create_edit.html:121
 msgid ""
 "If you do have a repository, enter the URL below. Otherwise, leave blank "
 "and click skip."
 msgstr ""
+"Ak vlastníš depozitár, vlož jeho URL dolu. Ináč ponechaj ten údaj prázdny a "
+"sklikni Preskočiť."
 
 #: app/templates/packages/create_edit.html:126
 msgid "HTTP URL to a Git, Mercurial, or other repository"
-msgstr ""
+msgstr "HTTP URL do Gitu, Mercurialu alebo iného depozitára"
 
 #: app/templates/packages/create_edit.html:129
 msgid "Next (Autoimport)"
@@ -3923,11 +3953,11 @@ msgstr "Vkladanie... (Môže to chvíľu trvať)"
 
 #: app/templates/packages/create_edit.html:137
 msgid "Where should users report issues?"
-msgstr ""
+msgstr "Kam môžu používatelia nahlasovať problémy?"
 
 #: app/templates/packages/create_edit.html:141
 msgid "Paste a forum topic URL"
-msgstr ""
+msgstr "Prilepiť URL témy z fóra"
 
 #: app/templates/packages/create_edit.html:143
 msgid "YouTube videos will be shown in an embed."
@@ -3940,12 +3970,16 @@ msgstr "Ak je prázdne, bude použité URL pre príspevky autorovi."
 #: app/templates/packages/create_edit.html:145
 msgid "How can users translate your package? ie: weblate URL or a help page"
 msgstr ""
+"Ako môžu používatelia preložiť tvoj balíček? t.j.: odkaz na weblate alebo "
+"pomocnú stránku"
 
 #: app/templates/packages/create_edit.html:150
 msgid ""
 "You need to save a draft before you can add releases and screenshots. "
 "You'll be able to edit the package again before submitting for approval."
 msgstr ""
+"Musíš uložiť návrh predtým, než budeš môcť pridať vydanie a obrázky. Budeš "
+"môcť upravovať balíček znovu pred vložením na oprávnenie."
 
 #: app/templates/packages/edit_maintainers.html:4
 msgid "Edit Maintainers"
@@ -3985,7 +4019,7 @@ msgstr "Módy a balíky textúr pre %(title)s"
 #: app/templates/packages/game_hub.html:34
 #, python-format
 msgid "Search for packages for %(title)s"
-msgstr ""
+msgstr "Vyhľadať balíčky pre %(title)s"
 
 #: app/templates/packages/game_support.html:9
 msgid "Documentation"
@@ -3996,6 +4030,8 @@ msgid ""
 "Game support is configured using the package's .conf file. See the "
 "documentation for more info"
 msgstr ""
+"Podpora hry je uspôsobená v .conf súbore balíčka. Pre viac informácií pozri "
+"dkumentáciu"
 
 #: app/templates/packages/game_support.html:23
 #: app/templates/packages/view.html:220 app/templates/translate/index.html:48
@@ -4008,7 +4044,7 @@ msgstr "Podpora?"
 
 #: app/templates/packages/game_support.html:33
 msgid "Supports all games (unless excluded by unsupported_games)"
-msgstr ""
+msgstr "Podporuje všetky hry (iba ak by bola vynechaná v unsupported_games)"
 
 #: app/templates/packages/game_support.html:47
 msgid "Detected from dependencies"
@@ -4016,16 +4052,18 @@ msgstr "Nájdené medzi závislosťami"
 
 #: app/templates/packages/game_support.html:49
 msgid "Overridden on ContentDB"
-msgstr ""
+msgstr "Prepísané v ContentDB"
 
 #: app/templates/packages/game_support.html:68
 msgid "Unknown. Please either add supported games or check 'Supports all games'"
 msgstr ""
+"Neznáme. Prosím, buď pridaj podporované hry alebo skontroluj 'Podporuje "
+"všetky hry'"
 
 #: app/templates/packages/game_support.html:75
 #, python-format
 msgid "Generated %(conf)s lines"
-msgstr ""
+msgstr "Vygenerované %(conf)s riadky"
 
 #: app/templates/packages/game_support.html:89
 msgid ""
@@ -4038,16 +4076,20 @@ msgid ""
 "When checked, this indicates that this package should support all games, "
 "unless excluded by unsupported_games."
 msgstr ""
+"Po kontrole, toto naznačuje, že tento balíček by mal podporovať všetky hry, "
+"iba že by bol vyradený v unsupported_games."
 
 #: app/templates/packages/game_support.html:97
 msgid ""
 "You can check this and still specify games in supported_games that you've"
 " tested."
 msgstr ""
+"Môžeš si to overiť a pritom konkretizovať v supported_games, že si to "
+"otestoval."
 
 #: app/templates/packages/game_support.html:101
 msgid "It's not possible for texture packs to support all games."
-msgstr ""
+msgstr "Nie je možné, aby balíčky textúr podporovali všetky hry."
 
 #: app/templates/packages/game_support.html:105
 msgid ""
@@ -4059,7 +4101,7 @@ msgstr ""
 
 #: app/templates/packages/game_support.html:111
 msgid "Overrides"
-msgstr ""
+msgstr "Prepisky"
 
 #: app/templates/packages/game_support.html:114
 #, python-format
@@ -4067,6 +4109,8 @@ msgid ""
 "It's best to add supported/unsupported games to %(conf)s, but in the "
 "meantime you can add them here."
 msgstr ""
+"Je dobré pridať podporované/nepodporované hry do %(conf)s, avšak dočasne ich "
+"možno pridať aj sem."
 
 #: app/templates/packages/game_support.html:116
 #, python-format
@@ -4074,11 +4118,13 @@ msgid ""
 "Adding to %(conf)s allows users who install outside ContentDB to benefit "
 "as well."
 msgstr ""
+"Pridávať do %(conf)s umožňuje používateľom, ktorí inštalujú prvky mimo "
+"ContentDB, používať tiež."
 
 #: app/templates/packages/game_support.html:119
 #: app/templates/packages/game_support.html:120
 msgid "Comma-separated game names, ex: minetest_game, nodecore"
-msgstr ""
+msgstr "Názvy hier oddelené čiarkou, napr.: minetest_game, nodecore"
 
 #: app/templates/packages/gone.html:19
 msgid "Package Removed"
@@ -4187,12 +4233,12 @@ msgstr "Upraviť vydanie"
 #: app/templates/packages/release_edit.html:15
 #: app/templates/packages/release_new.html:42
 msgid "Release short name. Eg: 1.0.0 or 2018-05-28"
-msgstr ""
+msgstr "Skrátený názov vydania. Napr.: 1.0.0 alebo 2025-12-12"
 
 #: app/templates/packages/release_edit.html:16
 #: app/templates/packages/release_new.html:43
 msgid "Human-readable name. Eg: 1.0.0 - The Trains Update"
-msgstr ""
+msgstr "Čitateľný názov. Napr.: 1.0.0 - The Trains Vylepšenie"
 
 #: app/templates/packages/release_edit.html:35
 #: app/templates/packages/release_view.html:35
@@ -4217,7 +4263,7 @@ msgstr "Podporované verzie Luantiu"
 #: app/templates/packages/release_new.html:76
 #, python-format
 msgid "Are you sure your package doesn't work on versions after %(version)s?"
-msgstr ""
+msgstr "Si si istý, že tvoj balíček nepodporuje vydania po%(version)s?"
 
 #: app/templates/packages/release_edit.html:70
 #: app/templates/packages/release_new.html:78
@@ -4225,6 +4271,8 @@ msgid ""
 "Only set the maximum version if you know that it doesn't work on newer "
 "Luanti versions."
 msgstr ""
+"Najväčšiu verziu nastav iba v prípade, že vieš, že nebude spolupracovať s "
+"novšími versiami Luanti."
 
 #: app/templates/packages/release_edit.html:71
 #: app/templates/packages/release_new.html:79
@@ -4232,6 +4280,8 @@ msgid ""
 "Don't set the maximum version just because you haven't tested it on newer"
 " versions."
 msgstr ""
+"Nenastavuj najväčšiu verziu iba preto, že si to netestoval na novších "
+"verziách."
 
 #: app/templates/packages/release_edit.html:75
 #: app/templates/packages/release_new.html:89
@@ -4319,7 +4369,7 @@ msgstr "1. Nazvi vydanie"
 
 #: app/templates/packages/release_new.html:43
 msgid "Same as name"
-msgstr ""
+msgstr "Také isté ako názov"
 
 #: app/templates/packages/release_new.html:46
 msgid "2. Set the content"
@@ -4444,6 +4494,8 @@ msgid ""
 "Total storage usage is %(total_size)d MB (releases %(release_size)d MB, "
 "screenshots %(screenshot_size)d MB)"
 msgstr ""
+"Úplné využitie úložiska je %(total_size)d MB (vydanie %(release_size)d MB, "
+"snímky obrazovky %(screenshot_size)d MB)"
 
 #: app/templates/packages/remove.html:4
 #, python-format
@@ -4452,13 +4504,15 @@ msgstr "Odstrániť %(title)s"
 
 #: app/templates/packages/remove.html:12
 msgid "Change maintenance state"
-msgstr ""
+msgstr "Zmeniť status údržby"
 
 #: app/templates/packages/remove.html:14
 msgid ""
 "As an alternative to removing your package, you may wish to change the "
 "maintenance state."
 msgstr ""
+"Ako náhradnú možnosť pre odstránenie tvojho balíčka by si mal zvážiť zmenu "
+"stavu údržby."
 
 #: app/templates/packages/remove.html:38
 msgid ""
@@ -4470,6 +4524,11 @@ msgid ""
 "\t\t\tlater point. ContentDB staff can restore removed packages, if "
 "needed."
 msgstr ""
+"Aby sa predišlo strate dát, nie je možné natrvalo vymazať balíčky.\n"
+"\t\t\tMožno ich odstrániť z ContentDB, čím sa stanú neviditeľnými\n"
+"\t\t\tpre používateľov. Odstránené balíčky je možné natrvalo vymazať\n"
+"\t\t\tneskôr. Správcovia ContentDB môžu navrátiť odstránené balíčky, ak je "
+"to potrebné."
 
 #: app/templates/packages/remove.html:46
 msgid ""
@@ -4481,15 +4540,15 @@ msgstr ""
 
 #: app/templates/packages/remove.html:51
 msgid "You don't need to delete a package just to change something."
-msgstr ""
+msgstr "Nemusíš vymazať balíček iba preto, aby si niečo zmenil."
 
 #: app/templates/packages/remove.html:52
 msgid "Click 'Edit' at the top right of the package page."
-msgstr ""
+msgstr "Klikni na 'Upraviť' navrchu vpravo na stránke balíčka."
 
 #: app/templates/packages/remove.html:60
 msgid "and"
-msgstr ""
+msgstr "a"
 
 #: app/templates/packages/remove.html:66
 #, python-format
@@ -4506,7 +4565,7 @@ msgstr "Dôvod pre nepovolenie / vymazanie, ktorý sa zobrazí v audítorskom lo
 
 #: app/templates/packages/remove.html:93
 msgid "Unpublish"
-msgstr ""
+msgstr "Odobrať z verejných"
 
 #: app/templates/packages/review_create_edit.html:17
 #, python-format
@@ -4518,6 +4577,8 @@ msgid ""
 "Please make sure you read ContentDB's <a href='/terms/'>Terms of "
 "Service</a>"
 msgstr ""
+"Prosím uisti sa, že si prečítal ContentDB <a href=\"/terms/\">Podmienky "
+"používania</a>"
 
 #: app/templates/packages/review_create_edit.html:25
 #: app/templates/threads/new.html:16
@@ -4529,7 +4590,7 @@ msgstr ""
 
 #: app/templates/packages/review_create_edit.html:55
 msgid "What language are you writing your review in?"
-msgstr ""
+msgstr "V akom jazyku píšeš svoje reakcie?"
 
 #: app/templates/packages/review_create_edit.html:68
 msgid "Delete review."
@@ -4608,11 +4669,11 @@ msgstr "Reorganizácia vyžaduje JavaScript."
 
 #: app/templates/packages/screenshots.html:88
 msgid "Client Preview"
-msgstr ""
+msgstr "Náhľad Klienta"
 
 #: app/templates/packages/screenshots.html:90
 msgid "The first screenshot in the list above will be the package thumbnail."
-msgstr ""
+msgstr "Prvý obrázok v zozname hore bude použitý ako náhľad balíčka."
 
 #: app/templates/packages/screenshots.html:127
 msgid "Videos"
@@ -4661,6 +4722,8 @@ msgid ""
 "To provide translations for your package, you need to create .tr files "
 "and upload a new release."
 msgstr ""
+"Pre sprístupnenie prekladu pre tvoj balíček musíš vytvoriť .TR súbory a "
+"nahrať nové vydanie."
 
 #: app/templates/packages/translation.html:19
 msgid ""
@@ -4675,20 +4738,21 @@ msgstr "Preklad - Luanti Módovacia Kniha"
 
 #: app/templates/packages/translation.html:26
 msgid "Translating content meta - lua_api.md"
-msgstr ""
+msgstr "Preklad meta obsahu - lua_api.md"
 
 #: app/templates/packages/translation.html:31
 #, python-format
 msgid "%(title)s is available in %(num)d languages."
-msgstr ""
+msgstr "%(title)s je dostupné v %(num)d jazykoch."
 
 #: app/templates/packages/translation.html:32
 msgid "ContentDB reads translations from locale files (.tr) in your package."
 msgstr ""
+"ContentDB načítava preklady z lokalizačných súborov (.TR) tvojho balíčka."
 
 #: app/templates/packages/translation.html:89
 msgid "Translation template"
-msgstr ""
+msgstr "Vzor prekladu"
 
 #: app/templates/packages/translation.html:91
 #, python-format
@@ -4696,10 +4760,13 @@ msgid ""
 "To quickly add support for ContentDB package translation, create a file "
 "at %(location)s with the following content:"
 msgstr ""
+"Pre rýchle pridanie podpory prekladu balíčka v ContentDB, vytvor súbor v %"
+"(location)s s nasledujúcim obsahom:"
 
 #: app/templates/packages/translation.html:102
 msgid "With games, you also need to name the textdomain in game.conf:"
 msgstr ""
+"Pre hry musíš taktiež pomenovať textovú doménu (textdomain) v game.conf:"
 
 #: app/templates/packages/translation.html:106
 msgid "Replace mymod with the name of mod / textdomain you chose."
@@ -4750,7 +4817,7 @@ msgstr ""
 #: app/templates/packages/view.html:22 app/templates/packages/view.html:25
 #, python-format
 msgid "%(title)s releases"
-msgstr ""
+msgstr "%(title)s vydania"
 
 #: app/templates/packages/view.html:49
 msgid "Download"
@@ -4796,6 +4863,8 @@ msgid ""
 "This thread is only visible to its creator, package maintainers, and "
 "users of Approver rank or above."
 msgstr ""
+"Toto vlákno je viditeľné iba pre tvorcu, správcov balíčka a používateľov "
+"stupňa Schvaľovateľ alebo vyšší."
 
 #: app/templates/packages/view.html:214 app/templates/users/profile.html:95
 msgid "Website"
@@ -4811,11 +4880,11 @@ msgstr "Sledovanie problémov"
 
 #: app/templates/packages/view.html:238 app/templates/translate/index.html:43
 msgid "Translate"
-msgstr ""
+msgstr "Preložiť"
 
 #: app/templates/packages/view.html:304
 msgid "Thumbnail for video"
-msgstr ""
+msgstr "Náhľad videa"
 
 #: app/templates/packages/view.html:321
 msgid "Awaiting review"
@@ -4848,20 +4917,20 @@ msgstr "Pozri obsah hry"
 #: app/templates/packages/view.html:398
 #, python-format
 msgid "Release notes for %(title)s"
-msgstr ""
+msgstr "Poznámky vydania pre %(title)s"
 
 #: app/templates/packages/view.html:411
 msgid "Favorite"
-msgstr ""
+msgstr "Obľúbený"
 
 #: app/templates/packages/view.html:420
 msgid "Add to collection..."
-msgstr ""
+msgstr "Pridať do zbierky..."
 
 #: app/templates/packages/view.html:428
 #, python-format
 msgid "View %(count)d collections"
-msgstr ""
+msgstr "Pozrieť %(count)d zbierky"
 
 #: app/templates/packages/view.html:439
 msgid "Package may be outdated"
@@ -4902,23 +4971,23 @@ msgstr "Kompatibilné hry"
 #: app/templates/packages/view.html:548 app/templates/packages/view.html:568
 #: app/utils/luanti_hypertext.py:275
 msgid "No specific game required"
-msgstr ""
+msgstr "Nevyžaduje sa žiadna konkrétna hra"
 
 #: app/templates/packages/view.html:551
 msgid "Tested with:"
-msgstr ""
+msgstr "Otestoval(a):"
 
 #: app/templates/packages/view.html:573
 msgid "Is the above correct?"
-msgstr ""
+msgstr "Je to v poriadku?"
 
 #: app/templates/packages/view.html:574
 msgid "You need to either confirm this or tell ContentDB about supported games"
-msgstr ""
+msgstr "Musíš buď potvrdiť alebo nahlásiť ContentDB podporované hry"
 
 #: app/templates/packages/view.html:586
 msgid "Does not work with:"
-msgstr ""
+msgstr "Nefunguje s:"
 
 #: app/templates/packages/view.html:606
 msgid "Please specify compatible games"
@@ -4971,7 +5040,7 @@ msgstr ""
 
 #: app/templates/report/report.html:20
 msgid "Please sign in or contact the admin using the link below."
-msgstr ""
+msgstr "Prosím prihlás sa alebo kontaktuj administrátora použitím linku dole."
 
 #: app/templates/report/report.html:30
 msgid ""
@@ -4986,6 +5055,8 @@ msgid ""
 "If you are reporting something by another user, we may discuss the report"
 " with them but will not disclose who reported it."
 msgstr ""
+"Ak nahlasuješ niečo o inom používateľovi, budeme s ním preberať toto "
+"nahlásenie, avšak neodhalíme mu, kto ho nahlásil."
 
 #: app/templates/report/report.html:32
 msgid ""
@@ -4998,7 +5069,7 @@ msgstr ""
 
 #: app/templates/report/report.html:41
 msgid "Optional, usually not required"
-msgstr ""
+msgstr "Dobrovoľné, zvyčajne sa nevyžaduje"
 
 #: app/templates/report/report.html:44
 msgid ""
@@ -5010,64 +5081,72 @@ msgstr ""
 
 #: app/templates/report/report_received.html:4
 msgid "We have received your report"
-msgstr ""
+msgstr "Obdržali sme tvoje oznámenie"
 
 #: app/templates/report/report_received.html:13
 msgid "We aim to resolve your report quickly."
-msgstr ""
+msgstr "Snažíme sa vyriešiť tvoje oznámenie čo najskôr."
 
 #: app/templates/report/report_received.html:17
 msgid ""
 "If the report is about illegal or harmful content, we aim to resolve "
 "within 48 hours."
 msgstr ""
+"Ak oznámenie popisuje nelegálny alebo škodlivý obsah, snažíme sa to vyriešiť "
+"v priebehu 48 hodín."
 
 #: app/templates/report/report_received.html:18
 msgid ""
 "If we find the content to be infringing, we will remove it and may warn "
 "or suspend the user."
 msgstr ""
+"Ak zistíme, že daný obsah je protiprávny, vymažeme ho a upozorníme, alebo "
+"zablokuje dotyčného používateľa."
 
 #: app/templates/report/report_received.html:23
 msgid ""
 "A private thread has been created for this report. You can use it to "
 "communicate with ContentDB staff and receive updates about the report."
 msgstr ""
+"Pre toto nahlásenie bolo vytvorené súkromné vlákno. Môžeš ho použiť pre "
+"komunikáciu so správcami ContentDB a dostávať upozornenia o tomto nahlásení."
 
 #: app/templates/report/report_received.html:27
 msgid ""
 "Due to limited resources, we may not contact you further about the report"
 " unless we need clarification."
 msgstr ""
+"Kvôli obmedzeným zdrojom ťa nebudeme ďalej kontaktovať, pokiaľ nebudeme "
+"potrebovať overenie."
 
 #: app/templates/report/report_received.html:30
 #, python-format
 msgid "For future reference, use report id: %(report_id)s."
-msgstr ""
+msgstr "Ako odkaz do budúcna, použi ID nahlásenia: %(report_id)s."
 
 #: app/templates/report/report_received.html:36
 msgid "View thread"
-msgstr ""
+msgstr "Pozrieť si vlákno"
 
 #: app/templates/report/report_received.html:38
 msgid "Back to home"
-msgstr ""
+msgstr "Späť na hlavnú stránku"
 
 #: app/templates/report/view.html:96
 msgid "Reopen"
-msgstr ""
+msgstr "Znovu otvoriť"
 
 #: app/templates/report/view.html:98
 msgid "Completed (action taken)"
-msgstr ""
+msgstr "Dokončené (potrebné úkony vykonané)"
 
 #: app/templates/report/view.html:99
 msgid "Content removed"
-msgstr ""
+msgstr "Obsah bol odstránený"
 
 #: app/templates/report/view.html:100
 msgid "Invalid / close with no action"
-msgstr ""
+msgstr "Nesprávne / zatváram bezo zmien"
 
 #: app/templates/tasks/view.html:5
 msgid "Task Failed"
@@ -5117,7 +5196,7 @@ msgstr "Odpovedz na <b>%(title)s</b>"
 
 #: app/templates/threads/user_comments.html:74
 msgid "Only showing replies to public threads"
-msgstr ""
+msgstr "Zobrazuje iba odpovede na verejné vlákna"
 
 #: app/templates/threads/view.html:46
 msgid "Subscribe"
@@ -5149,16 +5228,17 @@ msgstr "Plus schvaľovatelia a redaktori"
 
 #: app/templates/threads/view.html:141
 msgid "Is this review outdated?"
-msgstr ""
+msgstr "Je táto recenzia zastaralá?"
 
 #: app/templates/threads/view.html:142
 msgid "For example, does it complain about issues you've already fixed?"
-msgstr ""
+msgstr "Napríklad, ide o sťažnosť na chyby, ktoré už boli opravené?"
 
 #: app/templates/threads/view.html:143
 #, python-format
 msgid "You can report outdated reviews by clicking %(flag)s on the review."
 msgstr ""
+"Je možné nahlásiť zastarané recenzie kliknutím na %(flag)s pri recenzii."
 
 #: app/templates/todo/editor.html:4 app/templates/todo/todo_base.html:17
 msgid "Editor Work Queue"
@@ -5166,7 +5246,7 @@ msgstr "Upraviť pracovný poradovník"
 
 #: app/templates/todo/editor.html:9
 msgid "Reports"
-msgstr ""
+msgstr "Nahlásenia"
 
 #: app/templates/todo/editor.html:30
 msgid "Approval Queue"
@@ -5233,7 +5313,7 @@ msgstr "Nedávne akcie"
 #: app/templates/todo/game_support.html:4
 #, python-format
 msgid "Game Support for %(username)s"
-msgstr ""
+msgstr "Podpora hry pre %(username)s"
 
 #: app/templates/todo/game_support.html:11 app/templates/todo/user.html:77
 msgid "You should specify the games supported by your mods and texture packs."
@@ -5241,23 +5321,26 @@ msgstr "Mali by ste špecifikovať hry, ktoré vaše módy a textúry podporujú
 
 #: app/templates/todo/game_support.html:12 app/templates/todo/user.html:78
 msgid "Specifying game support makes it easier for players to find your content."
-msgstr ""
+msgstr "Uviesť podporu hry uľahčuje hráčom nájsť tvoj obsah."
 
 #: app/templates/todo/game_support.html:13
 msgid ""
 "If your package is game independent, confirm this using 'Supports all "
 "games'"
 msgstr ""
+"Ak tvoj balíček nezávisle na hre, potvrď to pomocou 'Podporuje všetky hry'"
 
 #: app/templates/todo/game_support.html:35
 msgid "Supports all games"
-msgstr ""
+msgstr "Podporuje všetky hry"
 
 #: app/templates/todo/game_support.html:51
 msgid ""
 "No supported games listed. Please either add supported games or check "
 "'Supports all games'"
 msgstr ""
+"Neuvádza podporované hry. Prosím, buď pridaj podporované hry alebo "
+"skontroluj 'Podporuje všetky hry'"
 
 #: app/templates/todo/game_support.html:62 app/templates/todo/user.html:40
 #: app/templates/todo/user.html:94 app/templates/todo/user.html:114
@@ -5267,17 +5350,19 @@ msgstr "Nedá sa nič robiť :)"
 
 #: app/templates/todo/game_support.html:67
 msgid "Bulk support all games"
-msgstr ""
+msgstr "Hromadná podpora všetkých hier"
 
 #: app/templates/todo/game_support.html:69
 msgid ""
 "Click the button below to confirm that the following packages do support "
 "all games, except for any games listed in unsupported_games:"
 msgstr ""
+"Klikni na tlačítko dolu pre potvrdenie, že nasledujúci balíček podporuje "
+"všetky hry, okrem akýchkoľvek hier uvedených v unsupported_games:"
 
 #: app/templates/todo/game_support.html:74
 msgid "Confirm"
-msgstr ""
+msgstr "Potvrdiť"
 
 #: app/templates/todo/mtver_support.html:4
 #, python-format
@@ -5384,11 +5469,11 @@ msgstr ""
 
 #: app/templates/todo/user.html:72
 msgid "See game support for your packages"
-msgstr ""
+msgstr "Pozri podporu hry pre tvoje balíčky"
 
 #: app/templates/todo/user.html:74
 msgid "Missing Game Support"
-msgstr ""
+msgstr "Chýba podpora hry"
 
 #: app/templates/todo/user.html:120
 msgid "Small Screenshots"
@@ -5434,13 +5519,14 @@ msgstr "Gratulujem! Nemáš žiadne témy, ktoré by neboli na CDB."
 
 #: app/templates/translate/index.html:4
 msgid "Find packages to translate"
-msgstr ""
+msgstr "Nájsť balíčky na preklad"
 
 #: app/templates/translate/index.html:8
 msgid ""
 "Help make Luanti more accessible by translating packages into other "
 "languages."
 msgstr ""
+"Pomôž vytvoriť Luanti viac prístupnú prekladaním balíčkov do ďalších jazykov."
 
 #: app/templates/translate/index.html:65
 msgid "How to translate a mod / game"
@@ -5448,21 +5534,21 @@ msgstr "Ako preložiť nejaký mód / hru"
 
 #: app/templates/translate/index.html:73
 msgid "ContentDB"
-msgstr ""
+msgstr "ContentDB (databáza obsahu)"
 
 #: app/templates/translate/index.html:80
 msgid "Packages that support translation"
-msgstr ""
+msgstr "Balíčky podporujúce preklad"
 
 #: app/templates/translate/index.html:85
 #, python-format
 msgid "Only show packages with %(lang)s translation"
-msgstr ""
+msgstr "Zobraz iba balíčky s prekladom v %(lang)s"
 
 #: app/templates/translate/index.html:89
 #, python-format
 msgid "Hide packages with %(lang)s translation"
-msgstr ""
+msgstr "Skry balíčky s prekladom v %(lang)s"
 
 #: app/templates/users/account.html:4
 #, python-format
@@ -5503,7 +5589,7 @@ msgstr "Pozri ContentDB povolenia pre GitHub"
 
 #: app/templates/users/account.html:65
 msgid "Disconnect"
-msgstr ""
+msgstr "Odpojiť sa"
 
 #: app/templates/users/account.html:69
 msgid "Link Github"
@@ -5527,7 +5613,7 @@ msgstr "Vymazanie alebo deaktivácia účtu ešte nie je užívateľom prístupn
 
 #: app/templates/users/account.html:87
 msgid "Please raise a report to request account deletion."
-msgstr ""
+msgstr "Prosím vytvor žiadosť na vymazanie účtu."
 
 #: app/templates/users/account.html:94
 msgid "Recent Account Actions"
@@ -5555,11 +5641,13 @@ msgid ""
 "Note: protonmail is unsupported by ContentDB. <a "
 "href='https://forum.luanti.org/viewtopic.php?t=30709'>More info</a>."
 msgstr ""
+"Poznámka: ContentDB nepodporuje protonmail. <a href=\"https://"
+"forum.luanti.org/viewtopic.php?t=30709\">More info</a>."
 
 #: app/templates/users/change_set_password.html:27
 #: app/templates/users/register.html:30
 msgid "Must be at least 12 characters long."
-msgstr ""
+msgstr "Musí obsahovať aspoň 12 znakov."
 
 #: app/templates/users/claim.html:4
 msgid "Create Account"
@@ -5621,6 +5709,9 @@ msgid ""
 "of Service</a> and <a href='/privacy_policy/' target='_blank'>Privacy "
 "Policy</a>."
 msgstr ""
+"Svojim prihlásením súhlasíš s <a href=\"/terms/\" target=\"_blank\">"
+"Podmienky používania</a> a <a href=\"/privacy_policy/\" target=\"_blank\">"
+"Pravidlá súkromia</a>."
 
 #: app/templates/users/claim_forums.html:30
 msgid "Option 1"
@@ -5785,7 +5876,7 @@ msgstr "GitHub"
 
 #: app/templates/users/modtools.html:12
 msgid "Storage"
-msgstr ""
+msgstr "Úložisko"
 
 #: app/templates/users/modtools.html:20
 #, python-format
@@ -5793,11 +5884,13 @@ msgid ""
 "Total storage usage is %(total_size)d MB (releases %(release_size)d MB, "
 "screenshots %(screenshot_size)d MB)."
 msgstr ""
+"Celkové využitie úložiska je %(total_size)d MB (vydania %(release_size)d MB, "
+"snímky obrazovky %(screenshot_size)d MB)."
 
 #: app/templates/users/modtools.html:23
 #, python-format
 msgid "%(releases)d releases and %(screenshots)d screenshots."
-msgstr ""
+msgstr "%(releases)d vydania a %(screenshots)d snímky obrazovky."
 
 #: app/templates/users/modtools.html:28
 msgid "Edit Account"
@@ -5834,7 +5927,7 @@ msgstr "Emailová adresa"
 
 #: app/templates/users/modtools.html:116
 msgid "Pending email verifications"
-msgstr ""
+msgstr "Čakajúce overenie emailu"
 
 #: app/templates/users/profile.html:20
 msgid "Profile picture"
@@ -5854,7 +5947,7 @@ msgstr "balíky"
 
 #: app/templates/users/profile.html:123
 msgid "collections"
-msgstr ""
+msgstr "zbierky"
 
 #: app/templates/users/profile.html:132
 msgid "reviews"
@@ -5879,11 +5972,11 @@ msgstr "%(value)d / %(target)d"
 
 #: app/templates/users/profile.html:238
 msgid "Alphabetical"
-msgstr ""
+msgstr "Abecedné"
 
 #: app/templates/users/profile.html:246
 msgid "Newest"
-msgstr ""
+msgstr "Najnovšie"
 
 #: app/templates/users/profile.html:252
 msgid "View list of tags"
@@ -5912,17 +6005,19 @@ msgstr "Profilový obrázok"
 
 #: app/templates/users/profile_edit.html:27
 msgid "Import from forums"
-msgstr ""
+msgstr "Vložiť z fóra"
 
 #: app/templates/users/profile_edit.html:33
 msgid "Remove profile picture"
-msgstr ""
+msgstr "Odstrániť profilovú fotku"
 
 #: app/templates/users/profile_edit.html:51
 msgid ""
 "Profile pictures should be square, at least 64x64px, and one of the "
 "following formats: jpeg, png, or webp."
 msgstr ""
+"Profilový obrázok by mal byť štvorcový, najmenej 64x64px a v jednom z "
+"nasledovných formátov: jpeg, png alebo webp."
 
 #: app/templates/users/profile_edit.html:55
 msgid "Profile Information"
@@ -5934,13 +6029,15 @@ msgstr "Predstierať, že si iný užívateľ vedie k trvalému zákazu (ban)"
 
 #: app/templates/users/profile_edit.html:72
 msgid "Website URLs will not be shown whilst you are a 'New Member'."
-msgstr ""
+msgstr "Adresy webových stránok nebudú viditeľné pokiaľ si 'Nový člen'."
 
 #: app/templates/users/profile_edit.html:73
 msgid ""
 "To become a full member, create a review, comment, or package and wait 7 "
 "days."
 msgstr ""
+"Ak sa chceš stať úplným členom, vytvor recenziu, poznámku alebo balíček a "
+"počkaj 7 dní."
 
 #: app/templates/users/register.html:17
 msgid ""
@@ -6003,7 +6100,7 @@ msgstr ""
 
 #: app/templates/users/settings_email.html:46
 msgid "Disable all"
-msgstr ""
+msgstr "Zakázať všetko"
 
 #: app/templates/users/settings_email.html:51
 msgid "Event"
@@ -6048,6 +6145,7 @@ msgid ""
 "Unsubscribing may prevent you from being able to log into the account "
 "'%(display_name)s'"
 msgstr ""
+"Zrušenie odberu ti znemožní znovu sa prihlásiť s účtom '%(display_name)s'"
 
 #: app/templates/users/unsubscribe.html:44
 msgid ""
@@ -6079,55 +6177,55 @@ msgstr "'%(query)s' - Hľadať vo vydaniach balíčkov"
 
 #: app/utils/flask.py:159
 msgid "All time"
-msgstr ""
+msgstr "Všetko"
 
 #: app/utils/flask.py:160
 msgid "Last 7 days"
-msgstr ""
+msgstr "Uplynulých 7 dní"
 
 #: app/utils/flask.py:161
 msgid "Last 30 days"
-msgstr ""
+msgstr "Uplynulých 30 dní"
 
 #: app/utils/flask.py:162
 msgid "Last 90 days"
-msgstr ""
+msgstr "Uplynulýchých 90 dní"
 
 #: app/utils/flask.py:163
 msgid "Year to date"
-msgstr ""
+msgstr "Od začiatku roka"
 
 #: app/utils/flask.py:164
 msgid "Last year"
-msgstr ""
+msgstr "Minulý rok"
 
 #: app/utils/luanti_hypertext.py:108
 msgid "(view table in browser)"
-msgstr ""
+msgstr "(pozrieť tabuľku v priehladači)"
 
 #: app/utils/luanti_hypertext.py:139
 msgid "Image"
-msgstr ""
+msgstr "Obrázok"
 
 #: app/utils/luanti_hypertext.py:259
 msgid "none"
-msgstr ""
+msgstr "Žiadne"
 
 #: app/utils/luanti_hypertext.py:280
 msgid "Unsupported Games"
-msgstr ""
+msgstr "Nepodporované hry"
 
 #: app/utils/luanti_hypertext.py:284
 msgid "Optional dependencies"
-msgstr ""
+msgstr "Dobrovoľné závislosti"
 
 #: app/utils/luanti_hypertext.py:325
 msgid "Leave a review"
-msgstr ""
+msgstr "Zanechať recenziu"
 
 #: app/utils/luanti_hypertext.py:346
 msgid "No reviews available."
-msgstr ""
+msgstr "Bez recenzií."
 
 #: app/utils/user.py:51
 msgid "You have a lot of notifications, you should either read or clear them"
