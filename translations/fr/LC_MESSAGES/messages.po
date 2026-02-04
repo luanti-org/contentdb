@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-11-10 19:55+0000\n"
-"PO-Revision-Date: 2025-11-11 22:51+0000\n"
-"Last-Translator: Turrican II <turrican2-weblate@leemm.eu>\n"
+"PO-Revision-Date: 2025-11-15 05:57+0000\n"
+"Last-Translator: syl <syl@gresille.org>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/minetest/"
 "contentdb/fr/>\n"
 "Language: fr\n"
@@ -347,7 +347,7 @@ msgstr "Entrées du Game Jam de Minetest 2021"
 #: app/_translations.py:98
 msgctxt "tags"
 msgid " Jam / Game 2022"
-msgstr " . Jam / Jeux 2022"
+msgstr " Jam / Jeux 2022"
 
 #. NOTE: tags: description for jam_game_2022
 #: app/_translations.py:100
@@ -2081,8 +2081,8 @@ msgstr "Filtre de fichiers"
 #: app/logic/package_approval.py:99
 msgid "A package already exists with this name. Please see Policy and Guidance 3"
 msgstr ""
-"Un paquet existe déjà sous ce nom. Veuillez consulter la section Règles "
-"et Recommandations 3"
+"Un paquet existe déjà sous ce nom. Veuillez consulter la section Règles et "
+"recommandations 3"
 
 #: app/logic/package_approval.py:104
 msgid "You need to create a release before this package can be approved."
@@ -2770,11 +2770,11 @@ msgstr "Contactez-nous"
 
 #: app/templates/base.html:262
 msgid "Terms of Service"
-msgstr ""
+msgstr "Conditions d'utilisation"
 
 #: app/templates/base.html:263
 msgid "Policy and Guidance"
-msgstr "Règles et Recommandations"
+msgstr "Règles et recommandations"
 
 #: app/templates/base.html:264 app/templates/donate/index.html:47
 #: app/templates/donate/index.html:71 app/templates/users/profile.html:104
@@ -2799,7 +2799,7 @@ msgstr "Signaler / DMCA"
 
 #: app/templates/base.html:271 app/templates/packages/advanced_search.html:4
 msgid "Advanced Search"
-msgstr "Recherche Avancée"
+msgstr "Recherche avancée"
 
 #: app/templates/base.html:272
 msgid "User List"
@@ -2817,7 +2817,7 @@ msgstr "Collections"
 
 #: app/templates/base.html:275 app/templates/donate/index.html:4
 msgid "Support Creators"
-msgstr "Soutenir les Créateurs"
+msgstr "Soutenir les créateurs"
 
 #: app/templates/base.html:276
 msgid "Translate Packages"
@@ -4672,6 +4672,8 @@ msgid ""
 "Please make sure you read ContentDB's <a href='/terms/'>Terms of "
 "Service</a>"
 msgstr ""
+"Assurez-vous d'avoir lu les <a href=\"/terms/\">Conditions d'utilisation</a> "
+"de ContentDB"
 
 #: app/templates/packages/review_create_edit.html:25
 #: app/templates/threads/new.html:16
