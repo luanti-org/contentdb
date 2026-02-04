@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-11-10 19:55+0000\n"
-"PO-Revision-Date: 2025-11-09 09:51+0000\n"
+"PO-Revision-Date: 2025-11-13 09:51+0000\n"
 "Last-Translator: Wuzzy <Wuzzy@disroot.org>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/minetest/"
+"contentdb/de/>\n"
 "Language: de\n"
-"Language-Team: German "
-"<https://hosted.weblate.org/projects/minetest/contentdb/de/>\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.15-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: app/__init__.py:155
@@ -376,13 +377,13 @@ msgstr "Einträge für den 2024 Luanti Game Jam"
 #: app/_translations.py:110
 msgctxt "tags"
 msgid "Jam / Game 2025"
-msgstr ""
+msgstr "Jam / Game 2025"
 
 #. NOTE: tags: description for jam_game_2025
 #: app/_translations.py:112
 msgctxt "tags"
 msgid "Entries to the 2025 Luanti Game Jam"
-msgstr ""
+msgstr "Einträge für den 2025 Luanti Game Jam"
 
 #. NOTE: tags: title for jam_weekly_2021
 #: app/_translations.py:114
@@ -404,7 +405,7 @@ msgstr ""
 #: app/_translations.py:118
 msgctxt "tags"
 msgid "<16px"
-msgstr "unter 16px"
+msgstr "<16px"
 
 #. NOTE: tags: description for less_than_px
 #: app/_translations.py:120
@@ -2102,19 +2103,21 @@ msgstr "Releases bearbeiten"
 
 #: app/logic/package_approval.py:109
 msgid "Release is still importing. Please wait and reload the page."
-msgstr ""
+msgstr "Das Release wird noch importiert. Bitte warten und Seite neu laden."
 
 #: app/logic/package_approval.py:110
 msgid "View task"
-msgstr ""
+msgstr "Aufgabe ansehen"
 
 #: app/logic/package_approval.py:116
 msgid "Release validation failed. Please fix any issues and create a new release"
 msgstr ""
+"Release-Validierung fehlgeschlagen. Bitte beheben Sie alle Probleme und "
+"erstellen Sie ein neues Release"
 
 #: app/logic/package_approval.py:117
 msgid "View error"
-msgstr ""
+msgstr "Fehler betrachten"
 
 #: app/logic/package_approval.py:124
 msgid "You need to add at least one screenshot."
@@ -2280,7 +2283,7 @@ msgstr "Benutzerverhalten, Mobbing oder Missbrauch"
 
 #: app/models/__init__.py:154
 msgid "Spam"
-msgstr ""
+msgstr "Spam"
 
 #: app/models/__init__.py:156
 msgid "Illegal or harmful content"
@@ -2458,7 +2461,7 @@ msgstr "Löschen"
 
 #: app/models/packages.py:1104
 msgid "Processing"
-msgstr ""
+msgstr "Verarbeiten"
 
 #: app/models/packages.py:1106 app/templates/packages/release_edit.html:50
 #: app/templates/packages/screenshot_edit.html:20
@@ -2467,15 +2470,15 @@ msgstr "Genehmigt"
 
 #: app/models/packages.py:1108
 msgid "Failed"
-msgstr ""
+msgstr "Fehlgeschlagen"
 
 #: app/models/packages.py:1110
 msgid "Waiting approval"
-msgstr ""
+msgstr "Wartet auf Genehmigung"
 
 #: app/models/packages.py:1112
 msgid "Archived"
-msgstr ""
+msgstr "Archiviert"
 
 #: app/models/packages.py:1440
 #, python-format
@@ -2933,7 +2936,7 @@ msgstr "Von einen gelöschten Benutzer verursacht."
 
 #: app/templates/admin/list.html:16
 msgid "User list"
-msgstr ""
+msgstr "Benutzerliste"
 
 #: app/templates/admin/send_bulk_email.html:4
 msgid "Send bulk email"
@@ -6194,12 +6197,15 @@ msgstr ""
 #: app/templates/users/profile_edit.html:72
 msgid "Website URLs will not be shown whilst you are a 'New Member'."
 msgstr ""
+"Webseiten-URLs werden nicht angezeigt, solange Sie ein „Neues Mitglied“ sind."
 
 #: app/templates/users/profile_edit.html:73
 msgid ""
 "To become a full member, create a review, comment, or package and wait 7 "
 "days."
 msgstr ""
+"Um ein vollwertiges Mitglied zu werden, erstellen Sie eine Rezension, "
+"kommentieren Sie oder erstellen Sie ein Paket und warten Sie 7 Tage."
 
 #: app/templates/users/register.html:17
 msgid ""
@@ -7113,4 +7119,3 @@ msgstr ""
 
 #~ msgid "Waiting for approval."
 #~ msgstr "Warte auf Genehmigung."
-
