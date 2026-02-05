@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-11-10 19:55+0000\n"
-"PO-Revision-Date: 2026-02-04 21:01+0000\n"
+"PO-Revision-Date: 2026-02-06 09:01+0000\n"
 "Last-Translator: Vesel Sem <veselsem@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Slovenian <https://hosted.weblate.org/projects/minetest/"
 "contentdb/sl/>\n"
@@ -5166,70 +5166,72 @@ msgstr "Ponovno naložite stran, da preverite za posodobitve."
 #: app/templates/threads/delete_reply.html:4
 #, python-format
 msgid "Delete reply by %(username)s in %(title)s "
-msgstr ""
+msgstr "Izbriši odgovor uporabnika %(username)s v %(title)s "
 
 #: app/templates/threads/delete_thread.html:4
 #, python-format
 msgid "Delete \"%(title)s\" by %(author)s"
-msgstr ""
+msgstr "Izbriši »%(title)s« avtorja %(author)s"
 
 #: app/templates/threads/edit_reply.html:4
 #: app/templates/threads/edit_reply.html:13
 msgid "Edit reply"
-msgstr ""
+msgstr "Uredi odgovor"
 
 #: app/templates/threads/new.html:17
 msgid ""
 "If the package shouldn't be on CDB (eg: if it doesn't work at all), then "
 "you can let us know here."
 msgstr ""
+"Če paket ne bi smel biti na CDB (npr. če sploh ne deluje), nam to lahko "
+"sporočite tukaj."
 
 #: app/templates/threads/user_comments.html:9
 #: app/templates/threads/user_comments.html:13
 #, python-format
 msgid "Comments by %(user)s"
-msgstr ""
+msgstr "Komentarji uporabnika %(user)s"
 
 #: app/templates/threads/user_comments.html:50
 #, python-format
 msgid "Reply to <b>%(title)s</b>"
-msgstr ""
+msgstr "Odgovori na <b>%(title)s</b>"
 
 #: app/templates/threads/user_comments.html:74
 msgid "Only showing replies to public threads"
-msgstr ""
+msgstr "Prikaz samo odgovorov na javne teme"
 
 #: app/templates/threads/view.html:46
 msgid "Subscribe"
-msgstr ""
+msgstr "Naročite se"
 
 #: app/templates/threads/view.html:59
 msgid "Convert to Thread"
-msgstr ""
+msgstr "Pretvori v temo"
 
 #: app/templates/threads/view.html:67
 msgid "Unlock"
-msgstr ""
+msgstr "Odkleni"
 
 #: app/templates/threads/view.html:72
 msgid "Lock"
-msgstr ""
+msgstr "Zakleni"
 
 #: app/templates/threads/view.html:114
 msgid "This thread is visible to the following users"
-msgstr ""
+msgstr "Ta tema je vidna naslednjim uporabnikom"
 
 #: app/templates/threads/view.html:115
 msgid "Visible to:"
-msgstr ""
+msgstr "Vidno:"
 
 #: app/templates/threads/view.html:123
 msgid "Plus approvers and editors"
-msgstr ""
+msgstr "Plus odobritelji in uredniki"
 
 #: app/templates/threads/view.html:141
 msgid "Is this review outdated?"
-msgstr ""
+msgstr "Je ta ocena zastarela?"
 
 #: app/templates/threads/view.html:142
 msgid "For example, does it complain about issues you've already fixed?"
