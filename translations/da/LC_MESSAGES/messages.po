@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-11-10 19:55+0000\n"
-"PO-Revision-Date: 2026-02-04 21:01+0000\n"
+"PO-Revision-Date: 2026-02-06 09:01+0000\n"
 "Last-Translator: Peter Leth <peter@pluk.dk>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/minetest/"
 "contentdb/da/>\n"
@@ -162,6 +162,8 @@ msgid ""
 "Requires futher installation steps, such as installing LuaRocks or "
 "editing the trusted mod setting"
 msgstr ""
+"Kræver flere trin i installeringsprocessen, som at installere LauRocks eller "
+"at redigere den betroede mod-indstilling"
 
 #. NOTE: tags: title for crafting
 #: app/_translations.py:48
@@ -179,7 +181,7 @@ msgstr ""
 #: app/_translations.py:52
 msgctxt "tags"
 msgid "Creative"
-msgstr ""
+msgstr "Kreativ"
 
 #. NOTE: tags: description for creative
 #: app/_translations.py:54
@@ -189,12 +191,16 @@ msgid ""
 "content only available through a creative inventory, or provides tools "
 "that facilitate ingame creation and doesn't add difficulty or scarcity"
 msgstr ""
+"Skrevet specifikt eller udelukkende til brug i kreativ tilstand. Tilføjer "
+"indhold, der kun er tilgængeligt via et kreativt inventar, eller leverer "
+"værktøjer, der letter skabelse in-game i spillet, og som ikke tilføjer "
+"vanskeligheder eller knaphed"
 
 #. NOTE: tags: title for custom_mapgen
 #: app/_translations.py:56
 msgctxt "tags"
 msgid "Custom mapgen"
-msgstr ""
+msgstr "Tilpas mapgen"
 
 #. NOTE: tags: description for custom_mapgen
 #: app/_translations.py:58
