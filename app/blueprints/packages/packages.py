@@ -55,20 +55,16 @@ def list_all():
 			subqueryload(Package.tags))
 
 	ip = request.headers.get("X-Forwarded-For") or request.remote_addr
-	if ip is not None and not is_user_bot():
-		edited = False
-		for tag in qb.tags:
-			edited = True
-			key = "tag/{}/{}".format(ip, tag.name)
-			if not has_key(key):
-				set_temp_key(key, "true")
-				with create_session() as new_session:
-					new_session.query(Tag).filter_by(id=tag.id).update({
-							"views": Tag.views + 1
-						})
-
-		if edited:
-			db.session.commit()
+	if ip is not None and not is_user_bot() and len(qb.tags) == 1:
+		tag = qb.tags[0]
+		key = "tag/{}/{}".format(ip, tag.name)
+		if not has_key(key):
+			set_temp_key(key, "true")
+			with create_session() as new_session:
+				new_session.query(Tag).filter_by(id=tag.id).update({
+						"views": Tag.views + 1
+					})
+				new_session.commit()
 
 	if qb.lucky:
 		package = query.first()
