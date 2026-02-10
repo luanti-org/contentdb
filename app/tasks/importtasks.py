@@ -191,10 +191,14 @@ def post_release_check_update(self, release: PackageRelease, path):
 			pass
 
 		# Build release notes from git log
-		if release.commit_hash and release.release_notes is None:
-			previous_release = package.releases.filter(PackageRelease.id != release.id).first()
-			if previous_release and previous_release.commit_hash:
-				release.release_notes = get_release_notes(package.repo, previous_release.commit_hash, release.commit_hash)
+		try:
+			if release.commit_hash and release.release_notes is None:
+				previous_release = package.releases.filter(PackageRelease.id != release.id).first()
+				if previous_release and previous_release.commit_hash:
+					release.release_notes = get_release_notes(package.repo, previous_release.commit_hash, release.commit_hash)
+		except Exception as e:
+			# Gracefully just skip making release notes
+			pass
 
 		# Update game support
 		if package.type == PackageType.MOD or package.type == PackageType.TXP:
