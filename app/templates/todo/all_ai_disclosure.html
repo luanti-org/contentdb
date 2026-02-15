@@ -23,9 +23,11 @@
 		{% endfor %}
 	</div>
 	{% if missing_ai_disclosure %}
-		<form method="post" action="">
-			<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-			<input type="submit" class="btn btn-primary" value="{{  _('Mark all as no AI used') }}" />
+	{% from "macros/forms.html" import render_field, render_submit_field %}
+		<form method="POST" action="">
+			{{ form.hidden_tag() }}
+			{{ render_field(form.ai_disclosure) }}
+			{{ render_submit_field(form.submit) }}
 		</form>
 	{% endif %}
 {% endblock %}

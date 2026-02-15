@@ -5,9 +5,12 @@
 from typing import Optional
 from celery import uuid
 from flask import request, redirect, url_for, abort, render_template, flash
-from flask_babel import gettext
+from flask_babel import gettext, lazy_gettext
 from flask_login import current_user, login_required
 from sqlalchemy import or_, and_
+from flask_wtf import FlaskForm
+from wtforms import SelectField, SubmitField
+from wtforms.validators import InputRequired, NoneOf
 
 from app.models import User, Package, PackageState, PackageScreenshot, PackageUpdateConfig, ForumTopic, db, \
 	PackageRelease, Permission, NotificationType, AuditSeverity, UserRank, PackageType, PackageAIDisclosure
@@ -186,6 +189,11 @@ def confirm_supports_all_games(username=None):
 	return redirect(url_for("todo.all_game_support", username=current_user.username))
 
 
+class AIDisclosureForm(FlaskForm):
+	ai_disclosure = SelectField(lazy_gettext("AI Disclosure"), [InputRequired(), NoneOf([PackageAIDisclosure.UNKNOWN], lazy_gettext("Please select a value"))], choices=PackageAIDisclosure.choices(), coerce=PackageAIDisclosure.coerce)
+	submit  = SubmitField(lazy_gettext("Update all"))
+
+
 @bp.route("/user/ai-disclosure/")
 @bp.route("/users/<username>/ai-disclosure/", methods=["GET", "POST"])
 @login_required
@@ -199,11 +207,12 @@ def all_ai_disclosure(username: Optional[str] = None):
 	missing_ai_disclosure = user.maintained_packages.filter_by(state=PackageState.APPROVED,
 			ai_disclosure=PackageAIDisclosure.UNKNOWN).all()
 
-	if request.method == "POST":
+	form = AIDisclosureForm()
+	if form.validate_on_submit():
 		for package in missing_ai_disclosure:
-			package.ai_disclosure = PackageAIDisclosure.NONE
+			package.ai_disclosure = form.ai_disclosure.data
 			add_audit_log(AuditSeverity.NORMAL, current_user, f"Set AI disclosure to None", package.get_url("packages.view"), package)
 		db.session.commit()
 		return redirect(url_for("todo.view_user", username=username))
-	else:
-		return render_template("todo/all_ai_disclosure.html", user=user, missing_ai_disclosure=missing_ai_disclosure)
+
+	return render_template("todo/all_ai_disclosure.html", user=user, missing_ai_disclosure=missing_ai_disclosure, form=form)
