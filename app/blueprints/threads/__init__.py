@@ -14,7 +14,7 @@ bp = Blueprint("threads", __name__)
 from flask_login import current_user, login_required
 from app.models import Package, db, User, Permission, Thread, UserRank, AuditSeverity, \
 	NotificationType, ThreadReply
-from app.utils.models import add_notification, add_audit_log, get_system_user
+from app.utils.models import add_notification, add_audit_log, get_system_user, get_package_by_info
 from app.utils.misc import is_yes, normalize_line_endings
 from app.utils.flask import has_blocked_domains, get_int_or_abort
 from flask_wtf import FlaskForm
@@ -23,16 +23,15 @@ from wtforms.validators import InputRequired, Length
 
 
 @bp.route("/threads/")
-def list_all():
+@bp.route("/packages/<author>/<name>/threads/")
+def list_all(author=None, name=None):
 	query = Thread.query
 	if not Permission.SEE_THREAD.check(current_user):
 		query = query.filter_by(private=False)
 
 	package = None
-	pid = request.args.get("pid")
-	if pid:
-		pid = get_int_or_abort(pid)
-		package = Package.query.get_or_404(pid)
+	if author and name:
+		package = get_package_by_info(author, name)
 		query = query.filter_by(package=package)
 
 	query = query.filter_by(review_id=None)
@@ -45,7 +44,7 @@ def list_all():
 	pagination = query.paginate(page=page, per_page=num)
 
 	return render_template("threads/list.html", pagination=pagination, threads=pagination.items,
-			package=package, noindex=pid)
+			package=package, noindex=package is not None)
 
 
 @bp.route("/threads/<int:id>/subscribe/", methods=["POST"])
@@ -276,13 +275,14 @@ class ThreadForm(FlaskForm):
 
 
 @bp.route("/threads/new/", methods=["GET", "POST"])
+@bp.route("/packages/<author>/<name>/threads/new/", methods=["GET", "POST"])
 @login_required
-def new():
+def new(author=None, name=None):
 	form = ThreadForm(formdata=request.form)
 
 	package = None
-	if "pid" in request.args:
-		package = Package.query.get(int(request.args.get("pid")))
+	if author or name:
+		package = get_package_by_info(author, name)
 		if package is None:
 			abort(404)
 

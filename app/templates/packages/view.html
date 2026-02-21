@@ -194,7 +194,7 @@
 							<span class="count">{{ package.downloads }}</span>
 						</a>
 					{% endif %}
-					<a class="btn" href="{{ url_for('threads.list_all', pid=package.id) }}" title="{{ _('Threads') }}">
+					<a class="btn" href="{{ url_for('threads.list_all', author=package.author.username, name=package.name) }}" title="{{ _('Threads') }}">
 						<i class="fas fa-comment-alt"></i>
 						<span class="count">{{ threads | length }}</span>
 					</a>
@@ -711,7 +711,7 @@
 				<h3>
 					{% if package.approved and package.check_perm(current_user, "CREATE_THREAD") %}
 						<div class="btn-group float-end">
-							<a class="btn btn-primary btn-sm mx-1" href="{{ url_for('threads.new', pid=package.id) }}"><i class="fas fa-plus"></i></a>
+							<a class="btn btn-primary btn-sm mx-1" href="{{ url_for('threads.new', author=package.author.username, name=package.name) }}"><i class="fas fa-plus"></i></a>
 						</div>
 					{% endif %}
 					{{ _("Threads") }}

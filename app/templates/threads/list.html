@@ -9,7 +9,11 @@
 
 {% block content %}
 	{% if current_user.is_authenticated and package %}
-		<a href="{{ url_for('threads.new', pid=package and package.id) }}" class="btn btn-primary float-end">{{ _("New Thread") }}</a>
+		{% if package %}
+			<a href="{{ url_for('threads.new', author=package.author.username, name=package.name) }}" class="btn btn-primary float-end">{{ _("New Thread") }}</a>
+		{% else %}
+			<a href="{{ url_for('threads.new') }}" class="btn btn-primary float-end">{{ _("New Thread") }}</a>
+		{% endif %}
 	{% endif %}
 	<h1>{{ self.title() }}</h1>
 

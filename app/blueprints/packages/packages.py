@@ -433,7 +433,7 @@ def move_to_state(package):
 		if package.review_thread:
 			return redirect(package.review_thread.get_view_url())
 		else:
-			return redirect(url_for('threads.new', pid=package.id, title='Package approval comments'))
+			return redirect(url_for('threads.new', author=package.author.username, name=package.name, title='Package approval comments'))
 	elif (package.review_thread and
 			old_state == PackageState.CHANGES_NEEDED and package.state == PackageState.READY_FOR_REVIEW):
 		flash(gettext("Please comment in the approval thread so editors know what you have changed"), "warning")
