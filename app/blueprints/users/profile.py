@@ -272,6 +272,7 @@ def statistics_redirect():
 
 
 @bp.route("/users/<username>/stats/")
+@login_required
 def statistics(username):
 	user = User.query.filter_by(username=username).first()
 	if user is None:

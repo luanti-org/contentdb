@@ -827,6 +827,7 @@ def game_support(package):
 
 
 @bp.route("/packages/<author>/<name>/stats/")
+@login_required
 @is_package_page
 def statistics(package):
 	start = request.args.get("start")
