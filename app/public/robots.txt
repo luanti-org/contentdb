@@ -2,3 +2,8 @@ User-agent: *
 Disallow: /packages/*/*/download/
 Disallow: /packages/*/*/releases/*/download/
 Disallow: /report/
+
+User-agent: meta-externalagent
+User-agent: Meta-ExternalAgent
+User-agent: Sogou
+Disallow: /
