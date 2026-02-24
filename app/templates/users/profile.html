@@ -136,7 +136,7 @@
 				</a>
 
 				{% if package_count %}
-					<a class="btn" href="{{ url_for('users.statistics', username=user.username) }}">
+					<a class="btn" href="{{ url_for('users.statistics', username=user.username) }}" rel="nofollow">
 						<i class="fas fa-chart-line"></i>
 						<span class="count">
 							{{ _("Statistics") }}
