@@ -68,6 +68,7 @@ class AdvancedSearchForm(FlaskForm):
 			query_factory=lambda: LuantiRelease.query.order_by(db.asc(LuantiRelease.id)),
 			allow_blank=True, blank_value="",
 			get_pk=lambda a: a.value, get_label=lambda a: a.name)
+	not_supported = BooleanField(lazy_gettext("Invert version: show unsupported packages only"))
 	sort = SelectField(lazy_gettext("Sort by"), [Optional()], choices=[
 		("", ""),
 		("name", lazy_gettext("Name")),

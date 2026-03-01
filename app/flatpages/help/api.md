@@ -222,6 +222,7 @@ Filter query parameters:
 * `lang`: Filter by translation support, eg: `en`/`de`/`ja`/`zh_TW`.
 * `protocol_version`:  Only show packages supported by this Luanti protocol version.
 * `engine_version`:  Only show packages supported by this Luanti engine version, eg: `5.3.0`.
+* `not_supported`: Invert engine version, show unsupported packages only.
 
 Sorting query parameters:
 

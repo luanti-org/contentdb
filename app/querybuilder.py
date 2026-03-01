@@ -39,6 +39,7 @@ class QueryBuilder:
 	hide_nonfree: bool
 	show_added: bool
 	version: Optional[LuantiRelease]
+	not_version: Optional[LuantiRelease]
 	has_lang: Optional[str]
 
 	@property
@@ -73,7 +74,7 @@ class QueryBuilder:
 	def noindex(self):
 		return (self.search is not None or len(self.tags) > 1 or len(self.flags) > 1 or len(self.types) > 1 or
 			len(self.licenses) > 0 or len(self.hide_flags) > 0 or len(self.hide_tags) > 0 or self.random or
-			self.lucky or self.author or self.version or self.game or self.limit is not None)
+			self.lucky or self.author or self.version or self.not_version or self.game or self.limit is not None)
 
 	def __init__(self, args, cookies: bool = False, lang: Optional[str] = None, emit_http_errors: bool = True):
 		self.emit_http_errors = emit_http_errors
@@ -153,13 +154,21 @@ class QueryBuilder:
 
 		protocol_version = get_int_or_abort(args.get("protocol_version"))
 		engine_version = args.get("engine_version")
+		invert_version = "not_supported" in args
 		if engine_version == "":
 			engine_version = None
 
 		if protocol_version or engine_version:
-			self.version = LuantiRelease.get(engine_version, protocol_version)
+			version = LuantiRelease.get(engine_version, protocol_version)
 		else:
+			version = None
+
+		if invert_version:
+			self.not_version = version
 			self.version = None
+		else:
+			self.version = version
+			self.not_version = None
 
 		self.show_added = args.get("show_added")
 		if self.show_added is not None:
@@ -311,6 +320,10 @@ class QueryBuilder:
 			query = query.filter(Package.releases.any(and_(or_(PackageRelease.min_rel_id==None,
 					PackageRelease.min_rel_id <= self.version.id), or_(PackageRelease.max_rel_id==None,
 					PackageRelease.max_rel_id >= self.version.id))))
+		elif self.not_version:
+			query = query.filter(~Package.releases.any(and_(or_(PackageRelease.min_rel_id==None,
+					PackageRelease.min_rel_id <= self.not_version.id), or_(PackageRelease.max_rel_id==None,
+					PackageRelease.max_rel_id >= self.not_version.id))))
 
 		return query
 
