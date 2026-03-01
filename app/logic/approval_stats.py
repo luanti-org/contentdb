@@ -47,11 +47,14 @@ class PackageInfo:
 		self.events.append((created_at.isoformat(), causer, title))
 
 
-def get_state(title: str):
+def get_state(title: str) -> Optional[PackageState]:
 	if title.startswith("Approved "):
 		return PackageState.APPROVED
 
 	assert title.startswith("Marked ")
+
+	if "approval thread as stale" in title:
+		return None
 
 	for state in PackageState:
 		if state.value in title:
@@ -85,7 +88,7 @@ def _get_approval_statistics(entries: list[AuditLogEntry], start_date: Optional[
 		info.is_in_range = info.is_in_range or is_in_range
 
 		new_state = get_state(entry.title.replace("…", "") + (entry.description or ""))
-		if new_state == info.state:
+		if new_state is None or new_state == info.state:
 			continue
 
 		info.add_event(entry.created_at, entry.causer.username if entry.causer else None, new_state.value)
