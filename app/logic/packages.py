@@ -91,6 +91,9 @@ def is_int(val):
 
 def validate(data: dict):
 	for key, value in data.items():
+		if key.startswith("$"):
+			continue
+
 		if value is None:
 			check(key in NULLABLE, f"{key} must not be null")
 		else:

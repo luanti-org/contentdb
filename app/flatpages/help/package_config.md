@@ -85,6 +85,7 @@ Example:
 
 ```json
 {
+    "$schema": "https://content.luanti.org/api/cdb_schema/",
     "title": "Foo bar",
     "tags": ["pvp", "survival"],
     "license": "MIT",

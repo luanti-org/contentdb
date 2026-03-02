@@ -59,6 +59,8 @@ def get_meta(urlstr, author):
 			with open(os.path.join(tree.baseDir, ".cdb.json"), "r") as f:
 				data = json.loads(f.read())
 				for key, value in data.items():
+					if key.startswith("$"):
+						continue
 					result[key] = value
 		except JSONDecodeError as e:
 			raise TaskError("Whilst reading .cdb.json: " + str(e))
