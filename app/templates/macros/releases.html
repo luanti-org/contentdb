@@ -21,6 +21,9 @@
 
 				{{ _("created %(date)s", date=rel.created_at | date) }}.
 			</small>
+				{% if not rel.approved %}
+					{{ rel.state.title }}
+				{% endif %}
 		</a>
 	{% endfor %}
 {% endmacro %}
@@ -50,6 +53,9 @@
 
 					{{ _("created %(date)s", date=rel.created_at | date) }}.
 				</small>
+				{% if not rel.approved %}
+					{{ rel.state.title }}
+				{% endif %}
 			</a>
 		{% endif %}
 	{% endfor %}

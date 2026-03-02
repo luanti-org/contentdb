@@ -74,8 +74,9 @@ It should be a JSON dictionary with one or more of the following optional keys:
 * `repo`: Source repository (eg: Git).
 * `website`: Website URL.
 * `issue_tracker`: Issue tracker URL.
-* `forums`: forum topic ID, an integer, ex: 20174.
-* `forum_url`: forum URL, a string. Must link to the official forums. Ex: `https://forum.luanti.org/viewtopic.php?t=20174`
+* one of:
+  * `forums`: forum topic ID, an integer, ex: 20174.
+  * `forum_url`: forum URL, a string. Must link to the official forums. Ex: `https://forum.luanti.org/viewtopic.php?t=20174`
 * `video_url`: URL to a video.
 * `donate_url`: URL to a donation page.
 * `translation_url`: URL to send users interested in translating your package.
