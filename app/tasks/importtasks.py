@@ -99,150 +99,134 @@ def remove_package_game_support(package_id: int):
 
 
 def post_release_check_update(self, release: PackageRelease, path):
+	tree: PackageTreeNode = build_tree(path, expected_type=ContentType[release.package.type.name],
+			author=release.package.author.username, name=release.package.name)
+
+	if tree.name is not None and release.package.name != tree.name and tree.type == ContentType.MOD:
+		raise LuantiCheckError(f"Package name ({release.package.name}) does not match the name of the content in "
+							   f"the release ({tree.name}). Either change the package name on ContentDB or the "
+							   f"name in the .conf of the content. Then make a new release")
+
+	cache = {}
+	def get_meta_packages(names):
+		return [ MetaPackage.GetOrCreate(x, cache) for x in names ]
+
+	provides = tree.get_mod_names()
+
+	package = release.package
+	if not package.approved:
+		tree.check_for_legacy_files()
+
+	old_provided_names = set([x.name for x in package.provides])
+	package.provides.clear()
+
+	# If new mods were added, add to audit log
+	if package.state == PackageState.APPROVED:
+		new_provides = []
+		for modname in provides:
+			if modname not in old_provided_names:
+				new_provides.append(modname)
+
+		if len(new_provides) > 0:
+			msg = "Added mods: " + (", ".join(new_provides))
+			add_audit_log(AuditSeverity.NORMAL, package.author, msg + " (Post release hook)", release.get_edit_url(), package)
+
+			# Do any of these new mods exist elsewhere?
+			new_names = get_meta_packages(new_provides)
+			if any(map(lambda x: x.packages.filter(Package.state == PackageState.APPROVED).count() > 0, new_names)):
+				discord_msg = (msg + " " + package.get_url("packages.similar", absolute=True) +
+					"#" + new_provides[0] +
+					"\nSome of these mods exist elsewhere, possible RTaN issue")
+				post_discord_webhook.delay(package.author.display_name, discord_msg, True,
+					package.title, package.short_desc, package.get_thumb_url(2, True, "png"))
+
+	package.provides.extend(get_meta_packages(tree.get_mod_names()))
+
+	# Delete all mod name dependencies
+	package.dependencies.filter(Dependency.meta_package != None).delete()
+
+	# Get raw dependencies
+	depends = tree.fold("meta", "depends")
+	optional_depends = tree.fold("meta", "optional_depends")
+
+	# Filter out provides
+	for mod in provides:
+		depends.discard(mod)
+		optional_depends.discard(mod)
+
+	# Raise error on unresolved game dependencies
+	if package.type == PackageType.GAME and len(depends) > 0:
+		deps = ", ".join(depends)
+		raise LuantiCheckError("Game has unresolved hard dependencies: " + deps)
+
+	if package.state != PackageState.APPROVED and tree.find_license_file() is None:
+		raise LuantiCheckError(
+			"You need to add a LICENSE.txt/.md or COPYING file to your package. See the 'Copyright Guide' for more info")
+
+	# Add dependencies
+	for meta in get_meta_packages(depends):
+		db.session.add(Dependency(package, meta=meta, optional=False))
+
+	for meta in get_meta_packages(optional_depends):
+		db.session.add(Dependency(package, meta=meta, optional=True))
+
+	# Read translations
+	update_translations(package, tree)
+
+	# Update min/max
+	if tree.meta.get("min_minetest_version"):
+		release.min_rel = LuantiRelease.get(tree.meta["min_minetest_version"], None)
+
+	if tree.meta.get("max_minetest_version"):
+		release.max_rel = LuantiRelease.get(tree.meta["max_minetest_version"], None)
+
 	try:
-		tree: PackageTreeNode = build_tree(path, expected_type=ContentType[release.package.type.name],
-				author=release.package.author.username, name=release.package.name)
+		with open(os.path.join(tree.baseDir, ".cdb.json"), "r") as f:
+			data = json.loads(f.read())
+			do_edit_package(package.author, package, False, False, data, "Post release hook")
+	except LogicError as e:
+		raise TaskError("Whilst applying .cdb.json: " + e.message)
+	except JSONDecodeError as e:
+		raise TaskError("Whilst reading .cdb.json: " + str(e))
+	except IOError:
+		pass
 
-		if tree.name is not None and release.package.name != tree.name and tree.type == ContentType.MOD:
-			raise LuantiCheckError(f"Package name ({release.package.name}) does not match the name of the content in "
-								   f"the release ({tree.name}). Either change the package name on ContentDB or the "
-								   f"name in the .conf of the content. Then make a new release")
+	# Build release notes from git log
+	try:
+		if release.commit_hash and release.release_notes is None:
+			previous_release = package.releases.filter(PackageRelease.id != release.id).first()
+			if previous_release and previous_release.commit_hash:
+				release.release_notes = get_release_notes(package.repo, previous_release.commit_hash, release.commit_hash)
+	except Exception as e:
+		# Gracefully just skip making release notes
+		pass
 
-		cache = {}
-		def get_meta_packages(names):
-			return [ MetaPackage.GetOrCreate(x, cache) for x in names ]
+	# Update game support
+	if package.type == PackageType.MOD or package.type == PackageType.TXP:
+		game_is_supported = {}
+		if "supported_games" in tree.meta:
+			for game in get_games_from_list(db.session, tree.meta["supported_games"]):
+				game_is_supported[game.id] = True
 
-		provides = tree.get_mod_names()
+			has_star = any(map(lambda x: x.strip() == "*", tree.meta["supported_games"]))
+			if has_star:
+				if package.type == PackageType.TXP or \
+					package.supported_games.filter(and_(
+						PackageGameSupport.confidence == 1, PackageGameSupport.supports == True)).count() > 0:
+					raise TaskError("The package depends on a game-specific mod, and so cannot support all games.")
 
-		package = release.package
-		if not package.approved:
-			tree.check_for_legacy_files()
+				package.supports_all_games = True
+		if "unsupported_games" in tree.meta:
+			for game in get_games_from_list(db.session, tree.meta["unsupported_games"]):
+				game_is_supported[game.id] = False
 
-		old_provided_names = set([x.name for x in package.provides])
-		package.provides.clear()
+		game_support_set(db.session, package, game_is_supported, 10)
+		if package.type == PackageType.MOD:
+			errors = game_support_update(db.session, package, old_provided_names)
+			if len(errors) != 0:
+				raise TaskError("Error validating game support:\n\n" + "\n".join([f"- {x}" for x in errors]))
 
-		# If new mods were added, add to audit log
-		if package.state == PackageState.APPROVED:
-			new_provides = []
-			for modname in provides:
-				if modname not in old_provided_names:
-					new_provides.append(modname)
-
-			if len(new_provides) > 0:
-				msg = "Added mods: " + (", ".join(new_provides))
-				add_audit_log(AuditSeverity.NORMAL, package.author, msg + " (Post release hook)", release.get_edit_url(), package)
-
-				# Do any of these new mods exist elsewhere?
-				new_names = get_meta_packages(new_provides)
-				if any(map(lambda x: x.packages.filter(Package.state == PackageState.APPROVED).count() > 0, new_names)):
-					discord_msg = (msg + " " + package.get_url("packages.similar", absolute=True) +
-						"#" + new_provides[0] +
-						"\nSome of these mods exist elsewhere, possible RTaN issue")
-					post_discord_webhook.delay(package.author.display_name, discord_msg, True,
-						package.title, package.short_desc, package.get_thumb_url(2, True, "png"))
-
-		package.provides.extend(get_meta_packages(tree.get_mod_names()))
-
-		# Delete all mod name dependencies
-		package.dependencies.filter(Dependency.meta_package != None).delete()
-
-		# Get raw dependencies
-		depends = tree.fold("meta", "depends")
-		optional_depends = tree.fold("meta", "optional_depends")
-
-		# Filter out provides
-		for mod in provides:
-			depends.discard(mod)
-			optional_depends.discard(mod)
-
-		# Raise error on unresolved game dependencies
-		if package.type == PackageType.GAME and len(depends) > 0:
-			deps = ", ".join(depends)
-			raise LuantiCheckError("Game has unresolved hard dependencies: " + deps)
-
-		if package.state != PackageState.APPROVED and tree.find_license_file() is None:
-			raise LuantiCheckError(
-				"You need to add a LICENSE.txt/.md or COPYING file to your package. See the 'Copyright Guide' for more info")
-
-		# Add dependencies
-		for meta in get_meta_packages(depends):
-			db.session.add(Dependency(package, meta=meta, optional=False))
-
-		for meta in get_meta_packages(optional_depends):
-			db.session.add(Dependency(package, meta=meta, optional=True))
-
-		# Read translations
-		update_translations(package, tree)
-
-		# Update min/max
-		if tree.meta.get("min_minetest_version"):
-			release.min_rel = LuantiRelease.get(tree.meta["min_minetest_version"], None)
-
-		if tree.meta.get("max_minetest_version"):
-			release.max_rel = LuantiRelease.get(tree.meta["max_minetest_version"], None)
-
-		try:
-			with open(os.path.join(tree.baseDir, ".cdb.json"), "r") as f:
-				data = json.loads(f.read())
-				do_edit_package(package.author, package, False, False, data, "Post release hook")
-		except LogicError as e:
-			raise TaskError("Whilst applying .cdb.json: " + e.message)
-		except JSONDecodeError as e:
-			raise TaskError("Whilst reading .cdb.json: " + str(e))
-		except IOError:
-			pass
-
-		# Build release notes from git log
-		try:
-			if release.commit_hash and release.release_notes is None:
-				previous_release = package.releases.filter(PackageRelease.id != release.id).first()
-				if previous_release and previous_release.commit_hash:
-					release.release_notes = get_release_notes(package.repo, previous_release.commit_hash, release.commit_hash)
-		except Exception as e:
-			# Gracefully just skip making release notes
-			pass
-
-		# Update game support
-		if package.type == PackageType.MOD or package.type == PackageType.TXP:
-			game_is_supported = {}
-			if "supported_games" in tree.meta:
-				for game in get_games_from_list(db.session, tree.meta["supported_games"]):
-					game_is_supported[game.id] = True
-
-				has_star = any(map(lambda x: x.strip() == "*", tree.meta["supported_games"]))
-				if has_star:
-					if package.type == PackageType.TXP or \
-						package.supported_games.filter(and_(
-							PackageGameSupport.confidence == 1, PackageGameSupport.supports == True)).count() > 0:
-						raise TaskError("The package depends on a game-specific mod, and so cannot support all games.")
-
-					package.supports_all_games = True
-			if "unsupported_games" in tree.meta:
-				for game in get_games_from_list(db.session, tree.meta["unsupported_games"]):
-					game_is_supported[game.id] = False
-
-			game_support_set(db.session, package, game_is_supported, 10)
-			if package.type == PackageType.MOD:
-				errors = game_support_update(db.session, package, old_provided_names)
-				if len(errors) != 0:
-					raise TaskError("Error validating game support:\n\n" + "\n".join([f"- {x}" for x in errors]))
-
-		return tree
-
-	except (LuantiCheckError, TaskError, LogicError) as err:
-		db.session.rollback()
-
-		error_message = err.value if hasattr(err, "value") else str(err)
-
-		task_url = url_for('tasks.check', id=self.request.id)
-		msg = f"{error_message}\n\n[View Release]({release.get_edit_url()}) | [View Task]({task_url})"
-		post_bot_message(release.package, f"Release {release.title} validation failed", msg)
-
-		release.task_id = self.request.id
-		release.state = ReleaseState.FAILED
-		db.session.commit()
-
-		raise TaskError(error_message)
+	return tree
 
 
 def update_translations(package: Package, tree: PackageTreeNode):
@@ -320,19 +304,34 @@ def check_zip_release(self, id, path):
 	elif release.package is None:
 		raise TaskError("No package attached to release")
 
-	with get_temp_dir() as temp:
-		if not _safe_extract_zip(temp, path):
-			release.state = ReleaseState.FAILED
+	try:
+		with get_temp_dir() as temp:
+			if not _safe_extract_zip(temp, path):
+				release.state = ReleaseState.FAILED
+				db.session.commit()
+				raise Exception(f"Unsafe zip file at {path}")
+
+			post_release_check_update(self, release, temp)
+
+			release.task_id = None
+			release.calculate_file_size_bytes()
+			release.state = ReleaseState.UNAPPROVED
+			release.approve(release.package.author)
 			db.session.commit()
-			raise Exception(f"Unsafe zip file at {path}")
+	except (LuantiCheckError, TaskError, LogicError) as err:
+		db.session.rollback()
 
-		post_release_check_update(self, release, temp)
+		error_message = err.value if hasattr(err, "value") else str(err)
 
-		release.task_id = None
-		release.calculate_file_size_bytes()
-		release.state = ReleaseState.UNAPPROVED
-		release.approve(release.package.author)
+		task_url = url_for('tasks.check', id=self.request.id)
+		msg = f"{error_message}\n\n[View Release]({release.get_edit_url()}) | [View Task]({task_url})"
+		post_bot_message(release.package, f"Release {release.title} validation failed", msg)
+
+		release.task_id = self.request.id
+		release.state = ReleaseState.FAILED
 		db.session.commit()
+
+		raise TaskError(error_message)
 
 
 @celery.task()
@@ -391,31 +390,46 @@ def make_vcs_release(self, id, branch):
 	elif release.package is None:
 		raise TaskError("No package attached to release")
 
-	with clone_repo(release.package.repo, ref=branch, recursive=True) as repo:
-		release.commit_hash = repo.head.object.hexsha
-		post_release_check_update(self, release, repo.working_tree_dir)
+	try:
+		with clone_repo(release.package.repo, ref=branch, recursive=True) as repo:
+			release.commit_hash = repo.head.object.hexsha
+			post_release_check_update(self, release, repo.working_tree_dir)
 
-		filename = random_string(10) + ".zip"
-		dest_path = os.path.join(app.config["UPLOAD_DIR"], filename)
+			filename = random_string(10) + ".zip"
+			dest_path = os.path.join(app.config["UPLOAD_DIR"], filename)
 
-		assert not os.path.isfile(dest_path)
-		archiver = GitArchiver(prefix=release.package.name, force_sub=True, main_repo_abspath=repo.working_tree_dir)
-		archiver.create(dest_path)
-		assert os.path.isfile(dest_path)
+			assert not os.path.isfile(dest_path)
+			archiver = GitArchiver(prefix=release.package.name, force_sub=True, main_repo_abspath=repo.working_tree_dir)
+			archiver.create(dest_path)
+			assert os.path.isfile(dest_path)
 
-		file_stats = os.stat(dest_path)
-		if file_stats.st_size / (1024 * 1024) > 100:
-			os.remove(dest_path)
-			raise TaskError("The .zip file created from Git is too large - needs to be less than 100MB")
+			file_stats = os.stat(dest_path)
+			if file_stats.st_size / (1024 * 1024) > 100:
+				os.remove(dest_path)
+				raise TaskError("The .zip file created from Git is too large - needs to be less than 100MB")
 
-		release.url         = "/uploads/" + filename
-		release.task_id     = None
-		release.calculate_file_size_bytes()
-		release.state = ReleaseState.UNAPPROVED
-		release.approve(release.package.author)
+			release.url         = "/uploads/" + filename
+			release.task_id     = None
+			release.calculate_file_size_bytes()
+			release.state = ReleaseState.UNAPPROVED
+			release.approve(release.package.author)
+			db.session.commit()
+
+			return release.url
+	except (LuantiCheckError, TaskError, LogicError) as err:
+		db.session.rollback()
+
+		error_message = err.value if hasattr(err, "value") else str(err)
+
+		task_url = url_for('tasks.check', id=self.request.id)
+		msg = f"{error_message}\n\n[View Release]({release.get_edit_url()}) | [View Task]({task_url})"
+		post_bot_message(release.package, f"Release {release.title} validation failed", msg)
+
+		release.task_id = self.request.id
+		release.state = ReleaseState.FAILED
 		db.session.commit()
 
-		return release.url
+		raise TaskError(error_message)
 
 
 @celery.task()
