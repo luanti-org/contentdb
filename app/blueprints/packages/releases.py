@@ -194,7 +194,7 @@ def edit_release(package, id):
 		if canApprove:
 			if form.approved.data:
 				release.approve(current_user)
-			else:
+			elif release.state == ReleaseState.APPROVED:
 				release.state = ReleaseState.UNAPPROVED
 
 		db.session.commit()
