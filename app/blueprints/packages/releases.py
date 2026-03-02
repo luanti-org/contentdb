@@ -49,9 +49,9 @@ class CreatePackageReleaseForm(FlaskForm):
 	upload_mode = RadioField(lazy_gettext("Method"), choices=[("upload", lazy_gettext("File Upload"))], default="upload")
 	vcs_label   = StringField(lazy_gettext("Git reference (ie: commit hash, branch, or tag)"), default=None)
 	file_upload = FileField(lazy_gettext("File Upload"))
-	min_rel     = QuerySelectField(lazy_gettext("Minimum Luanti Version"), [InputRequired()],
+	min_rel     = QuerySelectField(lazy_gettext("Minimum Luanti Version"), [],
 			query_factory=lambda: get_mt_releases(False), get_pk=lambda a: a.id, get_label=lambda a: a.name)
-	max_rel     = QuerySelectField(lazy_gettext("Maximum Luanti Version"), [InputRequired()],
+	max_rel     = QuerySelectField(lazy_gettext("Maximum Luanti Version"), [],
 			query_factory=lambda: get_mt_releases(True), get_pk=lambda a: a.id, get_label=lambda a: a.name)
 	submit      = SubmitField(lazy_gettext("Save"))
 
