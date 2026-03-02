@@ -16,7 +16,7 @@ from app.utils.models import add_audit_log
 from app.utils.flask import has_blocked_domains
 from app.utils.difference import diff_dictionaries, describe_difference
 from app.utils.misc import normalize_line_endings
-from app.utils.url import clean_youtube_url
+from app.utils.url import clean_youtube_url, get_forum_id
 
 
 def check(cond: bool, msg: typing.Union[str, LazyString]):
@@ -56,9 +56,28 @@ ALLOWED_FIELDS = {
 	"issue_tracker": str,
 	"issueTracker": str,
 	"forums": int,
+	"forum_url": str,
 	"video_url": str,
 	"donate_url": str,
 	"translation_url": str,
+}
+
+IGNORED_FIELDS = {
+	"author",
+	"approved_at",
+	"created_at",
+	"downloads",
+	"game_support",
+	"maintainers",
+	"provides",
+	"release",
+	"score",
+	"screenshots",
+	"state",
+	"supports_all_games",
+	"thumbnail",
+	"url",
+	"video_thumbnail_url",
 }
 
 NULLABLE = {
@@ -69,6 +88,7 @@ NULLABLE = {
 	"issue_tracker",
 	"issueTracker",
 	"forums",
+	"forum_url",
 	"video_url",
 	"donate_url",
 	"translation_url",
@@ -92,6 +112,9 @@ def is_int(val):
 def validate(data: dict):
 	for key, value in data.items():
 		if key.startswith("$"):
+			continue
+
+		if key in IGNORED_FIELDS:
 			continue
 
 		if value is None:
@@ -176,6 +199,11 @@ def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, 
 			"repo", "website", "issueTracker", "forums", "video_url", "donate_url", "translation_url"]:
 		if key in data:
 			setattr(package, key, data[key])
+
+	if "forum_url" in data:
+		forum_url = data["forum_url"]
+		package.forums = get_forum_id(forum_url)
+		check(not (package.forums is None and forum_url is not None), lazy_gettext("Invalid forum_url - missing t"))
 
 	if package.type == PackageType.TXP:
 		package.license = package.media_license

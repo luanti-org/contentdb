@@ -802,6 +802,11 @@ def json_schema():
 				"type": ["integer", "null"],
 				"minimum": 0
 			},
+			"forum_url": {
+				"description": "URL to a forum topic",
+				"type": ["string", "null"],
+				"format": "uri"
+			},
 			"video_url": {
 				"description": "URL to a Video",
 				"type": ["string", "null"],

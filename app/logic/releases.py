@@ -53,7 +53,11 @@ def do_create_vcs_release(user: User, package: Package, name: str, title: Option
 
 	db.session.commit()
 
-	make_vcs_release.apply_async((rel.id, nonempty_or_none(ref)), task_id=rel.task_id)
+	ref = nonempty_or_none(ref)
+	if ref:
+		ref = ref.strip()
+
+	make_vcs_release.apply_async((rel.id, ref), task_id=rel.task_id)
 
 	return rel
 

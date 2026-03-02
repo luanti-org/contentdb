@@ -38,3 +38,10 @@ def clean_youtube_url(url: str) -> Optional[str]:
 		return url_set_query("https://www.youtube.com/watch", {"v": id_})
 
 	return None
+
+
+def get_forum_id(url: str) -> Optional[int]:
+	parsed = urlparse.urlparse(url)
+	query_params = urlparse.parse_qs(parsed.query)
+	values = query_params.get("t")
+	return values[0] if values else None
