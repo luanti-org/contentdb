@@ -38,7 +38,7 @@ Tag-based webhooks are accepted on any branch.
 
 1. Create a ContentDB API Token at [Profile > API Tokens: Manage](/user/tokens/).
 2. Copy the access token that was generated.
-3. Go to the GitLab repository's settings > Webhooks > Add Webhook.
+3. Go to the Github repository's settings > Webhooks > Add Webhook.
 4. Set the payload URL to `https://content.luanti.org/github/webhook/`
 5. Set the content type to JSON.
 6. Set the secret to the access token that you copied.
