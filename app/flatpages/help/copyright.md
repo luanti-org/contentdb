@@ -102,6 +102,26 @@ and looking for a license. Make sure the source looks trustworthy, as there are 
 that rip off art and give an incorrect license. But it might be better to use a trusted source directly, see
 [the section above](#where-can-i-get-freely-licensed-media) for a list.
 
+### I got it from Pixabay
+
+You will need to check the date that the asset was uploaded to Pixabay, as on the 9th of January 2019 Pixabay changed
+their license to the non-free "Pixabay License" which is not allowed on ContentDB. However all content on Pixabay that
+was uploaded *prior* to this date was originally licensed under the [Creative Commons Zero](https://creativecommons.org/public-domain/cc0/)
+license and can still be used under that license due to its irrevocable nature.
+
+(See the [Wikipedia page for Pixabay for more context](https://en.wikipedia.org/wiki/Pixabay#History))
+
+### I got it from a commercial game
+
+Please **do not** use assets that you have extracted from proprietary or commercial games. Their usage is generally
+restricted under a non-free EULA for the game and tends to forbid the modification and distribution of them outside
+of non-commercial modding of that particular game.
+
+Proprietary games may still make use of freely licensed assets which you could be able to use the source of.
+They may list the sources of these assets in a credits, attribution or similar section of the game or its website.
+Do note that you **should not** use the version of the asset found in the game, as it may have been modified by the
+game developers. Instead always use the source version that you can find clear licensing for.
+
 ### I have permission from the author
 
 You'll also need to make sure that the author gives you an explicit license for it, such as CC BY-SA 4.0.
