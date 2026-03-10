@@ -17,7 +17,7 @@ from app.utils.models import add_audit_log
 from app.utils.misc import nonempty_or_none, normalize_line_endings
 
 
-def check_can_create_release(user: User, package: Package, name: str):
+def check_can_create_release(user: User, package: Package, name: str, title: str):
 	if not package.check_perm(user, Permission.MAKE_RELEASE):
 		raise LogicError(403, lazy_gettext("You don't have permission to make releases"))
 
@@ -29,10 +29,13 @@ def check_can_create_release(user: User, package: Package, name: str):
 	if PackageRelease.query.filter_by(package_id=package.id, name=name).count() > 0:
 		raise LogicError(403, lazy_gettext("A release with this name already exists"))
 
+	if PackageRelease.query.filter_by(package_id=package.id, title=title).count() > 0:
+		raise LogicError(403, lazy_gettext("A release with this title already exists"))
+
 
 def do_create_vcs_release(user: User, package: Package, name: str, title: Optional[str], release_notes: Optional[str], ref: str,
 		min_v: LuantiRelease = None, max_v: LuantiRelease = None, reason: str = None):
-	check_can_create_release(user, package, name)
+	check_can_create_release(user, package, name, title or name)
 
 	rel = PackageRelease()
 	rel.package = package
@@ -65,7 +68,7 @@ def do_create_vcs_release(user: User, package: Package, name: str, title: Option
 def do_create_zip_release(user: User, package: Package, name: str, title: Optional[str], release_notes: Optional[str], file,
 		min_v: LuantiRelease = None, max_v: LuantiRelease = None, reason: str = None,
 		commit_hash: str = None):
-	check_can_create_release(user, package, name)
+	check_can_create_release(user, package, name, title or name)
 
 	if commit_hash:
 		commit_hash = commit_hash.lower()
