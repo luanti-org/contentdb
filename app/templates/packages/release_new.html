@@ -39,7 +39,7 @@
 
 		<h3>{{ _("1. Name release") }}</h3>
 
-		{{ render_field(form.name, hint=_("Release short name. Eg: 1.0.0 or 2018-05-28")) }}
+		{{ render_field(form.name, hint=_("Release short name. Must be of the form v1.2.3, 1.0.0, or 2018-05-28")) }}
 		{{ render_field(form.title, placeholder=_("Same as name"), hint=_("Human-readable name. Eg: 1.0.0 - The Trains Update")) }}
 		{{ render_field(form.release_notes, fieldclass="form-control markdown") }}
 

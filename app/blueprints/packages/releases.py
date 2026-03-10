@@ -9,7 +9,7 @@ from flask_login import login_required, current_user
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, BooleanField, RadioField, FileField
 from wtforms.fields.simple import TextAreaField
-from wtforms.validators import InputRequired, Length, Optional
+from wtforms.validators import InputRequired, Length, Optional, Regexp
 from wtforms_sqlalchemy.fields import QuerySelectField
 
 from app.logic.releases import do_create_vcs_release, LogicError, do_create_zip_release
@@ -42,7 +42,9 @@ def get_mt_releases(is_max):
 
 
 class CreatePackageReleaseForm(FlaskForm):
-	name        = StringField(lazy_gettext("Name"), [InputRequired(), Length(1, 30)])
+	name        = StringField(lazy_gettext("Name"), [
+			InputRequired(), Length(1, 30),
+			Regexp("^v?\d+([\.\-\/][\dA-Za-z]+)*$", 0, lazy_gettext("Release name must be in the form 1.2.3, v1.2.3, or 2025-02-01"))])
 	title       = StringField(lazy_gettext("Title"), [Optional(), Length(1, 100)], filters=[nonempty_or_none])
 	release_notes = TextAreaField(lazy_gettext("Release Notes"), [Optional(), Length(1, 5000)],
 			filters=[nonempty_or_none, normalize_line_endings])
