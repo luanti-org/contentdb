@@ -44,7 +44,7 @@ def get_mt_releases(is_max):
 class CreatePackageReleaseForm(FlaskForm):
 	name        = StringField(lazy_gettext("Name"), [
 			InputRequired(), Length(1, 30),
-			Regexp("^v?\d+([\.\-\/][\dA-Za-z]+)*$", 0, lazy_gettext("Release name must be in the form 1.2.3, v1.2.3, or 2025-02-01"))])
+			Regexp("^[A-Za-z]*\.?\d+([\.\-\/][\dA-Za-z]+)*$", 0, lazy_gettext("Release name must be in the form 1.2.3, v1.2.3, or 2025-02-01"))])
 	title       = StringField(lazy_gettext("Title"), [Optional(), Length(1, 100)], filters=[nonempty_or_none])
 	release_notes = TextAreaField(lazy_gettext("Release Notes"), [Optional(), Length(1, 5000)],
 			filters=[nonempty_or_none, normalize_line_endings])

@@ -32,7 +32,7 @@ def check_can_create_release(user: User, package: Package, name: str, title: str
 	if PackageRelease.query.filter_by(package_id=package.id, title=title).count() > 0:
 		raise LogicError(403, lazy_gettext("A release with this title already exists"))
 
-	release_name_re = re.compile("^v?\d+([\.\-\/][\dA-Za-z]+)*$")
+	release_name_re = re.compile("^[A-Za-z]*\.?\d+([\.\-\/][\dA-Za-z]+)*$")
 	if not release_name_re.match(name):
 		raise LogicError(403, lazy_gettext("Release name must be in the form 1.2.3, v1.2.3, or 2025-02-01"))
 
