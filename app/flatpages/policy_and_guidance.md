@@ -136,7 +136,7 @@ be removed in the future.
 AI-generated content must be properly disclosed on ContentDB (Edit Package > AI disclosure).
 
 If you use AI to generate significant content (ie: entire assets), then it should
-also be created in your package's credit list in the LICENSE file.
+also be credited in your package's credit list in the LICENSE file.
 See the [Copyright Guide](/help/copyright/#i-used-an-ai) for more information.
 
 ## 5. Promotions and Advertisements (inc. asking for donations)
