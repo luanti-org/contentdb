@@ -131,6 +131,14 @@ Public domain is not a valid license in many countries, please use CC0 or MIT in
 Note: there are some packages on ContentDB that do not use a FOSS license. These will
 be removed in the future.
 
+### 4.3. AI-generated content
+
+AI-generated content must be properly disclosed on ContentDB (Edit Package > AI disclosure).
+
+If you use AI to generate significant content (ie: entire assets), then it should
+also be created in your package's credit list in the LICENSE file.
+See the [Copyright Guide](/help/copyright/#i-used-an-ai) for more information.
+
 ## 5. Promotions and Advertisements (inc. asking for donations)
 
 You may not place any promotions or advertisements in any metadata including

@@ -58,10 +58,13 @@ for a guide to making mods and games using Luanti.
 
 See [Installing content](/help/installing/).
 
+### What's your AI policy?
+
+AI content must be disclosed. See the [Copyright Guide](/help/copyright/#i-used-an-ai).
+
 ### How can my package get more downloads?
 
 See [Creating an appealing ContentDB page](/help/appealing_page/).
-
 
 ## How do I get help?
 

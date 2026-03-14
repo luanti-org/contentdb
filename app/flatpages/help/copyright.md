@@ -135,11 +135,8 @@ or public domain.
 
 ### I used an AI
 
-Errrr. This is a legally untested area, we highly recommend that **you don't use AI art/code** in packages
-for that reason.
-
-For now, we haven't banned AI art/code from ContentDB. Make sure to clearly include it in your package's
-credit list (include the name of the AI tool used).
+Make sure to disclose your use of AI on ContentDB (Edit package > AI disclosure). If you use AI to generate
+assets or significant amounts of code, you should credit the exact tool used in your package's credit list.
 
 Check the tools terms and conditions to see if there are any constraints on use. It looks
 like AI-generated art and code isn't copyrightable by itself, but the tool's T&Cs may still

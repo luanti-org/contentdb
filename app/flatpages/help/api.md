@@ -51,7 +51,7 @@ The response will be a dictionary with the following keys:
 
 ## Authentication
 
-Not all endpoints require authentication, but it is done using Bearer tokens:
+Some endpoints require authentication, which is done using Bearer tokens:
 
 ```bash
 curl https://content.luanti.org/api/whoami/ \

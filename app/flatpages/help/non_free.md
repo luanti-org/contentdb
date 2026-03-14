@@ -10,8 +10,8 @@ and they will be subject to limited promotion.
 
 ## How does ContentDB deal with Non-Free Licenses?
 
-**ContentDB does not allow certain non-free licenses, and will limit the promotion
-of packages with non-free licenses.**
+**ContentDB does not allow new packages with Non-Free licenses.
+Non-free packages will be removed from ContentDB in the future.**
 
 Luanti is free and open source software, and is only as big as it is now
 because of this. It's pretty amazing you can take nearly any published mod and modify it

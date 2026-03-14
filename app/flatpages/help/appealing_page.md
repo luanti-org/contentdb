@@ -20,24 +20,27 @@ A good thumbnail goes a long way to making a package more appealing. It's one of
 a user sees before clicking on your package. Make sure it's possible to tell what a
 thumbnail is when it's small.
 
-For a preview of what your package will look like inside Luanti, see
-Edit Package > Screenshots.
-
 ## Screenshots
 
-Upload a good selection of screenshots that show what is possible with your packages.
+Upload a good selection of screenshots that show what is possible with your package.
 You may wish to focus on a different key feature in each of your screenshots.
 
 A lot of users won't bother reading text, and will just look at screenshots.
 
 ## Long description
 
-The target audience of your package page is end users.
+Your ContentDB long description and your repo's README.md have different audiences,
+and so usually should not be the same.
+
+The target audience of your package page should be end users.
 The long description should explain what your package is about,
 why the user should choose it, and how to use it if they download it.
 
+The README.md in your repo may target end users as well, but will often also target
+developers and contain information which is present elsewhere on ContentDB.
+
 [NodeCore](https://content.luanti.org/packages/Warr1024/nodecore/) is a good
-example of what to do. For inspiration, you might want to look at how games on
+example of how to write a long description. For inspiration, you might want to look at how games on
 Steam write their descriptions.
 
 Your long description might contain:
@@ -55,8 +58,7 @@ The following are redundant and should probably not be included:
 * API reference (unless your mod is a library only)
 * Development instructions for your package (this should be in the repo's README)
 * Screenshots that are already uploaded (unless you want to embed a recipe image in a specific place)
-    * Note: you should avoid images in the long description as they won't be visible inside Luanti,
-      when support for showing the long description is added.
+    * Note: you should avoid images in the long description as they are not visible inside Luanti.
 
 ## Localize / Translate your package
 

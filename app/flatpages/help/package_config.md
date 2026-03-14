@@ -83,6 +83,8 @@ It should be a JSON dictionary with one or more of the following optional keys:
 
 Use `null` or `[]` to unset fields where relevant.
 
+Tip: including a `$schema` will allow your code editor to validate/autocomplete fields.
+
 Example:
 
 ```json
