@@ -65,7 +65,7 @@ def home():
 
 	def review_load(query):
 		return query.options(
-			load_only(PackageReview.id, PackageReview.rating, PackageReview.created_at, PackageReview.language_id, raiseload=True),
+			load_only(PackageReview.id, PackageReview.rating, PackageReview.created_at, PackageReview.language_id, PackageReview.approved, raiseload=True),
 			joinedload(PackageReview.author).load_only(User.username, User.rank, User.email, User.display_name, User.profile_pic, User.is_active, raiseload=True),
 			joinedload(PackageReview.votes),
 			joinedload(PackageReview.language).load_only(Language.title, raiseload=True),
@@ -88,7 +88,7 @@ def home():
 	pop_txp = package_load(query).filter_by(type=PackageType.TXP).order_by(db.desc(Package.score)).limit(2*PKGS_PER_ROW).all()
 
 	high_reviewed = package_load(query.order_by(db.desc(Package.score - Package.score_downloads))
-			.filter(Package.reviews.any()).limit(PKGS_PER_ROW)).all()
+			.filter(Package.reviews.any(approved=True)).limit(PKGS_PER_ROW)).all()
 
 	recent_releases_query = (
 		db.session.query(
@@ -109,7 +109,7 @@ def home():
 			.limit(PKGS_PER_ROW))
 			.all())
 
-	reviews = review_load(PackageReview.query.filter(PackageReview.rating > 3)
+	reviews = review_load(PackageReview.query.filter(PackageReview.rating > 3, PackageReview.approved == True)
 			.order_by(db.desc(PackageReview.created_at))).limit(5).all()
 
 	downloads_result = db.session.query(func.sum(Package.downloads)).one_or_none()

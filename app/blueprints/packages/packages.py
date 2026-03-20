@@ -147,6 +147,11 @@ def view(package):
 	elif not current_user.rank.at_least(UserRank.APPROVER) and not current_user == package.author:
 		threads = threads.filter(or_(Thread.private == False, Thread.author == current_user))
 
+	if current_user.is_authenticated:
+		reviews = [x for x in package.reviews.all() if x.check_perm(current_user, Permission.SEE_REVIEW)]
+	else:
+		reviews = package.reviews.filter_by(approved=True).all()
+
 	has_review = current_user.is_authenticated and \
 		PackageReview.query.filter_by(package=package, author=current_user).count() > 0
 
@@ -170,7 +175,7 @@ def view(package):
 
 	return render_template("packages/view.html",
 			package=package, releases=releases, packages_uses=packages_uses,
-			review_thread=review_thread, threads=threads.all(), validation=validation,
+			review_thread=review_thread, threads=threads.all(), reviews=reviews, validation=validation,
 			has_review=has_review, favorites_count=favorites_count, is_favorited=is_favorited,
 			public_collection_count=public_collection_count)
 

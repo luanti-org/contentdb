@@ -315,7 +315,7 @@ def package_reviews_as_hypertext(package: Package, formspec_version: int = 7):
 	body += make_link(package.get_url("packages.review", absolute=True), gettext("Leave a review"))
 	body += "\n\n"
 
-	reviews = package.reviews.all()
+	reviews = package.reviews.filter_by(approved=True).all()
 	for review in reviews:
 		review: PackageReview
 		if review.thread is None:

@@ -61,6 +61,19 @@
 		</div>
 	{% endif %}
 
+	{% if reviews %}
+		<div class="card my-4">
+			<h3 class="card-header">{{ _("Reviews") }}</h3>
+			<div class="list-group list-group-flush">
+				{% for review in reviews %}
+					<a href="{{ review.get_view_url() }}" class="list-group-item list-group-item-action">
+						{{ review.thread.title }} by {{ review.author.display_name }}
+					</a>
+				{% endfor %}
+			</div>
+		</div>
+	{% endif %}
+
 	<div class="row">
 		{% if can_approve_new and (packages or wip_packages) %}
 		<div class="col-sm-6">

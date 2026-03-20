@@ -341,7 +341,7 @@ class QueryBuilder:
 		elif self.order_by is None or self.order_by == "score":
 			to_order = Package.score
 		elif self.order_by == "reviews":
-			query = query.filter(Package.reviews.any())
+			query = query.filter(Package.reviews.any(approved=True))
 			to_order = (Package.score - Package.score_downloads)
 		elif self.order_by == "name":
 			to_order = Package.name

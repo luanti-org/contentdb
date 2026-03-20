@@ -112,9 +112,9 @@ def package_view_client(package: Package):
 	data["download_size"] = package.get_download_release(version).file_size
 
 	data["reviews"] = {
-		"positive": package.reviews.filter(PackageReview.rating > 3).count(),
-		"neutral": package.reviews.filter(PackageReview.rating == 3).count(),
-		"negative": package.reviews.filter(PackageReview.rating < 3).count(),
+		"positive": package.reviews.filter(PackageReview.rating > 3, PackageReview.approved).count(),
+		"neutral": package.reviews.filter(PackageReview.rating == 3, PackageReview.approved).count(),
+		"negative": package.reviews.filter(PackageReview.rating < 3, PackageReview.approved).count(),
 	}
 
 	resp = jsonify(data)
@@ -482,7 +482,7 @@ def set_cover_image(token: APIToken, package: Package):
 @is_package_page
 @cors_allowed
 def list_reviews(package):
-	reviews = package.reviews
+	reviews = package.reviews.filter_by(approved=True)
 	return jsonify([review.as_dict() for review in reviews])
 
 
@@ -492,7 +492,7 @@ def list_all_reviews():
 	page = get_int_or_abort(request.args.get("page"), 1)
 	num = min(get_int_or_abort(request.args.get("n"), 100), 200)
 
-	query = PackageReview.query
+	query = PackageReview.query.filter_by(approved=True)
 	query = query.options(joinedload(PackageReview.author), joinedload(PackageReview.package))
 
 	if "for_user" in request.args:
@@ -592,7 +592,7 @@ def homepage():
 	pop_gam = query.filter_by(type=PackageType.GAME).order_by(db.desc(Package.score)).limit(8).all()
 	pop_txp = query.filter_by(type=PackageType.TXP).order_by(db.desc(Package.score)).limit(8).all()
 	high_reviewed = query.order_by(db.desc(Package.score - Package.score_downloads)) \
-			.filter(Package.reviews.any()).limit(4).all()
+			.filter(Package.reviews.any(approved=True)).limit(4).all()
 
 	updated = db.session.query(Package).select_from(PackageRelease).join(Package) \
 			.filter_by(state=PackageState.APPROVED) \

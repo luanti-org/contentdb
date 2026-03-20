@@ -28,7 +28,7 @@ def list_reviews():
 	page = get_int_or_abort(request.args.get("page"), 1)
 	num = min(40, get_int_or_abort(request.args.get("n"), 100))
 
-	pagination = PackageReview.query.order_by(db.desc(PackageReview.created_at)).paginate(page=page, per_page=num)
+	pagination = PackageReview.query.filter_by(approved=True).order_by(db.desc(PackageReview.created_at)).paginate(page=page, per_page=num)
 	return render_template("packages/reviews_list.html", pagination=pagination, reviews=pagination.items)
 
 
@@ -87,6 +87,7 @@ def review(package):
 			if not review:
 				was_new = True
 				review = PackageReview()
+				review.approved = not package.sensitive_package or current_user.rank.at_least(UserRank.TRUSTED_MEMBER)
 				review.package = package
 				review.author  = current_user
 				db.session.add(review)
@@ -98,7 +99,7 @@ def review(package):
 			if not thread:
 				thread = Thread()
 				thread.author  = current_user
-				thread.private = False
+				thread.private = not review.approved
 				thread.package = package
 				thread.review = review
 				db.session.add(thread)
@@ -182,6 +183,31 @@ def delete_review(package, reviewer):
 	db.session.commit()
 
 	return redirect(thread.get_view_url())
+
+
+@bp.route("/packages/<author>/<name>/reviews/<reviewer>/approve/", methods=["POST"])
+@login_required
+@is_package_page
+def approve_review(package, reviewer):
+	review = PackageReview.query \
+		.filter(PackageReview.package == package, PackageReview.author.has(username=reviewer)) \
+		.first()
+	if review is None or review.package != package:
+		abort(404)
+
+	if not review.check_perm(current_user, Permission.APPROVE_REVIEW):
+		abort(403)
+
+	review.thread.private = False
+	review.approved = True
+	review.package.recalculate_score()
+
+	msg = "Approved review by {}".format(review.author.display_name)
+	add_audit_log(AuditSeverity.MODERATION, current_user, msg, review.get_view_url(), review.package)
+
+	db.session.commit()
+
+	return redirect(review.get_view_url())
 
 
 def handle_review_vote(package: Package, review_id: int) -> typing.Optional[str]:

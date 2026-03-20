@@ -1,5 +1,5 @@
 {% macro render_reply(r, thread, current_user) -%}
-	{% from "macros/reviews.html" import render_review_vote %}
+	{% from "macros/reviews.html" import render_review_vote, render_approve_review %}
 
 	<li class="row my-2 mx-0">
 		<div class="col-md-1 p-1">
@@ -52,6 +52,10 @@
 								href="{{ url_for('report.report', url=r.get_url()) }}">
 							<i class="fas fa-flag me-1"></i>
 						</a>
+					{% endif %}
+
+					{% if thread.first_reply == r and thread.review and not thread.review.approved %}
+						{{ render_approve_review(thread.review, current_user) }}
 					{% endif %}
 
 					{% if current_user == thread.author and thread.review and thread.first_reply == r %}

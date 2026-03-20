@@ -201,11 +201,11 @@
 					<a class="btn" href="#reviews" title="{{ _('Reviews') }}">
 						<i class="fas fa-star-half-alt"></i>
 						<span class="count">
-							+{{ package.reviews | selectattr("rating", "equalto", 5) | list | length }}
+							+{{ reviews | selectattr("rating", "equalto", 5) | list | length }}
 							/
-							{{ package.reviews | selectattr("rating", "equalto", 3) | list | length }}
+							{{ reviews | selectattr("rating", "equalto", 3) | list | length }}
 							/
-							-{{ package.reviews | selectattr("rating", "equalto", 1) | list | length }}
+							-{{ reviews | selectattr("rating", "equalto", 1) | list | length }}
 						</span>
 					</a>
 					{% if package.website %}
@@ -371,7 +371,7 @@
 					<a href="{{ package.get_url('packages.review_votes') }}" class="btn btn-secondary">{{ _("Review Votes") }}</a>
 				{% endif %}
 
-				{{ render_reviews(package.reviews, current_user) }}
+				{{ render_reviews(reviews, current_user) }}
 
 				{% if packages_uses %}
 					<h2>{{ _("Used By") }}</h2>

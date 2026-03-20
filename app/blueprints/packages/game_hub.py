@@ -28,7 +28,7 @@ def game_hub(package: Package):
 	pop_mod = join(query.filter_by(type=PackageType.MOD).order_by(db.desc(Package.score))).limit(8).all()
 	pop_txp = join(query.filter_by(type=PackageType.TXP).order_by(db.desc(Package.score))).limit(8).all()
 	high_reviewed = join(query.order_by(db.desc(Package.score - Package.score_downloads))) \
-		.filter(Package.reviews.any()).limit(4).all()
+		.filter(Package.reviews.any(approved=True)).limit(4).all()
 
 	updated = db.session.query(Package).select_from(PackageRelease).join(Package) \
 		.filter(Package.supported_games.any(game=package, supports=True), Package.state==PackageState.APPROVED) \

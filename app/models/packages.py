@@ -496,6 +496,8 @@ class Package(db.Model):
 	# Supports all games by default, may have unsupported games
 	supports_all_games = db.Column(db.Boolean, nullable=False, default=False)
 
+	sensitive_package = db.Column(db.Boolean, nullable=False, default=False)
+
 	# Downloads
 	repo         = db.Column(db.String(200), nullable=True)
 	website      = db.Column(db.String(200), nullable=True)
@@ -919,7 +921,7 @@ class Package(db.Model):
 		}
 
 	def recalculate_score(self):
-		review_scores = [ 150 * r.as_weight() for r in self.reviews ]
+		review_scores = [ 150 * r.as_weight() for r in self.reviews.filter_by(approved=True) ]
 		self.score = self.score_downloads + sum(review_scores)
 
 	def get_conf_file_name(self):

@@ -11,7 +11,7 @@ from flask_login import current_user, login_required
 from sqlalchemy import func, text, and_
 from sqlalchemy.sql.functions import coalesce
 
-from app.models import User, db, Package, PackageReview, PackageState, PackageType, UserRank, Collection
+from app.models import User, db, Package, PackageReview, PackageState, PackageType, UserRank, Collection, Permission
 from app.utils.flask import get_daterange_options
 from app.tasks.forumtasks import check_forum_account
 
@@ -227,10 +227,12 @@ def profile(username):
 	pinned_collections = user.collections.filter(Collection.private == False,
 			Collection.pinned == True, Collection.packages.any()).all()
 
+	reviews = [x for x in user.reviews if x.check_perm(current_user, Permission.SEE_REVIEW)]
+
 	unlocked, locked = get_user_medals(user)
 	# Process GET or invalid POST
 	return render_template("users/profile.html", user=user,
-			packages=packages, maintained_packages=maintained_packages,
+			packages=packages, maintained_packages=maintained_packages, reviews=reviews,
 			medals_unlocked=unlocked, medals_locked=locked, pinned_collections=pinned_collections)
 
 

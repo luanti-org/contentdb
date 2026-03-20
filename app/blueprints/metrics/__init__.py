@@ -57,7 +57,7 @@ def generate_metrics():
 		User.audit_log_entries.any(AuditLogEntry.created_at > one_month_ago),
 		User.replies.any(ThreadReply.created_at > one_month_ago)))).count()
 
-	reviews = PackageReview.query.count()
+	reviews = PackageReview.query.filter_by(approved=True).count()
 	comments = ThreadReply.query.count()
 	collections = Collection.query.count()
 

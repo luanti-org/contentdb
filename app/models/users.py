@@ -98,7 +98,9 @@ class Permission(enum.Enum):
 	TOPIC_DISCARD      = "TOPIC_DISCARD"
 	CREATE_TOKEN       = "CREATE_TOKEN"
 	EDIT_MAINTAINERS   = "EDIT_MAINTAINERS"
+	SEE_REVIEW         = "SEE_REVIEW"
 	DELETE_REVIEW      = "DELETE_REVIEW"
+	APPROVE_REVIEW     = "APPROVE_REVIEW"
 	CHANGE_PROFILE_URLS = "CHANGE_PROFILE_URLS"
 	CHANGE_DISPLAY_NAME = "CHANGE_DISPLAY_NAME"
 	VIEW_AUDIT_DESCRIPTION = "VIEW_AUDIT_DESCRIPTION"
@@ -118,6 +120,9 @@ class Permission(enum.Enum):
 				self == Permission.APPROVE_SCREENSHOT or \
 				self == Permission.SEE_THREAD:
 			return user.rank.at_least(UserRank.APPROVER)
+
+		elif self == Permission.APPROVE_REVIEW:
+			return user.rank.at_least(UserRank.MODERATOR)
 
 		elif self == Permission.EDIT_TAGS or self == Permission.CREATE_TAG:
 			return user.rank.at_least(UserRank.EDITOR)

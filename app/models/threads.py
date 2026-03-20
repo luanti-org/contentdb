@@ -178,6 +178,8 @@ class PackageReview(db.Model):
 	language_id = db.Column(db.String, db.ForeignKey("language.id"), nullable=True, default=None)
 	language    = db.relationship("Language", foreign_keys=[language_id])
 
+	approved   = db.Column(db.Boolean, nullable=False, default=True)
+
 	rating     = db.Column(db.Integer, nullable=False)
 
 	thread     = db.relationship("Thread", uselist=False, back_populates="review")
@@ -223,11 +225,20 @@ class PackageReview(db.Model):
 		"""
 		return (self.rating - 3.0) / 2.0
 
+	def get_view_url(self):
+		return url_for("threads.view", id=self.thread.id)
+
 	def get_edit_url(self):
 		return self.package.get_url("packages.review")
 
 	def get_delete_url(self):
 		return url_for("packages.delete_review",
+				author=self.package.author.username,
+				name=self.package.name,
+				reviewer=self.author.username)
+
+	def get_approve_url(self):
+		return url_for("packages.approve_review",
 				author=self.package.author.username,
 				name=self.package.name,
 				reviewer=self.author.username)
@@ -254,6 +265,11 @@ class PackageReview(db.Model):
 
 		if perm == Permission.DELETE_REVIEW:
 			return user == self.author or user.rank.at_least(UserRank.MODERATOR)
+		elif perm == Permission.APPROVE_REVIEW:
+			return user.rank.at_least(UserRank.MODERATOR)
+		elif perm == Permission.SEE_REVIEW:
+			# We would use SEE_THREAD here, but we don't want to invoke a thread load
+			return self.approved or user == self.author or user.rank.at_least(UserRank.MODERATOR)
 		else:
 			raise Exception("Permission {} is not related to reviews".format(perm.name))
 

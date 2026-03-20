@@ -121,7 +121,7 @@
 				<a class="btn" href="#reviews">
 					<i class="fas fa-star-half-alt"></i>
 					<span class="count">
-						{% set num_reviews = user.reviews | length %}
+						{% set num_reviews = reviews | length %}
 						<strong>{{ num_reviews }}</strong>
 						{{ _("reviews") }}
 					</span>
@@ -272,6 +272,6 @@
 
 <h2 class="my-3" id="reviews">{{ _("Reviews") }}</h2>
 {% from "macros/reviews.html" import render_reviews with context %}
-{{ render_reviews(user.reviews, current_user, True) }}
+{{ render_reviews(reviews, current_user, True) }}
 
 {% endblock %}

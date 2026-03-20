@@ -1,3 +1,19 @@
+{% macro render_approve_review(review, current_user) %}
+	{% if not review.approved and review.check_perm(current_user, "APPROVE_REVIEW") %}
+		<form method="post" action="{{ review.get_approve_url() }}">
+			<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+			<div class="row mb-3 align-items-center">
+				<div class="col-auto">
+					<p class="text-danger">{{ _("Awaiting approval") }}</p>
+				</div>
+				<div class="col-auto">
+					<input class="btn btn-primary" type="submit" value="{{ _('Approve') }}" />
+				</div>
+			</div>
+		</form>
+	{% endif %}
+{% endmacro %}
+
 {% macro render_review_vote(review, current_user, next_url) %}
 	{% set (positive, negative, is_positive) = review.get_totals(current_user) %}
 	<form class="review-helpful-vote" method="post" action="{{ review.get_vote_url(next_url) }}">
@@ -22,82 +38,92 @@
 {% macro render_reviews(reviews, current_user, show_package_link=False) -%}
 <ul class="comments mt-4 mb-0">
 	{% for review in reviews %}
-		{% set review_anchor = "review-" + (review.id | string) %}
-		<li class="row my-2 mx-0">
-			<a id="{{ review_anchor }}"></a>
-			<div class="col-auto p-1">
-				<a href="{{ url_for('users.profile', username=review.author.username) }}">
-					<img class="img-fluid user-photo img-thumbnail img-thumbnail-1"
-						src="{{ review.author.get_profile_pic_url() }}" loading="lazy">
-				</a>
-			</div>
-			<div class="col col-md-auto px-3 pt-1" style=" font-size: 200%;">
-				{% if review.rating > 3 %}
-					<i class="fas fa-thumbs-up" style="color:#6f6;"></i>
-				{% elif review.rating < 3 %}
-					<i class="fas fa-thumbs-down" style="color:#f66;"></i>
-				{% else %}
-					<i class="fas fa-minus" style="color:#999"></i>
-				{% endif %}
-			</div>
-			{% if review.thread %}
-				{% set reply = review.thread.first_reply %}
-				<div class="col-md pr-0">
-					<div class="card">
-						<div class="card-header">
-							<a class="author {{ review.author.rank.name }}"
-									href="{{ url_for('users.profile', username=review.author.username) }}">
-								{{ review.author.display_name }}
-							</a>
-
-							<a name="reply-{{ reply.id }}" class="text-muted float-end"
-									href="{{ url_for('threads.view', id=review.thread.id) }}#reply-{{ reply.id }}"
-									title="{{ review.created_at | full_datetime }}">
-								{{ review.created_at | datetime }}
-							</a>
-						</div>
-
-						<div class="card-body markdown">
-							{% if current_user == review.author %}
-								<a class="btn btn-primary btn-sm ms-1 float-end"
-										href="{{ review.package.get_url('packages.review') }}">
-									<i class="fas fa-pen"></i>
+		{% if review.check_perm(current_user, "SEE_REVIEW") %}
+			{% set review_anchor = "review-" + (review.id | string) %}
+			<li class="row my-2 mx-0">
+				<a id="{{ review_anchor }}"></a>
+				<div class="col-auto p-1">
+					<a href="{{ url_for('users.profile', username=review.author.username) }}">
+						<img class="img-fluid user-photo img-thumbnail img-thumbnail-1"
+							src="{{ review.author.get_profile_pic_url() }}" loading="lazy">
+					</a>
+				</div>
+				<div class="col col-md-auto px-3 pt-1" style=" font-size: 200%;">
+					{% if review.rating > 3 %}
+						<i class="fas fa-thumbs-up" style="color:#6f6;"></i>
+					{% elif review.rating < 3 %}
+						<i class="fas fa-thumbs-down" style="color:#f66;"></i>
+					{% else %}
+						<i class="fas fa-minus" style="color:#999"></i>
+					{% endif %}
+				</div>
+				{% if review.thread %}
+					{% set reply = review.thread.first_reply %}
+					<div class="col-md pr-0">
+						<div class="card">
+							<div class="card-header">
+								<a class="author {{ review.author.rank.name }}"
+										href="{{ url_for('users.profile', username=review.author.username) }}">
+									{{ review.author.display_name }}
 								</a>
-							{% endif %}
-							{% if review.language %}
-								<span class="float-end mx-2 text-muted">
-									{{ review.language.title }}
-								</span>
-							{% endif %}
 
-							<p>
-								<strong>{{ review.thread.title }}</strong>
-							</p>
+								<a name="reply-{{ reply.id }}" class="text-muted float-end"
+										href="{{ url_for('threads.view', id=review.thread.id) }}#reply-{{ reply.id }}"
+										title="{{ review.created_at | full_datetime }}">
+									{{ review.created_at | datetime }}
+								</a>
+							</div>
 
-							{{ reply.comment | markdown }}
-
-							<div class="btn-toolbar mt-2 mb-0">
-								{% if show_package_link %}
-									<a class="btn btn-primary me-1" href="{{ review.package.get_url('packages.view') }}">
-										{{ _("%(title)s by %(author)s",
-												title="<b>" | safe + review.package.title + "</b>" | safe,
-												author=review.package.author.display_name) }}
+							<div class="card-body markdown">
+								{% if current_user == review.author %}
+									<a class="btn btn-primary btn-sm ms-1 float-end"
+											href="{{ review.package.get_url('packages.review') }}">
+										<i class="fas fa-pen"></i>
 									</a>
 								{% endif %}
+								{% if review.language %}
+									<span class="float-end mx-2 text-muted">
+										{{ review.language.title }}
+									</span>
+								{% endif %}
 
-								<a class="btn {% if review.thread.replies_count > 1 %} btn-primary {% else %} btn-secondary {% endif %} me-1"
-										href="{{ url_for('threads.view', id=review.thread.id) }}">
-									<i class="fas fa-comments me-2"></i>
-									{{ _("%(num)d comments", num=review.thread.replies_count - 1) }}
-								</a>
+								{% if not review.approved %}
+									{{ render_approve_review(review, current_user) }}
+								{% endif %}
 
-								{{ render_review_vote(review, current_user, url_set_anchor(review_anchor)) }}
+								<p>
+									<strong>{{ review.thread.title }}</strong>
+								</p>
+
+								{{ reply.comment | markdown }}
+
+								<div class="btn-toolbar mt-2 mb-0">
+									{% if show_package_link %}
+										<a class="btn btn-primary me-1" href="{{ review.package.get_url('packages.view') }}">
+											{{ _("%(title)s by %(author)s",
+													title="<b>" | safe + review.package.title + "</b>" | safe,
+													author=review.package.author.display_name) }}
+										</a>
+									{% endif %}
+
+									<a class="btn {% if review.thread.replies_count > 1 %} btn-primary {% else %} btn-secondary {% endif %} me-1"
+											href="{{ url_for('threads.view', id=review.thread.id) }}">
+										<i class="fas fa-comments me-2"></i>
+										{{ _("%(num)d comments", num=review.thread.replies_count - 1) }}
+									</a>
+
+									{{ render_review_vote(review, current_user, url_set_anchor(review_anchor)) }}
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			{% endif %}
-		</li>
+				{% endif %}
+			</li>
+		{% else %}
+			<li>
+				<i>Review hidden</i>
+			</li>
+		{% endif %}
 	{% else %}
 		<li>
 			<i>{{ _("No reviews, yet.") }}</i>

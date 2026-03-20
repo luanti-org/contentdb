@@ -9,7 +9,7 @@ from sqlalchemy import or_, and_
 
 from app.models import Package, PackageState, PackageScreenshot, PackageUpdateConfig, ForumTopic, db, \
 	PackageRelease, Permission, UserRank, License, MetaPackage, Dependency, AuditLogEntry, Tag, LuantiRelease, Report, \
-	ReleaseState, User, ThreadReply, Thread, AuditSeverity
+	ReleaseState, User, ThreadReply, Thread, AuditSeverity, PackageReview
 from app.querybuilder import QueryBuilder
 from app.utils.misc import is_yes
 from app.utils.user import rank_required
@@ -71,6 +71,7 @@ def view_editor():
 	can_approve_new = Permission.APPROVE_NEW.check(current_user)
 	can_approve_rel = Permission.APPROVE_RELEASE.check(current_user)
 	can_approve_scn = Permission.APPROVE_SCREENSHOT.check(current_user)
+	can_approve_rev = Permission.APPROVE_REVIEW.check(current_user)
 
 	packages = None
 	wip_packages = None
@@ -89,7 +90,11 @@ def view_editor():
 	if can_approve_scn:
 		screenshots = PackageScreenshot.query.filter_by(approved=False).all()
 
-	if not can_approve_new and not can_approve_rel and not can_approve_scn:
+	reviews = None
+	if can_approve_rev:
+		reviews = PackageReview.query.filter_by(approved=False).all()
+
+	if not can_approve_new and not can_approve_rel and not can_approve_scn and not can_approve_rev:
 		abort(403)
 
 	if request.method == "POST":
@@ -127,7 +132,7 @@ def view_editor():
 	unanswered_approval_threads = get_unanswered_approval_threads()
 
 	return render_template("todo/editor.html", current_tab="editor",
-			packages=packages, wip_packages=wip_packages, releases=releases, screenshots=screenshots,
+			packages=packages, wip_packages=wip_packages, releases=releases, screenshots=screenshots, reviews=reviews,
 			can_approve_new=can_approve_new, can_approve_rel=can_approve_rel, can_approve_scn=can_approve_scn,
 			license_needed=license_needed, total_packages=total_packages, total_to_tag=total_to_tag,
 			unfulfilled_meta_packages=unfulfilled_meta_packages, audit_log=audit_log, reports=reports,
