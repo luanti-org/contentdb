@@ -255,15 +255,15 @@ class PackageReview(db.Model):
 		self.score = 3 * (pos - neg) + 1
 
 	def check_perm(self, user, perm):
-		if user is None or not user.is_authenticated:
-			if perm == Permission.SEE_REVIEW:
-				return self.approved
-			return False
-
 		if type(perm) == str:
 			perm = Permission[perm]
 		elif type(perm) != Permission:
 			raise Exception("Unknown permission given to PackageReview.check_perm()")
+
+		if user is None or not user.is_authenticated:
+			if perm == Permission.SEE_REVIEW:
+				return self.approved
+			return False
 
 		if perm == Permission.DELETE_REVIEW:
 			return user == self.author or user.rank.at_least(UserRank.MODERATOR)
