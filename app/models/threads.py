@@ -256,6 +256,8 @@ class PackageReview(db.Model):
 
 	def check_perm(self, user, perm):
 		if user is None or not user.is_authenticated:
+			if perm == Permission.SEE_REVIEW:
+				return self.approved
 			return False
 
 		if type(perm) == str:
