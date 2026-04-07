@@ -145,6 +145,8 @@ Users can use the "genai" or "anyai" content flags to filter out AI-generated
 content inside Luanti. See <a href="/help/content_flags/">content flags</a>
 for more information.
 
+We reserve the right to reject low-quality packages, aka "slop".
+
 ## 5. Promotions and Advertisements (inc. asking for donations)
 
 You may not place any promotions or advertisements in any metadata including
