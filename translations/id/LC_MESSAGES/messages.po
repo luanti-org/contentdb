@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-11-10 19:55+0000\n"
-"PO-Revision-Date: 2024-12-29 03:31+0000\n"
-"Last-Translator: Just Playing <aryadhisuma@gmail.com>\n"
+"PO-Revision-Date: 2026-02-27 21:09+0000\n"
+"Last-Translator: Arif Budiman <arifpedia@gmail.com>\n"
+"Language-Team: Indonesian <https://hosted.weblate.org/projects/minetest/"
+"contentdb/id/>\n"
 "Language: id\n"
-"Language-Team: Indonesian "
-"<https://hosted.weblate.org/projects/minetest/contentdb/id/>\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.16.1-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: app/__init__.py:155
@@ -373,13 +374,13 @@ msgstr "Pendaftaran untuk Luanti Game Jam 2024"
 #: app/_translations.py:110
 msgctxt "tags"
 msgid "Jam / Game 2025"
-msgstr ""
+msgstr "Jam / Game 2025"
 
 #. NOTE: tags: description for jam_game_2025
 #: app/_translations.py:112
 msgctxt "tags"
 msgid "Entries to the 2025 Luanti Game Jam"
-msgstr ""
+msgstr "Entri untuk Luanti Game Jam 2025"
 
 #. NOTE: tags: title for jam_weekly_2021
 #: app/_translations.py:114
@@ -407,7 +408,7 @@ msgstr "&lt;16 px"
 #: app/_translations.py:120
 msgctxt "tags"
 msgid "For less than 16px texture packs "
-msgstr ""
+msgstr "Untuk paket tekstur kurang dari 16px "
 
 #. NOTE: tags: title for library
 #: app/_translations.py:122
@@ -1589,11 +1590,11 @@ msgstr "Gambar Sampul"
 
 #: app/blueprints/report/__init__.py:35
 msgid "Category"
-msgstr ""
+msgstr "Kategori"
 
 #: app/blueprints/report/__init__.py:38
 msgid "Subject / Title"
-msgstr ""
+msgstr "Subjek / Judul"
 
 #: app/blueprints/report/__init__.py:39 app/templates/users/modtools.html:79
 msgid "Message"
@@ -1601,7 +1602,7 @@ msgstr "Pesan"
 
 #: app/blueprints/report/__init__.py:40
 msgid "Image Upload"
-msgstr ""
+msgstr "Unggah Gambar"
 
 #: app/blueprints/report/__init__.py:41 app/templates/macros/threads.html:51
 #: app/templates/packages/view.html:706 app/templates/report/report.html:4
@@ -2068,19 +2069,20 @@ msgstr "Siapkan perilisan"
 
 #: app/logic/package_approval.py:109
 msgid "Release is still importing. Please wait and reload the page."
-msgstr ""
+msgstr "Rilis masih diimpor. Harap tunggu dan muat ulang halaman."
 
 #: app/logic/package_approval.py:110
 msgid "View task"
-msgstr ""
+msgstr "Lihat tugas"
 
 #: app/logic/package_approval.py:116
 msgid "Release validation failed. Please fix any issues and create a new release"
 msgstr ""
+"Validasi rilis gagal. Harap perbaiki masalah yang ada dan buat rilis baru"
 
 #: app/logic/package_approval.py:117
 msgid "View error"
-msgstr ""
+msgstr "Lihat kesalahan"
 
 #: app/logic/package_approval.py:124
 msgid "You need to add at least one screenshot."
@@ -2222,31 +2224,31 @@ msgstr "Tidak dapat membuat akun karena nama pengguna telah digunakan sebelumnya
 
 #: app/models/__init__.py:148
 msgid "Account deletion"
-msgstr ""
+msgstr "Penghapusan akun"
 
 #: app/models/__init__.py:150
 msgid "Copyright infringement / DMCA"
-msgstr ""
+msgstr "Pelanggaran hak cipta / DMCA"
 
 #: app/models/__init__.py:152
 msgid "User behaviour, bullying, or abuse"
-msgstr ""
+msgstr "Perilaku pengguna, intimidasi, atau penyalahgunaan"
 
 #: app/models/__init__.py:154
 msgid "Spam"
-msgstr ""
+msgstr "Spam"
 
 #: app/models/__init__.py:156
 msgid "Illegal or harmful content"
-msgstr ""
+msgstr "Konten ilegal atau berbahaya"
 
 #: app/models/__init__.py:158
 msgid "Outdated/invalid review"
-msgstr ""
+msgstr "Ulasan usang/tidak valid"
 
 #: app/models/__init__.py:160
 msgid "Appeal"
-msgstr ""
+msgstr "Banding"
 
 #. NOTE: OTHER notification type
 #: app/models/__init__.py:162 app/models/users.py:472
@@ -2412,7 +2414,7 @@ msgstr "Hapus"
 
 #: app/models/packages.py:1104
 msgid "Processing"
-msgstr ""
+msgstr "Sedang diproses"
 
 #: app/models/packages.py:1106 app/templates/packages/release_edit.html:50
 #: app/templates/packages/screenshot_edit.html:20
@@ -2421,15 +2423,15 @@ msgstr "Disetujui"
 
 #: app/models/packages.py:1108
 msgid "Failed"
-msgstr ""
+msgstr "Gagal"
 
 #: app/models/packages.py:1110
 msgid "Waiting approval"
-msgstr ""
+msgstr "Menunggu persetujuan"
 
 #: app/models/packages.py:1112
 msgid "Archived"
-msgstr ""
+msgstr "Diarsipkan"
 
 #: app/models/packages.py:1440
 #, python-format
@@ -2734,7 +2736,7 @@ msgstr "Hubungi Kami"
 
 #: app/templates/base.html:262
 msgid "Terms of Service"
-msgstr ""
+msgstr "Ketentuan Layanan"
 
 #: app/templates/base.html:263
 msgid "Policy and Guidance"
@@ -2879,7 +2881,7 @@ msgstr "Disebabkan oleh pengguna yang telah dihapus."
 
 #: app/templates/admin/list.html:16
 msgid "User list"
-msgstr ""
+msgstr "Daftar pengguna"
 
 #: app/templates/admin/send_bulk_email.html:4
 msgid "Send bulk email"
@@ -3892,6 +3894,9 @@ msgid ""
 "<i>modpack</i> anywhere in the short description. It is unnecessary and "
 "wastes characters."
 msgstr ""
+"Tips: Jangan sertakan <i>Luanti</i>, <i>Minetest</i>, <i>mod</i>, atau <i>"
+"modpack</i> di mana pun dalam deskripsi singkat. Hal itu tidak perlu dan "
+"membuang karakter."
 
 #: app/templates/packages/create_edit.html:88
 msgid ""
@@ -4604,6 +4609,7 @@ msgid ""
 "Please make sure you read ContentDB's <a href='/terms/'>Terms of "
 "Service</a>"
 msgstr ""
+"Pastikan Anda membaca <a href=\"/terms/\">Ketentuan Layanan</a> ContentDB"
 
 #: app/templates/packages/review_create_edit.html:25
 #: app/templates/threads/new.html:16
@@ -4884,6 +4890,8 @@ msgid ""
 "This thread is only visible to its creator, package maintainers, and "
 "users of Approver rank or above."
 msgstr ""
+"Utas ini hanya terlihat oleh pembuatnya, pengelola paket, dan pengguna "
+"berperingkat Approver ke atas."
 
 #: app/templates/packages/view.html:214 app/templates/users/profile.html:95
 msgid "Website"
@@ -5066,22 +5074,30 @@ msgid ""
 "The full report will be visible to all ContentDB staff members, including"
 " editors and moderators."
 msgstr ""
+"Laporan lengkap akan terlihat oleh semua staf ContentDB, termasuk editor dan "
+"moderator."
 
 #: app/templates/report/report.html:31
 msgid ""
 "If you are reporting something by another user, we may discuss the report"
 " with them but will not disclose who reported it."
 msgstr ""
+"Jika Anda melaporkan sesuatu oleh pengguna lain, kami mungkin mendiskusikan "
+"laporan tersebut dengan mereka tetapi tidak akan mengungkapkan siapa yang "
+"melaporkannya."
 
 #: app/templates/report/report.html:32
 msgid ""
 "If you are reporting something by an editor or moderator, then you should"
 " email the admin or a moderator directly to hide your identity."
 msgstr ""
+"Jika Anda melaporkan sesuatu oleh editor atau moderator, Anda sebaiknya "
+"mengirim email langsung ke admin atau moderator untuk menyembunyikan "
+"identitas Anda."
 
 #: app/templates/report/report.html:41
 msgid "Optional, usually not required"
-msgstr ""
+msgstr "Opsional, biasanya tidak diperlukan"
 
 #: app/templates/report/report.html:44
 msgid ""
@@ -5093,64 +5109,72 @@ msgstr ""
 
 #: app/templates/report/report_received.html:4
 msgid "We have received your report"
-msgstr ""
+msgstr "Kami telah menerima laporan Anda"
 
 #: app/templates/report/report_received.html:13
 msgid "We aim to resolve your report quickly."
-msgstr ""
+msgstr "Kami berupaya menyelesaikan laporan Anda dengan cepat."
 
 #: app/templates/report/report_received.html:17
 msgid ""
 "If the report is about illegal or harmful content, we aim to resolve "
 "within 48 hours."
 msgstr ""
+"Jika laporan tentang konten ilegal atau berbahaya, kami berupaya "
+"menyelesaikannya dalam 48 jam."
 
 #: app/templates/report/report_received.html:18
 msgid ""
 "If we find the content to be infringing, we will remove it and may warn "
 "or suspend the user."
 msgstr ""
+"Jika kami menemukan konten tersebut melanggar, kami akan menghapusnya dan "
+"mungkin memberi peringatan atau menangguhkan pengguna."
 
 #: app/templates/report/report_received.html:23
 msgid ""
 "A private thread has been created for this report. You can use it to "
 "communicate with ContentDB staff and receive updates about the report."
 msgstr ""
+"Utas privat telah dibuat untuk laporan ini. Anda dapat menggunakannya untuk "
+"berkomunikasi dengan staf ContentDB dan menerima pembaruan tentang laporan."
 
 #: app/templates/report/report_received.html:27
 msgid ""
 "Due to limited resources, we may not contact you further about the report"
 " unless we need clarification."
 msgstr ""
+"Karena keterbatasan sumber daya, kami mungkin tidak menghubungi Anda lebih "
+"lanjut tentang laporan kecuali kami memerlukan klarifikasi."
 
 #: app/templates/report/report_received.html:30
 #, python-format
 msgid "For future reference, use report id: %(report_id)s."
-msgstr ""
+msgstr "Untuk referensi ke depan, gunakan id laporan: %(report_id)s."
 
 #: app/templates/report/report_received.html:36
 msgid "View thread"
-msgstr ""
+msgstr "Lihat utas"
 
 #: app/templates/report/report_received.html:38
 msgid "Back to home"
-msgstr ""
+msgstr "Kembali ke beranda"
 
 #: app/templates/report/view.html:96
 msgid "Reopen"
-msgstr ""
+msgstr "Buka kembali"
 
 #: app/templates/report/view.html:98
 msgid "Completed (action taken)"
-msgstr ""
+msgstr "Selesai (tindakan diambil)"
 
 #: app/templates/report/view.html:99
 msgid "Content removed"
-msgstr ""
+msgstr "Konten dihapus"
 
 #: app/templates/report/view.html:100
 msgid "Invalid / close with no action"
-msgstr ""
+msgstr "Tidak valid / tutup tanpa tindakan"
 
 #: app/templates/tasks/view.html:5
 msgid "Task Failed"
@@ -5251,7 +5275,7 @@ msgstr "Antrean Pekerjaan Penyunting"
 
 #: app/templates/todo/editor.html:9
 msgid "Reports"
-msgstr ""
+msgstr "Laporan"
 
 #: app/templates/todo/editor.html:30
 msgid "Approval Queue"
@@ -5725,6 +5749,9 @@ msgid ""
 "of Service</a> and <a href='/privacy_policy/' target='_blank'>Privacy "
 "Policy</a>."
 msgstr ""
+"Dengan mendaftar, Anda menyetujui <a href=\"/terms/\" target=\"_blank\">"
+"Ketentuan Layanan</a> dan <a href=\"/privacy_policy/\" target=\"_blank\">"
+"Kebijakan Privasi</a>."
 
 #: app/templates/users/claim_forums.html:30
 msgid "Option 1"
@@ -6045,12 +6072,16 @@ msgstr "Berpura-pura menjadi pengguna lain berakibat blokir permanen"
 #: app/templates/users/profile_edit.html:72
 msgid "Website URLs will not be shown whilst you are a 'New Member'."
 msgstr ""
+"URL situs web tidak akan ditampilkan selama Anda masih berstatus 'Anggota "
+"Baru'."
 
 #: app/templates/users/profile_edit.html:73
 msgid ""
 "To become a full member, create a review, comment, or package and wait 7 "
 "days."
 msgstr ""
+"Untuk menjadi anggota penuh, buat ulasan, komentar, atau paket dan tunggu 7 "
+"hari."
 
 #: app/templates/users/register.html:17
 msgid ""
@@ -6231,7 +6262,7 @@ msgstr "Dependensi Opsional"
 
 #: app/utils/luanti_hypertext.py:325
 msgid "Leave a review"
-msgstr ""
+msgstr "Tulis ulasan"
 
 #: app/utils/luanti_hypertext.py:346
 msgid "No reviews available."
@@ -7309,4 +7340,3 @@ msgstr ""
 
 #~ msgid "Waiting for approval."
 #~ msgstr "Menunggu persetujuan."
-
