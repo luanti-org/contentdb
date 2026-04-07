@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-11-10 19:55+0000\n"
-"PO-Revision-Date: 2026-02-06 09:01+0000\n"
+"PO-Revision-Date: 2026-02-27 21:09+0000\n"
 "Last-Translator: Vesel Sem <veselsem@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Slovenian <https://hosted.weblate.org/projects/minetest/"
 "contentdb/sl/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3;\n"
-"X-Generator: Weblate 5.16-dev\n"
+"X-Generator: Weblate 5.16.1-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: app/__init__.py:155
@@ -1996,7 +1996,7 @@ msgid ""
 "GitHub account"
 msgstr ""
 "Preden lahko odstranite svoj račun GitHub, morate dodati e-poštni naslov in "
-"geslo."
+"geslo"
 
 #: app/blueprints/users/settings.py:279
 msgid "Users with moderator rank or above cannot be deleted"
@@ -4156,7 +4156,7 @@ msgstr "Paket v pregledu"
 
 #: app/templates/packages/gone.html:27
 msgid "This package is currently undergoing review"
-msgstr "Ta paket je trenutno v pregledu."
+msgstr "Ta paket je trenutno v pregledu"
 
 #: app/templates/packages/gone.html:30
 msgid "Package Not Yet Submitted"
@@ -4731,7 +4731,7 @@ msgid ""
 "lua_api.md"
 msgstr ""
 "Za informacije o tem, kako to storiti, glejte poglavje v knjigi o modiranju "
-"in  v lua_api.md"
+"in v lua_api.md"
 
 #: app/templates/packages/translation.html:23
 msgid "Translation - Luanti Modding Book"
@@ -5235,215 +5235,221 @@ msgstr "Je ta ocena zastarela?"
 
 #: app/templates/threads/view.html:142
 msgid "For example, does it complain about issues you've already fixed?"
-msgstr ""
+msgstr "Na primer, ali se pritožuje nad težavami, ki ste jih že odpravili?"
 
 #: app/templates/threads/view.html:143
 #, python-format
 msgid "You can report outdated reviews by clicking %(flag)s on the review."
-msgstr ""
+msgstr "Zastarele ocene lahko prijavite s klikom na %(flag)s na oceni."
 
 #: app/templates/todo/editor.html:4 app/templates/todo/todo_base.html:17
 msgid "Editor Work Queue"
-msgstr ""
+msgstr "Čakalna vrsta za delo urednika"
 
 #: app/templates/todo/editor.html:9
 msgid "Reports"
-msgstr ""
+msgstr "Poročila"
 
 #: app/templates/todo/editor.html:30
 msgid "Approval Queue"
-msgstr ""
+msgstr "Čakalna vrsta za odobritev"
 
 #: app/templates/todo/editor.html:37
 msgid "Approve All"
-msgstr ""
+msgstr "Odobri vse"
 
 #: app/templates/todo/editor.html:55
 msgid "No screenshots need approval."
-msgstr ""
+msgstr "Posnetki zaslona ne potrebujejo odobritve."
 
 #: app/templates/todo/editor.html:87 app/templates/todo/editor.html:205
 msgid "No packages need approval."
-msgstr ""
+msgstr "Noben paket ne potrebuje odobritve."
 
 #: app/templates/todo/editor.html:102
 msgid "Importing"
-msgstr ""
+msgstr "Uvažanje"
 
 #: app/templates/todo/editor.html:112
 msgid "No releases need approval."
-msgstr ""
+msgstr "Nobena izdaja ne potrebuje odobritve."
 
 #: app/templates/todo/editor.html:122
 msgid "All done!"
-msgstr ""
+msgstr "Vse je opravljeno!"
 
 #: app/templates/todo/editor.html:127 app/templates/todo/editor.html:129
 msgid "License Needed"
-msgstr ""
+msgstr "Potrebna je licenca"
 
 #: app/templates/todo/editor.html:149
 msgid "Tag Packages"
-msgstr ""
+msgstr "Oznake paketov"
 
 #: app/templates/todo/editor.html:152
 #, python-format
 msgid "%(total_to_tag)d / %(total_packages)d packages don't have any tags."
-msgstr ""
+msgstr "%(total_to_tag)d / %(total_packages)d paketov nima nobenih oznak."
 
 #: app/templates/todo/editor.html:162
 msgid "View Tags"
-msgstr ""
+msgstr "Ogled oznak"
 
 #: app/templates/todo/editor.html:169
 msgid "Unfulfilled Dependencies"
-msgstr ""
+msgstr "Neizpolnjene odvisnosti"
 
 #: app/templates/todo/editor.html:173
 msgid "Mod names that have hard dependers, but no packages providing them."
 msgstr ""
+"Imena modov, ki imajo trde odvisnosti, vendar jih ne zagotavljajo paketi."
 
 #: app/templates/todo/editor.html:215 app/templates/users/account.html:101
 msgid "View All"
-msgstr ""
+msgstr "Prikaži vse"
 
 #: app/templates/todo/editor.html:218
 msgid "Recent Actions"
-msgstr ""
+msgstr "Nedavna dejanja"
 
 #: app/templates/todo/game_support.html:4
 #, python-format
 msgid "Game Support for %(username)s"
-msgstr ""
+msgstr "Podpora za igre za od %(username)s"
 
 #: app/templates/todo/game_support.html:11 app/templates/todo/user.html:77
 msgid "You should specify the games supported by your mods and texture packs."
-msgstr ""
+msgstr "Določiti morate igre, ki jih podpirajo vaši modi in teksturni paketi."
 
 #: app/templates/todo/game_support.html:12 app/templates/todo/user.html:78
 msgid "Specifying game support makes it easier for players to find your content."
-msgstr ""
+msgstr "Če navedete podporo za igre, igralci lažje najdejo vašo vsebino."
 
 #: app/templates/todo/game_support.html:13
 msgid ""
 "If your package is game independent, confirm this using 'Supports all "
 "games'"
 msgstr ""
+"Če je vaš paket neodvisen od igre, to potrdite z možnostjo »Podpira vse igre«"
 
 #: app/templates/todo/game_support.html:35
 msgid "Supports all games"
-msgstr ""
+msgstr "Podpira vse igre"
 
 #: app/templates/todo/game_support.html:51
 msgid ""
 "No supported games listed. Please either add supported games or check "
 "'Supports all games'"
 msgstr ""
+"Ni podprtih iger. Prosimo, dodajte podprte igre ali označite možnost »"
+"Podpira vse igre«"
 
 #: app/templates/todo/game_support.html:62 app/templates/todo/user.html:40
 #: app/templates/todo/user.html:94 app/templates/todo/user.html:114
 #: app/templates/todo/user.html:173 app/templates/todo/user.html:197
 msgid "Nothing to do :)"
-msgstr ""
+msgstr "Nič ni za početi :-)"
 
 #: app/templates/todo/game_support.html:67
 msgid "Bulk support all games"
-msgstr ""
+msgstr "Množična podpora za vse igre"
 
 #: app/templates/todo/game_support.html:69
 msgid ""
 "Click the button below to confirm that the following packages do support "
 "all games, except for any games listed in unsupported_games:"
 msgstr ""
+"Kliknite spodnji gumb, da potrdite, da naslednji paketi podpirajo vse igre, "
+"razen iger, navedenih v unsupported_games:"
 
 #: app/templates/todo/game_support.html:74
 msgid "Confirm"
-msgstr ""
+msgstr "Potrdi"
 
 #: app/templates/todo/mtver_support.html:4
 #, python-format
 msgid "Packages not supporting %(rel)s"
-msgstr ""
+msgstr "Paketi, ki ne podpirajo %(rel)s"
 
 #: app/templates/todo/mtver_support.html:13
 #: app/templates/todo/mtver_support.html:17 app/templates/todo/outdated.html:12
 #: app/templates/todo/outdated.html:16 app/templates/todo/screenshots.html:12
 #: app/templates/todo/screenshots.html:16
 msgid "Minetest-Mods org only"
-msgstr ""
+msgstr "Samo za Minetest-Mods org"
 
 #: app/templates/todo/mtver_support.html:25 app/templates/todo/outdated.html:24
 #: app/templates/todo/screenshots.html:24
 msgid "Sort by date"
-msgstr ""
+msgstr "Razvrsti po datumu"
 
 #: app/templates/todo/mtver_support.html:29 app/templates/todo/outdated.html:28
 #: app/templates/todo/screenshots.html:28
 msgid "Sort by score"
-msgstr ""
+msgstr "Razvrsti po rezultatu"
 
 #: app/templates/todo/outdated.html:4
 msgid "All Outdated packages"
-msgstr ""
+msgstr "Vsi zastareli paketi"
 
 #: app/templates/todo/screenshots.html:4 app/templates/todo/todo_base.html:35
 #: app/templates/todo/user.html:100
 msgid "Missing Screenshots"
-msgstr ""
+msgstr "Manjkajoči posnetki zaslona"
 
 #: app/templates/todo/screenshots.html:33
 #, python-format
 msgid "%(count)d packages"
-msgstr ""
+msgstr "%(count)d paketov"
 
 #: app/templates/todo/tags.html:4 app/templates/todo/todo_base.html:29
 msgid "Package Tags"
-msgstr ""
+msgstr "Oznake paketov"
 
 #: app/templates/todo/tags.html:21 app/templates/todo/tags.html:25
 msgid "Missing tags only"
-msgstr ""
+msgstr "Samo manjkajoče oznake"
 
 #: app/templates/todo/tags.html:29
 msgid "Edit Tags"
-msgstr ""
+msgstr "Uredi oznake"
 
 #: app/templates/todo/todo_base.html:11
 msgid "Your to do list"
-msgstr ""
+msgstr "Vaš seznam opravil"
 
 #: app/templates/todo/todo_base.html:23
 msgid "Outdated Packages"
-msgstr ""
+msgstr "Zastareli paketi"
 
 #: app/templates/todo/user.html:4
 #, python-format
 msgid "%(username)s's to do list"
-msgstr ""
+msgstr "Seznam opravil uporabnika %(username)s"
 
 #: app/templates/todo/user.html:9
 msgid "Misc To do"
-msgstr ""
+msgstr "Razno za početi"
 
 #: app/templates/todo/user.html:13
 msgid "Enable email notifications"
-msgstr ""
+msgstr "Omogoči e-poštna obvestila"
 
 #: app/templates/todo/user.html:18
 msgid "Unapproved Packages Needing Action"
-msgstr ""
+msgstr "Neodobreni paketi, ki zahtevajo ukrepanje"
 
 #: app/templates/todo/user.html:48
 msgid "See all Update Settings"
-msgstr ""
+msgstr "Oglejte si vse nastavitve posodobitev"
 
 #: app/templates/todo/user.html:53
 msgid "Create All Releases"
-msgstr ""
+msgstr "Ustvari vse izdaje"
 
 #: app/templates/todo/user.html:56
 msgid "Potentially Outdated Packages"
-msgstr ""
+msgstr "Potencialno zastareli paketi"
 
 #: app/templates/todo/user.html:58
 msgid ""
@@ -5451,159 +5457,169 @@ msgid ""
 "releases when New Commits or New Tags are pushed to Git by clicking "
 "'Update Settings'."
 msgstr ""
+"Namesto označevanja paketov kot zastarelih lahko samodejno ustvarite izdaje, "
+"ko so v Git poslani novi prispevki ali nove oznake, tako da kliknete »"
+"Posodobi nastavitve«."
 
 #: app/templates/todo/user.html:60
 msgid ""
 "To remove a package from below, create a release or change the update "
 "settings."
 msgstr ""
+"Če želite odstraniti paket od spodaj, ustvarite izdajo ali spremenite "
+"nastavitve posodabljanja."
 
 #: app/templates/todo/user.html:72
 msgid "See game support for your packages"
-msgstr ""
+msgstr "Za svoje pakete si oglejte podporo za igre"
 
 #: app/templates/todo/user.html:74
 msgid "Missing Game Support"
-msgstr ""
+msgstr "Manjkajoča podpora za igre"
 
 #: app/templates/todo/user.html:120
 msgid "Small Screenshots"
-msgstr ""
+msgstr "Majhni posnetki zaslona"
 
 #: app/templates/todo/user.html:123
 msgid ""
 "These packages have screenshots that are too small, and should be "
 "replaced."
-msgstr ""
+msgstr "Ti paketi imajo premajhne posnetke zaslona in jih je treba zamenjati."
 
 #: app/templates/todo/user.html:124
 msgid ""
 "Red and orange are screenshots below the limit, and grey screenshots are "
 "below the recommended resolution."
 msgstr ""
+"Rdeči in oranžni posnetki zaslona so pod omejitvijo, sivi posnetki zaslona "
+"pa pod priporočeno ločljivostjo."
 
 #: app/templates/todo/user.html:179
 msgid "See All"
-msgstr ""
+msgstr "Pokaži vse"
 
 #: app/templates/todo/user.html:180
 msgid "Packages Without Tags"
-msgstr ""
+msgstr "Paketi brez oznak"
 
 #: app/templates/todo/user.html:182
 msgid "Labelling your packages with tags helps users find them."
-msgstr ""
+msgstr "Označevanje paketov z oznakami pomaga uporabnikom, da jih najdejo."
 
 #: app/templates/todo/user.html:202
 msgid "Unadded Topics"
-msgstr ""
+msgstr "Nedodane teme"
 
 #: app/templates/todo/user.html:205
 msgid "List of your forum topics which do not have a matching package."
-msgstr ""
+msgstr "Seznam tem vašega foruma, ki nimajo ustreznega paketa."
 
 #: app/templates/todo/user.html:213
 msgid "Congrats! You don't have any topics which aren't on CDB."
-msgstr ""
+msgstr "Čestitamo! Nimate tem, ki jih ni na CDB."
 
 #: app/templates/translate/index.html:4
 msgid "Find packages to translate"
-msgstr ""
+msgstr "Iskanje paketov za prevajanje"
 
 #: app/templates/translate/index.html:8
 msgid ""
 "Help make Luanti more accessible by translating packages into other "
 "languages."
 msgstr ""
+"Pomagajte narediti Luanti dostopnejši s prevajanjem paketov v druge jezike."
 
 #: app/templates/translate/index.html:65
 msgid "How to translate a mod / game"
-msgstr ""
+msgstr "Kako prevesti mod/igro"
 
 #: app/templates/translate/index.html:73
 msgid "ContentDB"
-msgstr ""
+msgstr "ContentDB"
 
 #: app/templates/translate/index.html:80
 msgid "Packages that support translation"
-msgstr ""
+msgstr "Paketi, ki podpirajo prevajanje"
 
 #: app/templates/translate/index.html:85
 #, python-format
 msgid "Only show packages with %(lang)s translation"
-msgstr ""
+msgstr "Prikaži samo pakete s prevodom %(lang)s"
 
 #: app/templates/translate/index.html:89
 #, python-format
 msgid "Hide packages with %(lang)s translation"
-msgstr ""
+msgstr "Skrij pakete s prevodom %(lang)s"
 
 #: app/templates/users/account.html:4
 #, python-format
 msgid "Account and Security - %(username)s"
-msgstr ""
+msgstr "Račun in varnost - %(username)s"
 
 #: app/templates/users/account.html:18
 msgid "Change Password"
-msgstr ""
+msgstr "Spremeni geslo"
 
 #: app/templates/users/account.html:22
 #: app/templates/users/change_set_password.html:8
 msgid "Set Password"
-msgstr ""
+msgstr "Nastavi geslo"
 
 #: app/templates/users/account.html:27 app/templates/users/modtools.html:54
 msgid "Has password"
-msgstr ""
+msgstr "Ima geslo"
 
 #: app/templates/users/account.html:29 app/templates/users/modtools.html:56
 msgid "Doesn't have password"
-msgstr ""
+msgstr "Nima gesla"
 
 #: app/templates/users/account.html:33
 msgid "Linked Accounts"
-msgstr ""
+msgstr "Povezani računi"
 
 #: app/templates/users/account.html:43
 #, python-format
 msgid "Please PM %(rubenwardy)s on the forums to link your account."
 msgstr ""
+"Za povezavo računa pošlji zasebno sporočilo uporabniku %(rubenwardy)s na "
+"forumu."
 
 #: app/templates/users/account.html:59
 msgid "View ContentDB's GitHub Permissions"
-msgstr ""
+msgstr "Ogled dovoljenj ContentDB-ja za GitHub"
 
 #: app/templates/users/account.html:65
 msgid "Disconnect"
-msgstr ""
+msgstr "Prekini povezavo"
 
 #: app/templates/users/account.html:69
 msgid "Link Github"
-msgstr ""
+msgstr "Poveži GitHub"
 
 #: app/templates/users/account.html:72
 msgid "None"
-msgstr ""
+msgstr "Nič"
 
 #: app/templates/users/account.html:79
 msgid "Account Deletion and Deactivation"
-msgstr ""
+msgstr "Brisanje in deaktivacija računa"
 
 #: app/templates/users/account.html:83
 msgid "Delete or Deactivate"
-msgstr ""
+msgstr "Izbriši ali deaktiviraj"
 
 #: app/templates/users/account.html:86
 msgid "Account Deletion and Deactivation isn't available to users yet."
-msgstr ""
+msgstr "Brisanje in deaktivacija računa še nista na voljo uporabnikom."
 
 #: app/templates/users/account.html:87
 msgid "Please raise a report to request account deletion."
-msgstr ""
+msgstr "Prosimo, oddajte prijavo, da zahtevate izbris računa."
 
 #: app/templates/users/account.html:94
 msgid "Recent Account Actions"
-msgstr ""
+msgstr "Nedavna dejanja v računu"
 
 #: app/templates/users/change_set_password.html:16
 #: app/templates/users/register.html:24
@@ -5611,12 +5627,14 @@ msgid ""
 "Your email is needed to recover your account if you forget your password "
 "and to send (configurable) notifications. "
 msgstr ""
+"Vaš e-poštni naslov je potreben za obnovitev računa, če pozabite geslo, in "
+"za pošiljanje (nastavljivih) obvestil. "
 
 #: app/templates/users/change_set_password.html:17
 #: app/templates/users/register.html:25
 #: app/templates/users/settings_email.html:24
 msgid "Your email will never be shared with a third-party."
-msgstr ""
+msgstr "Vaš e-poštni naslov ne bo nikoli deljen s tretjimi osebami."
 
 #: app/templates/users/change_set_password.html:19
 #: app/templates/users/register.html:27
@@ -5625,60 +5643,67 @@ msgid ""
 "Note: protonmail is unsupported by ContentDB. <a "
 "href='https://forum.luanti.org/viewtopic.php?t=30709'>More info</a>."
 msgstr ""
+"Opomba: ContentDB ne podpira protonmaila. <a href=\"https://forum.luanti.org/"
+"viewtopic.php?t=30709\">Več informacij</a>."
 
 #: app/templates/users/change_set_password.html:27
 #: app/templates/users/register.html:30
 msgid "Must be at least 12 characters long."
-msgstr ""
+msgstr "Dolgo mora biti vsaj 12 znakov."
 
 #: app/templates/users/claim.html:4
 msgid "Create Account"
-msgstr ""
+msgstr "Ustvari račun"
 
 #: app/templates/users/claim.html:10
 msgid "Do you have an account on the Luanti Forums?"
-msgstr ""
+msgstr "Imate račun na forumu Luanti?"
 
 #: app/templates/users/claim.html:13
 msgid ""
 "ContentDB will link your account to your forum account if you have one, "
 "but you don't need one."
 msgstr ""
+"ContentDB bo vaš račun povezal z vašim forumskim računom, če ga imate, "
+"vendar ga ne potrebujete."
 
 #: app/templates/users/claim.html:18
 msgid "<b>Yes</b>, I have a forums account"
-msgstr ""
+msgstr "<b>Da</b>, imam račun na forumu"
 
 #: app/templates/users/claim.html:21
 msgid "<b>No</b>, I don't have one"
-msgstr ""
+msgstr "Ne, nimam ga"
 
 #: app/templates/users/claim.html:24
 msgid "Create forum account"
-msgstr ""
+msgstr "Ustvari račun na forumu"
 
 #: app/templates/users/claim_forums.html:10
 msgid "Confirm Your Account"
-msgstr ""
+msgstr "Potrdite svoj račun"
 
 #: app/templates/users/claim_forums.html:13
 msgid ""
 "You'll need to use prove that you have access to your forum account using"
 " one of the options below."
 msgstr ""
+"Dostop do svojega forumskega računa boste morali dokazati z eno od spodnjih "
+"možnosti."
 
 #: app/templates/users/claim_forums.html:14
 msgid "This is so ContentDB can link your account to your forum account."
 msgstr ""
+"To je zato, da lahko ContentDB poveže vaš račun z vašim forumskim računom."
 
 #: app/templates/users/claim_forums.html:18
 msgid "Don't have a forums account?"
-msgstr ""
+msgstr "Nimate računa na forumu?"
 
 #: app/templates/users/claim_forums.html:19
 #, python-format
 msgid "You can still <a href='%(url)s'>sign up without one</a>."
-msgstr ""
+msgstr "Še vedno se lahko <a href=\"%(url)s\">registrirate brez njega</a>."
 
 #: app/templates/users/claim_forums.html:23
 #: app/templates/users/register.html:40
@@ -5687,52 +5712,57 @@ msgid ""
 "of Service</a> and <a href='/privacy_policy/' target='_blank'>Privacy "
 "Policy</a>."
 msgstr ""
+"Z registracijo se strinjate s <a href=\"/terms/\" target=\"_blank\">Pogoji "
+"storitve</a> in <a href=\"/privacy_policy/\" target=\"_blank\">Pravilnikom o "
+"zasebnosti</a>."
 
 #: app/templates/users/claim_forums.html:30
 msgid "Option 1"
-msgstr ""
+msgstr "Možnost 1"
 
 #: app/templates/users/claim_forums.html:31
 msgid "Use GitHub field in forum profile"
-msgstr ""
+msgstr "Uporabite polje GitHub v profilu foruma"
 
 #: app/templates/users/claim_forums.html:39
 #: app/templates/users/claim_forums.html:68
 msgid "Enter your forum username here:"
-msgstr ""
+msgstr "Vnesite svoje uporabniško ime na forumu tukaj:"
 
 #: app/templates/users/claim_forums.html:43
 #: app/templates/users/claim_forums.html:72
 msgid "Forum username"
-msgstr ""
+msgstr "Uporabniško ime na forumu"
 
 #: app/templates/users/claim_forums.html:44
 #: app/templates/users/claim_forums.html:72
 #: app/templates/users/register.html:16
 msgid "Only a-zA-Z0-9._ allowed"
-msgstr ""
+msgstr "Dovoljene so samo črke od a-z in A-Z in . in _"
 
 #: app/templates/users/claim_forums.html:47
 msgid "You'll need to have the GitHub field in your forum profile filled out."
-msgstr ""
+msgstr "V svojem profilu na forumu boste morali imeti izpolnjeno polje GitHub."
 
 #: app/templates/users/claim_forums.html:48
 msgid ""
 "Log into the forum and <a "
 "href='https://forum.luanti.org/ucp.php?i=173'>do that here</a>."
 msgstr ""
+"Prijavite se na forum in <a href=\"https://forum.luanti.org/ucp.php?i=173\">"
+"to storite tukaj</a>."
 
 #: app/templates/users/claim_forums.html:51
 msgid "Next: log in with GitHub"
-msgstr ""
+msgstr "Naslednje: prijava z GitHubom"
 
 #: app/templates/users/claim_forums.html:59
 msgid "Option 2"
-msgstr ""
+msgstr "Možnost 2"
 
 #: app/templates/users/claim_forums.html:60
 msgid "Verification token"
-msgstr ""
+msgstr "Žeton za preverjanje"
 
 #: app/templates/users/claim_forums.html:75
 msgid ""
@@ -5740,23 +5770,26 @@ msgid ""
 "href='https://forum.luanti.org/ucp.php?i=profile&mode=signature'>User "
 "Control Panel &gt; Profile &gt; Edit signature</a>"
 msgstr ""
+"Pojdite na <a href=\"https://forum.luanti.org/"
+"ucp.php?i=profile&amp;mode=signature\">Uporabniška nadzorna plošča &gt; "
+"Profil &gt; Uredi podpis</a>"
 
 #: app/templates/users/claim_forums.html:79
 msgid "Paste this into your signature:"
-msgstr ""
+msgstr "Prilepi to v svoj podpis:"
 
 #: app/templates/users/claim_forums.html:85
 msgid "Click next so we can check it."
-msgstr ""
+msgstr "Kliknite naprej, da lahko preverimo."
 
 #: app/templates/users/claim_forums.html:88
 msgid "Don't worry, you can remove it after this is done."
-msgstr ""
+msgstr "Brez skrbi, po tem ga lahko odstranite."
 
 #: app/templates/users/delete.html:4
 #, python-format
 msgid "Delete user %(username)s"
-msgstr ""
+msgstr "Izbriši uporabnika %(username)s"
 
 #: app/templates/users/delete.html:17
 #, python-format
@@ -5764,12 +5797,16 @@ msgid ""
 "This will delete your account, removing %(threads)d threads and "
 "%(replies)d replies."
 msgstr ""
+"S tem boste izbrisali svoj račun, odstranili boste %(threads)d tem in %"
+"(replies)d odgovorov."
 
 #: app/templates/users/delete.html:22
 msgid ""
 "As you have packages and/or forum threads, your account cannot be fully "
 "deleted."
 msgstr ""
+"Ker imate pakete in/ali teme na forumu, vašega računa ni mogoče v celoti "
+"izbrisati."
 
 #: app/templates/users/delete.html:23
 #, python-format
@@ -5777,72 +5814,74 @@ msgid ""
 "Instead, your account will be deactivated and all personal information "
 "wiped - including %(threads)d threads and %(replies)d replies."
 msgstr ""
+"Namesto tega bo vaš račun deaktiviran in vsi osebni podatki izbrisani – "
+"vključno s %(threads)d niti in %(replies)d odgovori."
 
 #: app/templates/users/delete.html:25
 msgid "See the privacy policy for more information."
-msgstr ""
+msgstr "Za več informacij glejte politiko zasebnosti."
 
 #: app/templates/users/delete.html:36
 msgid "Deactivate"
-msgstr ""
+msgstr "Deaktiviraj"
 
 #: app/templates/users/delete.html:40
 msgid "Delete Anyway"
-msgstr ""
+msgstr "Vseeno izbriši"
 
 #: app/templates/users/email_sent.html:4
 msgid "Check Your Email"
-msgstr ""
+msgstr "Preverite svojo e-pošto"
 
 #: app/templates/users/email_sent.html:11
 msgid "We've sent an email to the address you specified."
-msgstr ""
+msgstr "Na naslov, ki ste ga navedli, smo vam poslali e-pošto."
 
 #: app/templates/users/email_sent.html:12
 msgid "You'll need to click the link in the email to confirm it."
-msgstr ""
+msgstr "Za potrditev boste morali klikniti povezavo v e-poštnem sporočilu."
 
 #: app/templates/users/email_sent.html:16
 msgid "The link will expire in 12 hours"
-msgstr ""
+msgstr "Povezava bo potekla čez 12 ur"
 
 #: app/templates/users/email_sent.html:22
 msgid "My email never arrived"
-msgstr ""
+msgstr "Moje e-poštno sporočilo ni nikoli prispelo"
 
 #: app/templates/users/forgot_password.html:4
 msgid "Request Password Reset"
-msgstr ""
+msgstr "Zahteva za ponastavitev gesla"
 
 #: app/templates/users/forums_no_such_user.html:14
 #, python-format
 msgid "Unfortunately, %(username)s doesn't have an account on ContentDB yet."
-msgstr ""
+msgstr "Žal %(username)s še nima računa na ContentDB."
 
 #: app/templates/users/forums_no_such_user.html:19
 msgid "Claim Account"
-msgstr ""
+msgstr "Zahtevajte račun"
 
 #: app/templates/users/list.html:4 app/templates/users/list.html:8
 msgid "Users"
-msgstr ""
+msgstr "Uporabniki"
 
 #: app/templates/users/list.html:34
 #, python-format
 msgid "Rank: %(rank)s."
-msgstr ""
+msgstr "Uvrstitev: %(rank)s."
 
 #: app/templates/users/login.html:20
 msgid "Forgot my password"
-msgstr ""
+msgstr "Pozabil sem geslo"
 
 #: app/templates/users/login.html:30 app/templates/users/profile.html:86
 msgid "GitHub"
-msgstr ""
+msgstr "GitHub"
 
 #: app/templates/users/modtools.html:12
 msgid "Storage"
-msgstr ""
+msgstr "Shramba"
 
 #: app/templates/users/modtools.html:20
 #, python-format
@@ -5850,242 +5889,261 @@ msgid ""
 "Total storage usage is %(total_size)d MB (releases %(release_size)d MB, "
 "screenshots %(screenshot_size)d MB)."
 msgstr ""
+"Skupna poraba prostora za shranjevanje je %(total_size)d MB (izdaje %"
+"(release_size)d MB, posnetki zaslona %(screenshot_size)d MB)."
 
 #: app/templates/users/modtools.html:23
 #, python-format
 msgid "%(releases)d releases and %(screenshots)d screenshots."
-msgstr ""
+msgstr "%(releases)d izdaj in %(screenshots)d posnetkov zaslona."
 
 #: app/templates/users/modtools.html:28
 msgid "Edit Account"
-msgstr ""
+msgstr "Uredi račun"
 
 #: app/templates/users/modtools.html:60 app/templates/users/modtools.html:100
 msgid "Ban"
-msgstr ""
+msgstr "Izobčitev"
 
 #: app/templates/users/modtools.html:73
 msgid "Unban"
-msgstr ""
+msgstr "Razizobčitev"
 
 #: app/templates/users/modtools.html:90
 msgid "Message to display to banned user"
-msgstr ""
+msgstr "Sporočilo, ki se prikaže izobčenemu uporabniku"
 
 #: app/templates/users/modtools.html:94
 msgid "Expires At"
-msgstr ""
+msgstr "Poteče ob"
 
 #: app/templates/users/modtools.html:97
 msgid "Expiry date. Leave blank for permanent ban"
-msgstr ""
+msgstr "Datum poteka. Za trajno prepoved pustite prazno"
 
 #: app/templates/users/modtools.html:104
 msgid "Change Email and Send Password Reset"
-msgstr ""
+msgstr "Spremeni e-pošto in pošlji ponastavitev gesla"
 
 #: app/templates/users/modtools.html:108
 #: app/templates/users/settings_email.html:18
 msgid "Email Address"
-msgstr ""
+msgstr "E-poštni naslov"
 
 #: app/templates/users/modtools.html:116
 msgid "Pending email verifications"
-msgstr ""
+msgstr "Čakajoče potrditve e-pošte"
 
 #: app/templates/users/profile.html:20
 msgid "Profile picture"
-msgstr ""
+msgstr "Profilna slika"
 
 #: app/templates/users/profile.html:31
 msgid "To Do List"
-msgstr ""
+msgstr "Seznam opravil"
 
 #: app/templates/users/profile.html:50
 msgid "Send Email"
-msgstr ""
+msgstr "Pošlji e-pošto"
 
 #: app/templates/users/profile.html:114
 msgid "packages"
-msgstr ""
+msgstr "paketi"
 
 #: app/templates/users/profile.html:123
 msgid "collections"
-msgstr ""
+msgstr "zbirke"
 
 #: app/templates/users/profile.html:132
 msgid "reviews"
-msgstr ""
+msgstr "ocene"
 
 #: app/templates/users/profile.html:140
 msgid "comments"
-msgstr ""
+msgstr "komentarji"
 
 #: app/templates/users/profile.html:161
 msgid "Claim"
-msgstr ""
+msgstr "Zahtevek"
 
 #: app/templates/users/profile.html:163
 msgid "Is this you? Claim your account now!"
-msgstr ""
+msgstr "Ste to vi? Zahtevajte svoj račun zdaj!"
 
 #: app/templates/users/profile.html:199 app/templates/users/profile.html:205
 #, python-format
 msgid "%(value)d / %(target)d"
-msgstr ""
+msgstr "%(value)d / %(target)d"
 
 #: app/templates/users/profile.html:238
 msgid "Alphabetical"
-msgstr ""
+msgstr "Abecedno"
 
 #: app/templates/users/profile.html:246
 msgid "Newest"
-msgstr ""
+msgstr "Najnovejše"
 
 #: app/templates/users/profile.html:252
 msgid "View list of tags"
-msgstr ""
+msgstr "Ogled seznama oznak"
 
 #: app/templates/users/profile.html:260
 msgid "Create package"
-msgstr ""
+msgstr "Ustvari paket"
 
 #: app/templates/users/profile.html:271
 msgid "Maintained Packages"
-msgstr ""
+msgstr "Vzdrževani paketi"
 
 #: app/templates/users/profile.html:273
 msgid "This user is also a maintainer of the following packages"
-msgstr ""
+msgstr "Ta uporabnik je tudi vzdrževalec naslednjih paketov"
 
 #: app/templates/users/profile_edit.html:4
 #, python-format
 msgid "Edit Profile - %(username)s"
-msgstr ""
+msgstr "Uredi profil - %(username)s"
 
 #: app/templates/users/profile_edit.html:10
 msgid "Profile Picture"
-msgstr ""
+msgstr "Profilna slika"
 
 #: app/templates/users/profile_edit.html:27
 msgid "Import from forums"
-msgstr ""
+msgstr "Uvozi iz forumov"
 
 #: app/templates/users/profile_edit.html:33
 msgid "Remove profile picture"
-msgstr ""
+msgstr "Odstrani profilno sliko"
 
 #: app/templates/users/profile_edit.html:51
 msgid ""
 "Profile pictures should be square, at least 64x64px, and one of the "
 "following formats: jpeg, png, or webp."
 msgstr ""
+"Profilne slike morajo biti kvadratne, vsaj 64 x 64 slikovnih pik, in v eni "
+"od naslednjih oblik: jpeg, png ali webp."
 
 #: app/templates/users/profile_edit.html:55
 msgid "Profile Information"
-msgstr ""
+msgstr "Informacije o profilu"
 
 #: app/templates/users/profile_edit.html:62
 msgid "Pretending to be another user is grounds for a permanent ban"
-msgstr ""
+msgstr "Pretvarjanje, da si drug uporabnik, je razlog za trajno prepoved"
 
 #: app/templates/users/profile_edit.html:72
 msgid "Website URLs will not be shown whilst you are a 'New Member'."
-msgstr ""
+msgstr "URL-ji spletnih mest ne bodo prikazani, ko ste »nov član«."
 
 #: app/templates/users/profile_edit.html:73
 msgid ""
 "To become a full member, create a review, comment, or package and wait 7 "
 "days."
 msgstr ""
+"Če želite postati polnopravni član, ustvarite oceno, komentar ali paket in "
+"počakajte 7 dni."
 
 #: app/templates/users/register.html:17
 msgid ""
 "Only alphanumeric characters, periods, underscores, and minuses are "
 "allowed (a-zA-Z0-9._)"
 msgstr ""
+"Dovoljeni so samo alfanumerični znaki, pike, podčrtaji in minusi (a-zA-Z0-"
+"9._)"
 
 #: app/templates/users/register.html:20
 msgid ""
 "Human readable name, defaults to username if not specified. This can be "
 "changed later."
 msgstr ""
+"Človeku berljivo ime, privzeto je uporabniško ime, če ni določeno. To je "
+"mogoče pozneje spremeniti."
 
 #: app/templates/users/register.html:21
 msgid "Same as username"
-msgstr ""
+msgstr "Enako kot uporabniško ime"
 
 #: app/templates/users/register.html:35
 msgid "Please prove that you are human"
-msgstr ""
+msgstr "Dokažite, da ste človek"
 
 #: app/templates/users/settings_email.html:4
 #, python-format
 msgid "Email and Notifications - %(username)s"
-msgstr ""
+msgstr "E-pošta in obvestila - %(username)s"
 
 #: app/templates/users/settings_email.html:23
 msgid ""
 "Your email is needed to recover your account if you forget your password,"
 " and to send (configurable) notifications."
 msgstr ""
+"Vaš e-poštni naslov je potreben za obnovitev računa, če pozabite geslo, in "
+"za pošiljanje (nastavljivih) obvestil."
 
 #: app/templates/users/settings_email.html:32
 msgid "There is at least one verification pending."
-msgstr ""
+msgstr "Čaka vsaj eno preverjanje."
 
 #: app/templates/users/settings_email.html:36
 msgid "Notification Settings"
-msgstr ""
+msgstr "Nastavitve obvestil"
 
 #: app/templates/users/settings_email.html:40
 msgid "Email notifications are currently turned off. Click 'save' to enable."
 msgstr ""
+"Obvestila po e-pošti so trenutno izklopljena. Kliknite »shrani«, da jih "
+"omogočite."
 
 #: app/templates/users/settings_email.html:45
 msgid ""
 "Configure whether certain types of notifications are sent immediately, or"
 " as part of a daily digest."
 msgstr ""
+"Konfigurirajte, ali se določene vrste obvestil pošljejo takoj ali kot del "
+"dnevnega povzetka."
 
 #: app/templates/users/settings_email.html:46
 msgid "Disable all"
-msgstr ""
+msgstr "Onemogoči vse"
 
 #: app/templates/users/settings_email.html:51
 msgid "Event"
-msgstr ""
+msgstr "Dogodek"
 
 #: app/templates/users/settings_email.html:53
 msgid "Immediately"
-msgstr ""
+msgstr "Nemudoma"
 
 #: app/templates/users/settings_email.html:54
 msgid "In digest"
-msgstr ""
+msgstr "V povzetku"
 
 #: app/templates/users/stats.html:4
 #, python-format
 msgid "Statistics for %(display_name)s's packages"
-msgstr ""
+msgstr "Statistika za pakete uporabnika %(display_name)s"
 
 #: app/templates/users/unsubscribe.html:11
 msgid ""
 "This will blacklist an email address, preventing ContentDB from ever "
 "sending emails to it - including password resets."
 msgstr ""
+"S tem boste e-poštni naslov dodali na črno listo in preprečili, da bi "
+"ContentDB nanj kdajkoli pošiljal e-poštna sporočila – vključno s "
+"ponastavitvijo gesla."
 
 #: app/templates/users/unsubscribe.html:20
 msgid "Please enter the email address you wish to blacklist."
-msgstr ""
+msgstr "Vnesite e-poštni naslov, ki ga želite dodati na črno listo."
 
 #: app/templates/users/unsubscribe.html:21
 msgid "You will then need to confirm the email"
-msgstr ""
+msgstr "Nato boste morali potrditi e-pošto"
 
 #: app/templates/users/unsubscribe.html:33
 msgid "You may now unsubscribe."
-msgstr ""
+msgstr "Zdaj se lahko odjavite."
 
 #: app/templates/users/unsubscribe.html:40
 #, python-format
@@ -6093,6 +6151,7 @@ msgid ""
 "Unsubscribing may prevent you from being able to log into the account "
 "'%(display_name)s'"
 msgstr ""
+"Če se odjavite, se morda ne boste mogli prijaviti v račun „%(display_name)s“"
 
 #: app/templates/users/unsubscribe.html:44
 msgid ""
@@ -6100,86 +6159,91 @@ msgid ""
 "essential system emails.\n"
 "\t\t\t\t\tConsider editing your email notification preferences instead."
 msgstr ""
+"ContentDB ne bo več mogel pošiljati e-poštnih sporočil »pozabljeno geslo« in "
+"drugih bistvenih sistemskih e-poštnih sporočil.\n"
+"\t\t\t\t\tNamesto tega razmislite o urejanju nastavitev e-poštnih obvestil."
 
 #: app/templates/users/unsubscribe.html:50
 msgid "You won't be able to use this email with ContentDB anymore."
-msgstr ""
+msgstr "Tega e-poštnega naslova ne boste mogli več uporabljati s ContentDB."
 
 #: app/templates/users/unsubscribe.html:57
 msgid "Edit Notification Preferences"
-msgstr ""
+msgstr "Urejanje nastavitev obvestil"
 
 #: app/templates/zipgrep/search.html:4
 #: app/templates/zipgrep/view_results.html:9
 msgid "Search in Package Releases"
-msgstr ""
+msgstr "Iskanje v izdajah paketov"
 
 #: app/templates/zipgrep/view_results.html:4
 #, python-format
 msgid "'%(query)s' - Search Package Releases"
-msgstr ""
+msgstr "»%(query)s« - Iskanje izdaj paketov"
 
 #: app/utils/flask.py:159
 msgid "All time"
-msgstr ""
+msgstr "Ves čas"
 
 #: app/utils/flask.py:160
 msgid "Last 7 days"
-msgstr ""
+msgstr "Zadnjih 7 dni"
 
 #: app/utils/flask.py:161
 msgid "Last 30 days"
-msgstr ""
+msgstr "Zadnjih 30 dni"
 
 #: app/utils/flask.py:162
 msgid "Last 90 days"
-msgstr ""
+msgstr "Zadnjih 90 dni"
 
 #: app/utils/flask.py:163
 msgid "Year to date"
-msgstr ""
+msgstr "Od začetka leta"
 
 #: app/utils/flask.py:164
 msgid "Last year"
-msgstr ""
+msgstr "Zadnje leto"
 
 #: app/utils/luanti_hypertext.py:108
 msgid "(view table in browser)"
-msgstr ""
+msgstr "(ogled tabele v brskalniku)"
 
 #: app/utils/luanti_hypertext.py:139
 msgid "Image"
-msgstr ""
+msgstr "Slika"
 
 #: app/utils/luanti_hypertext.py:259
 msgid "none"
-msgstr ""
+msgstr "nič"
 
 #: app/utils/luanti_hypertext.py:280
 msgid "Unsupported Games"
-msgstr ""
+msgstr "Nepodprte igre"
 
 #: app/utils/luanti_hypertext.py:284
 msgid "Optional dependencies"
-msgstr ""
+msgstr "Neobvezne odvisnosti"
 
 #: app/utils/luanti_hypertext.py:325
 msgid "Leave a review"
-msgstr ""
+msgstr "Pustite oceno"
 
 #: app/utils/luanti_hypertext.py:346
 msgid "No reviews available."
-msgstr ""
+msgstr "Ni na voljo nobenih ocen."
 
 #: app/utils/user.py:51
 msgid "You have a lot of notifications, you should either read or clear them"
-msgstr ""
+msgstr "Imate veliko obvestil, preberite jih ali počistite"
 
 #: app/utils/user.py:55
 msgid ""
 "Please consider enabling email notifications, you can customise how much "
 "is sent"
 msgstr ""
+"Prosimo, razmislite o omogočanju e-poštnih obvestil, saj lahko prilagodite, "
+"koliko se pošlje"
 
 #~ msgctxt "tags"
 #~ msgid "Less than 16px"
