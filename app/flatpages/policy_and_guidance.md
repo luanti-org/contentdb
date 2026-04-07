@@ -1,4 +1,4 @@
-title: Package Inclusion Policy and Guidance
+title: Package Inclusion Policy
 
 
 ## 1. General
