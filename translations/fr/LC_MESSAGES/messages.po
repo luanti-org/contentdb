@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-11-10 19:55+0000\n"
-"PO-Revision-Date: 2026-02-03 15:01+0000\n"
-"Last-Translator: GeekSteak <lpdj@ik.me>\n"
+"PO-Revision-Date: 2026-02-27 21:09+0000\n"
+"Last-Translator: Lemente <crafted.by.lemente@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/minetest/"
 "contentdb/fr/>\n"
 "Language: fr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.16-dev\n"
+"X-Generator: Weblate 5.16.1-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: app/__init__.py:155
@@ -1611,11 +1611,11 @@ msgstr "Image de couverture"
 
 #: app/blueprints/report/__init__.py:35
 msgid "Category"
-msgstr ""
+msgstr "Catégorie"
 
 #: app/blueprints/report/__init__.py:38
 msgid "Subject / Title"
-msgstr ""
+msgstr "Sujet / Titre"
 
 #: app/blueprints/report/__init__.py:39 app/templates/users/modtools.html:79
 msgid "Message"
@@ -1623,7 +1623,7 @@ msgstr "Message"
 
 #: app/blueprints/report/__init__.py:40
 msgid "Image Upload"
-msgstr ""
+msgstr "Chargement d'images"
 
 #: app/blueprints/report/__init__.py:41 app/templates/macros/threads.html:51
 #: app/templates/packages/view.html:706 app/templates/report/report.html:4
@@ -2098,7 +2098,7 @@ msgstr ""
 
 #: app/logic/package_approval.py:110
 msgid "View task"
-msgstr ""
+msgstr "Voir la tâche"
 
 #: app/logic/package_approval.py:116
 msgid "Release validation failed. Please fix any issues and create a new release"
@@ -2106,7 +2106,7 @@ msgstr ""
 
 #: app/logic/package_approval.py:117
 msgid "View error"
-msgstr ""
+msgstr "Voir l'erreur"
 
 #: app/logic/package_approval.py:124
 msgid "You need to add at least one screenshot."
@@ -2258,7 +2258,7 @@ msgstr ""
 
 #: app/models/__init__.py:148
 msgid "Account deletion"
-msgstr ""
+msgstr "Suppression de compte"
 
 #: app/models/__init__.py:150
 msgid "Copyright infringement / DMCA"
@@ -3948,6 +3948,9 @@ msgid ""
 "<i>modpack</i> anywhere in the short description. It is unnecessary and "
 "wastes characters."
 msgstr ""
+"Astuce : n'utilisez pas <i>Luanti</i>, <i>Minetest</i>, <i>mod</i>, or <i>"
+"modpack</i> dans la description courte. C'est inutile et cela gaspille de la "
+"place."
 
 #: app/templates/packages/create_edit.html:88
 msgid ""
@@ -4961,6 +4964,8 @@ msgid ""
 "This thread is only visible to its creator, package maintainers, and "
 "users of Approver rank or above."
 msgstr ""
+"Ce fil est seulement visible par son créateur, ses mainteneurs de paquets et "
+"ses utilisateurs de rang Approbateur ou supérieur."
 
 #: app/templates/packages/view.html:214 app/templates/users/profile.html:95
 msgid "Website"
@@ -5147,6 +5152,8 @@ msgid ""
 "The full report will be visible to all ContentDB staff members, including"
 " editors and moderators."
 msgstr ""
+"Le rapport complet sera visible par tous les membres de l'équipe de "
+"ContentDB, y compris les éditeurs et les modérateurs."
 
 #: app/templates/report/report.html:31
 msgid ""
