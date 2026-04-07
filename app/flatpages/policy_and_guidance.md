@@ -133,11 +133,17 @@ be removed in the future.
 
 ### 4.3. AI-generated content
 
-AI-generated content must be properly disclosed on ContentDB (Edit Package > AI disclosure).
+AI-generated content is allowed but must be properly disclosed on ContentDB
+(Edit Package > AI disclosure).
 
 If you use AI to generate significant content (ie: entire assets), then it should
 also be credited in your package's credit list in the LICENSE file.
 See the [Copyright Guide](/help/copyright/#i-used-an-ai) for more information.
+
+A prominent notice will be added to your package's page.
+Users can use the "genai" or "anyai" content flags to filter out AI-generated
+content inside Luanti. See <a href="/help/content_flags/">content flags</a>
+for more information.
 
 ## 5. Promotions and Advertisements (inc. asking for donations)
 

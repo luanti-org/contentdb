@@ -145,6 +145,10 @@ impose conditions.
 AI art/code may regurgitate copyrighted things. Make sure that you don't include the
 names of any copyrighted materials in your AI prompts, such as names of games or artists.
 
+Users can use the "genai" or "anyai" content flags to filter out AI-generated
+content inside Luanti. See <a href="/help/content_flags/">content flags</a>
+for more information.
+
 ## What does ContentDB do?
 
 The package authors and maintainers are responsible for the licenses and copyright of packages on ContentDB.
