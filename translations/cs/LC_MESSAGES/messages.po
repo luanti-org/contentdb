@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-11-10 19:55+0000\n"
-"PO-Revision-Date: 2025-12-05 19:08+0000\n"
-"Last-Translator: David Bauer <dejv0009@seznam.cz>\n"
+"PO-Revision-Date: 2026-02-16 12:09+0000\n"
+"Last-Translator: Elviska <vonelviska@seznam.cz>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/minetest/contentdb/"
 "cs/>\n"
 "Language: cs\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.15-dev\n"
+"X-Generator: Weblate 5.16-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: app/__init__.py:155
@@ -203,8 +203,8 @@ msgid ""
 "Contains a completely custom mapgen implemented in Lua, usually requires "
 "worlds to be set to the 'singlenode' mapgen."
 msgstr ""
-"Zahrnuje plně vlastní generátor světa, zahrnutý v LUA; často vyžaduje aby"
-" generátor světa byl při vytváření světa nastaven na \"singlenode\"."
+"Zahrnuje plně vlastní generátor světa implementovaný v Lua, často vyžaduje "
+"aby generátor světa byl při vytváření světa nastaven na \"singlenode\"."
 
 #. NOTE: tags: title for decorative
 #: app/_translations.py:60
@@ -374,13 +374,13 @@ msgstr "Účastní se soutěže o Luanti hru roku 2024"
 #: app/_translations.py:110
 msgctxt "tags"
 msgid "Jam / Game 2025"
-msgstr ""
+msgstr "Game Jam 2025"
 
 #. NOTE: tags: description for jam_game_2025
 #: app/_translations.py:112
 msgctxt "tags"
 msgid "Entries to the 2025 Luanti Game Jam"
-msgstr ""
+msgstr "Příspěvky do Luanti 2025 Game jamu"
 
 #. NOTE: tags: title for jam_weekly_2021
 #: app/_translations.py:114
@@ -408,7 +408,7 @@ msgstr "Méně než 16 pixelů"
 #: app/_translations.py:120
 msgctxt "tags"
 msgid "For less than 16px texture packs "
-msgstr ""
+msgstr "Balíčky textur s méně jak 16px "
 
 #. NOTE: tags: title for library
 #: app/_translations.py:122
@@ -462,7 +462,7 @@ msgstr "Mobové, zvířata a postavy (NPC)"
 #: app/_translations.py:138
 msgctxt "tags"
 msgid "Adds mobs, animals, and non-player characters"
-msgstr "Přidává moby, zvířata a postavy (NPC)"
+msgstr "Přidává moby, zvířata a nehratelné postavy"
 
 #. NOTE: tags: title for mtg
 #: app/_translations.py:140
@@ -1591,11 +1591,11 @@ msgstr "Obrázek obálky"
 
 #: app/blueprints/report/__init__.py:35
 msgid "Category"
-msgstr ""
+msgstr "Kategorie"
 
 #: app/blueprints/report/__init__.py:38
 msgid "Subject / Title"
-msgstr ""
+msgstr "Předmět / Nadpis"
 
 #: app/blueprints/report/__init__.py:39 app/templates/users/modtools.html:79
 msgid "Message"
@@ -1603,7 +1603,7 @@ msgstr "Zpráva"
 
 #: app/blueprints/report/__init__.py:40
 msgid "Image Upload"
-msgstr ""
+msgstr "Nahrát Obrázek"
 
 #: app/blueprints/report/__init__.py:41 app/templates/macros/threads.html:51
 #: app/templates/packages/view.html:706 app/templates/report/report.html:4
@@ -2066,15 +2066,16 @@ msgstr "Nastavte vydání"
 
 #: app/logic/package_approval.py:109
 msgid "Release is still importing. Please wait and reload the page."
-msgstr ""
+msgstr "Vydání se stále nahrává. Počkejte a následně obnovte tuto stránku."
 
 #: app/logic/package_approval.py:110
 msgid "View task"
-msgstr ""
+msgstr "Zobrazit úkol"
 
 #: app/logic/package_approval.py:116
 msgid "Release validation failed. Please fix any issues and create a new release"
 msgstr ""
+"Ověření vydání selhalo. Opravte jakékoliv problémy a vytvořte nové vydání"
 
 #: app/logic/package_approval.py:117
 msgid "View error"
@@ -2732,7 +2733,7 @@ msgstr "Kontaktuj nás"
 
 #: app/templates/base.html:262
 msgid "Terms of Service"
-msgstr ""
+msgstr "Podmínky Použití"
 
 #: app/templates/base.html:263
 msgid "Policy and Guidance"
@@ -2877,7 +2878,7 @@ msgstr "Učiněno smazaným uživatelem."
 
 #: app/templates/admin/list.html:16
 msgid "User list"
-msgstr ""
+msgstr "Seznam uživatelů"
 
 #: app/templates/admin/send_bulk_email.html:4
 msgid "Send bulk email"
@@ -3481,13 +3482,11 @@ msgstr "Stažení balíčku"
 
 #: app/templates/macros/stats.html:93 app/templates/macros/stats.html:100
 #: app/templates/macros/stats.html:112
-#, fuzzy
 msgid ""
 "This is a stacked area graph. For total downloads, look at the combined "
 "height."
 msgstr ""
-"Zde je souhrnný graf. Pro všechna stažení se koukněte na kombinovanou "
-"výšku."
+"Zde je souhrnný graf. Pro všechna stažení se podívejte na kombinovanou výšku."
 
 #: app/templates/macros/stats.html:98
 msgid "Downloads by Client"
@@ -3895,6 +3894,8 @@ msgid ""
 "<i>modpack</i> anywhere in the short description. It is unnecessary and "
 "wastes characters."
 msgstr ""
+"Rada: Nepřidávejte slova jako <i>Luanti</i>, <i>Minetest</i>, <i>mod</i> "
+"nebo <i>modpack</i> do krátkého popisku. Je to zbytečné plýtvání symbolů."
 
 #: app/templates/packages/create_edit.html:88
 msgid ""
@@ -4407,6 +4408,9 @@ msgid ""
 "and Releases Guide</a> for\n"
 "\t\t\ttips on customising releases."
 msgstr ""
+"Podívejte se na <a href=\"/help/package_config/\"> Nastavení Balíčků a Návod "
+"k Vydáním</a> pro\n"
+"\t\t\trady ohledně úpravy vydání."
 
 #: app/templates/packages/release_new.html:62
 msgid "3. Supported Luanti versions"
@@ -4418,6 +4422,9 @@ msgid ""
 "automatically</a>,\n"
 "\t\t\twhich will override your selection."
 msgstr ""
+".conf tvého balíčku toto může <a href=\"/help/package_config/\">nastavit "
+"automaticky</a>,\n"
+"\t\t\tcož přepíše tvůj výběr."
 
 #: app/templates/packages/release_wizard.html:4
 msgid "How do you want to create releases?"
@@ -4542,16 +4549,24 @@ msgid ""
 "\t\t\tlater point. ContentDB staff can restore removed packages, if "
 "needed."
 msgstr ""
+"Aby bylo zabráněno ztrátě dat, nelze permanentně odstraňovat balíčky.\n"
+"\t\t\tMůžete je odstranit z ContentDB, což způsobí že nebudou viditelné \n"
+"\t\t\tjakýmkoliv uživatelům. Odstraněné balíčky mohou být nenávratně smazány "
+"\n"
+"\t\t\tpozději. Správci ContentDB mohou obnovit odstraněné balíčky když je to "
+"potřeba."
 
 #: app/templates/packages/remove.html:46
 msgid ""
 "Unapproving a package will put it back into Draft, where\n"
 "\t\t\t\tit can be submitted for approval again."
 msgstr ""
+"Odejmutí kontroly balíčku ho přesune zpátky do návrhu odkud\n"
+"\t\t\tmůže být zaslán zpátky pro kontrolu."
 
 #: app/templates/packages/remove.html:51
 msgid "You don't need to delete a package just to change something."
-msgstr "Nelze odstranit právě měněný balíček."
+msgstr "Nemusíte odstranit balíček abys něco změnil."
 
 #: app/templates/packages/remove.html:52
 msgid "Click 'Edit' at the top right of the package page."
@@ -4576,7 +4591,7 @@ msgstr "Důvod pro neschválení či smazání; bude viditelné v zápisu změn"
 
 #: app/templates/packages/remove.html:93
 msgid "Unpublish"
-msgstr "Zneveřejnění / učinění neveřejným"
+msgstr "Učinění Neveřejným"
 
 #: app/templates/packages/review_create_edit.html:17
 #, python-format
@@ -4588,6 +4603,8 @@ msgid ""
 "Please make sure you read ContentDB's <a href='/terms/'>Terms of "
 "Service</a>"
 msgstr ""
+"Ujistěte se že jste si přečetli <a href=\"/terms/\">podmínky použití</a> "
+"ContentDB"
 
 #: app/templates/packages/review_create_edit.html:25
 #: app/templates/threads/new.html:16
@@ -4629,7 +4646,7 @@ msgstr "Upravit snímek obrazovky"
 #: app/templates/packages/screenshot_new.html:4
 #: app/templates/packages/screenshot_new.html:8
 msgid "Add a screenshot"
-msgstr "Přidá snímek obrazovky"
+msgstr "Přidat snímek obrazovky"
 
 #: app/templates/packages/screenshot_new.html:10
 #: app/templates/todo/user.html:125
@@ -4647,7 +4664,7 @@ msgstr "Přidat obrázek"
 
 #: app/templates/packages/screenshots.html:36 app/templates/todo/user.html:129
 msgid "Way too small"
-msgstr "Příliš malá cesta"
+msgstr "Příliš malý"
 
 #: app/templates/packages/screenshots.html:40 app/templates/todo/user.html:132
 msgid "Too small"
@@ -4867,6 +4884,8 @@ msgid ""
 "This thread is only visible to its creator, package maintainers, and "
 "users of Approver rank or above."
 msgstr ""
+"Toto vlákno je viditelné jen tvůrci, správcům balíčku a uživatelům s "
+"ověřeným nebo vyšším postavením."
 
 #: app/templates/packages/view.html:214 app/templates/users/profile.html:95
 msgid "Website"
@@ -5049,22 +5068,28 @@ msgid ""
 "The full report will be visible to all ContentDB staff members, including"
 " editors and moderators."
 msgstr ""
+"Celé hlášení bude viditelné všem členům týmu ContentDB, to obsahuje editory "
+"a moderátory."
 
 #: app/templates/report/report.html:31
 msgid ""
 "If you are reporting something by another user, we may discuss the report"
 " with them but will not disclose who reported it."
 msgstr ""
+"Pokud nahlašujete jiného uživatele můžeme s ním nahlášení probírat ale "
+"nezveřejníme kdo je nahlásil."
 
 #: app/templates/report/report.html:32
 msgid ""
 "If you are reporting something by an editor or moderator, then you should"
 " email the admin or a moderator directly to hide your identity."
 msgstr ""
+"Pokud nahlašujete něco ohledně editorů nebo moderátorů měli byste poslat "
+"email správci nebo moderátorovi přímo abyste skryli svoji identitu."
 
 #: app/templates/report/report.html:41
 msgid "Optional, usually not required"
-msgstr ""
+msgstr "Volitelné ale ne povinné"
 
 #: app/templates/report/report.html:44
 msgid ""
@@ -5076,64 +5101,72 @@ msgstr ""
 
 #: app/templates/report/report_received.html:4
 msgid "We have received your report"
-msgstr ""
+msgstr "Přijali jsme tvoje hlášení"
 
 #: app/templates/report/report_received.html:13
 msgid "We aim to resolve your report quickly."
-msgstr ""
+msgstr "Snažíme se odpovědět na tvoje hlášení rychle."
 
 #: app/templates/report/report_received.html:17
 msgid ""
 "If the report is about illegal or harmful content, we aim to resolve "
 "within 48 hours."
 msgstr ""
+"Pokud je hlášení o nezákonném nebo nebezpečném obsahu tak se ho pokusíme "
+"vyřešit do 48 hodin."
 
 #: app/templates/report/report_received.html:18
 msgid ""
 "If we find the content to be infringing, we will remove it and may warn "
 "or suspend the user."
 msgstr ""
+"Pokud shledáme že obsah porušuje naše pravidla tak ho odstraníme a možná "
+"upozorníme nebo vyloučíme tvůrce."
 
 #: app/templates/report/report_received.html:23
 msgid ""
 "A private thread has been created for this report. You can use it to "
 "communicate with ContentDB staff and receive updates about the report."
 msgstr ""
+"Soukromé vlákno bylo vytvořeno pro hlášení. Můžete ho použít pro komunikaci "
+"se správci ContentDB a získání novinek ohledně hlášení."
 
 #: app/templates/report/report_received.html:27
 msgid ""
 "Due to limited resources, we may not contact you further about the report"
 " unless we need clarification."
 msgstr ""
+"Kvůli omezeným zdrojům když nebudeme potřebovat bližší informace tak možná "
+"vás již nebudeme kontaktujeme ohledně tohoto hlášení."
 
 #: app/templates/report/report_received.html:30
 #, python-format
 msgid "For future reference, use report id: %(report_id)s."
-msgstr ""
+msgstr "Pro další zprávy využijte id hlášení: %(report_id)s."
 
 #: app/templates/report/report_received.html:36
 msgid "View thread"
-msgstr ""
+msgstr "Zobrazit vlákno"
 
 #: app/templates/report/report_received.html:38
 msgid "Back to home"
-msgstr ""
+msgstr "Zpět na domovskou stránku"
 
 #: app/templates/report/view.html:96
 msgid "Reopen"
-msgstr ""
+msgstr "Znovuotevřít"
 
 #: app/templates/report/view.html:98
 msgid "Completed (action taken)"
-msgstr ""
+msgstr "Dokončeno (uskutečněna akce)"
 
 #: app/templates/report/view.html:99
 msgid "Content removed"
-msgstr ""
+msgstr "Obsah odstraněn"
 
 #: app/templates/report/view.html:100
 msgid "Invalid / close with no action"
-msgstr ""
+msgstr "Neplatné / uzavřeno bez akce"
 
 #: app/templates/tasks/view.html:5
 msgid "Task Failed"
@@ -5191,7 +5224,7 @@ msgstr "Odebírat"
 
 #: app/templates/threads/view.html:59
 msgid "Convert to Thread"
-msgstr "Změní na vlákno"
+msgstr "Změnit na Vlákno"
 
 #: app/templates/threads/view.html:67
 msgid "Unlock"
@@ -5234,7 +5267,7 @@ msgstr "Řada práce editora"
 
 #: app/templates/todo/editor.html:9
 msgid "Reports"
-msgstr ""
+msgstr "Nahlášení"
 
 #: app/templates/todo/editor.html:30
 msgid "Approval Queue"
@@ -5242,7 +5275,7 @@ msgstr "Fronta na schválení"
 
 #: app/templates/todo/editor.html:37
 msgid "Approve All"
-msgstr "Schválit vše"
+msgstr "Schválit Vše"
 
 #: app/templates/todo/editor.html:55
 msgid "No screenshots need approval."
@@ -5580,7 +5613,7 @@ msgstr "Prohlédnout pravomoce ContentDB na GitHub"
 
 #: app/templates/users/account.html:65
 msgid "Disconnect"
-msgstr "Odpojit (se)"
+msgstr "Odpojit"
 
 #: app/templates/users/account.html:69
 msgid "Link Github"
@@ -5608,7 +5641,7 @@ msgstr "Chcete-li požádat o smazání účtu, zahajte prosím žádost."
 
 #: app/templates/users/account.html:94
 msgid "Recent Account Actions"
-msgstr "Nedávné akce účtu"
+msgstr "Nedávné Akce Účtu"
 
 #: app/templates/users/change_set_password.html:16
 #: app/templates/users/register.html:24
@@ -5643,7 +5676,7 @@ msgstr "Musí být alespoň 12 znaků dlouhé."
 
 #: app/templates/users/claim.html:4
 msgid "Create Account"
-msgstr "Vytvořit účet"
+msgstr "Vytvořit Účet"
 
 #: app/templates/users/claim.html:10
 msgid "Do you have an account on the Luanti Forums?"
@@ -5692,7 +5725,7 @@ msgstr "Nemáte účet na fóru?"
 #: app/templates/users/claim_forums.html:19
 #, python-format
 msgid "You can still <a href='%(url)s'>sign up without one</a>."
-msgstr "Můžete ponechat <a href=\"%(url)s\">registrace</a>."
+msgstr "Stále se můžete <a href=\"%(url)s\">registrovat bez něj</a>."
 
 #: app/templates/users/claim_forums.html:23
 #: app/templates/users/register.html:40
@@ -5701,6 +5734,9 @@ msgid ""
 "of Service</a> and <a href='/privacy_policy/' target='_blank'>Privacy "
 "Policy</a>."
 msgstr ""
+"Registrací souhlasíte s <a href=\"/terms/\" target=\"_blank\">Podmínkami "
+"Použití</a> a <a href=\"/privacy_policy/\" target=\"_blank\">Zásadami "
+"Ochrany Osobních Údajů</a>."
 
 #: app/templates/users/claim_forums.html:30
 msgid "Option 1"
@@ -5950,7 +5986,7 @@ msgstr "komentáře"
 
 #: app/templates/users/profile.html:161
 msgid "Claim"
-msgstr "Žádat"
+msgstr "Nárokuj"
 
 #: app/templates/users/profile.html:163
 msgid "Is this you? Claim your account now!"
@@ -6008,7 +6044,7 @@ msgid ""
 "following formats: jpeg, png, or webp."
 msgstr ""
 "Profilové obrázky by měly být čtvercové, alespoň 64x64px, a měly by mít "
-"jeden z následujících formátů: JPEG, PNG nebo Webp."
+"jeden z následujících formátů: jpeg, png nebo webp."
 
 #: app/templates/users/profile_edit.html:55
 msgid "Profile Information"
@@ -6020,13 +6056,15 @@ msgstr "Vydávání se za jiného uživatele je důvodem k trvalému banu"
 
 #: app/templates/users/profile_edit.html:72
 msgid "Website URLs will not be shown whilst you are a 'New Member'."
-msgstr ""
+msgstr "URL Webových stránek se nebudou zobrazovat dokud jsi 'Nový Člen'."
 
 #: app/templates/users/profile_edit.html:73
 msgid ""
 "To become a full member, create a review, comment, or package and wait 7 "
 "days."
 msgstr ""
+"Abys ses stal trvalým členem, vytvoř recenzi, komentář nebo balíček a počkej "
+"7 dní."
 
 #: app/templates/users/register.html:17
 msgid ""
@@ -6211,7 +6249,7 @@ msgstr "Doporučené závislosti"
 
 #: app/utils/luanti_hypertext.py:325
 msgid "Leave a review"
-msgstr ""
+msgstr "Zanechej recenzi"
 
 #: app/utils/luanti_hypertext.py:346
 msgid "No reviews available."
