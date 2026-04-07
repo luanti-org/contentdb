@@ -8,16 +8,17 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-11-10 19:55+0000\n"
-"PO-Revision-Date: 2025-10-20 04:51+0000\n"
-"Last-Translator: Karol1165 <kutkarol1165@gmail.com>\n"
+"PO-Revision-Date: 2026-02-25 20:09+0000\n"
+"Last-Translator: Placek Plackowski <drzieluch777@gmail.com>\n"
+"Language-Team: Polish <https://hosted.weblate.org/projects/minetest/"
+"contentdb/pl/>\n"
 "Language: pl\n"
-"Language-Team: Polish "
-"<https://hosted.weblate.org/projects/minetest/contentdb/pl/>\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && "
-"(n%100<10 || n%100>=20) ? 1 : 2);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+"X-Generator: Weblate 5.16.1-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: app/__init__.py:155
@@ -149,6 +150,7 @@ msgstr "Czat / Polecenia"
 msgctxt "tags"
 msgid "Focus on player chat/communication or console interaction."
 msgstr ""
+"Skupiony na czacie/komunikacji między graczami lub interakcji na konsoli."
 
 #. NOTE: tags: title for commerce
 #: app/_translations.py:40
@@ -178,6 +180,8 @@ msgid ""
 "Requires futher installation steps, such as installing LuaRocks or "
 "editing the trusted mod setting"
 msgstr ""
+"Wymaga więcej kroków instalacji, takich jak zainstalowanie LuaRocks lub "
+"edycja ustawienia zaufanych modów"
 
 #. NOTE: tags: title for crafting
 #: app/_translations.py:48
@@ -401,7 +405,7 @@ msgstr ""
 #: app/_translations.py:106
 msgctxt "tags"
 msgid "Jam / Game 2024"
-msgstr ""
+msgstr "Dżem / Gra 2024"
 
 #. NOTE: tags: description for jam_game_2024
 #: app/_translations.py:108
@@ -413,7 +417,7 @@ msgstr ""
 #: app/_translations.py:110
 msgctxt "tags"
 msgid "Jam / Game 2025"
-msgstr ""
+msgstr "Dżem / Gra 2025"
 
 #. NOTE: tags: description for jam_game_2025
 #: app/_translations.py:112
@@ -450,7 +454,7 @@ msgstr "&lt;16 pikseli"
 #: app/_translations.py:120
 msgctxt "tags"
 msgid "For less than 16px texture packs "
-msgstr ""
+msgstr "Dla paczek tekstur z rozdzielczością niższą niż 16 pikseli. "
 
 #. NOTE: tags: title for library
 #: app/_translations.py:122
@@ -691,6 +695,8 @@ msgid ""
 "Mods and games that aim to simulate real life activity. Similar to "
 "SimCity/The Sims/OpenTTD/etc."
 msgstr ""
+"Mody i gry skupiające się na symulowaniu działań z prawdziwego życia. "
+"Podobnie jak w SimCity/The Sims/OpenTTD/itp."
 
 #. NOTE: tags: title for singleplayer
 #: app/_translations.py:188
@@ -984,7 +990,7 @@ msgstr "Nazwa użytkownika"
 #: app/blueprints/admin/audit.py:32
 #: app/blueprints/packages/advanced_search.py:53
 msgid "Query"
-msgstr ""
+msgstr "Zapytanie"
 
 #: app/blueprints/admin/audit.py:33 app/blueprints/packages/releases.py:74
 #: app/blueprints/report/__init__.py:37
@@ -1105,17 +1111,17 @@ msgstr ""
 #: app/blueprints/feeds/__init__.py:70 app/templates/base.html:29
 #: app/templates/base.html:36
 msgid "ContentDB new packages"
-msgstr ""
+msgstr "ContentDB nowe paczki"
 
 #: app/blueprints/feeds/__init__.py:98 app/templates/base.html:31
 #: app/templates/base.html:38
 msgid "ContentDB package updates"
-msgstr ""
+msgstr "ContentDB aktualizacje paczek"
 
 #: app/blueprints/feeds/__init__.py:107 app/templates/base.html:27
 #: app/templates/base.html:34
 msgid "ContentDB all"
-msgstr ""
+msgstr "ContentDB wszystko"
 
 #: app/blueprints/oauth/__init__.py:169 app/templates/admin/tags/list.html:26
 #: app/templates/admin/warnings/list.html:24
@@ -1133,7 +1139,7 @@ msgstr "Typ Aplikacji"
 
 #: app/blueprints/oauth/__init__.py:198
 msgid "An OAuth client with that title already exists. Please choose a new title."
-msgstr ""
+msgstr "Już istnieje klient OAuth z tą nazwą. Proszę wybrać inną nazwę."
 
 #: app/blueprints/oauth/__init__.py:262
 msgid "Revoked all user tokens"
@@ -1202,7 +1208,7 @@ msgstr ""
 
 #: app/blueprints/packages/advanced_search.py:41
 msgid "Non-free"
-msgstr ""
+msgstr "Nie darmowe"
 
 #: app/blueprints/packages/advanced_search.py:42 app/models/packages.py:630
 #: app/templates/packages/view.html:170
@@ -1216,7 +1222,7 @@ msgstr "Przestarzały"
 
 #: app/blueprints/packages/advanced_search.py:44
 msgid "All content warnings"
-msgstr ""
+msgstr "Wszystkie ostrzeżenia o treści"
 
 #: app/blueprints/packages/advanced_search.py:54
 #: app/blueprints/packages/packages.py:231
@@ -1250,7 +1256,7 @@ msgstr "Licencja"
 
 #: app/blueprints/packages/advanced_search.py:67
 msgid "Supports Game"
-msgstr ""
+msgstr "Wspiera Grę"
 
 #: app/blueprints/packages/advanced_search.py:71
 #: app/templates/admin/storage.html:39
@@ -1274,7 +1280,7 @@ msgstr "Język"
 
 #: app/blueprints/packages/advanced_search.py:76
 msgid "Hide Tags and Content Warnings"
-msgstr ""
+msgstr "Ukryj Tagi i Ostrzeżenia o Treści"
 
 #: app/blueprints/packages/advanced_search.py:77
 msgid "Luanti Version"
@@ -1282,7 +1288,7 @@ msgstr "Wersja Luanti"
 
 #: app/blueprints/packages/advanced_search.py:81
 msgid "Sort by"
-msgstr ""
+msgstr "Sortuj według"
 
 #: app/blueprints/packages/advanced_search.py:85
 msgid "Package score"
@@ -1302,31 +1308,31 @@ msgstr "Pobrania"
 
 #: app/blueprints/packages/advanced_search.py:88
 msgid "Created At"
-msgstr ""
+msgstr "Data utworzenia"
 
 #: app/blueprints/packages/advanced_search.py:89
 msgid "Approved At"
-msgstr ""
+msgstr "Data zatwierdzenia"
 
 #: app/blueprints/packages/advanced_search.py:90
 msgid "Last Release"
-msgstr ""
+msgstr "Ostatnie Wydanie"
 
 #: app/blueprints/packages/advanced_search.py:92
 msgid "Order"
-msgstr ""
+msgstr "Kolejność"
 
 #: app/blueprints/packages/advanced_search.py:93
 msgid "Descending"
-msgstr ""
+msgstr "Malejąco"
 
 #: app/blueprints/packages/advanced_search.py:94
 msgid "Ascending"
-msgstr ""
+msgstr "Rosnąco"
 
 #: app/blueprints/packages/advanced_search.py:96
 msgid "Random order"
-msgstr ""
+msgstr "Losowa kolejność"
 
 #: app/blueprints/packages/packages.py:216
 msgid "No download available."
@@ -1694,7 +1700,7 @@ msgstr "Obrazek okładki"
 
 #: app/blueprints/report/__init__.py:35
 msgid "Category"
-msgstr ""
+msgstr "Kategoria"
 
 #: app/blueprints/report/__init__.py:38
 msgid "Subject / Title"
@@ -2241,7 +2247,7 @@ msgstr "Nie masz uprawnień aby zmienić nazwę paczki"
 
 #: app/logic/packages.py:158
 msgid "You cannot change package type once approved"
-msgstr ""
+msgstr "Nie możesz zmienić typu paczki po jej zatwierdzeniu"
 
 #: app/logic/releases.py:33
 msgid "You don't have permission to make releases"
@@ -2317,11 +2323,11 @@ msgstr ""
 
 #: app/models/__init__.py:148
 msgid "Account deletion"
-msgstr ""
+msgstr "Usuwanie konta"
 
 #: app/models/__init__.py:150
 msgid "Copyright infringement / DMCA"
-msgstr ""
+msgstr "Naruszenie praw autorskich / DMCA"
 
 #: app/models/__init__.py:152
 msgid "User behaviour, bullying, or abuse"
@@ -2329,11 +2335,11 @@ msgstr ""
 
 #: app/models/__init__.py:154
 msgid "Spam"
-msgstr ""
+msgstr "Spam"
 
 #: app/models/__init__.py:156
 msgid "Illegal or harmful content"
-msgstr ""
+msgstr "Nielegalna lub szkodliwa zawartość"
 
 #: app/models/__init__.py:158
 msgid "Outdated/invalid review"
@@ -2418,15 +2424,15 @@ msgstr "%(display_name)s ma paczkę tekstur na miejscu #%(place)d."
 
 #: app/models/packages.py:114
 msgid "Do you recommend this mod?"
-msgstr ""
+msgstr "Czy polecasz tego moda?"
 
 #: app/models/packages.py:116
 msgid "Do you recommend this game?"
-msgstr ""
+msgstr "Czy polecasz tą grę?"
 
 #: app/models/packages.py:118
 msgid "Do you recommend this texture pack?"
-msgstr ""
+msgstr "Czy polecasz tą paczkę tekstur?"
 
 #. NOTE: Package maintenance state
 #: app/models/packages.py:155 app/models/packages.py:173
@@ -2518,7 +2524,7 @@ msgstr ""
 
 #: app/models/packages.py:1112
 msgid "Archived"
-msgstr ""
+msgstr "Zarchiwizowany"
 
 #: app/models/packages.py:1440
 #, python-format
@@ -2537,7 +2543,7 @@ msgstr "Nowy tag %(tag_name)s znaleziony na repozytorium Gita."
 
 #: app/models/users.py:46
 msgid "Banned"
-msgstr ""
+msgstr "Zbanowany"
 
 #: app/models/users.py:48
 msgid "Not Joined"
@@ -2545,15 +2551,15 @@ msgstr ""
 
 #: app/models/users.py:50
 msgid "New Member"
-msgstr ""
+msgstr "Nowy Członek"
 
 #: app/models/users.py:52
 msgid "Member"
-msgstr ""
+msgstr "Członek"
 
 #: app/models/users.py:54
 msgid "Trusted Member"
-msgstr ""
+msgstr "Zaufany Członek"
 
 #: app/models/users.py:56
 msgid "Approver"
@@ -2561,7 +2567,7 @@ msgstr ""
 
 #: app/models/users.py:58
 msgid "Editor"
-msgstr ""
+msgstr "Edytor"
 
 #. NOTE: BOT notification type
 #: app/models/users.py:60 app/models/users.py:460
@@ -2570,7 +2576,7 @@ msgstr "Bot"
 
 #: app/models/users.py:62
 msgid "Moderator"
-msgstr ""
+msgstr "Moderator"
 
 #: app/models/users.py:64 app/templates/base.html:178
 msgid "Admin"
@@ -2970,7 +2976,7 @@ msgstr "Spowodowane przez usuniętego użytkownika."
 
 #: app/templates/admin/list.html:16
 msgid "User list"
-msgstr ""
+msgstr "Lista użytkowników"
 
 #: app/templates/admin/send_bulk_email.html:4
 msgid "Send bulk email"
@@ -6129,13 +6135,15 @@ msgstr "Podszywanie się pod innego użytkownika jest podstawą dla trwałego ba
 
 #: app/templates/users/profile_edit.html:72
 msgid "Website URLs will not be shown whilst you are a 'New Member'."
-msgstr ""
+msgstr "Adresy URL stron nie będą pokazywane dopóki jesteś 'Nowym Członkiem'."
 
 #: app/templates/users/profile_edit.html:73
 msgid ""
 "To become a full member, create a review, comment, or package and wait 7 "
 "days."
 msgstr ""
+"Aby zostać pełnym członkiem, utwórz recenzję, komentarz lub paczkę i "
+"poczekaj 7 dni."
 
 #: app/templates/users/register.html:17
 msgid ""
@@ -6318,11 +6326,11 @@ msgstr "Zależności opcjonalne"
 
 #: app/utils/luanti_hypertext.py:325
 msgid "Leave a review"
-msgstr ""
+msgstr "Zostaw recenzję"
 
 #: app/utils/luanti_hypertext.py:346
 msgid "No reviews available."
-msgstr ""
+msgstr "Nie ma dostępnych recenzji."
 
 #: app/utils/user.py:51
 msgid "You have a lot of notifications, you should either read or clear them"
@@ -6917,4 +6925,3 @@ msgstr "Rozważ włączenie powiadomień e-mail, możesz dostosować ilość wys
 
 #~ msgid "Waiting for approval."
 #~ msgstr "Oczekiwanie na zatwierdzenie."
-
