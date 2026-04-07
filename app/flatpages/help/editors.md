@@ -11,13 +11,13 @@ For this purpose, they can/will:
 * Create packages on behalf of authors who aren't present.
 
 Editors should make sure they are familiar with the
-[Package Inclusion Policy and Guidance](/policy_and_guidance/).
+[Package Inclusion Policy](/policy_and_guidance/).
 
 ## ContentDB is not a curated platform
 
 It's important to note that ContentDB isn't a curated platform - a mod doesn't need to be good
 to be accepted, but there are some minimum requirements when it comes to usefulness and other things.
-See State of Completion (2.2) in the [Policy and Guidance](/policy_and_guidance/).
+See State of Completion (2.2) in the [Package Inclusion Policy](/policy_and_guidance/).
 
 ## Editor Work Queue
 
@@ -29,7 +29,7 @@ The [Editor Work Queue](/todo/) and related pages contain useful information for
 
 ## Crash Course to being an Editor
 
-The [Package Inclusion Policy and Guidance](/policy_and_guidance/) is our go-to resource for making decisions in 
+The [Package Inclusion Policy](/policy_and_guidance/) is our go-to resource for making decisions in 
 changes needed, similar to how lua_api.txt is the doc for modders to consult.
 
 In the [Editor console](/todo/), the two most important tabs are the Editor Work Queue and the Forum 

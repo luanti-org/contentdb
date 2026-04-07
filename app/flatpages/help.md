@@ -5,7 +5,7 @@ toc: False
 ## Rules
 
 * [Terms of Service](/terms/)
-* [Package Inclusion Policy and Guidance](/policy_and_guidance/)
+* [Package Inclusion Policy](/policy_and_guidance/)
 
 ## General Help
 
@@ -22,7 +22,7 @@ toc: False
 
 ## Help for Package Authors
 
-* [Package Inclusion Policy and Guidance](/policy_and_guidance/)
+* [Package Inclusion Policy](/policy_and_guidance/)
 * [Copyright Guide](copyright/)
 * [Git Update Detection](update_config/)
 * [Creating Releases using Webhooks](release_webhooks/)
