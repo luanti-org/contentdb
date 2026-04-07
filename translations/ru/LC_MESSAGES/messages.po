@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-11-10 19:55+0000\n"
-"PO-Revision-Date: 2025-12-02 21:00+0000\n"
+"PO-Revision-Date: 2026-03-29 05:09+0000\n"
 "Last-Translator: BlackImpostor <SkyBuilderOFFICAL@yandex.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/minetest/"
 "contentdb/ru/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.15-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: app/__init__.py:155
@@ -2566,7 +2566,7 @@ msgstr "Это уведомление о новой теме."
 
 #: app/models/users.py:488
 msgid "This is a New Review notification."
-msgstr "Это уведомление о новом обзоре."
+msgstr "Это уведомление о Новом Обзоре."
 
 #: app/models/users.py:490
 msgid "This is a Thread Reply notification."
@@ -2659,7 +2659,7 @@ msgstr "%(num)d новых уведомлений"
 #: app/templates/packages/create_edit.html:41
 #: app/templates/todo/editor.html:177
 msgid "View"
-msgstr "Вид"
+msgstr "Посмотреть"
 
 #: app/tasks/emails.py:168
 msgid "Manage email settings"
@@ -4029,7 +4029,7 @@ msgstr "Вставьте URL-адрес темы на форуме"
 
 #: app/templates/packages/create_edit.html:143
 msgid "YouTube videos will be shown in an embed."
-msgstr "Видео YouTube будут отображаться встроенными."
+msgstr "YouTube видео будут отображаться как встроенные."
 
 #: app/templates/packages/create_edit.html:144
 msgid "If blank, the author's donation URL will be used instead."
@@ -5016,7 +5016,7 @@ msgstr "Дополнение может быть устаревшим"
 
 #: app/templates/packages/view.html:446
 msgid "Only visible to the author and Editors."
-msgstr "Видно только автору и редакторам."
+msgstr "Видно только автору и Редакторам."
 
 #: app/templates/packages/view.html:463
 msgid "Warning"
@@ -5203,7 +5203,7 @@ msgstr ""
 #: app/templates/report/report_received.html:30
 #, python-format
 msgid "For future reference, use report id: %(report_id)s."
-msgstr "Для дальнейшего использования, обращайтесь к ID отчёта: %(report_id)s."
+msgstr "Для дальнейшего использования, обращайтесь к id отчёта: %(report_id)s."
 
 #: app/templates/report/report_received.html:36
 msgid "View thread"
