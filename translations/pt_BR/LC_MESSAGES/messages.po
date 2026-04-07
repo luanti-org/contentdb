@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-11-10 19:55+0000\n"
-"PO-Revision-Date: 2026-02-16 12:09+0000\n"
-"Last-Translator: TheFoxyHu3 <luiz.mgsantana@gmail.com>\n"
+"PO-Revision-Date: 2026-04-01 07:09+0000\n"
+"Last-Translator: Lunovox Heavenfinder <lunovox@disroot.org>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "minetest/contentdb/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.16-dev\n"
+"X-Generator: Weblate 5.17-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: app/__init__.py:155
@@ -823,7 +823,7 @@ msgstr "Jogos de azar, jogos de apostas, etc"
 #: app/_translations.py:246
 msgctxt "content_warnings"
 msgid "Gore"
-msgstr "Gore"
+msgstr "Imagem Violenta"
 
 #. NOTE: content_warnings: description for gore
 #: app/_translations.py:248
