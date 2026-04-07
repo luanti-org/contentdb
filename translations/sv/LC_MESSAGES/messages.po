@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-11-10 19:55+0000\n"
-"PO-Revision-Date: 2025-10-15 22:07+0000\n"
+"PO-Revision-Date: 2026-02-15 09:09+0000\n"
 "Last-Translator: tygyh <jonis9898@hotmail.com>\n"
+"Language-Team: Swedish <https://hosted.weblate.org/projects/minetest/"
+"contentdb/sv/>\n"
 "Language: sv\n"
-"Language-Team: Swedish "
-"<https://hosted.weblate.org/projects/minetest/contentdb/sv/>\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.16-dev\n"
 "Generated-By: Babel 2.17.0\n"
 
 #: app/__init__.py:155
@@ -1730,7 +1731,7 @@ msgstr "Registrera"
 
 #: app/blueprints/users/account.py:113
 msgid "Incorrect captcha answer"
-msgstr "Felaktigt CAPTCHA-svar"
+msgstr "Felaktigt captcha-svar"
 
 #: app/blueprints/users/account.py:156
 msgid "Reset Password"
@@ -2899,7 +2900,7 @@ msgstr "Inga resultat"
 
 #: app/templates/admin/languages/list.html:19
 msgid "Id"
-msgstr "ID"
+msgstr "Id"
 
 #: app/templates/admin/languages/list.html:33
 msgid "Has ContentDB translation?"
@@ -6816,4 +6817,3 @@ msgstr ""
 
 #~ msgid "Waiting for approval."
 #~ msgstr "Väntar på godkännande."
-
