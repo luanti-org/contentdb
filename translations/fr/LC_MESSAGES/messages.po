@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-11-10 19:55+0000\n"
-"PO-Revision-Date: 2026-03-27 01:09+0000\n"
-"Last-Translator: Hypériōn <hyperion@users.noreply.hosted.weblate.org>\n"
+"PO-Revision-Date: 2026-04-07 18:09+0000\n"
+"Last-Translator: syl <syl@gresille.org>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/minetest/"
 "contentdb/fr/>\n"
 "Language: fr\n"
@@ -1019,7 +1019,7 @@ msgstr "Nouveaux paquets sur ContentDB"
 #: app/blueprints/feeds/__init__.py:98 app/templates/base.html:31
 #: app/templates/base.html:38
 msgid "ContentDB package updates"
-msgstr "Mises à jours de paquets ContentDB"
+msgstr "Mises à jour de paquets ContentDB"
 
 #: app/blueprints/feeds/__init__.py:107 app/templates/base.html:27
 #: app/templates/base.html:34
@@ -1314,8 +1314,8 @@ msgid ""
 "Package already exists, but is removed. Please contact ContentDB staff to"
 " restore the package"
 msgstr ""
-"Le package existe déjà, mais a été supprimé. Merci de contacter l'équipe "
-"ContentDB pour restaurer ce package"
+"Le paquet existe déjà, mais a été supprimé. Merci de contacter l'équipe de "
+"ContentDB pour restaurer ce paquet"
 
 #: app/blueprints/packages/packages.py:273
 msgid "Package already exists"
@@ -1376,7 +1376,7 @@ msgstr "Paquet supprimé"
 
 #: app/blueprints/packages/packages.py:539
 msgid "Unapproved package"
-msgstr "Paquets non approuvés"
+msgstr "Paquet non approuvé"
 
 #: app/blueprints/packages/packages.py:548
 msgid "Maintainers (Comma-separated)"
@@ -1593,7 +1593,7 @@ msgstr "Faire référence à des sites bloqués n'est pas autorisé"
 
 #: app/blueprints/packages/reviews.py:199
 msgid "You can't vote on the reviews on your own package!"
-msgstr "Vous ne pouvez voter pour les évaluations de votre propre paquet !"
+msgstr "Vous ne pouvez pas voter pour les évaluations de votre propre paquet !"
 
 #: app/blueprints/packages/reviews.py:206
 msgid "You can't vote on your own reviews!"
@@ -1914,7 +1914,7 @@ msgstr "Meilleur évaluateur"
 #: app/blueprints/users/profile.py:119
 #, python-format
 msgid "%(display_name)s has written the most helpful reviews on ContentDB."
-msgstr "%(display_name)s a écrit les évaluations les plus utiles sur le ContentDB."
+msgstr "%(display_name)s a écrit les évaluations les plus utiles sur ContentDB."
 
 #: app/blueprints/users/profile.py:123
 msgid "2nd most helpful reviewer"
@@ -2118,8 +2118,8 @@ msgid ""
 "The following hard dependencies need to be added to ContentDB first: "
 "%(deps)s"
 msgstr ""
-"Les dépendances strictes suivantes doivent d'abord être ajoutées sur le "
-"ContentDB : %(deps)s"
+"Les dépendances strictes suivantes doivent d'abord être ajoutées sur "
+"ContentDB : %(deps)s"
 
 #: app/logic/package_approval.py:134
 msgid ""
@@ -2132,8 +2132,7 @@ msgstr ""
 #: app/logic/package_approval.py:143
 msgid "Please make sure that this package has the right to the names it uses."
 msgstr ""
-"Veuillez vous assurer que ce paquet a les droit sur les noms qu'il "
-"utilise."
+"Veuillez vous assurer que ce paquet a les droits sur les noms qu'il utilise."
 
 #: app/logic/package_approval.py:144 app/logic/package_approval.py:150
 #: app/templates/index.html:113 app/templates/index.html:124
@@ -2150,7 +2149,7 @@ msgstr "Voir plus"
 #: app/logic/package_approval.py:148
 #, python-format
 msgid "Please make sure that this package has the right to the names %(names)s"
-msgstr "Veuillez vous assurer que ce paquet a les droit sur les noms %(names)s"
+msgstr "Veuillez vous assurer que ce paquet a les droits sur les noms %(names)s"
 
 #: app/logic/package_approval.py:155
 msgid "Error: Another package already uses this forum topic!"
@@ -2180,7 +2179,7 @@ msgstr "Vous n'avez pas l'autorisation de modifier le nom du paquet"
 
 #: app/logic/packages.py:158
 msgid "You cannot change package type once approved"
-msgstr "Vous ne pouvez pas modifier le type de colis une fois approuvé"
+msgstr "Vous ne pouvez pas modifier le type de paquet une fois approuvé"
 
 #: app/logic/releases.py:33
 msgid "You don't have permission to make releases"
@@ -2278,7 +2277,7 @@ msgstr "Contenu illégal ou dangereux"
 
 #: app/models/__init__.py:158
 msgid "Outdated/invalid review"
-msgstr "Critique obsolète/invalide"
+msgstr "Évaluation obsolète/invalide"
 
 #: app/models/__init__.py:160
 msgid "Appeal"
@@ -2540,7 +2539,7 @@ msgstr "Nouveau fil"
 #. NOTE: NEW_REVIEW notification type
 #: app/models/users.py:454
 msgid "New Review"
-msgstr "Nouvel avis"
+msgstr "Nouvelle évaluation"
 
 #. NOTE: THREAD_REPLY notification type
 #: app/models/users.py:457
@@ -2576,7 +2575,7 @@ msgstr "Ceci est une notification de Nouveau Fil."
 
 #: app/models/users.py:488
 msgid "This is a New Review notification."
-msgstr "Ceci est une notification de Nouvel Avis."
+msgstr "Ceci est une notification de Nouvelle évaluation."
 
 #: app/models/users.py:490
 msgid "This is a Thread Reply notification."
@@ -2616,7 +2615,7 @@ msgstr "Quand un fil de discussion est créé sur votre paquet."
 
 #: app/models/users.py:513
 msgid "When a user posts a review on your package."
-msgstr "Quand un utilisateur poste un avis sur votre paquet."
+msgstr "Quand un utilisateur poste une évaluation sur votre paquet."
 
 #: app/models/users.py:515
 msgid "When someone replies to a thread you're watching."
@@ -2758,7 +2757,7 @@ msgstr "Langues"
 
 #: app/templates/base.html:216 app/templates/translate/index.html:76
 msgid "Help translate ContentDB"
-msgstr "Aider à traduire le ContentDB"
+msgstr "Aider à traduire ContentDB"
 
 #: app/templates/base.html:260
 msgid "About"
@@ -2880,7 +2879,7 @@ msgstr "Mods populaires"
 #: app/templates/index.html:153 app/templates/index.html:159
 #: app/templates/packages/game_hub.html:65
 msgid "Top Texture Packs"
-msgstr "Paquets de textures populaires"
+msgstr "Packs de textures populaires"
 
 #: app/templates/index.html:165
 msgid "Search by Tags"
@@ -2893,7 +2892,7 @@ msgstr "Les plus évalués"
 
 #: app/templates/index.html:193
 msgid "All reviews"
-msgstr "Tous les commentaires"
+msgstr "Toutes les évaluations"
 
 #: app/templates/index.html:195
 msgid "Recent Positive Reviews"
@@ -2903,7 +2902,7 @@ msgstr "Évaluations positives récentes"
 #, python-format
 msgid "CDB has %(count)d packages, with a total of %(downloads)d downloads."
 msgstr ""
-"Le ContentDB a %(count)d paquets, avec un total de %(downloads)d "
+"ContentDB a %(count)d paquets, avec un total de %(downloads)d "
 "téléchargements."
 
 #: app/templates/admin/audit_view.html:16
@@ -3185,8 +3184,8 @@ msgid ""
 "You can donate to rubenwardy to cover ContentDB's costs and support "
 "future development."
 msgstr ""
-"Vous pouvez faire un don à rubenwardy pour couvrir les coûts de ContentDB"
-" et supporter le développement à venir."
+"Vous pouvez faire un don à rubenwardy pour couvrir les coûts de ContentDB et "
+"soutenir le développement à venir."
 
 #: app/templates/donate/index.html:68
 msgid ""
@@ -3211,8 +3210,8 @@ msgstr ""
 #: app/templates/donate/index.html:83
 msgid "Sign in to see recommendations based on the packages you've reviewed"
 msgstr ""
-"Connectez-vous pour voir des recommandations basées sur les paquets que "
-"vous avez commentés"
+"Connectez-vous pour voir des recommandations basées sur les paquets que vous "
+"avez évalués"
 
 #: app/templates/donate/index.html:90
 msgid "Top packages"
@@ -3395,8 +3394,8 @@ msgstr "Ce paquet peut être soumis pour approbation dès qu'il est prêt."
 #: app/templates/macros/package_approval.html:46
 msgid "You need to fix the above errors before you can submit for review"
 msgstr ""
-"Vous devez corriger les erreurs ci-dessus avant de pouvoir prétendre à "
-"une vérification"
+"Vous devez corriger les erreurs ci-dessus avant de pouvoir soumettre une "
+"évaluation"
 
 #: app/templates/macros/package_approval.html:61
 msgid "Package approval thread"
@@ -3456,7 +3455,7 @@ msgstr "%(num)d commentaires"
 
 #: app/templates/macros/reviews.html:103
 msgid "No reviews, yet."
-msgstr "Aucune évaluations pour l'instant."
+msgstr "Aucune évaluation pour l'instant."
 
 #: app/templates/macros/reviews.html:113 app/templates/macros/reviews.html:167
 #: app/templates/packages/review_create_edit.html:4
@@ -3470,7 +3469,7 @@ msgstr "Pourquoi ou pourquoi pas ? Soyez constructif"
 
 #: app/templates/macros/reviews.html:157
 msgid "Post Review"
-msgstr "Créer l'évaluation"
+msgstr "Créer une évaluation"
 
 #: app/templates/macros/reviews.html:193
 msgid "Report an issue"
@@ -3495,7 +3494,7 @@ msgstr "Téléchargements sur les 7 derniers jours"
 
 #: app/templates/macros/stats.html:53
 msgid "Downloads, past 30 days"
-msgstr "Téléchargement sur les 30 derniers jours"
+msgstr "Téléchargements sur les 30 derniers jours"
 
 #: app/templates/macros/stats.html:56
 msgid "Downloads from $1 to $2"
@@ -3573,12 +3572,12 @@ msgstr "Besoin de plus de statistiques ?"
 #: app/templates/macros/stats.html:123
 msgid "Check out the ContentDB Grafana dashboard for CDB-wide stats"
 msgstr ""
-"Consultez le tableau de bord Grafana du ContentDB pour obtenir des "
-"statistiques sur l'ensemble du ContentDB"
+"Consultez le tableau de bord Grafana de ContentDB pour obtenir des "
+"statistiques sur l'ensemble de ContentDB"
 
 #: app/templates/macros/stats.html:127
 msgid "ContentDB Grafana"
-msgstr "Grafana du ContentDB"
+msgstr "Grafana de ContentDB"
 
 #: app/templates/macros/threads.html:122
 msgid "This thread has been locked by a moderator."
@@ -4160,8 +4159,8 @@ msgid ""
 "When checked, this indicates that this package should support all games, "
 "unless excluded by unsupported_games."
 msgstr ""
-"Si coché, cela indique que ce paquet devrait supporter tout les jeux, "
-"sauf si exclu par unsupported_games."
+"Si coché, cela indique que ce paquet devrait supporter tous les jeux, sauf "
+"si exclu par unsupported_games."
 
 #: app/templates/packages/game_support.html:97
 msgid ""
@@ -4173,7 +4172,8 @@ msgstr ""
 
 #: app/templates/packages/game_support.html:101
 msgid "It's not possible for texture packs to support all games."
-msgstr "Les packs de textures ne peuvent pas être compatible avec tout les jeux."
+msgstr ""
+"Les packs de textures ne peuvent pas être compatible avec tous les jeux."
 
 #: app/templates/packages/game_support.html:105
 msgid ""
@@ -4181,7 +4181,7 @@ msgid ""
 "games."
 msgstr ""
 "Le paquet dépend d'un mod spécifique à un jeu, et ne peut donc pas être "
-"compatible avec tout les jeux."
+"compatible avec tous les jeux."
 
 #: app/templates/packages/game_support.html:111
 msgid "Overrides"
@@ -4223,8 +4223,8 @@ msgid ""
 "It may have been removed by choice of the author, or by ContentDB staff "
 "due to a problem."
 msgstr ""
-"Il peut avoir été supprimé par choix de l'auteur, ou par la modération du"
-" ContentDB en raison d'un problème."
+"Il peut avoir été supprimé par choix de l'auteur, ou par l'équipe de "
+"ContentDB en raison d'un problème."
 
 #: app/templates/packages/gone.html:25 app/templates/packages/gone.html:35
 msgid "Package Undergoing Review"
@@ -4247,8 +4247,8 @@ msgid ""
 "This package is currently undergoing review, and changes are needed "
 "before it can be added."
 msgstr ""
-"Ce paquet est actuellement en cours de révision, et des modifications "
-"sont nécessaires avant qu'il puisse être ajouté."
+"Ce paquet est actuellement en cours d'examen, et des modifications sont "
+"nécessaires avant qu'il puisse être ajouté."
 
 #: app/templates/packages/gone.html:41
 msgid "Please check back again later."
@@ -4472,8 +4472,8 @@ msgid ""
 "\t\t\ttips on customising releases."
 msgstr ""
 "Regardez le <a href=\"/help/package_config/\">Guide de configuration de "
-"paquet et de version </a>\n"
-"\t\t\tpour des conseils sur la customisation de version."
+"paquet et de version</a> pour\n"
+"\t\t\tdes conseils sur la customisation de version."
 
 #: app/templates/packages/release_new.html:62
 msgid "3. Supported Luanti versions"
@@ -4518,15 +4518,15 @@ msgid ""
 "When you push a change to your Git repository, ContentDB can create a new"
 " release automatically or send you a reminder."
 msgstr ""
-"Lorsque vous apportez un changement à votre dépôt Git, le ContentDB peut "
-"créer une nouvelle version automatiquement ou vous envoyer un rappel."
+"Lorsque vous apportez un changement à votre dépôt Git, ContentDB peut créer "
+"une nouvelle version automatiquement ou vous envoyer un rappel."
 
 #: app/templates/packages/release_wizard.html:21
 msgid ""
 "ContentDB will check your Git repository every day, but you can use "
 "webhooks or the API for faster updates."
 msgstr ""
-"Le ContentDB vérifiera votre dépôt Git tous les jours, mais vous pouvez "
+"ContentDB vérifiera votre dépôt Git tous les jours, mais vous pouvez "
 "utiliser des webhooks ou l'API pour des mises à jour plus rapides."
 
 #: app/templates/packages/release_wizard.html:25
@@ -4617,12 +4617,10 @@ msgid ""
 msgstr ""
 "Afin d'éviter les pertes de données, vous ne pouvez pas détruire "
 "définitivement un paquet.\n"
-"\t\t\tVous pouvez le retirer de ContentDV, ce qui le rend non visible par"
-" les utilisateurs.\n"
-"\t\t\tLes paquets retirés peuvent êtres détruits définitivement plus "
-"tard.\n"
-"\t\t\tLe personnel de ContentDB peut rétablir des paquets retirés si "
-"nécessaire."
+"\t\t\tVous pouvez le retirer de ContentDB, ce qui le rend non visible par "
+"les utilisateurs.\n"
+"\t\t\tLes paquets retirés peuvent êtres détruits définitivement plus tard.\n"
+"\t\t\tL'équipe de ContentDB peut rétablir des paquets retirés si nécessaire."
 
 #: app/templates/packages/remove.html:46
 msgid ""
@@ -4688,7 +4686,7 @@ msgstr ""
 
 #: app/templates/packages/review_create_edit.html:55
 msgid "What language are you writing your review in?"
-msgstr "Dans quelle langue écrivez vous votre avis ?"
+msgstr "Dans quelle langue écrivez vous votre évaluation ?"
 
 #: app/templates/packages/review_create_edit.html:68
 msgid "Delete review."
@@ -4699,8 +4697,8 @@ msgid ""
 "This will convert the review into a thread, keeping the comments but "
 "removing its effect on the package's rating."
 msgstr ""
-"Ceci convertira la critique en fil de discussion. Les commentaires seront"
-" conservés, mais elle n'impactera plus la note du paquet."
+"Ceci convertira l'évaluation en fil de discussion. Les commentaires seront "
+"conservés, mais elle n'impactera plus la note du paquet."
 
 #: app/templates/packages/review_votes.html:4
 #: app/templates/packages/view.html:371
@@ -4881,8 +4879,8 @@ msgid ""
 "ContentDB will poll your Git repository every day, if your package is "
 "approved."
 msgstr ""
-"Le ContentDB vérifiera votre dépôt Git tous les jours, si votre paquet "
-"est approuvé."
+"ContentDB vérifiera votre dépôt Git tous les jours, si votre paquet est "
+"approuvé."
 
 #: app/templates/packages/update_config.html:17
 msgid "You should consider using webhooks or the API for faster releases."
@@ -4989,7 +4987,7 @@ msgstr "Vignette d'une vidéo"
 
 #: app/templates/packages/view.html:321
 msgid "Awaiting review"
-msgstr "En attente de révision"
+msgstr "En attente d'examen"
 
 #: app/templates/packages/view.html:351 app/templates/threads/view.html:82
 msgid "Edit Review"
@@ -5320,7 +5318,7 @@ msgstr "Et aussi les examinateurs et les éditeurs"
 
 #: app/templates/threads/view.html:141
 msgid "Is this review outdated?"
-msgstr "Cet avis est-il obsolète ?"
+msgstr "Cette évaluation est-elle obsolète ?"
 
 #: app/templates/threads/view.html:142
 msgid "For example, does it complain about issues you've already fixed?"
@@ -5329,7 +5327,9 @@ msgstr "Par exemple, se plaint-il de problèmes déjà résolus ?"
 #: app/templates/threads/view.html:143
 #, python-format
 msgid "You can report outdated reviews by clicking %(flag)s on the review."
-msgstr "Vous pouvez signaler des avis obsolètes en cliquant %(flag)s sur l'avis."
+msgstr ""
+"Vous pouvez signaler des évaluations obsolètes en cliquant %(flag)s sur "
+"l'évaluation."
 
 #: app/templates/todo/editor.html:4 app/templates/todo/todo_base.html:17
 msgid "Editor Work Queue"
@@ -5424,8 +5424,8 @@ msgid ""
 "If your package is game independent, confirm this using 'Supports all "
 "games'"
 msgstr ""
-"Si votre paquet ne dépend pas d'un jeu, confirmez-le en cochant "
-"\"Compatible avec tout les jeux\""
+"Si votre paquet ne dépend pas d'un jeu, confirmez-le en cochant \"Compatible "
+"avec tous les jeux\""
 
 #: app/templates/todo/game_support.html:35
 msgid "Supports all games"
@@ -5437,7 +5437,7 @@ msgid ""
 "'Supports all games'"
 msgstr ""
 "Pas de jeu compatible listé. Merci d'ajouter des jeux compatibles, ou de "
-"cocher \"Compatible avec tout les jeux\""
+"cocher \"Compatible avec tous les jeux\""
 
 #: app/templates/todo/game_support.html:62 app/templates/todo/user.html:40
 #: app/templates/todo/user.html:94 app/templates/todo/user.html:114
@@ -5447,7 +5447,7 @@ msgstr "Rien à faire :)"
 
 #: app/templates/todo/game_support.html:67
 msgid "Bulk support all games"
-msgstr "Support de tout les jeux"
+msgstr "Support de tous les jeux"
 
 #: app/templates/todo/game_support.html:69
 msgid ""
@@ -5765,8 +5765,8 @@ msgid ""
 "ContentDB will link your account to your forum account if you have one, "
 "but you don't need one."
 msgstr ""
-"Le ContentDB reliera votre compte à votre compte de forum si vous en avez"
-" un, mais vous n'en avez pas besoin."
+"ContentDB reliera votre compte à votre compte de forum si vous en avez un, "
+"mais vous n'en avez pas besoin."
 
 #: app/templates/users/claim.html:18
 msgid "<b>Yes</b>, I have a forums account"
@@ -5954,7 +5954,7 @@ msgstr "Demander la réinitialisation du mot de passe"
 #: app/templates/users/forums_no_such_user.html:14
 #, python-format
 msgid "Unfortunately, %(username)s doesn't have an account on ContentDB yet."
-msgstr "Malheureusement, %(username)s n'a pas encore de compte sur le ContentDB."
+msgstr "Malheureusement, %(username)s n'a pas encore de compte sur ContentDB."
 
 #: app/templates/users/forums_no_such_user.html:19
 msgid "Claim Account"
@@ -6326,11 +6326,11 @@ msgstr "Dépendances optionnelles"
 
 #: app/utils/luanti_hypertext.py:325
 msgid "Leave a review"
-msgstr ""
+msgstr "Laisser une évaluation"
 
 #: app/utils/luanti_hypertext.py:346
 msgid "No reviews available."
-msgstr "Aucun avis disponible."
+msgstr "Aucune évaluation disponible."
 
 #: app/utils/user.py:51
 msgid "You have a lot of notifications, you should either read or clear them"
