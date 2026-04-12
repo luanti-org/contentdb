@@ -9,6 +9,7 @@ from sqlalchemy import or_, and_
 from sqlalchemy.orm import subqueryload
 from sqlalchemy.sql.expression import func
 from sqlalchemy_searchable import search
+from urllib.parse import urlparse
 
 from .models import db, PackageType, Package, ForumTopic, License, LuantiRelease, PackageRelease, User, Tag, \
 	ContentWarning, PackageState, PackageDevState, ReleaseState, PackageAIDisclosure
@@ -82,6 +83,11 @@ class QueryBuilder:
 
 	def __init__(self, args, cookies: bool = False, lang: Optional[str] = None, emit_http_errors: bool = True):
 		self.emit_http_errors = emit_http_errors
+
+		# Block bots that encode incorrectly
+		query_str = urlparse(request.url).query
+		if "&amp" in query_str:
+			abort(400)
 
 		if lang is None:
 			locale = get_locale()
