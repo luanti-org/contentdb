@@ -44,6 +44,7 @@ from app.utils.models import create_session
 
 
 @bp.route("/packages/")
+@login_required
 def list_all():
 	qb    = QueryBuilder(request.args, cookies=True)
 	query = qb.build_package_query()
