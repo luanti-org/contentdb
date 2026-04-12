@@ -7,7 +7,7 @@ import typing
 from urllib.parse import quote as urlescape
 
 from celery import uuid
-from flask import render_template, make_response, request, redirect, flash, url_for, abort
+from flask import render_template, make_response, request, redirect, flash, url_for, abort, current_app
 from flask_babel import gettext, lazy_gettext
 from flask_login import login_required, current_user
 from flask_wtf import FlaskForm
@@ -44,11 +44,13 @@ from app.utils.models import create_session
 
 
 @bp.route("/packages/")
-@login_required
 def list_all():
 	qb    = QueryBuilder(request.args, cookies=True)
 	query = qb.build_package_query()
 	title = qb.title
+
+	if qb.requires_login and not current_user.is_authenticated:
+		return current_app.login_manager.unauthorized()
 
 	query = query.options(
 			joinedload(Package.license),

@@ -76,6 +76,10 @@ class QueryBuilder:
 			len(self.licenses) > 0 or len(self.hide_flags) > 0 or len(self.hide_tags) > 0 or self.random or
 			self.lucky or self.author or self.version or self.not_version or self.game or self.limit is not None)
 
+	@property
+	def requires_login(self):
+		return len(self.tags) > 1
+
 	def __init__(self, args, cookies: bool = False, lang: Optional[str] = None, emit_http_errors: bool = True):
 		self.emit_http_errors = emit_http_errors
 
