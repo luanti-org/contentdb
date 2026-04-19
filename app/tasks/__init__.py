@@ -94,8 +94,12 @@ CELERYBEAT_SCHEDULE = {
 		'task': 'app.tasks.usertasks.delete_old_notifications',
 		'schedule': crontab(minute=10, hour=3),  # 0310
 	},
+	'create_database_dump': {
+		'task': 'app.tasks.dumptask.create_database_dump',
+		'schedule': crontab(minute=0, hour=5),  # 0510
+	},
 }
 celery.conf.beat_schedule = CELERYBEAT_SCHEDULE
 
 
-from . import importtasks, forumtasks, emails, pkgtasks, usertasks, admintasks
+from . import importtasks, forumtasks, emails, pkgtasks, usertasks, admintasks, dumptask

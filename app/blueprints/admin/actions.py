@@ -22,6 +22,7 @@ from app.tasks.importtasks import import_repo_screenshot, check_zip_release, che
 	import_languages, check_all_zip_files
 from app.tasks.usertasks import import_github_user_ids
 from app.tasks.pkgtasks import notify_about_git_forum_links, clear_removed_packages, check_package_for_broken_links, update_file_size_bytes
+from app.tasks.dumptask import create_database_dump
 from app.utils.models import add_notification, get_system_user, add_audit_log
 
 actions = {}
@@ -319,6 +320,13 @@ def do_check_all_zip_files():
 def do_update_file_size_bytes():
 	task_id = uuid()
 	update_file_size_bytes.apply_async((), task_id=task_id)
+	return redirect(url_for("tasks.check", id=task_id, r=url_for("admin.admin_page")))
+
+
+@action("Create database dump")
+def do_create_database_dump():
+	task_id = uuid()
+	create_database_dump.apply_async((), task_id=task_id)
 	return redirect(url_for("tasks.check", id=task_id, r=url_for("admin.admin_page")))
 
 

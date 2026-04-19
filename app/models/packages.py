@@ -1269,15 +1269,17 @@ class PackageRelease(db.Model):
 	def as_long_dict(self):
 		return {
 			"id": self.id,
+			"name": self.name,
 			"title": self.title,
+			"release_notes": self.release_notes,
 			"url": self.url if self.url != "" else None,
 			"release_date": self.created_at.isoformat(),
 			"commit": self.commit_hash,
 			"downloads": self.downloads,
 			"min_minetest_version": self.min_rel and self.min_rel.as_dict(),
 			"max_minetest_version": self.max_rel and self.max_rel.as_dict(),
-			"package": self.package.as_key_dict(),
 			"size": self.file_size_bytes,
+			"package": self.package.as_key_dict(),
 		}
 
 	def get_edit_url(self):
