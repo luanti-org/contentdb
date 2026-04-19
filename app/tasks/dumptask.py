@@ -9,7 +9,8 @@ import json, os, zipfile, datetime
 
 @celery.task()
 def create_database_dump():
-	dest_path = os.path.join(app.config["UPLOAD_DIR"], "backup.zip")
+	date = datetime.datetime.utcnow().strftime("%Y-%m-%d")
+	dest_path = os.path.join(app.config["UPLOAD_DIR"], f"backup-{date}.zip")
 	with zipfile.ZipFile(dest_path, "w", zipfile.ZIP_DEFLATED) as zipf:
 		zipf.writestr("backup/index.json", json.dumps({ "created_at": datetime.datetime.utcnow().isoformat() }, indent=4))
 

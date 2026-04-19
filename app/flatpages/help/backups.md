@@ -1,6 +1,6 @@
 title: Daily ContentDB database dump
 
-You can download a backup of the ContentDB database at [/uploads/backup.zip](/uploads/backup.zip).
+You can download a backup of the ContentDB database at `/uploads/backup-YYYY-MM-DD.zip`.
 
 This contains all public database information on ContentDB. It does not include uploads such as images or zip files.
 

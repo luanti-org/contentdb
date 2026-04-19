@@ -65,7 +65,8 @@ def clean_uploads():
 		pp_urls = get_filenames_from_column(User.profile_pic)
 
 		db_urls = release_urls.union(screenshot_urls).union(pp_urls).union(attachment_urls)
-		db_urls.add("/uploads/backup.zip")
+		date = datetime.datetime.utcnow().strftime("%Y-%m-%d")
+		db_urls.add(f"/uploads/backup-{date}.zip")
 		unreachable = existing_uploads.difference(db_urls)
 
 		import sys
