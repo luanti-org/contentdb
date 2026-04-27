@@ -21,12 +21,13 @@ Docker is the recommended way to develop and deploy ContentDB.
 	3. Authorization callback URL - `http://localhost:5123/user/github/callback/`
 	4. Put client id and client secret in `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` in config.cfg.
 
-5. Create config.env:
+5. Create .env:
 
 		POSTGRES_USER=contentdb
 		POSTGRES_PASSWORD=password
 		POSTGRES_DB=contentdb
 		FLASK_DEBUG=1
+		UPLOADS_DIR=./data/uploads
 
 6. Start docker images:
 

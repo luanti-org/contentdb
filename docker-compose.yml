@@ -5,7 +5,7 @@ services:
     volumes:
       - "./data/db:/var/lib/postgresql/data"
     env_file:
-      - config.env
+      - .env
 
   redis:
     image: 'redis:6.2-alpine'
@@ -19,11 +19,11 @@ services:
     restart: unless-stopped
     command: ./utils/entrypoint.sh
     env_file:
-      - config.env
+      - .env
     ports:
       - "5123:5123"
     volumes:
-      - "./data/uploads:/var/cdb/uploads"
+      - "$UPLOADS_DIR:/var/cdb/uploads"
       - "./data/logs:/var/cdb/logs"
       - "./app:/source/app"
       - "./utils:/source/utils"
@@ -37,11 +37,11 @@ services:
     restart: unless-stopped
     command: celery -A app.tasks.celery worker --concurrency 1
     env_file:
-      - config.env
+      - .env
     environment:
       - FLASK_CONFIG=../config.cfg
     volumes:
-      - "./data/uploads:/var/cdb/uploads"
+      - "$UPLOADS_DIR:/var/cdb/uploads"
       - "./app:/home/cdb/app"
     depends_on:
       - redis
@@ -51,7 +51,7 @@ services:
     restart: unless-stopped
     command: celery -A app.tasks.celery beat
     env_file:
-      - config.env
+      - .env
     environment:
       - FLASK_CONFIG=../config.cfg
     depends_on:
@@ -61,7 +61,7 @@ services:
     image: ovalmoney/celery-exporter
     restart: unless-stopped
     env_file:
-      - config.env
+      - .env
     ports:
       - "5125:9540"
     depends_on:

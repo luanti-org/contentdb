@@ -8,7 +8,7 @@
 # FLASK_APP=app/__init__.py FLASK_CONFIG=../config.cfg FLASK_DEBUG=1 python3 -m flask run -h 0.0.0.0 -p 5123
 
 if [ -z "$FLASK_DEBUG" ]; then
-	echo "FLASK_DEBUG is required in config.env"
+	echo "FLASK_DEBUG is required in .env"
 	exit 1
 fi
 
