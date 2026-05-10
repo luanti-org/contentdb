@@ -35,8 +35,6 @@ def get_mt_releases(is_max):
 	query = LuantiRelease.query.order_by(db.asc(LuantiRelease.id))
 	if is_max:
 		query = query.limit(query.count() - 1)
-	else:
-		query = query.filter(LuantiRelease.name != "0.4.17")
 
 	return query
 

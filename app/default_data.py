@@ -24,7 +24,6 @@ def populate(session):
 	session.add(system_user)
 
 	session.add(LuantiRelease("None", 0))
-	session.add(LuantiRelease("0.4.16/17", 32))
 	session.add(LuantiRelease("5.0", 37))
 	session.add(LuantiRelease("5.1", 38))
 	session.add(LuantiRelease("5.2", 39))

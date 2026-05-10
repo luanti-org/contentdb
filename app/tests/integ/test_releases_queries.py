@@ -192,7 +192,7 @@ def test_packages_with_protocol_exact(client):
 def test_packages_with_protocol_options(client):
 	"""Start with a blank database."""
 
-	rels = make_package("Bob", [(None, "0.4.16/17"), ("5.1", "5.1")])
+	rels = make_package("Bob", [(None, "5.0"), ("5.2", "5.2")])
 	db.session.commit()
 
 	packages = parse_json(client.get("/api/packages/?protocol_version=20").data)
@@ -200,15 +200,15 @@ def test_packages_with_protocol_options(client):
 	assert packages[0]["name"] == "bob"
 	assert packages[0]["release"] == rels[0]
 
-	packages = parse_json(client.get("/api/packages/?protocol_version=32").data)
+	packages = parse_json(client.get("/api/packages/?protocol_version=37").data)
 	assert len(packages) == 1
 	assert packages[0]["name"] == "bob"
 	assert packages[0]["release"] == rels[0]
 
-	packages = parse_json(client.get("/api/packages/?protocol_version=37").data)
+	packages = parse_json(client.get("/api/packages/?protocol_version=38").data)
 	assert len(packages) == 0
 
-	packages = parse_json(client.get("/api/packages/?protocol_version=38").data)
+	packages = parse_json(client.get("/api/packages/?protocol_version=39").data)
 	assert len(packages) == 1
 	assert packages[0]["name"] == "bob"
 	assert packages[0]["release"] == rels[1]
