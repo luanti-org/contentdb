@@ -134,8 +134,12 @@ def review(package):
 							 url_for("threads.view", id=thread.id), package)
 
 			if was_new:
-				msg = f"Reviewed {package.title} ({review.language.title}): {thread.get_view_url(absolute=True)}"
-				post_discord_webhook.delay(thread.author.display_name, msg, False)
+				if review.approved:
+					msg = f"Reviewed {package.title} ({review.language.title}): {thread.get_view_url(absolute=True)}"
+					post_discord_webhook.delay(thread.author.display_name, msg, False)
+				else:
+					msg = f"Review needs approval: {package.title} ({review.language.title}): {thread.get_view_url(absolute=True)}"
+					post_discord_webhook.delay(thread.author.display_name, msg, True)
 
 			db.session.commit()
 
@@ -192,7 +196,7 @@ def approve_review(package, reviewer):
 	review = PackageReview.query \
 		.filter(PackageReview.package == package, PackageReview.author.has(username=reviewer)) \
 		.first()
-	if review is None or review.package != package:
+	if review is None or review.package != package or review.approved:
 		abort(404)
 
 	if not review.check_perm(current_user, Permission.APPROVE_REVIEW):
@@ -206,6 +210,9 @@ def approve_review(package, reviewer):
 	add_audit_log(AuditSeverity.MODERATION, current_user, msg, review.get_view_url(), review.package)
 
 	db.session.commit()
+
+	msg = f"Reviewed {package.title} ({review.language.title}): {review.thread.get_view_url(absolute=True)}"
+	post_discord_webhook.delay(review.thread.author.display_name, msg, False)
 
 	return redirect(review.get_view_url())
 
