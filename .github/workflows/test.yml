@@ -10,7 +10,7 @@ jobs:
       run: sudo apt-get install -y docker-compose
     - uses: actions/checkout@v4
     - name: Copy config
-      run: cp utils/ci/* .
+      run: cp utils/ci/.env . && cp utils/ci/config.cfg .
     - name: Build the Docker image
       run: docker compose build
     - name: Start Docker
