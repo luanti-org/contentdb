@@ -12,6 +12,7 @@ celerybeat-schedule
 /data
 .idea
 *.mo
+!utils/ci/.env
 
 # Created by https://www.gitignore.io/api/linux,macos,python,windows
 
