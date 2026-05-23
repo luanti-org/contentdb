@@ -20,6 +20,7 @@ from app.utils.models import is_package_page, add_notification, add_audit_log
 from app.utils.flask import get_int_or_abort, is_safe_url, has_blocked_domains, should_return_json
 from app.utils.user import rank_required
 from app.utils.misc import is_yes, normalize_line_endings
+from app.markdown import render_markdown, get_links
 from . import bp
 
 
@@ -85,9 +86,12 @@ def review(package):
 		else:
 			was_new = False
 			if not review:
+				has_links = len(get_links(render_markdown(form.comment.data))) > 0
+				needs_approval = ((package.sensitive_package and not current_user.rank.at_least(UserRank.TRUSTED_MEMBER)) or
+								  (has_links and not current_user.rank.at_least(UserRank.MEMBER)))
 				was_new = True
 				review = PackageReview()
-				review.approved = not package.sensitive_package or current_user.rank.at_least(UserRank.TRUSTED_MEMBER)
+				review.approved = not needs_approval
 				review.package = package
 				review.author  = current_user
 				db.session.add(review)
