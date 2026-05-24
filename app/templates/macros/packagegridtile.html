@@ -1,54 +1,52 @@
 {% macro render_pkgtile(package, show_author) -%}
 	{% set meta = package.get_translated(load_desc=False) %}
-	<li class="packagetile flex-fill"><a href="{{ package.get_url('packages.view') }}">
-		<img src="{{ package.get_thumb_or_placeholder() }}" loading="lazy">
-		<div class="packagegridscrub"></div>
-		<div class="packagegridinfo">
-			<h3>
-				{{ meta.title }}
-
-				{% if show_author %}<br />
-					<small>{{ package.author.display_name }}</small>
+	<a class="packagetile flex-fill" href="{{ package.get_url('packages.view') }}">
+		<div class="packagecard">
+			<div class="ratio ratio-16x9">
+				<img src="{{ package.get_thumb_or_placeholder() }}" loading="lazy">
+			</div>
+			<div class="body">
+				<h3>{{ meta.title }}</h3>
+				{% if show_author %}
+					<p class="subtitle">
+						{{ package.author.display_name }}
+					</p>
 				{% endif %}
-				{% if not package.approved %}
-					<span class="badge ms-1 {% if package.state == package.state.CHANGES_NEEDED %}bg-danger{% else %}bg-warning{% endif %}">
-						{{ package.state.value }}
-					</span>
-				{% endif %}
-			</h3>
-
-			<p>
-				{{ meta.short_desc }}
-			</p>
-
-			{% if not package.license.is_foss and not package.media_license.is_foss and package.type != package.type.TXP  %}
-				<p style="color:#f33;">
-					{{ _("<b>Warning:</b> Non-free code and media.") }}
-				</p>
-			{% elif not package.license.is_foss and package.type != package.type.TXP %}
-				<p style="color:#f33;">
-					{{ _("<b>Warning:</b> Non-free code.") }}
-				</p>
-			{% elif not package.media_license.is_foss %}
-				<p style="color:#f33;">
-					{{ _("<b>Warning:</b> Non-free media.") }}
-				</p>
+			</div>
+			{% if not package.approved %}
+				<span class="badge ms-1 {% if package.state == package.state.CHANGES_NEEDED %}bg-danger{% else %}bg-warning{% endif %}">
+					{{ package.state.value }}
+				</span>
 			{% endif %}
 		</div>
-	</a></li>
+		<div class="info-wrapper">
+			<div class="info">
+				<p>
+					{{ meta.short_desc }}
+				</p>
+				<p>
+					<i class="fas fa-star-half-alt"></i>
+<!--					<span class="count">-->
+						{% set summary = package.get_review_summary() %}
+						+{{ summary[0] }} / {{ summary[1] }} / -{{ summary[2] }}
+<!--					</span>-->
+				</p>
+			</div>
+		</div>
+	</a>
 {% endmacro %}
 
 {% macro render_pkggrid(packages, show_author=True) -%}
-	<ul class="grid-300px gap-2 p-0">
+	<div class="grid-300px gap-2 p-0">
 		{% for p in packages %}
 			{{ render_pkgtile(p, show_author) }}
 		{% else %}
-			<li class="packagetile"><i>{{ _("No packages available") }}</i></li>
+			<p class="packagetile"><i>{{ _("No packages available") }}</i></p>
 		{% endfor %}
 		{% if packages %}
 			{% for i in range(4) %}
-				<li class="packagetile flex-fill"></li>
+				<div class="packagetile flex-fill"></div>
 			{% endfor %}
 		{% endif %}
-	</ul>
+	</div>
 {% endmacro %}
