@@ -39,32 +39,36 @@
 				</button>
 			</div>
 		</div>
-		<ul class="gallery" style="overflow-x: auto">
-			{% if package.video_url %}
-				<li>
-					<a href="{{ package.video_url }}" data-bs-slide-to="0" class="gallery-image video-thumbnail">
-						{% set thumbnail_url = package.get_video_thumbnail_url() %}
-						{% if thumbnail_url %}
-							<img src="{{ thumbnail_url }}" alt="{{ _('Thumbnail for video') }}" />
-						{% endif %}
-						<i class="fas fa-play"></i>
-					</a>
-				</li>
-				{% set offset = 1 %}
-			{% else %}
-				{% set offset = 0 %}
-			{% endif %}
-
-			{% for item in items %}
-				{% if item.approved %}
+		{% if package.video_url %}
+			{% set offset = 1 %}
+		{% else %}
+			{% set offset = 0 %}
+		{% endif %}
+		{% if (items | length) + offset > 1 %}
+			<ul class="gallery" style="overflow-x: auto">
+				{% if package.video_url %}
 					<li>
-						<a href="{{ item.url }}" data-bs-slide-to="{{ loop.index + offset - 1 }}" class="gallery-image">
-							<img src="{{ item.get_thumb_url(1) }}" alt="{{ item.title }}" title="{{ item.title }}" />
+						<a href="{{ package.video_url }}" data-bs-slide-to="0" class="gallery-image video-thumbnail">
+							{% set thumbnail_url = package.get_video_thumbnail_url() %}
+							{% if thumbnail_url %}
+								<img src="{{ thumbnail_url }}" alt="{{ _('Thumbnail for video') }}" />
+							{% endif %}
+							<i class="fas fa-play"></i>
 						</a>
 					</li>
 				{% endif %}
-			{% endfor %}
-		</ul>
+
+				{% for item in items %}
+					{% if item.approved %}
+						<li>
+							<a href="{{ item.url }}" data-bs-slide-to="{{ loop.index + offset - 1 }}" class="gallery-image">
+								<img src="{{ item.get_thumb_url(1) }}" alt="{{ item.title }}" title="{{ item.title }}" />
+							</a>
+						</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		{% endif %}
 	{% else %}
 		<div class="ratio ratio-16x9">
 			<img src="/static/placeholder.png" alt="Image placeholder">

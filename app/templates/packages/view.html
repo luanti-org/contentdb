@@ -147,63 +147,43 @@
 					<img src="{{ package.get_thumb_or_placeholder(2) }}" alt="{{ meta.title }} thumbnail">
 				</div>
 
-				<p class="text-white my-4">
+				<p class="text-body my-4">
 					{{ meta.short_desc }}
+				</p>
+
+				{% set review_descriptor = package.get_review_descriptor() %}
+				<p>
+					{{ _("Reviews") }}:
+					<a class="{{ review_descriptor[1] }}" href="#reviews" data-bs-toggle="tab" data-bs-target="#reviews">
+						{{ review_descriptor[0] }}
+					</a>
+				</p>
+
+				<p>
+					{{ _("Last updated") }}:
+					<span class="text-body-secondary">
+						{{ release.created_at | date }}
+					</span>
 				</p>
 
 				<div style="flex: 1;"></div>
 
+				<p>
+					{% for tag in package.tags %}
+						<a class="badge bg-secondary" rel="nofollow"
+								title="{{ tag.get_translated().description or '' }}"
+								href="{{ url_for('packages.list_all', tag=tag.name) }}">
+							{{ tag.get_translated().title }}
+						</a>
+					{% endfor %}
+				</p>
+
 				<div class="list-group">
-					<a class="list-group-item" href="{{ url_for('users.profile', username=package.author.username) }}" title="{{ _('Author') }}">
+					<a class="list-group-item list-group-item-action" href="{{ url_for('users.profile', username=package.author.username) }}" id="alt-reviews" title="{{ _('Author') }}">
 						<img src="{{ package.author.get_profile_pic_url() }}" class="mini-user-photo">
 						<span class="count ms-1">
 							{{ package.author.display_name }}
 						</span>
-					</a>
-					<div class="list-group-item">
-						<i class="fas fa-star-half-alt"></i>
-						<span class="count ms-1">
-							{% set review_summary = package.get_review_summary() %}
-							+{{ review_summary[0] }} / {{ review_summary[1] }} / -{{ review_summary[2] }}
-						</span>
-					</div>
-					<div class="list-group-item">
-						<i class="fas fa-download"></i>
-						<span class="count ms-1">{{ package.downloads }}</span>
-					</div>
-					{% if package.website %}
-						<a class="list-group-item list-group-item-action" href="{{ package.website }}" rel="ugc">
-							<i class="fas fa-globe-europe"></i>
-							<span class="count ms-1">{{ _("Website") }}</span>
-						</a>
-					{% endif %}
-					{% if package.repo %}
-						<a class="list-group-item list-group-item-action" href="{{ package.repo }}" rel="ugc">
-							<i class="fas fa-code"></i>
-							<span class="count ms-1">{{ _("Source") }}</span>
-						</a>
-					{% endif %}
-					{% if package.forums %}
-						<a class="list-group-item list-group-item-action" href="{{ package.forums_url }}">
-							<i class="fas fa-comments"></i>
-							<span class="count ms-1">{{ _("Forums") }}</span>
-						</a>
-					{% endif %}
-					{% if package.issueTracker %}
-						<a class="list-group-item list-group-item-action" href="{{ package.issueTracker }}" rel="ugc">
-							<i class="fas fa-bug"></i>
-							<span class="count ms-1">{{ _("Issue Tracker") }}</span>
-						</a>
-					{% endif %}
-					{% if package.translation_url %}
-						<a class="list-group-item list-group-item-action" href="{{ package.translation_url }}" rel="ugc">
-							<i class="fas fa-language"></i>
-							<span class="count ms-1">{{ _("Translate") }}</span>
-						</a>
-					{% endif %}
-					<a class="list-group-item list-group-item-action" href="{{ package.get_url('packages.statistics') }}" rel="nofollow">
-						<i class="fas fa-chart-line"></i>
-						<span class="count ms-1">{{ _("Statistics") }}</span>
 					</a>
 				</div>
 			</aside>
@@ -225,6 +205,7 @@
 				<a class="nav-link" href="#reviews" id="tab-reviews" data-bs-toggle="tab" data-bs-target="#reviews" role="tab">
 					Reviews
 					<span class="badge bg-secondary ms-2">
+						{% set review_summary = package.get_review_summary() %}
 						{{ review_summary[0] + review_summary[1] + review_summary[2] }}
 					</span>
 				</a>
@@ -252,14 +233,14 @@
 		<div class="row">
 			<div class="col-md-9 tab-content" id="tab-content">
 				{% if meta.desc %}
-					<article id="description" class="markdown panel tab-pane fade show active" role="tabpanel" aria-labelledby="tab-description">
-						<h2>{{ _("Description") }}</h2>
+					<article id="description" class="markdown panel tab-pane show active" role="tabpanel" aria-labelledby="tab-description">
+						<h2 class="sr-only">{{ _("Description") }}</h2>
 						{{ meta.desc | markdown }}
 					</article>
 				{% endif %}
 
-				<section id="reviews" class="panel tab-pane fade" role="tabpanel" aria-labelledby="tab-reviews">
-					<h2>{{ _("Reviews") }}</h2>
+				<section id="reviews" class="panel tab-pane" role="tabpanel" aria-labelledby="tab-reviews">
+					<h2 class="sr-only">{{ _("Reviews") }}</h2>
 
 					{% from "macros/reviews.html" import render_reviews, render_review_form, render_review_preview with context %}
 					{% if package.state.name == "APPROVED" %}
@@ -293,8 +274,8 @@
 					{{ render_reviews(reviews, current_user) }}
 				</section>
 
-				<section id="releases" class="panel tab-pane fade" role="tabpanel" aria-labelledby="tab-releases">
-					<h2>{{ _("Releases") }}</h2>
+				<section id="releases" class="panel tab-pane" role="tabpanel" aria-labelledby="tab-releases">
+					<h2 class="sr-only">{{ _("Releases") }}</h2>
 
 					{% for release in releases %}
 						<article id="release-{{ release.name }}">
@@ -308,8 +289,8 @@
 					{% endfor %}
 				</section>
 
-				<section id="threads" class="panel tab-pane fade" role="tabpanel" aria-labelledby="tab-threads">
-					<h2>{{ _("Threads") }}</h2>
+				<section id="threads" class="panel tab-pane" role="tabpanel" aria-labelledby="tab-threads">
+					<h2 class="sr-only">{{ _("Threads") }}</h2>
 					<p>
 						<a class="btn btn-primary" href="{{ url_for('threads.new', author=package.author.username, name=package.name) }}">
 							<i class="fas fa-plus me-1"></i>
@@ -411,6 +392,39 @@
 						</a>
 					</div>
 				{% endif %}
+
+				<div class="list-group mb-4">
+					{% if package.website %}
+						<a class="list-group-item list-group-item-action" href="{{ package.website }}" rel="ugc">
+							<i class="fas fa-globe-europe"></i>
+							<span class="count ms-1">{{ _("Website") }}</span>
+						</a>
+					{% endif %}
+					{% if package.repo %}
+						<a class="list-group-item list-group-item-action" href="{{ package.repo }}" rel="ugc">
+							<i class="fas fa-code"></i>
+							<span class="count ms-1">{{ _("Source") }}</span>
+						</a>
+					{% endif %}
+					{% if package.forums %}
+						<a class="list-group-item list-group-item-action" href="{{ package.forums_url }}">
+							<i class="fas fa-comments"></i>
+							<span class="count ms-1">{{ _("Forums") }}</span>
+						</a>
+					{% endif %}
+					{% if package.issueTracker %}
+						<a class="list-group-item list-group-item-action" href="{{ package.issueTracker }}" rel="ugc">
+							<i class="fas fa-bug"></i>
+							<span class="count ms-1">{{ _("Issue Tracker") }}</span>
+						</a>
+					{% endif %}
+					{% if package.translation_url %}
+						<a class="list-group-item list-group-item-action" href="{{ package.translation_url }}" rel="ugc">
+							<i class="fas fa-language"></i>
+							<span class="count ms-1">{{ _("Translate") }}</span>
+						</a>
+					{% endif %}
+				</div>
 
 				{% if package.type != package.type.TXP %}
 					<h3>{{ _("Dependencies") }}</h3>
@@ -603,16 +617,19 @@
 				</dl>
 
 				<p class="mt-3">
+					<a href="{{ package.get_url('packages.statistics') }}" rel="nofollow">
+						<i class="fas fa-chart-line me-1"></i>
+						<span class="count">{{ _("Statistics") }}</span>
+					</a>
 					{% if package.approved and current_user != package.author %}
+						|
 						<a href="{{ url_for('report.report', url=url_current()) }}">
 							<i class="fas fa-flag me-1"></i>
 							{{ _("Report") }}
 						</a>
 					{% endif %}
 					{% if package.check_perm(current_user, "EDIT_PACKAGE") or package.check_perm(current_user, "APPROVE_NEW") %}
-						{% if package.approved and current_user != package.author %}
-							|
-						{% endif %}
+						|
 						<a href="{{ package.get_url('packages.audit') }}">
 							{{ _("See audit log") }}
 						</a>
