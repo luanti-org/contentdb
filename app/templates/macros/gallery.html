@@ -1,0 +1,55 @@
+{% macro render_gallery(items, package) %}
+	{% if items %}
+		<div id="gallery-current" tabindex="-1" role="dialog" aria-hidden="true">
+			<div id="galleryCarousel" class="carousel slide">
+				<div class="carousel-inner">
+					{% for item in items %}
+					{% if item.approved %}
+					<div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
+						<a href="{{ item.url }}" target="_blank">
+							<div  class="ratio ratio-16x9">
+								<img class="img-size w-100" loading="lazy" src="{{ item.url }}" alt="{{ item.title }}" title="{{ item.title }}" />
+							</div>
+						</a>
+					</div>
+					{% endif %}
+					{% endfor %}
+					<button class="carousel-control-prev" data-bs-target="#galleryCarousel" role="button" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="sr-only">{{ _("Previous") }}</span>
+					</button>
+					<button class="carousel-control-next" data-bs-target="#galleryCarousel" role="button" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="sr-only">{{ _("Next") }}</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+	<ul class="gallery" style="overflow-x: auto">
+		{% if package.video_url %}
+			<li>
+				<a href="{{ package.video_url }}" class="video-embed">
+					{% set thumbnail_url = package.get_video_thumbnail_url() %}
+					{% if thumbnail_url %}
+						<img src="{{ thumbnail_url }}" alt="{{ _('Thumbnail for video') }}" />
+					{% endif %}
+					<i class="fas fa-play"></i>
+					<div class="label">
+						<i class="fas fa-external-link-square-alt"></i>
+					</div>
+				</a>
+			</li>
+		{% endif %}
+
+		{% for item in items %}
+			{% if item.approved %}
+				<li>
+					<a href="{{ item.url }}" data-bs-slide-to="{{ loop.index - 1 }}" class="gallery-image">
+						<img src="{{ item.get_thumb_url(1) }}" alt="{{ item.title }}" title="{{ item.title }}" />
+					</a>
+				</li>
+			{% endif %}
+		{% endfor %}
+	</ul>
+{% endmacro %}

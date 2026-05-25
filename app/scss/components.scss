@@ -230,6 +230,9 @@ blockquote {
 }
 
 .info-sidebar {
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
 	color: #999;
 
 	h3 {

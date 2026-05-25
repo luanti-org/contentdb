@@ -1,8 +1,11 @@
 .gallery {
 	list-style: none;
 	padding: 0;
-	margin: 0 0 2em;
-	overflow: auto hidden;
+	overflow: scroll hidden;
+	display: flex;
+	gap: 0.5rem;
+	margin: 0.5rem 0;
+	flex-direction: row;
 
 	li, li a {
 		list-style: none;
@@ -11,9 +14,9 @@
 	}
 
 	li {
-		display: inline-block;
-		vertical-align: middle;
-		margin: 5px;
+		display: block;
+		vertical-: middle;
+		margin: 0;
 		padding: 0;
 
 		a {
@@ -35,15 +38,15 @@
 	}
 
 	img {
-		width: 200px;
-		height: 133px;
+		width: 100px;
+		height: 67px;
 		object-fit: cover;
 	}
 }
 
 .video-embed {
-	min-width: 200px;
-	min-height: 133px;
+	min-width: 100px;
+	min-height: 67px;
 	background: #111;
 	position: relative;
 	display: flex !important;

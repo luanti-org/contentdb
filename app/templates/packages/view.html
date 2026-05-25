@@ -109,300 +109,121 @@
 		</section>
 	{% endif %}
 
-	{% set cover_image = package.get_cover_image_url() %}
-	<header class="jumbotron"
-			style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('{{ cover_image }}');
-				background-size: cover;
-				background-repeat: no-repeat;
-				background-position: center;">
-		<div class="container">
-			<div class="btn-group float-end mb-4">
-				{% if package.check_perm(current_user, "EDIT_PACKAGE") %}
-					<a class="btn btn-primary" href="{{ package.get_url('packages.create_edit') }}">
-						<i class="fas fa-pen me-1"></i>
-						{{ _("Edit") }}
-					</a>
-				{% endif %}
-				{% if package.check_perm(current_user, "MAKE_RELEASE") %}
-					<a class="btn btn-primary" href="{{ package.get_url('packages.create_release') }}">
-						<i class="fas fa-plus me-1"></i>
-						{{ _("Release") }}
-					</a>
-				{% endif %}
-				{% if package.check_perm(current_user, "DELETE_PACKAGE") or package.check_perm(current_user, "UNAPPROVE_PACKAGE") %}
-					<a class="btn btn-danger" href="{{ package.get_url('packages.remove') }}">
-						<i class="fas fa-trash me-1"></i>
-						{{ _("Remove") }}
-					</a>
-				{% endif %}
-			</div>
+	<header class="container">
+		{% if package.type == package.type.GAME %}
+			<a href="{{ package.get_url('packages.game_hub') }}" class="btn btn-primary float-end ms-3">
+				{{ _("View content for game") }}
+			</a>
+		{% endif %}
 
-			<h1 class="display-3">
-				{{ meta.title }}
-			</h1>
+		<div class="btn-group float-end">
+			{% if package.check_perm(current_user, "EDIT_PACKAGE") %}
+				<a class="btn btn-primary" href="{{ package.get_url('packages.create_edit') }}">
+					<i class="fas fa-pen me-1"></i>
+					{{ _("Edit") }}
+				</a>
+			{% endif %}
+			{% if package.check_perm(current_user, "MAKE_RELEASE") %}
+				<a class="btn btn-primary" href="{{ package.get_url('packages.create_release') }}">
+					<i class="fas fa-plus me-1"></i>
+					{{ _("Release") }}
+				</a>
+			{% endif %}
+			{% if package.check_perm(current_user, "DELETE_PACKAGE") or package.check_perm(current_user, "UNAPPROVE_PACKAGE") %}
+				<a class="btn btn-danger" href="{{ package.get_url('packages.remove') }}">
+					<i class="fas fa-trash me-1"></i>
+					{{ _("Remove") }}
+				</a>
+			{% endif %}
+		</div>
+		<h1 class="my-4">{{ meta.title }}</h1>
+		<div class="clearfix"></div>
+	</header>
 
-			<p class="lead">
-				{{ meta.short_desc }}
-			</p>
+	{% from "macros/gallery.html" import render_gallery %}
 
-			<p>
-				{% if package.dev_state.name == "LOOKING_FOR_MAINTAINER" or package.dev_state.name == "DEPRECATED" %}
-					<span class="badge bg-warning" title="{{ package.dev_state.get_desc() }}">
-						<i class="fas fa-exclamation-circle" style="margin-right: 0.3em;"></i>
-						{{ package.dev_state.value }}
-					</span>
-				{% endif %}
-				{% if package_warning %}
-					<a class="badge bg-danger" href="/help/non_free/">
-						<i class="fas fa-exclamation-circle" style="margin-right: 0.3em;"></i>
-						{{ package_warning }}
-					</a>
-				{% endif %}
-				{% for warning in package.content_warnings %}
-					<a class="badge bg-warning" href="/help/content_flags/" title="{{ warning.description }}">
-						<i class="fas fa-exclamation-circle" style="margin-right: 0.3em;"></i>
-						{{ warning.title }}
-					</a>
-				{% endfor %}
-				{% if package.dev_state.name == "WIP" %}
-					<span class="badge bg-info" title="{{ package.dev_state.get_desc() }}">
-						<i class="fas fa-tools" style="margin-right: 0.3em;"></i>
-						{{ _("Work in Progress") }}
-					</span>
-				{% endif %}
-				{% for tag in package.tags %}
-					<a class="badge bg-primary" rel="nofollow"
-							title="{{ tag.get_translated().description or '' }}"
-							href="{{ url_for('packages.list_all', tag=tag.name) }}">
-						{{ tag.get_translated().title }}
-					</a>
-				{% endfor %}
-			</p>
+	<section class="container mt-4">
+		<div class="row flex-row-reverse">
+			<aside class="col-md-3 info-sidebar">
+				<div class="ratio ratio-16x9">
+					<img src="{{ package.get_thumb_url(3, True, 'png') }}" alt="{{ meta.title }} thumbnail">
+				</div>
 
-			<div class="info-row row" style="margin-top: 2rem;">
-				<div class="btn-group-horizontal col">
-					<a class="btn" href="{{ url_for('users.profile', username=package.author.username) }}" title="{{ _('Author') }}">
+				<p class="text-white my-4">
+					{{ meta.short_desc }}
+				</p>
+
+				<div style="flex: 1;"></div>
+
+				<div class="list-group">
+					<a class="list-group-item" href="{{ url_for('users.profile', username=package.author.username) }}" title="{{ _('Author') }}">
 						<img src="{{ package.author.get_profile_pic_url() }}" class="mini-user-photo">
 						<span class="count">
 							{{ package.author.display_name }}
 						</span>
 					</a>
-					{% if release %}
-						<a class="btn" rel="nofollow" href="{{ release.get_download_url() }}" title="{{ _('Downloads') }}"
-								download="{{ release.get_download_filename() }}">
-							<i class="fas fa-download"></i>
-							<span class="count">{{ package.downloads }}</span>
-						</a>
-					{% endif %}
-					<a class="btn" href="{{ url_for('threads.list_all', author=package.author.username, name=package.name) }}" title="{{ _('Threads') }}">
-						<i class="fas fa-comment-alt"></i>
-						<span class="count">{{ threads | length }}</span>
-					</a>
-					<a class="btn" href="#reviews" title="{{ _('Reviews') }}">
+					<div class="list-group-item">
 						<i class="fas fa-star-half-alt"></i>
 						<span class="count">
-							+{{ reviews | selectattr("rating", "equalto", 5) | list | length }}
-							/
-							{{ reviews | selectattr("rating", "equalto", 3) | list | length }}
-							/
-							-{{ reviews | selectattr("rating", "equalto", 1) | list | length }}
+							{% set review_summary = package.get_review_summary() %}
+							+{{ review_summary[0] }} / {{ review_summary[1] }} / -{{ review_summary[2] }}
 						</span>
-					</a>
+					</div>
+					<div class="list-group-item">
+						<i class="fas fa-download"></i>
+						<span class="count">{{ package.downloads }}</span>
+					</div>
 					{% if package.website %}
-						<a class="btn" href="{{ package.website }}" rel="ugc">
+						<a class="list-group-item list-group-item-action" href="{{ package.website }}" rel="ugc">
 							<i class="fas fa-globe-europe"></i>
 							<span class="count">{{ _("Website") }}</span>
 						</a>
 					{% endif %}
 					{% if package.repo %}
-						<a class="btn" href="{{ package.repo }}" rel="ugc">
+						<a class="list-group-item list-group-item-action" href="{{ package.repo }}" rel="ugc">
 							<i class="fas fa-code"></i>
 							<span class="count">{{ _("Source") }}</span>
 						</a>
 					{% endif %}
 					{% if package.forums %}
-						<a class="btn" href="{{ package.forums_url }}">
+						<a class="list-group-item list-group-item-action" href="{{ package.forums_url }}">
 							<i class="fas fa-comments"></i>
 							<span class="count">{{ _("Forums") }}</span>
 						</a>
 					{% endif %}
 					{% if package.issueTracker %}
-						<a class="btn" href="{{ package.issueTracker }}" rel="ugc">
+						<a class="list-group-item list-group-item-action" href="{{ package.issueTracker }}" rel="ugc">
 							<i class="fas fa-bug"></i>
 							<span class="count">{{ _("Issue Tracker") }}</span>
 						</a>
 					{% endif %}
 					{% if package.translation_url %}
-						<a class="btn" href="{{ package.translation_url }}" rel="ugc">
+						<a class="list-group-item list-group-item-action" href="{{ package.translation_url }}" rel="ugc">
 							<i class="fas fa-language"></i>
 							<span class="count">{{ _("Translate") }}</span>
 						</a>
 					{% endif %}
-					<a class="btn" href="{{ package.get_url('packages.statistics') }}" rel="nofollow">
+					<a class="list-group-item list-group-item-action" href="{{ package.get_url('packages.statistics') }}" rel="nofollow">
 						<i class="fas fa-chart-line"></i>
 						<span class="count">{{ _("Statistics") }}</span>
 					</a>
 				</div>
+			</aside>
+			<div class="col-md-9">
+				{% set screenshots = package.screenshots.all() %}
+				{% if screenshots or package.check_perm(current_user, "ADD_SCREENSHOTS") or package.video_url %}
+					{{ render_gallery(screenshots, package) }}
+				{% endif %}
 			</div>
 		</div>
-	</header>
+	</section>
 
-	<div class="container d-block d-md-none">
-		{{ self.download_btn() }}
-	</div>
-
-	<section class="container mt-4">
-		<div class="row">
-			<div class="col-md-9" style="padding-right: 45px;">
-				{% set screenshots = package.screenshots.all() %}
-
-				{% if package.check_perm(current_user, "ADD_SCREENSHOTS") %}
-					<a href="{{ package.get_url('packages.screenshots') }}" class="btn btn-primary float-end">
-						<i class="fas fa-images me-1"></i>
-						{{ _("Edit") }}
-					</a>
-				{% endif %}
-
-				{% if screenshots or package.check_perm(current_user, "ADD_SCREENSHOTS") or package.video_url %}
-					{% if screenshots %}
-						<div class="modal fade" id="galleryModal" tabindex="-1" role="dialog" aria-hidden="true">
-							<div class="modal-dialog modal-xl">
-								<div class="modal-content">
-									<div class="modal-body">
-										<div id="galleryCarousel" class="carousel slide">
-											<div class="carousel-inner">
-												{% for ss in screenshots %}
-												{% if ss.approved or package.check_perm(current_user, "ADD_SCREENSHOTS") %}
-												<div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
-													<a href="{{ ss.url }}" target="_blank">
-														<img class="img-size w-100" loading="lazy" src="{{ ss.url }}" alt="{{ ss.title }}" title="{{ ss.title }}" />
-													</a>
-												</div>
-												{% endif %}
-												{% endfor %}
-												<button class="carousel-control-prev" data-bs-target="#galleryCarousel" role="button" data-bs-slide="prev">
-													<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-													<span class="sr-only">{{ _("Previous") }}</span>
-												</button>
-												<button class="carousel-control-next" data-bs-target="#galleryCarousel" role="button" data-bs-slide="next">
-													<span class="carousel-control-next-icon" aria-hidden="true"></span>
-													<span class="sr-only">{{ _("Next") }}</span>
-												</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					{% endif %}
-					<ul class="gallery">
-						{% if package.video_url %}
-							<li>
-								<a href="{{ package.video_url }}" class="video-embed">
-									{% set thumbnail_url = package.get_video_thumbnail_url() %}
-									{% if thumbnail_url %}
-										<img src="{{ thumbnail_url }}" alt="{{ _('Thumbnail for video') }}" />
-									{% endif %}
-									<i class="fas fa-play"></i>
-									<div class="label">
-										<i class="fas fa-external-link-square-alt"></i>
-									</div>
-								</a>
-							</li>
-						{% endif %}
-
-						{% if screenshots or package.check_perm(current_user, "ADD_SCREENSHOTS") %}
-							{% for ss in screenshots %}
-								{% if ss.approved or package.check_perm(current_user, "ADD_SCREENSHOTS") %}
-									<li>
-										<a href="{{ ss.url }}" data-bs-toggle="modal" data-bs-target="#galleryModal" data-bs-slide-to="{{ loop.index - 1 }}" class="gallery-image">
-											<img src="{{ ss.get_thumb_url() }}" alt="{{ ss.title }}" title="{{ ss.title }}" />
-											{% if not ss.approved %}
-												<span class="badge bg-dark badge-tr">{{ _("Awaiting review") }}</span>
-											{% endif %}
-										</a>
-									</li>
-								{% endif %}
-							{% else %}
-								<li>
-									<a href="{{ package.get_url('packages.create_screenshot') }}">
-										<i class="fas fa-plus screenshot-add"></i>
-									</a>
-								</li>
-							{% endfor %}
-						{% endif %}
-					</ul>
-				{% endif %}
-
-				{% if meta.desc %}
-					<article class="markdown panel mb-5">
-						{{ meta.desc | markdown }}
-					</article>
-				{% endif %}
-
-				<h2 id="reviews" class="mt-0">{{ _("Reviews") }}</h2>
-
-				{% from "macros/reviews.html" import render_reviews, render_review_form, render_review_preview with context %}
-				{% if package.state.name == "APPROVED" %}
-					{% if current_user.is_authenticated %}
-						{% if has_review %}
-							<p>
-								<a class="btn btn-primary" href="{{ package.get_url('packages.review') }}">
-									{{ _("Edit Review") }}
-								</a>
-							</p>
-						{% elif current_user in package.maintainers %}
-							<p>
-								{{ _("You can't review your own package.") }}
-							</p>
-						{% else %}
-							{{ render_review_preview(package) }}
-						{% endif %}
-					{% else %}
-						{{ render_review_preview(package) }}
-					{% endif %}
-				{% else %}
-					<p>
-						{{ _("Package needs to be approved before it can be reviewed.") }}
-					</p>
-				{% endif %}
-
-				{% if current_user.is_authenticated and current_user.rank.at_least(current_user.rank.ADMIN) %}
-					<a href="{{ package.get_url('packages.review_votes') }}" class="btn btn-secondary">{{ _("Review Votes") }}</a>
-				{% endif %}
-
-				{{ render_reviews(reviews, current_user) }}
-
-				{% if packages_uses %}
-					<h2>{{ _("Used By") }}</h2>
-					{% from "macros/packagegridtile.html" import render_pkggrid %}
-					{{ render_pkggrid(packages_uses) }}
-				{% endif %}
-
-				{% if package.type == package.type.GAME %}
-					<h2>{{ _("Content") }}</h2>
-					<a href="{{ package.get_url('packages.game_hub') }}" class="btn btn-lg btn-primary">
-						{{ _("View content for game") }}
-					</a>
-				{% endif %}
-			</div>
-
+	<section class="container mt-5">
+		<div class="row flex-row-reverse">
 			<aside class="col-md-3 info-sidebar">
 				<div class="d-none d-md-block">
 					{{ self.download_btn() }}
 				</div>
-
-				{%  if release.release_notes %}
-					<div class="card my-3">
-						<h3 id="release_notes" class="card-header">
-							{{ _("Release notes for %(title)s", title=release.title) }}
-						</h3>
-						<div class="card-body markdown release-notes-body">
-							{{ release.release_notes | markdown }}
-						</div>
-					</div>
-				{% endif %}
-
 				<div class="mt-3 mb-3">
 					<div class="d-flex">
 						<form method="POST" action="{{ package.get_url('collections.package_toggle_favorite') }}">
@@ -487,12 +308,6 @@
 							{{ _("Donate now") }}
 						</a>
 					</div>
-				{% endif %}
-
-				{% if package.type == package.type.GAME %}
-					<a href="{{ package.get_url('packages.game_hub') }}" class="btn btn-lg d-block mb-4 btn-primary">
-						{{ _("View content for game") }}
-					</a>
 				{% endif %}
 
 				{% if package.type != package.type.TXP %}
@@ -690,37 +505,6 @@
 					{% endif %}
 				</dl>
 
-				<h3>
-					{% if package.check_perm(current_user, "MAKE_RELEASE") %}
-						<a class="btn btn-primary btn-sm float-end" href="{{ package.get_url('packages.create_release') }}"><i class="fas fa-plus"></i></a>
-					{% endif %}
-					{{ _("Releases") }}
-				</h3>
-				<div class="list-group">
-					{% from "macros/releases.html" import render_releases, render_releases_download %}
-					{% if package.check_perm(current_user, "MAKE_RELEASE") %}
-						{{ render_releases(releases, package, current_user) }}
-					{% else %}
-						{{ render_releases_download(releases, package, current_user) }}
-					{% endif %}
-					<a class="list-group-item list-group-item-action text-center py-1 text-muted" href="{{ package.get_url('packages.list_releases') }}">
-						{{ _("More") }}
-					</a>
-				</div>
-
-				<h3>
-					{% if package.approved and package.check_perm(current_user, "CREATE_THREAD") %}
-						<div class="btn-group float-end">
-							<a class="btn btn-primary btn-sm mx-1" href="{{ url_for('threads.new', author=package.author.username, name=package.name) }}"><i class="fas fa-plus"></i></a>
-						</div>
-					{% endif %}
-					{{ _("Threads") }}
-				</h3>
-				<div class="list-group">
-					{% from "macros/threads.html" import render_compact_threadlist %}
-					{{ render_compact_threadlist(threads) }}
-				</div>
-
 				<p class="mt-3">
 					{% if package.approved and current_user != package.author %}
 						<a href="{{ url_for('report.report', url=url_current()) }}">
@@ -738,6 +522,84 @@
 					{% endif %}
 				</p>
 			</aside>
+			<div class="col-md-9">
+				<ul class="nav nav-tabs">
+					<li class="nav-item">
+						<a class="nav-link active" href="#">
+							Description
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							Reviews
+							<span class="badge bg-secondary ms-2">
+								{{ review_summary[0] + review_summary[1] + review_summary[2] }}
+							</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							Releases
+							<span class="badge bg-secondary ms-2">
+								{{ package.releases.count() }}
+							</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+							Threads
+							<span class="badge bg-secondary ms-2">
+								{{ package.threads.count() }}
+							</span>
+						</a>
+					</li>
+				</ul>
+
+				{% if meta.desc %}
+					<article class="markdown panel mb-5">
+						{{ meta.desc | markdown }}
+					</article>
+				{% endif %}
+
+<!--				<h2 id="reviews" class="mt-0">{{ _("Reviews") }}</h2>-->
+
+<!--				{% from "macros/reviews.html" import render_reviews, render_review_form, render_review_preview with context %}-->
+<!--				{% if package.state.name == "APPROVED" %}-->
+<!--					{% if current_user.is_authenticated %}-->
+<!--						{% if has_review %}-->
+<!--							<p>-->
+<!--								<a class="btn btn-primary" href="{{ package.get_url('packages.review') }}">-->
+<!--									{{ _("Edit Review") }}-->
+<!--								</a>-->
+<!--							</p>-->
+<!--						{% elif current_user in package.maintainers %}-->
+<!--							<p>-->
+<!--								{{ _("You can't review your own package.") }}-->
+<!--							</p>-->
+<!--						{% else %}-->
+<!--							{{ render_review_preview(package) }}-->
+<!--						{% endif %}-->
+<!--					{% else %}-->
+<!--						{{ render_review_preview(package) }}-->
+<!--					{% endif %}-->
+<!--				{% else %}-->
+<!--					<p>-->
+<!--						{{ _("Package needs to be approved before it can be reviewed.") }}-->
+<!--					</p>-->
+<!--				{% endif %}-->
+
+<!--				{% if current_user.is_authenticated and current_user.rank.at_least(current_user.rank.ADMIN) %}-->
+<!--					<a href="{{ package.get_url('packages.review_votes') }}" class="btn btn-secondary">{{ _("Review Votes") }}</a>-->
+<!--				{% endif %}-->
+
+<!--				{{ render_reviews(reviews, current_user) }}-->
+
+<!--				{% if packages_uses %}-->
+<!--					<h2>{{ _("Used By") }}</h2>-->
+<!--					{% from "macros/packagegridtile.html" import render_pkggrid %}-->
+<!--					{{ render_pkggrid(packages_uses) }}-->
+<!--				{% endif %}-->
+			</div>
 		</div>
 	</section>
 </main>
