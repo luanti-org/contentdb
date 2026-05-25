@@ -146,7 +146,7 @@
 		<div class="row flex-row-reverse">
 			<aside class="col-md-3 info-sidebar">
 				<div class="ratio ratio-16x9">
-					<img src="{{ package.get_thumb_url(3, True, 'png') }}" alt="{{ meta.title }} thumbnail">
+					<img src="{{ package.get_thumb_or_placeholder(2) }}" alt="{{ meta.title }} thumbnail">
 				</div>
 
 				<p class="text-white my-4">
@@ -158,54 +158,54 @@
 				<div class="list-group">
 					<a class="list-group-item" href="{{ url_for('users.profile', username=package.author.username) }}" title="{{ _('Author') }}">
 						<img src="{{ package.author.get_profile_pic_url() }}" class="mini-user-photo">
-						<span class="count">
+						<span class="count ms-1">
 							{{ package.author.display_name }}
 						</span>
 					</a>
 					<div class="list-group-item">
 						<i class="fas fa-star-half-alt"></i>
-						<span class="count">
+						<span class="count ms-1">
 							{% set review_summary = package.get_review_summary() %}
 							+{{ review_summary[0] }} / {{ review_summary[1] }} / -{{ review_summary[2] }}
 						</span>
 					</div>
 					<div class="list-group-item">
 						<i class="fas fa-download"></i>
-						<span class="count">{{ package.downloads }}</span>
+						<span class="count ms-1">{{ package.downloads }}</span>
 					</div>
 					{% if package.website %}
 						<a class="list-group-item list-group-item-action" href="{{ package.website }}" rel="ugc">
 							<i class="fas fa-globe-europe"></i>
-							<span class="count">{{ _("Website") }}</span>
+							<span class="count ms-1">{{ _("Website") }}</span>
 						</a>
 					{% endif %}
 					{% if package.repo %}
 						<a class="list-group-item list-group-item-action" href="{{ package.repo }}" rel="ugc">
 							<i class="fas fa-code"></i>
-							<span class="count">{{ _("Source") }}</span>
+							<span class="count ms-1">{{ _("Source") }}</span>
 						</a>
 					{% endif %}
 					{% if package.forums %}
 						<a class="list-group-item list-group-item-action" href="{{ package.forums_url }}">
 							<i class="fas fa-comments"></i>
-							<span class="count">{{ _("Forums") }}</span>
+							<span class="count ms-1">{{ _("Forums") }}</span>
 						</a>
 					{% endif %}
 					{% if package.issueTracker %}
 						<a class="list-group-item list-group-item-action" href="{{ package.issueTracker }}" rel="ugc">
 							<i class="fas fa-bug"></i>
-							<span class="count">{{ _("Issue Tracker") }}</span>
+							<span class="count ms-1">{{ _("Issue Tracker") }}</span>
 						</a>
 					{% endif %}
 					{% if package.translation_url %}
 						<a class="list-group-item list-group-item-action" href="{{ package.translation_url }}" rel="ugc">
 							<i class="fas fa-language"></i>
-							<span class="count">{{ _("Translate") }}</span>
+							<span class="count ms-1">{{ _("Translate") }}</span>
 						</a>
 					{% endif %}
 					<a class="list-group-item list-group-item-action" href="{{ package.get_url('packages.statistics') }}" rel="nofollow">
 						<i class="fas fa-chart-line"></i>
-						<span class="count">{{ _("Statistics") }}</span>
+						<span class="count ms-1">{{ _("Statistics") }}</span>
 					</a>
 				</div>
 			</aside>
