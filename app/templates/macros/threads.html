@@ -199,7 +199,7 @@
 	{% endfor %}
 {% endmacro %}
 
-{% macro render_threadlist(threads) -%}
+{% macro render_threadlist(threads, show_package=True) -%}
 	<div class="list-group-item">
 		<div class="row text-muted">
 			<span class="col-md">
@@ -210,7 +210,9 @@
 				{{ _("Last Reply") }}
 			</span>
 
-			<span class="col-md-2"></span>
+			{% if show_package %}
+				<span class="col-md-2"></span>
+			{% endif %}
 		</div>
 	</div>
 
@@ -262,18 +264,20 @@
 					{% endif %}
 				</div>
 
-				<div class="col-md-2 text-muted text-end">
-					{% if t.package %}
-						<img
-							class="img-fluid"
-							style="max-height: 22px; max-width: 22px;"
-							src="{{ t.package.get_thumb_or_placeholder() }}" /><br />
+				{% if show_package %}
+					<div class="col-md-2 text-muted text-end">
+						{% if t.package %}
+							<img
+								class="img-fluid"
+								style="max-height: 22px; max-width: 22px;"
+								src="{{ t.package.get_thumb_or_placeholder() }}" /><br />
 
-						<span class="ps-2">
-							{{ t.package.title }}
-						</span>
-					{% endif %}
-				</div>
+							<span class="ps-2">
+								{{ t.package.title }}
+							</span>
+						{% endif %}
+					</div>
+				{% endif %}
 			</div>
 		</a>
 	{% else %}

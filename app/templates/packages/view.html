@@ -140,8 +140,6 @@
 		<div class="clearfix"></div>
 	</header>
 
-	{% from "macros/gallery.html" import render_gallery %}
-
 	<section class="container mt-4">
 		<div class="row flex-row-reverse">
 			<aside class="col-md-3 info-sidebar">
@@ -210,16 +208,120 @@
 				</div>
 			</aside>
 			<div class="col-md-9">
-				{% set screenshots = package.screenshots.all() %}
-				{% if screenshots or package.check_perm(current_user, "ADD_SCREENSHOTS") or package.video_url %}
-					{{ render_gallery(screenshots, package) }}
-				{% endif %}
+				{% from "macros/package_gallery.html" import render_gallery %}
+				{{ render_gallery(package.screenshots.all(), package) }}
 			</div>
 		</div>
 	</section>
 
-	<section class="container mt-5">
-		<div class="row flex-row-reverse">
+	<nav class="container mt-5">
+		<ul class="nav nav-tabs" id="tabs" role="tablist">
+			<li class="nav-item" role="presentation">
+				<a class="nav-link active" href="#description" id="tab-description" data-bs-toggle="tab" data-bs-target="#description" role="tab">
+					Description
+				</a>
+			</li>
+			<li class="nav-item" role="presentation">
+				<a class="nav-link" href="#reviews" id="tab-reviews" data-bs-toggle="tab" data-bs-target="#reviews" role="tab">
+					Reviews
+					<span class="badge bg-secondary ms-2">
+						{{ review_summary[0] + review_summary[1] + review_summary[2] }}
+					</span>
+				</a>
+			</li>
+			<li class="nav-item" role="presentation">
+				<a class="nav-link" href="#releases" id="tab-releases" data-bs-toggle="tab" data-bs-target="#releases" role="tab">
+					Releases
+					<span class="badge bg-secondary ms-2">
+						{{ package.releases.count() }}
+					</span>
+				</a>
+			</li>
+			<li class="nav-item" role="presentation">
+				<a class="nav-link" href="#threads" id="tab-threads" data-bs-toggle="tab" data-bs-target="#threads" role="tab">
+					Threads
+					<span class="badge bg-secondary ms-2">
+						{{ threads | length }}
+					</span>
+				</a>
+			</li>
+		</ul>
+	</nav>
+
+	<div class="container mt-0">
+		<div class="row">
+			<div class="col-md-9 tab-content" id="tab-content">
+				{% if meta.desc %}
+					<article id="description" class="markdown panel tab-pane fade show active" role="tabpanel" aria-labelledby="tab-description">
+						<h2>{{ _("Description") }}</h2>
+						{{ meta.desc | markdown }}
+					</article>
+				{% endif %}
+
+				<section id="reviews" class="panel tab-pane fade" role="tabpanel" aria-labelledby="tab-reviews">
+					<h2>{{ _("Reviews") }}</h2>
+
+					{% from "macros/reviews.html" import render_reviews, render_review_form, render_review_preview with context %}
+					{% if package.state.name == "APPROVED" %}
+						{% if current_user.is_authenticated %}
+							{% if has_review %}
+								<p>
+									<a class="btn btn-primary" href="{{ package.get_url('packages.review') }}">
+										{{ _("Edit Review") }}
+									</a>
+								</p>
+							{% elif current_user in package.maintainers %}
+								<p>
+									{{ _("You can't review your own package.") }}
+								</p>
+							{% else %}
+								{{ render_review_preview(package) }}
+							{% endif %}
+						{% else %}
+							{{ render_review_preview(package) }}
+						{% endif %}
+					{% else %}
+						<p>
+							{{ _("Package needs to be approved before it can be reviewed.") }}
+						</p>
+					{% endif %}
+
+					{% if current_user.is_authenticated and current_user.rank.at_least(current_user.rank.ADMIN) %}
+						<a href="{{ package.get_url('packages.review_votes') }}" class="btn btn-secondary">{{ _("Review Votes") }}</a>
+					{% endif %}
+
+					{{ render_reviews(reviews, current_user) }}
+				</section>
+
+				<section id="releases" class="panel tab-pane fade" role="tabpanel" aria-labelledby="tab-releases">
+					<h2>{{ _("Releases") }}</h2>
+
+					{% for release in releases %}
+						<article id="release-{{ release.name }}">
+							<h3>{{ release.title }}</h3>
+							{% if release.release_notes %}
+							<div class="markdown">
+								{{ release.release_notes | markdown }}
+							</div>
+							{% endif %}
+						</article>
+					{% endfor %}
+				</section>
+
+				<section id="threads" class="panel tab-pane fade" role="tabpanel" aria-labelledby="tab-threads">
+					<h2>{{ _("Threads") }}</h2>
+					<p>
+						<a class="btn btn-primary" href="{{ url_for('threads.new', author=package.author.username, name=package.name) }}">
+							<i class="fas fa-plus me-1"></i>
+							{{ _("New thread") }}
+						</a>
+					</p>
+					<div class="list-group">
+						{% from "macros/threads.html" import render_threadlist with context %}
+						{{ render_threadlist(threads, False) }}
+					</div>
+				</section>
+			</div>
 			<aside class="col-md-3 info-sidebar">
 				<div class="d-none d-md-block">
 					{{ self.download_btn() }}
@@ -365,11 +467,6 @@
 					{% set show_unsupported = package.supports_all_games or supported_games == [] %}
 					{% if supported_games or unsupported_games or package.type == package.type.MOD %}
 						<h3>
-							{% if package.check_perm(current_user, "EDIT_PACKAGE") %}
-								<a href="{{ package.get_url('packages.game_support') }}" class="btn btn-secondary btn-sm float-end">
-									<i class="fas fa-pen"></i>
-								</a>
-							{% endif %}
 							{{ _("Compatible Games") }}
 						</h3>
 
@@ -522,85 +619,7 @@
 					{% endif %}
 				</p>
 			</aside>
-			<div class="col-md-9">
-				<ul class="nav nav-tabs">
-					<li class="nav-item">
-						<a class="nav-link active" href="#">
-							Description
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">
-							Reviews
-							<span class="badge bg-secondary ms-2">
-								{{ review_summary[0] + review_summary[1] + review_summary[2] }}
-							</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">
-							Releases
-							<span class="badge bg-secondary ms-2">
-								{{ package.releases.count() }}
-							</span>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">
-							Threads
-							<span class="badge bg-secondary ms-2">
-								{{ package.threads.count() }}
-							</span>
-						</a>
-					</li>
-				</ul>
-
-				{% if meta.desc %}
-					<article class="markdown panel mb-5">
-						{{ meta.desc | markdown }}
-					</article>
-				{% endif %}
-
-<!--				<h2 id="reviews" class="mt-0">{{ _("Reviews") }}</h2>-->
-
-<!--				{% from "macros/reviews.html" import render_reviews, render_review_form, render_review_preview with context %}-->
-<!--				{% if package.state.name == "APPROVED" %}-->
-<!--					{% if current_user.is_authenticated %}-->
-<!--						{% if has_review %}-->
-<!--							<p>-->
-<!--								<a class="btn btn-primary" href="{{ package.get_url('packages.review') }}">-->
-<!--									{{ _("Edit Review") }}-->
-<!--								</a>-->
-<!--							</p>-->
-<!--						{% elif current_user in package.maintainers %}-->
-<!--							<p>-->
-<!--								{{ _("You can't review your own package.") }}-->
-<!--							</p>-->
-<!--						{% else %}-->
-<!--							{{ render_review_preview(package) }}-->
-<!--						{% endif %}-->
-<!--					{% else %}-->
-<!--						{{ render_review_preview(package) }}-->
-<!--					{% endif %}-->
-<!--				{% else %}-->
-<!--					<p>-->
-<!--						{{ _("Package needs to be approved before it can be reviewed.") }}-->
-<!--					</p>-->
-<!--				{% endif %}-->
-
-<!--				{% if current_user.is_authenticated and current_user.rank.at_least(current_user.rank.ADMIN) %}-->
-<!--					<a href="{{ package.get_url('packages.review_votes') }}" class="btn btn-secondary">{{ _("Review Votes") }}</a>-->
-<!--				{% endif %}-->
-
-<!--				{{ render_reviews(reviews, current_user) }}-->
-
-<!--				{% if packages_uses %}-->
-<!--					<h2>{{ _("Used By") }}</h2>-->
-<!--					{% from "macros/packagegridtile.html" import render_pkggrid %}-->
-<!--					{{ render_pkggrid(packages_uses) }}-->
-<!--				{% endif %}-->
-			</div>
 		</div>
-	</section>
+	</div>
 </main>
 {% endblock %}
