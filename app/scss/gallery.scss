@@ -45,7 +45,7 @@
 	}
 }
 
-.video-embed {
+.video-thumbnail {
 	min-width: 100px;
 	min-height: 67px;
 	background: #111;
@@ -78,6 +78,51 @@
 
 		.fa-play {
 			color: red;
+		}
+	}
+
+	.label {
+		position: absolute;
+		top: 0.25rem;
+		right: 0.5rem;
+		color: #555;
+		font-size: 80%;
+		z-index: 30;
+	}
+}
+
+.video-embed {
+	background: #111;
+	display: block;
+	position: relative;
+	cursor: pointer;
+
+	.fa-play {
+		display: block;
+		font-size: 180%;
+		color: white;
+		z-index: 20;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+
+		&.youtube {
+			background: #ff0000;
+			padding: 0.5em 1em;
+			border-radius: 0.5em;
+		}
+	}
+
+	img {
+		filter: brightness(0.8);
+	}
+
+	&:hover {
+		background: #191919;
+
+		img {
+			filter: brightness(1);
 		}
 	}
 
