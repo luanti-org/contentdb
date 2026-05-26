@@ -256,7 +256,7 @@
 					{{ _("Reviews") }}
 					<span class="badge bg-secondary ms-2">
 						{% set review_summary = package.get_review_summary() %}
-						{{ review_summary[0] + review_summary[1] + review_summary[2] }}
+						+{{ review_summary[0] }} / {{ review_summary[1] }} / -{{ review_summary[2] }}
 					</span>
 				</a>
 			</li>
@@ -333,19 +333,44 @@
 					<h2 class="tab-title">{{ _("Releases") }}</h2>
 
 					{% for release in releases %}
-						<article id="release-{{ release.name }}">
-							<span class="text-muted float-end" title="{{ release.created_at | full_datetime }}">
-								{{ release.created_at | datetime }}
-							</span>
-							<h3>
-								{{ release.title }}
-								<a class="header-anchor" href="#release-{{ release.name }}">🔗</a>
-							</h3>
-							{% if release.release_notes %}
-							<div class="markdown">
-								{{ release.release_notes | markdown(remove_headings=True) }}
+						<article id="release-{{ release.name }}" class="row {% if not loop.first %}mt-5{% endif %}">
+							<div class="col-md-2">
+								<p>
+									{{ release.name }}
+								</p>
+								<p>
+									<a href="{{ release.get_download_url() }}" class="btn btn-secondary me-3">
+										{{ _("Download") }}
+									</a>
+								</p>
+								<p class="text-muted">
+									{% if release.min_rel and release.max_rel %}
+										Luanti {{ release.min_rel.name }}-{{ release.max_rel.name }}
+									{% elif release.min_rel %}
+										Luanti {{ release.min_rel.name }}+
+									{% elif release.max_rel %}
+										Luanti &le;{{ release.max_rel.name }}
+									{% endif %}
+								</p>
 							</div>
-							{% endif %}
+							<div class="col-md-10">
+								<span class="text-muted float-end" title="{{ release.created_at | full_datetime }}">
+									{{ release.created_at | datetime }}
+								</span>
+								<h3 class="mt-0">
+									{{ release.title }}
+									<a class="header-anchor" href="#release-{{ release.name }}">🔗</a>
+								</h3>
+								{% if release.release_notes %}
+									<div class="markdown mb-4">
+										{{ release.release_notes | markdown(remove_headings=True) }}
+									</div>
+								{% else %}
+									<p class="text-muted">
+										{{ _("No review notes") }}
+									</p>
+								{% endif %}
+							</div>
 						</article>
 					{% endfor %}
 
