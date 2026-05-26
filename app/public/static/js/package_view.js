@@ -35,4 +35,24 @@ addEventListener("load", () => {
 			e.preventDefault();
 		});
 	});
+
+	document.querySelectorAll("a[data-bs-toggle='tab']").forEach(ele => {
+		ele.addEventListener("click", e => {
+			const fragment = ele.getAttribute("data-bs-target");
+			window.history.pushState(undefined, undefined, fragment);
+		});
+	});
+
+	let {hash} = location;
+	const originalHash = hash;
+	if (hash) {
+		if (hash.startsWith("#release-")) {
+			hash = "#releases";
+		}
+		const tabLink = document.querySelector('a[href="' + hash + '"]');
+		if (tabLink) {
+			tabLink.click();
+		}
+		window.location.hash = originalHash;
+	}
 });

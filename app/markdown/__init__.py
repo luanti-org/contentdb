@@ -42,28 +42,44 @@ def render_code(self, tokens: Sequence[Token], idx, options, env):
 
 	return f"<pre><code>{escapeHtml(token.content)}</code></pre>"
 
-
 gfm_like.make()
-md = MarkdownIt("gfm-like", {"highlight": highlight_code})
-md.use(anchors_plugin, permalink=True, permalinkSymbol="🔗", max_level=6)
-md.add_render_rule("fence", render_code)
-md.linkify.set({"fuzzy_link": False})
-init_mention(md)
 
+md_with_anchors = MarkdownIt("gfm-like", {"highlight": highlight_code})
+md_with_anchors.use(anchors_plugin, permalink=True, permalinkSymbol="🔗", max_level=6)
+md_with_anchors.add_render_rule("fence", render_code)
+md_with_anchors.linkify.set({"fuzzy_link": False})
+init_mention(md_with_anchors)
 
-def render_markdown(source, clean=True):
+md_no_anchors = MarkdownIt("gfm-like", {"highlight": highlight_code})
+md_no_anchors.add_render_rule("fence", render_code)
+md_no_anchors.linkify.set({"fuzzy_link": False})
+init_mention(md_no_anchors)
+
+def render_markdown(source, clean=True, remove_headings=False):
+	md = md_no_anchors if remove_headings else md_with_anchors
 	html = md.render(source)
+	if remove_headings:
+		html = replace_headings(html)
 	if clean:
-		return clean_html(html)
-	else:
-		return html
-
+		html = clean_html(html)
+	return html
 
 def init_markdown(app):
 	@app.template_filter()
-	def markdown(source):
-		return markupsafe.Markup(render_markdown(source))
+	def markdown(source, remove_headings=False):
+		return markupsafe.Markup(render_markdown(source, remove_headings=remove_headings))
 
+def replace_headings(html: str):
+	soup = BeautifulSoup(html, "html.parser")
+
+	for tag in soup.find_all(["h1", "h2", "h3", "h4", "h5", "h6"]):
+		p = soup.new_tag("p")
+		strong = soup.new_tag("strong")
+		strong.string = tag.get_text()
+		p.append(strong)
+		tag.replace_with(p)
+
+	return str(soup)
 
 def get_headings(html: str):
 	soup = BeautifulSoup(html, "html.parser")

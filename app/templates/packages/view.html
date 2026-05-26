@@ -334,14 +334,24 @@
 
 					{% for release in releases %}
 						<article id="release-{{ release.name }}">
-							<h3>{{ release.title }}</h3>
+							<span class="text-muted float-end" title="{{ release.created_at | full_datetime }}">
+								{{ release.created_at | datetime }}
+							</span>
+							<h3>
+								{{ release.title }}
+								<a class="header-anchor" href="#release-{{ release.name }}">🔗</a>
+							</h3>
 							{% if release.release_notes %}
 							<div class="markdown">
-								{{ release.release_notes | markdown }}
+								{{ release.release_notes | markdown(remove_headings=True) }}
 							</div>
 							{% endif %}
 						</article>
 					{% endfor %}
+
+					<a href="{{ package.get_url('packages.list_releases') }}" class="btn btn-secondary mt-5">
+						{{ _("All releases") }}
+					</a>
 				</section>
 
 				<section id="threads" class="panel tab-pane" role="tabpanel" aria-labelledby="tab-threads">
