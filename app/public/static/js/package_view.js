@@ -43,6 +43,15 @@ addEventListener("load", () => {
 		});
 	});
 
+	document.querySelectorAll(".tab-title").forEach(ele => {
+		ele.classList.add("sr-only");
+	});
+
+	document.querySelectorAll(".tab-pane:not(#description)").forEach(ele => {
+		ele.classList.remove("show");
+		ele.classList.remove("active");
+	});
+
 	let {hash} = location;
 	const originalHash = hash;
 	if (hash) {

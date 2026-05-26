@@ -289,13 +289,13 @@
 			<div class="col-md-9 tab-content" id="tab-content">
 				{% if meta.desc %}
 					<article id="description" class="markdown panel tab-pane show active" role="tabpanel" aria-labelledby="tab-description">
-						<h2 class="sr-only">{{ _("Description") }}</h2>
+						<h2 class="tab-title">{{ _("Description") }}</h2>
 						{{ meta.desc | markdown }}
 					</article>
 				{% endif %}
 
-				<section id="reviews" class="panel tab-pane" role="tabpanel" aria-labelledby="tab-reviews">
-					<h2 class="sr-only">{{ _("Reviews") }}</h2>
+				<section id="reviews" class="panel tab-pane show active" role="tabpanel" aria-labelledby="tab-reviews">
+					<h2 class="tab-title">{{ _("Reviews") }}</h2>
 
 					{% from "macros/reviews.html" import render_reviews, render_review_form, render_review_preview with context %}
 					{% if package.state.name == "APPROVED" %}
@@ -329,8 +329,8 @@
 					{{ render_reviews(reviews, current_user) }}
 				</section>
 
-				<section id="releases" class="panel tab-pane" role="tabpanel" aria-labelledby="tab-releases">
-					<h2 class="sr-only">{{ _("Releases") }}</h2>
+				<section id="releases" class="panel tab-pane show active" role="tabpanel" aria-labelledby="tab-releases">
+					<h2 class="tab-title">{{ _("Releases") }}</h2>
 
 					{% for release in releases %}
 						<article id="release-{{ release.name }}">
@@ -354,8 +354,8 @@
 					</a>
 				</section>
 
-				<section id="threads" class="panel tab-pane" role="tabpanel" aria-labelledby="tab-threads">
-					<h2 class="sr-only">{{ _("Threads") }}</h2>
+				<section id="threads" class="panel tab-pane show active" role="tabpanel" aria-labelledby="tab-threads">
+					<h2 class="tab-title">{{ _("Threads") }}</h2>
 					<p>
 						<a class="btn btn-primary" href="{{ url_for('threads.new', author=package.author.username, name=package.name) }}">
 							<i class="fas fa-plus me-1"></i>
@@ -368,8 +368,8 @@
 					</div>
 				</section>
 
-				<section id="information" class="panel tab-pane" role="tabpanel" aria-labelledby="tab-info">
-					<h2 class="sr-only">{{ _("Information") }}</h2>
+				<section id="information" class="panel tab-pane show active" role="tabpanel" aria-labelledby="tab-info">
+					<h2 class="tab-title">{{ _("Information") }}</h2>
 
 					<h3>{{ _("Provides") }}</h3>
 					{% if package.provides %}
