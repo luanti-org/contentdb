@@ -16,8 +16,7 @@ def daterange(start_date, end_date):
 
 
 keys = ["platform_minetest", "platform_other", "reason_new",
-		"reason_dependency", "reason_update", "downloads_v510",
-		"views_luanti"]
+		"reason_dependency", "reason_update", "views_luanti"]
 
 
 def flatten_data(stats):

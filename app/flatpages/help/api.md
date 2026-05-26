@@ -175,7 +175,6 @@ curl -X DELETE https://content.luanti.org/api/delete-token/ \
         * `reason_new`: list of integers per day.
         * `reason_dependency`: list of integers per day.
         * `reason_update`: list of integers per day.
-        * `downloads_v510`: list of integers per day.
         * `views_luanti`: list of integers per day.
 * GET `/api/package_stats/`
     * Returns last 30 days of daily stats for _all_ packages.
@@ -458,7 +457,6 @@ Example:
         * `reason_new`: list of integers per day.
         * `reason_dependency`: list of integers per day.
         * `reason_update`: list of integers per day.
-        * `downloads_v510`: list of integers per day.
         * `views_luanti`: list of integers per day.
 
 
