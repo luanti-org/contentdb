@@ -9,7 +9,7 @@
 								<div class="ratio ratio-16x9">
 									{% set thumbnail_url = package.get_video_thumbnail_url() %}
 									{% if thumbnail_url %}
-										<img src="{{ thumbnail_url }}" alt="{{ _('Thumbnail for video') }}" />
+										<img class="object-fit-contain" src="{{ thumbnail_url }}" alt="{{ _('Thumbnail for video') }}" />
 									{% endif %}
 								</div>
 								<i class="fas fa-play {% if package.get_is_video_youtube() %}youtube{% endif %}"></i>
@@ -26,7 +26,7 @@
 				<div class="carousel-item {% if not package.video_url and (loop.index == 2 or loop.length == 1) %}active{% endif %}">
 					<a href="{{ item.url }}" target="_blank">
 						<div class="ratio ratio-16x9">
-							<img class="img-size w-100" loading="lazy" src="{{ item.url }}" alt="{{ item.title }}" title="{{ item.title }}" />
+							<img class="img-size w-100 object-fit-contain" loading="lazy" src="{{ item.url }}" alt="{{ item.title }}" title="{{ item.title }}" />
 						</div>
 					</a>
 				</div>
