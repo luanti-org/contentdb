@@ -1,6 +1,7 @@
 # ContentDB
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
+
 import os
 
 from flask import render_template, request, redirect, flash, url_for, abort
@@ -20,6 +21,7 @@ from app.tasks.importtasks import check_update_config
 from app.utils.models import is_package_page
 from app.utils.flask import is_user_bot
 from app.utils.misc import nonempty_or_none, normalize_line_endings
+from app.utils.version import is_luanti_v510
 from . import bp, get_package_tabs
 
 
@@ -119,8 +121,9 @@ def download_release(package, id):
 	if ip is not None and not is_user_bot():
 		user_agent = request.headers.get("User-Agent") or ""
 		is_luanti = user_agent.startswith("Luanti") or user_agent.startswith("Minetest")
+		is_v510 = is_luanti and is_luanti_v510(request.headers.get("User-Agent"))
 		reason = request.args.get("reason")
-		PackageDailyStats.update(package, is_luanti, reason)
+		PackageDailyStats.notify_download(package, is_luanti, is_v510, reason)
 
 		key = make_download_key(ip, release.package)
 		if not has_key(key):

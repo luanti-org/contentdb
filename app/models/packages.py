@@ -1585,8 +1585,12 @@ class PackageDailyStats(db.Model):
 	reason_dependency = db.Column(db.Integer, nullable=False, default=0)
 	reason_update = db.Column(db.Integer, nullable=False, default=0)
 
+	downloads_v510 = db.Column(db.Integer, nullable=False, default=0)
+
+	views_luanti = db.Column(db.Integer, nullable=False, default=0)
+
 	@staticmethod
-	def update(package: Package, is_luanti: bool, reason: str):
+	def notify_download(package: Package, is_luanti: bool, is_v510: bool, reason: str):
 		date = datetime.datetime.utcnow().date()
 
 		to_update = dict()
@@ -1609,6 +1613,29 @@ class PackageDailyStats(db.Model):
 		if field_reason:
 			to_update[field_reason] = getattr(PackageDailyStats, field_reason) + 1
 			kwargs[field_reason] = 1
+
+		if is_v510:
+			to_update["downloads_v510"] = PackageDailyStats.downloads_v510 + 1
+			kwargs["downloads_v510"] = 1
+
+		stmt = insert(PackageDailyStats).values(**kwargs)
+		stmt = stmt.on_conflict_do_update(
+			index_elements=[PackageDailyStats.package_id, PackageDailyStats.date],
+			set_=to_update
+		)
+
+		conn = db.session.connection()
+		conn.execute(stmt)
+
+	@staticmethod
+	def notify_view(package: Package, is_luanti: bool):
+		if not is_luanti:
+			return
+
+		date = datetime.datetime.utcnow().date()
+
+		to_update = {"views_luanti": PackageDailyStats.views_luanti + 1}
+		kwargs = {"package_id": package.id, "date": date, "views_luanti": 1}
 
 		stmt = insert(PackageDailyStats).values(**kwargs)
 		stmt = stmt.on_conflict_do_update(
