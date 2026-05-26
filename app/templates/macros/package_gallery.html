@@ -5,16 +5,19 @@
 				{% if package.video_url %}
 					<div class="carousel-item active">
 						<a href="{{ package.video_url }}" class="video-embed">
-							{% set thumbnail_url = package.get_video_thumbnail_url() %}
-							{% if thumbnail_url %}
-								<div class="ratio ratio-16x9">
-									<img src="{{ thumbnail_url }}" alt="{{ _('Thumbnail for video') }}" />
+							<div class="video-preview">
+								{% set thumbnail_url = package.get_video_thumbnail_url() %}
+								{% if thumbnail_url %}
+									<div class="ratio ratio-16x9">
+										<img src="{{ thumbnail_url }}" alt="{{ _('Thumbnail for video') }}" />
+									</div>
+								{% endif %}
+								<i class="fas fa-play youtube"></i>
+								<div class="label">
+									<i class="fas fa-external-link-square-alt"></i>
 								</div>
-							{% endif %}
-							<i class="fas fa-play youtube"></i>
-							<div class="label">
-								<i class="fas fa-external-link-square-alt"></i>
 							</div>
+							<div class="video-content ratio ratio-16x9 d-none"></div>
 						</a>
 					</div>
 				{% endif %}
@@ -48,7 +51,7 @@
 			<ul class="gallery" style="overflow-x: auto">
 				{% if package.video_url %}
 					<li>
-						<a href="{{ package.video_url }}" data-bs-slide-to="0" class="gallery-image video-thumbnail">
+						<a href="{{ package.video_url }}" data-bs-target="#galleryCarousel" data-bs-slide-to="0" class="gallery-image video-thumbnail">
 							{% set thumbnail_url = package.get_video_thumbnail_url() %}
 							{% if thumbnail_url %}
 								<img src="{{ thumbnail_url }}" alt="{{ _('Thumbnail for video') }}" />
@@ -61,7 +64,7 @@
 				{% for item in items %}
 					{% if item.approved %}
 						<li>
-							<a href="{{ item.url }}" data-bs-slide-to="{{ loop.index + offset - 1 }}" class="gallery-image">
+							<a href="{{ item.url }}" data-bs-target="#galleryCarousel" data-bs-slide-to="{{ loop.index + offset - 1 }}" class="gallery-image">
 								<img src="{{ item.get_thumb_url(1) }}" alt="{{ item.title }}" title="{{ item.title }}" />
 							</a>
 						</li>

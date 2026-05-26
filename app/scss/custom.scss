@@ -315,3 +315,11 @@ pre {
 .ratio-3x2 {
 	--bs-aspect-ratio: 66.66%
 }
+
+.tab-pane > *:nth-child(2) {
+	margin-top: 0;
+}
+
+.nav-tabs-active-panel {
+	--bs-nav-tabs-link-active-bg: #2c2c2c;
+}

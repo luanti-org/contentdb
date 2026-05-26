@@ -26,8 +26,8 @@
 {% endblock %}
 
 {% block scriptextra %}
-	<script src="/static/js/video_embed.js"></script>
-	<script src="/static/js/gallery_carousel.js"></script>
+	<script src="/static/js/video_embed.js?v=2"></script>
+	<script src="/static/js/package_view.js"></script>
 	{% if current_user.is_authenticated %}
 		<script src="/static/js/quick_review_voting.js?v=2"></script>
 	{% endif %}
@@ -40,6 +40,56 @@
 		{{ license.name }}
 	{% endif %}
 {% endmacro %}
+
+{% block dependencies %}
+	{% if package.type != package.type.TXP %}
+		<h3>{{ _("Dependencies") }}</h3>
+		<dl>
+			<dt>{{ _("Required") }}</dt>
+			<dd>
+				{% for dep in package.get_sorted_hard_dependencies() %}
+					{%- if dep.package %}
+						<a class="badge bg-primary"
+								href="{{ dep.package.get_url('packages.view') }}">
+							{{ _("%(title)s by %(display_name)s",
+									title=dep.package.get_translated().title, display_name=dep.package.author.display_name) }}
+						</a>
+					{% elif dep.meta_package %}
+						<a class="badge bg-primary"
+								href="{{ url_for('modnames.view', name=dep.meta_package.name) }}">
+							{{ dep.meta_package.name }}
+						</a>
+					{% else %}
+						{{ "Expected package or meta_package in dep!" | throw }}
+					{% endif %}
+				{% else %}
+					{{ _("No required dependencies") }}
+				{% endfor %}
+			</dd>
+
+			{% set optional_deps=package.get_sorted_optional_dependencies() %}
+			{% if optional_deps %}
+				<dt>{{ _("Optional") }}</dt>
+				<dd>
+					{% for dep in optional_deps %}
+						{%- if dep.package %}
+							<a class="badge bg-secondary"
+									href="{{ dep.package.get_url('packages.view') }}">
+								{{ _("%(title)s by %(display_name)s",
+										title=dep.package.get_translated().title, display_name=dep.package.author.display_name) }}
+						{% elif dep.meta_package %}
+							<a class="badge bg-secondary"
+									href="{{ url_for('modnames.view', name=dep.meta_package.name) }}">
+								{{ dep.meta_package.name }}
+						{% else %}
+							{{ "Expected package or meta_package in dep!" | throw }}
+						{% endif %}</a>
+					{% endfor %}
+				</dd>
+			{% endif %}
+		</dl>
+	{% endif %}
+{% endblock %}
 
 {% block download_btn %}
 	{% if release %}
@@ -143,8 +193,8 @@
 	<section class="container mt-4">
 		<div class="row flex-row-reverse">
 			<aside class="col-md-3 info-sidebar">
-				<div class="ratio ratio-16x9">
-					<img src="{{ package.get_thumb_or_placeholder(2) }}" alt="{{ meta.title }} thumbnail">
+				<div class="ratio ratio-3x2">
+					<img src="{{ package.get_thumb_or_placeholder(2) }}" alt="{{ meta.title }} thumbnail" class="object-fit-cover">
 				</div>
 
 				<p class="text-body my-4">
@@ -154,7 +204,7 @@
 				{% set review_descriptor = package.get_review_descriptor() %}
 				<p>
 					{{ _("Reviews") }}:
-					<a class="{{ review_descriptor[1] }}" href="#reviews" data-bs-toggle="tab" data-bs-target="#reviews">
+					<a class="{{ review_descriptor[1] }}" href="#reviews" data-fake-click="#tab-reviews">
 						{{ review_descriptor[0] }}
 					</a>
 				</p>
@@ -195,15 +245,15 @@
 	</section>
 
 	<nav class="container mt-5">
-		<ul class="nav nav-tabs" id="tabs" role="tablist">
+		<ul class="nav nav-tabs nav-tabs-active-panel" id="tabs" role="tablist">
 			<li class="nav-item" role="presentation">
 				<a class="nav-link active" href="#description" id="tab-description" data-bs-toggle="tab" data-bs-target="#description" role="tab">
-					Description
+					{{ _("Description") }}
 				</a>
 			</li>
 			<li class="nav-item" role="presentation">
 				<a class="nav-link" href="#reviews" id="tab-reviews" data-bs-toggle="tab" data-bs-target="#reviews" role="tab">
-					Reviews
+					{{ _("Reviews") }}
 					<span class="badge bg-secondary ms-2">
 						{% set review_summary = package.get_review_summary() %}
 						{{ review_summary[0] + review_summary[1] + review_summary[2] }}
@@ -212,7 +262,7 @@
 			</li>
 			<li class="nav-item" role="presentation">
 				<a class="nav-link" href="#releases" id="tab-releases" data-bs-toggle="tab" data-bs-target="#releases" role="tab">
-					Releases
+					{{ _("Releases") }}
 					<span class="badge bg-secondary ms-2">
 						{{ package.releases.count() }}
 					</span>
@@ -220,10 +270,15 @@
 			</li>
 			<li class="nav-item" role="presentation">
 				<a class="nav-link" href="#threads" id="tab-threads" data-bs-toggle="tab" data-bs-target="#threads" role="tab">
-					Threads
+					{{ _("Threads") }}
 					<span class="badge bg-secondary ms-2">
 						{{ threads | length }}
 					</span>
+				</a>
+			</li>
+			<li class="nav-item" role="presentation">
+				<a class="nav-link" href="#deps" id="tab-deps" data-bs-toggle="tab" data-bs-target="#deps" role="tab">
+					{{ _("Dependency graph") }}
 				</a>
 			</li>
 		</ul>
@@ -301,6 +356,27 @@
 						{% from "macros/threads.html" import render_threadlist with context %}
 						{{ render_threadlist(threads, False) }}
 					</div>
+				</section>
+
+				<section id="deps" class="panel tab-pane" role="tabpanel" aria-labelledby="tab-deps">
+					<h2 class="sr-only">{{ _("Dependency graph") }}</h2>
+					<h3>{{ _("Provides") }}</h3>
+					{% if package.provides %}
+						<p>
+							{% for meta in package.provides %}
+								<a class="badge bg-secondary"
+									href="{{ url_for('modnames.view', name=meta.name) }}">{{ meta.name }}</a>
+							{% endfor %}
+						</p>
+					{% endif %}
+
+					{{ self.dependencies() }}
+
+					{% if packages_uses %}
+						<h3>{{ _("Used By") }}</h3>
+						{% from "macros/packagegridtile.html" import render_pkggrid %}
+						{{ render_pkggrid(packages_uses) }}
+					{% endif %}
 				</section>
 			</div>
 			<aside class="col-md-3 info-sidebar">
@@ -426,53 +502,7 @@
 					{% endif %}
 				</div>
 
-				{% if package.type != package.type.TXP %}
-					<h3>{{ _("Dependencies") }}</h3>
-					<dl>
-						<dt>{{ _("Required") }}</dt>
-						<dd>
-							{% for dep in package.get_sorted_hard_dependencies() %}
-								{%- if dep.package %}
-									<a class="badge bg-primary"
-											href="{{ dep.package.get_url('packages.view') }}">
-										{{ _("%(title)s by %(display_name)s",
-												title=dep.package.get_translated().title, display_name=dep.package.author.display_name) }}
-									</a>
-								{% elif dep.meta_package %}
-									<a class="badge bg-primary"
-											href="{{ url_for('modnames.view', name=dep.meta_package.name) }}">
-										{{ dep.meta_package.name }}
-									</a>
-								{% else %}
-									{{ "Expected package or meta_package in dep!" | throw }}
-								{% endif %}
-							{% else %}
-								{{ _("No required dependencies") }}
-							{% endfor %}
-						</dd>
-
-						{% set optional_deps=package.get_sorted_optional_dependencies() %}
-						{% if optional_deps %}
-							<dt>{{ _("Optional") }}</dt>
-							<dd>
-								{% for dep in optional_deps %}
-									{%- if dep.package %}
-										<a class="badge bg-secondary"
-												href="{{ dep.package.get_url('packages.view') }}">
-											{{ _("%(title)s by %(display_name)s",
-													title=dep.package.get_translated().title, display_name=dep.package.author.display_name) }}
-									{% elif dep.meta_package %}
-										<a class="badge bg-secondary"
-												href="{{ url_for('modnames.view', name=dep.meta_package.name) }}">
-											{{ dep.meta_package.name }}
-									{% else %}
-										{{ "Expected package or meta_package in dep!" | throw }}
-									{% endif %}</a>
-								{% endfor %}
-							</dd>
-						{% endif %}
-					</dl>
-				{% endif %}
+				{{ self.dependencies() }}
 
 				{% if package.type == package.type.MOD or package.type == package.type.TXP %}
 					{% set pair = package.get_sorted_game_support_pair() %}
@@ -607,13 +637,6 @@
 							</form>
 						{% endif %}
 					</dd>
-					{% if package.provides %}
-						<dt>{{ _("Provides") }}</dt>
-						<dd>{% for meta in package.provides %}
-							<a class="badge bg-secondary"
-							 href="{{ url_for('modnames.view', name=meta.name) }}">{{ meta.name }}</a>
-						{% endfor %}</dd>
-					{% endif %}
 				</dl>
 
 				<p class="mt-3">
