@@ -197,6 +197,15 @@
 					<img src="{{ package.get_thumb_or_placeholder(2) }}" alt="{{ meta.title }} thumbnail" class="object-fit-cover">
 				</div>
 
+				<div class="list-group mt-4">
+					<a class="list-group-item list-group-item-action" href="{{ url_for('users.profile', username=package.author.username) }}" id="alt-reviews" title="{{ _('Author') }}">
+						<img src="{{ package.author.get_profile_pic_url() }}" class="mini-user-photo">
+						<span class="count ms-1">
+							{{ package.author.display_name }}
+						</span>
+					</a>
+				</div>
+
 				<p class="text-body my-4">
 					{{ meta.short_desc }}
 				</p>
@@ -227,15 +236,6 @@
 						</a>
 					{% endfor %}
 				</p>
-
-				<div class="list-group">
-					<a class="list-group-item list-group-item-action" href="{{ url_for('users.profile', username=package.author.username) }}" id="alt-reviews" title="{{ _('Author') }}">
-						<img src="{{ package.author.get_profile_pic_url() }}" class="mini-user-photo">
-						<span class="count ms-1">
-							{{ package.author.display_name }}
-						</span>
-					</a>
-				</div>
 			</aside>
 			<div class="col-md-9">
 				{% from "macros/package_gallery.html" import render_gallery %}

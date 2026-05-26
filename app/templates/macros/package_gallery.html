@@ -48,10 +48,10 @@
 			{% set offset = 0 %}
 		{% endif %}
 		{% if (items | length) + offset > 1 %}
-			<ul class="gallery" style="overflow-x: auto">
+			<ul class="gallery-thumbnails" style="overflow-x: auto">
 				{% if package.video_url %}
 					<li>
-						<a href="{{ package.video_url }}" data-bs-target="#galleryCarousel" data-bs-slide-to="0" class="gallery-image video-thumbnail">
+						<a href="{{ package.video_url }}" data-bs-target="#galleryCarousel" data-bs-slide-to="0" class="gallery-image active video-thumbnail" aria-current="true">
 							{% set thumbnail_url = package.get_video_thumbnail_url() %}
 							{% if thumbnail_url %}
 								<img src="{{ thumbnail_url }}" alt="{{ _('Thumbnail for video') }}" />
@@ -64,7 +64,9 @@
 				{% for item in items %}
 					{% if item.approved %}
 						<li>
-							<a href="{{ item.url }}" data-bs-target="#galleryCarousel" data-bs-slide-to="{{ loop.index + offset - 1 }}" class="gallery-image">
+							<a href="{{ item.url }}" data-bs-target="#galleryCarousel" data-bs-slide-to="{{ loop.index + offset - 1 }}"
+									class="gallery-image {% if not package.video_url and loop.index == 2 %}active{% endif %}"
+							 		{% if not package.video_url and loop.index == 2 %}aria-current="true"{% endif %}>
 								<img src="{{ item.get_thumb_url(1) }}" alt="{{ item.title }}" title="{{ item.title }}" />
 							</a>
 						</li>

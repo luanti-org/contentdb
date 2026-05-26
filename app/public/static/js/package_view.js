@@ -13,12 +13,21 @@ addEventListener("load", () => {
 		ride: "carousel",
 	});
 
-	if (videoEmbed) {
-		carouselElement.addEventListener("slide.bs.carousel", () => {
+	carouselElement.addEventListener("slide.bs.carousel", e => {
+		if (videoEmbed) {
 			const event = new Event("stopVideo");
 			videoEmbed.dispatchEvent(event);
-		});
-	}
+		}
+
+		const previous = document.querySelector(".gallery-thumbnails a.active");
+		previous.classList.remove("active");
+		previous.removeAttribute("aria-current");
+
+		const to = e.to;
+		const next = document.querySelector(`.gallery-thumbnails a[data-bs-slide-to="${to}"]`);
+		next.classList.add("active");
+		next.setAttribute("aria-current", "true");
+	});
 
 	document.querySelectorAll("a[data-fake-click]").forEach(ele => {
 		ele.addEventListener("click", e => {
