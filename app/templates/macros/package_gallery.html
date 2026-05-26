@@ -9,7 +9,7 @@
 								<div class="ratio ratio-16x9">
 									{% set thumbnail_url = package.get_video_thumbnail_url() %}
 									{% if thumbnail_url %}
-										<img class="object-fit-contain" src="{{ thumbnail_url }}" alt="{{ _('Thumbnail for video') }}" />
+										<img class="object-fit-cover" src="{{ thumbnail_url }}" alt="{{ _('Thumbnail for video') }}" />
 									{% endif %}
 								</div>
 								<i class="fas fa-play {% if package.get_is_video_youtube() %}youtube{% endif %}"></i>
@@ -76,7 +76,7 @@
 		{% endif %}
 	{% else %}
 		<div class="ratio ratio-16x9">
-			<img src="/static/placeholder.png" alt="Image placeholder">
+			<img src="/static/placeholder.png" alt="Image placeholder" class="object-fit-cover">
 		</div>
 	{% endif %}
 {% endmacro %}
