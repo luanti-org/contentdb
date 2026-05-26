@@ -25,11 +25,11 @@
 					{{ meta.short_desc }}
 				</p>
 				<p>
-					<i class="fas fa-star-half-alt"></i>
-<!--					<span class="count">-->
-						{% set summary = package.get_review_summary() %}
-						+{{ summary[0] }} / {{ summary[1] }} / -{{ summary[2] }}
-<!--					</span>-->
+					{% set review_descriptor = package.get_review_descriptor() %}
+					{{ _("Reviews") }}:
+					<span class="{{ review_descriptor[1] }}">
+						{{ review_descriptor[0] }}
+					</span>
 				</p>
 			</div>
 		</div>
