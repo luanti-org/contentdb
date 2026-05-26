@@ -37,27 +37,30 @@
 					<input class="btn btn-sm btn-primary" type="submit" value="{{ _('Approve All') }}" />
 				</form>
 			</h3>
-			<ul class="card-body d-flex p-0 flex-row flex-wrap gap-2 justify-content-start align-content-start p-4">
-				{% for s in screenshots %}
-					<li class="packagetile flex-fill" style="min-width: 250px;"><a href="{{ s.get_edit_url() }}"
-						style="background-image: url({{ s.get_thumb_url(3) }});">
-						<div class="packagegridscrub"></div>
-						<div class="packagegridinfo">
-							<h3>
-								{{ s.title }}
-								<br />
-								<small>{{ s.package.title }} by {{ s.package.author.display_name }}</small>
-							</h3>
-							<p></p>
-						</div>
-					</a></li>
-				{% else %}
-					<li><i>{{ _("No screenshots need approval.") }}</i></li>
-				{% endfor %}
-				{% for i in range(4) %}
-					<li class="packagetile flex-fill"></li>
-				{% endfor %}
-			</ul>
+			<div class="card-body p-4">
+				<div class="grid-300px gap-2 p-0">
+					{% for s in screenshots %}
+						<a class="packagetile flex-fill" href="{{ s.get_edit_url() }}">
+							<div class="packagecard">
+								<div class="ratio ratio-16x9">
+									<img src="{{ s.get_thumb_url(3) }}" loading="lazy">
+								</div>
+								<div class="body">
+									<h3>{{ s.title }}</h3>
+									<p class="subtitle">
+										{{ s.package.title }} by {{ s.package.author.display_name }}
+									</p>
+								</div>
+							</div>
+						</a>
+					{% else %}
+						<div><i>{{ _("No screenshots need approval.") }}</i></div>
+					{% endfor %}
+					{% for i in range(4) %}
+						<div class="flex-fill"></div>
+					{% endfor %}
+				</div>
+			</div>
 		</div>
 	{% endif %}
 
