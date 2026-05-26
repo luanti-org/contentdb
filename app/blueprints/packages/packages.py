@@ -177,7 +177,7 @@ def view(package):
 			Collection.name == "favorites").count() > 0
 
 	return render_template("packages/view.html",
-			package=package, releases=releases, packages_uses=packages_uses,
+			package=package, releases=releases.all(), packages_uses=packages_uses,
 			review_thread=review_thread, threads=threads.all(), reviews=reviews, validation=validation,
 			has_review=has_review, favorites_count=favorites_count, is_favorited=is_favorited,
 			public_collection_count=public_collection_count)

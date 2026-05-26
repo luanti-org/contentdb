@@ -953,6 +953,26 @@ class Package(db.Model):
 
 		return [positive, neutral, negative]
 
+	def get_review_descriptor(self):
+		[positive, neutral, negative] = self.get_review_summary()
+		total = positive + negative
+		if total == 0:
+			return [lazy_gettext("None yet"), ""]
+
+		perc = round(100 * positive / total)
+		if perc >= 90 and total >= 20:
+			return [lazy_gettext("Very positive (%(perc)d%% of %(total)d)", perc=perc, total=total), "text-info"]
+		elif perc >= 80:
+			return [lazy_gettext("Positive (%(perc)d%% of %(total)d)", perc=perc, total=total), "text-info"]
+		elif perc >= 70:
+			return [lazy_gettext("Mostly positive (%(perc)d%% of %(total)d)", perc=perc, total=total), "text-info"]
+		elif perc >= 40:
+			return [lazy_gettext("Mixed (%(perc)d%% of %(total)d)", perc=perc, total=total), "text-warning"]
+		elif perc >= 20:
+			return [lazy_gettext("Mostly negative (%(perc)d%% of %(total)d)", perc=perc, total=total), "text-danger"]
+		else:
+			return [lazy_gettext("Negative (%(perc)d%% of %(total)d)", perc=perc, total=total), "text-danger"]
+
 
 class Language(db.Model):
 	id = db.Column(db.String(10), primary_key=True)

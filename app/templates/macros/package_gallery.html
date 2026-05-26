@@ -1,0 +1,82 @@
+{% macro render_gallery(items, package) %}
+	{% if items or package.video_url %}
+		<div id="galleryCarousel" class="carousel slide">
+			<div class="carousel-inner">
+				{% if package.video_url %}
+					<div class="carousel-item active">
+						<a href="{{ package.video_url }}" class="video-embed">
+							<div class="video-preview">
+								{% set thumbnail_url = package.get_video_thumbnail_url() %}
+								{% if thumbnail_url %}
+									<div class="ratio ratio-16x9">
+										<img src="{{ thumbnail_url }}" alt="{{ _('Thumbnail for video') }}" />
+									</div>
+								{% endif %}
+								<i class="fas fa-play youtube"></i>
+								<div class="label">
+									<i class="fas fa-external-link-square-alt"></i>
+								</div>
+							</div>
+							<div class="video-content ratio ratio-16x9 d-none"></div>
+						</a>
+					</div>
+				{% endif %}
+				{% for item in items %}
+				{% if item.approved %}
+				<div class="carousel-item {% if not package.video_url and (loop.index == 2 or loop.length == 1) %}active{% endif %}">
+					<a href="{{ item.url }}" target="_blank">
+						<div class="ratio ratio-16x9">
+							<img class="img-size w-100" loading="lazy" src="{{ item.url }}" alt="{{ item.title }}" title="{{ item.title }}" />
+						</div>
+					</a>
+				</div>
+				{% endif %}
+				{% endfor %}
+				<button class="carousel-control-prev" data-bs-target="#galleryCarousel" role="button" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">{{ _("Previous") }}</span>
+				</button>
+				<button class="carousel-control-next" data-bs-target="#galleryCarousel" role="button" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">{{ _("Next") }}</span>
+				</button>
+			</div>
+		</div>
+		{% if package.video_url %}
+			{% set offset = 1 %}
+		{% else %}
+			{% set offset = 0 %}
+		{% endif %}
+		{% if (items | length) + offset > 1 %}
+			<ul class="gallery-thumbnails" style="overflow-x: auto">
+				{% if package.video_url %}
+					<li>
+						<a href="{{ package.video_url }}" data-bs-target="#galleryCarousel" data-bs-slide-to="0" class="gallery-image active video-thumbnail" aria-current="true">
+							{% set thumbnail_url = package.get_video_thumbnail_url() %}
+							{% if thumbnail_url %}
+								<img src="{{ thumbnail_url }}" alt="{{ _('Thumbnail for video') }}" />
+							{% endif %}
+							<i class="fas fa-play"></i>
+						</a>
+					</li>
+				{% endif %}
+
+				{% for item in items %}
+					{% if item.approved %}
+						<li>
+							<a href="{{ item.url }}" data-bs-target="#galleryCarousel" data-bs-slide-to="{{ loop.index + offset - 1 }}"
+									class="gallery-image {% if not package.video_url and loop.index == 2 %}active{% endif %}"
+							 		{% if not package.video_url and loop.index == 2 %}aria-current="true"{% endif %}>
+								<img src="{{ item.get_thumb_url(1) }}" alt="{{ item.title }}" title="{{ item.title }}" />
+							</a>
+						</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		{% endif %}
+	{% else %}
+		<div class="ratio ratio-16x9">
+			<img src="/static/placeholder.png" alt="Image placeholder">
+		</div>
+	{% endif %}
+{% endmacro %}

@@ -119,7 +119,7 @@ def youtube(id_: str):
 	os.makedirs(cache_dir, exist_ok=True)
 	cache_filepath = os.path.join(cache_dir, id_ + ".jpg")
 
-	url = f"https://img.youtube.com/vi/{id_}/default.jpg"
+	url = f"https://img.youtube.com/vi/{id_}/0.jpg"
 
 	response = requests.get(url, stream=True)
 	if response.status_code != 200:

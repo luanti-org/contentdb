@@ -16,7 +16,7 @@
 	{%- endif %}
 
 	<link rel="stylesheet" type="text/css" href="/static/libs/bootstrap.min.css?v=4">
-	<link rel="stylesheet" type="text/css" href="/static/custom.css?v=62">
+	<link rel="stylesheet" type="text/css" href="/static/custom.css?v=63">
 	<link rel="search" type="application/opensearchdescription+xml" href="/static/opensearch.xml" title="ContentDB" />
 
 	{% if noindex -%}
@@ -235,7 +235,7 @@
 
 							{{ message }}
 
-							<div style="clear: both;"></div>
+							<div class="clearfix"></div>
 						</li>
 					{% endfor %}
 				</ul>
@@ -299,8 +299,8 @@
 	</footer>
 
 	<link href="/static/fa/css/all.css" rel="stylesheet">
+	{% block scriptextra %}{% endblock %}
 	<script src="/static/libs/bootstrap.min.js?v=2"></script>
 
-	{% block scriptextra %}{% endblock %}
 </body>
 </html>
