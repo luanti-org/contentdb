@@ -211,19 +211,23 @@
 				</p>
 
 				{% set review_descriptor = package.get_review_descriptor() %}
-				<p>
-					{{ _("Reviews") }}:
-					<a class="{{ review_descriptor[1] }}" href="#reviews" data-fake-click="#tab-reviews">
-						{{ review_descriptor[0] }}
-					</a>
-				</p>
 
-				<p>
-					{{ _("Last updated") }}:
-					<span class="text-body-secondary">
-						{{ release.created_at | date }}
-					</span>
-				</p>
+				<dl class="dl-inline">
+					<dt>{{ _("Reviews") }}</dt>
+					<dd>
+						<a class="{{ review_descriptor[1] }} fw-normal" href="#reviews" data-fake-click="#tab-reviews">
+							{{ review_descriptor[0] }}
+						</a>
+					</dd>
+					<dt>{{ _("Last updated") }}</dt>
+					<dd class="text-body-secondary fw-normal">{{ release.created_at | date }}</dd>
+					<dt>{{ _("Maintenance State") }}</dt>
+					{% if package.dev_state %}
+						<dd title="{{ package.dev_state.get_desc() }}" class="text-body-secondary fw-normal">{{ package.dev_state.value }}</dd>
+					{% else %}
+						<dd class="text-body-secondary fw-normal"><i>{{ _("Unknown") }}</i></dd>
+					{% endif %}
+				</dl>
 
 				<div style="flex: 1;"></div>
 
