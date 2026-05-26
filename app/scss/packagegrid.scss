@@ -10,6 +10,10 @@
 		overflow: hidden;
 		border-radius: 0.5rem;
 
+		img {
+			object-fit: cover;
+		}
+
 		.badge {
 			position: absolute;
 			right: 0.5rem;
