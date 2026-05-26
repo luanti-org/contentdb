@@ -50,24 +50,14 @@
 	.info-wrapper {
 		position: absolute;
 		display: none;
-		left: 100%;
-		top: 0;
-		bottom: 0;
+		left: 0;
+		right: 0;
+		top: 100%;
 		z-index: 1000;
 	}
 
-	&.open-left .info-wrapper {
-		left: unset;
-		right: 100%;
-
-		.info {
-			margin: 0 1rem 0 0;
-		}
-	}
-
 	.info {
-		width: 400px;
-		margin: 0 0 0 1rem;
+		margin: 1rem 0 0 0;
 		padding: 0.75rem 1.5rem;
 		border-radius: 0.5rem;
 		background: #2d2d2d;
