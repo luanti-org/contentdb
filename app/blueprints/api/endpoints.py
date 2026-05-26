@@ -874,7 +874,7 @@ def collection_view(token, author, name):
 	if not collection.check_perm(user, Permission.VIEW_COLLECTION):
 		error(404, "Collection not found")
 
-	items = collection.items
+	items = collection.items.all()
 	if not collection.check_perm(user, Permission.EDIT_COLLECTION):
 		items = [x for x in items if x.package.check_perm(user, Permission.VIEW_PACKAGE)]
 

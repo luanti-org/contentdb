@@ -131,7 +131,7 @@ def create_edit(author=None, name=None):
 		form.private.data = collection.private if collection else False
 		form.pinned.data = collection.pinned if collection else False
 		if collection:
-			for item in collection.items:
+			for item in collection.items.all():
 				form.descriptions.append_entry(item.description)
 				form.package_ids.append_entry(item.package.get_id())
 				form.package_removed.append_entry("0")
@@ -189,7 +189,7 @@ def handle_create_edit(collection: Collection, form: CollectionForm,
 			link = CollectionPackage()
 			link.package = package
 			link.collection = collection
-			link.order = len(collection.items)
+			link.order = collection.items.count()
 			db.session.add(link)
 
 		add_audit_log(severity, current_user,
@@ -201,7 +201,7 @@ def handle_create_edit(collection: Collection, form: CollectionForm,
 		collection.name = name
 
 		link_lookup = {}
-		for link in collection.items:
+		for link in collection.items.all():
 			link_lookup[link.package.get_id()] = link
 
 		for i, package_id in enumerate(form.package_ids):
@@ -277,7 +277,7 @@ def toggle_package(collection: Collection, package: Package):
 		link = CollectionPackage()
 		link.package = package
 		link.collection = collection
-		link.order = len(collection.items)
+		link.order = collection.items.count()
 		db.session.add(link)
 		add_audit_log(severity, current_user,
 				f"Added {package.get_id()} to collection {author.username}/{collection.name}",
@@ -381,7 +381,7 @@ def clone(author, name):
 	collection.private = True
 	db.session.add(collection)
 
-	for item in old_collection.items:
+	for item in old_collection.items.all():
 		new_item = CollectionPackage()
 		new_item.package = item.package
 		new_item.collection = collection

@@ -63,7 +63,7 @@
 				<div id="add_package_results" class="list-group"></div>
 			</div>
 			<div id="package_list" class="sortable">
-				{% for item in collection.items %}
+				{% for item in collection.items.all() %}
 					{% set package = item.package %}
 					<article class="card my-3" data-id="{{ package.get_id() }}">
 						<div class="card-body">
