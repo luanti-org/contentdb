@@ -277,8 +277,8 @@
 				</a>
 			</li>
 			<li class="nav-item" role="presentation">
-				<a class="nav-link" href="#deps" id="tab-deps" data-bs-toggle="tab" data-bs-target="#deps" role="tab">
-					{{ _("Dependency graph") }}
+				<a class="nav-link" href="#information" id="tab-info" data-bs-toggle="tab" data-bs-target="#information" role="tab">
+					{{ _("Information") }}
 				</a>
 			</li>
 		</ul>
@@ -358,8 +358,9 @@
 					</div>
 				</section>
 
-				<section id="deps" class="panel tab-pane" role="tabpanel" aria-labelledby="tab-deps">
-					<h2 class="sr-only">{{ _("Dependency graph") }}</h2>
+				<section id="information" class="panel tab-pane" role="tabpanel" aria-labelledby="tab-info">
+					<h2 class="sr-only">{{ _("Information") }}</h2>
+
 					<h3>{{ _("Provides") }}</h3>
 					{% if package.provides %}
 						<p>
@@ -371,6 +372,57 @@
 					{% endif %}
 
 					{{ self.dependencies() }}
+
+					<h3>{{ _("Information") }}</h3>
+
+					<dl>
+						<dt>{{ _("Type") }}</dt>
+						<dd>{{ package.type.text }}</dd>
+						<dt>{{ _("Technical Name") }}</dt>
+						<dd>{{ package.name }}</dd>
+						<dt>{{ _("Languages") }}</dt>
+						<dd>
+							English
+							{%- for translation in package.translations -%}
+								, {{ translation.language.title }}
+							{%- endfor -%}
+						</dd>
+						<dt>{{ _("License") }}</dt>
+						<dd>
+							{% if package.license == package.media_license %}
+								{{ render_license(package.license) }}
+							{% elif package.type == package.type.TXP %}
+								{{ render_license(package.media_license) }}
+							{% else %}
+								{{ _("%(code_license)s for code,<br>%(media_license)s for media.",
+										code_license=render_license(package.license), media_license=render_license(package.media_license)) }}
+							{% endif %}
+						</dd>
+						<dt>{{ _("Maintenance State") }}</dt>
+						{% if package.dev_state %}
+							<dd title="{{ package.dev_state.get_desc() }}">{{ package.dev_state.value }}</dd>
+						{% else %}
+							<dd><i>{{ _("Unknown") }}</i></dd>
+						{% endif %}
+						<dt>{{ _("Added") }}</dt>
+						<dd title="{{ package.created_at | full_datetime }}">{{ package.created_at | datetime }}</dd>
+						<dt>{{ _("Maintainers") }}</dt>
+						<dd>
+							{% for user in package.maintainers %}
+								<a class="badge bg-secondary"
+									href="{{ url_for('users.profile', username=user.username) }}">
+									{{ user.display_name }}
+								</a>
+							{% endfor %}
+
+							{% if current_user in package.maintainers and current_user != package.author %}
+								<form class="mt-2"  method="post" action="{{ package.get_url('packages.remove_self_maintainers') }}">
+									<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+									<input class="btn btn-sm btn-link p-0" type="submit" value="{{ _('Remove myself') }}" />
+								</form>
+							{% endif %}
+						</dd>
+					</dl>
 
 					{% if packages_uses %}
 						<h3>{{ _("Used By") }}</h3>
@@ -502,6 +554,13 @@
 					{% endif %}
 				</div>
 
+				{% if package.ai_disclosure.show_warning %}
+					<p class="alert alert-info">
+						<strong>{{ package.ai_disclosure.title }}:</strong>
+						{{ package.ai_disclosure.description }}
+					</p>
+				{% endif %}
+
 				{{ self.dependencies() }}
 
 				{% if package.type == package.type.MOD or package.type == package.type.TXP %}
@@ -578,66 +637,6 @@
 						</p>
 					{% endif %}
 				{% endif %}
-
-				<h3>
-					{{ _("Information") }}
-				</h3>
-
-				{% if package.ai_disclosure.show_warning %}
-					<p class="alert alert-info">
-						<strong>{{ package.ai_disclosure.title }}:</strong>
-						{{ package.ai_disclosure.description }}
-					</p>
-				{% endif %}
-
-				<dl>
-					<dt>{{ _("Type") }}</dt>
-					<dd>{{ package.type.text }}</dd>
-					<dt>{{ _("Technical Name") }}</dt>
-					<dd>{{ package.name }}</dd>
-					<dt>{{ _("Languages") }}</dt>
-					<dd>
-						English
-						{%- for translation in package.translations -%}
-							, {{ translation.language.title }}
-						{%- endfor -%}
-					</dd>
-					<dt>{{ _("License") }}</dt>
-					<dd>
-						{% if package.license == package.media_license %}
-							{{ render_license(package.license) }}
-						{% elif package.type == package.type.TXP %}
-							{{ render_license(package.media_license) }}
-						{% else %}
-							{{ _("%(code_license)s for code,<br>%(media_license)s for media.",
-									code_license=render_license(package.license), media_license=render_license(package.media_license)) }}
-						{% endif %}
-					</dd>
-					<dt>{{ _("Maintenance State") }}</dt>
-					{% if package.dev_state %}
-						<dd title="{{ package.dev_state.get_desc() }}">{{ package.dev_state.value }}</dd>
-					{% else %}
-						<dd><i>{{ _("Unknown") }}</i></dd>
-					{% endif %}
-					<dt>{{ _("Added") }}</dt>
-					<dd title="{{ package.created_at | full_datetime }}">{{ package.created_at | datetime }}</dd>
-					<dt>{{ _("Maintainers") }}</dt>
-					<dd>
-						{% for user in package.maintainers %}
-							<a class="badge bg-secondary"
-								href="{{ url_for('users.profile', username=user.username) }}">
-								{{ user.display_name }}
-							</a>
-						{% endfor %}
-
-						{% if current_user in package.maintainers and current_user != package.author %}
-							<form class="mt-2"  method="post" action="{{ package.get_url('packages.remove_self_maintainers') }}">
-								<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-								<input class="btn btn-sm btn-link p-0" type="submit" value="{{ _('Remove myself') }}" />
-							</form>
-						{% endif %}
-					</dd>
-				</dl>
 
 				<p class="mt-3">
 					<a href="{{ package.get_url('packages.statistics') }}" rel="nofollow">

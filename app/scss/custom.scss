@@ -317,9 +317,18 @@ pre {
 }
 
 .tab-pane > *:nth-child(2) {
-	margin-top: 0;
+	&, & > h3 {
+		margin-top: 0;
+	}
 }
 
 .nav-tabs-active-panel {
 	--bs-nav-tabs-link-active-bg: #2c2c2c;
+	border-bottom: none !important;
+}
+
+.tab-pane {
+	border: none !important;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
 }
