@@ -798,6 +798,14 @@ class Package(db.Model):
 		return "[![ContentDB]({})]({})" \
 			.format(self.get_shield_url(type), self.get_url("packages.view", True))
 
+	def get_is_video_youtube(self):
+		from app.utils.url import get_youtube_id
+		if self.video_url is None:
+			return False
+
+		id_ = get_youtube_id(self.video_url)
+		return id_ is not None
+
 	def get_video_thumbnail_url(self, absolute: bool = False):
 		from app.utils.url import get_youtube_id
 

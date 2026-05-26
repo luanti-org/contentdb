@@ -4,15 +4,15 @@
 			<div class="carousel-inner">
 				{% if package.video_url %}
 					<div class="carousel-item active">
-						<a href="{{ package.video_url }}" class="video-embed">
+						<a href="{{ package.video_url }}" class="video-embed" target="_blank">
 							<div class="video-preview">
-								{% set thumbnail_url = package.get_video_thumbnail_url() %}
-								{% if thumbnail_url %}
-									<div class="ratio ratio-16x9">
+								<div class="ratio ratio-16x9">
+									{% set thumbnail_url = package.get_video_thumbnail_url() %}
+									{% if thumbnail_url %}
 										<img src="{{ thumbnail_url }}" alt="{{ _('Thumbnail for video') }}" />
-									</div>
-								{% endif %}
-								<i class="fas fa-play youtube"></i>
+									{% endif %}
+								</div>
+								<i class="fas fa-play {% if package.get_is_video_youtube() %}youtube{% endif %}"></i>
 								<div class="label">
 									<i class="fas fa-external-link-square-alt"></i>
 								</div>
