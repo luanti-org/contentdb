@@ -14,11 +14,12 @@ from wtforms.validators import InputRequired, Length, Optional, Regexp
 
 from app import render_markdown
 from app.markdown import get_links
-from app.models import Collection, db, Package, Permission, CollectionPackage, User, UserRank, AuditSeverity
+from app.models import Collection, db, Package, Permission, CollectionPackage, User, UserRank, AuditSeverity, PackageScreenshot
 from app.tasks.webhooktasks import post_discord_webhook
 from app.utils.misc import nonempty_or_none, normalize_line_endings
 from app.utils.flask import should_return_json, abs_url_for
 from app.utils.models import is_package_page, add_audit_log, create_session
+from sqlalchemy.orm import joinedload, subqueryload, load_only, noload, defaultload, raiseload
 
 bp = Blueprint("collections", __name__)
 
@@ -51,14 +52,24 @@ def list_all(author=None):
 
 @bp.route("/collections/<author>/<name>/")
 def view(author, name):
-	collection = Collection.query \
-		.filter(Collection.name == name, Collection.author.has(username=author)) \
-		.one_or_404()
+	collection = (Collection.query
+		.filter(Collection.name == name, Collection.author.has(username=author))
+		.one_or_404())
 
 	if not collection.check_perm(current_user, Permission.VIEW_COLLECTION):
 		abort(404)
 
-	items = collection.items
+	items = collection.items.options(
+		joinedload(CollectionPackage.package)
+			.options(
+				raiseload("*"),
+				subqueryload(Package.main_screenshot),
+				joinedload(Package.author)
+					.load_only(User.username, User.display_name, raiseload=True),
+				load_only(Package.name, Package.title, Package.short_desc, Package.state, raiseload=True),
+			)
+	).all()
+
 	if not collection.check_perm(current_user, Permission.EDIT_COLLECTION):
 		items = [x for x in items if x.package.check_perm(current_user, Permission.VIEW_PACKAGE)]
 

@@ -47,7 +47,7 @@ class Collection(db.Model):
 
 	packages = db.relationship("Package", secondary=CollectionPackage.__table__, backref="collections")
 	items = db.relationship("CollectionPackage", back_populates="collection", order_by=db.asc("order"),
-		cascade="all, delete, delete-orphan")
+		cascade="all, delete, delete-orphan", lazy="dynamic")
 
 	collection_name_valid = db.CheckConstraint("name ~* '^[a-z0-9_]+$' AND name != '_game'")
 	__table_args__ = (db.UniqueConstraint("author_id", "name", name="_collection_uc"),)
