@@ -291,12 +291,17 @@
 	<div class="container mt-0">
 		<div class="row">
 			<div class="col-md-9 tab-content" id="tab-content">
-				{% if meta.desc %}
-					<article id="description" class="markdown panel tab-pane show active" role="tabpanel" aria-labelledby="tab-description">
-						<h2 class="tab-title">{{ _("Description") }}</h2>
+
+				<article id="description" class="markdown panel tab-pane show active" role="tabpanel" aria-labelledby="tab-description">
+					<h2 class="tab-title">{{ _("Description") }}</h2>
+					{% if meta.desc %}
 						{{ meta.desc | markdown }}
-					</article>
-				{% endif %}
+					{% else %}
+						<p>
+							{{ _("No description provided") }}
+						</p>
+					{% endif %}
+				</article>
 
 				<section id="reviews" class="panel tab-pane show active" role="tabpanel" aria-labelledby="tab-reviews">
 					<h2 class="tab-title">{{ _("Reviews") }}</h2>
