@@ -7,27 +7,30 @@ addEventListener("load", () => {
 	const videoEmbed = document.querySelector("#galleryCarousel .video-embed");
 	const carouselElement = document.getElementById("galleryCarousel");
 
-	// carousel.pause() does not work properly given `pause: "hover"`, so disable
-	// autoplay when there is a video embed
-	const carousel = new bootstrap.Carousel(carouselElement, videoEmbed ? {} : {
-		ride: "carousel",
-	});
+	if (carouselElement) {
 
-	carouselElement.addEventListener("slide.bs.carousel", e => {
-		if (videoEmbed) {
-			const event = new Event("stopVideo");
-			videoEmbed.dispatchEvent(event);
-		}
+		// carousel.pause() does not work properly given `pause: "hover"`, so disable
+		// autoplay when there is a video embed
+		const carousel = new bootstrap.Carousel(carouselElement, videoEmbed ? {} : {
+			ride: "carousel",
+		});
 
-		const previous = document.querySelector(".gallery-thumbnails a.active");
-		previous.classList.remove("active");
-		previous.removeAttribute("aria-current");
+		carouselElement.addEventListener("slide.bs.carousel", e => {
+			if (videoEmbed) {
+				const event = new Event("stopVideo");
+				videoEmbed.dispatchEvent(event);
+			}
 
-		const to = e.to;
-		const next = document.querySelector(`.gallery-thumbnails a[data-bs-slide-to="${to}"]`);
-		next.classList.add("active");
-		next.setAttribute("aria-current", "true");
-	});
+			const previous = document.querySelector(".gallery-thumbnails a.active");
+			previous.classList.remove("active");
+			previous.removeAttribute("aria-current");
+
+			const to = e.to;
+			const next = document.querySelector(`.gallery-thumbnails a[data-bs-slide-to="${to}"]`);
+			next.classList.add("active");
+			next.setAttribute("aria-current", "true");
+		});
+	}
 
 	document.querySelectorAll("a[data-fake-click]").forEach(ele => {
 		ele.addEventListener("click", e => {
