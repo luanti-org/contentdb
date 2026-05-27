@@ -227,6 +227,17 @@
 					{% else %}
 						<dd class="text-body-secondary fw-normal"><i>{{ _("Unknown") }}</i></dd>
 					{% endif %}
+					<dt>{{ _("License") }}</dt>
+					<dd class="text-body-secondary fw-normal">
+						{% if package.license == package.media_license %}
+							{{ render_license(package.license) }}
+						{% elif package.type == package.type.TXP %}
+							{{ render_license(package.media_license) }}
+						{% else %}
+							{{ _("%(code_license)s for code,<br>%(media_license)s for media.",
+									code_license=render_license(package.license), media_license=render_license(package.media_license)) }}
+						{% endif %}
+					</dd>
 				</dl>
 
 				<div style="flex: 1;"></div>
