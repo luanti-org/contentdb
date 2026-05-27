@@ -14,7 +14,7 @@ from sqlalchemy.orm import joinedload
 from sqlalchemy.sql.expression import func
 
 from app import csrf
-from app.logic.graphs import get_package_stats, get_package_stats_for_user, get_all_package_stats
+from app.domain.graphs import get_package_stats, get_package_stats_for_user, get_all_package_stats
 from app.markdown import render_markdown
 from app.models import Tag, PackageState, PackageType, Package, db, PackageRelease, Permission, \
 	LuantiRelease, APIToken, PackageScreenshot, License, ContentWarning, User, PackageReview, Thread, Collection, \

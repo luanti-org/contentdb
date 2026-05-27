@@ -5,9 +5,9 @@
 from typing import Optional
 from flask import jsonify, abort, make_response, url_for, current_app
 
-from app.logic.packages import do_edit_package
-from app.logic.releases import LogicError, do_create_vcs_release, do_create_zip_release
-from app.logic.screenshots import do_create_screenshot, do_order_screenshots, do_set_cover_image
+from app.domain.packages import do_edit_package
+from app.domain.releases import DomainError, do_create_vcs_release, do_create_zip_release
+from app.domain.screenshots import do_create_screenshot, do_order_screenshots, do_set_cover_image
 from app.models import APIToken, Package, LuantiRelease, PackageScreenshot
 
 
@@ -15,12 +15,12 @@ def error(code: int, msg: str):
 	abort(make_response(jsonify({ "success": False, "error": msg }), code))
 
 
-# Catches LogicErrors and aborts with JSON error
+# Catches DomainErrors and aborts with JSON error
 def guard(f):
 	def ret(*args, **kwargs):
 		try:
 			return f(*args, **kwargs)
-		except LogicError as e:
+		except DomainError as e:
 			error(e.code, e.message)
 
 	return ret

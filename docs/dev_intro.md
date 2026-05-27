@@ -9,7 +9,7 @@ When a user makes a request, Python Flask will direct the request to a *route* i
 A [blueprint](https://flask.palletsprojects.com/en/2.0.x/blueprints/) is a Flask construct to hold a set of routes.
 Routes are implemented using Python, and likely to respond by using database *models* and rendering HTML *templates*.
 
-Routes may also use functions in the `app/logic/` module, which is a directory containing reusable functions. This
+Routes may also use functions in the `app/domain/` module, which is a directory containing reusable functions. This
 allows the API, background tasks, and the front-end to reuse code. 
 
 To avoid blocking web requests, background tasks run as
@@ -29,7 +29,7 @@ The `app` directory contains the Python Flask application.
 * `public` contains files that should be added to the web server unedited. Examples include CSS libraries, images, and JS scripts.
 * `scss` contains the stylesheet files, that are compiled into CSS.
 * `tasks` contains the background tasks executed by [Celery](https://docs.celeryproject.org/en/stable/getting-started/introduction.html).
-* `logic` is a collection of reusable functions. For example, shared code to create a release or edit a package is here.
+* `domain` is a collection of reusable functions. For example, shared code to create a release or edit a package is here.
 * `tests` contains the Unit Tests and UI tests.
 * `utils` contain generic Python utilities, for example common code to manage Flask requests.
 

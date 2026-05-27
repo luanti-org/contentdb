@@ -18,7 +18,7 @@ from app.utils.models import add_audit_log
 from app.utils.user import make_flask_login_password, is_safe_url, check_password_hash, post_login
 from . import bp
 from app.models import User, AuditSeverity, db, EmailSubscription, UserEmailVerification
-from app.logic.users import create_user
+from app.domain.users import create_user
 
 
 class LoginForm(FlaskForm):

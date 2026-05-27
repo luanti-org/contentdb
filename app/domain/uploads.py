@@ -8,7 +8,7 @@ import os
 from flask_babel import lazy_gettext, LazyString
 
 from app import app
-from app.logic.LogicError import LogicError
+from app.domain.DomainError import DomainError
 from app.utils.misc import random_string
 
 
@@ -25,7 +25,7 @@ def is_allowed_image(data):
 
 def upload_file(file, file_type: str, file_type_desc: LazyString | str, length: int=10):
 	if not file or file is None or file.filename == "":
-		raise LogicError(400, "Expected file")
+		raise DomainError(400, "Expected file")
 
 	assert os.path.isdir(app.config["UPLOAD_DIR"]), "UPLOAD_DIR must exist"
 
@@ -43,10 +43,10 @@ def upload_file(file, file_type: str, file_type_desc: LazyString | str, length: 
 		ext = "jpg"
 
 	if ext is None or ext not in allowed_extensions:
-		raise LogicError(400, lazy_gettext("Please upload %(file_desc)s", file_desc=file_type_desc))
+		raise DomainError(400, lazy_gettext("Please upload %(file_desc)s", file_desc=file_type_desc))
 
 	if is_image and not is_allowed_image(file.stream.read()):
-		raise LogicError(400, lazy_gettext("Uploaded image isn't actually an image"))
+		raise DomainError(400, lazy_gettext("Uploaded image isn't actually an image"))
 
 	file.stream.seek(0)
 

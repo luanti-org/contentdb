@@ -902,7 +902,7 @@ class Package(db.Model):
 		return [mp.name for mp in self.get_missing_hard_dependencies_query().all()]
 
 	def get_next_states(self, user):
-		from app.logic.package_approval import can_move_to_state
+		from app.domain.package_approval import can_move_to_state
 
 		states = []
 

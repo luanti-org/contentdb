@@ -18,8 +18,8 @@ from wtforms import SelectField, StringField, TextAreaField, IntegerField, Submi
 from wtforms.validators import InputRequired, Length, Regexp, DataRequired, Optional, URL, NumberRange, ValidationError
 from wtforms_sqlalchemy.fields import QuerySelectField, QuerySelectMultipleField
 
-from app.logic.LogicError import LogicError
-from app.logic.packages import do_edit_package
+from app.domain.DomainError import DomainError
+from app.domain.packages import do_edit_package
 from app.querybuilder import QueryBuilder
 from app.rediscache import has_key, set_temp_key
 from app.tasks.importtasks import import_repo_screenshot, check_zip_release, remove_package_game_support, \
@@ -38,8 +38,8 @@ from app.utils.models import is_package_page, add_audit_log, get_package_by_info
 from app.utils.user import rank_required
 from app.utils.flask import is_user_bot, get_int_or_abort, abs_url_for, get_daterange_options
 from app.utils.misc import normalize_line_endings
-from app.logic.package_approval import validate_package_for_approval, can_move_to_state
-from app.logic.game_support import game_support_set
+from app.domain.package_approval import validate_package_for_approval, can_move_to_state
+from app.domain.game_support import game_support_set
 from app.utils.models import create_session
 
 
@@ -315,7 +315,7 @@ def handle_create_edit(package: typing.Optional[Package], form: PackageForm, aut
 			next_url = package.get_url("packages.setup_releases")
 
 		return redirect(next_url)
-	except LogicError as e:
+	except DomainError as e:
 		flash(e.message, "danger")
 		db.session.rollback()
 
@@ -785,7 +785,7 @@ def game_support(package):
 					game_is_supported[game.id] = False
 				game_support_set(db.session, package, game_is_supported, 11)
 				detect_update_needed = True
-			except LogicError as e:
+			except DomainError as e:
 				flash(e.message, "danger")
 
 		next_url = package.get_url("packages.game_support")

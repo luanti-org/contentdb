@@ -13,7 +13,7 @@ from wtforms.fields.simple import TextAreaField
 from wtforms.validators import InputRequired, Length, Optional, Regexp
 from wtforms_sqlalchemy.fields import QuerySelectField
 
-from app.logic.releases import do_create_vcs_release, LogicError, do_create_zip_release
+from app.domain.releases import do_create_vcs_release, DomainError, do_create_zip_release
 from app.models import Package, db, User, PackageState, Permission, UserRank, PackageDailyStats, LuantiRelease, \
 	PackageRelease, PackageUpdateTrigger, PackageUpdateConfig, ReleaseState
 from app.rediscache import has_key, set_temp_key, make_download_key
@@ -104,7 +104,7 @@ def create_release(package):
 				rel = do_create_zip_release(current_user, package, form.name.data, form.title.data, form.release_notes.data,
 						form.file_upload.data, form.min_rel.data.get_actual(), form.max_rel.data.get_actual())
 			return redirect(url_for("tasks.check", id=rel.task_id, r=rel.get_edit_url()))
-		except LogicError as e:
+		except DomainError as e:
 			flash(e.message, "danger")
 
 	return render_template("packages/release_new.html", package=package, form=form)

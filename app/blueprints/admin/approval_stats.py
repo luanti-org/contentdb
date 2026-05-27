@@ -6,7 +6,7 @@ import datetime
 from flask import render_template, request, abort, redirect, url_for, jsonify
 
 from . import bp
-from app.logic.approval_stats import get_approval_statistics
+from app.domain.approval_stats import get_approval_statistics
 from app.models import UserRank
 from app.utils.user import rank_required
 

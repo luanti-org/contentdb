@@ -29,9 +29,9 @@ from app.utils.git import clone_repo, get_latest_tag, get_latest_commit, get_tem
 from .luanticheck import build_tree, LuantiCheckError, ContentType, PackageTreeNode
 from .webhooktasks import post_discord_webhook
 from app import app
-from app.logic.LogicError import LogicError
-from app.logic.packages import do_edit_package, ALIASES
-from app.logic.game_support import game_support_update, game_support_set, game_support_update_all, game_support_remove
+from app.domain.DomainError import DomainError
+from app.domain.packages import do_edit_package, ALIASES
+from app.domain.game_support import game_support_update, game_support_set, game_support_update_all, game_support_remove
 from app.utils.image import get_image_size
 
 
@@ -184,7 +184,7 @@ def post_release_check_update(self, release: PackageRelease, path):
 		with open(os.path.join(tree.baseDir, ".cdb.json"), "r") as f:
 			data = json.loads(f.read())
 			do_edit_package(package.author, package, False, False, data, "Post release hook")
-	except LogicError as e:
+	except DomainError as e:
 		raise TaskError("Whilst applying .cdb.json: " + e.message)
 	except JSONDecodeError as e:
 		raise TaskError("Whilst reading .cdb.json: " + str(e))
@@ -318,7 +318,7 @@ def check_zip_release(self, id, path):
 			release.state = ReleaseState.UNAPPROVED
 			release.approve(release.package.author)
 			db.session.commit()
-	except (LuantiCheckError, TaskError, LogicError) as err:
+	except (LuantiCheckError, TaskError, DomainError) as err:
 		db.session.rollback()
 
 		error_message = err.value if hasattr(err, "value") else str(err)
@@ -371,7 +371,7 @@ def import_languages(self, id, path):
 					strict=False)
 			update_translations(release.package, tree)
 			db.session.commit()
-		except (LuantiCheckError, TaskError, LogicError) as err:
+		except (LuantiCheckError, TaskError, DomainError) as err:
 			db.session.rollback()
 
 			task_url = url_for('tasks.check', id=self.request.id)
@@ -416,7 +416,7 @@ def make_vcs_release(self, id, branch):
 			db.session.commit()
 
 			return release.url
-	except (LuantiCheckError, TaskError, LogicError) as err:
+	except (LuantiCheckError, TaskError, DomainError) as err:
 		db.session.rollback()
 
 		error_message = err.value if hasattr(err, "value") else str(err)

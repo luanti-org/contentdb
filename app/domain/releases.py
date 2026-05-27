@@ -9,8 +9,8 @@ from typing import Optional
 from celery import uuid
 from flask_babel import lazy_gettext
 
-from app.logic.LogicError import LogicError
-from app.logic.uploads import upload_file
+from app.domain.DomainError import DomainError
+from app.domain.uploads import upload_file
 from app.models import PackageRelease, db, Permission, User, Package, LuantiRelease, AuditSeverity
 from app.tasks.importtasks import make_vcs_release, check_zip_release
 from app.utils.models import add_audit_log
@@ -19,22 +19,22 @@ from app.utils.misc import nonempty_or_none, normalize_line_endings
 
 def check_can_create_release(user: User, package: Package, name: str, title: str):
 	if not package.check_perm(user, Permission.MAKE_RELEASE):
-		raise LogicError(403, lazy_gettext("You don't have permission to make releases"))
+		raise DomainError(403, lazy_gettext("You don't have permission to make releases"))
 
 	five_minutes_ago = datetime.datetime.now() - datetime.timedelta(minutes=5)
 	count = package.releases.filter(PackageRelease.created_at > five_minutes_ago).count()
 	if count >= 5:
-		raise LogicError(429, lazy_gettext("You've created too many releases for this package in the last 5 minutes, please wait before trying again"))
+		raise DomainError(429, lazy_gettext("You've created too many releases for this package in the last 5 minutes, please wait before trying again"))
 
 	if PackageRelease.query.filter_by(package_id=package.id, name=name).count() > 0:
-		raise LogicError(403, lazy_gettext("A release with this name already exists"))
+		raise DomainError(403, lazy_gettext("A release with this name already exists"))
 
 	if PackageRelease.query.filter_by(package_id=package.id, title=title).count() > 0:
-		raise LogicError(403, lazy_gettext("A release with this title already exists"))
+		raise DomainError(403, lazy_gettext("A release with this title already exists"))
 
 	release_name_re = re.compile("^[A-Za-z]*\.?\d+([\.\-\/][\dA-Za-z]+)*$")
 	if not release_name_re.match(name):
-		raise LogicError(403, lazy_gettext("Release name must be in the form 1.2.3, v1.2.3, or 2025-02-01"))
+		raise DomainError(403, lazy_gettext("Release name must be in the form 1.2.3, v1.2.3, or 2025-02-01"))
 
 
 def do_create_vcs_release(user: User, package: Package, name: str, title: Optional[str], release_notes: Optional[str], ref: str,
@@ -77,7 +77,7 @@ def do_create_zip_release(user: User, package: Package, name: str, title: Option
 	if commit_hash:
 		commit_hash = commit_hash.lower()
 		if not (len(commit_hash) == 40 and re.match(r"^[0-9a-f]+$", commit_hash)):
-			raise LogicError(400, lazy_gettext("Invalid commit hash; it must be a 40 character long base16 string"))
+			raise DomainError(400, lazy_gettext("Invalid commit hash; it must be a 40 character long base16 string"))
 
 	uploaded_url, uploaded_path = upload_file(file, "zip", "a zip file")
 

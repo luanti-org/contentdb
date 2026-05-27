@@ -3,7 +3,7 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 import datetime
-from app.logic.approval_stats import _get_approval_statistics
+from app.domain.approval_stats import _get_approval_statistics
 from app.models import AuditLogEntry, User
 
 

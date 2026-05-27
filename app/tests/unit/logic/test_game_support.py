@@ -4,7 +4,7 @@
 
 from typing import List
 
-from app.logic.game_support import GSPackage, GameSupport
+from app.domain.game_support import GSPackage, GameSupport
 from app.models import PackageType
 
 

@@ -9,7 +9,7 @@ import typing
 import validators
 from flask_babel import lazy_gettext, LazyString
 
-from app.logic.LogicError import LogicError
+from app.domain.DomainError import DomainError
 from app.models import User, Package, PackageType, MetaPackage, Tag, ContentWarning, db, Permission, AuditSeverity, \
 	License, PackageDevState, PackageState, PackageAIDisclosure
 from app.utils.models import add_audit_log
@@ -21,7 +21,7 @@ from app.utils.url import clean_youtube_url, get_forum_id
 
 def check(cond: bool, msg: typing.Union[str, LazyString]):
 	if not cond:
-		raise LogicError(400, msg)
+		raise DomainError(400, msg)
 
 
 def get_license(name):
@@ -30,7 +30,7 @@ def get_license(name):
 
 	license = License.query.filter(License.name.ilike(name)).first()
 	if license is None:
-		raise LogicError(400, "Unknown license " + name)
+		raise DomainError(400, "Unknown license " + name)
 	return license
 
 
@@ -142,11 +142,11 @@ def validate(data: dict):
 def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, data: dict,
 		reason: str = None) -> bool:
 	if not package.check_perm(user, Permission.EDIT_PACKAGE):
-		raise LogicError(403, lazy_gettext("You don't have permission to edit this package"))
+		raise DomainError(403, lazy_gettext("You don't have permission to edit this package"))
 
 	if "name" in data and package.name != data["name"] and \
 			not package.check_perm(user, Permission.CHANGE_NAME):
-		raise LogicError(403, lazy_gettext("You don't have permission to change the package name"))
+		raise DomainError(403, lazy_gettext("You don't have permission to change the package name"))
 
 	before_dict = None
 	if not was_new:
@@ -155,7 +155,7 @@ def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, 
 	for alias, to in ALIASES.items():
 		if alias in data:
 			if to in data and data[to] != data[alias]:
-				raise LogicError(403, f"Aliased field ({alias}) does not match new field ({to})")
+				raise DomainError(403, f"Aliased field ({alias}) does not match new field ({to})")
 
 			data[to] = data[alias]
 
@@ -164,7 +164,7 @@ def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, 
 	for field in ["short_desc", "desc", "website", "issueTracker", "repo", "video_url", "donate_url", "translation_url"]:
 		if field in data and has_blocked_domains(data[field], user.username,
 					f"{field} of {package.get_id()}"):
-			raise LogicError(403, lazy_gettext("Linking to blocked sites is not allowed"))
+			raise DomainError(403, lazy_gettext("Linking to blocked sites is not allowed"))
 
 	if "type" in data:
 		new_type = PackageType.coerce(data["type"])
@@ -173,7 +173,7 @@ def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, 
 		elif package.state != PackageState.APPROVED:
 			package.type = new_type
 		else:
-			raise LogicError(403, lazy_gettext("You cannot change package type once approved"))
+			raise DomainError(403, lazy_gettext("You cannot change package type once approved"))
 
 	if "dev_state" in data:
 		data["dev_state"] = PackageDevState.coerce(data["dev_state"])
@@ -193,7 +193,7 @@ def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, 
 	if "video_url" in data and data["video_url"] is not None:
 		data["video_url"] = clean_youtube_url(data["video_url"]) or data["video_url"]
 		if "dQw4w9WgXcQ" in data["video_url"]:
-			raise LogicError(403, "Never gonna give you up / Never gonna let you down / Never gonna run around and desert you")
+			raise DomainError(403, "Never gonna give you up / Never gonna let you down / Never gonna run around and desert you")
 
 	for key in ["name", "title", "short_desc", "desc", "dev_state", "ai_disclosure", "license", "media_license",
 			"repo", "website", "issueTracker", "forums", "video_url", "donate_url", "translation_url"]:
@@ -220,7 +220,7 @@ def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, 
 			else:
 				tag = Tag.query.filter_by(name=tag_id).first()
 				if tag is None:
-					raise LogicError(400, "Unknown tag: " + tag_id)
+					raise DomainError(400, "Unknown tag: " + tag_id)
 
 			package.tags.append(tag)
 
@@ -232,7 +232,7 @@ def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, 
 			else:
 				warning = ContentWarning.query.filter_by(name=warning_id).first()
 				if warning is None:
-					raise LogicError(400, "Unknown warning: " + warning_id)
+					raise DomainError(400, "Unknown warning: " + warning_id)
 				package.content_warnings.append(warning)
 
 	was_modified = was_new

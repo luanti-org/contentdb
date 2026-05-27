@@ -4,7 +4,7 @@
 
 from unittest.mock import MagicMock, patch
 
-from app.logic import package_approval
+from app.domain import package_approval
 from app.models import Package, PackageType
 
 
@@ -64,10 +64,10 @@ def test_requires_release():
 	assert notes[0].message == "Release is still importing, or has an error."
 
 
-@patch("app.logic.package_approval.is_package_name_taken", MagicMock(return_value=False))
-@patch("app.logic.package_approval.get_conflicting_mod_names", MagicMock(return_value=set()))
-@patch("app.logic.package_approval.count_packages_with_forum_topic", MagicMock(return_value=1))
-@patch("app.logic.package_approval.get_forum_topic")
+@patch("app.domain.package_approval.is_package_name_taken", MagicMock(return_value=False))
+@patch("app.domain.package_approval.get_conflicting_mod_names", MagicMock(return_value=set()))
+@patch("app.domain.package_approval.count_packages_with_forum_topic", MagicMock(return_value=1))
+@patch("app.domain.package_approval.get_forum_topic")
 def test_missing_hard_deps(get_forum_topic):
 	mock_package = MockPackageHelper(PackageType.MOD)
 	mock_package.add_release()
@@ -83,10 +83,10 @@ def test_missing_hard_deps(get_forum_topic):
 	assert notes[0].message == "The following hard dependencies need to be added to ContentDB first: missing"
 
 
-@patch("app.logic.package_approval.is_package_name_taken", MagicMock(return_value=True))
-@patch("app.logic.package_approval.get_conflicting_mod_names", MagicMock(return_value={"one", "two"}))
-@patch("app.logic.package_approval.count_packages_with_forum_topic", MagicMock(return_value=2))
-@patch("app.logic.package_approval.get_forum_topic", MagicMock(return_value=None))
+@patch("app.domain.package_approval.is_package_name_taken", MagicMock(return_value=True))
+@patch("app.domain.package_approval.get_conflicting_mod_names", MagicMock(return_value={"one", "two"}))
+@patch("app.domain.package_approval.count_packages_with_forum_topic", MagicMock(return_value=2))
+@patch("app.domain.package_approval.get_forum_topic", MagicMock(return_value=None))
 def test_requires_multiple_issues():
 	mock_package = MockPackageHelper()
 	mock_package.add_release()
@@ -103,10 +103,10 @@ def test_requires_multiple_issues():
 	assert notes[4].message == "Warning: Forum topic not found. The topic may have been created since the last forum crawl."
 
 
-@patch("app.logic.package_approval.is_package_name_taken", MagicMock(return_value=False))
-@patch("app.logic.package_approval.get_conflicting_mod_names", MagicMock(return_value=set()))
-@patch("app.logic.package_approval.count_packages_with_forum_topic", MagicMock(return_value=1))
-@patch("app.logic.package_approval.get_forum_topic")
+@patch("app.domain.package_approval.is_package_name_taken", MagicMock(return_value=False))
+@patch("app.domain.package_approval.get_conflicting_mod_names", MagicMock(return_value=set()))
+@patch("app.domain.package_approval.count_packages_with_forum_topic", MagicMock(return_value=1))
+@patch("app.domain.package_approval.get_forum_topic")
 def test_forum_topic_author_mismatch(get_forum_topic):
 	mock_package = MockPackageHelper()
 	mock_package.add_release()
@@ -120,10 +120,10 @@ def test_forum_topic_author_mismatch(get_forum_topic):
 	assert notes[0].message == "<b>Error: Forum topic author doesn't match package author.</b>"
 
 
-@patch("app.logic.package_approval.is_package_name_taken", MagicMock(return_value=False))
-@patch("app.logic.package_approval.get_conflicting_mod_names", MagicMock(return_value=set()))
-@patch("app.logic.package_approval.count_packages_with_forum_topic", MagicMock(return_value=1))
-@patch("app.logic.package_approval.get_forum_topic")
+@patch("app.domain.package_approval.is_package_name_taken", MagicMock(return_value=False))
+@patch("app.domain.package_approval.get_conflicting_mod_names", MagicMock(return_value=set()))
+@patch("app.domain.package_approval.count_packages_with_forum_topic", MagicMock(return_value=1))
+@patch("app.domain.package_approval.get_forum_topic")
 def test_passes(get_forum_topic):
 	mock_package = MockPackageHelper()
 	mock_package.add_release()
@@ -137,10 +137,10 @@ def test_passes(get_forum_topic):
 	assert len(notes) == 0
 
 
-@patch("app.logic.package_approval.is_package_name_taken", MagicMock(return_value=True))
-@patch("app.logic.package_approval.get_conflicting_mod_names", MagicMock(return_value=set()))
-@patch("app.logic.package_approval.count_packages_with_forum_topic", MagicMock(return_value=1))
-@patch("app.logic.package_approval.get_forum_topic")
+@patch("app.domain.package_approval.is_package_name_taken", MagicMock(return_value=True))
+@patch("app.domain.package_approval.get_conflicting_mod_names", MagicMock(return_value=set()))
+@patch("app.domain.package_approval.count_packages_with_forum_topic", MagicMock(return_value=1))
+@patch("app.domain.package_approval.get_forum_topic")
 def test_games_txp_must_have_unique_name(get_forum_topic):
 	mock_package = MockPackageHelper(PackageType.GAME)
 	mock_package.add_release()
@@ -156,10 +156,10 @@ def test_games_txp_must_have_unique_name(get_forum_topic):
 	assert notes[0].message == "A package already exists with this name. Please see Policy and Guidance 3"
 
 
-@patch("app.logic.package_approval.is_package_name_taken", MagicMock(return_value=False))
-@patch("app.logic.package_approval.get_conflicting_mod_names", MagicMock(return_value=set()))
-@patch("app.logic.package_approval.count_packages_with_forum_topic", MagicMock(return_value=1))
-@patch("app.logic.package_approval.get_forum_topic")
+@patch("app.domain.package_approval.is_package_name_taken", MagicMock(return_value=False))
+@patch("app.domain.package_approval.get_conflicting_mod_names", MagicMock(return_value=set()))
+@patch("app.domain.package_approval.count_packages_with_forum_topic", MagicMock(return_value=1))
+@patch("app.domain.package_approval.get_forum_topic")
 def test_require_screenshots(get_forum_topic):
 	mock_package = MockPackageHelper(PackageType.MOD)
 	mock_package.add_release()

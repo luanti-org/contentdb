@@ -4,7 +4,7 @@
 
 import datetime
 
-from app.logic.graphs import flatten_data
+from app.domain.graphs import flatten_data
 
 
 class DailyStat:

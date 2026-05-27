@@ -10,7 +10,7 @@ from werkzeug.utils import redirect
 from wtforms import TextAreaField, SubmitField, URLField, StringField, SelectField, FileField
 from wtforms.validators import InputRequired, Length, Optional, DataRequired
 
-from app.logic.uploads import upload_file
+from app.domain.uploads import upload_file
 from app.models import User, UserRank, Report, db, AuditSeverity, ReportCategory, Thread, Permission, ReportAttachment
 from app.tasks.webhooktasks import post_discord_webhook
 from app.utils.flask import abs_url_samesite, abs_url_for

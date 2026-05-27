@@ -12,8 +12,8 @@ from wtforms import StringField, SubmitField, BooleanField, FileField
 from wtforms.validators import Length, DataRequired, Optional
 from wtforms_sqlalchemy.fields import QuerySelectField
 
-from app.logic.LogicError import LogicError
-from app.logic.screenshots import do_create_screenshot, do_order_screenshots
+from app.domain.DomainError import DomainError
+from app.domain.screenshots import do_create_screenshot, do_order_screenshots
 from . import bp, get_package_tabs
 from app.models import Permission, db, PackageScreenshot
 from app.utils.models import is_package_page
@@ -52,7 +52,7 @@ def screenshots(package):
 			try:
 				do_order_screenshots(current_user, package, order.split(","))
 				return redirect(package.get_url("packages.view"))
-			except LogicError as e:
+			except DomainError as e:
 				flash(e.message, "danger")
 
 		if form.validate_on_submit():
@@ -76,7 +76,7 @@ def create_screenshot(package):
 		try:
 			do_create_screenshot(current_user, package, form.title.data, form.file_upload.data, False)
 			return redirect(package.get_url("packages.screenshots"))
-		except LogicError as e:
+		except DomainError as e:
 			flash(e.message, "danger")
 
 	return render_template("packages/screenshot_new.html", package=package, form=form)

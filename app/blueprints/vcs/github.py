@@ -13,7 +13,7 @@ from flask_login import current_user
 
 from app import github, csrf
 from app.blueprints.api.support import error, api_create_vcs_release
-from app.logic.users import create_user
+from app.domain.users import create_user
 from app.models import db, User, APIToken, AuditSeverity
 from app.utils.flask import abs_url_for, is_safe_url
 from app.utils.models import add_audit_log
