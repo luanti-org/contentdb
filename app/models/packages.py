@@ -968,7 +968,9 @@ class Package(db.Model):
 			return [lazy_gettext("None yet"), ""]
 
 		perc = round(100 * positive / total)
-		if perc >= 90 and total >= 20:
+		if total < 5:
+			return [f"+{positive} / {neutral} / -{negative}", ""]
+		elif perc >= 90 and total >= 20:
 			return [lazy_gettext("Very positive (%(perc)d%% of %(total)d)", perc=perc, total=total), "text-info"]
 		elif perc >= 80:
 			return [lazy_gettext("Positive (%(perc)d%% of %(total)d)", perc=perc, total=total), "text-info"]
