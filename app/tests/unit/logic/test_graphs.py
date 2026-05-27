@@ -14,7 +14,8 @@ class DailyStat:
 	reason_new: int
 	reason_dependency: int
 	reason_update: int
-	
+	views_luanti: int
+
 	def __init__(self, date: str, x: int):
 		self.date = datetime.date.fromisoformat(date)
 		self.platform_minetest = x
@@ -22,6 +23,7 @@ class DailyStat:
 		self.reason_new = 0
 		self.reason_dependency = 0
 		self.reason_update = 0
+		self.views_luanti = 0
 
 
 def test_flatten_data():

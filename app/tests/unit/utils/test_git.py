@@ -3,10 +3,13 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 import os
+import pytest
 
+from app.tasks import TaskError
 from app.utils.git import get_latest_tag, get_latest_commit, clone_repo, get_commit_list
 
-test_repo = "https://gitlab.com/rubenwardy/testmod"
+test_repo = "https://codeberg.org/rubenwardy/testmod"
+test_private_repo = "https://github.com/luanti-org/discussions"
 master_head = "23d12265ff6de84548b2e3e90dc7351a54f63f00"
 test_branch_head = "51b54f00c3b3d712417a1cc4bfaa6cbdc7aac3fc"
 v4_commit = "c07d27c3a466d2102d1ba5473d172c74e6b3e0d7"
@@ -77,3 +80,9 @@ def test_git_clone_commit():
 		assert os.path.isfile(os.path.join(repo.working_tree_dir, "init.lua"))
 		assert not os.path.isfile(os.path.join(repo.working_tree_dir, "chatcmdbuilder", "init.lua"))
 		assert not os.path.isfile(os.path.join(repo.working_tree_dir, "test-branch.txt"))
+
+
+def test_git_clone_private_repo():
+	with pytest.raises(TaskError):
+		with clone_repo(test_private_repo, recursive=True) as repo:
+			assert False

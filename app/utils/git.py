@@ -18,14 +18,18 @@ from git import GitCommandError
 from app.tasks import TaskError
 from app.utils.misc import random_string, normalize_line_endings
 
+GIT_ENV = {
+	"GIT_TERMINAL_PROMPT": "0",
+}
 
-def generate_git_url(urlstr):
+
+def generate_git_url(urlstr: str) -> str:
 	scheme, netloc, path, query, frag = urlsplit(urlstr)
 
 	if not scheme.startswith("http"):
 		scheme = "http"
 
-	return scheme + "://:@" + netloc + path + query
+	return scheme + "://" + netloc + path + query
 
 
 @contextlib.contextmanager
@@ -38,7 +42,6 @@ def get_temp_dir():
 # Clones a repo from an unvalidated URL.
 # Returns a tuple of path and repo on sucess.
 # Throws `TaskError` on failure.
-# Caller is responsible for deleting returned directory.
 @contextlib.contextmanager
 def clone_repo(url_str, ref=None, recursive=False):
 	git_dir = os.path.join(tempfile.gettempdir(), random_string(10))
@@ -49,7 +52,7 @@ def clone_repo(url_str, ref=None, recursive=False):
 
 		if ref is None:
 			repo = git.Repo.clone_from(git_url, git_dir,
-					progress=None, env=None, depth=1, recursive=recursive, kill_after_timeout=15)
+					progress=None, env=GIT_ENV, depth=1, recursive=recursive, kill_after_timeout=15)
 		else:
 			assert ref != ""
 
