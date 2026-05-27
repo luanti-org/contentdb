@@ -509,6 +509,21 @@ Supported query parameters:
             * `created_at`: when the package was added to the collection.
             * `order`: integer.
 
+
+## Telemetry
+
+* POST `/api/installed_packages/`
+  * JSON body with the following:
+    * `user_id`: string
+    * `packages`: object
+      * `games`: array of strings
+      * `mods`: array of strings
+      * `texture_packs`: array of strings
+    * `worlds`: array of objects
+      * `game`: string
+      * `mods`: array of strings
+
+
 ## Types
 
 ### Tags

@@ -961,3 +961,21 @@ def uploads():
 	ret += list(map(lambda x: ({"url": x.url, "created_at": x.created_at.isoformat(), "size": x.file_size_bytes}), screenshot_query.all()))
 
 	return jsonify(ret)
+
+
+@bp.route("/api/installed_packages/", methods=["POST"])
+@csrf.exempt
+@cors_allowed
+def installed_packages():
+	data = request.json
+
+	if "user_id" not in data:
+		error(400, "Missing user_id")
+
+	if "packages" not in data:
+		error(400, "Missing packages")
+
+	if "worlds" not in data:
+		error(400, "Missing worlds")
+
+	return jsonify({ "success": True })
