@@ -1,5 +1,16 @@
 # Getting started
 
+## Install dependencies
+
+This is not required, but having the dependencies installed will make your code editor work better.
+
+* Install Python 3.14+
+* Install UV
+* `uv sync`
+* `source .venv/bin/activate`
+
+## Set up docker
+
 Docker is the recommended way to develop and deploy ContentDB.
 
 1. Install `docker` and `docker-compose`.

@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
-import imghdr
+import magic
 import os
 
 from flask_babel import lazy_gettext, LazyString
@@ -16,11 +16,12 @@ def get_extension(filename):
 	return filename.rsplit(".", 1)[1].lower() if "." in filename else None
 
 
-ALLOWED_IMAGES = {"jpeg", "png", "webp"}
+ALLOWED_IMAGES = {"image/jpeg", "image/png", "image/webp"}
 
 
 def is_allowed_image(data):
-	return imghdr.what(None, data) in ALLOWED_IMAGES
+	mime = magic.from_buffer(data)
+	return mime in ALLOWED_IMAGES
 
 
 def upload_file(file, file_type: str, file_type_desc: LazyString | str, length: int=10):

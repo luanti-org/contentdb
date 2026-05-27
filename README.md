@@ -41,14 +41,9 @@ docker compose down && sudo rm -rf data/db
 * Install the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
 	* Click no to installing pylint (we don't want it to be installed outside a virtual env)
 * Set up a virtual env
-	* Replace `psycopg2` with `psycopg2_binary` in requirements.txt (because postgresql won't be installed on the system)
-	* `python3 -m venv env`
-	* Click yes to prompt to select virtual env for workspace
-	* Click yes to any prompts about installing pylint
+	* Use UV to create a venv and install packages: `uv sync`
 	* `source env/bin/activate`
-	* `pip install -r requirements`
-	* `pip install pylint` (if a prompt didn't appear)
-	* Undo changes to requirements.txt
+	* `pip install pylint`
 
 ### VSCode: Material Icon Folder Designations
 

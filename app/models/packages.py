@@ -13,18 +13,12 @@ from flask_babel import lazy_gettext, get_locale, gettext, pgettext
 from flask_sqlalchemy.query import Query
 from sqlalchemy import or_, func
 from sqlalchemy.dialects.postgresql import insert
-from sqlalchemy_searchable import SearchQueryMixin
 from sqlalchemy_utils.types import TSVectorType
 
 from app import app
 from . import db
 from .users import Permission, UserRank, User
 from app.utils.flask import abs_url_for, abs_url
-
-
-class PackageQuery(Query, SearchQueryMixin):
-	pass
-
 
 class License(db.Model):
 	id      = db.Column(db.Integer, primary_key=True)
@@ -446,8 +440,6 @@ class PackageGameSupport(db.Model):
 
 
 class Package(db.Model):
-	query_class  = PackageQuery
-
 	id           = db.Column(db.Integer, primary_key=True)
 
 	# Basic details
