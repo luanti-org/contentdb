@@ -220,7 +220,13 @@
 						</a>
 					</dd>
 					<dt>{{ _("Last updated") }}</dt>
-					<dd class="text-body-secondary fw-normal">{{ release.created_at | date }}</dd>
+					<dd class="text-body-secondary fw-normal">
+						{% if release %}
+						{{ release.created_at | date }}
+						{% else %}
+						-
+						{% endif %}
+					</dd>
 					<dt>{{ _("Maintenance State") }}</dt>
 					{% if package.dev_state %}
 						<dd title="{{ package.dev_state.get_desc() }}" class="text-body-secondary fw-normal">{{ package.dev_state.value }}</dd>
