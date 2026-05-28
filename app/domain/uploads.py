@@ -20,7 +20,7 @@ ALLOWED_IMAGES = {"image/jpeg", "image/png", "image/webp"}
 
 
 def is_allowed_image(data):
-	mime = magic.from_buffer(data)
+	mime = magic.from_buffer(data, mime=True)
 	return mime in ALLOWED_IMAGES
 
 
