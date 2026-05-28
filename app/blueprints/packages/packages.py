@@ -110,13 +110,6 @@ def list_all():
 			authors=authors, packages_count=query.total, topics=topics, noindex=qb.noindex)
 
 
-def get_releases(package):
-	if package.check_perm(current_user, Permission.MAKE_RELEASE):
-		return package.releases.limit(5)
-	else:
-		return package.releases.filter_by(state=ReleaseState.APPROVED).limit(5)
-
-
 @bp.route("/packages/<author>/")
 def user_redirect(author):
 	return redirect(url_for("users.profile", username=author))
@@ -138,7 +131,7 @@ def view(package):
 						Dependency.meta_package_id.in_([p.id for p in package.provides]))) \
 			.order_by(db.desc(Package.score)).limit(6).all()
 
-	releases = get_releases(package)
+	releases = package.releases.filter_by(state=ReleaseState.APPROVED).limit(5)
 
 	review_thread = package.review_thread
 	if review_thread is not None and not review_thread.check_perm(current_user, Permission.SEE_THREAD):
