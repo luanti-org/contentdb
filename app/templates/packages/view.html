@@ -248,7 +248,7 @@
 
 				<div style="flex: 1;"></div>
 
-				<p>
+				<p class="mb-0">
 					{% for tag in package.tags %}
 						<a class="badge bg-secondary" rel="nofollow"
 								title="{{ tag.get_translated().description or '' }}"
@@ -697,13 +697,25 @@
 					{% endif %}
 				{% endif %}
 
+				<div class="card">
+					<div class="card-body">
+						<div class="card-title">
+							<a href="{{ package.get_url('packages.statistics') }}" rel="nofollow">
+								<i class="fas fa-chart-line me-1"></i>
+								{{ _("Statistics") }}
+							</a>
+						</div>
+						<p class="card-text">
+							<i class="fas fa-download me-2"></i>
+							<span class="count">
+								{{ package.downloads | decimal }}
+							</span>
+						</p>
+					</div>
+				</div>
+
 				<p class="mt-3">
-					<a href="{{ package.get_url('packages.statistics') }}" rel="nofollow">
-						<i class="fas fa-chart-line me-1"></i>
-						<span class="count">{{ _("Statistics") }}</span>
-					</a>
 					{% if package.approved and current_user != package.author %}
-						|
 						<a href="{{ url_for('report.report', url=url_current()) }}">
 							<i class="fas fa-flag me-1"></i>
 							{{ _("Report") }}
