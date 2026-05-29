@@ -71,7 +71,7 @@ def view(author, name):
 	).all()
 
 	if not collection.check_perm(current_user, Permission.EDIT_COLLECTION):
-		items = [x for x in items if x.package.check_perm(current_user, Permission.VIEW_PACKAGE)]
+		items = [x for x in items if x.package.approved]
 
 	if should_return_json():
 		return jsonify([ item.package.as_key_dict() for item in items ])
