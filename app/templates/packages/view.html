@@ -197,7 +197,7 @@
 					<img src="{{ package.get_thumb_or_placeholder(2) }}" alt="{{ meta.title }} thumbnail" class="object-fit-cover">
 				</div>
 
-				<div class="list-group mt-4">
+				<div class="list-group mt-3">
 					<a class="list-group-item list-group-item-action" href="{{ url_for('users.profile', username=package.author.username) }}" id="alt-reviews" title="{{ _('Author') }}">
 						<img src="{{ package.author.get_profile_pic_url() }}" class="mini-user-photo">
 						<span class="count ms-1">
@@ -206,7 +206,7 @@
 					</a>
 				</div>
 
-				<p class="text-body my-4">
+				<p class="text-body mt-4 mb-3">
 					{{ meta.short_desc }}
 				</p>
 
@@ -265,261 +265,330 @@
 		</div>
 	</section>
 
-	<nav class="container mt-5">
-		<ul class="nav nav-tabs nav-tabs-active-panel" id="tabs" role="tablist">
-			<li class="nav-item" role="presentation">
-				<a class="nav-link active" href="#description" id="tab-description" data-bs-toggle="tab" data-bs-target="#description" role="tab">
-					{{ _("Description") }}
-				</a>
-			</li>
-			<li class="nav-item" role="presentation">
-				<a class="nav-link" href="#reviews" id="tab-reviews" data-bs-toggle="tab" data-bs-target="#reviews" role="tab">
-					{{ _("Reviews") }}
-					<span class="badge bg-secondary ms-2">
-						{% set review_summary = package.get_review_summary() %}
-						+{{ review_summary[0] }} / {{ review_summary[1] }} / -{{ review_summary[2] }}
-					</span>
-				</a>
-			</li>
-			<li class="nav-item" role="presentation">
-				<a class="nav-link" href="#releases" id="tab-releases" data-bs-toggle="tab" data-bs-target="#releases" role="tab">
-					{{ _("Releases") }}
-					<span class="badge bg-secondary ms-2">
-						{{ package.releases.count() }}
-					</span>
-				</a>
-			</li>
-			<li class="nav-item" role="presentation">
-				<a class="nav-link" href="#threads" id="tab-threads" data-bs-toggle="tab" data-bs-target="#threads" role="tab">
-					{{ _("Threads") }}
-					<span class="badge bg-secondary ms-2">
-						{{ threads | length }}
-					</span>
-				</a>
-			</li>
-			<li class="nav-item" role="presentation">
-				<a class="nav-link" href="#information" id="tab-info" data-bs-toggle="tab" data-bs-target="#information" role="tab">
-					{{ _("Information") }}
-				</a>
-			</li>
-		</ul>
-	</nav>
+	<div class="container d-md-none mt-4">
+		{{ self.download_btn() }}
+	</div>
 
-	<div class="container mt-0">
+	{% from "macros/reviews.html" import render_reviews, render_review_form, render_review_preview, render_review_buttons with context %}
+
+	<div class="container mt-4">
 		<div class="row">
-			<div class="col-md-9 tab-content" id="tab-content">
-
-				<article id="description" class="markdown panel tab-pane show active" role="tabpanel" aria-labelledby="tab-description">
-					<h2 class="tab-title">{{ _("Description") }}</h2>
-					{% if meta.desc %}
-						{{ meta.desc | markdown }}
-					{% else %}
-						<p>
-							{{ _("No description provided") }}
-						</p>
-					{% endif %}
-				</article>
-
-				<section id="reviews" class="panel tab-pane show active" role="tabpanel" aria-labelledby="tab-reviews">
-					<h2 class="tab-title">{{ _("Reviews") }}</h2>
-
-					{% from "macros/reviews.html" import render_reviews, render_review_form, render_review_preview with context %}
+			<div class="col-md-9">
+				<div class="btn-toolbar gap-3">
+					<form method="POST" action="{{ package.get_url('collections.package_toggle_favorite') }}">
+						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+						<button type="submit" class="btn {% if is_favorited %}text-info{% endif %} btn-secondary"
+								aria-label="{{ _('Favorite') }}" title="{{ _('Favorite') }}">
+							<i class="fas fa-star"></i>
+							<span class="ms-1">
+								{{ favorites_count }}
+							</span>
+						</button>
+					</form>
+					<div class="btn-group">
+						<a href="{{ package.get_url('collections.package_add') }}" class="btn btn-secondary">
+							<i class="fas fa-plus me-1"></i>
+							{{ _("Add to collection...") }}
+						</a>
+						{% if public_collection_count > 0 %}
+							<a href="{{ url_for('collections.list_all', package=package.get_id()) }}" class="btn btn-secondary">
+								<i class="fas fa-list me-1"></i>
+<!--								{{ _("View %(count)d collections", count=public_collection_count) }}-->
+							</a>
+						{% endif %}
+					</div>
 					{% if package.state.name == "APPROVED" %}
 						{% if current_user.is_authenticated %}
 							{% if has_review %}
-								<p>
+								<div class="btn-group">
 									<a class="btn btn-primary" href="{{ package.get_url('packages.review') }}">
 										{{ _("Edit Review") }}
 									</a>
-								</p>
+								</div>
 							{% elif current_user in package.maintainers %}
-								<p>
+								<span>
 									{{ _("You can't review your own package.") }}
-								</p>
+								</span>
 							{% else %}
-								{{ render_review_preview(package) }}
+								{{ render_review_buttons(package) }}
 							{% endif %}
 						{% else %}
-							{{ render_review_preview(package) }}
+							{{ render_review_buttons(package) }}
 						{% endif %}
 					{% else %}
 						<p>
 							{{ _("Package needs to be approved before it can be reviewed.") }}
 						</p>
 					{% endif %}
-
-					{% if current_user.is_authenticated and current_user.rank.at_least(current_user.rank.ADMIN) %}
-						<a href="{{ package.get_url('packages.review_votes') }}" class="btn btn-secondary">{{ _("Review Votes") }}</a>
-					{% endif %}
-
-					{{ render_reviews(reviews, current_user) }}
-				</section>
-
-				<section id="releases" class="panel tab-pane show active" role="tabpanel" aria-labelledby="tab-releases">
-					<h2 class="tab-title">{{ _("Releases") }}</h2>
-
-					{% for release in releases %}
-						<article id="release-{{ release.name }}" class="row {% if not loop.first %}mt-5{% endif %}">
-							<div class="col-md-2">
-								<p>
-									{{ release.name }}
-								</p>
-								<p>
-									<a href="{{ release.get_download_url() }}" class="btn btn-secondary me-3">
-										{{ _("Download") }}
-									</a>
-								</p>
-								<p class="text-muted">
-									{% if release.min_rel and release.max_rel %}
-										Luanti {{ release.min_rel.name }}-{{ release.max_rel.name }}
-									{% elif release.min_rel %}
-										Luanti {{ release.min_rel.name }}+
-									{% elif release.max_rel %}
-										Luanti &le;{{ release.max_rel.name }}
-									{% endif %}
-								</p>
-							</div>
-							<div class="col-md-10">
-								<span class="text-muted float-end" title="{{ release.created_at | full_datetime }}">
-									{{ release.created_at | datetime }}
-								</span>
-								<h3 class="mt-0">
-									{{ release.title }}
-									<a class="header-anchor" href="#release-{{ release.name }}">🔗</a>
-								</h3>
-								{% if release.release_notes %}
-									<div class="markdown mb-4">
-										{{ release.release_notes | markdown(remove_headings=True) }}
-									</div>
-								{% else %}
-									<p class="text-muted">
-										{{ _("No release notes") }}
-									</p>
-								{% endif %}
-							</div>
-						</article>
-					{% endfor %}
-
-					<a href="{{ package.get_url('packages.list_releases') }}" class="btn btn-secondary mt-5">
-						{{ _("All releases") }}
-					</a>
-				</section>
-
-				<section id="threads" class="panel tab-pane show active" role="tabpanel" aria-labelledby="tab-threads">
-					<h2 class="tab-title">{{ _("Threads") }}</h2>
-					<p>
-						<a class="btn btn-primary" href="{{ url_for('threads.new', author=package.author.username, name=package.name) }}">
-							<i class="fas fa-plus me-1"></i>
-							{{ _("New thread") }}
+					<div class="btn-group">
+						<a class="btn btn-secondary" href="{{ package.issueTracker or url_for('threads.new', author=package.author.username, name=package.name) }}" rel="ugc">
+							<i class="fas fa-bug me-1"></i>
+							{{ _("Report an issue") }}
 						</a>
-					</p>
-					<div class="list-group">
-						{% from "macros/threads.html" import render_threadlist with context %}
-						{{ render_threadlist(threads, False) }}
+						<a class="btn btn-secondary" href="{{ url_for('threads.new', author=package.author.username, name=package.name) }}">
+							<i class="fas fa-question me-1"></i>
+							{{ _("Ask a question") }}
+						</a>
 					</div>
-				</section>
+				</div>
 
-				<section id="information" class="panel tab-pane show active" role="tabpanel" aria-labelledby="tab-info">
-					<h2 class="tab-title">{{ _("Information") }}</h2>
-
-					<h3>{{ _("Provides") }}</h3>
-					{% if package.provides %}
-						<p>
-							{% for meta in package.provides %}
-								<a class="badge bg-secondary"
-									href="{{ url_for('modnames.view', name=meta.name) }}">{{ meta.name }}</a>
-							{% endfor %}
-						</p>
-					{% endif %}
-
-					{{ self.dependencies() }}
-
-					<h3>{{ _("Information") }}</h3>
-
-					<dl>
-						<dt>{{ _("Type") }}</dt>
-						<dd>{{ package.type.text }}</dd>
-						<dt>{{ _("Technical Name") }}</dt>
-						<dd>{{ package.name }}</dd>
-						<dt>{{ _("Languages") }}</dt>
-						<dd>
-							English
-							{%- for translation in package.translations -%}
-								, {{ translation.language.title }}
-							{%- endfor -%}
-						</dd>
-						<dt>{{ _("License") }}</dt>
-						<dd>
-							{% if package.license == package.media_license %}
-								{{ render_license(package.license) }}
-							{% elif package.type == package.type.TXP %}
-								{{ render_license(package.media_license) }}
-							{% else %}
-								{{ _("%(code_license)s for code,<br>%(media_license)s for media.",
-										code_license=render_license(package.license), media_license=render_license(package.media_license)) }}
-							{% endif %}
-						</dd>
-						<dt>{{ _("Maintenance State") }}</dt>
-						{% if package.dev_state %}
-							<dd title="{{ package.dev_state.get_desc() }}">{{ package.dev_state.value }}</dd>
+				<nav class="mt-4">
+					<ul class="nav nav-tabs nav-tabs-active-panel" id="tabs" role="tablist">
+						<li class="nav-item" role="presentation">
+							<a class="nav-link active" href="#description" id="tab-description" data-bs-toggle="tab" data-bs-target="#description" role="tab">
+								{{ _("Description") }}
+							</a>
+						</li>
+						<li class="nav-item" role="presentation">
+							<a class="nav-link" href="#reviews" id="tab-reviews" data-bs-toggle="tab" data-bs-target="#reviews" role="tab">
+								{{ _("Reviews") }}
+								<span class="badge bg-secondary ms-2">
+									{% set review_summary = package.get_review_summary() %}
+									+{{ review_summary[0] }} / {{ review_summary[1] }} / -{{ review_summary[2] }}
+								</span>
+							</a>
+						</li>
+						<li class="nav-item" role="presentation">
+							<a class="nav-link" href="#releases" id="tab-releases" data-bs-toggle="tab" data-bs-target="#releases" role="tab">
+								{{ _("Releases") }}
+								<span class="badge bg-secondary ms-2">
+									{{ package.releases.count() }}
+								</span>
+							</a>
+						</li>
+						<li class="nav-item" role="presentation">
+							<a class="nav-link" href="#threads" id="tab-threads" data-bs-toggle="tab" data-bs-target="#threads" role="tab">
+								{{ _("Threads") }}
+								<span class="badge bg-secondary ms-2">
+									{{ threads | length }}
+								</span>
+							</a>
+						</li>
+						<li class="nav-item" role="presentation">
+							<a class="nav-link" href="#information" id="tab-info" data-bs-toggle="tab" data-bs-target="#information" role="tab">
+								{{ _("Information") }}
+							</a>
+						</li>
+					</ul>
+				</nav>
+				<div class="tab-content" id="tab-content">
+					<article id="description" class="markdown panel tab-pane show active" role="tabpanel" aria-labelledby="tab-description">
+						<h2 class="tab-title">{{ _("Description") }}</h2>
+						{% if meta.desc %}
+							{{ meta.desc | markdown }}
 						{% else %}
-							<dd><i>{{ _("Unknown") }}</i></dd>
+							<p>
+								{{ _("No description provided") }}
+							</p>
 						{% endif %}
-						<dt>{{ _("Added") }}</dt>
-						<dd title="{{ package.created_at | full_datetime }}">{{ package.created_at | datetime }}</dd>
-						<dt>{{ _("Maintainers") }}</dt>
-						<dd>
-							{% for user in package.maintainers %}
-								<a class="badge bg-secondary"
-									href="{{ url_for('users.profile', username=user.username) }}">
-									{{ user.display_name }}
-								</a>
-							{% endfor %}
+					</article>
 
-							{% if current_user in package.maintainers and current_user != package.author %}
-								<form class="mt-2"  method="post" action="{{ package.get_url('packages.remove_self_maintainers') }}">
-									<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-									<input class="btn btn-sm btn-link p-0" type="submit" value="{{ _('Remove myself') }}" />
-								</form>
+					<section id="reviews" class="panel tab-pane show active" role="tabpanel" aria-labelledby="tab-reviews">
+						<h2 class="tab-title">{{ _("Reviews") }}</h2>
+						{% if package.state.name == "APPROVED" %}
+							{% if current_user.is_authenticated %}
+								{% if has_review %}
+									<p>
+										<a class="btn btn-primary" href="{{ package.get_url('packages.review') }}">
+											{{ _("Edit Review") }}
+										</a>
+									</p>
+								{% elif current_user in package.maintainers %}
+									<p>
+										{{ _("You can't review your own package.") }}
+									</p>
+								{% else %}
+									{{ render_review_preview(package) }}
+								{% endif %}
+							{% else %}
+								{{ render_review_preview(package) }}
 							{% endif %}
-						</dd>
-					</dl>
+						{% else %}
+							<p>
+								{{ _("Package needs to be approved before it can be reviewed.") }}
+							</p>
+						{% endif %}
 
-					{% if packages_uses %}
-						<h3>{{ _("Used By") }}</h3>
-						{% from "macros/packagegridtile.html" import render_pkggrid %}
-						{{ render_pkggrid(packages_uses) }}
-					{% endif %}
-				</section>
+						{% if current_user.is_authenticated and current_user.rank.at_least(current_user.rank.ADMIN) %}
+							<a href="{{ package.get_url('packages.review_votes') }}" class="btn btn-secondary">{{ _("Review Votes") }}</a>
+						{% endif %}
+
+						{{ render_reviews(reviews, current_user) }}
+					</section>
+
+					<section id="releases" class="panel tab-pane show active" role="tabpanel" aria-labelledby="tab-releases">
+						<h2 class="tab-title">{{ _("Releases") }}</h2>
+
+						{% for release in releases %}
+							<article id="release-{{ release.name }}" class="row {% if not loop.first %}mt-5{% endif %}">
+								<div class="col-md-2">
+									<p>
+										{{ release.name }}
+									</p>
+									<p>
+										<a href="{{ release.get_download_url() }}" class="btn btn-secondary me-3">
+											{{ _("Download") }}
+										</a>
+									</p>
+									<p class="text-muted">
+										{% if release.min_rel and release.max_rel %}
+											Luanti {{ release.min_rel.name }}-{{ release.max_rel.name }}
+										{% elif release.min_rel %}
+											Luanti {{ release.min_rel.name }}+
+										{% elif release.max_rel %}
+											Luanti &le;{{ release.max_rel.name }}
+										{% endif %}
+									</p>
+								</div>
+								<div class="col-md-10">
+									<span class="text-muted float-end" title="{{ release.created_at | full_datetime }}">
+										{{ release.created_at | datetime }}
+									</span>
+									<h3 class="mt-0">
+										{{ release.title }}
+										<a class="header-anchor" href="#release-{{ release.name }}">🔗</a>
+									</h3>
+									{% if release.release_notes %}
+										<div class="markdown mb-4">
+											{{ release.release_notes | markdown(remove_headings=True) }}
+										</div>
+									{% else %}
+										<p class="text-muted">
+											{{ _("No release notes") }}
+										</p>
+									{% endif %}
+								</div>
+							</article>
+						{% endfor %}
+
+						<a href="{{ package.get_url('packages.list_releases') }}" class="btn btn-secondary mt-5">
+							{{ _("All releases") }}
+						</a>
+					</section>
+
+					<article id="threads" class="panel tab-pane show active" role="tabpanel" aria-labelledby="tab-threads">
+						<h2 class="tab-title">{{ _("Threads") }}</h2>
+						<p>
+							<a class="btn btn-primary" href="{{ url_for('threads.new', author=package.author.username, name=package.name) }}">
+								<i class="fas fa-plus me-1"></i>
+								{{ _("New thread") }}
+							</a>
+						</p>
+						<div class="list-group">
+							{% from "macros/threads.html" import render_threadlist with context %}
+							{{ render_threadlist(threads, False) }}
+						</div>
+					</article>
+
+					<article id="information" class="panel tab-pane show active" role="tabpanel" aria-labelledby="tab-info">
+						<h2 class="tab-title">{{ _("Information") }}</h2>
+
+						<h3>{{ _("Provides") }}</h3>
+						{% if package.provides %}
+							<p>
+								{% for meta in package.provides %}
+									<a class="badge bg-secondary"
+										href="{{ url_for('modnames.view', name=meta.name) }}">{{ meta.name }}</a>
+								{% endfor %}
+							</p>
+						{% endif %}
+
+						{{ self.dependencies() }}
+
+						<h3>{{ _("Information") }}</h3>
+
+						<dl>
+							<dt>{{ _("Type") }}</dt>
+							<dd>{{ package.type.text }}</dd>
+							<dt>{{ _("Technical Name") }}</dt>
+							<dd>{{ package.name }}</dd>
+							<dt>{{ _("Languages") }}</dt>
+							<dd>
+								English
+								{%- for translation in package.translations -%}
+									, {{ translation.language.title }}
+								{%- endfor -%}
+							</dd>
+							<dt>{{ _("License") }}</dt>
+							<dd>
+								{% if package.license == package.media_license %}
+									{{ render_license(package.license) }}
+								{% elif package.type == package.type.TXP %}
+									{{ render_license(package.media_license) }}
+								{% else %}
+									{{ _("%(code_license)s for code,<br>%(media_license)s for media.",
+											code_license=render_license(package.license), media_license=render_license(package.media_license)) }}
+								{% endif %}
+							</dd>
+							<dt>{{ _("Maintenance State") }}</dt>
+							{% if package.dev_state %}
+								<dd title="{{ package.dev_state.get_desc() }}">{{ package.dev_state.value }}</dd>
+							{% else %}
+								<dd><i>{{ _("Unknown") }}</i></dd>
+							{% endif %}
+							<dt>{{ _("Added") }}</dt>
+							<dd title="{{ package.created_at | full_datetime }}">{{ package.created_at | datetime }}</dd>
+							<dt>{{ _("Maintainers") }}</dt>
+							<dd>
+								{% for user in package.maintainers %}
+									<a class="badge bg-secondary"
+										href="{{ url_for('users.profile', username=user.username) }}">
+										{{ user.display_name }}
+									</a>
+								{% endfor %}
+
+								{% if current_user in package.maintainers and current_user != package.author %}
+									<form class="mt-2"  method="post" action="{{ package.get_url('packages.remove_self_maintainers') }}">
+										<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+										<input class="btn btn-sm btn-link p-0" type="submit" value="{{ _('Remove myself') }}" />
+									</form>
+								{% endif %}
+							</dd>
+						</dl>
+
+						{% if packages_uses %}
+							<h3>{{ _("Used By") }}</h3>
+							{% from "macros/packagegridtile.html" import render_pkggrid %}
+							{{ render_pkggrid(packages_uses) }}
+						{% endif %}
+					</article>
+				</div>
 			</div>
 			<aside class="col-md-3 info-sidebar">
-				{{ self.download_btn() }}
-				<div class="mt-3 mb-3">
-					<div class="d-flex">
-						<form method="POST" action="{{ package.get_url('collections.package_toggle_favorite') }}">
-							<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-							<button type="submit" class="btn {% if is_favorited %}text-info{% endif %} btn-secondary me-2"
-									aria-label="{{ _('Favorite') }}" title="{{ _('Favorite') }}">
-								<i class="fas fa-star"></i>
-								<span class="ms-1">
-									{{ favorites_count }}
-								</span>
-							</button>
-						</form>
-						<div class="flex-grow-1">
-							<a href="{{ package.get_url('collections.package_add') }}" class="btn d-block btn-secondary">
-								{{ _("Add to collection...") }}
-							</a>
-						</div>
-					</div>
-					{% if public_collection_count > 0 %}
-						<p class="text-center mt-1">
-							<a href="{{ url_for('collections.list_all', package=package.get_id()) }}">
-								<small>
-									{{ _("View %(count)d collections", count=public_collection_count) }}
-								</small>
-							</a>
-						</p>
+				<div class="d-none d-md-block">
+					{{ self.download_btn() }}
+				</div>
+
+				<div class="list-group mb-4">
+					{% if package.website %}
+						<a class="list-group-item list-group-item-action" href="{{ package.website }}" rel="ugc">
+							<i class="fas fa-globe-europe"></i>
+							<span class="count ms-1">{{ _("Website") }}</span>
+						</a>
+					{% endif %}
+					{% if package.repo %}
+						<a class="list-group-item list-group-item-action" href="{{ package.repo }}" rel="ugc">
+							<i class="fas fa-code"></i>
+							<span class="count ms-1">{{ _("Source") }}</span>
+						</a>
+					{% endif %}
+					{% if package.forums %}
+						<a class="list-group-item list-group-item-action" href="{{ package.forums_url }}">
+							<i class="fas fa-comments"></i>
+							<span class="count ms-1">{{ _("Forums") }}</span>
+						</a>
+					{% endif %}
+					{% if package.issueTracker %}
+						<a class="list-group-item list-group-item-action" href="{{ package.issueTracker }}" rel="ugc">
+							<i class="fas fa-bug"></i>
+							<span class="count ms-1">{{ _("Issue Tracker") }}</span>
+						</a>
+					{% endif %}
+					{% if package.translation_url %}
+						<a class="list-group-item list-group-item-action" href="{{ package.translation_url }}" rel="ugc">
+							<i class="fas fa-language"></i>
+							<span class="count ms-1">{{ _("Translate") }}</span>
+						</a>
 					{% endif %}
 				</div>
 
@@ -579,39 +648,6 @@
 						</a>
 					</div>
 				{% endif %}
-
-				<div class="list-group mb-4">
-					{% if package.website %}
-						<a class="list-group-item list-group-item-action" href="{{ package.website }}" rel="ugc">
-							<i class="fas fa-globe-europe"></i>
-							<span class="count ms-1">{{ _("Website") }}</span>
-						</a>
-					{% endif %}
-					{% if package.repo %}
-						<a class="list-group-item list-group-item-action" href="{{ package.repo }}" rel="ugc">
-							<i class="fas fa-code"></i>
-							<span class="count ms-1">{{ _("Source") }}</span>
-						</a>
-					{% endif %}
-					{% if package.forums %}
-						<a class="list-group-item list-group-item-action" href="{{ package.forums_url }}">
-							<i class="fas fa-comments"></i>
-							<span class="count ms-1">{{ _("Forums") }}</span>
-						</a>
-					{% endif %}
-					{% if package.issueTracker %}
-						<a class="list-group-item list-group-item-action" href="{{ package.issueTracker }}" rel="ugc">
-							<i class="fas fa-bug"></i>
-							<span class="count ms-1">{{ _("Issue Tracker") }}</span>
-						</a>
-					{% endif %}
-					{% if package.translation_url %}
-						<a class="list-group-item list-group-item-action" href="{{ package.translation_url }}" rel="ugc">
-							<i class="fas fa-language"></i>
-							<span class="count ms-1">{{ _("Translate") }}</span>
-						</a>
-					{% endif %}
-				</div>
 
 				{% if package.ai_disclosure.show_warning %}
 					<p class="alert alert-info">

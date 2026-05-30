@@ -187,7 +187,6 @@
 
 
 {% macro render_review_preview(package, current_user) -%}
-	<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 	<div class="card mt-0 mb-4 ">
 		<div class="card-header">
 			{{ _("Review") }}
@@ -197,7 +196,6 @@
 			<p>
 				{{ package.type.do_you_recommend }}
 			</p>
-
 			<div class="btn-toolbar" role="toolbar">
 				<div class="btn-group me-2">
 					<button class="btn btn-primary" name="rating" value="5">
@@ -226,4 +224,24 @@
 			</div>
 		</form>
 	</div>
+{% endmacro %}
+
+{% macro render_review_buttons(package, current_user) -%}
+	<form method="post" action="{{ package.get_url('packages.review') }}">
+		<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+		<div class="btn-group">
+			<button class="btn btn-primary" name="rating" value="5">
+				<i class="fas fa-thumbs-up me-1"></i>
+				{{ _("Yes") }}
+			</button>
+			<button class="btn btn-primary" name="rating" value="3">
+				<i class="fas fa-minus me-1"></i>
+				{{ _("Neutral") }}
+			</button>
+			<button class="btn btn-primary" name="rating" value="1">
+				<i class="fas fa-thumbs-down me-1"></i>
+				{{ _("No") }}
+			</button>
+		</div>
+	</form>
 {% endmacro %}
