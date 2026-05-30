@@ -86,12 +86,13 @@
 					{% for p in packages %}
 						<a href="{{ p.get_url('packages.view') }}" class="list-group-item list-group-item-action">
 							<div class="row align-items-center">
-								<div class="col-auto">
+								<div class="col-3">
 									{% if "Other" in p.license.name or "Other" in p.media_license.name %}
 										<span class="badge bg-info">License</span>
 									{% else %}
 										<span class="badge bg-success">Ready</span>
 									{% endif %}
+									<span class="ms-2 badge bg-secondary">{{ p.type.to_name() | title }}</span>
 								</div>
 								<div class="col">
 									{{ p.title }} by {{ p.author.display_name }}
