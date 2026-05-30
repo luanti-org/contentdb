@@ -21,7 +21,7 @@
 				{{ _("Title") }}: {{ release.title }}
 			</p>
 			<div class="markdown">
-				{{ release.release_notes | markdown }}
+				{{ release.release_notes | markdown(remove_headings=True) }}
 			</div>
 		{% endif %}
 

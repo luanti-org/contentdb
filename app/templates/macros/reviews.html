@@ -95,7 +95,7 @@
 									<strong>{{ review.thread.title }}</strong>
 								</p>
 
-								{{ reply.comment | markdown }}
+								{{ reply.comment | markdown(remove_headings=True) }}
 
 								<div class="btn-toolbar mt-2 mb-0">
 									{% if show_package_link %}

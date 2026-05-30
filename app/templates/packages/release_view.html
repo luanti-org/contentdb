@@ -24,7 +24,7 @@
 	</p>
 	{% if release.release_notes %}
 		<div class="markdown panel my-5">
-			{{ release.release_notes | markdown }}
+			{{ release.release_notes | markdown(remove_headings=True) }}
 		</div>
 	{% endif %}
 	<p>

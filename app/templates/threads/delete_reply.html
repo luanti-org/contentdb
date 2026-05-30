@@ -10,7 +10,7 @@
 
 		<h3 class="card-header">{{ self.title() }}</h3>
 		<div class="card-body markdown">
-			{{ reply.comment | markdown }}
+			{{ reply.comment | markdown(remove_headings=True) }}
 		</div>
 		<div class="card-body">
 			<p>{{ _("Deleting is permanent") }}</p>

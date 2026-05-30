@@ -70,7 +70,7 @@
 						</a>
 					{% endif %}
 
-					{{ r.comment | markdown }}
+					{{ r.comment | markdown(remove_headings=True) }}
 
 					{% if thread.first_reply == r and thread.review %}
 						{{ render_review_vote(thread.review, current_user, thread.get_view_url()) }}
@@ -97,7 +97,7 @@
 			</a>
 		</div>
 		<div class="col pr-0 status-update">
-			{{ r.comment | markdown }}
+			{{ r.comment | markdown(remove_headings=True) }}
 		</div>
 		<div class="col-auto">
 			<a name="reply-{{ r.id }}" class="text-muted float-end"
