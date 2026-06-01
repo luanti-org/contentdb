@@ -174,15 +174,9 @@
 				</a>
 			{% endif %}
 			{% if package.check_perm(current_user, "MAKE_RELEASE") %}
-				<a class="btn btn-primary" href="{{ package.get_url('packages.create_release') }}">
+				<a class="btn btn-secondary" href="{{ package.get_url('packages.create_release') }}">
 					<i class="fas fa-plus me-1"></i>
 					{{ _("Release") }}
-				</a>
-			{% endif %}
-			{% if package.check_perm(current_user, "DELETE_PACKAGE") or package.check_perm(current_user, "UNAPPROVE_PACKAGE") %}
-				<a class="btn btn-danger" href="{{ package.get_url('packages.remove') }}">
-					<i class="fas fa-trash me-1"></i>
-					{{ _("Remove") }}
 				</a>
 			{% endif %}
 		</div>
