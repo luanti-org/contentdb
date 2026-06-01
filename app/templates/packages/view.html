@@ -179,6 +179,13 @@
 					{{ _("Release") }}
 				</a>
 			{% endif %}
+			{% if package.check_perm(current_user, "APPROVE_NEW") and (
+					package.check_perm(current_user, "DELETE_PACKAGE") or package.check_perm(current_user, "UNAPPROVE_PACKAGE")) %}
+				<a class="btn btn-danger" href="{{ package.get_url('packages.remove') }}">
+					<i class="fas fa-trash me-1"></i>
+					{{ _("Remove") }}
+				</a>
+			{% endif %}
 		</div>
 		<h1 class="my-4">{{ meta.title }}</h1>
 		<div class="clearfix"></div>
