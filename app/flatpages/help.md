@@ -17,7 +17,6 @@ toc: False
 * [Ranks and Permissions](ranks_permissions/)
 * [Contact Us](contact_us/)
 * [Top Packages Algorithm](top_packages/)
-* [Featured Packages](featured/)
 * [Feeds](feeds/)
 
 ## Help for Package Authors
