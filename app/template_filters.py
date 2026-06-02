@@ -15,6 +15,7 @@ from app.markdown import get_headings
 from .models import Permission, Package, PackageState, PackageRelease, ReleaseState
 from app.utils.flask import abs_url_for, url_set_query, url_set_anchor, url_current, abs_url as do_abs_url
 from app.utils.luanti_hypertext import normalize_whitespace as do_normalize_whitespace
+from app.utils.misc import format_file_size as format_file_size_impl
 
 
 @app.context_processor
@@ -121,3 +122,8 @@ def flatten(list):
 	for x in list:
 		ret.extend(x)
 	return ret
+
+
+@app.template_filter()
+def format_file_size(bytes: int):
+	return format_file_size_impl(bytes)

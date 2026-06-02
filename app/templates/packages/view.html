@@ -28,6 +28,7 @@
 {% block scriptextra %}
 	<script src="/static/js/video_embed.js?v=2"></script>
 	<script src="/static/js/package_view.js"></script>
+	<script src="/static/js/download_card.js"></script>
 	{% if current_user.is_authenticated %}
 		<script src="/static/js/quick_review_voting.js?v=2"></script>
 	{% endif %}
@@ -266,14 +267,287 @@
 		</div>
 	</section>
 
-	<div class="container d-md-none mt-4">
-		{{ self.download_btn() }}
-	</div>
-
 	{% from "macros/reviews.html" import render_reviews, render_review_form, render_review_preview, render_review_buttons with context %}
 
 	<div class="container mt-4">
-		<div class="row">
+		<div class="row flex-row-reverse">
+			<aside class="col-md-3 info-sidebar">
+				<div id="download-nojs">
+					{{ self.download_btn() }}
+				</div>
+
+				<article id="download-card" class="card mb-4 d-none">
+					<div class="card-body">
+						<div class="mb-4">
+							<label for="luanti-version" class="form-label">
+								{{ _("Luanti version") }}
+							</label>
+							<select class="form-select" id="luanti-version">
+								{% for version in luanti_versions %}
+									{% set version_release = latest_by_version[version.id] %}
+									<option
+										value="{{ version.name }}"
+										{% if version_release %}
+											{% set id, name, file_size_bytes, created_at, _ = version_release %}
+											data-release-url="{{ package.get_url('packages.download_release', id=id) }}"
+											data-release-name="{{ name }}"
+											data-release-size="{{ file_size_bytes }}"
+											data-release-created-at="{{ created_at | datetime }} "
+										{% endif %}
+										{% if loop.index == (luanti_versions | length) - 1 %}selected{% endif %}
+										{% if loop.index >= (luanti_versions | length) - 1 %}data-latest="true"{% endif %}>
+										{{ version.name }}
+										{% if not version_release %}
+											[{{ _("Unavailable") }}]
+										{% endif %}
+									</option>
+								{% endfor %}
+							</select>
+							<p id="download-newer-luanti" class="mt-2 text-warning">
+								{{ _("A newer Luanti version is available") }}
+							</p>
+						</div>
+
+						{% set selected_version = luanti_versions[(luanti_versions | length) - 2] %}
+						{% set version_release = latest_by_version[selected_version.id] %}
+
+						<div id="download-success" class="{% if not version_release %}d-none{% endif %}">
+							<a class="btn d-block btn-lg btn-download" rel="nofollow" href="#">
+								<div>
+									{{ _("Download") }}
+									<span class="text-muted" id="download-file-size">
+										{% if version_release %}
+											[{{ version_release[2] | format_file_size }}]
+										{% endif %}
+									</span>
+								</div>
+							</a>
+
+							<p id="download-release-info" class="text-muted mt-3"
+									data-release-text="{{ _('Release %(name)s created %(created_at)s', name='@1', created_at='@2') }}">
+								{% if version_release %}
+									{{ _("Release %(name)s created %(created_at)s", name=version_release[1], created_at=version_release[3] | datetime) }}
+								{% endif %}
+							</p>
+
+							<a href="{{ url_for('flatpage', path='help/installing') }}" class="d-block text-center text-small mt-3 mb-0">
+								<i class="fas fa-question-circle me-1"></i>
+								{{ _("How do I install this?") }}
+							</a>
+						</div>
+
+						<p id="download-no-release"  class="mb-0 {% if version_release %}d-none{% endif %}">
+							{{ _("This package is not available for this Luanti version") }}
+						</p>
+					</div>
+				</article>
+
+				<div class="list-group mb-4">
+					{% if package.website %}
+						<a class="list-group-item list-group-item-action" href="{{ package.website }}" rel="ugc">
+							<i class="fas fa-globe-europe"></i>
+							<span class="count ms-1">{{ _("Website") }}</span>
+						</a>
+					{% endif %}
+					{% if package.repo %}
+						<a class="list-group-item list-group-item-action" href="{{ package.repo }}" rel="ugc">
+							<i class="fas fa-code"></i>
+							<span class="count ms-1">{{ _("Source") }}</span>
+						</a>
+					{% endif %}
+					{% if package.forums %}
+						<a class="list-group-item list-group-item-action" href="{{ package.forums_url }}">
+							<i class="fas fa-comments"></i>
+							<span class="count ms-1">{{ _("Forums") }}</span>
+						</a>
+					{% endif %}
+					{% if package.issueTracker %}
+						<a class="list-group-item list-group-item-action" href="{{ package.issueTracker }}" rel="ugc">
+							<i class="fas fa-bug"></i>
+							<span class="count ms-1">{{ _("Issue Tracker") }}</span>
+						</a>
+					{% endif %}
+					{% if package.translation_url %}
+						<a class="list-group-item list-group-item-action" href="{{ package.translation_url }}" rel="ugc">
+							<i class="fas fa-language"></i>
+							<span class="count ms-1">{{ _("Translate") }}</span>
+						</a>
+					{% endif %}
+				</div>
+
+				{% if package.check_perm(current_user, "MAKE_RELEASE") and package.update_config and package.update_config.task_id %}
+					{% set config = package.update_config %}
+					<div class="alert alert-warning">
+						<p class="mt-0 mb-3">
+							<b>{{ _("Git update detection failed") }}</b>
+						</p>
+						<div class="btn-group btn-group-sm my-0">
+							<a class="btn btn-warning" href="{{ url_for('tasks.check', id=package.update_config.task_id) }}">
+								{{ _("View task") }}
+							</a>
+						</div>
+					</div>
+				{% endif %}
+
+				{% if package.check_perm(current_user, "MAKE_RELEASE") and package.update_config and package.update_config.outdated_at %}
+					{% set config = package.update_config %}
+					<div class="alert alert-warning">
+						<p class="mt-0 my-1">
+							<b>{{ _("Package may be outdated") }}</b>
+						</p>
+						<p class="mt-0 my-1">
+							{{ config.get_message() }}
+						</p>
+						<p class="mt-0 my-1" style="font-size: 80%; opacity: 85%;">
+							<i class="fas fa-lock me-1"></i>
+							{{ _("Only visible to the author and Editors.") }}
+						</p>
+						<div class="btn-group btn-group-sm my-0">
+							<a class="btn btn-warning" href="{{ config.get_create_release_url() }}">
+								<i class="fas fa-plus me-1"></i>
+								{{ _("Release") }}
+							</a>
+							<a class="btn btn-warning" href="{{ package.get_url('packages.update_config') }}">
+								<i class="fas fa-cog me-1"></i>
+								{{ _("Update settings") }}
+							</a>
+						</div>
+					</div>
+				{% endif %}
+
+				{% if package_warning %}
+					<p class="alert alert-danger">
+						<a href="/help/non_free/" class="float-end">Info</a>
+						<b>{{ _("Warning") }}:</b> {{ package_warning }}
+					</p>
+				{% endif %}
+
+				{% if package.donate_url_actual %}
+					<div class="alert alert-secondary mb-4">
+						<p>{{ _("Like this package? Help support its development by making a donation", display_name=package.author.display_name) }}</p>
+						<a class="btn d-block btn-primary" href="{{ package.donate_url_actual }}" rel="ugc">
+							<i class="fas fa-heart me-2"></i>
+							{{ _("Donate now") }}
+						</a>
+					</div>
+				{% endif %}
+
+				{% if package.ai_disclosure.show_warning %}
+					<p class="alert alert-info">
+						<strong>{{ package.ai_disclosure.title }}:</strong>
+						{{ package.ai_disclosure.description }}
+					</p>
+				{% endif %}
+
+				{{ self.dependencies() }}
+
+				{% if package.type == package.type.MOD or package.type == package.type.TXP %}
+					{% set pair = package.get_sorted_game_support_pair() %}
+					{% set supported_games = pair[0] %}
+					{% set unsupported_games = pair[1] %}
+					{% set show_unsupported = package.supports_all_games or supported_games == [] %}
+					{% if supported_games or unsupported_games or package.type == package.type.MOD %}
+						<h3>
+							{{ _("Compatible Games") }}
+						</h3>
+
+						{% if package.supports_all_games %}
+							<p>
+								{{ _("No specific game required") }}
+								{% if supported_games %}
+									<br>
+									{{ _("Tested with:") }}
+								{% endif %}
+							</p>
+						{% endif %}
+
+						{% if supported_games %}
+							<div style="max-height: 300px; overflow: hidden auto;" class="mb-3">
+								{% for support in supported_games %}
+									<a class="badge bg-secondary"
+											href="{{ support.game.get_url('packages.game_hub') }}">
+										{{ _("%(title)s by %(display_name)s",
+												title=support.game.title, display_name=support.game.author.display_name) }}
+									</a>
+								{% endfor %}
+							</div>
+						{% elif not package.supports_all_games %}
+							<p>
+								{{ _("No specific game required") }}
+							</p>
+							{% if package.state == package.state.APPROVED and package.check_perm(current_user, "EDIT_PACKAGE") %}
+								<div class="alert alert-warning">
+									<p>
+										{{ _("Is the above correct?") }}
+										{{ _("You need to either confirm this or tell ContentDB about supported games") }}
+									</p>
+
+									<a class="btn btn-sm btn-warning" href="{{ package.get_url('packages.game_support') }}">
+										Update
+									</a>
+								</div>
+							{% endif %}
+						{% endif %}
+
+						{% if unsupported_games and show_unsupported %}
+							<p>
+								{{ _("Does not work with:") }}
+							</p>
+							<div style="max-height: 300px; overflow: hidden auto;">
+								{% for support in unsupported_games %}
+									<a class="badge bg-danger"
+											href="{{ support.game.get_url('packages.view') }}">
+										<i class="fas fa-times me-1"></i>
+										{{ _("%(title)s by %(display_name)s",
+												title=support.game.title, display_name=support.game.author.display_name) }}
+									</a>
+								{% endfor %}
+							</div>
+						{% endif %}
+					{% elif package.check_perm(current_user, "EDIT_PACKAGE") %}
+						<p class="alert alert-warning">
+							{% if package.check_perm(current_user, "EDIT_PACKAGE") %}
+								<a href="{{ package.get_url('packages.game_support') }}" class="btn btn-warning btn-sm float-end">
+									<i class="fas fa-pen"></i>
+								</a>
+							{% endif %}
+							{{ _("Please specify compatible games") }}
+						</p>
+					{% endif %}
+				{% endif %}
+
+				<div class="card">
+					<div class="card-body">
+						<div class="card-title">
+							<a href="{{ package.get_url('packages.statistics') }}" rel="nofollow">
+								<i class="fas fa-chart-line me-1"></i>
+								{{ _("Statistics") }}
+							</a>
+						</div>
+						<p class="card-text">
+							<i class="fas fa-download me-2"></i>
+							<span class="count">
+								{{ package.downloads | decimal }}
+							</span>
+						</p>
+					</div>
+				</div>
+
+				<p class="mt-3">
+					{% if package.approved and current_user != package.author %}
+						<a href="{{ url_for('report.report', url=url_current()) }}">
+							<i class="fas fa-flag me-1"></i>
+							{{ _("Report") }}
+						</a>
+					{% endif %}
+					{% if package.check_perm(current_user, "EDIT_PACKAGE") or package.check_perm(current_user, "APPROVE_NEW") %}
+						|
+						<a href="{{ package.get_url('packages.audit') }}">
+							{{ _("See audit log") }}
+						</a>
+					{% endif %}
+				</p>
+			</aside>
 			<div class="col-md-9">
 				<div class="btn-toolbar gap-3">
 					<form method="POST" action="{{ package.get_url('collections.package_toggle_favorite') }}">
@@ -555,217 +829,6 @@
 					</article>
 				</div>
 			</div>
-			<aside class="col-md-3 info-sidebar">
-				<div class="d-none d-md-block">
-					{{ self.download_btn() }}
-				</div>
-
-				<div class="list-group mb-4">
-					{% if package.website %}
-						<a class="list-group-item list-group-item-action" href="{{ package.website }}" rel="ugc">
-							<i class="fas fa-globe-europe"></i>
-							<span class="count ms-1">{{ _("Website") }}</span>
-						</a>
-					{% endif %}
-					{% if package.repo %}
-						<a class="list-group-item list-group-item-action" href="{{ package.repo }}" rel="ugc">
-							<i class="fas fa-code"></i>
-							<span class="count ms-1">{{ _("Source") }}</span>
-						</a>
-					{% endif %}
-					{% if package.forums %}
-						<a class="list-group-item list-group-item-action" href="{{ package.forums_url }}">
-							<i class="fas fa-comments"></i>
-							<span class="count ms-1">{{ _("Forums") }}</span>
-						</a>
-					{% endif %}
-					{% if package.issueTracker %}
-						<a class="list-group-item list-group-item-action" href="{{ package.issueTracker }}" rel="ugc">
-							<i class="fas fa-bug"></i>
-							<span class="count ms-1">{{ _("Issue Tracker") }}</span>
-						</a>
-					{% endif %}
-					{% if package.translation_url %}
-						<a class="list-group-item list-group-item-action" href="{{ package.translation_url }}" rel="ugc">
-							<i class="fas fa-language"></i>
-							<span class="count ms-1">{{ _("Translate") }}</span>
-						</a>
-					{% endif %}
-				</div>
-
-				{% if package.check_perm(current_user, "MAKE_RELEASE") and package.update_config and package.update_config.task_id %}
-					{% set config = package.update_config %}
-					<div class="alert alert-warning">
-						<p class="mt-0 mb-3">
-							<b>{{ _("Git update detection failed") }}</b>
-						</p>
-						<div class="btn-group btn-group-sm my-0">
-							<a class="btn btn-warning" href="{{ url_for('tasks.check', id=package.update_config.task_id) }}">
-								{{ _("View task") }}
-							</a>
-						</div>
-					</div>
-				{% endif %}
-
-				{% if package.check_perm(current_user, "MAKE_RELEASE") and package.update_config and package.update_config.outdated_at %}
-					{% set config = package.update_config %}
-					<div class="alert alert-warning">
-						<p class="mt-0 my-1">
-							<b>{{ _("Package may be outdated") }}</b>
-						</p>
-						<p class="mt-0 my-1">
-							{{ config.get_message() }}
-						</p>
-						<p class="mt-0 my-1" style="font-size: 80%; opacity: 85%;">
-							<i class="fas fa-lock me-1"></i>
-							{{ _("Only visible to the author and Editors.") }}
-						</p>
-						<div class="btn-group btn-group-sm my-0">
-							<a class="btn btn-warning" href="{{ config.get_create_release_url() }}">
-								<i class="fas fa-plus me-1"></i>
-								{{ _("Release") }}
-							</a>
-							<a class="btn btn-warning" href="{{ package.get_url('packages.update_config') }}">
-								<i class="fas fa-cog me-1"></i>
-								{{ _("Update settings") }}
-							</a>
-						</div>
-					</div>
-				{% endif %}
-
-				{% if package_warning %}
-					<p class="alert alert-danger">
-						<a href="/help/non_free/" class="float-end">Info</a>
-						<b>{{ _("Warning") }}:</b> {{ package_warning }}
-					</p>
-				{% endif %}
-
-				{% if package.donate_url_actual %}
-					<div class="alert alert-secondary mb-4">
-						<p>{{ _("Like this package? Help support its development by making a donation", display_name=package.author.display_name) }}</p>
-						<a class="btn d-block btn-primary" href="{{ package.donate_url_actual }}" rel="ugc">
-							<i class="fas fa-heart me-2"></i>
-							{{ _("Donate now") }}
-						</a>
-					</div>
-				{% endif %}
-
-				{% if package.ai_disclosure.show_warning %}
-					<p class="alert alert-info">
-						<strong>{{ package.ai_disclosure.title }}:</strong>
-						{{ package.ai_disclosure.description }}
-					</p>
-				{% endif %}
-
-				{{ self.dependencies() }}
-
-				{% if package.type == package.type.MOD or package.type == package.type.TXP %}
-					{% set pair = package.get_sorted_game_support_pair() %}
-					{% set supported_games = pair[0] %}
-					{% set unsupported_games = pair[1] %}
-					{% set show_unsupported = package.supports_all_games or supported_games == [] %}
-					{% if supported_games or unsupported_games or package.type == package.type.MOD %}
-						<h3>
-							{{ _("Compatible Games") }}
-						</h3>
-
-						{% if package.supports_all_games %}
-							<p>
-								{{ _("No specific game required") }}
-								{% if supported_games %}
-									<br>
-									{{ _("Tested with:") }}
-								{% endif %}
-							</p>
-						{% endif %}
-
-						{% if supported_games %}
-							<div style="max-height: 300px; overflow: hidden auto;" class="mb-3">
-								{% for support in supported_games %}
-									<a class="badge bg-secondary"
-											href="{{ support.game.get_url('packages.game_hub') }}">
-										{{ _("%(title)s by %(display_name)s",
-												title=support.game.title, display_name=support.game.author.display_name) }}
-									</a>
-								{% endfor %}
-							</div>
-						{% elif not package.supports_all_games %}
-							<p>
-								{{ _("No specific game required") }}
-							</p>
-							{% if package.state == package.state.APPROVED and package.check_perm(current_user, "EDIT_PACKAGE") %}
-								<div class="alert alert-warning">
-									<p>
-										{{ _("Is the above correct?") }}
-										{{ _("You need to either confirm this or tell ContentDB about supported games") }}
-									</p>
-
-									<a class="btn btn-sm btn-warning" href="{{ package.get_url('packages.game_support') }}">
-										Update
-									</a>
-								</div>
-							{% endif %}
-						{% endif %}
-
-						{% if unsupported_games and show_unsupported %}
-							<p>
-								{{ _("Does not work with:") }}
-							</p>
-							<div style="max-height: 300px; overflow: hidden auto;">
-								{% for support in unsupported_games %}
-									<a class="badge bg-danger"
-											href="{{ support.game.get_url('packages.view') }}">
-										<i class="fas fa-times me-1"></i>
-										{{ _("%(title)s by %(display_name)s",
-												title=support.game.title, display_name=support.game.author.display_name) }}
-									</a>
-								{% endfor %}
-							</div>
-						{% endif %}
-					{% elif package.check_perm(current_user, "EDIT_PACKAGE") %}
-						<p class="alert alert-warning">
-							{% if package.check_perm(current_user, "EDIT_PACKAGE") %}
-								<a href="{{ package.get_url('packages.game_support') }}" class="btn btn-warning btn-sm float-end">
-									<i class="fas fa-pen"></i>
-								</a>
-							{% endif %}
-							{{ _("Please specify compatible games") }}
-						</p>
-					{% endif %}
-				{% endif %}
-
-				<div class="card">
-					<div class="card-body">
-						<div class="card-title">
-							<a href="{{ package.get_url('packages.statistics') }}" rel="nofollow">
-								<i class="fas fa-chart-line me-1"></i>
-								{{ _("Statistics") }}
-							</a>
-						</div>
-						<p class="card-text">
-							<i class="fas fa-download me-2"></i>
-							<span class="count">
-								{{ package.downloads | decimal }}
-							</span>
-						</p>
-					</div>
-				</div>
-
-				<p class="mt-3">
-					{% if package.approved and current_user != package.author %}
-						<a href="{{ url_for('report.report', url=url_current()) }}">
-							<i class="fas fa-flag me-1"></i>
-							{{ _("Report") }}
-						</a>
-					{% endif %}
-					{% if package.check_perm(current_user, "EDIT_PACKAGE") or package.check_perm(current_user, "APPROVE_NEW") %}
-						|
-						<a href="{{ package.get_url('packages.audit') }}">
-							{{ _("See audit log") }}
-						</a>
-					{% endif %}
-				</p>
-			</aside>
 		</div>
 	</div>
 </main>

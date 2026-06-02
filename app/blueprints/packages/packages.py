@@ -12,8 +12,8 @@ from flask_babel import gettext, lazy_gettext
 from flask_login import login_required, current_user
 from flask_wtf import FlaskForm
 from jinja2.utils import markupsafe
-from sqlalchemy import func, or_, and_
-from sqlalchemy.orm import joinedload, subqueryload
+from sqlalchemy import func, or_, and_, select
+from sqlalchemy.orm import joinedload, subqueryload, Session
 from wtforms import SelectField, StringField, TextAreaField, IntegerField, SubmitField, BooleanField
 from wtforms.validators import InputRequired, Length, Regexp, DataRequired, Optional, URL, NumberRange, ValidationError
 from wtforms_sqlalchemy.fields import QuerySelectField, QuerySelectMultipleField
@@ -31,7 +31,7 @@ from . import bp, get_package_tabs
 from app.models import Package, Tag, db, User, Tags, PackageState, Permission, PackageType, MetaPackage, ForumTopic, \
 	Dependency, Thread, UserRank, PackageReview, PackageDevState, ContentWarning, License, AuditSeverity, \
 	PackageScreenshot, NotificationType, AuditLogEntry, PackageAlias, PackageProvides, PackageGameSupport, \
-	PackageDailyStats, Collection, ReleaseState, PackageAIDisclosure
+	PackageDailyStats, Collection, ReleaseState, PackageAIDisclosure, LuantiRelease, PackageRelease
 from app.utils.models import is_package_page, add_audit_log, get_package_by_info, \
 	add_notification, get_system_user, get_games_from_csv, \
 	post_to_approval_thread
@@ -115,6 +115,41 @@ def user_redirect(author):
 	return redirect(url_for("users.profile", username=author))
 
 
+def get_latest_releases_per_version(session: Session, package_id: int):
+	ranked = (
+		select(
+			LuantiRelease.id,
+			PackageRelease.id,
+			PackageRelease.name,
+			PackageRelease.file_size_bytes,
+			PackageRelease.created_at,
+			func.row_number()
+				.over(
+					partition_by=LuantiRelease.id,
+					order_by=PackageRelease.id.desc()
+				)
+				.label("rn"),
+		)
+		.join(
+			PackageRelease,
+			and_(
+				PackageRelease.package_id == package_id,
+				or_(PackageRelease.min_rel_id == None, PackageRelease.min_rel_id <= LuantiRelease.id),
+				or_(PackageRelease.max_rel_id == None, PackageRelease.max_rel_id >= LuantiRelease.id),
+				PackageRelease.state == ReleaseState.APPROVED,
+			)
+		)
+		.subquery()
+	)
+
+	stmt = select(ranked).where(ranked.c.rn == 1)
+	rows = session.execute(stmt).all()
+	return {
+		luanti_release_id: release
+		for luanti_release_id, *release in rows
+	}
+
+
 @bp.route("/packages/<author>/<name>/")
 @is_package_page
 def view(package):
@@ -169,11 +204,19 @@ def view(package):
 			Collection.packages.contains(package),
 			Collection.name == "favorites").count() > 0
 
+	luanti_versions = LuantiRelease.query.filter(LuantiRelease.protocol > 0).order_by(db.asc(LuantiRelease.id)).all()
+	import time
+	start = time.perf_counter()
+	latest_by_version = get_latest_releases_per_version(db.session, package.id)
+	end = time.perf_counter()
+	elapsed = f'Time taken: {(end - start):.6f} seconds'
+
 	return render_template("packages/view.html",
 			package=package, releases=releases.all(), packages_uses=packages_uses,
 			review_thread=review_thread, threads=threads.all(), reviews=reviews, validation=validation,
 			has_review=has_review, favorites_count=favorites_count, is_favorited=is_favorited,
-			public_collection_count=public_collection_count)
+			public_collection_count=public_collection_count, luanti_versions=luanti_versions,
+			latest_by_version=latest_by_version, elapsed=elapsed)
 
 
 @bp.route("/packages/<author>/<name>/shields/<type>/")

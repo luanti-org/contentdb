@@ -42,3 +42,11 @@ def normalize_line_endings(value: Optional[str]) -> Optional[str]:
 
 def random_string(n):
 	return secrets.token_hex(int(n / 2))
+
+
+def format_file_size(bytes: int) -> str:
+	size = bytes / 1024
+	if size > 1024:
+		return f"{round(size / 1024, 1)} MB"
+	else:
+		return f"{round(size)} KB"

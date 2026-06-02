@@ -19,6 +19,8 @@ from app import app
 from . import db
 from .users import Permission, UserRank, User
 from app.utils.flask import abs_url_for, abs_url
+from app.utils.misc import format_file_size
+
 
 class License(db.Model):
 	id      = db.Column(db.Integer, primary_key=True)
@@ -1426,11 +1428,7 @@ class PackageScreenshot(db.Model):
 
 	@property
 	def file_size(self):
-		size = self.file_size_bytes / 1024
-		if size > 1024:
-			return f"{round(size / 1024, 1)} MB"
-		else:
-			return f"{round(size)} KB"
+		return format_file_size(self.file_size_bytes)
 
 	def get_edit_url(self):
 		return url_for("packages.edit_screenshot",
