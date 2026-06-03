@@ -3,16 +3,19 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 from datetime import datetime as dt
+from datetime import timedelta as datetime_timedelta
 from urllib.parse import urlparse
 
 from flask import request, has_request_context
 from flask_babel import format_timedelta, gettext, get_locale, format_decimal
 from flask_login import current_user
 from markupsafe import Markup
+from sqlalchemy import and_
 
 from . import app
 from app.markdown import get_headings
-from .models import Permission, Package, PackageState, PackageRelease, ReleaseState
+from app.models import db, Permission, Package, PackageState, PackageRelease, ReleaseState, PackageReview, \
+	PackageReviewVote
 from app.utils.flask import abs_url_for, url_set_query, url_set_anchor, url_current, abs_url as do_abs_url
 from app.utils.luanti_hypertext import normalize_whitespace as do_normalize_whitespace
 from app.utils.misc import format_file_size as format_file_size_impl
@@ -43,6 +46,31 @@ def inject_todo():
 		todo_list_count += PackageRelease.query.filter_by(state=ReleaseState.UNAPPROVED, task_id=None).count()
 
 	return dict(todo_list_count=todo_list_count)
+
+
+@app.context_processor
+def inject_bigotry_troll():
+	if not current_user or not current_user.is_authenticated:
+		return dict()
+
+	sensitive_package_ids = (db.session.query(Package.id)
+		.filter_by(sensitive_package=True, state=PackageState.APPROVED)
+		.subquery())
+
+	one_hour_ago = dt.utcnow() - datetime_timedelta(hours=1)
+
+	count = (PackageReview.query
+		.filter(PackageReview.package_id.in_(sensitive_package_ids))
+		.join(PackageReviewVote,
+			and_(
+				PackageReviewVote.review_id == PackageReview.id,
+				PackageReviewVote.user_id == current_user.id,
+				PackageReviewVote.is_positive != (PackageReview.rating > 3),
+				PackageReviewVote.created_at < one_hour_ago,
+			))
+		.count())
+
+	return dict(bigotry_troll=count > 5)
 
 
 @app.template_filter()

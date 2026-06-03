@@ -37,6 +37,18 @@
 	<link rel="alternate" type="application/atom+xml"
 		href="{{ abs_url_for('feeds.releases_all_atom') }}" title="{{ _('ContentDB package updates') }}">
 
+	{% if bigotry_troll %}
+	<style>
+		.navbar.bg-primary {
+			background: linear-gradient(red 16.66%, orange 0 33.33%, yellow 0 50%, green 0 66.66%, blue 0 83.33%, indigo 0);
+		}
+
+		.navbar.bg-primary .nav-item, .navbar.bg-primary .navbar-brand  {
+			background: black;
+		}
+	</style>
+	{% endif %}
+
 	{% block headextra %}{% endblock %}
 </head>
 <body>
