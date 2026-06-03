@@ -242,36 +242,6 @@ pre {
 	}
 }
 
-.client-preview {
-	background: #50525e;
-	padding: 17px 24px 17px 24px;
-	gap: 25px;
-	font-size: 15px;
-
-	.mt-thumb {
-		width: 96px;
-		height: 64px;
-	}
-
-	p {
-		color: #fefefe;
-		margin: 0;
-	}
-
-	.desc p:nth-child(2) {
-		@include line_clamp(2);
-		line-height: 1.4;
-	}
-
-	.title {
-		color: #72fe63;
-	}
-
-	.desc {
-		margin-top: -4px;
-	}
-}
-
 .flex-grow {
 	flex-grow: 1;
 }

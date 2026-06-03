@@ -85,28 +85,6 @@
 		</noscript>
 	{% endif %}
 
-	<h2 id="client-preview">{{ _("Client Preview") }}</h2>
-	<p class="mb-4">
-		{{ _("The first screenshot in the list above will be the package thumbnail.") }}
-	</p>
-	<div class="client-preview d-flex flex-row align-items-center">
-		<img class="mt-thumb" src="{{ package.get_thumb_or_placeholder(1) }}" alt="{{ _('Thumbnail') }}">
-		<div class="flex-grow-1 desc align-self-stretch">
-			<p>
-				<span class="title">{{ package.title }}</span> by {{ package.author.username }}
-			</p>
-			<p>
-				{% if package.state.name == 'WORK_IN_PROGRESS' %}
-					Work in Progress.
-				{% endif %}
-				{{ package.short_desc }}
-			</p>
-		</div>
-		<div>
-			<img src="/static/minetest_client_buttons.png" alt="Install">
-		</div>
-	</div>
-
 	<h2>{{ _("Cover Image") }}</h2>
 
 	{% if screenshots %}
