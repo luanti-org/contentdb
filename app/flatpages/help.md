@@ -6,6 +6,7 @@ toc: False
 
 * [Terms of Service](/terms/)
 * [Package Inclusion Policy](/policy_and_guidance/)
+* [Review Policy / Guidance](/reviews_policy/)
 
 ## General Help
 
