@@ -21,6 +21,8 @@ Don't:
 * Submit one word reviews like "Cool".
 * Post bug reports or support requests in reviews. Bugs should be reported on issue trackers.
 * Write reviews for packages which you have not personally used
-* Criticise the use of LLMs itself - this is already disclosed using the "AI disclosure" feature. You may otherwise criticise the quality of an package.
+* Criticise the use of LLMs itself - this is already disclosed using the "AI disclosure" feature.
+  If you suspect that the package's disclosure is incorrect or misleading, please use the
+  Report feature rather than a review. You may otherwise criticise the quality of a package.
 * Include anyone's email, phone number, or other personal details
 * Post a review for a package you worked on.
