@@ -30,7 +30,7 @@ used across the Luanti content ecosystem, ordered by permissiveness with and a (
   Licenses that act as "universal Public Domain" licenses, withdrawing all copyright to the extent possible even in
   countries where a Public Domain dedication does not exist.
 
-- [MIT](https://spdx.org/licenses/MIT.html) -
+- [MIT](https://spdx.org/licenses/MIT.html) / [ISC](https://spdx.org/licenses/ISC.html) -
   Permissive license that only requires attribution of the original author.
 
 - [LGPLv2.1](https://spdx.org/licenses/LGPL-2.1-or-later.html) -
