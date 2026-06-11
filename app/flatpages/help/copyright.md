@@ -16,6 +16,57 @@ and remix each other's content. To this end, you need to make sure your content 
 
 ## What do I need to do?
 
+### Choose a license
+
+When you have a mod with your own work in it, you need to put it under a free license before publishing it on ContentDB.
+By default in copyright law, any creative works made by humans are automatically copyrighted, so putting your work under a
+free license allows others to freely use, modify and redistribute per
+[The Free Software Definition](https://en.wikipedia.org/wiki/The_Free_Software_Definition).
+
+There are [an overwhelmingly large amount of licenses out there](https://spdx.org/licenses/), but here are a list of common code licenses
+used across the Luanti content ecosystem, ordered by permissiveness with and a (non-legal) summary of what they entail:
+
+- [0BSD](https://spdx.org/licenses/0BSD.html) / [CC0](https://spdx.org/licenses/CC0-1.0.html) / [The Unlicense](https://spdx.org/licenses/Unlicense.html) -
+  Licenses that act as "universal Public Domain" licenses, withdrawing all copyright to the extent possible even in
+  countries where a Public Domain dedication does not exist.
+
+- [MIT](https://spdx.org/licenses/MIT.html) -
+  Permissive license that only requires attribution of the original author.
+
+- [LGPLv2.1](https://spdx.org/licenses/LGPL-2.1-or-later.html) -
+  A slightly more lenient form of the copyleft GPL license that has exceptions for linking, primarily in the context of software libraries.
+  This license (specifically the 2.1 version) is used by the Luanti engine and Minetest Game, and sees usage primarily for that reason.
+
+- [GPLv3](https://spdx.org/licenses/GPL-3.0-or-later.html) -
+  A copyleft license which requires modifications of the source code to be made available under the same license.
+
+- [AGPLv3](https://spdx.org/licenses/AGPL-3.0-or-later.html) -
+  A stronger copyleft license that requires the source of modifications to be available even when software is
+  used over the network. (in the context of Luanti this typically refers to content being run on a multiplayer server)
+
+Do note that ContentDB only allows well-known and legally tested free licenses that are approved by either the
+[Free Software Foundation](https://www.gnu.org/philosophy/free-sw.en.html)
+or [Open Source Initiative](https://opensource.org/osd).
+You should not write your own license as a layperson or add terms to an existing license that changes the
+meaning of it (typically called a "crayon license").
+
+If you want to use a license that is FSF or OSI approved but does not exist in the ContentDB license dropdown, then
+choose "Other (Free/Open)" and write a message in the package approval thread and we will add it to the list of
+licenses. The "Other" license option may also be used in complicated license situations with incompatible licenses
+that cannot be expressed in ContentDB's current license metadata system, but it is not a way of opting out of
+the requirement of putting a proper free license on your package.
+
+#### Licensing your own media
+It is common (and recommended) for media such as sounds and textures to be licensed under a
+[Creative Commons](https://creativecommons.org/chooser/) license, but keep in mind that CC licenses that
+forbid commercial use ("-NC") and forbid derivatives ("-ND") are non-free and not allowed on ContentDB.
+
+However, using a CC license for media is not a requirement, and e.g. licensing your entire mod including your
+own textures and sounds under a permissive code license such as the MIT license is an okay thing to do. 
+
+For the other way around, [Creative Commons discourages the use of its CC licenses for code](https://creativecommons.org/faq/#can-i-apply-a-creative-commons-license-to-software),
+with the exception of CC0 which is a universal Public Domain-like license that works on both media and code.
+
 ### Follow the licenses
 
 Make sure you understand the licenses for anything you copy into your content.
