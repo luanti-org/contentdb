@@ -18,7 +18,7 @@ and remix each other's content. To this end, you need to make sure your content 
 
 ### Choose a license
 
-When you have a mod with your own work in it, you need to put it under a free license before publishing it on ContentDB.
+When you have a package with your own work in it, you need to put it under a free license before publishing it on ContentDB.
 By default in copyright law, any creative works made by humans are automatically copyrighted, so putting your work under a
 free license allows others to freely use, modify and redistribute per
 [The Free Software Definition](https://en.wikipedia.org/wiki/The_Free_Software_Definition).
@@ -61,7 +61,7 @@ It is common (and recommended) for media such as sounds and textures to be licen
 [Creative Commons](https://creativecommons.org/chooser/) license, but keep in mind that CC licenses that
 forbid commercial use ("-NC") and forbid derivatives ("-ND") are non-free and not allowed on ContentDB.
 
-However, using a CC license for media is not a requirement, and e.g. licensing your entire mod including your
+However, using a CC license for media is not a requirement, and e.g. licensing your entire package including your
 own textures and sounds under a permissive code license such as the MIT license is an okay thing to do. 
 
 For the other way around, [Creative Commons discourages the use of its CC licenses for code](https://creativecommons.org/faq/#can-i-apply-a-creative-commons-license-to-software),
