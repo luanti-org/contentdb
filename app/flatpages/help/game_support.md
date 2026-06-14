@@ -50,3 +50,5 @@ instead.
 
 .conf will override anything ContentDB detects. The manual override on ContentDB
 overrides .conf and dependencies.
+
+See also: [Package Configuration: .conf files](/help/package_config/#conf-files)
