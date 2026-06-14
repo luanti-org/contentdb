@@ -10,7 +10,8 @@ this to your advantage.
 
 ### What is a content .conf file?
 
-Every type of content can have a `.conf` file that contains the metadata.
+Every type of content should have a `.conf` file that contains the metadata.
+This file is also used by the Luanti engine, see [lua_api.md, section "Games" and "Mods"](https://github.com/luanti-org/luanti/blob/master/doc/lua_api.md) for details.
 
 The filename of the `.conf` file depends on the content type:
 
@@ -48,8 +49,8 @@ ContentDB understands the following information:
 and for mods only:
 
 * `name` - the mod technical name.
-* `supported_games` - List of supported game technical names.
-* `unsupported_games` - List of not supported game technical names. Useful to override game support detection.
+* `supported_games` - List of supported games, see [Supported Games](/help/game_support/).
+* `unsupported_games` - List of known not supported games, see [Supported Games](/help/game_support/).
 
 
 ## .cdb.json
@@ -69,13 +70,13 @@ It should be a JSON dictionary with one or more of the following optional keys:
 * `tags`: List of tag names, see [/api/tags/](/api/tags/).
 * `content_warnings`: List of content warning names, see [/api/content_warnings/](/api/content_warnings/).
 * `license`: A license name, see [/api/licenses/](/api/licenses/).
-* `media_license`: A license name.
+* `media_license`: A license name, see [/api/licenses/](/api/licenses/).
 * `long_description`: Long markdown description.
 * `repo`: Source repository (eg: Git).
 * `website`: Website URL.
 * `issue_tracker`: Issue tracker URL.
 * one of:
-  * `forums`: forum topic ID, an integer, ex: 20174.
+  * `forums`: forum topic ID, an integer, ex: `20174`.
   * `forum_url`: forum URL, a string. Must link to the official forums. Ex: `https://forum.luanti.org/viewtopic.php?t=20174`
 * `video_url`: URL to a video.
 * `donate_url`: URL to a donation page.
