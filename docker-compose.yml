@@ -1,3 +1,5 @@
+name: contentdb
+
 services:
   db:
     image: "postgres:14"
