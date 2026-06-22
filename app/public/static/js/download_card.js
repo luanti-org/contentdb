@@ -30,6 +30,8 @@ function setLuantiVersion(version) {
 	localStorage.setItem("luanti-version", version.value);
 
 	const {
+		packageName,
+		releaseId,
 		releaseName,
 		releaseUrl,
 		releaseSize,
@@ -52,6 +54,10 @@ function setLuantiVersion(version) {
 
 		const btn = document.querySelector("#download-card .btn-download");
 		btn.setAttribute("href", releaseUrl);
+
+		// See PackageRelease.get_download_filename()
+		const filename = `${packageName}_${releaseId}.zip`;
+		btn.setAttribute("download", filename);
 
 		const size = document.getElementById("download-file-size");
 		if (releaseSize > 1024*1024) {

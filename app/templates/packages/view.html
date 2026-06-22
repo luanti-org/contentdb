@@ -290,9 +290,11 @@
 										{% if version_release %}
 											{% set id, name, file_size_bytes, created_at, _ = version_release %}
 											data-release-url="{{ package.get_url('packages.download_release', id=id) }}"
+											data-package-name="{{ package.name }}"
+											data-release-id="{{ id }}"
 											data-release-name="{{ name }}"
 											data-release-size="{{ file_size_bytes }}"
-											data-release-created-at="{{ created_at | datetime }} "
+											data-release-created-at="{{ created_at | datetime }}"
 										{% endif %}
 										{% if loop.index == (luanti_versions | length) - 1 %}selected{% endif %}
 										{% if loop.index >= (luanti_versions | length) - 1 %}data-latest="true"{% endif %}>
@@ -701,7 +703,7 @@
 										{{ release.name }}
 									</p>
 									<p>
-										<a href="{{ release.get_download_url() }}" class="btn btn-secondary me-3">
+										<a href="{{ release.get_download_url() }}" download="{{ release.get_download_filename() }}" class="btn btn-secondary me-3">
 											{{ _("Download") }}
 										</a>
 									</p>
