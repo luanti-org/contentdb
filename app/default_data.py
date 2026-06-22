@@ -5,7 +5,7 @@
 import datetime
 
 from .models import User, UserRank, LuantiRelease, Tag, License, Notification, NotificationType, Package, \
-	PackageState, PackageType, PackageRelease, MetaPackage, Dependency, ReleaseState
+	PackageState, PackageAIDisclosure, PackageType, PackageRelease, MetaPackage, Dependency, ReleaseState
 from .utils.user import make_flask_login_password
 
 
@@ -74,6 +74,7 @@ def populate_test_data(session):
 	session.add(jeija)
 
 	mod = Package()
+	mod.ai_disclosure = PackageAIDisclosure.UNKNOWN
 	mod.state = PackageState.APPROVED
 	mod.name = "alpha"
 	mod.title = "Alpha Test"
@@ -99,6 +100,7 @@ def populate_test_data(session):
 	session.add(rel)
 
 	mod1 = Package()
+	mod1.ai_disclosure = PackageAIDisclosure.UNKNOWN
 	mod1.state = PackageState.APPROVED
 	mod1.name = "awards"
 	mod1.title = "Awards"
@@ -137,6 +139,7 @@ awards.register_achievement("award_mesefind",{
 	session.add(rel)
 
 	mod2 = Package()
+	mod2.ai_disclosure = PackageAIDisclosure.UNKNOWN
 	mod2.state = PackageState.APPROVED
 	mod2.name = "mesecons"
 	mod2.title = "Mesecons"
@@ -226,6 +229,7 @@ No warranty is provided, express or implied, for any part of the project.
 	session.add(mod2)
 
 	mod = Package()
+	mod.ai_disclosure = PackageAIDisclosure.UNKNOWN
 	mod.state = PackageState.APPROVED
 	mod.name = "handholds"
 	mod.title = "Handholds"
@@ -251,6 +255,7 @@ No warranty is provided, express or implied, for any part of the project.
 	session.add(rel)
 
 	mod = Package()
+	mod.ai_disclosure = PackageAIDisclosure.UNKNOWN
 	mod.state = PackageState.APPROVED
 	mod.name = "other_worlds"
 	mod.title = "Other Worlds"
@@ -268,6 +273,7 @@ No warranty is provided, express or implied, for any part of the project.
 	session.add(mod)
 
 	mod = Package()
+	mod.ai_disclosure = PackageAIDisclosure.UNKNOWN
 	mod.state = PackageState.APPROVED
 	mod.name = "food"
 	mod.title = "Food"
@@ -284,6 +290,7 @@ No warranty is provided, express or implied, for any part of the project.
 	session.add(mod)
 
 	mod = Package()
+	mod.ai_disclosure = PackageAIDisclosure.UNKNOWN
 	mod.state = PackageState.APPROVED
 	mod.name = "food_sweet"
 	mod.title = "Sweet Foods"
@@ -301,6 +308,7 @@ No warranty is provided, express or implied, for any part of the project.
 	session.add(mod)
 
 	game1 = Package()
+	game1.ai_disclosure = PackageAIDisclosure.UNKNOWN
 	game1.state = PackageState.APPROVED
 	game1.name = "capturetheflag"
 	game1.title = "Capture The Flag"
@@ -365,6 +373,7 @@ Uses the CTF PvP Engine.
 
 
 	mod = Package()
+	mod.ai_disclosure = PackageAIDisclosure.UNKNOWN
 	mod.state = PackageState.APPROVED
 	mod.name = "pixelbox"
 	mod.title = "PixelBOX Reloaded"
