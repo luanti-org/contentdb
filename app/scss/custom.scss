@@ -188,9 +188,17 @@ pre {
 }
 
 .btn-download {
-	color: #fff;
-	background-color: #00b05c;
-	border-color: #00b05c;
+	--bs-btn-color: #fff;
+	--bs-btn-bg: #00b05c;
+	--bs-btn-border-color: #00b05c;
+	--bs-btn-hover-color: #fff;
+	--bs-btn-hover-bg: #00a053;
+	--bs-btn-hover-border-color: #00a053;
+	--bs-btn-focus-shadow-rgb: 0,188,140;
+	--bs-btn-active-color: #fff;
+	--bs-btn-active-bg: #00914b;
+	--bs-btn-active-border-color: #00914b;
+	--bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 
 
