@@ -860,7 +860,7 @@ class Package(db.Model):
 			return is_maintainer and user.rank.at_least(UserRank.NEW_MEMBER)
 
 		elif perm == Permission.APPROVE_RELEASE:
-			return (is_maintainer or is_approver) and user.rank.at_least(UserRank.MEMBER if self.approved else UserRank.NEW_MEMBER)
+			return is_maintainer or is_approver
 
 		# Anyone can change the package name when not approved
 		elif perm == Permission.CHANGE_NAME:
