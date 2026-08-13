@@ -211,6 +211,8 @@ class User(db.Model, UserMixin):
 
 	ban = db.relationship("UserBan", foreign_keys="UserBan.user_id", back_populates="user", uselist=False)
 
+	username_valid = db.CheckConstraint("username ~* '^[A-Za-z0-9 ._-]+$'")
+
 	@property
 	def is_banned(self):
 		return (self.ban and not self.ban.has_expired) or self.rank == UserRank.BANNED
