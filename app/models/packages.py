@@ -605,7 +605,8 @@ class Package(db.Model):
 			name = name[:-5]
 		return name
 
-	def get_translated(self, lang=None, load_desc=True):
+	def get_translated(self, lang=None, load_desc=True, translation: typing.Optional["PackageTranslation"] = None,
+				translations_prefetched: bool = False):
 		if lang is None:
 			locale = get_locale()
 			if locale:
@@ -613,8 +614,7 @@ class Package(db.Model):
 			else:
 				lang = "en"
 
-		translation: typing.Optional[PackageTranslation] = None
-		if lang != "en":
+		if translation is None and lang != "en" and not translations_prefetched:
 			translation = self.translations.filter_by(language_id=lang).first()
 
 		if translation is None:
@@ -670,14 +670,17 @@ class Package(db.Model):
 			"type": self.type.to_name(),
 		}
 
-	def as_short_dict(self, base_url, version=None, release_id=None, no_load=False, lang="en", include_vcs=False):
+	def as_short_dict(self, base_url, version=None, release_id=None, no_load=False, lang="en", include_vcs=False,
+				translation: typing.Optional["PackageTranslation"] = None,
+				translations_prefetched: bool = False):
 		tnurl = self.get_thumb_url(1, format="png")
 
 		if release_id is None and no_load == False:
 			release = self.get_download_release(version=version)
 			release_id = release and release.id
 
-		meta = self.get_translated(lang, load_desc=False)
+		meta = self.get_translated(lang, load_desc=False, translation=translation,
+				translations_prefetched=translations_prefetched)
 		short_desc = meta["short_desc"]
 		if self.dev_state == PackageDevState.WIP:
 			short_desc = gettext("Work in Progress") + ". " + self.short_desc

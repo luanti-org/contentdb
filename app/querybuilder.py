@@ -12,7 +12,7 @@ from sqlalchemy_searchable import search
 from urllib.parse import urlparse
 
 from .models import db, PackageType, Package, ForumTopic, License, LuantiRelease, PackageRelease, User, Tag, \
-	ContentWarning, PackageState, PackageDevState, ReleaseState, PackageAIDisclosure
+	ContentWarning, PackageState, PackageDevState, ReleaseState, PackageAIDisclosure, PackageTranslation
 from app.utils.misc import is_yes
 from app.utils.flask import get_int_or_abort
 
@@ -226,10 +226,19 @@ class QueryBuilder:
 		for [package_id, release_id] in self.get_releases():
 			releases[package_id] = release_id
 
+		translations = {}
+		if self.lang != "en" and len(packages) > 0:
+			package_ids = [package.id for package in packages]
+			for translation in PackageTranslation.query \
+					.filter(PackageTranslation.language_id == self.lang,
+						PackageTranslation.package_id.in_(package_ids)).all():
+				translations[translation.package_id] = translation
+
 		def to_json(package: Package):
 			release_id = releases.get(package.id)
 			return package.as_short_dict(current_app.config["BASE_URL"], release_id=release_id, no_load=True,
-					lang=self.lang, include_vcs=include_vcs)
+					lang=self.lang, include_vcs=include_vcs, translation=translations.get(package.id),
+					translations_prefetched=self.lang != "en")
 
 		return [to_json(pkg) for pkg in packages]
 
