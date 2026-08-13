@@ -6,7 +6,7 @@ from typing import Optional, List
 from flask import abort, current_app, request, make_response
 from flask_babel import lazy_gettext, gettext, get_locale
 from sqlalchemy import or_, and_
-from sqlalchemy.orm import subqueryload
+from sqlalchemy.orm import subqueryload, joinedload
 from sqlalchemy.sql.expression import func
 from sqlalchemy_searchable import search
 from urllib.parse import urlparse
@@ -242,7 +242,11 @@ class QueryBuilder:
 		if self.only_approved:
 			query = query.filter(Package.state == PackageState.APPROVED)
 
-		query = query.options(subqueryload(Package.main_screenshot), subqueryload(Package.aliases))
+		query = query.options(
+			joinedload(Package.author),
+			subqueryload(Package.main_screenshot),
+			subqueryload(Package.aliases),
+		)
 
 		query = self.order_package_query(self.filter_package_query(query))
 
