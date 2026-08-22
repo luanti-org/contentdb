@@ -73,6 +73,19 @@
 				</form>
 			{% endif %}
 		{% endif %}
+		{% if thread.check_perm(current_user, "SET_THREAD_PRIVATE") %}
+			{% if thread.private %}
+				<form method="post" action="{{ url_for('threads.set_private', id=thread.id, private=0) }}" class="float-end me-2">
+					<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+					<input type="submit" class="btn btn-secondary" value="{{ _('Make Public') }}" />
+				</form>
+			{% else %}
+				<form method="post" action="{{ url_for('threads.set_private', id=thread.id, private=1) }}" class="float-end me-2">
+					<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+					<input type="submit" class="btn btn-secondary" value="{{ _('Make Private') }}" />
+				</form>
+			{% endif %}
+		{% endif %}
 	{% endif %}
 
 	{% if current_user == thread.author and thread.review %}

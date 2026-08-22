@@ -18,7 +18,7 @@ from app.utils.models import add_notification, add_audit_log, get_system_user, g
 from app.utils.misc import is_yes, normalize_line_endings
 from app.utils.flask import has_blocked_domains, get_int_or_abort
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField
+from wtforms import StringField, TextAreaField, SubmitField, BooleanField
 from wtforms.validators import InputRequired, Length
 
 
@@ -98,6 +98,32 @@ def set_lock(id):
 	else:
 		msg = "Unlocked thread '{}'".format(thread.title)
 		flash(gettext("Unlocked thread"), "success")
+
+	add_notification(thread.watchers, current_user, NotificationType.OTHER, msg, thread.get_view_url(), thread.package)
+	add_audit_log(AuditSeverity.MODERATION, current_user, msg, thread.get_view_url(), thread.package)
+
+	db.session.commit()
+
+	return redirect(thread.get_view_url())
+
+
+@bp.route("/threads/<int:id>/set-private/", methods=["POST"])
+@login_required
+def set_private(id):
+	thread = Thread.query.get(id)
+	if thread is None or not thread.check_perm(current_user, Permission.SET_THREAD_PRIVATE):
+		abort(404)
+
+	thread.private = is_yes(request.args.get("private"))
+	if thread.private is None:
+		abort(400)
+
+	if thread.private:
+		msg = "Made thread '{}' private".format(thread.title)
+		flash(gettext("Made thread private"), "success")
+	else:
+		msg = "Made thread '{}' public".format(thread.title)
+		flash(gettext("Made thread public"), "success")
 
 	add_notification(thread.watchers, current_user, NotificationType.OTHER, msg, thread.get_view_url(), thread.package)
 	add_audit_log(AuditSeverity.MODERATION, current_user, msg, thread.get_view_url(), thread.package)
@@ -271,6 +297,7 @@ def view(id):
 class ThreadForm(FlaskForm):
 	title	= StringField(lazy_gettext("Title"), [InputRequired(), Length(3,100)])
 	comment = TextAreaField(lazy_gettext("Comment"), [InputRequired(), Length(10, 2000)], filters=[normalize_line_endings])
+	private = BooleanField(lazy_gettext("Private"))
 	btn_submit  = SubmitField(lazy_gettext("Open Thread"))
 
 
@@ -290,7 +317,11 @@ def new(author=None, name=None):
 		abort(404)
 
 	is_review_thread = package and not package.approved
-	is_private_thread = is_review_thread
+	can_set_private = not is_review_thread and current_user.rank.at_least(UserRank.EDITOR)
+	is_private_thread = is_review_thread or (can_set_private and form.private.data)
+
+	if not can_set_private:
+		del form.private
 
 	# Check that user can make the thread
 	if package and not package.check_perm(current_user, Permission.CREATE_THREAD):
