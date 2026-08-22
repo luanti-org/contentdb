@@ -40,6 +40,10 @@
 		</div>
 	</div>
 
+	{% if form.private %}
+		{{ render_checkbox_field(form.private) }}
+	{% endif %}
+
 	{{ render_submit_field(form.btn_submit) }}
 </form>
 

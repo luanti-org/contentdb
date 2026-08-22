@@ -101,6 +101,11 @@ class Thread(db.Model):
 		elif perm == Permission.LOCK_THREAD:
 			return user.rank.at_least(UserRank.MODERATOR)
 
+		elif perm == Permission.SET_THREAD_PRIVATE:
+			is_approval_thread = self.package is not None and self.package.review_thread_id == self.id
+			is_review_comment_thread = self.review is not None
+			return not is_approval_thread and not is_review_comment_thread and user.rank.at_least(UserRank.EDITOR)
+
 		elif perm == Permission.DELETE_THREAD:
 			from app.utils.models import get_system_user
 			return (self.author == get_system_user() and self.package and
