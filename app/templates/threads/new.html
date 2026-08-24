@@ -41,7 +41,7 @@
 	</div>
 
 	{% if form.private %}
-		{{ render_checkbox_field(form.private) }}
+		{{ render_checkbox_field(form.private, class_="mb-4") }}
 	{% endif %}
 
 	{{ render_submit_field(form.btn_submit) }}
