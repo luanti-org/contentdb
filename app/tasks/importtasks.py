@@ -15,7 +15,7 @@ from flask import url_for
 from git import GitCommandError
 from git_archive_all import GitArchiver
 from kombu import uuid
-from sqlalchemy import and_
+from sqlalchemy import and_, or_
 from sqlalchemy.dialects.postgresql import insert
 
 from app.models import AuditSeverity, db, NotificationType, PackageRelease, MetaPackage, Dependency, PackageType, \
@@ -95,6 +95,37 @@ def update_package_game_support(package_id: int):
 def remove_package_game_support(package_id: int):
 	package = Package.query.get(package_id)
 	game_support_remove(db.session, package)
+	db.session.commit()
+
+
+@celery.task()
+def update_all_release_permissions():
+	latest_release_for_each_package = db.session.query(PackageRelease.package_id, db.func.max(PackageRelease.id).label("release_id")) \
+		.group_by(PackageRelease.package_id).subquery()
+	latest_releases = db.session.query(PackageRelease).join(
+		latest_release_for_each_package,
+		and_(
+			PackageRelease.package_id == latest_release_for_each_package.c.package_id,
+			PackageRelease.id == latest_release_for_each_package.c.release_id,
+			or_(PackageRelease.uses_insecure_env.is_(None),
+				PackageRelease.uses_http_api.is_(None)),
+		)
+	).all()
+
+	for release in latest_releases:
+		release.uses_insecure_env = False
+		release.uses_http_api = False
+
+		with ZipFile(release.file_path, 'r') as zf:
+			lua_files = [name for name in zf.namelist() if name.endswith(".lua")]
+			for lua_file in lua_files:
+				with zf.open(lua_file) as f:
+					content = f.read().decode("utf-8", errors="ignore")
+					if "request_insecure_environment" in content:
+						release.uses_insecure_env = True
+					if "request_http_api" in content:
+						release.uses_http_api = True
+
 	db.session.commit()
 
 
@@ -200,6 +231,9 @@ def post_release_check_update(self, release: PackageRelease, path):
 	except Exception as e:
 		# Gracefully just skip making release notes
 		pass
+
+	release.uses_insecure_env = tree.lua_includes_string("request_insecure_environment")
+	release.uses_http_api = tree.lua_includes_string("request_http_api")
 
 	# Update game support
 	if package.type == PackageType.MOD or package.type == PackageType.TXP:

@@ -339,3 +339,11 @@ class PackageTreeNode:
 				raise LuantiCheckError(f"Syntax error whilst reading {relative_path}: {e}")
 
 		return ret
+
+	def lua_includes_string(self, search: str) -> bool:
+		for name in glob.glob(f"{self.baseDir}/**/*.lua", recursive=True):
+			with open(name, "r") as f:
+				if search in f.read():
+					return True
+
+		return False

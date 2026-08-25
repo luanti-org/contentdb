@@ -501,6 +501,9 @@ class Package(db.Model):
 	donate_url   = db.Column(db.String(200), nullable=True, default=None)
 	translation_url = db.Column(db.String(200), nullable=True)
 
+	insecure_env_justification = db.Column(db.Unicode(100), nullable=True, default=None)
+	http_api_justification = db.Column(db.Unicode(100), nullable=True, default=None)
+
 	@property
 	def donate_url_actual(self):
 		return self.donate_url or self.author.donate_url
@@ -1238,6 +1241,9 @@ class PackageRelease(db.Model):
 	downloads    = db.Column(db.Integer, nullable=False, default=0)
 	release_notes = db.Column(db.UnicodeText, nullable=True, default=None)
 	file_size_bytes = db.Column(db.Integer, nullable=False, default=0)
+
+	uses_insecure_env = db.Column(db.Boolean, nullable=True, default=None)
+	uses_http_api = db.Column(db.Boolean, nullable=True, default=None)
 
 	@property
 	def summary(self) -> str:
