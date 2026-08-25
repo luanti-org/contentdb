@@ -101,7 +101,7 @@ def remove_package_game_support(package_id: int):
 @celery.task(bind=True)
 def update_all_release_permissions(self):
 	latest_release_for_each_package = db.session.query(PackageRelease.package_id, db.func.max(PackageRelease.id).label("release_id")) \
-		.group_by(PackageRelease.package_id).subquery()
+		.group_by(PackageRelease.package_id).filter(PackageRelease.state == ReleaseState.APPROVED).subquery()
 	latest_releases = db.session.query(PackageRelease).join(
 		latest_release_for_each_package,
 		and_(
