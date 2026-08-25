@@ -98,8 +98,8 @@ def remove_package_game_support(package_id: int):
 	db.session.commit()
 
 
-@celery.task()
-def update_all_release_permissions():
+@celery.task(bind=True)
+def update_all_release_permissions(self):
 	latest_release_for_each_package = db.session.query(PackageRelease.package_id, db.func.max(PackageRelease.id).label("release_id")) \
 		.group_by(PackageRelease.package_id).subquery()
 	latest_releases = db.session.query(PackageRelease).join(
@@ -112,9 +112,13 @@ def update_all_release_permissions():
 		)
 	).all()
 
-	for release in latest_releases:
+	total = len(latest_releases)
+	self.update_state(state="PROGRESS", meta={"current": 0, "total": total})
+
+	for i, release in enumerate(latest_releases):
 		release.uses_insecure_env = False
 		release.uses_http_api = False
+		self.update_state(state="PROGRESS", meta={"current": i, "total": total})
 
 		with ZipFile(release.file_path, 'r') as zf:
 			lua_files = [name for name in zf.namelist() if name.endswith(".lua")]
