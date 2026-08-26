@@ -151,13 +151,17 @@ for more information.
 
 ## What does ContentDB do?
 
-The package authors and maintainers are responsible for the licenses and copyright of packages on ContentDB.
-ContentDB editors will check packages to make sure the package page's license matches up with the list of licenses
-inside the package download, but do not investigate each piece of media or line of code.
+The package authors and maintainers are responsible for the licenses and
+copyright of packages on ContentDB. ContentDB editors will check packages to
+make sure the package page's license matches up with the list of licenses inside
+the package download, but do not investigate each piece of media or line of
+code.
 
-If a copyright violation is reported to us, we will unlist the package and contact the author/maintainers.
-Once the problem has been fixed, the package can be restored. Repeated copyright infringement may lead to
-permanent bans.
+If a copyright violation is reported to us, we will unlist the package and
+contact the author/maintainers. Once the problem has been fixed, the package can
+be restored. Repeated copyright infringement may lead to permanent bans.
+
+See [the Copyright / DMCA](/copyright_dmca/) policy page.
 
 
 ## Where can I get help?

@@ -53,7 +53,7 @@ We provide this service free of charge, and on the basis that we may:
 if we think that this is reasonable to protect you, other users, the service, or us. This applies, in particular,
 to prohibited content.
 
-If we are alerted by a person to the presence of any illegal content, or we become aware of it in any other way, 
+If we are alerted by a person to the presence of any illegal content, or we become aware of it in any other way,
 we will swiftly take down that content.
 
 To minimise the length of time for which any illegal content within the scope of the Online Safety Act 2023 is present:
@@ -95,11 +95,11 @@ This service is subject to the jurisdiction of the United Kingdom.
 
 You may report content by clicking the report flag next to a comment or "Report" on the page containing the content.
 
-You can also make reports by [contacting the admin]({{ admin_contact_url }}).
+You can also make reports by [contacting the admin](/help/contact_us/).
 
 ### Complaints and Appeals
 
-You may send a complaint / request an appeal by [contacting the admin]({{ admin_contact_url }}). 
+You may send a complaint / request an appeal by [contacting the admin](/help/contact_us/).
 
 ### Your right to bring a claim
 
@@ -128,6 +128,6 @@ This clause is subject to "Limitation of liability" and "Jurisdiction".
 
 
 ## Acknowledgements
-    
+
 This terms of service was written based on [a template](https://onlinesafetyact.co.uk/online_safety_act_terms/)
 created by Neil Brown, CC BY-SA 4.0.

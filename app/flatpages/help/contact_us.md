@@ -11,4 +11,6 @@ We take copyright violation and other offenses very seriously.
 
 ## Other
 
-<a href="{{ admin_contact_url }}" class="btn btn-primary">Contact the admin</a>
+<a href="mailto:{{ admin_contact_email }}" class="btn btn-primary">
+    {{ admin_contact_email }}
+</a>

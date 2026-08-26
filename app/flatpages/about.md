@@ -12,7 +12,9 @@ ContentDB is open source software, licensed under AGPLv3.0.
 
 <a href="https://github.com/luanti-org/contentdb/" class="btn btn-primary me-1">Source code</a>
 <a href="https://github.com/luanti-org/contentdb/issues/" class="btn btn-secondary me-1">Issue tracker</a>
-<a href="{{ admin_contact_url }}" class="btn btn-secondary me-1">Contact admin</a>
+<a href="/help/contact_us/" class="btn btn-secondary me-1">
+    Contact Us
+</a>
 {% if monitoring_url -%}
 <a href="{{ monitoring_url }}" class="btn btn-secondary">Stats / monitoring</a>
 {%- endif %}

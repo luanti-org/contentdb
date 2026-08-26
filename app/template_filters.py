@@ -27,7 +27,7 @@ def inject_misc():
 	if has_request_context():
 		hide_nonfree = request.cookies.get("hide_nonfree") == "1"
 	return dict(debug=app.debug, hide_nonfree=hide_nonfree, locale=get_locale(),
-			admin_contact_url=app.config["ADMIN_CONTACT_URL"],
+			admin_contact_email=app.config["ADMIN_CONTACT_EMAIL"],
 			monitoring_url=app.config.get("MONITORING_URL"))
 
 

@@ -308,8 +308,9 @@
 					<ul class="list-unstyled text-small">
 						<li><a href="{{ url_for('flatpage', path='terms') }}">{{ _("Terms of Service") }}</a></li>
 						<li><a href="{{ url_for('flatpage', path='privacy_policy') }}">{{ _("Privacy Policy") }}</a></li>
+						<li><a href="{{ url_for('flatpage', path='copyright_dmca') }}">{{ _("Copyright / DMCA") }}</a></li>
 						{% if request.endpoint != "flatpage" and request.endpoint != "report.report" %}
-							<li><a href="{{ url_for('report.report', url=url_current()) }}">{{ _("Report / DMCA") }}</a></li>
+							<li><a href="{{ url_for('report.report', url=url_current()) }}">{{ _("Report") }}</a></li>
 						{% endif %}
 					</ul>
 				</div>

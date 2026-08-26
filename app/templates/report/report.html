@@ -21,7 +21,9 @@
 </p>
 <p>
 	<a href="{{ url_for('users.login') }}" class="btn btn-primary me-2">Login</a>
-	<a href="{{ admin_contact_url }}" class="btn btn-secondary">Contact the admin</a>
+	<a href="mailto:{{ admin_contact_email }}" class="btn btn-secondary">
+		{{ admin_contact_email }}
+	</a>
 </p>
 
 {% else %}
