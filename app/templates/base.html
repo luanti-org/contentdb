@@ -16,7 +16,7 @@
 	{%- endif %}
 
 	<link rel="stylesheet" type="text/css" href="/static/libs/bootstrap.min.css?v=4">
-	<link rel="stylesheet" type="text/css" href="/static/custom.css?v=67">
+	<link rel="stylesheet" type="text/css" href="/static/custom.css?v=68">
 	<link rel="search" type="application/opensearchdescription+xml" href="/static/opensearch.xml" title="ContentDB" />
 
 	{% if noindex -%}
@@ -262,52 +262,79 @@
 	</main>
 	{% endblock %}
 
-	<footer class="my-5 pt-5">
-		<p class="pt-3 mb-1">
-			ContentDB &copy; 2018-24 to <a href="{{ url_for('flatpage', path='about') }}">rubenwardy</a>
-		</p>
-
-		<ul class="list-inline my-1">
-			<li class="list-inline-item"><a href="{{ url_for('flatpage', path='help') }}">{{ _("Help") }}</a></li>
-			<li class="list-inline-item"><a href="{{ url_for('flatpage', path='about') }}">{{ _("About") }}</a></li>
-			<li class="list-inline-item"><a href="{{ url_for('flatpage', path='help/contact_us') }}">{{ _("Contact Us") }}</a></li>
-			<li class="list-inline-item"><a href="{{ url_for('flatpage', path='terms') }}">{{ _("Terms of Service") }}</a></li>
-			<li class="list-inline-item"><a href="{{ url_for('flatpage', path='policy_and_guidance') }}">{{ _("Policy and Guidance") }}</a></li>
-			<li class="list-inline-item"><a href="{{ url_for('donate.donate') }}#contentdb">{{ _("Donate") }}</a></li>
-			<li class="list-inline-item"><a href="{{ url_for('flatpage', path='help/api') }}">{{ _("API") }}</a></li>
-			<li class="list-inline-item"><a href="{{ url_for('flatpage', path='help/feeds') }}">{{ _("RSS / Feeds") }}</a></li>
-			<li class="list-inline-item"><a href="{{ url_for('flatpage', path='privacy_policy') }}">{{ _("Privacy Policy") }}</a></li>
-			{% if request.endpoint != "flatpage" and request.endpoint != "report.report" %}
-				<li class="list-inline-item"><a href="{{ url_for('report.report', url=url_current()) }}">{{ _("Report / DMCA") }}</a></li>
-			{% endif %}
-			<li class="list-inline-item"><a href="{{ url_for('packages.advanced_search') }}">{{ _("Advanced Search") }}</a></li>
-			<li class="list-inline-item"><a href="{{ url_for('users.list_all') }}">{{ _("User List") }}</a></li>
-			<li class="list-inline-item"><a href="{{ url_for('threads.list_all') }}">{{ _("Threads") }}</a></li>
-			<li class="list-inline-item"><a href="{{ url_for('collections.list_all') }}">{{ _("Collections") }}</a></li>
-			<li class="list-inline-item"><a href="{{ url_for('donate.donate') }}">{{ _("Support Creators") }}</a></li>
-			<li class="list-inline-item"><a href="{{ url_for('translate.translate') }}">{{ _("Translate Packages") }}</a></li>
-			<li class="list-inline-item"><a href="https://github.com/luanti-org/contentdb">{{ _("Source Code") }}</a></li>
-		</ul>
-
-		<form method="POST" action="{{ url_for('set_nonfree') }}" class="my-3">
-			<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-			{% if hide_nonfree %}
-				<input type="submit" class="btn btn-sm btn-secondary" value="{{ _('Show non-free packages') }}">
-			{% else %}
-				<input type="submit" class="btn btn-sm btn-secondary" value="{{ _('Hide non-free packages') }}">
-			{% endif %}
-		</form>
-		{% if false %}
-			<p class="text-warning">
-				{{ _("Our privacy policy has been updated (%(date)s)", date="2024-04-30") }}
+	<footer class="mt-5 mb-0 bg-footer">
+		<div class="py-5 container text-muted">
+			<p class="mb-5 text-center">
+				ContentDB &copy; 2018-24 to <a href="{{ url_for('flatpage', path='about') }}">rubenwardy</a>
 			</p>
-		{% endif %}
 
-		{% if debug %}
-			<p style="color: red">
-				DEBUG MODE ENABLED
-			</p>
-		{% endif %}
+			<div class="row justify-content-between text-small">
+				<div class="col-auto">
+					<h5>{{ _("Help") }}</h5>
+					<ul class="list-unstyled text-small">
+						<li><a href="{{ url_for('flatpage', path='help') }}">{{ _("Help") }}</a></li>
+						<li><a href="{{ url_for('flatpage', path='policy_and_guidance') }}">{{ _("Policy and Guidance") }}</a></li>
+						<li><a href="{{ url_for('flatpage', path='help/api') }}">{{ _("API") }}</a></li>
+						<li><a href="{{ url_for('flatpage', path='help/feeds') }}">{{ _("RSS / Feeds") }}</a></li>
+					</ul>
+				</div>
+				<div class="col-auto">
+					<h5>{{ _("ContentDB") }}</h5>
+					<ul class="list-unstyled text-small">
+						<li><a href="{{ url_for('flatpage', path='about') }}">{{ _("About") }}</a></li>
+						<li><a href="{{ url_for('flatpage', path='help/contact_us') }}">{{ _("Contact Us") }}</a></li>
+						<li><a href="{{ url_for('donate.donate') }}#contentdb">{{ _("Donate") }}</a></li>
+						<li><a href="https://github.com/luanti-org/contentdb">{{ _("Source Code") }}</a></li>
+					</ul>
+				</div>
+				<div class="col-auto">
+					<h5>{{ _("Packages") }}</h5>
+					<ul class="list-unstyled text-small">
+						<li><a href="{{ url_for('packages.advanced_search') }}">{{ _("Advanced Search") }}</a></li>
+						<li><a href="{{ url_for('donate.donate') }}">{{ _("Support Creators") }}</a></li>
+						<li><a href="{{ url_for('translate.translate') }}">{{ _("Translate Packages") }}</a></li>
+					</ul>
+				</div>
+				<div class="col-auto">
+					<h5>{{ _("Users") }}</h5>
+					<ul class="list-unstyled text-small">
+						<li><a href="{{ url_for('users.list_all') }}">{{ _("User List") }}</a></li>
+						<li><a href="{{ url_for('threads.list_all') }}">{{ _("Threads") }}</a></li>
+						<li><a href="{{ url_for('collections.list_all') }}">{{ _("Collections") }}</a></li>
+					</ul>
+				</div>
+				<div class="col-auto">
+					<h5>{{ _("Legal") }}</h5>
+					<ul class="list-unstyled text-small">
+						<li><a href="{{ url_for('flatpage', path='terms') }}">{{ _("Terms of Service") }}</a></li>
+						<li><a href="{{ url_for('flatpage', path='privacy_policy') }}">{{ _("Privacy Policy") }}</a></li>
+						{% if request.endpoint != "flatpage" and request.endpoint != "report.report" %}
+							<li><a href="{{ url_for('report.report', url=url_current()) }}">{{ _("Report / DMCA") }}</a></li>
+						{% endif %}
+					</ul>
+				</div>
+			</div>
+
+			<form method="POST" action="{{ url_for('set_nonfree') }}" class="my-3">
+				<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+				{% if hide_nonfree %}
+					<input type="submit" class="btn btn-sm btn-secondary" value="{{ _('Show non-free packages') }}">
+				{% else %}
+					<input type="submit" class="btn btn-sm btn-secondary" value="{{ _('Hide non-free packages') }}">
+				{% endif %}
+			</form>
+			{% if false %}
+				<p class="text-warning">
+					{{ _("Our privacy policy has been updated (%(date)s)", date="2024-04-30") }}
+				</p>
+			{% endif %}
+
+			{% if debug %}
+				<p style="color: red">
+					DEBUG MODE ENABLED
+				</p>
+			{% endif %}
+		</div>
 	</footer>
 
 	<link href="/static/fa/css/all.css" rel="stylesheet">

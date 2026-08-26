@@ -5,6 +5,10 @@
 	--bs-link-hover-color-rgb: 88, 145, 204;
 }
 
+body {
+	min-height: 100vh;
+}
+
 a {
 	text-decoration: none;
 }
@@ -16,14 +20,8 @@ a {
 @import "packagegrid.scss";
 @import "comments.scss";
 
-footer {
-	text-align: center;
-	color: #999;
-
-	.list-inline {
-		max-width: 520px;
-		margin: 0.25rem auto;
-	}
+.bg-footer {
+	background: #1c1c1c;
 }
 
 h1 {
