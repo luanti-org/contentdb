@@ -1,7 +1,7 @@
 # Luanti's use of the API
 
 This document explains how Luanti's ContentDB client interacts with ContentDB.
-This is useful both for implementing your own client for ContentDB to install mods, 
+This is useful both for implementing your own client for ContentDB to install mods,
 or for implementing ContentDB compatible servers.
 
 ## Package List API call
@@ -13,7 +13,7 @@ The query arguments will include a list of supported types, the current
 and any hidden [Content Flags](https://content.luanti.org/help/content_flags/).
 
 Example URL:
-<https://content.luanti.org/api/packages/?type=mod&type=game&type=txp&protocol_version=39&engine_version=5.3.0&hide=nonfree&hide=desktop_default>
+<https://content.luanti.org/api/packages/?type=mod&type=game&type=txp&protocol_version=39&engine_version=5.3.0&hide=desktop_default>
 
 Example response:
 
@@ -31,7 +31,7 @@ Example response:
 ]
 ```
 
-`thumbnail` is optional, but all other fields are required. 
+`thumbnail` is optional, but all other fields are required.
 
 `type` is one of `mod`, `game`, or `txp`.
 
@@ -65,7 +65,7 @@ track the installed release to detect updates in the future.
 Luanti uses `/api/packages/<author>/<name>/dependencies/?only_hard=1` to find out the hard
 dependencies for a package.
 
-Then, it resolves each dependency recursively. 
+Then, it resolves each dependency recursively.
 
 Say you're resolving for `basic_materials`, then it will attempt to find the mod in this order:
 

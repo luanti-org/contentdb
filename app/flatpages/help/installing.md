@@ -41,8 +41,6 @@ Troubleshooting:
     * Make sure that you're on the latest version of Luanti.
     * Are you using Android? Packages with content warnings are hidden by default on android,
       you can show them by removing `android_default` from the `contentdb_flag_blacklist` setting.
-    * Does the webpage show "Non-free" warnings? Non-free content is hidden by default from all clients,
-      you can show them by removing `nonfree` from the `contentdb_flag_blacklist` setting.
 * It says "required dependencies could not be found"
     * Make sure you're using the correct "Base Game". A lot of packages only work with certain games, you can look
       at "Compatible Games" on the web page to see which.

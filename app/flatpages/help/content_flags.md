@@ -10,13 +10,11 @@ Luanti allows you to specify a comma-separated list of flags to hide in the
 client:
 
 ```
-contentdb_flag_blacklist = nonfree, bad_language, drugs
+contentdb_flag_blacklist = bad_language, drugs
 ```
 
 A flag can be:
 
-* `nonfree`: can be used to hide packages which do not qualify as
-    'free software', as defined by the Free Software Foundation.
 * `wip`: packages marked as Work in Progress
 * `deprecated`: packages marked as Deprecated
 * A content warning, given below.

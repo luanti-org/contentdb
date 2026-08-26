@@ -26,7 +26,6 @@ def get_hide_choices():
 	ret = [
 		("android_default", gettext("Android Default")),
 		("desktop_default", gettext("Desktop Default")),
-		("nonfree", gettext("Non-free")),
 		("wip", gettext("Work in Progress")),
 		("deprecated", gettext("Deprecated")),
 		("genai", gettext("AI-generated")),

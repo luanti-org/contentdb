@@ -80,7 +80,7 @@ curl -X DELETE https://content.luanti.org/api/delete-token/ \
 * GET `/api/packages/<username>/<name>/` (Read)
     * Redirects a JSON object with the keys documented by the PUT endpoint, below.
     * Plus:
-        * `forum_url`: String or null. 
+        * `forum_url`: String or null.
 * PUT `/api/packages/<author>/<name>/` (Update)
     * Requires authentication.
     * JSON object with any of these keys (all are optional, null to delete Nullables):
@@ -128,9 +128,9 @@ curl -X DELETE https://content.luanti.org/api/delete-token/ \
         * `images`: dictionary of img name to image URL.
         * `image_tooltips`: dictionary of img name to tooltip text.
     * The hypertext body contains some placeholders that should be replaced client-side:
-        * `<thumbsup>` with a thumbs up icon. 
-        * `<neutral>` with a thumbs up icon. 
-        * `<thumbsdown>` with a thumbs up icon. 
+        * `<thumbsup>` with a thumbs up icon.
+        * `<neutral>` with a thumbs up icon.
+        * `<thumbsdown>` with a thumbs up icon.
 * GET `/api/packages/<author>/<name>/hypertext/`
     * Converts the long description to [Luanti Markup Language](https://github.com/luanti-org/luanti/blob/master/doc/lua_api.md#markup-language)
       to be used in a `hypertext` formspec element.
@@ -208,7 +208,7 @@ curl -X PUT https://content.luanti.org/api/packages/username/name/ \
 
 Example:
 
-    /api/packages/?type=mod&type=game&q=mobs+fun&hide=nonfree&hide=gore
+    /api/packages/?type=mod&type=game&q=mobs+fun&hide=gore
 
 Filter query parameters:
 
@@ -614,4 +614,4 @@ Supported query parameters:
     * Array of dictionaries with fields:
         * `url`: upload URL, relative. Might be absolute in the future so make sure to properly resolve.
         * `created_at`: iso timestamp string
-        * `size`: file size in bytes 
+        * `size`: file size in bytes

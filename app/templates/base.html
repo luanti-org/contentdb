@@ -316,22 +316,14 @@
 				</div>
 			</div>
 
-			<form method="POST" action="{{ url_for('set_nonfree') }}" class="my-3">
-				<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-				{% if hide_nonfree %}
-					<input type="submit" class="btn btn-sm btn-secondary" value="{{ _('Show non-free packages') }}">
-				{% else %}
-					<input type="submit" class="btn btn-sm btn-secondary" value="{{ _('Hide non-free packages') }}">
-				{% endif %}
-			</form>
 			{% if false %}
-				<p class="text-warning">
+				<p class="text-warning text-center">
 					{{ _("Our privacy policy has been updated (%(date)s)", date="2024-04-30") }}
 				</p>
 			{% endif %}
 
 			{% if debug %}
-				<p style="color: red">
+				<p class="text-danger text-center">
 					DEBUG MODE ENABLED
 				</p>
 			{% endif %}

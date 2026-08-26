@@ -37,7 +37,6 @@ class QueryBuilder:
 	hide_flags: set[str]
 	hide_deprecated: bool
 	hide_wip: bool
-	hide_nonfree: bool
 	show_added: bool
 	version: Optional[LuantiRelease]
 	not_version: Optional[LuantiRelease]
@@ -151,7 +150,6 @@ class QueryBuilder:
 			self.hide_flags.update(["deprecated"])
 			self.hide_flags.discard("desktop_default")
 
-		self.hide_nonfree = "nonfree" in self.hide_flags
 		self.hide_wip = "wip" in self.hide_flags
 		self.hide_deprecated = "deprecated" in self.hide_flags
 		self.hide_flags.discard("nonfree")
@@ -198,9 +196,6 @@ class QueryBuilder:
 		self.has_lang = args.get("lang")
 		if self.has_lang == "":
 			self.has_lang = None
-
-		if cookies and request.cookies.get("hide_nonfree") == "1":
-			self.hide_nonfree = True
 
 	def set_sort_if_none(self, name, dir="desc"):
 		if self.order_by is None:
@@ -306,9 +301,7 @@ class QueryBuilder:
 					abort(make_response("Unknown tag or content warning " + flag), 400)
 
 		flags = set(self.flags)
-		if "nonfree" in flags:
-			query = query.filter(or_(Package.license.has(is_foss=False), Package.media_license.has(is_foss=False)))
-			flags.discard("nonfree")
+		flags.discard("nonfree")
 		if "wip" in flags:
 			query = query.filter(Package.dev_state == PackageDevState.WIP)
 			flags.discard("wip")
@@ -329,10 +322,6 @@ class QueryBuilder:
 		licenses.extend([Package.media_license_id == license.id for license in self.licenses if license is not None])
 		if len(licenses) > 0:
 			query = query.filter(or_(*licenses))
-
-		if self.hide_nonfree:
-			query = query.filter(Package.license.has(License.is_foss == True))
-			query = query.filter(Package.media_license.has(License.is_foss == True))
 
 		if self.hide_wip:
 			query = query.filter(or_(Package.dev_state==None, Package.dev_state != PackageDevState.WIP))
