@@ -1,7 +1,9 @@
-title: Copyright / DMCA
+title: Copyright notices / DMCA
 
 ContentDB takes copyright seriously. We will respond to copyright infringement
 notices promptly, removing infringing content and banning repeat offenders.
+
+ContentDB's jurisdiction is the United Kingdom.
 
 ## Sending a DMCA notice
 
