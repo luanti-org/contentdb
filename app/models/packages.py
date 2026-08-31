@@ -575,6 +575,9 @@ class Package(db.Model):
 	daily_stats = db.relationship("PackageDailyStats", foreign_keys="PackageDailyStats.package_id",
 			back_populates="package", cascade="all, delete, delete-orphan", lazy="dynamic")
 
+	content_detections = db.relationship("PackageContentDetection", back_populates="package",
+			lazy="dynamic", cascade="all, delete, delete-orphan")
+
 	def __init__(self, package=None):
 		if package is None:
 			return
@@ -1646,3 +1649,50 @@ class PackageDailyStats(db.Model):
 
 		conn = db.session.connection()
 		conn.execute(stmt)
+
+
+class PackageContentDetection(db.Model):
+	id           = db.Column(db.Integer, primary_key=True)
+
+	package_id   = db.Column(db.Integer, db.ForeignKey("package.id"))
+	package      = db.relationship("Package", back_populates="content_detections", foreign_keys=[package_id])
+
+	content_path = db.Column(db.String(200), nullable=False)
+	match_path = db.Column(db.String(200), nullable=False)
+	confidence = db.Column(db.Float, nullable=False)
+	created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+
+
+class ContentDetectionDataset(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	name = db.Column(db.String(200), nullable=False)
+	created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+	updated_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+
+	entries = db.relationship("ContentDetectionDatasetEntry", back_populates="dataset",
+			lazy="dynamic", cascade="all, delete, delete-orphan")
+
+
+class ContentDetectionDatasetEntry(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+
+	dataset_id = db.Column(db.Integer, db.ForeignKey("content_detection_dataset.id"))
+	dataset = db.relationship("ContentDetectionDataset", back_populates="entries", foreign_keys=[dataset_id])
+
+	path = db.Column(db.String(200), nullable=False)
+	width = db.Column(db.Integer, nullable=False)
+	height = db.Column(db.Integer, nullable=False)
+	created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+
+	hashes = db.relationship("ContentDetectionDatasetEntryHash", back_populates="dataset_entry",
+			lazy="dynamic", cascade="all, delete, delete-orphan")
+
+
+class ContentDetectionDatasetEntryHash(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+
+	dataset_entry_id = db.Column(db.Integer, db.ForeignKey("content_detection_dataset_entry.id"))
+	dataset_entry = db.relationship("ContentDetectionDatasetEntry", back_populates="hashes", foreign_keys=[dataset_entry_id])
+
+	phash = db.Column(db.String(200), nullable=False)
+	dhash = db.Column(db.String(200), nullable=False)
