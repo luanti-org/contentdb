@@ -264,10 +264,6 @@
 
 	<footer class="mt-5 mb-0 bg-footer">
 		<div class="py-5 container text-muted">
-			<p class="mb-5 text-center">
-				ContentDB &copy; 2018-24 to <a href="{{ url_for('flatpage', path='about') }}">rubenwardy</a>
-			</p>
-
 			<div class="row justify-content-between text-small">
 				<div class="col-auto">
 					<h5>{{ _("Help") }}</h5>
@@ -315,6 +311,10 @@
 					</ul>
 				</div>
 			</div>
+
+			<p class="mt-4 text-center">
+				ContentDB &copy; 2018-24 to <a href="{{ url_for('flatpage', path='about') }}">rubenwardy</a>
+			</p>
 
 			{% if false %}
 				<p class="text-warning text-center">
