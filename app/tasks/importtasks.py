@@ -20,7 +20,8 @@ from sqlalchemy.dialects.postgresql import insert
 
 from app.models import AuditSeverity, db, NotificationType, PackageRelease, MetaPackage, Dependency, PackageType, \
 	LuantiRelease, Package, PackageState, PackageScreenshot, PackageUpdateTrigger, PackageUpdateConfig, \
-	PackageGameSupport, PackageTranslation, Language, ReleaseState
+	PackageGameSupport, PackageTranslation, Language, ReleaseState, ContentDetectionDatasetEntry, \
+	ContentDetectionDataset
 from app.tasks import celery, TaskError
 from app.utils.misc import random_string, truncate_string
 from app.utils.models import post_bot_message, add_system_notification, add_system_audit_log, \
@@ -131,6 +132,29 @@ def update_all_release_permissions(self):
 						release.uses_http_api = True
 
 	db.session.commit()
+
+from .hashcheck import find_matches, DatasetEntry, Hash
+
+@celery.task()
+def detect_content_in_package(package_id: int):
+	package: Package = Package.query.get(package_id)
+	if package is None:
+		raise TaskError("Unknown package")
+
+	entries = (
+		db.session.query(ContentDetectionDatasetEntry, ContentDetectionDataset.name)
+		.select_from(ContentDetectionDatasetEntry)
+		.join(ContentDetectionDatasetEntry.dataset)
+		.all())
+
+	entries = [
+		DatasetEntry(pair[1], pair[0].path, pair[0].width, pair[0].height, [Hash(hash.dhash, hash.phash) for hash in pair[0].hashes])
+		for pair in entries
+	]
+
+	latest_release = package.get_download_release()
+	find_matches(latest_release.file_path, entries)
+
 
 
 def post_release_check_update(self, release: PackageRelease, path):
