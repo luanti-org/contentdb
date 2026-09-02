@@ -26,9 +26,11 @@
 {% endblock %}
 
 {% block scriptextra %}
+	<script src="/static/libs/jquery.min.js?v=2"></script>
+	<script src="/static/libs/jquery-ui.min.js?v=2"></script>
 	<script src="/static/js/video_embed.js?v=2"></script>
 	<script src="/static/js/package_view.js"></script>
-	<script src="/static/js/download_card.js"></script>
+	<script src="/static/js/download_card.js?v=2"></script>
 	{% if current_user.is_authenticated %}
 		<script src="/static/js/quick_review_voting.js?v=2"></script>
 	{% endif %}
@@ -276,8 +278,36 @@
 					{{ self.download_btn() }}
 				</div>
 
-				<article id="download-card" class="card mb-4 d-none">
+				<article id="download-card" class="card mb-4 d-none"
+					{% if package.type.name == "GAME" %}
+						data-set-game-id="{{ package.get_id() }}"
+					{% endif %}>
 					<div class="card-body">
+						{% if package.type.name != "GAME" %}
+							<div>
+								<label for="current-game" class="form-label">
+									{{ _("Game") }}
+								</label>
+								<input class="form-control" id="current-game">
+							</div>
+							<p id="alert-game-initial" class="alert bg-secondary my-3">
+								<span>
+									{{ _("Select a game to check compatibility")}}
+								</span>
+							</p>
+							<div id="alert-game-success" class="d-flex d-none align-content-center my-3 gap-2">
+								<i class="fas fa-check-circle text-success me-1 h4"></i>
+								<span class="flex-grow" data-game-success-msg="{{ _('Compatible with %(gamename)s', gamename='@1') }}"></span>
+							</div>
+							<div id="alert-game-incompatible" class="d-none alert bg-danger my-3">
+								<p class="mt-0 fw-bold">
+									<i class="fas fa-times-circle me-1"></i>
+									<span data-game-incompatible-msg="{{ _('Incompatible with %(gamename)s', gamename='@1') }}"></span>
+								</p>
+								<p class="mb-0" data-game-incompatible-msg2="{{ _('%(title)s cannot be used with %(gamename)s.', title=package.title, gamename='@1') }}">
+								</p>
+							</div>
+						{% endif %}
 						<div class="mb-4">
 							<label for="luanti-version" class="form-label">
 								{{ _("Luanti version") }}
@@ -467,6 +497,7 @@
 							<div style="max-height: 300px; overflow: hidden auto;" class="mb-3">
 								{% for support in supported_games %}
 									<a class="badge bg-secondary"
+											data-supported-game-id="{{ support.game.get_id() }}"
 											href="{{ support.game.get_url('packages.game_hub') }}">
 										{{ _("%(title)s by %(display_name)s",
 												title=support.game.title, display_name=support.game.author.display_name) }}
@@ -474,7 +505,7 @@
 								{% endfor %}
 							</div>
 						{% elif not package.supports_all_games %}
-							<p>
+							<p data-game-no-specific-game="true">
 								{{ _("No specific game required") }}
 							</p>
 							{% if package.state == package.state.APPROVED and package.check_perm(current_user, "EDIT_PACKAGE") %}
@@ -498,6 +529,7 @@
 							<div style="max-height: 300px; overflow: hidden auto;">
 								{% for support in unsupported_games %}
 									<a class="badge bg-danger"
+											data-supported-game-id="{{ support.game.get_id() }}"
 											href="{{ support.game.get_url('packages.view') }}">
 										<i class="fas fa-times me-1"></i>
 										{{ _("%(title)s by %(display_name)s",
