@@ -21,7 +21,7 @@ from sqlalchemy.dialects.postgresql import insert
 from app.models import AuditSeverity, db, NotificationType, PackageRelease, MetaPackage, Dependency, PackageType, \
 	LuantiRelease, Package, PackageState, PackageScreenshot, PackageUpdateTrigger, PackageUpdateConfig, \
 	PackageGameSupport, PackageTranslation, Language, ReleaseState, ContentDetectionDatasetEntry, \
-	ContentDetectionDataset
+	ContentDetectionDataset, PackageContentDetection, ContentDetectionState
 from app.tasks import celery, TaskError
 from app.utils.misc import random_string, truncate_string
 from app.utils.models import post_bot_message, add_system_notification, add_system_audit_log, \
@@ -153,7 +153,44 @@ def detect_content_in_package(package_id: int):
 	]
 
 	latest_release = package.get_download_release()
-	find_matches(latest_release.file_path, entries)
+	matches = find_matches(latest_release.file_path, entries)
+
+	# Keep only the closest match per hash, in case one texture matches multiple entries
+	best_by_hash = {}
+	for match in matches:
+		key = (match.content_phash, match.content_dhash)
+		current = best_by_hash.get(key)
+		if current is None or match.confidence < current.confidence:
+			best_by_hash[key] = match
+
+	for match in best_by_hash.values():
+		existing = PackageContentDetection.query.filter_by(
+			package_id=package_id,
+			content_phash=match.content_phash,
+			content_dhash=match.content_dhash,
+		).first()
+
+		if existing is not None:
+			# Already reviewed - leave the reviewer's decision alone, don't re-flag it
+			if existing.state != ContentDetectionState.NEW:
+				continue
+
+			existing.content_path = match.content_path
+			existing.match_path = match.match_path
+			existing.confidence = match.confidence
+			continue
+
+		detection = PackageContentDetection()
+		detection.package_id = package_id
+		detection.content_path = match.content_path
+		detection.content_phash = match.content_phash
+		detection.content_dhash = match.content_dhash
+		detection.match_path = match.match_path
+		detection.confidence = match.confidence
+		detection.state = ContentDetectionState.NEW
+		db.session.add(detection)
+
+	db.session.commit()
 
 
 

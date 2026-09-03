@@ -30,6 +30,10 @@ class PossibleMatch:
 	# Confidence of match
 	confidence: float
 
+	# Hash of the content_path image, so callers can dedupe/persist without re-hashing
+	content_phash: str
+	content_dhash: str
+
 
 @dataclass
 class Hash:
@@ -81,8 +85,10 @@ def find_matches(zip_file_path: str, entries: List[DatasetEntry],
 				except Exception:
 					continue
 
-			phash = hash_to_int(imagehash.phash(img, hash_size=16))
-			dhash = hash_to_int(imagehash.dhash(img, hash_size=16))
+			phash_obj = imagehash.phash(img, hash_size=16)
+			dhash_obj = imagehash.dhash(img, hash_size=16)
+			phash = hash_to_int(phash_obj)
+			dhash = hash_to_int(dhash_obj)
 
 			# TODO: skip solid/flat-color images here
 
@@ -94,6 +100,8 @@ def find_matches(zip_file_path: str, entries: List[DatasetEntry],
 						match_dataset=entry.dataset,
 						match_path=entry.path,
 						confidence=dist,
+						content_phash=str(phash_obj),
+						content_dhash=str(dhash_obj),
 					))
 
 	return results
