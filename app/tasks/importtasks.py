@@ -148,7 +148,7 @@ def detect_content_in_package(package_id: int):
 		.all())
 
 	entries = [
-		DatasetEntry(pair[1], pair[0].path, pair[0].width, pair[0].height, [Hash(hash.dhash, hash.phash) for hash in pair[0].hashes])
+		DatasetEntry(pair[1], pair[0].path, pair[0].width, pair[0].height, [Hash(hash.phash, hash.dhash) for hash in pair[0].hashes])
 		for pair in entries
 	]
 
