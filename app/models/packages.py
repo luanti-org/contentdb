@@ -1651,15 +1651,41 @@ class PackageDailyStats(db.Model):
 		conn.execute(stmt)
 
 
+class ContentDetectionState(enum.Enum):
+	NEW = "New"
+	IGNORED = "Ignored"
+	ACCEPTED = "Accepted"
+
+	def to_name(self):
+		return self.name.lower()
+
+	def __str__(self):
+		return self.name
+
+
 class PackageContentDetection(db.Model):
+	__table_args__ = (
+		# Not unique: the same texture can appear at multiple content_paths.
+		# Rescan dedupe against a prior review is done in application code via this index.
+		db.Index("ix_package_content_detection_package_hash", "package_id", "content_phash", "content_dhash"),
+	)
+
 	id           = db.Column(db.Integer, primary_key=True)
 
 	package_id   = db.Column(db.Integer, db.ForeignKey("package.id"))
 	package      = db.relationship("Package", back_populates="content_detections", foreign_keys=[package_id])
 
 	content_path = db.Column(db.String(200), nullable=False)
+
+	# Identifies the texture across rescans, independent of content_path.
+	content_phash = db.Column(db.String(200), nullable=False)
+	content_dhash = db.Column(db.String(200), nullable=False)
+
 	match_path = db.Column(db.String(200), nullable=False)
 	confidence = db.Column(db.Float, nullable=False)
+
+	state = db.Column(db.Enum(ContentDetectionState), nullable=False, default=ContentDetectionState.NEW)
+
 	created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
 
 
