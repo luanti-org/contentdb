@@ -17,6 +17,9 @@ depends_on = None
 
 
 def upgrade():
+    status = postgresql.ENUM('NEW', 'IGNORED', 'ACCEPTED', name='contentdetectionstate')
+    status.create(op.get_bind())
+
     op.create_table('content_detection_dataset',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=200), nullable=False),
@@ -38,12 +41,17 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('package_id', sa.Integer(), nullable=True),
     sa.Column('content_path', sa.String(length=200), nullable=False),
+    sa.Column('content_phash', sa.String(length=200), nullable=False),
+    sa.Column('content_dhash', sa.String(length=200), nullable=False),
     sa.Column('match_path', sa.String(length=200), nullable=False),
     sa.Column('confidence', sa.Float(), nullable=False),
+    sa.Column('state', sa.Enum('NEW', 'IGNORED', 'ACCEPTED', name='contentdetectionstate'), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['package_id'], ['package.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_index('ix_package_content_detection_package_hash', 'package_content_detection',
+        ['package_id', 'content_phash', 'content_dhash'])
     op.create_table('content_detection_dataset_entry_hash',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('dataset_entry_id', sa.Integer(), nullable=True),
@@ -56,6 +64,9 @@ def upgrade():
 
 def downgrade():
     op.drop_table('content_detection_dataset_entry_hash')
+    op.drop_index('ix_package_content_detection_package_hash', table_name='package_content_detection')
     op.drop_table('package_content_detection')
     op.drop_table('content_detection_dataset_entry')
     op.drop_table('content_detection_dataset')
+
+    postgresql.ENUM(name='contentdetectionstate').drop(op.get_bind())
