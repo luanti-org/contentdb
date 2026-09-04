@@ -2,9 +2,10 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2026 rubenwardy <rw@rubenwardy>
 
+import os
 from dataclasses import dataclass
 from io import BytesIO
-from typing import List, Optional
+from typing import Callable, List, Optional
 from zipfile import ZipFile
 
 import imagehash
@@ -74,42 +75,73 @@ def best_distance(phash: int, dhash: int, entry: DatasetEntry) -> Optional[float
 	return best
 
 
-def find_matches(
+def find_matches_in_zip(
 		zip_file_path: str, entries: List[DatasetEntry],
-		threshold: float = DEFAULT_THRESHOLD, max_matches: int = MAX_MATCHES_PER_IMAGE
+		threshold: float = DEFAULT_THRESHOLD,
+		max_matches: int = MAX_MATCHES_PER_IMAGE
 ) -> List[PossibleMatch]:
-	results = []
 	with ZipFile(zip_file_path, 'r') as zf:
 		image_names = [name for name in zf.namelist() if name.lower().endswith(IMAGE_EXTS)]
-		for name in image_names:
+
+		def load_image(name: str) -> Image.Image:
 			with zf.open(name) as f:
-				try:
-					img = Image.open(BytesIO(f.read())).convert("RGBA")
-				except Exception:
-					continue
+				return Image.open(BytesIO(f.read())).convert("RGBA")
 
-			phash_obj = imagehash.phash(img, hash_size=16)
-			dhash_obj = imagehash.dhash(img, hash_size=16)
-			phash = hash_to_int(phash_obj)
-			dhash = hash_to_int(dhash_obj)
+		return _find_matches(image_names, load_image, entries, threshold, max_matches)
 
-			# TODO: skip solid/flat-color images here
 
-			candidates = []
-			for entry in entries:
-				dist = best_distance(phash, dhash, entry)
-				if dist is not None and dist <= threshold:
-					candidates.append((dist, entry))
-			candidates.sort(key=lambda cand: cand[0])
+def find_matches_in_dir(
+		dir_path: str, entries: List[DatasetEntry],
+		threshold: float = DEFAULT_THRESHOLD,
+		max_matches: int = MAX_MATCHES_PER_IMAGE
+) -> List[PossibleMatch]:
+	image_names = [
+		os.path.relpath(os.path.join(root, f), dir_path)
+		for root, _, files in os.walk(dir_path) # Todo maybe: Skip hidden folders like .git?
+		for f in files if f.lower().endswith(IMAGE_EXTS)
+	]
 
-			for dist, entry in candidates[:max_matches]:
-				results.append(PossibleMatch(
-					content_path=name,
-					match_dataset=entry.dataset,
-					match_path=entry.path,
-					confidence=dist,
-					content_phash=str(phash_obj),
-					content_dhash=str(dhash_obj),
-				))
+	def load_image(name: str) -> Image.Image:
+		return Image.open(os.path.join(dir_path, name)).convert("RGBA")
+
+	return _find_matches(image_names, load_image, entries, threshold, max_matches)
+
+
+def _find_matches(
+		image_names: List[str],
+		load_image: Callable[[str], Image.Image],
+		entries: List[DatasetEntry],
+		threshold: float, max_matches: int
+) -> List[PossibleMatch]:
+	results = []
+	for name in image_names:
+		try:
+			img = load_image(name)
+		except Exception:
+			continue
+
+		phash_obj = imagehash.phash(img, hash_size=16)
+		dhash_obj = imagehash.dhash(img, hash_size=16)
+		phash = hash_to_int(phash_obj)
+		dhash = hash_to_int(dhash_obj)
+
+		# TODO: skip solid/flat-color images here
+
+		candidates = []
+		for entry in entries:
+			dist = best_distance(phash, dhash, entry)
+			if dist is not None and dist <= threshold:
+				candidates.append((dist, entry))
+		candidates.sort(key=lambda cand: cand[0])
+
+		for dist, entry in candidates[:max_matches]:
+			results.append(PossibleMatch(
+				content_path=name,
+				match_dataset=entry.dataset,
+				match_path=entry.path,
+				confidence=dist,
+				content_phash=str(phash_obj),
+				content_dhash=str(dhash_obj),
+			))
 
 	return results

@@ -133,7 +133,7 @@ def update_all_release_permissions(self):
 
 	db.session.commit()
 
-from .hashcheck import find_matches, DatasetEntry, Hash
+from .hashcheck import find_matches_in_zip, DatasetEntry, Hash
 
 @celery.task()
 def detect_content_in_package(package_id: int):
@@ -153,7 +153,7 @@ def detect_content_in_package(package_id: int):
 	]
 
 	latest_release = package.get_download_release()
-	matches = find_matches(latest_release.file_path, entries)
+	matches = find_matches_in_zip(latest_release.file_path, entries)
 
 	# Keep only the closest match per (content_path, hash, match_path)
 	# Added content_path here in case two copies of same image appear in same package
