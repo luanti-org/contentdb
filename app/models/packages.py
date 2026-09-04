@@ -1711,7 +1711,7 @@ class ContentDetectionDatasetEntry(db.Model):
 	created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
 
 	hashes = db.relationship("ContentDetectionDatasetEntryHash", back_populates="dataset_entry",
-			lazy="dynamic", cascade="all, delete, delete-orphan")
+			cascade="all, delete, delete-orphan")
 
 
 class ContentDetectionDatasetEntryHash(db.Model):
