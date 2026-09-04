@@ -30,7 +30,8 @@
 	<script src="/static/libs/jquery-ui.min.js?v=2"></script>
 	<script src="/static/js/video_embed.js?v=2"></script>
 	<script src="/static/js/package_view.js"></script>
-	<script src="/static/js/download_card.js?v=2"></script>
+	<script src="/static/js/download_card.js?v=3"></script>
+	<script src="/static/js/game_support_card.js"></script>
 	{% if current_user.is_authenticated %}
 		<script src="/static/js/quick_review_voting.js?v=2"></script>
 	{% endif %}
@@ -278,36 +279,39 @@
 					{{ self.download_btn() }}
 				</div>
 
-				<article id="download-card" class="card mb-4 d-none"
-					{% if package.type.name == "GAME" %}
-						data-set-game-id="{{ package.get_id() }}"
-					{% endif %}>
-					<div class="card-body">
-						{% if package.type.name != "GAME" %}
+				{% if package.type.name != "GAME" %}
+					<article id="game-support-card" class="card mb-4 d-none">
+						<div class="card-body">
 							<div>
 								<label for="current-game" class="form-label">
 									{{ _("Game") }}
 								</label>
-								<input class="form-control" id="current-game">
+								<div class="input-group mb-3">
+									<input class="form-control" id="current-game" name="current-game">
+									<button id="clear-current-game" class="btn btn-secondary" type="button">
+										<i class="fas fa-times"></i>
+									</button>
+								</div>
 							</div>
-							<p id="alert-game-initial" class="alert bg-secondary my-3">
+							<p id="alert-game-initial" class="alert bg-secondary mb-0">
 								<span>
-									{{ _("Select a game to check compatibility")}}
+									{{ _("Select a game to check compatibility") }}
 								</span>
 							</p>
-							<div id="alert-game-success" class="d-flex d-none align-content-center my-3 gap-2">
+							<div id="alert-game-success" class="d-flex d-none align-content-center gap-2">
 								<i class="fas fa-check-circle text-success me-1 h4"></i>
 								<span class="flex-grow" data-game-success-msg="{{ _('Compatible with %(gamename)s', gamename='@1') }}"></span>
 							</div>
-							<div id="alert-game-incompatible" class="d-none alert bg-danger my-3">
-								<p class="mt-0 fw-bold">
-									<i class="fas fa-times-circle me-1"></i>
-									<span data-game-incompatible-msg="{{ _('Incompatible with %(gamename)s', gamename='@1') }}"></span>
-								</p>
-								<p class="mb-0" data-game-incompatible-msg2="{{ _('%(title)s cannot be used with %(gamename)s.', title=package.title, gamename='@1') }}">
-								</p>
+							<div id="alert-game-incompatible" class="d-flex d-none align-content-center gap-2">
+								<i class="fas fa-times-circle text-danger me-1 h4"></i>
+								<span class="flex-grow" data-game-incompatible-msg="{{ _('Incompatible with %(gamename)s', gamename='@1') }}"></span>
 							</div>
-						{% endif %}
+						</div>
+					</article>
+				{% endif %}
+
+				<article id="download-card" class="card mb-4 d-none">
+					<div class="card-body">
 						<div class="mb-4">
 							<label for="luanti-version" class="form-label">
 								{{ _("Luanti version") }}
