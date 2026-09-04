@@ -145,6 +145,7 @@ def detect_content_in_release(release_id: int):
 
 	entries = (
 		db.session.query(ContentDetectionDatasetEntry, ContentDetectionDataset.name)
+		.options(subqueryload(ContentDetectionDatasetEntry.hashes))
 		.select_from(ContentDetectionDatasetEntry)
 		.join(ContentDetectionDatasetEntry.dataset)
 		.all())

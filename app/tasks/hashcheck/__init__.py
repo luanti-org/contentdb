@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from io import BytesIO
 from typing import Callable, List, Optional
 from zipfile import ZipFile
-
+import sys
 import imagehash
 import numpy
 from PIL import Image
@@ -115,6 +115,8 @@ def _find_matches(
 ) -> List[PossibleMatch]:
 	results = []
 	for name in image_names:
+		print(f"Checking {name}...", file=sys.stderr)
+
 		try:
 			img = load_image(name)
 		except Exception:
