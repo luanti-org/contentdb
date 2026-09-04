@@ -16,9 +16,11 @@ branch_labels = None
 depends_on = None
 
 
+status_enum = postgresql.ENUM('NEW', 'IGNORED', 'ACCEPTED', name='contentdetectionstate', create_type=False)
+
+
 def upgrade():
-    status = postgresql.ENUM('NEW', 'IGNORED', 'ACCEPTED', name='contentdetectionstate')
-    status.create(op.get_bind())
+    status_enum.create(op.get_bind(), checkfirst=True)
 
     op.create_table('content_detection_dataset',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -45,7 +47,7 @@ def upgrade():
     sa.Column('content_dhash', sa.String(length=200), nullable=False),
     sa.Column('match_path', sa.String(length=200), nullable=False),
     sa.Column('confidence', sa.Float(), nullable=False),
-    sa.Column('state', sa.Enum('NEW', 'IGNORED', 'ACCEPTED', name='contentdetectionstate'), nullable=False),
+    sa.Column('state', status_enum, nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['package_id'], ['package.id'], ),
     sa.PrimaryKeyConstraint('id')

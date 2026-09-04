@@ -19,7 +19,7 @@ from app.tasks.admintasks import delete_empty_threads
 from app.tasks.emails import send_pending_digests
 from app.tasks.forumtasks import import_topic_list, check_all_forum_accounts
 from app.tasks.importtasks import import_repo_screenshot, check_zip_release, check_for_updates, update_all_game_support, \
-	import_languages, check_all_zip_files, update_all_release_permissions
+	import_languages, check_all_zip_files, update_all_release_permissions, detect_content_in_release
 from app.tasks.usertasks import import_github_user_ids
 from app.tasks.pkgtasks import notify_about_git_forum_links, clear_removed_packages, check_package_for_broken_links, update_file_size_bytes
 from app.tasks.dumptask import create_database_dump
@@ -329,6 +329,14 @@ def do_update_file_size_bytes():
 def do_create_database_dump():
 	task_id = uuid()
 	create_database_dump.apply_async((), task_id=task_id)
+	return redirect(url_for("tasks.check", id=task_id, r=url_for("admin.admin_page")))
+
+
+@action("Run content checker on all packages")
+def do_run_content_checker_on_all_packages():
+	task_id = uuid()
+	release_id = 38467
+	detect_content_in_release.apply_async((release_id,), task_id=task_id)
 	return redirect(url_for("tasks.check", id=task_id, r=url_for("admin.admin_page")))
 
 

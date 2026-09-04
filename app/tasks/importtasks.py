@@ -17,6 +17,7 @@ from git_archive_all import GitArchiver
 from kombu import uuid
 from sqlalchemy import and_, or_
 from sqlalchemy.dialects.postgresql import insert
+from sqlalchemy.orm import subqueryload
 
 from app.models import AuditSeverity, db, NotificationType, PackageRelease, MetaPackage, Dependency, PackageType, \
 	LuantiRelease, Package, PackageState, PackageScreenshot, PackageUpdateTrigger, PackageUpdateConfig, \
@@ -136,10 +137,11 @@ def update_all_release_permissions(self):
 from .hashcheck import find_matches_in_zip, DatasetEntry, Hash
 
 @celery.task()
-def detect_content_in_package(package_id: int):
-	package: Package = Package.query.get(package_id)
-	if package is None:
-		raise TaskError("Unknown package")
+def detect_content_in_release(release_id: int):
+	release: PackageRelease = PackageRelease.query.get(release_id)
+	if release is None:
+		raise TaskError("Unknown release")
+	package: Package = release.package
 
 	entries = (
 		db.session.query(ContentDetectionDatasetEntry, ContentDetectionDataset.name)
@@ -152,8 +154,7 @@ def detect_content_in_package(package_id: int):
 		for pair in entries
 	]
 
-	latest_release = package.get_download_release()
-	matches = find_matches_in_zip(latest_release.file_path, entries)
+	matches = find_matches_in_zip(release.file_path, entries)
 
 	# Keep only the closest match per (content_path, hash, match_path)
 	# Added content_path here in case two copies of same image appear in same package
@@ -164,7 +165,7 @@ def detect_content_in_package(package_id: int):
 		if current is None or match.confidence < current.confidence:
 			best_by_match[key] = match
 
-	existing_detections = PackageContentDetection.query.filter_by(package_id=package_id).all()
+	existing_detections = PackageContentDetection.query.filter_by(package_id=package.id).all()
 
 	# Path-independent so a texture reviewed under an old content_path should still
 	# count as reviewed for the same hash + match_path if moved
@@ -189,7 +190,7 @@ def detect_content_in_package(package_id: int):
 			continue
 
 		detection = PackageContentDetection()
-		detection.package_id = package_id
+		detection.package_id = package.id
 		detection.content_path = match.content_path
 		detection.content_phash = match.content_phash
 		detection.content_dhash = match.content_dhash
@@ -199,6 +200,7 @@ def detect_content_in_package(package_id: int):
 		db.session.add(detection)
 
 	db.session.commit()
+	return "OK"
 
 
 
