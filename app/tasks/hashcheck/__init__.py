@@ -14,6 +14,7 @@ from PIL import Image
 IMAGE_EXTS = (".png", ".jpg", ".jpeg", ".tga", ".bmp")
 
 DEFAULT_THRESHOLD = 8
+MAX_MATCHES_PER_IMAGE = 5
 
 
 @dataclass
@@ -73,8 +74,10 @@ def best_distance(phash: int, dhash: int, entry: DatasetEntry) -> Optional[float
 	return best
 
 
-def find_matches(zip_file_path: str, entries: List[DatasetEntry],
-		threshold: float = DEFAULT_THRESHOLD) -> List[PossibleMatch]:
+def find_matches(
+		zip_file_path: str, entries: List[DatasetEntry],
+		threshold: float = DEFAULT_THRESHOLD, max_matches: int = MAX_MATCHES_PER_IMAGE
+) -> List[PossibleMatch]:
 	results = []
 	with ZipFile(zip_file_path, 'r') as zf:
 		image_names = [name for name in zf.namelist() if name.lower().endswith(IMAGE_EXTS)]
@@ -92,16 +95,21 @@ def find_matches(zip_file_path: str, entries: List[DatasetEntry],
 
 			# TODO: skip solid/flat-color images here
 
+			candidates = []
 			for entry in entries:
 				dist = best_distance(phash, dhash, entry)
 				if dist is not None and dist <= threshold:
-					results.append(PossibleMatch(
-						content_path=name,
-						match_dataset=entry.dataset,
-						match_path=entry.path,
-						confidence=dist,
-						content_phash=str(phash_obj),
-						content_dhash=str(dhash_obj),
-					))
+					candidates.append((dist, entry))
+			candidates.sort(key=lambda cand: cand[0])
+
+			for dist, entry in candidates[:max_matches]:
+				results.append(PossibleMatch(
+					content_path=name,
+					match_dataset=entry.dataset,
+					match_path=entry.path,
+					confidence=dist,
+					content_phash=str(phash_obj),
+					content_dhash=str(dhash_obj),
+				))
 
 	return results
