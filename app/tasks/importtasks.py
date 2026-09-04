@@ -155,28 +155,36 @@ def detect_content_in_package(package_id: int):
 	latest_release = package.get_download_release()
 	matches = find_matches(latest_release.file_path, entries)
 
-	# Keep only the closest match per hash, in case one texture matches multiple entries
-	best_by_hash = {}
+	# Keep only the closest match per (content_path, hash, match_path)
+	# Added content_path here in case two copies of same image appear in same package
+	best_by_match = {}
 	for match in matches:
-		key = (match.content_phash, match.content_dhash)
-		current = best_by_hash.get(key)
+		key = (match.content_path, match.content_phash, match.content_dhash, match.match_path)
+		current = best_by_match.get(key)
 		if current is None or match.confidence < current.confidence:
-			best_by_hash[key] = match
+			best_by_match[key] = match
 
-	for match in best_by_hash.values():
-		existing = PackageContentDetection.query.filter_by(
-			package_id=package_id,
-			content_phash=match.content_phash,
-			content_dhash=match.content_dhash,
-		).first()
+	existing_detections = PackageContentDetection.query.filter_by(package_id=package_id).all()
+
+	# Path-independent so a texture reviewed under an old content_path should still
+	# count as reviewed for the same hash + match_path if moved
+	reviewed_hashes = {
+		(d.content_phash, d.content_dhash, d.match_path)
+		for d in existing_detections if d.state != ContentDetectionState.NEW
+	}
+	existing_new_by_match = {
+		(d.content_path, d.content_phash, d.content_dhash, d.match_path): d
+		for d in existing_detections if d.state == ContentDetectionState.NEW
+	}
+
+	for match in best_by_match.values():
+		if (match.content_phash, match.content_dhash, match.match_path) in reviewed_hashes:
+			continue
+
+		existing = existing_new_by_match.get(
+			(match.content_path, match.content_phash, match.content_dhash, match.match_path))
 
 		if existing is not None:
-			# Already reviewed - leave the reviewer's decision alone, don't re-flag it
-			if existing.state != ContentDetectionState.NEW:
-				continue
-
-			existing.content_path = match.content_path
-			existing.match_path = match.match_path
 			existing.confidence = match.confidence
 			continue
 
