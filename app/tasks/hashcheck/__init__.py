@@ -5,7 +5,7 @@
 import os
 from dataclasses import dataclass
 from io import BytesIO
-from typing import Callable, List, Optional
+from typing import List, Optional
 from zipfile import ZipFile
 import sys
 import imagehash
@@ -81,14 +81,20 @@ def find_matches_in_zip(
 		threshold: float = DEFAULT_THRESHOLD,
 		max_matches: int = MAX_MATCHES_PER_IMAGE
 ) -> List[PossibleMatch]:
+	results = []
 	with ZipFile(zip_file_path, 'r') as zf:
 		image_names = [name for name in zf.namelist() if name.lower().endswith(IMAGE_EXTS)]
 
-		def load_image(name: str) -> Image.Image:
-			with zf.open(name) as f:
-				return Image.open(BytesIO(f.read())).convert("RGBA")
+		for name in image_names:
+			try:
+				with zf.open(name) as f:
+					img = Image.open(BytesIO(f.read())).convert("RGBA")
+			except Exception:
+				continue
 
-		return _find_matches(image_names, load_image, entries, threshold, max_matches)
+			results.extend(process_image(name, img, entries, threshold, max_matches))
+
+	return results
 
 
 def find_matches_in_dir(
@@ -102,52 +108,51 @@ def find_matches_in_dir(
 		for f in files if f.lower().endswith(IMAGE_EXTS)
 	]
 
-	def load_image(name: str) -> Image.Image:
-		return Image.open(os.path.join(dir_path, name)).convert("RGBA")
-
-	return _find_matches(image_names, load_image, entries, threshold, max_matches)
-
-
-def _find_matches(
-		image_names: List[str],
-		load_image: Callable[[str], Image.Image],
-		entries: List[DatasetEntry],
-		threshold: float, max_matches: int
-) -> List[PossibleMatch]:
 	results = []
 	for name in image_names:
-		print(f"Checking {name}...", file=sys.stderr)
-
 		try:
-			img = load_image(name)
+			img = Image.open(os.path.join(dir_path, name)).convert("RGBA")
 		except Exception:
 			continue
 
-		phash_obj = imagehash.phash(img, hash_size=16)
-		dhash_obj = imagehash.dhash(img, hash_size=16)
-		phash = hash_to_int(phash_obj)
-		dhash = hash_to_int(dhash_obj)
+		results.extend(process_image(name, img, entries, threshold, max_matches))
 
-		# TODO: skip solid/flat-color images here
+	return results
 
-		candidates = []
-		for entry in entries:
-			dist = best_distance(phash, dhash, entry)
-			if dist is not None and dist <= threshold:
-				candidates.append((dist, entry))
-		candidates.sort(key=lambda cand: cand[0])
 
-		for dist, entry in candidates[:max_matches]:
-			content_buffer = BytesIO()
-			img.save(content_buffer, format="PNG")
-			results.append(PossibleMatch(
-				content_path=name,
-				match_dataset=entry.dataset,
-				match_path=entry.path,
-				confidence=dist,
-				content_phash=str(phash_obj),
-				content_dhash=str(dhash_obj),
-				content_data=content_buffer.getvalue()
-			))
+def process_image(
+		image_path: str, img: Image.Image,
+		entries: List[DatasetEntry],
+		threshold: float, max_matches: int
+) -> List[PossibleMatch]:
+	print(f"Checking {image_path}...", file=sys.stderr)
+
+	phash_obj = imagehash.phash(img, hash_size=16)
+	dhash_obj = imagehash.dhash(img, hash_size=16)
+	phash = hash_to_int(phash_obj)
+	dhash = hash_to_int(dhash_obj)
+
+	# TODO: skip solid/flat-color images here
+
+	candidates = []
+	for entry in entries:
+		dist = best_distance(phash, dhash, entry)
+		if dist is not None and dist <= threshold:
+			candidates.append((dist, entry))
+	candidates.sort(key=lambda cand: cand[0])
+
+	results = []
+	for dist, entry in candidates[:max_matches]:
+		content_buffer = BytesIO()
+		img.save(content_buffer, format="PNG")
+		results.append(PossibleMatch(
+			content_path=image_path,
+			match_dataset=entry.dataset,
+			match_path=entry.path,
+			confidence=dist,
+			content_phash=str(phash_obj),
+			content_dhash=str(dhash_obj),
+			content_data=content_buffer.getvalue()
+		))
 
 	return results
