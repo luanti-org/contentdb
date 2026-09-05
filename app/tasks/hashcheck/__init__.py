@@ -34,7 +34,8 @@ class PossibleMatch:
 
 	# Hash of the content_path image, so callers can dedupe/persist without re-hashing
 	content_phash: str
-	content_dhash: str
+	content_dhash: st
+	content_data: bytes
 
 
 @dataclass
@@ -137,6 +138,8 @@ def _find_matches(
 		candidates.sort(key=lambda cand: cand[0])
 
 		for dist, entry in candidates[:max_matches]:
+			content_buffer = BytesIO()
+			img.save(content_buffer, format="PNG")
 			results.append(PossibleMatch(
 				content_path=name,
 				match_dataset=entry.dataset,
@@ -144,6 +147,7 @@ def _find_matches(
 				confidence=dist,
 				content_phash=str(phash_obj),
 				content_dhash=str(dhash_obj),
+				content_data=content_buffer.getvalue()
 			))
 
 	return results
