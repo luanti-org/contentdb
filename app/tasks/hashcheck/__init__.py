@@ -34,7 +34,7 @@ class PossibleMatch:
 
 	# Hash of the content_path image, so callers can dedupe/persist without re-hashing
 	content_phash: str
-	content_dhash: st
+	content_dhash: str
 	content_data: bytes
 
 
