@@ -6,6 +6,7 @@
 import datetime
 import enum
 import os
+import base64
 
 import typing
 from flask import url_for
@@ -1676,10 +1677,9 @@ class PackageContentDetection(db.Model):
 	package      = db.relationship("Package", back_populates="content_detections", foreign_keys=[package_id])
 
 	content_path = db.Column(db.String(200), nullable=False)
-
-	# Identifies the texture across rescans, independent of content_path.
 	content_phash = db.Column(db.String(200), nullable=False)
 	content_dhash = db.Column(db.String(200), nullable=False)
+	content_data = db.Column(db.LargeBinary, nullable=False)
 
 	match_path = db.Column(db.String(200), nullable=False)
 	confidence = db.Column(db.Float, nullable=False)
@@ -1687,6 +1687,10 @@ class PackageContentDetection(db.Model):
 	state = db.Column(db.Enum(ContentDetectionState), nullable=False, default=ContentDetectionState.NEW)
 
 	created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+
+	@property
+	def content_as_data_url(self):
+		return "data:image/png;base64," + base64.b64encode(self.content_data).decode("utf-8")
 
 
 class ContentDetectionDataset(db.Model):

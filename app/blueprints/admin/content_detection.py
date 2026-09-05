@@ -13,7 +13,7 @@ import json
 
 from . import bp
 from app.models import db, ContentDetectionDataset, UserRank, ContentDetectionDatasetEntry, \
-	ContentDetectionDatasetEntryHash
+	ContentDetectionDatasetEntryHash, PackageContentDetection, ContentDetectionState
 from app.utils.user import rank_required
 
 
@@ -58,3 +58,21 @@ def cd_datasets():
 		handle_update(data)
 
 	return render_template("admin/content_detection/datasets.html", form=form, datasets=ContentDetectionDataset.query.all())
+
+
+@bp.route("/admin/content_detection/matches/", methods=["GET"])
+@rank_required(UserRank.EDITOR)
+def cd_matches():
+	matches = (PackageContentDetection.query
+		.filter(PackageContentDetection.state != ContentDetectionState.IGNORED)
+		.order_by(PackageContentDetection.confidence.asc())
+		.all())
+	return render_template("admin/content_detection/match_list.html", matches=matches)
+
+
+@bp.route("/admin/content_detection/matches/<int:match_id>/", methods=["GET"])
+@rank_required(UserRank.EDITOR)
+def cd_match(match_id):
+	match = PackageContentDetection.query.get_or_404(match_id)
+
+	return render_template("admin/content_detection/match.html", match=match)

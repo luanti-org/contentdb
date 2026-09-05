@@ -195,14 +195,13 @@ def detect_content_in_release(release_id: int):
 		detection.content_path = match.content_path
 		detection.content_phash = match.content_phash
 		detection.content_dhash = match.content_dhash
+		detection.content_data = match.content_data
 		detection.match_path = match.match_path
 		detection.confidence = match.confidence
 		detection.state = ContentDetectionState.NEW
 		db.session.add(detection)
 
 	db.session.commit()
-	return "OK"
-
 
 
 def post_release_check_update(self, release: PackageRelease, path):

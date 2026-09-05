@@ -45,6 +45,7 @@ def upgrade():
     sa.Column('content_path', sa.String(length=200), nullable=False),
     sa.Column('content_phash', sa.String(length=200), nullable=False),
     sa.Column('content_dhash', sa.String(length=200), nullable=False),
+    sa.Column('content_data', sa.LargeBinary(), nullable=False),
     sa.Column('match_path', sa.String(length=200), nullable=False),
     sa.Column('confidence', sa.Float(), nullable=False),
     sa.Column('state', status_enum, nullable=False),
