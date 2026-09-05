@@ -157,15 +157,6 @@ def detect_content_in_release(release_id: int):
 
 	matches = find_matches_in_zip(release.file_path, entries)
 
-	# Keep only the closest match per (content_path, hash, match_path)
-	# Added content_path here in case two copies of same image appear in same package
-	best_by_match = {}
-	for match in matches:
-		key = (match.content_path, match.content_phash, match.content_dhash, match.match_path)
-		current = best_by_match.get(key)
-		if current is None or match.confidence < current.confidence:
-			best_by_match[key] = match
-
 	existing_detections = PackageContentDetection.query.filter_by(package_id=package.id).all()
 
 	# Path-independent so a texture reviewed under an old content_path should still
@@ -179,7 +170,7 @@ def detect_content_in_release(release_id: int):
 		for d in existing_detections if d.state == ContentDetectionState.NEW
 	}
 
-	for match in best_by_match.values():
+	for match in matches:
 		if (match.content_phash, match.content_dhash, match.match_path) in reviewed_hashes:
 			continue
 
