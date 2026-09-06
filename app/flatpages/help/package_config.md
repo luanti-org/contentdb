@@ -130,7 +130,7 @@ Here's an example config:
 	min_minetest_version = 5.0
 	max_minetest_version = 5.3
 
-The value should be `MAJOR.MINOR`. Another further parts, such as a `PATCH`
+The value should be `MAJOR.MINOR`. Any further parts, such as a `PATCH`
 number, will be ignored.
 
 Leaving out min or max to have them set as "None".
