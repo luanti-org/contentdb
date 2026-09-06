@@ -1,7 +1,7 @@
 from typing import List, Tuple, Optional
 
 from app.default_data import populate_test_data
-from app.models import db, License, PackageType, User, Package, PackageState, PackageRelease, LuantiRelease
+from app.models import db, License, PackageType, User, Package, PackageState, PackageRelease, LuantiRelease, ReleaseState
 from .utils import parse_json, validate_package_list
 from .utils import client # noqa
 
@@ -38,7 +38,7 @@ def make_package(name: str, versions: List[Tuple[Optional[str], Optional[str]]])
 			rel.max_rel = LuantiRelease.query.filter_by(name=maxv).first()
 			assert rel.max_rel
 
-		rel.approved = True
+		rel.state = ReleaseState.APPROVED
 		db.session.add(rel)
 		rels.append(rel)
 
