@@ -56,7 +56,8 @@ def populate_test_data(session):
 	licenses = { x.name : x for x in License.query.all() }
 	tags = { x.name : x for x in Tag.query.all() }
 	admin_user = User.query.filter_by(rank=UserRank.ADMIN).first()
-	v4 = LuantiRelease.query.filter_by(protocol=32).first()
+	# protocol 32 is no longer present so just reuse the oldest version present
+	v4 = LuantiRelease.query.filter_by(protocol=37).first()
 	v51 = LuantiRelease.query.filter_by(protocol=38).first()
 
 	ez = User("Shara")
