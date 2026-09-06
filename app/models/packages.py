@@ -472,7 +472,7 @@ class Package(db.Model):
 
 	state     = db.Column(db.Enum(PackageState), nullable=False, default=PackageState.WIP)
 	dev_state = db.Column(db.Enum(PackageDevState), nullable=True, default=None)
-	ai_disclosure = db.Column(db.Enum(PackageAIDisclosure), nullable=True, default=None)
+	ai_disclosure = db.Column(db.Enum(PackageAIDisclosure), nullable=False, default=PackageAIDisclosure.UNKNOWN)
 
 	@property
 	def approved(self):
