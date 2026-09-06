@@ -17,10 +17,12 @@ from git_archive_all import GitArchiver
 from kombu import uuid
 from sqlalchemy import and_, or_
 from sqlalchemy.dialects.postgresql import insert
+from sqlalchemy.orm import subqueryload
 
 from app.models import AuditSeverity, db, NotificationType, PackageRelease, MetaPackage, Dependency, PackageType, \
 	LuantiRelease, Package, PackageState, PackageScreenshot, PackageUpdateTrigger, PackageUpdateConfig, \
-	PackageGameSupport, PackageTranslation, Language, ReleaseState
+	PackageGameSupport, PackageTranslation, Language, ReleaseState, ContentDetectionDatasetEntry, \
+	ContentDetectionDataset, PackageContentDetection, ContentDetectionState
 from app.tasks import celery, TaskError
 from app.utils.misc import random_string, truncate_string
 from app.utils.models import post_bot_message, add_system_notification, add_system_audit_log, \
@@ -129,6 +131,66 @@ def update_all_release_permissions(self):
 						release.uses_insecure_env = True
 					if "request_http_api" in content:
 						release.uses_http_api = True
+
+	db.session.commit()
+
+from .hashcheck import find_matches_in_zip, DatasetEntry, Hash
+
+@celery.task()
+def detect_content_in_release(release_id: int):
+	release: PackageRelease = PackageRelease.query.get(release_id)
+	if release is None:
+		raise TaskError("Unknown release")
+	package: Package = release.package
+
+	entries = (
+		db.session.query(ContentDetectionDatasetEntry, ContentDetectionDataset.name)
+		.options(subqueryload(ContentDetectionDatasetEntry.hashes))
+		.select_from(ContentDetectionDatasetEntry)
+		.join(ContentDetectionDatasetEntry.dataset)
+		.all())
+
+	entries = [
+		DatasetEntry(pair[1], pair[0].path, pair[0].width, pair[0].height, [Hash(hash.phash, hash.dhash) for hash in pair[0].hashes])
+		for pair in entries
+	]
+
+	matches = find_matches_in_zip(release.file_path, entries)
+
+	existing_detections = PackageContentDetection.query.filter_by(package_id=package.id).all()
+
+	# Path-independent so a texture reviewed under an old content_path should still
+	# count as reviewed for the same hash + match_path if moved
+	reviewed_hashes = {
+		(d.content_phash, d.content_dhash, d.match_path)
+		for d in existing_detections if d.state != ContentDetectionState.NEW
+	}
+	existing_new_by_match = {
+		(d.content_path, d.content_phash, d.content_dhash, d.match_path): d
+		for d in existing_detections if d.state == ContentDetectionState.NEW
+	}
+
+	for match in matches:
+		if (match.content_phash, match.content_dhash, match.match_path) in reviewed_hashes:
+			continue
+
+		existing = existing_new_by_match.get(
+			(match.content_path, match.content_phash, match.content_dhash, match.match_path))
+
+		if existing is not None:
+			existing.confidence = match.confidence
+			continue
+
+		detection = PackageContentDetection()
+		detection.package_id = package.id
+		detection.content_path = match.content_path
+		detection.content_phash = match.content_phash
+		detection.content_dhash = match.content_dhash
+		detection.content_data = match.content_data
+		detection.match_path = match.match_path
+		detection.confidence = match.confidence
+		detection.state = ContentDetectionState.NEW
+		db.session.add(detection)
 
 	db.session.commit()
 

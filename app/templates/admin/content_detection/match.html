@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}
+View match
+{% endblock %}
+
+{% from "macros/forms.html" import render_field, render_submit_field %}
+
+{% block content %}
+	<h1>{{ self.title() }}</h1>
+	<dl>
+		<dt>Content Path</dt>
+		<dd>{{ match.content_path }}</dd>
+		<dt>Match Path</dt>
+		<dd>{{ match.match_path }}</dd>
+		<dt>Confidence</dt>
+		<dd>{{ match.confidence }}</dd>
+		<dt>Content PHASH</dt>
+		<dd>{{ match.content_phash }}</dd>
+		<dt>Content DHASH</dt>
+		<dd>{{ match.content_dhash }}</dd>
+	</dl>
+    <style>
+        .preview {
+            border: 1px solid #333;
+            padding: 1em;
+            background: white;
+            position: relative;
+        }
+        .preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            image-rendering: pixelated;
+        }
+    </style>
+
+    <div class="row">
+        <div class="col-6 preview">
+            <img src="{{ match.content_as_data_url }}" />
+        </div>
+        <div class="col-6 preview">
+            <img src="{{ match.content_as_data_url }}" />
+        </div>
+    </div>
+{% endblock %}

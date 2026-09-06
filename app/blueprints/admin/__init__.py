@@ -7,4 +7,4 @@ from flask import Blueprint
 
 bp = Blueprint("admin", __name__)
 
-from . import admin, audit, licenseseditor, tagseditor, versioneditor, warningseditor, languageseditor, approval_stats, update_config, usereditor
+from . import admin, audit, licenseseditor, tagseditor, versioneditor, warningseditor, languageseditor, approval_stats, update_config, usereditor, content_detection
