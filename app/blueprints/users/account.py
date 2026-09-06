@@ -107,7 +107,7 @@ def handle_register(form):
 		return user
 	elif user is None:
 		return
-	elif form.first_name.data != "":
+	elif form.first_name.data:
 		abort(500)
 
 	user.password = make_flask_login_password(form.password.data)
