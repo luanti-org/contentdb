@@ -11,7 +11,7 @@ from app.utils.git import get_latest_tag, get_latest_commit, clone_repo, get_com
 test_repo = "https://codeberg.org/rubenwardy/testmod"
 test_private_repo = "https://github.com/luanti-org/discussions"
 master_head = "9f67d5ad98106e954bef732e64d367d7efa66341"
-test_branch_head = "51b54f00c3b3d712417a1cc4bfaa6cbdc7aac3fc"
+test_branch_head = "0d644a2068caf34a13e8d96937aa4d950dba6316"
 v4_commit = "c07d27c3a466d2102d1ba5473d172c74e6b3e0d7"
 latest_tag_name = "v5"
 latest_tag_commit = "23d12265ff6de84548b2e3e90dc7351a54f63f00"
