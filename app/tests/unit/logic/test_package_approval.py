@@ -5,7 +5,7 @@
 from unittest.mock import MagicMock, patch
 
 from app.domain import package_approval
-from app.models import Package, PackageType
+from app.models import Package, PackageType, ReleaseState
 
 
 class MockPackageHelper:
@@ -22,6 +22,7 @@ class MockPackageHelper:
 
 		self.package.releases.filter.return_value.count.return_value = 0
 		self.package.releases.count.return_value = 0
+		self.package.releases.order_by.return_value.first.return_value = None
 		self.package.get_url.return_value = "hi"
 		self.package.screenshots.count.return_value = 0
 
@@ -32,6 +33,10 @@ class MockPackageHelper:
 	def add_pending_release(self):
 		self.package.releases.filter.return_value.count.return_value = 0
 		self.package.releases.count.return_value = 1
+		latest_release = MagicMock()
+		latest_release.state = ReleaseState.PROCESSING
+		latest_release.task_id = "task123"
+		self.package.releases.order_by.return_value.first.return_value = latest_release
 
 	def add_screenshot(self):
 		self.package.screenshots.count.return_value = 1
@@ -41,16 +46,13 @@ class MockPackageHelper:
 		mod_name.name = "missing"
 		self.package.get_missing_hard_dependencies_query.return_value.all.return_value = [mod_name]
 
-	def set_license(self, code_license: str, media_license: str):
-		self.package.license.name = code_license
-		self.package.media_license.name = media_license
-
 	def set_no_game_support(self):
 		assert self.package.type != PackageType.GAME
 		self.package.supports_all_games = False
 		self.package.supported_games.count.return_value = 0
 
 
+@patch("app.domain.package_approval.url_for", MagicMock(return_value="/tasks/1"))
 def test_requires_release():
 	mock_package = MockPackageHelper()
 
@@ -61,7 +63,7 @@ def test_requires_release():
 	mock_package.add_pending_release()
 	notes = package_approval.validate_package_for_approval(mock_package.package)
 	assert len(notes) == 1
-	assert notes[0].message == "Release is still importing, or has an error."
+	assert notes[0].message == "Release is still importing. Please wait and reload the page."
 
 
 @patch("app.domain.package_approval.is_package_name_taken", MagicMock(return_value=False))
@@ -90,17 +92,14 @@ def test_missing_hard_deps(get_forum_topic):
 def test_requires_multiple_issues():
 	mock_package = MockPackageHelper()
 	mock_package.add_release()
-	mock_package.set_license("Other", "Other")
 	mock_package.set_no_game_support()
 	mock_package.add_screenshot()
 
 	notes = package_approval.validate_package_for_approval(mock_package.package)
-	assert len(notes) == 5
+	assert len(notes) == 3
 	assert notes[0].message == "What games does your package support? Please specify on the supported games page"
-	assert notes[1].message == "Please wait for the license to be added to CDB."
-	assert notes[2].message == "Please make sure that this package has the right to the names one, two"
-	assert notes[3].message == "<b>Error: Another package already uses this forum topic!</b>"
-	assert notes[4].message == "Warning: Forum topic not found. The topic may have been created since the last forum crawl."
+	assert notes[1].message == "Please make sure that this package has the right to the names one, two"
+	assert notes[2].message == "<b>Error: Another package already uses this forum topic!</b>"
 
 
 @patch("app.domain.package_approval.is_package_name_taken", MagicMock(return_value=False))
