@@ -11,9 +11,8 @@ Content Detection Datasets
 
 	<div class="list-group">
 		{% for set in datasets %}
-			<div class="list-group-item"
-					href="{{ url_for('admin.create_edit_tag', name=set.name) }}">
-				{{ set.name }}
+			<div class="list-group-item">
+				{{ set.name }} &mdash; updated {{ set.updated_at.strftime("%Y-%m-%d %H:%M") }}
 			</div>
 		{% else %}
 			<div class="list-group-item">None</div>
@@ -23,6 +22,8 @@ Content Detection Datasets
 	<h2>Add / update</h2>
 	<form method="POST" action="" enctype="multipart/form-data">
 		{{ form.hidden_tag() }}
+		{{ render_field(form.name_select) }}
+		{{ render_field(form.new_name, class_="", placeholder="Only used when creating a new dataset") }}
 		{{ render_field(form.file_upload, class_="", accept=".json") }}
 		{{ render_submit_field(form.submit) }}
 	</form>

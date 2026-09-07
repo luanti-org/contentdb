@@ -5,10 +5,12 @@
 
 from typing import Dict
 
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for, flash
 from flask_babel import lazy_gettext
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, FileField
+from wtforms import SubmitField, FileField, StringField
+from wtforms.validators import Optional
+from wtforms_sqlalchemy.fields import QuerySelectField
 import json
 
 from . import bp
@@ -18,16 +20,19 @@ from app.utils.user import rank_required
 
 
 class UploadDatasetForm(FlaskForm):
+	name_select = QuerySelectField(lazy_gettext("Dataset"), allow_blank=True,
+			blank_text=lazy_gettext("Create New"),
+			query_factory=lambda: ContentDetectionDataset.query.order_by(ContentDetectionDataset.name),
+			get_pk=lambda d: d.id, get_label=lambda d: d.name)
+	new_name = StringField(lazy_gettext("New dataset name"), validators=[Optional()])
 	file_upload = FileField(lazy_gettext("File Upload"))
 	submit = SubmitField(lazy_gettext("Update"))
 
 
-def handle_update(data):
-	pack_name = data["pack_name"]
-
-	ContentDetectionDataset.query.filter_by(name=pack_name).delete()
+def handle_update(name, data):
+	ContentDetectionDataset.query.filter_by(name=name).delete()
 	dataset = ContentDetectionDataset()
-	dataset.name = pack_name
+	dataset.name = name
 	db.session.add(dataset)
 
 	for entry in data["entries"]:
@@ -50,14 +55,22 @@ def handle_update(data):
 @bp.route("/admin/content_detection/datasets/", methods=["GET", "POST"])
 @rank_required(UserRank.EDITOR)
 def cd_datasets():
+	datasets = ContentDetectionDataset.query.order_by(ContentDetectionDataset.name).all()
+
 	form = UploadDatasetForm()
 
 	if form.validate_on_submit():
-		json_data = request.files[form.file_upload.name].read()
-		data = json.loads(json_data)
-		handle_update(data)
+		selected = form.name_select.data
+		name = selected.name if selected is not None else form.new_name.data
+		if name:
+			json_data = request.files[form.file_upload.name].read()
+			data = json.loads(json_data)
+			handle_update(name, data)
+			return redirect(url_for("admin.cd_datasets"))
+		else:
+			flash("Please enter a name for the new dataset", "danger")
 
-	return render_template("admin/content_detection/datasets.html", form=form, datasets=ContentDetectionDataset.query.all())
+	return render_template("admin/content_detection/datasets.html", form=form, datasets=datasets)
 
 
 @bp.route("/admin/content_detection/matches/", methods=["GET"])
