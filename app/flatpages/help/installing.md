@@ -82,6 +82,6 @@ Troubleshooting:
 
 ### Enable
 
-* Mods: Edit world.mt in the world's folder to contain `load_file_MODNAME = true`
+* Mods: Edit world.mt in the world's folder to contain `load_mod_MODNAME = true`
 * Games: Use `--game` or edit game_id in world.mt.
 * Texture packs: change the `texture_path` setting to the texture pack absolute path.
