@@ -1,0 +1,15 @@
+# ContentDB
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Copyright (C) 2026 Zenon Seth <Zenon.Seth@gmail.com>
+
+from flask import Blueprint, render_template
+
+from app.domain.approval_stats import get_public_approval_statistics
+
+bp = Blueprint("stats", __name__)
+
+
+@bp.route("/stats/approval/")
+def approval():
+	stats = get_public_approval_statistics()
+	return render_template("stats/approval.html", stats=stats)
