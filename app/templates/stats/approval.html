@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Approval Stats
+{% endblock %}
+
+{% block content %}
+<h1>{{ self.title() }}</h1>
+
+{% for period_name, period_label in [("7d", "Last 7 days"), ("30d", "Last 30 days")] %}
+<h2>{{ period_label }}</h2>
+
+<div class="row mb-5">
+	<div class="col-md-6">
+		<div class="card h-100">
+			<div class="card-body align-items-center text-center">
+				<div class="mt-0 mb-3">
+					Total packages submitted
+				</div>
+				<div class="my-0 h4">
+					{{ stats[period_name].total_submitted }}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-6">
+		<div class="card h-100">
+			<div class="card-body align-items-center text-center">
+				<div class="mt-0 mb-3">
+					Average turnaround time
+				</div>
+				<div class="my-0 h4">
+					{{ stats[period_name].avg_turnaround_days | round(1) }} days
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endfor %}
+
+<p class="text-muted">
+	Turnaround: how long after clicking "Ready for Review" does the package receive a response. A package can be
+	marked as ready for review multiple times. Stats are cached and may be up to a day out of date.
+</p>
+
+{% endblock %}
