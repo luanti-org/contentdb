@@ -8,6 +8,9 @@ from typing import Dict, Optional
 from sqlalchemy import or_
 
 from app.models import AuditLogEntry, db, PackageState
+from app.rediscache import get_json_key, set_json_key
+
+APPROVAL_STATS_CACHE_EXPIRY_TIME = 60 * 60 # in seconds
 
 
 class PackageInfo:
@@ -130,10 +133,63 @@ def _get_approval_statistics(entries: list[AuditLogEntry], start_date: Optional[
 	return Result(editor_approvals, packages_info_2, avg_turnaround_time, max_turnaround_time)
 
 
-def get_approval_statistics(start_date: Optional[datetime.datetime] = None, end_date: Optional[datetime.datetime] = None) -> Result:
+def _compute_approval_statistics(start_date: Optional[datetime.datetime], end_date: Optional[datetime.datetime]) -> Result:
 	entries = AuditLogEntry.query.filter(AuditLogEntry.package).filter(or_(
 		AuditLogEntry.title.like("Approved %"),
 		AuditLogEntry.title.like("Marked %"))
 	).order_by(db.asc(AuditLogEntry.created_at)).all()
 
 	return _get_approval_statistics(entries, start_date, end_date)
+
+
+def _get_cache_key(
+	start_date: Optional[datetime.datetime],
+	end_date: Optional[datetime.datetime],
+	is_default_range: bool
+) -> Optional[str]:
+	if is_default_range:
+		return "last365"
+
+	if start_date == datetime.datetime(2020, 7, 1) and end_date and end_date.date() == datetime.datetime.utcnow().date():
+		return "since20200701"
+
+	return None
+
+
+def package_info_from_dict(data: dict) -> PackageInfo:
+	info = PackageInfo()
+	info.first_submitted = datetime.datetime.fromisoformat(data["first_submitted"])
+	info.last_change = datetime.datetime.fromisoformat(data["last_change"])
+	info.approved_at = datetime.datetime.fromisoformat(data["approved_at"]) if data["approved_at"] else None
+	info.wait_time = data["wait_time"]
+	info.total_approval_time = data["total_approval_time"] if data["total_approval_time"] is not None else -1
+	info.events = [(x["date"], x["by"], x["title"]) for x in data["events"]]
+	return info
+
+
+def get_approval_statistics(
+	start_date: Optional[datetime.datetime] = None,
+	end_date: Optional[datetime.datetime] = None,
+	is_default_range: bool = False
+) -> Result:
+	cache_key = _get_cache_key(start_date, end_date, is_default_range)
+	if cache_key is None:
+		return _compute_approval_statistics(start_date, end_date)
+
+	key = f"approval_stats/{cache_key}"
+	cached = get_json_key(key)
+	if cached is not None:
+		return Result(
+			defaultdict(int, cached["editor_approvals"]),
+			{k: package_info_from_dict(v) for k, v in cached["packages_info"].items()},
+			cached["avg_turnaround_time"],
+			cached["max_turnaround_time"])
+
+	stats = _compute_approval_statistics(start_date, end_date)
+	set_json_key(key, {
+		"editor_approvals": stats.editor_approvals,
+		"packages_info": {k: v.__dict__() for k, v in stats.packages_info.items()},
+		"avg_turnaround_time": stats.avg_turnaround_time,
+		"max_turnaround_time": stats.max_turnaround_time,
+	}, APPROVAL_STATS_CACHE_EXPIRY_TIME)
+	return stats

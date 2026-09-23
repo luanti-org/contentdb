@@ -16,6 +16,7 @@ from app.utils.user import rank_required
 def approval_stats():
 	start = request.args.get("start")
 	end = request.args.get("end")
+	is_default_range = False
 	if start and end:
 		try:
 			start = datetime.datetime.fromisoformat(start)
@@ -27,10 +28,11 @@ def approval_stats():
 	elif end:
 		return redirect(url_for("admin.approval_stats", start="2020-07-01", end=end))
 	else:
+		is_default_range = True
 		end = datetime.datetime.utcnow()
 		start = end - datetime.timedelta(days=365)
 
-	stats = get_approval_statistics(start, end)
+	stats = get_approval_statistics(start, end, is_default_range)
 	return render_template("admin/approval_stats.html", stats=stats, start=start, end=end)
 
 
@@ -39,6 +41,7 @@ def approval_stats():
 def approval_stats_json():
 	start = request.args.get("start")
 	end = request.args.get("end")
+	is_default_range = False
 	if start and end:
 		try:
 			start = datetime.datetime.fromisoformat(start)
@@ -46,10 +49,11 @@ def approval_stats_json():
 		except ValueError:
 			abort(400)
 	else:
+		is_default_range = True
 		end = datetime.datetime.utcnow()
 		start = end - datetime.timedelta(days=365)
 
-	stats = get_approval_statistics(start, end)
+	stats = get_approval_statistics(start, end, is_default_range)
 	for key, value in stats.packages_info.items():
 		stats.packages_info[key] = value.__dict__()
 
