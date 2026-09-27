@@ -26,6 +26,7 @@ dependencies = [
     "github-flask>=3.2.0",
     "gitpython>=3.1.50",
     "gunicorn>=26.0.0",
+    "imagehash>=4.3.2",
     "kombu>=5.6.2",
     "libsass>=0.23.0",
     "linkify-it-py>=2.1.0",

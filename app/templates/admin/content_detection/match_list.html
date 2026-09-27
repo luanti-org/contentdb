@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+List matches
+{% endblock %}
+
+{% from "macros/forms.html" import render_field, render_submit_field %}
+
+{% block content %}
+	<h1>{{ self.title() }}</h1>
+	<div class="list-group">
+		{% for match in matches %}
+			<a href="{{ url_for('admin.cd_match', match_id=match.id) }}" class="list-group-item list-group-item-action">
+				<div class="row">
+					<div class="col-auto">
+						<span class="badge bg-secondary rounded-pill me-2">{{ match.state.value }}</span>
+					</div>
+					<div class="col-5">
+						{{ match.content_path }}
+					</div>
+					<div class="col-5">
+						{{ match.match_path }}
+					</div>
+					<div class="col-1">
+						{{ match.confidence | round(1) }}
+					</div>
+				</div>
+			</a>
+		{% endfor %}
+	</div>
+{% endblock %}
