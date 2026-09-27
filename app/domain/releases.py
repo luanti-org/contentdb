@@ -10,7 +10,7 @@ from celery import uuid
 from flask_babel import lazy_gettext
 
 from app.domain.DomainError import DomainError
-from app.domain.uploads import upload_file
+from app.uploads import upload_file
 from app.models import PackageRelease, db, Permission, User, Package, LuantiRelease, AuditSeverity
 from app.tasks.importtasks import make_vcs_release, check_zip_release
 from app.utils.models import add_audit_log

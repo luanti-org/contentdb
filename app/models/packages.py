@@ -1238,7 +1238,10 @@ class PackageRelease(db.Model):
 
 	@property
 	def public_url(self):
-		return self.upload_path
+		if self.upload_path is None:
+			return None
+		from app.uploads import get_public_upload_url
+		return get_public_upload_url(self.upload_path)
 
 	task_id      = db.Column(db.String(37), nullable=True)
 	commit_hash  = db.Column(db.String(41), nullable=True, default=None)
@@ -1271,7 +1274,8 @@ class PackageRelease(db.Model):
 
 	@property
 	def file_path(self):
-		return self.upload_path.replace("/uploads/", app.config["UPLOAD_DIR"])
+		from app.uploads import get_upload_local_path
+		return get_upload_local_path(self.upload_path)
 
 	def calculate_file_size_bytes(self):
 		path = self.file_path
@@ -1429,11 +1433,13 @@ class PackageScreenshot(db.Model):
 
 	@property
 	def public_url(self):
-		return self.upload_path
+		from app.uploads import get_public_upload_url
+		return get_public_upload_url(self.upload_path)
 
 	@property
 	def file_path(self):
-		return self.upload_path.replace("/uploads/", app.config["UPLOAD_DIR"])
+		from app.uploads import get_upload_local_path
+		return get_upload_local_path(self.upload_path)
 
 	def calculate_file_size_bytes(self):
 		path = self.file_path
@@ -1461,11 +1467,8 @@ class PackageScreenshot(db.Model):
 				id=self.id)
 
 	def get_thumb_url(self, level=2, format="webp"):
-		url = self.upload_path.replace("/uploads/", "/thumbnails/{:d}/".format(level))
-		if format is not None:
-			start = url[:url.rfind(".")]
-			url = f"{start}.{format}"
-		return url
+		from app.uploads import get_thumbnail_url
+		return get_thumbnail_url(self.upload_path, level, format)
 
 	def as_dict(self, base_url=""):
 		return {
