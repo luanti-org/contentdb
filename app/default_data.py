@@ -95,7 +95,7 @@ def populate_test_data(session):
 	rel.package = mod
 	rel.name = "v1.0.0"
 	rel.title = "v1.0.0"
-	rel.url = "https://github.com/ezhh/handholds/archive/master.zip"
+	rel.upload_path = "https://github.com/ezhh/handholds/archive/master.zip"
 	rel.state = ReleaseState.APPROVED
 	session.add(rel)
 
@@ -134,7 +134,7 @@ awards.register_achievement("award_mesefind",{
 	rel.min_rel = v51
 	rel.name = "v1.0.0"
 	rel.title = "v1.0.0"
-	rel.url = "https://github.com/rubenwardy/awards/archive/master.zip"
+	rel.upload_path = "https://github.com/rubenwardy/awards/archive/master.zip"
 	rel.state = ReleaseState.APPROVED
 	session.add(rel)
 
@@ -250,7 +250,7 @@ No warranty is provided, express or implied, for any part of the project.
 	rel.name = "v1.0.0"
 	rel.title = "v1.0.0"
 	rel.max_rel = v4
-	rel.url = "https://github.com/ezhh/handholds/archive/master.zip"
+	rel.upload_path = "https://github.com/ezhh/handholds/archive/master.zip"
 	rel.state = ReleaseState.APPROVED
 	session.add(rel)
 
@@ -367,7 +367,7 @@ Uses the CTF PvP Engine.
 	rel.package = game1
 	rel.name = "v1.0.0"
 	rel.title = "v1.0.0"
-	rel.url = "https://github.com/rubenwardy/capturetheflag/archive/master.zip"
+	rel.upload_path = "https://github.com/rubenwardy/capturetheflag/archive/master.zip"
 	rel.state = ReleaseState.APPROVED
 	session.add(rel)
 
@@ -390,7 +390,7 @@ Uses the CTF PvP Engine.
 	rel.package = mod
 	rel.name = "v1.0.0"
 	rel.title = "v1.0.0"
-	rel.url = "http://mamadou3.free.fr/Minetest/PixelBOX.zip"
+	rel.upload_path = "http://mamadou3.free.fr/Minetest/PixelBOX.zip"
 	rel.state = ReleaseState.APPROVED
 	session.add(rel)
 

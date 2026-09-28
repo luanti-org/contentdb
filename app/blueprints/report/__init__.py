@@ -80,8 +80,8 @@ def report():
 		if form.file_upload.data:
 			atmt = ReportAttachment()
 			report.attachments.add(atmt)
-			uploaded_url, _ = upload_file(form.file_upload.data, "image", lazy_gettext("a PNG, JPEG, or WebP image file"))
-			atmt.url = uploaded_url
+			path, _ = upload_file(form.file_upload.data, "image", lazy_gettext("a PNG, JPEG, or WebP image file"))
+			atmt.upload_path = path
 			db.session.add(atmt)
 
 		if current_user.is_authenticated:

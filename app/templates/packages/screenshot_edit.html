@@ -23,7 +23,7 @@
 			{{ render_submit_field(form.submit) }}
 		</form>
 
-		<a href="{{ screenshot.url }}" class="col-md-4 text-end">
+		<a href="{{ screenshot.public_url }}" class="col-md-4 text-end">
 			<img src="{{ screenshot.get_thumb_url() }}" alt="{{ screenshot.title }}" />
 		</a>
 	</div>

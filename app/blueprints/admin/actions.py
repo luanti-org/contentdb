@@ -47,6 +47,7 @@ def del_stuck_releases():
 	db.session.commit()
 	return redirect(url_for("admin.admin_page"))
 
+
 @action("Delete unused uploads")
 def clean_uploads():
 	upload_dir = current_app.config['UPLOAD_DIR']
@@ -59,9 +60,9 @@ def clean_uploads():
 			results = db.session.query(column).filter(column.isnot(None), column != "").all()
 			return set([os.path.basename(x[0]) for x in results])
 
-		release_urls = get_filenames_from_column(PackageRelease.url)
-		screenshot_urls = get_filenames_from_column(PackageScreenshot.url)
-		attachment_urls = get_filenames_from_column(ReportAttachment.url)
+		release_urls = get_filenames_from_column(PackageRelease.upload_path)
+		screenshot_urls = get_filenames_from_column(PackageScreenshot.upload_path)
+		attachment_urls = get_filenames_from_column(ReportAttachment.upload_path)
 		pp_urls = get_filenames_from_column(User.profile_pic)
 
 		db_urls = release_urls.union(screenshot_urls).union(pp_urls).union(attachment_urls)
@@ -348,7 +349,11 @@ def del_removed_packages():
 
 @action("DANGER: Check all releases (postReleaseCheckUpdate)")
 def check_releases():
-	releases = PackageRelease.query.filter(PackageRelease.url.like("/uploads/%")).all()
+	releases = PackageRelease.query.filter(
+		and_(
+			PackageRelease.upload_path.is_not(None),
+			PackageRelease.upload_path != ""
+		)).all()
 
 	tasks = []
 	for release in releases:
