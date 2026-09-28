@@ -6,6 +6,7 @@ import magic
 import os
 from werkzeug.datastructures import FileStorage
 
+from flask import redirect
 from flask_babel import lazy_gettext, LazyString
 from typing import Optional
 
@@ -76,12 +77,29 @@ def get_upload_local_path(filepath: str):
 	return backend_get_upload_local_path(filepath)
 
 
-def get_thumbnail_url(filepath: str, thumbnail_level: int, format: Optional[str] = None):
-	return backend_get_thumbnail_url(filepath, thumbnail_level, format)
+def get_thumbnail_url(upload_path: str, thumbnail_level: int, format: Optional[str] = None):
+	return backend_get_thumbnail_url(upload_path, thumbnail_level, format)
+
+
+def get_legacy_thumbnail_url(upload_path: str, thumbnail_level: int):
+	if upload_method == "local":
+		return backend_get_thumbnail_url(upload_path, thumbnail_level, format="png")
+	else:
+		filename = os.path.basename(upload_path)
+		return f"/thumbnails/{thumbnail_level}/{filename}.png"
 
 
 def delete_upload(filepath: str):
 	return backend_delete_upload(filepath)
+
+
+def remove_png_hack(upload_path: str) -> str:
+	idx = upload_path.rfind(".")
+	start = upload_path[:idx]
+	ext = upload_path[idx + 1:]
+	if "." in start and ext == "png":
+		return start
+	return upload_path
 
 
 @app.route("/uploads/<path:path>")
@@ -89,6 +107,6 @@ def send_upload(path):
 	if upload_method == "local":
 		return send_from_directory(app.config["UPLOAD_DIR"], path)
 	elif upload_method == "bunny":
-		return redirect(backend_get_public_upload_url(path))
+		return redirect(backend_get_public_upload_url(remove_png_hack(path)))
 	else:
 		raise Exception("Invalid UPLOAD_METHOD")

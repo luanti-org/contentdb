@@ -676,7 +676,7 @@ class Package(db.Model):
 	def as_short_dict(self, base_url, version=None, release_id=None, no_load=False, lang="en", include_vcs=False,
 				translation: typing.Optional["PackageTranslation"] = None,
 				translations_prefetched: bool = False):
-		tnurl = self.get_thumb_url(1, format="png", abs=True, legacy=True)
+		tnurl = self.get_thumb_url(1, abs=True, legacy=True)
 
 		if release_id is None and no_load == False:
 			release = self.get_download_release(version=version)
@@ -708,7 +708,7 @@ class Package(db.Model):
 		return ret
 
 	def as_dict(self, base_url, version=None, lang="en", screenshots_dict=False):
-		tnurl = self.get_thumb_url(1, format="png", abs=True, legacy=True)
+		tnurl = self.get_thumb_url(1, abs=True, legacy=True)
 		release = self.get_download_release(version=version)
 		meta = self.get_translated(lang)
 
@@ -1438,7 +1438,7 @@ class PackageScreenshot(db.Model):
 
 	@property
 	def legacy_public_url(self):
-		return abs_url(self.upload_path)
+		return abs_url(self.upload_path + ".png")
 
 	@property
 	def file_path(self):
@@ -1472,8 +1472,8 @@ class PackageScreenshot(db.Model):
 
 	def get_thumb_url(self, level=2, format="webp", legacy=False):
 		if legacy:
-			filename = os.path.basename(self.upload_path)
-			return f"/thumbnails/{level}/{filename}"
+			from app.uploads import get_legacy_thumbnail_url
+			return get_legacy_thumbnail_url(self.upload_path, level)
 		else:
 			from app.uploads import get_thumbnail_url
 			return get_thumbnail_url(self.upload_path, level, format)

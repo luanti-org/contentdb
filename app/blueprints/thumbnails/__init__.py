@@ -91,8 +91,9 @@ def get_mimetype(cache_filepath: str) -> str:
 @bp.route("/thumbnails/<int:level>/<img>")
 def make_thumbnail(img, level):
 	if current_app.config.get("UPLOAD_METHOD") != "local":
-		from app.uploads import get_thumbnail_url
-		url = get_thumbnail_url(f"/uploads/{img}", level)
+		from app.uploads import get_thumbnail_url, remove_png_hack
+		img = remove_png_hack(img)
+		url = get_thumbnail_url(f"/uploads/{img}", level, format="png")
 		return redirect(url)
 
 	if level > len(ALLOWED_RESOLUTIONS) or level <= 0:
