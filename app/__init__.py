@@ -122,11 +122,6 @@ from .blueprints import create_blueprints
 create_blueprints(app)
 
 
-@app.route("/uploads/<path:path>")
-def send_upload(path):
-	return send_from_directory(app.config["UPLOAD_DIR"], path)
-
-
 @app.route("/<path:path>/")
 def flatpage(path):
 	page = pages.get_or_404(path)
