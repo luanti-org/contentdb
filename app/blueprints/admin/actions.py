@@ -24,6 +24,8 @@ from app.tasks.usertasks import import_github_user_ids
 from app.tasks.pkgtasks import notify_about_git_forum_links, clear_removed_packages, check_package_for_broken_links, update_file_size_bytes
 from app.tasks.dumptask import create_database_dump
 from app.utils.models import add_notification, get_system_user, add_audit_log
+from app.uploads import delete_upload
+
 
 actions = {}
 
@@ -50,6 +52,9 @@ def del_stuck_releases():
 
 @action("Delete unused uploads")
 def clean_uploads():
+	if current_app.config["UPLOAD_METHOD"] != "local":
+		return
+
 	upload_dir = current_app.config['UPLOAD_DIR']
 
 	(_, _, filenames) = next(os.walk(upload_dir))
@@ -76,7 +81,7 @@ def clean_uploads():
 		print("Unreachable: ", unreachable, file=sys.stderr)
 
 		for filename in unreachable:
-			os.remove(os.path.join(upload_dir, filename))
+			delete_upload(filename)
 
 		flash("Deleted " + str(len(unreachable)) + " unreachable uploads", "success")
 	else:
