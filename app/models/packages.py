@@ -715,7 +715,7 @@ class Package(db.Model):
 		if screenshots_dict:
 			screenshots = [ss.as_short_dict(base_url) for ss in self.screenshots]
 		else:
-			screenshots = [base_url + ss.url for ss in self.screenshots]
+			screenshots = [ss.public_url for ss in self.screenshots]
 
 		return {
 			"author": self.author.username,
@@ -1229,12 +1229,16 @@ class PackageRelease(db.Model):
 	name         = db.Column(db.String(30), nullable=False)
 	title        = db.Column(db.String(100), nullable=False)
 	created_at  = db.Column(db.DateTime,    nullable=False)
-	url          = db.Column(db.String(200), nullable=False, default="")
+	upload_path = db.Column(db.String(200), nullable=False, default="")
 	state     = db.Column(db.Enum(ReleaseState), nullable=False, default=ReleaseState.PROCESSING)
 
 	@property
 	def approved(self):
 		return self.state == ReleaseState.APPROVED
+
+	@property
+	def public_url(self):
+		return self.upload_path
 
 	task_id      = db.Column(db.String(37), nullable=True)
 	commit_hash  = db.Column(db.String(41), nullable=True, default=None)
@@ -1261,11 +1265,13 @@ class PackageRelease(db.Model):
 	max_rel    = db.relationship("LuantiRelease", foreign_keys=[max_rel_id])
 
 	# If the release is approved, then the task_id must be null and the url must be present
-	CK_approval_valid = db.CheckConstraint("state != 'APPROVED' OR (task_id IS NULL AND url != '' AND url IS NOT NULL)")
+	CK_approval_valid = db.CheckConstraint(
+		"state != 'APPROVED' OR (task_id IS NULL AND upload_path != '' AND upload_path IS NOT NULL)"
+	)
 
 	@property
 	def file_path(self):
-		return self.url.replace("/uploads/", app.config["UPLOAD_DIR"])
+		return self.upload_path.replace("/uploads/", app.config["UPLOAD_DIR"])
 
 	def calculate_file_size_bytes(self):
 		path = self.file_path
@@ -1290,7 +1296,7 @@ class PackageRelease(db.Model):
 			"name": self.name,
 			"title": self.title,
 			"release_notes": self.release_notes,
-			"url": self.url if self.url != "" else None,
+			"url": self.public_url if self.upload_path != "" else None,
 			"release_date": self.created_at.isoformat(),
 			"commit": self.commit_hash,
 			"downloads": self.downloads,
@@ -1305,7 +1311,7 @@ class PackageRelease(db.Model):
 			"name": self.name,
 			"title": self.title,
 			"release_notes": self.release_notes,
-			"url": self.url if self.url != "" else None,
+			"url": self.public_url if self.upload_path != "" else None,
 			"release_date": self.created_at.isoformat(),
 			"commit": self.commit_hash,
 			"downloads": self.downloads,
@@ -1348,8 +1354,7 @@ class PackageRelease(db.Model):
 		if self.approved:
 			return True
 
-		assert self.task_id is None and self.url is not None and self.url != ""
-
+		assert self.task_id is None and self.upload_path is not None and self.upload_path != ""
 		self.state = ReleaseState.APPROVED
 
 		if self.package.update_config:
@@ -1404,7 +1409,7 @@ class PackageScreenshot(db.Model):
 
 	order      = db.Column(db.Integer, nullable=False, default=0)
 	title      = db.Column(db.String(100), nullable=False)
-	url        = db.Column(db.String(100), nullable=False)
+	upload_path  = db.Column(db.String(100), nullable=False)
 	approved   = db.Column(db.Boolean, nullable=False, default=False)
 	created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
 
@@ -1423,8 +1428,12 @@ class PackageScreenshot(db.Model):
 		return self.width < PackageScreenshot.SOFT_MIN_SIZE[0] or self.height < PackageScreenshot.SOFT_MIN_SIZE[1]
 
 	@property
+	def public_url(self):
+		return self.upload_path
+
+	@property
 	def file_path(self):
-		return self.url.replace("/uploads/", app.config["UPLOAD_DIR"])
+		return self.upload_path.replace("/uploads/", app.config["UPLOAD_DIR"])
 
 	def calculate_file_size_bytes(self):
 		path = self.file_path
@@ -1452,7 +1461,7 @@ class PackageScreenshot(db.Model):
 				id=self.id)
 
 	def get_thumb_url(self, level=2, format="webp"):
-		url = self.url.replace("/uploads/", "/thumbnails/{:d}/".format(level))
+		url = self.upload_path.replace("/uploads/", "/thumbnails/{:d}/".format(level))
 		if format is not None:
 			start = url[:url.rfind(".")]
 			url = f"{start}.{format}"
@@ -1463,7 +1472,7 @@ class PackageScreenshot(db.Model):
 			"id": self.id,
 			"order": self.order,
 			"title": self.title,
-			"url": base_url + self.url,
+			"url": self.public_url,
 			"width": self.width,
 			"height": self.height,
 			"approved": self.approved,
@@ -1474,7 +1483,7 @@ class PackageScreenshot(db.Model):
 	def as_short_dict(self, base_url=""):
 		return {
 			"title": self.title,
-			"url": base_url + self.url,
+			"url": self.public_url,
 		}
 
 

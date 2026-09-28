@@ -46,7 +46,7 @@ def do_create_vcs_release(user: User, package: Package, name: str, title: Option
 	rel.name    = name
 	rel.title   = title or name
 	rel.release_notes = normalize_line_endings(release_notes)
-	rel.url     = ""
+	rel.upload_path = ""
 	rel.task_id = uuid()
 	rel.min_rel = min_v
 	rel.max_rel = max_v
@@ -86,7 +86,7 @@ def do_create_zip_release(user: User, package: Package, name: str, title: Option
 	rel.name    = name
 	rel.title   = title or name
 	rel.release_notes = normalize_line_endings(release_notes)
-	rel.url     = uploaded_url
+	rel.upload_path     = uploaded_url
 	rel.task_id = uuid()
 	rel.commit_hash = commit_hash
 	rel.min_rel = min_v

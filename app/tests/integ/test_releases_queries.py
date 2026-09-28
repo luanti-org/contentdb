@@ -29,7 +29,7 @@ def make_package(name: str, versions: List[Tuple[Optional[str], Optional[str]]])
 		rel.package = mod
 		rel.name = "test"
 		rel.title = "test"
-		rel.url = "https://github.com/ezhh/handholds/archive/master.zip"
+		rel.upload_path = "https://github.com/ezhh/handholds/archive/master.zip"
 
 		if minv:
 			rel.min_rel = LuantiRelease.query.filter_by(name=minv).first()

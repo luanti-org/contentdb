@@ -24,9 +24,9 @@
 				{% for item in items %}
 				{% if item.approved %}
 				<div class="carousel-item {% if not package.video_url and (loop.index == 2 or loop.length == 1) %}active{% endif %}">
-					<a href="{{ item.url }}" target="_blank">
+					<a href="{{ item.public_url }}" target="_blank">
 						<div class="ratio ratio-16x9">
-							<img class="img-size w-100 object-fit-contain" loading="lazy" src="{{ item.url }}" alt="{{ item.title }}" title="{{ item.title }}" />
+							<img class="img-size w-100 object-fit-contain" loading="lazy" src="{{ item.public_url }}" alt="{{ item.title }}" title="{{ item.title }}" />
 						</div>
 					</a>
 				</div>
@@ -64,7 +64,7 @@
 				{% for item in items %}
 					{% if item.approved %}
 						<li>
-							<a href="{{ item.url }}" data-bs-target="#galleryCarousel" data-bs-slide-to="{{ loop.index + offset - 1 }}"
+							<a href="{{ item.public_url }}" data-bs-target="#galleryCarousel" data-bs-slide-to="{{ loop.index + offset - 1 }}"
 									class="gallery-image {% if not package.video_url and loop.index == 2 %}active{% endif %}"
 							 		{% if not package.video_url and loop.index == 2 %}aria-current="true"{% endif %}>
 								<img src="{{ item.get_thumb_url(1) }}" alt="{{ item.title }}" title="{{ item.title }}" />
