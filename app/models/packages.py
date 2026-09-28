@@ -676,7 +676,7 @@ class Package(db.Model):
 	def as_short_dict(self, base_url, version=None, release_id=None, no_load=False, lang="en", include_vcs=False,
 				translation: typing.Optional["PackageTranslation"] = None,
 				translations_prefetched: bool = False):
-		tnurl = self.get_thumb_url(1, format="png")
+		tnurl = self.get_thumb_url(1, format="png", abs=True, legacy=True)
 
 		if release_id is None and no_load == False:
 			release = self.get_download_release(version=version)
@@ -695,7 +695,7 @@ class Package(db.Model):
 			"short_description": short_desc,
 			"type": self.type.to_name(),
 			"release": release_id,
-			"thumbnail": (base_url + tnurl) if tnurl is not None else None,
+			"thumbnail": tnurl,
 			"aliases": [alias.as_dict() for alias in self.aliases],
 		}
 
@@ -708,7 +708,7 @@ class Package(db.Model):
 		return ret
 
 	def as_dict(self, base_url, version=None, lang="en", screenshots_dict=False):
-		tnurl = self.get_thumb_url(1, format="png")
+		tnurl = self.get_thumb_url(1, format="png", abs=True, legacy=True)
 		release = self.get_download_release(version=version)
 		meta = self.get_translated(lang)
 
@@ -750,7 +750,7 @@ class Package(db.Model):
 			"content_warnings": sorted([x.name for x in self.content_warnings]),
 
 			"provides": sorted([x.name for x in self.provides]),
-			"thumbnail": (base_url + tnurl) if tnurl is not None else None,
+			"thumbnail": tnurl,
 			"screenshots": screenshots,
 
 			"url": base_url + self.get_url("packages.download"),
@@ -772,9 +772,9 @@ class Package(db.Model):
 	def get_thumb_or_placeholder(self, level=2, format="webp"):
 		return self.get_thumb_url(level, False, format) or "/static/placeholder.png"
 
-	def get_thumb_url(self, level=2, abs=False, format="webp"):
+	def get_thumb_url(self, level=2, abs=False, format="webp", legacy=False):
 		screenshot = self.main_screenshot
-		url = screenshot.get_thumb_url(level, format) if screenshot is not None else None
+		url = screenshot.get_thumb_url(level, format, legacy=legacy) if screenshot is not None else None
 		if abs:
 			return abs_url(url)
 		else:
@@ -1437,6 +1437,10 @@ class PackageScreenshot(db.Model):
 		return get_public_upload_url(self.upload_path)
 
 	@property
+	def legacy_public_url(self):
+		return abs_url(self.upload_path)
+
+	@property
 	def file_path(self):
 		from app.uploads import get_upload_local_path
 		return get_upload_local_path(self.upload_path)
@@ -1466,16 +1470,20 @@ class PackageScreenshot(db.Model):
 				name=self.package.name,
 				id=self.id)
 
-	def get_thumb_url(self, level=2, format="webp"):
-		from app.uploads import get_thumbnail_url
-		return get_thumbnail_url(self.upload_path, level, format)
+	def get_thumb_url(self, level=2, format="webp", legacy=False):
+		if legacy:
+			filename = os.path.basename(self.upload_path)
+			return f"/thumbnails/{level}/{filename}"
+		else:
+			from app.uploads import get_thumbnail_url
+			return get_thumbnail_url(self.upload_path, level, format)
 
 	def as_dict(self, base_url=""):
 		return {
 			"id": self.id,
 			"order": self.order,
 			"title": self.title,
-			"url": self.public_url,
+			"url": self.legacy_public_url,
 			"width": self.width,
 			"height": self.height,
 			"approved": self.approved,
@@ -1486,7 +1494,7 @@ class PackageScreenshot(db.Model):
 	def as_short_dict(self, base_url=""):
 		return {
 			"title": self.title,
-			"url": self.public_url,
+			"url": self.legacy_public_url,
 		}
 
 

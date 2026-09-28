@@ -82,3 +82,13 @@ def get_thumbnail_url(filepath: str, thumbnail_level: int, format: Optional[str]
 
 def delete_upload(filepath: str):
 	return backend_delete_upload(filepath)
+
+
+@app.route("/uploads/<path:path>")
+def send_upload(path):
+	if upload_method == "local":
+		return send_from_directory(app.config["UPLOAD_DIR"], path)
+	elif upload_method == "bunny":
+		return redirect(backend_get_public_upload_url(path))
+	else:
+		raise Exception("Invalid UPLOAD_METHOD")
