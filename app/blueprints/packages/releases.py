@@ -261,7 +261,8 @@ def delete_release(package, id):
 	db.session.commit()
 
 	if release.file_path and os.path.isfile(release.file_path):
-		os.remove(release.file_path)
+		from app.uploads import delete_upload
+		delete_upload(release.file_path)
 
 	return redirect(package.get_url("packages.view"))
 

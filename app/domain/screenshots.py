@@ -7,7 +7,7 @@ import datetime, json
 from flask_babel import lazy_gettext
 
 from app.domain.DomainError import DomainError
-from app.domain.uploads import upload_file
+from app.uploads import upload_file
 from app.models import User, Package, PackageScreenshot, Permission, NotificationType, db, AuditSeverity
 from app.utils.models import add_notification, add_audit_log
 from app.utils.image import get_image_size
