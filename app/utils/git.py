@@ -17,6 +17,7 @@ from git import GitCommandError
 
 from app.tasks import TaskError
 from app.utils.misc import random_string, normalize_line_endings
+from app.utils.files import get_temp_dir
 
 GIT_ENV = {
 	"GIT_TERMINAL_PROMPT": "0",
@@ -30,13 +31,6 @@ def generate_git_url(urlstr: str) -> str:
 		scheme = "http"
 
 	return scheme + "://" + netloc + path + query
-
-
-@contextlib.contextmanager
-def get_temp_dir():
-	temp = os.path.join(tempfile.gettempdir(), random_string(10))
-	yield temp
-	shutil.rmtree(temp)
 
 
 # Clones a repo from an unvalidated URL.

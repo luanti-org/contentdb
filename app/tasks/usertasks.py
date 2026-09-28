@@ -15,6 +15,8 @@ from app.models import User, db, UserRank, Thread, Package, Notification, Notifi
 from app.utils.misc import random_string
 from app.utils.models import create_session, add_notification, get_system_user
 from app.tasks import celery, TaskError
+from app.utils.files import get_temp_dir
+from app.uploads import copy_to_uploads, get_public_upload_url
 
 
 @celery.task()
@@ -65,17 +67,21 @@ def set_profile_picture_from_url(username: str, url: str):
 	else:
 		raise TaskError(f"Unacceptable content-type: {content_type}")
 
-	filename = random_string(10) + "." + ext
-	filepath = os.path.join(app.config["UPLOAD_DIR"], filename)
-	with open(filepath, "wb") as f:
-		size = 0
-		for chunk in resp.iter_content(chunk_size=1024):
-			if chunk:  # filter out keep-alive new chunks
-				size += len(chunk)
-				if size > 3 * 1000 * 1000:  # 3 MB
-					raise TaskError(f"File too large to download {url}")
+	with get_temp_dir() as tmp_dir:
+		filename = random_string(10) + "." + ext
+		filepath = os.path.join(tmp_dir, filename)
+		with open(filepath, "wb") as f:
+			size = 0
+			for chunk in resp.iter_content(chunk_size=1024):
+				if chunk:  # filter out keep-alive new chunks
+					size += len(chunk)
+					if size > 3 * 1000 * 1000:  # 3 MB
+						raise TaskError(f"File too large to download {url}")
 
-				f.write(chunk)
+					f.write(chunk)
+
+		url = copy_to_uploads(filepath)
+		user.profile_pic = get_public_upload_url(url)
 
 	user.profile_pic = "/uploads/" + filename
 	db.session.commit()

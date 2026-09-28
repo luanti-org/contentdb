@@ -22,6 +22,7 @@ from app.models import AuditSeverity, db, NotificationType, PackageRelease, Meta
 	LuantiRelease, Package, PackageState, PackageScreenshot, PackageUpdateTrigger, PackageUpdateConfig, \
 	PackageGameSupport, PackageTranslation, Language, ReleaseState
 from app.tasks import celery, TaskError
+from app.utils.files import get_temp_dir
 from app.utils.misc import random_string, truncate_string
 from app.utils.models import post_bot_message, add_system_notification, add_system_audit_log, \
 	get_games_from_list, add_audit_log
@@ -33,6 +34,7 @@ from app.domain.DomainError import DomainError
 from app.domain.packages import do_edit_package, ALIASES
 from app.domain.game_support import game_support_update, game_support_set, game_support_update_all, game_support_remove
 from app.utils.image import get_image_size
+from app.uploads import copy_to_uploads
 
 
 @celery.task()
@@ -429,31 +431,33 @@ def make_vcs_release(self, id, branch):
 		raise TaskError("No package attached to release")
 
 	try:
-		with clone_repo(release.package.repo, ref=branch, recursive=True) as repo:
-			release.commit_hash = repo.head.object.hexsha
-			post_release_check_update(self, release, repo.working_tree_dir)
+		with get_temp_dir() as tmp_dir:
+			with clone_repo(release.package.repo, ref=branch, recursive=True) as repo:
+				release.commit_hash = repo.head.object.hexsha
+				post_release_check_update(self, release, repo.working_tree_dir)
 
-			filename = random_string(10) + ".zip"
-			dest_path = os.path.join(app.config["UPLOAD_DIR"], filename)
+				dest_path = os.path.join(tmp_dir, filename)
 
-			assert not os.path.isfile(dest_path)
-			archiver = GitArchiver(prefix=release.package.name, force_sub=True, main_repo_abspath=repo.working_tree_dir)
-			archiver.create(dest_path)
-			assert os.path.isfile(dest_path)
+				assert not os.path.isfile(dest_path)
+				archiver = GitArchiver(prefix=release.package.name, force_sub=True, main_repo_abspath=repo.working_tree_dir)
+				archiver.create(dest_path)
+				assert os.path.isfile(dest_path)
 
-			file_stats = os.stat(dest_path)
-			if file_stats.st_size / (1024 * 1024) > 100:
-				os.remove(dest_path)
-				raise TaskError("The .zip file created from Git is too large - needs to be less than 100MB")
+				file_stats = os.stat(dest_path)
+				if file_stats.st_size / (1024 * 1024) > 100:
+					os.remove(dest_path)
+					raise TaskError("The .zip file created from Git is too large - needs to be less than 100MB")
 
-			release.upload_path         = "/uploads/" + filename
-			release.task_id     = None
-			release.calculate_file_size_bytes()
-			release.state = ReleaseState.UNAPPROVED
-			release.approve(release.package.author)
-			db.session.commit()
+				url = copy_to_uploads(dest_path)
 
-			return release.upload_path
+				release.upload_path = url
+				release.task_id = None
+				release.calculate_file_size_bytes()
+				release.state = ReleaseState.UNAPPROVED
+				release.approve(release.package.author)
+				db.session.commit()
+
+				return release.upload_path
 	except (LuantiCheckError, TaskError, DomainError) as err:
 		db.session.rollback()
 
@@ -481,23 +485,21 @@ def import_repo_screenshot(id):
 			for ext in ["png", "jpg", "jpeg"]:
 				sourcePath = repo.working_tree_dir + "/screenshot." + ext
 				if os.path.isfile(sourcePath):
-					filename = random_string(10) + "." + ext
-					destPath = os.path.join(app.config["UPLOAD_DIR"], filename)
-					shutil.copyfile(sourcePath, destPath)
+					url, local_path = copy_to_uploads(sourcePath)
 
 					ss = PackageScreenshot()
 					ss.approved = True
 					ss.package = package
-					ss.title   = "screenshot.png"
-					ss.upload_path	 = "/uploads/" + filename
-					ss.width, ss.height = get_image_size(destPath)
+					ss.title = "screenshot.png"
+					ss.upload_path = url
+					ss.width, ss.height = get_image_size(local_path)
 					if ss.is_too_small():
 						return None
 
 					db.session.add(ss)
 					db.session.commit()
 
-					return "/uploads/" + filename
+					return url
 
 	except TaskError as e:
 		# ignore download errors
