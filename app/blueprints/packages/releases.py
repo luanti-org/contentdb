@@ -63,7 +63,7 @@ class EditPackageReleaseForm(FlaskForm):
 	title    = StringField(lazy_gettext("Title"), [InputRequired(), Length(1, 100)], filters=[nonempty_or_none])
 	release_notes = TextAreaField(lazy_gettext("Release Notes"), [Optional(), Length(1, 5000)],
 			filters=[nonempty_or_none, normalize_line_endings])
-	url      = StringField(lazy_gettext("URL"), [Optional()])
+	upload_path = StringField(lazy_gettext("URL"), [Optional()])
 	task_id  = StringField(lazy_gettext("Task ID"), filters = [lambda x: x or None])
 	approved = BooleanField(lazy_gettext("Is Approved"))
 	min_rel  = QuerySelectField(lazy_gettext("Minimum Luanti Version"), [InputRequired()],
@@ -147,7 +147,7 @@ def download_release(package, id):
 
 		db.session.commit()
 
-	return redirect(release.url)
+	return redirect(release.public_url)
 
 
 @bp.route("/packages/<author>/<name>/releases/<int:id>/")
@@ -189,7 +189,7 @@ def edit_release(package, id):
 			release.max_rel = form.max_rel.data.get_actual()
 
 		if package.check_perm(current_user, Permission.CHANGE_RELEASE_URL):
-			release.url = form.url.data
+			release.upload_path = form.upload_path.data
 			release.task_id = form.task_id.data
 			if release.task_id is not None:
 				release.task_id = None

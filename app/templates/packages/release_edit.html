@@ -26,9 +26,9 @@
 		{% endif %}
 
 		{% if package.check_perm(current_user, "CHANGE_RELEASE_URL") %}
-			{{ render_field(form.url) }}
+			{{ render_field(form.upload_path) }}
 		{% else %}
-			{{ _("URL") }}: <a href="{{ release.url }}">{{ release.url }}</a><br />
+			{{ _("URL") }}: <a href="{{ release.public_url }}">{{ release.upload_path }}</a><br />
 		{% endif %}
 
 		{% if release.commit_hash %}

@@ -446,14 +446,14 @@ def make_vcs_release(self, id, branch):
 				os.remove(dest_path)
 				raise TaskError("The .zip file created from Git is too large - needs to be less than 100MB")
 
-			release.url         = "/uploads/" + filename
+			release.upload_path         = "/uploads/" + filename
 			release.task_id     = None
 			release.calculate_file_size_bytes()
 			release.state = ReleaseState.UNAPPROVED
 			release.approve(release.package.author)
 			db.session.commit()
 
-			return release.url
+			return release.upload_path
 	except (LuantiCheckError, TaskError, DomainError) as err:
 		db.session.rollback()
 
@@ -489,7 +489,7 @@ def import_repo_screenshot(id):
 					ss.approved = True
 					ss.package = package
 					ss.title   = "screenshot.png"
-					ss.url	 = "/uploads/" + filename
+					ss.upload_path	 = "/uploads/" + filename
 					ss.width, ss.height = get_image_size(destPath)
 					if ss.is_too_small():
 						return None
@@ -542,7 +542,7 @@ def check_update_config_impl(package):
 		rel.name = tag if tag else datetime.datetime.utcnow().strftime("%Y-%m-%d")
 		rel.title = rel.name
 		rel.release_notes = release_notes
-		rel.url = ""
+		rel.upload_path = ""
 		rel.task_id = uuid()
 		db.session.add(rel)
 

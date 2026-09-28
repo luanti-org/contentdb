@@ -215,7 +215,7 @@ class ReportAttachment(db.Model):
 	report_id = db.Column(db.String(24), db.ForeignKey("report.id"), nullable=False)
 	report = db.relationship("Report", foreign_keys=[report_id], back_populates="attachments")
 
-	url = db.Column(db.String(100), nullable=False)
+	upload_path = db.Column(db.String(100), nullable=False)
 
 
 REPO_BLACKLIST = [".zip", "mediafire.com", "dropbox.com", "weebly.com",

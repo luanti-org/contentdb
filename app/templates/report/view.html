@@ -82,7 +82,7 @@
 		<h2>Attachments</h2>
 		<ul>
 			{% for attachment in report.attachments %}
-				<li><a href="{{ attachment.url }}">{{ attachment.url }}</a></li>
+				<li><a href="{{ attachment.public_url }}">{{ attachment.public_url }}</a></li>
 			{% endfor %}
 		</ul>
 	</article>

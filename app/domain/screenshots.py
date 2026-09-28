@@ -29,7 +29,7 @@ def do_create_screenshot(user: User, package: Package, title: str, file, is_cove
 	ss = PackageScreenshot()
 	ss.package  = package
 	ss.title    = title or "Untitled"
-	ss.url      = uploaded_url
+	ss.upload_path = uploaded_url
 	ss.approved = package.check_perm(user, Permission.APPROVE_SCREENSHOT)
 	ss.order    = counter
 	ss.width, ss.height = get_image_size(uploaded_path)
