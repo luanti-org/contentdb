@@ -957,8 +957,8 @@ def uploads():
 	release_query = PackageRelease.query.filter_by(state=ReleaseState.APPROVED)
 	screenshot_query = PackageScreenshot.query.filter_by(approved=True)
 
-	ret = list(map(lambda x: ({"url": x.url, "created_at": x.created_at.isoformat(), "size": x.file_size_bytes}), release_query.all()))
-	ret += list(map(lambda x: ({"url": x.url, "created_at": x.created_at.isoformat(), "size": x.file_size_bytes}), screenshot_query.all()))
+	ret = list(map(lambda x: ({"url": x.public_url, "created_at": x.created_at.isoformat(), "size": x.file_size_bytes}), release_query.all()))
+	ret += list(map(lambda x: ({"url": x.public_url, "created_at": x.created_at.isoformat(), "size": x.file_size_bytes}), screenshot_query.all()))
 
 	return jsonify(ret)
 
