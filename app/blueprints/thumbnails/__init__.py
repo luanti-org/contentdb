@@ -4,7 +4,7 @@
 
 import re
 import requests
-from flask import abort, send_file, Blueprint, current_app, request
+from flask import abort, send_file, Blueprint, current_app, request, redirect
 import os
 from PIL import Image
 
@@ -90,6 +90,11 @@ def get_mimetype(cache_filepath: str) -> str:
 
 @bp.route("/thumbnails/<int:level>/<img>")
 def make_thumbnail(img, level):
+	if current_app.config.get("UPLOAD_METHOD") != "local":
+		from app.uploads import get_thumbnail_url
+		url = get_thumbnail_url(f"/uploads/{img}", level)
+		return redirect(url)
+
 	if level > len(ALLOWED_RESOLUTIONS) or level <= 0:
 		abort(403)
 	w, h = ALLOWED_RESOLUTIONS[level - 1]
