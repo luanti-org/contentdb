@@ -75,6 +75,7 @@ def packages():
 @bp.route("/api/packages/<author>/<name>/")
 @is_package_page
 @cors_allowed
+@cached(300)
 def package_view(package):
 	allowed_languages = set([x[0] for x in db.session.query(Language.id).all()])
 	lang = request.accept_languages.best_match(allowed_languages)
@@ -87,6 +88,7 @@ def package_view(package):
 
 @bp.route("/api/packages/<author>/<name>/for-client/")
 @is_package_page
+@cached(300)
 @cors_allowed
 def package_view_client(package: Package):
 	ip = request.headers.get("X-Forwarded-For") or request.remote_addr
@@ -134,6 +136,7 @@ def package_view_client(package: Package):
 @bp.route("/api/packages/<author>/<name>/for-client/reviews/")
 @is_package_page
 @cors_allowed
+@cached(300)
 def package_view_client_reviews(package: Package):
 	formspec_version = get_int_or_abort(request.args["formspec_version"])
 	data = package_reviews_as_hypertext(package, formspec_version)
@@ -146,6 +149,7 @@ def package_view_client_reviews(package: Package):
 @bp.route("/api/packages/<author>/<name>/hypertext/")
 @is_package_page
 @cors_allowed
+@cached(300)
 def package_hypertext(package):
 	formspec_version = get_int_or_abort(request.args["formspec_version"])
 	include_images = is_yes(request.args.get("include_images", "true"))
@@ -221,6 +225,7 @@ def package_dependencies(package):
 
 @bp.route("/api/topics/")
 @cors_allowed
+@cached(300)
 def topics():
 	qb = QueryBuilder(request.args)
 	query = qb.build_topic_query(show_added=True)
@@ -259,6 +264,7 @@ def markdown():
 
 @bp.route("/api/releases/")
 @cors_allowed
+@cached(300)
 def list_all_releases():
 	query = PackageRelease.query.filter_by(state=ReleaseState.APPROVED) \
 			.filter(PackageRelease.package.has(state=PackageState.APPROVED)) \
@@ -283,6 +289,7 @@ def list_all_releases():
 @bp.route("/api/packages/<author>/<name>/releases/")
 @is_package_page
 @cors_allowed
+@cached(300)
 def list_releases(package):
 	return jsonify([ rel.as_dict() for rel in package.releases.all() ])
 
@@ -334,6 +341,7 @@ def create_release(token, package):
 @bp.route("/api/packages/<author>/<name>/releases/<int:id>/")
 @is_package_page
 @cors_allowed
+@cached(300)
 def release_view(package: Package, id: int):
 	release = PackageRelease.query.get(id)
 	if release is None or release.package != package:
@@ -373,6 +381,7 @@ def delete_release(token: APIToken, package: Package, id: int):
 @bp.route("/api/packages/<author>/<name>/screenshots/")
 @is_package_page
 @cors_allowed
+@cached(300)
 def list_screenshots(package):
 	screenshots = package.screenshots.all()
 	return jsonify([ss.as_dict(current_app.config["BASE_URL"]) for ss in screenshots])
@@ -404,6 +413,7 @@ def create_screenshot(token: APIToken, package: Package):
 @bp.route("/api/packages/<author>/<name>/screenshots/<int:id>/")
 @is_package_page
 @cors_allowed
+@cached(300)
 def screenshot(package, id):
 	ss = PackageScreenshot.query.get(id)
 	if ss is None or ss.package != package:
@@ -490,6 +500,7 @@ def set_cover_image(token: APIToken, package: Package):
 @bp.route("/api/packages/<author>/<name>/reviews/")
 @is_package_page
 @cors_allowed
+@cached(300)
 def list_reviews(package):
 	reviews = package.reviews.filter_by(approved=True)
 	return jsonify([review.as_dict() for review in reviews])
@@ -497,6 +508,7 @@ def list_reviews(package):
 
 @bp.route("/api/reviews/")
 @cors_allowed
+@cached(300)
 def list_all_reviews():
 	page = get_int_or_abort(request.args.get("page"), 1)
 	num = min(get_int_or_abort(request.args.get("n"), 100), 200)
@@ -630,6 +642,7 @@ def homepage():
 
 @bp.route("/api/minetest_versions/")
 @cors_allowed
+@cached(300)
 def versions():
 	protocol_version = request.args.get("protocol_version")
 	engine_version = request.args.get("engine_version")
@@ -646,12 +659,14 @@ def versions():
 
 @bp.route("/api/languages/")
 @cors_allowed
+@cached(300)
 def languages():
 	return jsonify([x.as_dict() for x in Language.query.all()])
 
 
 @bp.route("/api/dependencies/")
 @cors_allowed
+@cached(300)
 def all_deps():
 	qb = QueryBuilder(request.args)
 	query = qb.build_package_query()
@@ -684,6 +699,7 @@ def all_deps():
 
 @bp.route("/api/users/<username>/")
 @cors_allowed
+@cached(300)
 def user_view(username: str):
 	user = User.query.filter_by(username=username).first()
 	if user is None:
@@ -851,6 +867,7 @@ def hypertext():
 
 @bp.route("/api/collections/")
 @cors_allowed
+@cached(300)
 def collection_list():
 	if "author" in request.args:
 		user = User.query.filter_by(username=request.args["author"]).one_or_404()
@@ -953,6 +970,7 @@ def updates():
 
 @bp.route("/api/uploads/")
 @cors_allowed
+@cached(300)
 def uploads():
 	release_query = PackageRelease.query.filter_by(state=ReleaseState.APPROVED)
 	screenshot_query = PackageScreenshot.query.filter_by(approved=True)

@@ -151,12 +151,19 @@ def get_daterange_options() -> typing.List[typing.Tuple[LazyString, str]]:
 	]
 
 
-def cached(max_age: int):
+def cached(max_age: int, stale_age: int=6*60*60):
 	def decorator(f):
 		@wraps(f)
 		def inner(*args, **kwargs):
 			res: Response = f(*args, **kwargs)
 			res.cache_control.max_age = max_age
+			if "Authorization" not in request.headers:
+				res.cache_control.public = True
+			else:
+				res.cache_control.private = True
+			if stale_age > 0 and "Authorization" not in request.headers:
+				res.cache_control.stale_if_error = stale_age
+				res.cache_control.stale_while_revalidate = stale_age
 			return res
 		return inner
 
