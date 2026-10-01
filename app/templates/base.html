@@ -214,7 +214,6 @@
 								{% for locale, locale_name in config["LANGUAGES"].items() %}
 									<li class="nav-item">
 										<form method="POST" action="{{ url_for('set_locale') }}">
-											<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 											<input type="hidden" name="locale" value="{{ locale }}" />
 											<input type="hidden" name="r" value="{{ url_set_query() }}" />
 											<input type="submit" class="btn btn-link nav-link" value="{{ locale_name }} ({{ locale }})">
