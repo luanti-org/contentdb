@@ -91,8 +91,7 @@ def backend_get_thumbnail_url(filepath: str, thumbnail_level: int, format: Optio
 	thumbnail_class = f"L{thumbnail_level}"
 	url = backend_get_public_upload_url(filepath)
 	url = f"{url}?class={thumbnail_class}"
-	if format:
-		url = f"{url}&format={format}"
+	# TODO: Use format here. Unfortunately, this conflicts with class
 	return url
 
 
