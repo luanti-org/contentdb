@@ -5,6 +5,7 @@
 import datetime
 import os
 import redis
+import flask
 
 from flask import redirect, url_for, render_template, flash, request, Flask, send_from_directory, make_response, render_template_string
 from flask_babel import Babel, gettext
@@ -160,6 +161,23 @@ from app.utils.models import clear_notifications, create_session
 @app.before_request
 def check_for_notifications():
 	clear_notifications(request.path)
+
+
+@app.after_request
+def make_sessions_private(response):
+	if response.headers.get("Cache-Control"):
+		return response
+
+	if flask.session or current_user.is_authenticated:
+		response.cache_control.private = True
+		response.cache_control.public = False
+		response.cache_control.no_cache = True
+	else:
+		response.cache_control.private = False
+		response.cache_control.public = True
+		response.cache_control.no_cache = True
+
+	return response
 
 
 @app.errorhandler(404)
