@@ -87,11 +87,22 @@ def backend_get_upload_local_path(upload_path: str) -> Optional[str]:
 	return _download_file(upload_path)
 
 
+LEVELS = [
+	(100, "3:2"),
+	(270, "3:2"),
+	(350, "3:2"),
+	(1100, "16:9"),
+]
+
+
 def backend_get_thumbnail_url(filepath: str, thumbnail_level: int, format: Optional[str] = None):
-	thumbnail_class = f"L{thumbnail_level}"
+	if thumbnail_level > len(LEVELS) or thumbnail_level <= 0:
+		raise ValueError("Invalid thumbnail level")
+	(width, ratio) = LEVELS[thumbnail_level - 1]
 	url = backend_get_public_upload_url(filepath)
-	url = f"{url}?class={thumbnail_class}"
-	# TODO: Use format here. Unfortunately, this conflicts with class
+	url = f"{url}?width={width}&aspect_ratio={ratio}"
+	if format:
+		url = f"{url}&format={format}"
 	return url
 
 
