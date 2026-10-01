@@ -168,14 +168,13 @@ def make_sessions_private(response):
 	if response.headers.get("Cache-Control"):
 		return response
 
-	if flask.session or current_user.is_authenticated:
+	if flask.session or current_user.is_authenticated or request.headers.get("Authorization"):
 		response.cache_control.private = True
 		response.cache_control.public = False
-		response.cache_control.no_cache = True
 	else:
 		response.cache_control.private = False
 		response.cache_control.public = True
-		response.cache_control.no_cache = True
+	response.cache_control.no_cache = True
 
 	return response
 
