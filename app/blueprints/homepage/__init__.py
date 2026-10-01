@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
-from flask import Blueprint, render_template, redirect
+import flask
+from flask import Blueprint, render_template, redirect, make_response, request
 from sqlalchemy import and_
 
 from app.models import Package, PackageReview, Thread, User, PackageState, db, PackageType, PackageRelease, Tags, Tag, \
@@ -12,6 +13,7 @@ bp = Blueprint("homepage", __name__)
 
 from sqlalchemy.orm import joinedload, subqueryload, load_only, noload
 from sqlalchemy.sql.expression import func
+from flask_login import current_user
 
 
 PKGS_PER_ROW = 4
@@ -119,6 +121,16 @@ def home():
 		.select_from(Tag).outerjoin(Tags).join(Package).filter(Package.state == PackageState.APPROVED)\
 		.group_by(Tag.id).order_by(db.asc(Tag.title)).all()
 
-	return render_template("index.html", count=count, downloads=downloads, tags=tags, spotlight_pkgs=spotlight_pkgs,
+	res = render_template("index.html", count=count, downloads=downloads, tags=tags, spotlight_pkgs=spotlight_pkgs,
 			new=new, updated=updated, pop_mod=pop_mod, pop_txp=pop_txp, pop_gam=pop_gam, high_reviewed=high_reviewed,
 			reviews=reviews)
+
+	if not (flask.session or current_user.is_authenticated or request.headers.get("Authorization")):
+		res = make_response(res)
+		res.cache_control.public = True
+		res.cache_control.private = False
+		res.cache_control.max_age = 300
+		res.cache_control.stale_if_error = 6*60*60
+		res.cache_control.stale_while_revalidate = 30
+
+	return res

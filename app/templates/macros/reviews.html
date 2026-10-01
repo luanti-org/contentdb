@@ -16,6 +16,7 @@
 
 {% macro render_review_vote(review, current_user, next_url) %}
 	{% set (positive, negative, is_positive) = review.get_totals(current_user) %}
+	{% if current_user.is_authenticated %}
 	<form class="review-helpful-vote" method="post" action="{{ review.get_vote_url(next_url) }}">
 		<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 		<div class="btn-group">
@@ -33,6 +34,24 @@
 			</button>
 		</div>
 	</form>
+	{% else %}
+		<div class="review-helpful-vote">
+			<div class="btn-group">
+				<a href="{{ url_for('users.login')}}" class="btn btn-secondary">
+					{{ _("Helpful") }}
+					{% if positive > 0 %}
+						<span class="badge bg-light text-dark ms-1">{{ positive }}</span>
+					{% endif %}
+				</a>
+				<a href="{{ url_for('users.login')}}" class="btn btn-secondary">
+					{{ _("Unhelpful") }}
+					{% if negative > 0 %}
+						<span class="badge bg-light text-dark ms-1">{{ negative }}</span>
+					{% endif %}
+				</a>
+			</div>
+		</div>
+	{% endif %}
 {% endmacro %}
 
 {% macro render_reviews(reviews, current_user, show_package_link=False) -%}
