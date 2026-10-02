@@ -52,3 +52,41 @@ dependencies = [
     "wtforms>=3.2.2",
     "wtforms-sqlalchemy>=0.4.2",
 ]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.13.0",
+    "types-pyyaml",
+    "types-requests",
+    "types-bleach",
+    "types-passlib",
+    "types-redis",
+    "types-wtforms>=3.2.1.20260518",
+    "types-pygments>=2.21.0.20260819",
+    "types-flask-migrate>=4.1.0.20260508",
+    "types-libsass>=0.23.0.20260211",
+]
+
+[tool.mypy]
+python_version = "3.14"
+files = ["app"]
+check_untyped_defs = false
+
+# Libraries with no published stubs or py.typed marker
+[[tool.mypy.overrides]]
+module = [
+    "celery.*",
+    "deep_compare.*",
+    "flask_babel.*",
+    "flask_flatpages.*",
+    "flask_github.*",
+    "flask_login.*",
+    "flask_wtf.*",
+    "git_archive_all.*",
+    "gitdb.*",
+    "kombu.*",
+    "sqlalchemy_utils.*",
+    "user_agents.*",
+    "wtforms_sqlalchemy.*",
+]
+ignore_missing_imports = true

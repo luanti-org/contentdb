@@ -3,6 +3,7 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 import datetime
+from typing import cast
 from app.domain.approval_stats import _get_approval_statistics
 from app.models import AuditLogEntry, User
 
@@ -29,7 +30,7 @@ class MockEntry:
 
 # noinspection PyTypeChecker
 def make_entry(date: str, package_id: str, username: str, title: str) -> AuditLogEntry:
-	return MockEntry(date, package_id, username, title)
+	return cast(AuditLogEntry, MockEntry(date, package_id, username, title))
 
 
 def test_empty():

@@ -49,7 +49,7 @@ def by_forums_username(username):
 class Medal:
 	description: str
 	color: Optional[str]
-	icon: str
+	icon: Optional[str]
 	title: Optional[str]
 	progress: Optional[Tuple[int, int]]
 
@@ -110,7 +110,7 @@ def get_user_medals(user: User) -> Tuple[List[Medal], List[Medal]]:
 	except ValueError:
 		pass
 
-	if review_percent is not None and review_percent < 25:
+	if review_idx is not None and review_percent is not None and review_percent < 25:
 		if review_idx == 0:
 			title = gettext(u"Top reviewer")
 			description = gettext(

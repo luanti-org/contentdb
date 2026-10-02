@@ -4,7 +4,7 @@
 
 import datetime
 import os
-from typing import List
+from typing import Any, List
 
 import requests
 from celery import group, uuid
@@ -17,7 +17,7 @@ from app.models import PackageRelease, db, Package, PackageState, PackageScreens
 	PackageAIDisclosure, AuditSeverity
 from app.tasks.admintasks import delete_empty_threads
 from app.tasks.emails import send_pending_digests
-from app.tasks.forumtasks import import_topic_list, check_all_forum_accounts
+from app.tasks.forumtasks import import_topic_list, check_all_forum_accounts as check_all_forum_accounts_task
 from app.tasks.importtasks import import_repo_screenshot, check_zip_release, check_for_updates, update_all_game_support, \
 	import_languages, check_all_zip_files, update_all_release_permissions
 from app.tasks.usertasks import import_github_user_ids
@@ -27,7 +27,7 @@ from app.utils.models import add_notification, get_system_user, add_audit_log
 from app.uploads import delete_upload
 
 
-actions = {}
+actions: dict[str, dict[str, Any]] = {}
 
 
 def action(title: str):
@@ -120,7 +120,7 @@ def do_import_topic_list():
 
 @action("Check all forum accounts")
 def check_all_forum_accounts():
-	task = check_all_forum_accounts.delay()
+	task = check_all_forum_accounts_task.delay()
 	return redirect(url_for("tasks.check", id=task.id, r=url_for("admin.admin_page")))
 
 

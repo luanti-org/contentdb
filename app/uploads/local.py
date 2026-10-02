@@ -30,12 +30,12 @@ def backend_copy_upload(filepath: str) -> str:
 	return "/uploads/" + filename
 
 
-def backend_get_public_upload_url(filepath: str) -> str:
-	return filepath
+def backend_get_public_upload_url(upload_path: str) -> str:
+	return upload_path
 
 
-def backend_get_upload_local_path(filepath: str) -> Optional[str]:
-	filename = os.path.basename(filepath)
+def backend_get_upload_local_path(upload_path: str) -> Optional[str]:
+	filename = os.path.basename(upload_path)
 	path = os.path.join(upload_dir, filename)
 	if os.path.isfile(path):
 		return path
@@ -43,8 +43,8 @@ def backend_get_upload_local_path(filepath: str) -> Optional[str]:
 		return None
 
 
-def backend_get_thumbnail_url(filepath: str, thumbnail_level: int, format: Optional[str] = None):
-	filename = os.path.basename(filepath)
+def backend_get_thumbnail_url(upload_path: str, thumbnail_level: int, format: Optional[str] = None):
+	filename = os.path.basename(upload_path)
 	url = f"/thumbnails/{thumbnail_level}/{filename}"
 	if format is not None:
 		start = url[:url.rfind(".")]
@@ -52,6 +52,6 @@ def backend_get_thumbnail_url(filepath: str, thumbnail_level: int, format: Optio
 	return url
 
 
-def backend_delete_upload(filepath: str) -> bool:
-	filename = os.path.basename(filepath)
+def backend_delete_upload(upload_path: str) -> None:
+	filename = os.path.basename(upload_path)
 	os.remove(os.path.join(upload_dir, filename))

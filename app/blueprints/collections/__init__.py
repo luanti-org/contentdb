@@ -152,7 +152,7 @@ def handle_create_edit(collection: Collection, form: CollectionForm,
 		initial_packages: typing.List[Package], author: User):
 
 	severity = AuditSeverity.NORMAL if author == current_user else AuditSeverity.EDITOR
-	name = form.name.data if collection else regex_invalid_chars.sub("", form.title.data.lower().replace(" ", "_"))
+	name = form.name.data if collection else regex_invalid_chars.sub("", (form.title.data or "").lower().replace(" ", "_"))
 
 	links = get_links(render_markdown(form.long_description.data)) if form.long_description.data else set()
 	if not current_user.rank.at_least(UserRank.MEMBER) and len(links) != 0:
@@ -226,9 +226,9 @@ def handle_create_edit(collection: Collection, form: CollectionForm,
 			else:
 				link.description = form.descriptions[i].data
 
-		for i, package_id in enumerate(form.order.data.split(",")):
-			if package_id != "":
-				link_lookup[package_id].order = i + 1
+		for i, package_key in enumerate((form.order.data or "").split(",")):
+			if package_key != "":
+				link_lookup[package_key].order = i + 1
 
 		add_audit_log(severity, current_user,
 				f"Edited collection {collection.author.username}/{collection.name}",
@@ -263,6 +263,7 @@ def toggle_package(collection: Collection, package: Package):
 	severity = AuditSeverity.NORMAL if collection.author == current_user else AuditSeverity.EDITOR
 
 	author = User.query.get(collection.author_id) if collection.author is None else collection.author
+	assert author is not None
 
 	if package in collection.packages:
 		CollectionPackage.query \

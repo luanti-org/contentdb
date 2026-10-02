@@ -6,7 +6,7 @@ from typing import List, Dict, Optional, Tuple
 
 import sqlalchemy
 
-from app.models import PackageType, Package, PackageState, PackageGameSupport
+from app.models import PackageType, Package, PackageState, PackageGameSupport, AnySession
 from app.utils.models import post_bot_message
 
 
@@ -139,7 +139,7 @@ class GameSupport:
 		return dep_supports_all, for_dep
 
 	def _get_supported_games_for_deps(self, package: GSPackage, visited: list[str]) -> Optional[set[str]]:
-		ret = set()
+		ret: set[str] = set()
 
 		for depend in package.depends:
 			dep_supports_all, for_dep = self._get_supported_games_for_modname(depend, visited)
@@ -215,7 +215,7 @@ class GameSupport:
 					if depending_package not in checked:
 						if depending_package.id_ in self.packages and depending_package.type != PackageType.GAME:
 							depending_package.is_confirmed = False
-							depending_package.detected_supported_games = []
+							depending_package.detected_supported_games = set()
 
 						to_update.add(depending_package)
 						checked.add(depending_package)
@@ -246,12 +246,12 @@ def _convert_package(support: GameSupport, package: Package) -> GSPackage:
 					PackageGameSupport.confidence > 5)
 			.all())
 	if not package.supports_all_games:
-		gs_package.user_supported_games = [x.game.name for x in existing_game_support if x.supports]
-	gs_package.user_unsupported_games = [x.game.name for x in existing_game_support if not x.supports]
+		gs_package.user_supported_games = {x.game.name for x in existing_game_support if x.supports}
+	gs_package.user_unsupported_games = {x.game.name for x in existing_game_support if not x.supports}
 	return support.add(gs_package)
 
 
-def _create_instance(session: sqlalchemy.orm.Session) -> GameSupport:
+def _create_instance(session: AnySession) -> GameSupport:
 	support = GameSupport()
 
 	packages: List[Package] = (session.query(Package)
@@ -264,7 +264,7 @@ def _create_instance(session: sqlalchemy.orm.Session) -> GameSupport:
 	return support
 
 
-def _persist(session: sqlalchemy.orm.Session, support: GameSupport):
+def _persist(session: AnySession, support: GameSupport):
 	for gs_package in support.packages.values():
 		if len(gs_package.errors) != 0:
 			msg = "\n".join([f"- {x}" for x in gs_package.errors])
@@ -300,7 +300,7 @@ def _persist(session: sqlalchemy.orm.Session, support: GameSupport):
 				session.add(new_support)
 
 
-def game_support_update(session: sqlalchemy.orm.Session, package: Package, old_provides: Optional[set[str]]) -> set[str]:
+def game_support_update(session: AnySession, package: Package, old_provides: Optional[set[str]]) -> set[str]:
 	support = _create_instance(session)
 	gs_package = support.get(package.get_id())
 	if gs_package is None:
@@ -310,13 +310,13 @@ def game_support_update(session: sqlalchemy.orm.Session, package: Package, old_p
 	return gs_package.errors
 
 
-def game_support_update_all(session: sqlalchemy.orm.Session):
+def game_support_update_all(session: AnySession):
 	support = _create_instance(session)
 	support.on_first_run()
 	_persist(session, support)
 
 
-def game_support_remove(session: sqlalchemy.orm.Session, package: Package):
+def game_support_remove(session: AnySession, package: Package):
 	support = _create_instance(session)
 	gs_package = support.get(package.get_id())
 	if gs_package is None:

@@ -9,7 +9,7 @@ import re
 class Translation:
 	language: str
 	textdomain: str
-	entries: dict[str]
+	entries: dict[str, str]
 
 	def __init__(self, language: str, textdomain: str, entries: dict):
 		self.language = language

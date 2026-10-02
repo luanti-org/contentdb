@@ -3,6 +3,7 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 from functools import partial
+from typing import Callable
 from bleach import Cleaner
 from bleach.linkifier import LinkifyFilter, DEFAULT_CALLBACKS
 
@@ -49,7 +50,7 @@ def allow_a(_tag, name, value):
 	return name in ["href", "title", "data-username"] or (name == "class" and value == "header-anchor")
 
 
-ALLOWED_ATTRIBUTES = {
+ALLOWED_ATTRIBUTES: dict[str, list[str] | Callable[[str, str, str], bool]] = {
 	"h1": ["id"],
 	"h2": ["id"],
 	"h3": ["id"],

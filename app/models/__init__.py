@@ -2,19 +2,10 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 from flask_babel import LazyString
-from flask_migrate import Migrate
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy_searchable import make_searchable
-
 from app import app
 from app.utils.misc import truncate_string
 
-# Initialise database
-
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-make_searchable(db.metadata)
-
+from .base import db, migrate, Model, AnySession
 
 from .packages import *
 from .users import *
@@ -22,7 +13,7 @@ from .threads import *
 from .collections import *
 
 
-class APIToken(db.Model):
+class APIToken(Model):
 	id           = db.Column(db.Integer, primary_key=True)
 	access_token = db.Column(db.String(34), unique=True, nullable=False)
 
@@ -72,7 +63,7 @@ class AuditSeverity(enum.Enum):
 		return item if type(item) == AuditSeverity else AuditSeverity[item.upper()]
 
 
-class AuditLogEntry(db.Model):
+class AuditLogEntry(Model):
 	id         = db.Column(db.Integer, primary_key=True)
 
 	created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
@@ -173,7 +164,7 @@ class ReportCategory(enum.Enum):
 		return item if type(item) == ReportCategory else ReportCategory[item.upper()]
 
 
-class Report(db.Model):
+class Report(Model):
 	id = db.Column(db.String(24), primary_key=True)
 
 	created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
@@ -207,7 +198,7 @@ class Report(db.Model):
 			raise Exception("Permission {} is not related to reports".format(perm.name))
 
 
-class ReportAttachment(db.Model):
+class ReportAttachment(Model):
 	id = db.Column(db.Integer, primary_key=True)
 
 	created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
@@ -224,7 +215,7 @@ REPO_BLACKLIST = [".zip", "mediafire.com", "dropbox.com", "weebly.com",
 	"imageshack.com", "imgur.com"]
 
 
-class ForumTopic(db.Model):
+class ForumTopic(Model):
 	topic_id  = db.Column(db.Integer, primary_key=True, autoincrement=False)
 
 	author_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)

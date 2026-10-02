@@ -9,7 +9,7 @@ from flask import current_app
 
 def diff_dictionaries(one: Dict, two: Dict) -> List:
 	if len(set(one.keys()).difference(set(two.keys()))) != 0:
-		raise "Mismatching keys"
+		raise ValueError("Mismatching keys")
 
 	retval = []
 

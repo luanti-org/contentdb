@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
-from typing import Optional
+from typing import Any, NoReturn, Optional
 from flask import jsonify, abort, make_response, url_for, current_app
 
 from app.domain.packages import do_edit_package
@@ -11,7 +11,7 @@ from app.domain.screenshots import do_create_screenshot, do_order_screenshots, d
 from app.models import APIToken, Package, LuantiRelease, PackageScreenshot
 
 
-def error(code: int, msg: str):
+def error(code: int, msg: str) -> NoReturn:
 	abort(make_response(jsonify({ "success": False, "error": msg }), code))
 
 
@@ -27,7 +27,7 @@ def guard(f):
 
 
 def api_create_vcs_release(token: APIToken, package: Package, name: str, title: Optional[str], release_notes: Optional[str], ref: str,
-		min_v: LuantiRelease = None, max_v: LuantiRelease = None, reason="API"):
+		min_v: LuantiRelease | None = None, max_v: LuantiRelease | None = None, reason="API"):
 	if not token.can_operate_on_package(package):
 		error(403, "API token does not have access to the package")
 
@@ -43,7 +43,7 @@ def api_create_vcs_release(token: APIToken, package: Package, name: str, title: 
 
 
 def api_create_zip_release(token: APIToken, package: Package, name: str, title: Optional[str], release_notes: Optional[str], file,
-		min_v: LuantiRelease = None, max_v: LuantiRelease = None, reason="API", commit_hash: str = None):
+		min_v: LuantiRelease | None = None, max_v: LuantiRelease | None = None, reason="API", commit_hash: str | None = None):
 	if not token.can_operate_on_package(package):
 		error(403, "API token does not have access to the package")
 
@@ -72,7 +72,7 @@ def api_create_screenshot(token: APIToken, package: Package, title: str, file, i
 	})
 
 
-def api_order_screenshots(token: APIToken, package: Package, order: [any]):
+def api_order_screenshots(token: APIToken, package: Package, order: list[Any]):
 	if not token.can_operate_on_package(package):
 		error(403, "API token does not have access to the package")
 

@@ -37,8 +37,8 @@ def check_can_create_release(user: User, package: Package, name: str, title: str
 		raise DomainError(403, lazy_gettext("Release name must be in the form 1.2.3, v1.2.3, or 2025-02-01"))
 
 
-def do_create_vcs_release(user: User, package: Package, name: str, title: Optional[str], release_notes: Optional[str], ref: str,
-		min_v: LuantiRelease = None, max_v: LuantiRelease = None, reason: str = None):
+def do_create_vcs_release(user: User, package: Package, name: str, title: Optional[str], release_notes: Optional[str], ref: Optional[str],
+		min_v: LuantiRelease | None = None, max_v: LuantiRelease | None = None, reason: str | None = None):
 	check_can_create_release(user, package, name, title or name)
 
 	rel = PackageRelease()
@@ -70,8 +70,8 @@ def do_create_vcs_release(user: User, package: Package, name: str, title: Option
 
 
 def do_create_zip_release(user: User, package: Package, name: str, title: Optional[str], release_notes: Optional[str], file,
-		min_v: LuantiRelease = None, max_v: LuantiRelease = None, reason: str = None,
-		commit_hash: str = None):
+		min_v: LuantiRelease | None = None, max_v: LuantiRelease | None = None, reason: str | None = None,
+		commit_hash: str | None = None):
 	check_can_create_release(user, package, name, title or name)
 
 	if commit_hash:

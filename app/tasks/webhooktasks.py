@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
-from typing import Optional
+from typing import Any, Optional
 
 import requests
 
@@ -20,7 +20,7 @@ def post_discord_webhook(username: Optional[str], content: str, is_queue: bool, 
 	if isinstance(discord_urls, str):
 		discord_urls = [discord_urls]
 
-	json = {
+	json: dict[str, Any] = {
 		"content": content[0:2000],
 	}
 
@@ -33,9 +33,9 @@ def post_discord_webhook(username: Optional[str], content: str, is_queue: bool, 
 				json["avatar_url"] = app.config["BASE_URL"] + json["avatar_url"]
 
 	if title:
-		embed = {
+		embed: dict[str, Any] = {
 			"title": title[0:256],
-			"description": description[0:4000],
+			"description": (description or "")[0:4000],
 		}
 
 		if thumbnail:

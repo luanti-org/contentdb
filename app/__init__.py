@@ -49,7 +49,7 @@ if os.getenv("SENTRY_DSN"):
 	)
 
 
-app = Flask(__name__, static_folder="public/static")
+app: Flask = Flask(__name__, static_folder="public/static")
 
 
 def my_flatpage_renderer(text):

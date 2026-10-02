@@ -17,7 +17,7 @@ from app.tasks.emails import send_anon_email
 def create_user(username: str, display_name: str, email: Optional[str], oauth_provider: Optional[str] = None) -> None | Response | User:
 	if not is_username_valid(username):
 		flash(gettext("Username is invalid"))
-		return
+		return None
 
 	user_by_name = User.query.filter(or_(
 			User.username == username,
@@ -32,17 +32,17 @@ def create_user(username: str, display_name: str, email: Optional[str], oauth_pr
 		elif oauth_provider:
 			flash(gettext("Unable to create an account as the username is already taken. "
 					"If you meant to log in, you need to connect %(provider)s to your account first", provider=oauth_provider), "danger")
-			return
+			return None
 		else:
 			flash(gettext("That username/display name is already in use, please choose another."), "danger")
-			return
+			return None
 
 	alias_by_name = (PackageAlias.query
 			.filter(or_(PackageAlias.author == username, PackageAlias.author == display_name))
 			.first())
 	if alias_by_name:
 		flash(gettext("Unable to create an account as the username was used in the past."), "danger")
-		return
+		return None
 
 	if email:
 		user_by_email = User.query.filter_by(email=email).first()
@@ -53,7 +53,7 @@ def create_user(username: str, display_name: str, email: Optional[str], oauth_pr
 			return redirect(url_for("users.email_sent"))
 		elif EmailSubscription.query.filter_by(email=email, blacklisted=True).count() > 0:
 			flash(gettext("That email address has been unsubscribed/blacklisted, and cannot be used"), "danger")
-			return
+			return None
 
 	user = User(username, False, email)
 	user.notification_preferences = UserNotificationPreferences(user)

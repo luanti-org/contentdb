@@ -18,7 +18,7 @@ class PackageInfo:
 	wait_time: int
 	total_approval_time: int
 	is_in_range: bool
-	events: list[tuple[str, str, str]]
+	events: list[tuple[str, Optional[str], str]]
 
 	def __init__(self):
 		self.state = None
@@ -43,7 +43,7 @@ class PackageInfo:
 			"events": [ { "date": x[0], "by": x[1], "title": x[2] } for x in self.events ],
 		}
 
-	def add_event(self, created_at: datetime.datetime, causer: str, title: str):
+	def add_event(self, created_at: datetime.datetime, causer: Optional[str], title: str):
 		self.events.append((created_at.isoformat(), causer, title))
 
 
@@ -70,7 +70,7 @@ Result = namedtuple("Result", "editor_approvals packages_info avg_turnaround_tim
 
 
 def _get_approval_statistics(entries: list[AuditLogEntry], start_date: Optional[datetime.datetime] = None, end_date: Optional[datetime.datetime] = None) -> Result:
-	editor_approvals = defaultdict(int)
+	editor_approvals: Dict[str, int] = defaultdict(int)
 	package_info: Dict[str, PackageInfo] = {}
 	ignored_packages = set()
 	turnaround_times: list[int] = []

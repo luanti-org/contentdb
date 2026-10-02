@@ -57,6 +57,7 @@ def search_in_releases(self, query: str, file_filter: str, types: List[str]):
 				})
 			elif exit_code == 0:
 				print(f"[Zipgrep] Success for {package.name}", file=sys.stderr)
+				assert handle.stdout is not None
 				results.append({
 					"package": package.as_key_dict(),
 					"lines": handle.stdout.read(),

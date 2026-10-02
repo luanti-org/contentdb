@@ -3,6 +3,7 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 import datetime, json
+from typing import Any
 
 from flask_babel import lazy_gettext
 
@@ -13,7 +14,7 @@ from app.utils.models import add_notification, add_audit_log
 from app.utils.image import get_image_size
 
 
-def do_create_screenshot(user: User, package: Package, title: str, file, is_cover_image: bool, reason: str = None):
+def do_create_screenshot(user: User, package: Package, title: str, file, is_cover_image: bool, reason: str | None = None):
 	thirty_minutes_ago = datetime.datetime.now() - datetime.timedelta(minutes=30)
 	count = package.screenshots.filter(PackageScreenshot.created_at > thirty_minutes_ago).count()
 	if count >= 20:
@@ -58,7 +59,7 @@ def do_create_screenshot(user: User, package: Package, title: str, file, is_cove
 	return ss
 
 
-def do_order_screenshots(_user: User, package: Package, order: [any]):
+def do_order_screenshots(_user: User, package: Package, order: list[Any]):
 	lookup = {}
 	for screenshot in package.screenshots.all():
 		lookup[screenshot.id] = screenshot

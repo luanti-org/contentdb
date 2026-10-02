@@ -102,7 +102,15 @@ def url_set_query(**kwargs):
 	return url_for(request.endpoint, **dargs)
 
 
-def get_int_or_abort(v, default=None) -> typing.Optional[int]:
+@typing.overload
+def get_int_or_abort(v, default: int) -> int: ...
+
+
+@typing.overload
+def get_int_or_abort(v, default: None = None) -> typing.Optional[int]: ...
+
+
+def get_int_or_abort(v, default = None) -> typing.Optional[int]:
 	if v is None:
 		return default
 
@@ -186,7 +194,7 @@ def should_return_json():
 			not "text/html" in request.accept_mimetypes
 
 
-def has_blocked_domains(text: str, username: str, location: str) -> bool:
+def has_blocked_domains(text: typing.Optional[str], username: str, location: str) -> bool:
 	if text is None:
 		return False
 

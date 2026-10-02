@@ -6,10 +6,11 @@ import datetime
 
 from flask import url_for, current_app
 
-from . import db, Permission, User, UserRank
+from .base import db, Model
+from .users import Permission, User, UserRank
 
 
-class CollectionPackage(db.Model):
+class CollectionPackage(Model):
 	package_id = db.Column(db.Integer, db.ForeignKey("package.id"), primary_key=True)
 	package = db.relationship("Package", foreign_keys=[package_id])
 
@@ -31,7 +32,7 @@ class CollectionPackage(db.Model):
 		}
 
 
-class Collection(db.Model):
+class Collection(Model):
 	id = db.Column(db.Integer, primary_key=True)
 
 	author_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)

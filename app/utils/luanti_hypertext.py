@@ -53,9 +53,9 @@ class LuantiHTMLParser(HTMLParser):
 		self.completed_text = ""
 		self.current_line = ""
 		self.last_id = None
-		self.links = {}
-		self.images = {}
-		self.image_tooltips = {}
+		self.links: dict[str, str] = {}
+		self.images: dict[str, str] = {}
+		self.image_tooltips: dict[str, str] = {}
 		self.is_preserving = False
 		self.remove_until = None
 		self.indent_level = 0
@@ -227,7 +227,7 @@ def html_to_luanti(html, page_url: str, formspec_version: int = 7, include_image
 
 
 def package_info_as_hypertext(package: Package, formspec_version: int = 7):
-	links = {}
+	links: dict[str, str] = {}
 	body = ""
 
 	def add_value(label, value):
@@ -315,9 +315,8 @@ def package_reviews_as_hypertext(package: Package, formspec_version: int = 7):
 	body += make_link(package.get_url("packages.review", absolute=True), gettext("Leave a review"))
 	body += "\n\n"
 
-	reviews = package.reviews.filter_by(approved=True).all()
+	reviews: list[PackageReview] = package.reviews.filter_by(approved=True).all()
 	for review in reviews:
-		review: PackageReview
 		if review.thread is None:
 			continue
 
