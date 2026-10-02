@@ -44,4 +44,7 @@ def get_forum_id(url: str) -> Optional[int]:
 	parsed = urlparse.urlparse(url)
 	query_params = urlparse.parse_qs(parsed.query)
 	values = query_params.get("t")
-	return int(values[0]) if values else None
+	try:
+		return int(values[0]) if values else None
+	except ValueError:
+		return None
