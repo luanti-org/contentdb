@@ -2,6 +2,8 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
+import json
+
 from . import redis_client
 from .models import Package
 
@@ -38,3 +40,12 @@ def increment_key(key):
 
 def get_key(key, default=None):
 	return redis_client.get(key) or default
+
+
+def get_json_key(key, default=None):
+	value = redis_client.get(key)
+	return json.loads(value) if value is not None else default
+
+
+def set_json_key(key, value, expiry_s):
+	redis_client.set(key, json.dumps(value), ex=expiry_s)
