@@ -487,14 +487,14 @@ def import_repo_screenshot(id):
 			for ext in ["png", "jpg", "jpeg"]:
 				sourcePath = repo.working_tree_dir + "/screenshot." + ext
 				if os.path.isfile(sourcePath):
-					url, local_path = copy_to_uploads(sourcePath)
+					url = copy_to_uploads(sourcePath)
 
 					ss = PackageScreenshot()
 					ss.approved = True
 					ss.package = package
 					ss.title = "screenshot.png"
 					ss.upload_path = url
-					ss.width, ss.height = get_image_size(local_path)
+					ss.width, ss.height = get_image_size(sourcePath)
 					if ss.is_too_small():
 						return None
 

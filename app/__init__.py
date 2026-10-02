@@ -160,8 +160,6 @@ def check_for_notifications():
 
 @app.after_request
 def make_sessions_private(response):
-	app.logger.warning("session=%r modified=%r", dict(flask.session), flask.session.modified)
-
 	if response.headers.get("Cache-Control"):
 		return response
 

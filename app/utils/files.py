@@ -11,5 +11,6 @@ from .misc import random_string
 @contextlib.contextmanager
 def get_temp_dir():
 	temp = os.path.join(tempfile.gettempdir(), random_string(10))
+	os.makedirs(temp, exist_ok=True)
 	yield temp
 	shutil.rmtree(temp, ignore_errors=True)

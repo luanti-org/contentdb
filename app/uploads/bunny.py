@@ -7,6 +7,7 @@ import requests
 import tempfile
 
 from app import app
+import shutil
 from app.utils.misc import random_string
 from typing import Optional
 
@@ -69,7 +70,8 @@ def backend_upload_file(file, file_type: str, ext: str, length: int=10) -> str:
 
 
 def backend_copy_upload(filepath: str) -> str:
-	filename = f"{random_string(length)}.{ext}"
+	ext = os.path.splitext(filepath)[1][1:]
+	filename = f"{random_string(10)}.{ext}"
 	cache_file_path = os.path.join(cache_dir_path, filename)
 	shutil.copy(filepath, cache_file_path)
 	return _upload_file(cache_file_path)

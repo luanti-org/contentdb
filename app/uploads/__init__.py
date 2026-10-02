@@ -66,7 +66,7 @@ def upload_file(file: FileStorage, file_type: str, file_type_desc: LazyString | 
 
 
 def copy_to_uploads(filepath: str):
-	return backend_copy_upload(filepath), get_upload_local_path(result_path)
+	return backend_copy_upload(filepath)
 
 
 def get_public_upload_url(filepath: str):
