@@ -37,7 +37,7 @@ class QueryBuilder:
 	hide_flags: set[str]
 	hide_deprecated: bool
 	hide_wip: bool
-	show_added: bool
+	show_added: Optional[bool]
 	version: Optional[LuantiRelease]
 	not_version: Optional[LuantiRelease]
 	has_lang: Optional[str]
@@ -125,11 +125,12 @@ class QueryBuilder:
 		self.flags = set(args.getlist("flag"))
 
 		# License
-		self.licenses = [License.query.filter(func.lower(License.name) == name.lower()).first() for name in args.getlist("license")]
-		if emit_http_errors and any(map(lambda x: x is None, self.licenses)):
+		licenses = [License.query.filter(func.lower(License.name) == name.lower()).first() for name in args.getlist("license")]
+		if emit_http_errors and any(map(lambda x: x is None, licenses)):
 			all_licenses = db.session.query(License.name).order_by(db.asc(License.name)).all()
 			all_licenses = [x[0] for x in all_licenses]
 			abort(make_response("Unknown license. Expected license name from: " + ", ".join(all_licenses)), 400)
+		self.licenses = [x for x in licenses if x is not None]
 
 		self.types  = types
 		self.tags   = tags
@@ -178,9 +179,8 @@ class QueryBuilder:
 			self.version = version
 			self.not_version = None
 
-		self.show_added = args.get("show_added")
-		if self.show_added is not None:
-			self.show_added = is_yes(self.show_added)
+		show_added = args.get("show_added")
+		self.show_added = is_yes(show_added) if show_added is not None else None
 
 		if self.search is not None and self.search.strip() == "":
 			self.search = None

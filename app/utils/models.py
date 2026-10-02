@@ -13,7 +13,7 @@ from flask_login import current_user
 from sqlalchemy import or_, and_
 from sqlalchemy.orm import sessionmaker
 
-from app.models import User, NotificationType, Package, UserRank, Notification, db, AuditSeverity, AuditLogEntry, ThreadReply, Thread, PackageState, PackageType, PackageAlias
+from app.models import User, NotificationType, Package, UserRank, Notification, db, AuditSeverity, AuditLogEntry, ThreadReply, Thread, PackageState, PackageType, PackageAlias, AnySession
 
 
 def get_package_by_info(author, name):
@@ -63,7 +63,7 @@ def is_package_page(f):
 
 
 def add_notification(target, causer: User, type: NotificationType, title: str, url: str,
-			package: Package = None, session: sqlalchemy.orm.Session = None):
+			package: Package | None = None, session: AnySession | None = None):
 	if session is None:
 		session = db.session
 
@@ -85,7 +85,7 @@ def add_notification(target, causer: User, type: NotificationType, title: str, u
 
 
 def add_audit_log(severity: AuditSeverity, causer: User, title: str, url: typing.Optional[str],
-			package: Package = None, description: str = None):
+			package: Package | None = None, description: str | None = None):
 	entry = AuditLogEntry(causer, severity, title, url, package, description)
 	db.session.add(entry)
 
@@ -105,7 +105,7 @@ def get_system_user():
 	return system_user
 
 
-def add_system_notification(target, type: NotificationType, title: str, url: str, package: Package = None):
+def add_system_notification(target, type: NotificationType, title: str, url: str, package: Package | None = None):
 	return add_notification(target, get_system_user(), type, title, url, package)
 
 
@@ -194,11 +194,11 @@ def post_to_approval_thread(package: Package, user: User, message: str, is_statu
 	add_notification(thread.watchers, user, NotificationType.THREAD_REPLY, msg, thread.get_view_url(), package)
 
 
-def get_games_from_csv(session: sqlalchemy.orm.Session, csv: str) -> List[Package]:
+def get_games_from_csv(session: AnySession, csv: str) -> List[Package]:
 	return get_games_from_list(session, [name.strip() for name in csv.split(",")])
 
 
-def get_games_from_list(session: sqlalchemy.orm.Session, supported_games_raw: list[str]) -> List[Package]:
+def get_games_from_list(session: AnySession, supported_games_raw: list[str]) -> List[Package]:
 	retval = []
 	for game_name in supported_games_raw:
 		if game_name.endswith("_game"):

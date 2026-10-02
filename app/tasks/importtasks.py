@@ -8,6 +8,7 @@ import os
 import shutil
 import sys
 from json import JSONDecodeError
+from typing import Any
 from zipfile import ZipFile, BadZipFile
 
 import gitdb
@@ -89,6 +90,7 @@ def update_all_game_support():
 @celery.task()
 def update_package_game_support(package_id: int):
 	package = Package.query.get(package_id)
+	assert package is not None
 	game_support_update(db.session, package, None)
 	db.session.commit()
 
@@ -96,6 +98,7 @@ def update_package_game_support(package_id: int):
 @celery.task()
 def remove_package_game_support(package_id: int):
 	package = Package.query.get(package_id)
+	assert package is not None
 	game_support_remove(db.session, package)
 	db.session.commit()
 
@@ -144,7 +147,7 @@ def post_release_check_update(self, release: PackageRelease, path):
 							   f"the release ({tree.name}). Either change the package name on ContentDB or the "
 							   f"name in the .conf of the content. Then make a new release")
 
-	cache = {}
+	cache: dict[str, MetaPackage] = {}
 	def get_meta_packages(names):
 		return [ MetaPackage.GetOrCreate(x, cache) for x in names ]
 
@@ -289,7 +292,7 @@ def update_translations(package: Package, tree: PackageTreeNode):
 
 	raw_translations = tree.get_translations(tree.get("textdomain", tree.name), allowed_languages=allowed_languages)
 	for raw_translation in raw_translations:
-		to_update = {
+		to_update: dict[Any, Any] = {
 			"title": truncate_string(raw_translation.entries.get(tree.get("title", package.title)), 100),
 			"short_desc": truncate_string(raw_translation.entries.get(tree.get("description", package.short_desc)), 200),
 		}

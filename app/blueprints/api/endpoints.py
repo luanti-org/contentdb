@@ -112,6 +112,8 @@ def package_view_client(package: Package):
 	data = package.as_dict(current_app.config["BASE_URL"], version, lang=lang, screenshots_dict=True)
 
 	formspec_version = get_int_or_abort(request.args["formspec_version"])
+	if formspec_version is None:
+		error(400, "formspec_version is required")
 	include_images = is_yes(request.args.get("include_images", "true"))
 	page_url = package.get_url("packages.view", absolute=True)
 	if data["long_description"] is not None:
@@ -120,7 +122,8 @@ def package_view_client(package: Package):
 
 	data["info_hypertext"] = package_info_as_hypertext(package, formspec_version)
 
-	data["download_size"] = package.get_download_release(version).file_size
+	release = package.get_download_release(version)
+	data["download_size"] = release.file_size if release else None
 
 	data["reviews"] = {
 		"positive": package.reviews.filter(PackageReview.rating > 3, PackageReview.approved).count(),
@@ -139,6 +142,8 @@ def package_view_client(package: Package):
 @cached(300)
 def package_view_client_reviews(package: Package):
 	formspec_version = get_int_or_abort(request.args["formspec_version"])
+	if formspec_version is None:
+		error(400, "formspec_version is required")
 	data = package_reviews_as_hypertext(package, formspec_version)
 
 	resp = jsonify(data)

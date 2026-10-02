@@ -16,19 +16,19 @@ from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy_utils.types import TSVectorType
 
 from app import app
-from . import db
+from .base import db, Model
 from .users import Permission, UserRank, User
 from app.utils.flask import abs_url_for, abs_url
 from app.utils.misc import format_file_size
 
 
-class License(db.Model):
+class License(Model):
 	id      = db.Column(db.Integer, primary_key=True)
 	name    = db.Column(db.String(50), nullable=False, unique=True)
 	is_foss = db.Column(db.Boolean,    nullable=False, default=True)
 	url     = db.Column(db.String(128), nullable=True, default=None)
 
-	def __init__(self, v: str, is_foss: bool = True, url: str = None):
+	def __init__(self, v: str, is_foss: bool = True, url: str | None = None):
 		self.name = v
 		self.is_foss = is_foss
 		self.url = url
@@ -343,7 +343,7 @@ maintainers = db.Table("maintainers",
 )
 
 
-class Dependency(db.Model):
+class Dependency(Model):
 	id              = db.Column(db.Integer, primary_key=True)
 
 	depender_id     = db.Column(db.Integer, db.ForeignKey("package.id"),     nullable=True)
@@ -426,7 +426,7 @@ class Dependency(db.Model):
 		return retval
 
 
-class PackageGameSupport(db.Model):
+class PackageGameSupport(Model):
 	id = db.Column(db.Integer, primary_key=True)
 
 	package_id = db.Column(db.Integer, db.ForeignKey("package.id"), nullable=False)
@@ -441,7 +441,7 @@ class PackageGameSupport(db.Model):
 	__table_args__ = (db.UniqueConstraint("game_id", "package_id", name="_package_game_support_uc"),)
 
 
-class Package(db.Model):
+class Package(Model):
 	id           = db.Column(db.Integer, primary_key=True)
 
 	# Basic details
@@ -984,7 +984,7 @@ class Package(db.Model):
 			return [lazy_gettext("Negative (%(perc)d%% of %(total)d)", perc=perc, total=total), "text-danger"]
 
 
-class Language(db.Model):
+class Language(Model):
 	id = db.Column(db.String(10), primary_key=True)
 	title = db.Column(db.String(100), unique=True, nullable=False)
 
@@ -1002,7 +1002,7 @@ class Language(db.Model):
 		}
 
 
-class PackageTranslation(db.Model):
+class PackageTranslation(Model):
 	package_id = db.Column(db.Integer, db.ForeignKey("package.id"), primary_key=True)
 	package = db.relationship("Package", back_populates="translations", foreign_keys=[package_id])
 
@@ -1014,7 +1014,7 @@ class PackageTranslation(db.Model):
 	desc = db.Column(db.UnicodeText, nullable=True)
 
 
-class MetaPackage(db.Model):
+class MetaPackage(Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(100), unique=True, nullable=False)
 	dependencies = db.relationship("Dependency", back_populates="meta_package", lazy="dynamic")
@@ -1066,7 +1066,7 @@ class MetaPackage(db.Model):
 		return retval
 
 
-class ContentWarning(db.Model):
+class ContentWarning(Model):
 	id              = db.Column(db.Integer, primary_key=True)
 	name            = db.Column(db.String(100), unique=True, nullable=False)
 	title           = db.Column(db.String(100), nullable=False)
@@ -1094,7 +1094,7 @@ class ContentWarning(db.Model):
 		return { "name": self.name, "title": self.title, "description": description }
 
 
-class Tag(db.Model):
+class Tag(Model):
 	id              = db.Column(db.Integer, primary_key=True)
 	name            = db.Column(db.String(100), unique=True, nullable=False)
 	title           = db.Column(db.String(100), nullable=False)
@@ -1131,7 +1131,7 @@ class Tag(db.Model):
 		}
 
 
-class LuantiRelease(db.Model):
+class LuantiRelease(Model):
 	id       = db.Column(db.Integer, primary_key=True)
 	name     = db.Column(db.String(100), unique=True, nullable=False)
 	protocol = db.Column(db.Integer, nullable=False, default=0)
@@ -1155,7 +1155,7 @@ class LuantiRelease(db.Model):
 		}
 
 	@classmethod
-	def get(cls, version: typing.Optional[str], protocol_num: typing.Optional[str]) -> typing.Optional["LuantiRelease"]:
+	def get(cls, version: typing.Optional[str], protocol_num: typing.Optional[int]) -> typing.Optional["LuantiRelease"]:
 		if version:
 			parts = version.strip().split(".")
 			if len(parts) >= 2:
@@ -1220,7 +1220,7 @@ class ReleaseState(enum.Enum):
 		return item if type(item) == ReleaseState else ReleaseState[item.upper()]
 
 
-class PackageRelease(db.Model):
+class PackageRelease(Model):
 	id           = db.Column(db.Integer, primary_key=True)
 
 	package_id   = db.Column(db.Integer, db.ForeignKey("package.id"))
@@ -1402,7 +1402,7 @@ class PackageRelease(db.Model):
 			raise Exception("Permission {} is not related to releases".format(perm.name))
 
 
-class PackageScreenshot(db.Model):
+class PackageScreenshot(Model):
 	HARD_MIN_SIZE = (920, 517)
 	SOFT_MIN_SIZE = (1280, 720)
 
@@ -1524,7 +1524,7 @@ class PackageUpdateTrigger(enum.Enum):
 		return item if type(item) == PackageUpdateTrigger else PackageUpdateTrigger[item.upper()]
 
 
-class PackageUpdateConfig(db.Model):
+class PackageUpdateConfig(Model):
 	package_id  = db.Column(db.Integer, db.ForeignKey("package.id"), primary_key=True)
 	package     = db.relationship("Package", back_populates="update_config", foreign_keys=[package_id])
 
@@ -1573,7 +1573,7 @@ class PackageUpdateConfig(db.Model):
 		return self.package.get_url("packages.create_release", title=self.title, ref=self.get_ref())
 
 
-class PackageAlias(db.Model):
+class PackageAlias(Model):
 	id         = db.Column(db.Integer, primary_key=True)
 
 	package_id = db.Column(db.Integer, db.ForeignKey("package.id"), nullable=False)
@@ -1594,7 +1594,7 @@ class PackageAlias(db.Model):
 		return f"{self.author}/{self.name}"
 
 
-class PackageDailyStats(db.Model):
+class PackageDailyStats(Model):
 	package_id = db.Column(db.Integer, db.ForeignKey("package.id"), primary_key=True)
 	package = db.relationship("Package", back_populates="daily_stats", foreign_keys=[package_id])
 	date = db.Column(db.Date, primary_key=True)

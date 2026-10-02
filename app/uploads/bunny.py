@@ -77,8 +77,8 @@ def backend_copy_upload(filepath: str) -> str:
 	return _upload_file(cache_file_path)
 
 
-def backend_get_public_upload_url(filepath: str) -> str:
-	filename = os.path.basename(filepath)
+def backend_get_public_upload_url(upload_path: str) -> str:
+	filename = os.path.basename(upload_path)
 	return public_url.rstrip("/") + "/" + filename
 
 
@@ -97,16 +97,16 @@ LEVELS = [
 ]
 
 
-def backend_get_thumbnail_url(filepath: str, thumbnail_level: int, format: Optional[str] = None):
+def backend_get_thumbnail_url(upload_path: str, thumbnail_level: int, format: Optional[str] = None):
 	if thumbnail_level > len(LEVELS) or thumbnail_level <= 0:
 		raise ValueError("Invalid thumbnail level")
 	(width, ratio) = LEVELS[thumbnail_level - 1]
-	url = backend_get_public_upload_url(filepath)
+	url = backend_get_public_upload_url(upload_path)
 	url = f"{url}?width={width}&aspect_ratio={ratio}"
 	if format:
 		url = f"{url}&format={format}"
 	return url
 
 
-def backend_delete_upload(filepath: str):
-	_delete_file(filepath)
+def backend_delete_upload(upload_path: str) -> None:
+	_delete_file(upload_path)

@@ -106,7 +106,7 @@ def calc_spammer_likelihood(user: User) -> float:
 	"""
 	>= 100 is considered a likely spammer.
 	"""
-	score = 0
+	score = 0.0
 
 	score += matches(user.username, suspicious_words) * 100
 	score += matches(user.website_url, suspicious_words) * 120

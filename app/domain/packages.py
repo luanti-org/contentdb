@@ -122,7 +122,7 @@ def validate(data: dict):
 		else:
 			typ = ALLOWED_FIELDS.get(key)
 			check(typ is not None, f"{key} is not a known field")
-			if typ != AnyType:
+			if isinstance(typ, type):
 				check(isinstance(value, typ), f"{key} must be a " + typ.__name__)
 
 	if "name" in data:
@@ -140,7 +140,7 @@ def validate(data: dict):
 
 
 def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, data: dict,
-		reason: str = None) -> bool:
+		reason: str | None = None) -> bool:
 	if not package.check_perm(user, Permission.EDIT_PACKAGE):
 		raise DomainError(403, lazy_gettext("You don't have permission to edit this package"))
 
@@ -148,7 +148,7 @@ def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, 
 			not package.check_perm(user, Permission.CHANGE_NAME):
 		raise DomainError(403, lazy_gettext("You don't have permission to change the package name"))
 
-	before_dict = None
+	before_dict: dict | None = None
 	if not was_new:
 		before_dict = package.as_dict("/")
 
@@ -241,6 +241,7 @@ def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, 
 		add_audit_log(AuditSeverity.NORMAL, user, msg, package.get_url("packages.view"), package)
 	else:
 		after_dict = package.as_dict("/")
+		assert before_dict is not None
 		diff = diff_dictionaries(before_dict, after_dict)
 		was_modified = len(diff) > 0
 

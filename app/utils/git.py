@@ -113,13 +113,11 @@ def get_latest_tag(git_url) -> Tuple[Optional[str], Optional[str], Optional[str]
 
 		# Get summary message of annotated tag from GitPython
 		annotated_tag = repo.tag(tag).tag
+		message: Optional[str] = None
 		if annotated_tag:
-			message = annotated_tag.message
-			message = normalize_line_endings(message)
+			message = normalize_line_endings(str(annotated_tag.message))
 			if message == "":
 				message = None
-		else:
-			message = None
 
 		return tag, commit_hash, message
 
@@ -131,7 +129,7 @@ def get_commit_list(git_url: str, start: str, end: str) -> List[str]:
 		origin.fetch()
 
 		commits = repo.iter_commits(f"{start}..{end}")
-		ret = [commit.summary for commit in commits]
+		ret = [str(commit.summary) for commit in commits]
 		ret.reverse()
 		return ret
 

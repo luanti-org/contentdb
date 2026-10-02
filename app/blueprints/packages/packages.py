@@ -691,7 +691,7 @@ def alias_list(package: Package):
 @bp.route("/packages/<author>/<name>/aliases/<int:alias_id>/", methods=["GET", "POST"])
 @rank_required(UserRank.ADMIN)
 @is_package_page
-def alias_create_edit(package: Package, alias_id: int = None):
+def alias_create_edit(package: Package, alias_id: int | None = None):
 	alias = None
 	if alias_id:
 		alias = PackageAlias.query.get(alias_id)

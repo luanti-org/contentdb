@@ -3,13 +3,13 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 import datetime
-from typing import Tuple, List
+from typing import Tuple, List, Optional
 
 from flask import url_for
 from sqlalchemy import select, func, text
 from sqlalchemy.orm import column_property
 
-from . import db
+from .base import db, Model
 from .users import Permission, UserRank, User
 from .packages import Package
 from app.utils.flask import abs_url_for
@@ -21,13 +21,13 @@ watchers = db.Table("watchers",
 )
 
 
-class Thread(db.Model):
+class Thread(Model):
 	id         = db.Column(db.Integer, primary_key=True)
 
 	package_id = db.Column(db.Integer, db.ForeignKey("package.id"), nullable=True)
 	package    = db.relationship("Package", foreign_keys=[package_id], back_populates="threads")
 
-	is_review_thread = db.relationship("Package", foreign_keys=[Package.review_thread_id], back_populates="review_thread")
+	is_review_thread = db.relationship("Package", foreign_keys="Package.review_thread_id", back_populates="review_thread")
 
 	review_id  = db.Column(db.Integer, db.ForeignKey("package_review.id"), nullable=True)
 	review     = db.relationship("PackageReview", foreign_keys=[review_id], cascade="all, delete")
@@ -132,7 +132,7 @@ class Thread(db.Model):
 		return ThreadReply.query.filter_by(thread_id=self.id).order_by(db.desc(ThreadReply.id)).first()
 
 
-class ThreadReply(db.Model):
+class ThreadReply(Model):
 	id         = db.Column(db.Integer, primary_key=True)
 
 	thread_id  = db.Column(db.Integer, db.ForeignKey("thread.id"), nullable=False)
@@ -169,7 +169,7 @@ class ThreadReply(db.Model):
 			raise Exception("Permission {} is not related to threads".format(perm.name))
 
 
-class PackageReview(db.Model):
+class PackageReview(Model):
 	id         = db.Column(db.Integer, primary_key=True)
 
 	package_id = db.Column(db.Integer, db.ForeignKey("package.id"), nullable=False)
@@ -192,7 +192,7 @@ class PackageReview(db.Model):
 
 	score      = db.Column(db.Integer, nullable=False, default=1)
 
-	def get_totals(self, current_user = None) -> Tuple[int,int,bool]:
+	def get_totals(self, current_user = None) -> Tuple[int, int, Optional[bool]]:
 		votes: List[PackageReviewVote] = self.votes
 		pos = sum([ 1 for vote in votes if vote.is_positive ])
 		neg = sum([ 1 for vote in votes if not vote.is_positive])
@@ -281,7 +281,7 @@ class PackageReview(db.Model):
 			raise Exception("Permission {} is not related to reviews".format(perm.name))
 
 
-class PackageReviewVote(db.Model):
+class PackageReviewVote(Model):
 	review_id = db.Column(db.Integer, db.ForeignKey("package_review.id"), primary_key=True)
 	review = db.relationship("PackageReview", foreign_keys=[review_id], back_populates="votes")
 	user_id = db.Column(db.Integer, db.ForeignKey("user.id"), primary_key=True)

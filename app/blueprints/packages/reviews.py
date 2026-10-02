@@ -225,7 +225,7 @@ def handle_review_vote(package: Package, review_id: int) -> typing.Optional[str]
 	if current_user in package.maintainers:
 		return gettext("You can't vote on the reviews on your own package!")
 
-	review: PackageReview = PackageReview.query.get(review_id)
+	review = PackageReview.query.get(review_id)
 	if review is None or review.package != package:
 		abort(404)
 
@@ -248,6 +248,7 @@ def handle_review_vote(package: Package, review_id: int) -> typing.Optional[str]
 
 	review.update_score()
 	db.session.commit()
+	return None
 
 
 @bp.route("/packages/<author>/<name>/review/<int:review_id>/", methods=["POST"])

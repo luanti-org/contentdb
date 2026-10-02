@@ -19,11 +19,11 @@ YESES = ["yes", "true", "1", "on"]
 
 
 def is_yes(val: Optional[str]) -> bool:
-	return val and val.lower() in YESES
+	return bool(val and val.lower() in YESES)
 
 
 def is_no(val: Optional[str]) -> bool:
-	return val and not is_yes(val)
+	return bool(val) and not is_yes(val)
 
 
 def nonempty_or_none(str: Optional[str]) -> Optional[str]:

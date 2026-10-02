@@ -17,7 +17,7 @@ from app.models import User, UserRank, UserNotificationPreferences, db
 
 def is_username_valid(username: str) -> bool:
 	return username is not None and len(username) >= 2 and \
-			re.match(r"^[A-Za-z0-9._-]*$", username) and not re.match(r"^\.*$", username)
+			bool(re.match(r"^[A-Za-z0-9._-]*$", username)) and not re.match(r"^\.*$", username)
 
 
 def make_valid_username(username: str) -> str:

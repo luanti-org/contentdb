@@ -3,6 +3,7 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 from logging import Filter
+from typing import Optional
 
 import flask
 from celery import Celery, signals
@@ -19,7 +20,7 @@ class TaskError(Exception):
 
 
 class FlaskCelery(Celery):
-	app: flask.app
+	app: Optional[flask.Flask]
 
 	def __init__(self, *args, **kwargs):
 		super(FlaskCelery, self).__init__(*args, **kwargs)

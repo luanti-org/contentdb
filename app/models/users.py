@@ -10,7 +10,7 @@ from flask_babel import lazy_gettext
 from flask_login import UserMixin
 from sqlalchemy import desc, text
 
-from . import db
+from .base import db, Model
 from app.utils.misc import truncate_string
 from app.utils.flask import abs_url_for
 
@@ -145,7 +145,7 @@ def display_name_default(context):
 	return context.get_current_parameters()["username"]
 
 
-class User(db.Model, UserMixin):
+class User(Model, UserMixin):
 	id           = db.Column(db.Integer, primary_key=True)
 
 	created_at = db.Column(db.DateTime, nullable=True, default=datetime.datetime.utcnow)
@@ -372,7 +372,7 @@ class User(db.Model, UserMixin):
 			self.rank != UserRank.BANNED
 
 
-class UserEmailVerification(db.Model):
+class UserEmailVerification(Model):
 	id      = db.Column(db.Integer, primary_key=True)
 	user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
 	email   = db.Column(db.String(100), nullable=False)
@@ -388,7 +388,7 @@ class UserEmailVerification(db.Model):
 		return delta.total_seconds() > 12 * 60 * 60
 
 
-class EmailSubscription(db.Model):
+class EmailSubscription(Model):
 	id          = db.Column(db.Integer, primary_key=True)
 	email       = db.Column(db.String(100), nullable=False, unique=True)
 	blacklisted = db.Column(db.Boolean, nullable=False, default=False)
@@ -468,7 +468,7 @@ class NotificationType(enum.Enum):
 			# NOTE: OTHER notification type
 			return lazy_gettext("Other")
 		else:
-			raise "Unknown notification type"
+			raise ValueError("Unknown notification type")
 
 	def to_name(self):
 		return self.name.lower()
@@ -496,7 +496,7 @@ class NotificationType(enum.Enum):
 		elif self == NotificationType.OTHER:
 			return lazy_gettext("This is an Other notification.")
 		else:
-			raise "Unknown notification type"
+			raise ValueError("Unknown notification type")
 
 	@property
 	def description(self):
@@ -521,7 +521,7 @@ class NotificationType(enum.Enum):
 		elif self == NotificationType.OTHER:
 			return lazy_gettext("Minor notifications not important enough for a dedicated category.")
 		else:
-			raise "Unknown notification type"
+			raise ValueError("Unknown notification type")
 
 	def __str__(self):
 		return self.name
@@ -538,7 +538,7 @@ class NotificationType(enum.Enum):
 		return item if type(item) == NotificationType else NotificationType[item.upper()]
 
 
-class Notification(db.Model):
+class Notification(Model):
 	id         = db.Column(db.Integer, primary_key=True)
 
 	user_id    = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
@@ -578,7 +578,7 @@ class Notification(db.Model):
 		return prefs and self.user.email and prefs.get_can_digest(self.type)
 
 
-class UserNotificationPreferences(db.Model):
+class UserNotificationPreferences(Model):
 	id = db.Column(db.Integer, primary_key=True)
 	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 	user = db.relationship("User", back_populates="notification_preferences")
@@ -629,7 +629,7 @@ class UserNotificationPreferences(db.Model):
 		setattr(self, "pref_" + notification_type.to_name(), value)
 
 
-class UserBan(db.Model):
+class UserBan(Model):
 	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
 	user = db.relationship("User", foreign_keys=[user_id], back_populates="ban")
 
@@ -647,7 +647,7 @@ class UserBan(db.Model):
 		return self.expires_at and datetime.datetime.now() > self.expires_at
 
 
-class OAuthClient(db.Model):
+class OAuthClient(Model):
 	__tablename__ = "oauth_client"
 
 	id = db.Column(db.String(24), primary_key=True)

@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
-from typing import Sequence
+from typing import Any, Sequence
 from bs4 import BeautifulSoup
 from jinja2.utils import markupsafe
 from markdown_it import MarkdownIt
@@ -47,11 +47,13 @@ gfm_like.make()
 md_with_anchors = MarkdownIt("gfm-like", {"highlight": highlight_code})
 md_with_anchors.use(anchors_plugin, permalink=True, permalinkSymbol="🔗", max_level=6)
 md_with_anchors.add_render_rule("fence", render_code)
+assert md_with_anchors.linkify is not None
 md_with_anchors.linkify.set({"fuzzy_link": False})
 init_mention(md_with_anchors)
 
 md_no_anchors = MarkdownIt("gfm-like", {"highlight": highlight_code})
 md_no_anchors.add_render_rule("fence", render_code)
+assert md_no_anchors.linkify is not None
 md_no_anchors.linkify.set({"fuzzy_link": False})
 init_mention(md_no_anchors)
 
@@ -85,11 +87,11 @@ def get_headings(html: str):
 	soup = BeautifulSoup(html, "html.parser")
 	headings = soup.find_all(["h1", "h2", "h3"])
 
-	root = []
-	stack = []
+	root: list[dict[str, Any]] = []
+	stack: list[dict[str, Any]] = []
 	for heading in headings:
 		text = heading.find(text=True, recursive=False)
-		this = {"link": heading.get("id") or "", "text": text, "children": []}
+		this: dict[str, Any] = {"link": heading.get("id") or "", "text": text, "children": []}
 		this_level = int(heading.name[1:]) - 1
 
 		while this_level <= len(stack):
