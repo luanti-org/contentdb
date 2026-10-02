@@ -74,7 +74,7 @@ def create_screenshot(package):
 	form = CreateScreenshotForm()
 	if form.validate_on_submit():
 		try:
-			do_create_screenshot(current_user, package, form.title.data, form.file_upload.data, False)
+			do_create_screenshot(current_user, package, form.title.data or "", form.file_upload.data, False)
 			return redirect(package.get_url("packages.screenshots"))
 		except DomainError as e:
 			flash(e.message, "danger")

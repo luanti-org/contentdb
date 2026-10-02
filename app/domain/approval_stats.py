@@ -33,10 +33,10 @@ class PackageInfo:
 	def __lt__(self, other):
 		return self.wait_time < other.wait_time
 
-	def __dict__(self):
+	def as_dict(self):
 		return {
-			"first_submitted": self.first_submitted.isoformat(),
-			"last_change": self.last_change.isoformat(),
+			"first_submitted": self.first_submitted.isoformat() if self.first_submitted else None,
+			"last_change": self.last_change.isoformat() if self.last_change else None,
 			"approved_at": self.approved_at.isoformat() if self.approved_at else None,
 			"wait_time": self.wait_time,
 			"total_approval_time": self.total_approval_time if self.total_approval_time >= 0 else None,

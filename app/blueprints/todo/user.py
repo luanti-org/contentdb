@@ -31,7 +31,7 @@ def view_user(username=None):
 	if username is None:
 		return redirect(url_for("todo.view_user", username=current_user.username))
 
-	user: User = User.query.filter_by(username=username).first()
+	user = User.query.filter_by(username=username).first()
 	if not user:
 		abort(404)
 
@@ -88,7 +88,7 @@ def view_user(username=None):
 @bp.route("/users/<username>/update-configs/apply-all/", methods=["POST"])
 @login_required
 def apply_all_updates(username):
-	user: User = User.query.filter_by(username=username).first()
+	user = User.query.filter_by(username=username).first()
 	if not user:
 		abort(404)
 
@@ -115,7 +115,7 @@ def apply_all_updates(username):
 		rel.package = package
 		rel.name = title
 		rel.title = title
-		rel.url = ""
+		rel.upload_path = ""
 		rel.task_id = uuid()
 		db.session.add(rel)
 		db.session.commit()

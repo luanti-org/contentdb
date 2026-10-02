@@ -3,7 +3,7 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 from logging import Filter
-from typing import Optional
+from typing import Any, Optional
 
 import flask
 from celery import Celery, signals
@@ -21,6 +21,7 @@ class TaskError(Exception):
 
 class FlaskCelery(Celery):
 	app: Optional[flask.Flask]
+	Task: Any
 
 	def __init__(self, *args, **kwargs):
 		super(FlaskCelery, self).__init__(*args, **kwargs)
@@ -31,7 +32,7 @@ class FlaskCelery(Celery):
 			self.init_app(kwargs['app'])
 
 	def patch_task(self):
-		BaseTask : celery.Task = self.Task
+		BaseTask: Any = self.Task
 		_celery = self
 
 		class ContextTask(BaseTask):
@@ -41,6 +42,7 @@ class FlaskCelery(Celery):
 				if flask.has_app_context():
 					return super(BaseTask, self).__call__(*args, **kwargs)
 				else:
+					assert _celery.app is not None
 					with _celery.app.app_context():
 						return super(BaseTask, self).__call__(*args, **kwargs)
 

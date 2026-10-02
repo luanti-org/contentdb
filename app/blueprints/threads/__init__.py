@@ -206,7 +206,7 @@ def edit_reply(id):
 	if reply_id is None:
 		abort(404)
 
-	reply: ThreadReply = ThreadReply.query.get(reply_id)
+	reply = ThreadReply.query.get(reply_id)
 	if reply is None or reply.thread != thread:
 		abort(404)
 
@@ -235,7 +235,7 @@ def edit_reply(id):
 
 @bp.route("/threads/<int:id>/", methods=["GET", "POST"])
 def view(id):
-	thread: Thread = Thread.query.get(id)
+	thread = Thread.query.get(id)
 	if thread is None or not thread.check_perm(current_user, Permission.SEE_THREAD):
 		abort(404)
 
@@ -329,7 +329,7 @@ def new(author=None, name=None):
 		return redirect(url_for("homepage.home"))
 
 	# Only allow creating one thread when not approved
-	elif is_review_thread and package.review_thread is not None:
+	elif is_review_thread and package is not None and package.review_thread is not None:
 		# Redirect submit to `view` page, which checks for `title` in the form data and so won't commit the reply
 		flash(gettext("An approval thread already exists! Consider replying there instead"), "danger")
 		return redirect(package.review_thread.get_view_url(), code=307)
@@ -373,6 +373,7 @@ def new(author=None, name=None):
 			db.session.commit()
 
 			if is_review_thread:
+				assert package is not None
 				package.review_thread = thread
 
 			for mentioned_username in get_user_mentions(render_markdown(form.comment.data)):

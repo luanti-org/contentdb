@@ -276,7 +276,7 @@ def review_vote(package, review_id):
 @rank_required(UserRank.ADMIN)
 @is_package_page
 def review_votes(package):
-	user_biases = {}
+	user_biases: dict[str, list[int]] = {}
 	for review in package.reviews:
 		review_sign = review.as_weight()
 		for vote in review.votes:

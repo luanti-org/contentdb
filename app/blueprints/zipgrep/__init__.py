@@ -32,7 +32,7 @@ def zipgrep_search():
 	form = SearchForm(request.form)
 	if form.validate_on_submit():
 		task_id = uuid()
-		search_in_releases.apply_async((form.query.data, form.file_filter.data, [x.name for x in form.type.data]), task_id=task_id)
+		search_in_releases.apply_async((form.query.data, form.file_filter.data, [x.name for x in form.type.data or []]), task_id=task_id)
 		result_url = url_for("zipgrep.view_results", id=task_id)
 		return redirect(url_for("tasks.check", id=task_id, r=result_url))
 

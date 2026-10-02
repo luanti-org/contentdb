@@ -4,7 +4,7 @@
 
 import math
 import os
-from typing import List
+from typing import Any, List
 
 import flask_sqlalchemy
 from flask import request, jsonify, current_app
@@ -157,6 +157,8 @@ def package_view_client_reviews(package: Package):
 @cached(300)
 def package_hypertext(package):
 	formspec_version = get_int_or_abort(request.args["formspec_version"])
+	if formspec_version is None:
+		error(400, "formspec_version is required")
 	include_images = is_yes(request.args.get("include_images", "true"))
 	html = render_markdown(package.desc if package.desc else "")
 	page_url = package.get_url("packages.view", absolute=True)
@@ -175,12 +177,12 @@ def edit_package(token, package):
 	return api_edit_package(token, package, request.json)
 
 
-def resolve_package_deps(out, package, only_hard, depth=1):
+def resolve_package_deps(out: dict[str, list[dict[str, Any]]], package, only_hard, depth=1):
 	id_ = package.get_id()
 	if id_ in out:
 		return
 
-	ret = []
+	ret: list[dict[str, Any]] = []
 	out[id_] = ret
 
 	if package.type != PackageType.MOD:
@@ -222,7 +224,7 @@ def resolve_package_deps(out, package, only_hard, depth=1):
 def package_dependencies(package):
 	only_hard = request.args.get("only_hard")
 
-	out = {}
+	out: dict[str, list[dict[str, Any]]] = {}
 	resolve_package_deps(out, package, only_hard)
 
 	return jsonify(out)
@@ -861,6 +863,8 @@ def json_schema():
 @cors_allowed
 def hypertext():
 	formspec_version = get_int_or_abort(request.args["formspec_version"])
+	if formspec_version is None:
+		error(400, "formspec_version is required")
 	include_images = is_yes(request.args.get("include_images", "true"))
 
 	html = request.data.decode("utf-8")

@@ -94,7 +94,7 @@ def oauth_start():
 	return render_template("oauth/authorize.html", client=client)
 
 
-def error(code: int, msg: str):
+def error(code: int, msg: str) -> typing.NoReturn:
 	abort(make_response(jsonify({"success": False, "error": msg}), code))
 
 
@@ -183,7 +183,7 @@ def create_edit_client(username, id_=None):
 
 	if form.validate_on_submit():
 		if is_new:
-			if OAuthClient.query.filter(OAuthClient.title.ilike(form.title.data.strip())).count() > 0:
+			if OAuthClient.query.filter(OAuthClient.title.ilike((form.title.data or "").strip())).count() > 0:
 				flash(gettext("An OAuth client with that title already exists. Please choose a new title."), "danger")
 				return render_template("oauth/create_edit.html", user=user, form=form, client=client)
 
@@ -195,6 +195,7 @@ def create_edit_client(username, id_=None):
 			client.approved = current_user.rank.at_least(UserRank.EDITOR)
 
 
+		assert client is not None
 		form.populate_obj(client)
 
 		verb = "Created" if is_new else "Edited"

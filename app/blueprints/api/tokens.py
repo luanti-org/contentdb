@@ -72,6 +72,7 @@ def create_edit_token(username, id=None):
 			token.owner = user
 			token.access_token = random_string(32)
 
+		assert token is not None
 		form.populate_obj(token)
 		db.session.commit()
 

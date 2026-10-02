@@ -116,7 +116,7 @@ def handle_profile_edit(form: UserProfileForm, user: User, username: str):
 @bp.route("/users/<username>/settings/profile/", methods=["GET", "POST"])
 @login_required
 def profile_edit(username):
-	user : User = User.query.filter_by(username=username).first()
+	user = User.query.filter_by(username=username).first()
 	if not user:
 		abort(404)
 
@@ -194,7 +194,7 @@ def email_notifications(username=None):
 	if username is None:
 		return redirect(url_for("users.email_notifications", username=current_user.username))
 
-	user: User = User.query.filter_by(username=username).first()
+	user = User.query.filter_by(username=username).first()
 	if not user:
 		abort(404)
 
@@ -230,7 +230,7 @@ def email_notifications(username=None):
 @bp.route("/users/<username>/settings/account/")
 @login_required
 def account(username):
-	user : User = User.query.filter_by(username=username).first()
+	user = User.query.filter_by(username=username).first()
 	if not user:
 		abort(404)
 
@@ -262,7 +262,7 @@ def disconnect_github(username: str):
 @bp.route("/users/<username>/delete/", methods=["GET", "POST"])
 @rank_required(UserRank.ADMIN)
 def delete(username):
-	user: User = User.query.filter_by(username=username).first()
+	user = User.query.filter_by(username=username).first()
 	if not user:
 		abort(404)
 
@@ -324,7 +324,7 @@ class ModToolsForm(FlaskForm):
 @bp.route("/users/<username>/modtools/", methods=["GET", "POST"])
 @rank_required(UserRank.MODERATOR)
 def modtools(username):
-	user: User = User.query.filter_by(username=username).first()
+	user = User.query.filter_by(username=username).first()
 	if not user:
 		abort(404)
 
@@ -381,7 +381,7 @@ def modtools(username):
 @bp.route("/users/<username>/modtools/set-email/", methods=["POST"])
 @rank_required(UserRank.MODERATOR)
 def modtools_set_email(username):
-	user: User = User.query.filter_by(username=username).first()
+	user = User.query.filter_by(username=username).first()
 	if not user:
 		abort(404)
 
@@ -412,7 +412,7 @@ def modtools_set_email(username):
 @bp.route("/users/<username>/modtools/ban/", methods=["POST"])
 @rank_required(UserRank.MODERATOR)
 def modtools_ban(username):
-	user: User = User.query.filter_by(username=username).first()
+	user = User.query.filter_by(username=username).first()
 	if not user:
 		abort(404)
 
@@ -442,7 +442,7 @@ def modtools_ban(username):
 @bp.route("/users/<username>/modtools/unban/", methods=["POST"])
 @rank_required(UserRank.MODERATOR)
 def modtools_unban(username):
-	user: User = User.query.filter_by(username=username).first()
+	user = User.query.filter_by(username=username).first()
 	if not user:
 		abort(404)
 

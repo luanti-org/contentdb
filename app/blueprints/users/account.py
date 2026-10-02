@@ -4,7 +4,8 @@
 
 import datetime
 
-from flask import redirect, abort, render_template, flash, request, url_for, Response
+from flask import redirect, abort, render_template, flash, request, url_for
+from werkzeug import Response
 from flask_babel import gettext, get_locale, lazy_gettext
 from flask_login import current_user, login_required, logout_user, login_user
 from flask_wtf import FlaskForm
@@ -272,7 +273,7 @@ def set_password():
 @bp.route("/user/verify/")
 def verify_email():
 	token = request.args.get("token")
-	ver: UserEmailVerification = UserEmailVerification.query.filter_by(token=token).first()
+	ver = UserEmailVerification.query.filter_by(token=token).first()
 	if ver is None:
 		flash(gettext("Unknown verification token!"), "danger")
 		return redirect(url_for("homepage.home"))

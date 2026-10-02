@@ -30,7 +30,8 @@ def mkdir(path):
 
 
 def resize_and_crop(img_path, modified_path, size):
-	with Image.open(img_path) as img:
+	with Image.open(img_path) as source:
+		img: Image.Image = source
 		# Get current and desired ratio for the images
 		img_ratio = img.size[0] / float(img.size[1])
 		desired_ratio = size[0] / float(size[1])
@@ -38,20 +39,20 @@ def resize_and_crop(img_path, modified_path, size):
 		# Is more portrait than target, scale and crop
 		if desired_ratio > img_ratio:
 			img = img.resize((int(size[0]), int(size[0] * img.size[1] / img.size[0])),
-					Image.BICUBIC)
+					Image.Resampling.BICUBIC)
 			box = (0, (img.size[1] - size[1]) / 2, img.size[0], (img.size[1] + size[1]) / 2)
 			img = img.crop(box)
 
 		# Is more landscape than target, scale and crop
 		elif desired_ratio < img_ratio:
 			img = img.resize((int(size[1] * img.size[0] / img.size[1]), int(size[1])),
-					Image.BICUBIC)
+					Image.Resampling.BICUBIC)
 			box = ((img.size[0] - size[0]) / 2, 0, (img.size[0] + size[0]) / 2, img.size[1])
 			img = img.crop(box)
 
 		# Is exactly the same ratio as target
 		else:
-			img = img.resize(size, Image.BICUBIC)
+			img = img.resize(size, Image.Resampling.BICUBIC)
 
 		if modified_path.endswith(".jpg") and img.mode != "RGB":
 			img = img.convert("RGB")

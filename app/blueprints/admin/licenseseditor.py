@@ -44,14 +44,14 @@ def create_edit_license(name=None):
 		form.is_foss.data = True
 	elif form.validate_on_submit():
 		if license is None:
-			license = License(form.name.data)
+			license = License(form.name.data or "")
 			db.session.add(license)
-			flash("Created license " + form.name.data, "success")
+			flash("Created license " + license.name, "success")
 
 			add_audit_log(AuditSeverity.MODERATION, current_user, f"Created license {license.name}",
 						  url_for("admin.license_list"))
 		else:
-			flash("Updated license " + form.name.data, "success")
+			flash("Updated license " + (form.name.data or ""), "success")
 
 			add_audit_log(AuditSeverity.MODERATION, current_user, f"Edited license {license.name}",
 						  url_for("admin.license_list"))

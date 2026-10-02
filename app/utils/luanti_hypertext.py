@@ -57,7 +57,7 @@ class LuantiHTMLParser(HTMLParser):
 		self.images: dict[str, str] = {}
 		self.image_tooltips: dict[str, str] = {}
 		self.is_preserving = False
-		self.remove_until = None
+		self.remove_until: str | None = None
 		self.indent_level = 0
 
 	def finish_line(self):

@@ -187,7 +187,7 @@ class PackageDevState(enum.Enum):
 			else:
 				return f"{choice.value}: {desc}"
 
-		ret = [(choice, build_label(choice)) for choice in cls]
+		ret: list[tuple[typing.Any, str]] = [(choice, build_label(choice)) for choice in cls]
 
 		if with_none:
 			ret.insert(0, (None, ""))
@@ -411,6 +411,7 @@ class Dependency(Model):
 				retval.append(Dependency(depender, meta=meta))
 			else:
 				m = pattern2.match(x)
+				assert m is not None
 				username = m.group(1)
 				name     = m.group(2)
 				user = User.query.filter_by(username=username).first()
@@ -442,6 +443,10 @@ class PackageGameSupport(Model):
 
 
 class Package(Model):
+	if typing.TYPE_CHECKING:
+		# Backref created by Collection.packages
+		collections: typing.Any
+
 	id           = db.Column(db.Integer, primary_key=True)
 
 	# Basic details
@@ -1611,7 +1616,7 @@ class PackageDailyStats(Model):
 	views_luanti = db.Column(db.Integer, nullable=False, default=0)
 
 	@staticmethod
-	def notify_download(package: Package, is_luanti: bool, is_v510: bool, reason: str):
+	def notify_download(package: Package, is_luanti: bool, is_v510: bool, reason: typing.Optional[str]):
 		date = datetime.datetime.utcnow().date()
 
 		to_update = dict()

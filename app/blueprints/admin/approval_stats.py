@@ -14,18 +14,18 @@ from app.utils.user import rank_required
 @bp.route("/admin/approval_stats/")
 @rank_required(UserRank.APPROVER)
 def approval_stats():
-	start = request.args.get("start")
-	end = request.args.get("end")
-	if start and end:
+	start_str = request.args.get("start")
+	end_str = request.args.get("end")
+	if start_str and end_str:
 		try:
-			start = datetime.datetime.fromisoformat(start)
-			end = datetime.datetime.fromisoformat(end)
+			start = datetime.datetime.fromisoformat(start_str)
+			end = datetime.datetime.fromisoformat(end_str)
 		except ValueError:
 			abort(400)
-	elif start:
-		return redirect(url_for("admin.approval_stats", start=start, end=datetime.datetime.utcnow().date().isoformat()))
-	elif end:
-		return redirect(url_for("admin.approval_stats", start="2020-07-01", end=end))
+	elif start_str:
+		return redirect(url_for("admin.approval_stats", start=start_str, end=datetime.datetime.utcnow().date().isoformat()))
+	elif end_str:
+		return redirect(url_for("admin.approval_stats", start="2020-07-01", end=end_str))
 	else:
 		end = datetime.datetime.utcnow()
 		start = end - datetime.timedelta(days=365)
@@ -37,12 +37,12 @@ def approval_stats():
 @bp.route("/admin/approval_stats.json")
 @rank_required(UserRank.APPROVER)
 def approval_stats_json():
-	start = request.args.get("start")
-	end = request.args.get("end")
-	if start and end:
+	start_str = request.args.get("start")
+	end_str = request.args.get("end")
+	if start_str and end_str:
 		try:
-			start = datetime.datetime.fromisoformat(start)
-			end = datetime.datetime.fromisoformat(end)
+			start = datetime.datetime.fromisoformat(start_str)
+			end = datetime.datetime.fromisoformat(end_str)
 		except ValueError:
 			abort(400)
 	else:
@@ -51,7 +51,7 @@ def approval_stats_json():
 
 	stats = get_approval_statistics(start, end)
 	for key, value in stats.packages_info.items():
-		stats.packages_info[key] = value.__dict__()
+		stats.packages_info[key] = value.as_dict()
 
 	return jsonify({
 		"start": start.isoformat(),

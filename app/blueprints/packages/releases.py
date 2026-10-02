@@ -98,10 +98,10 @@ def create_release(package):
 	if form.validate_on_submit():
 		try:
 			if form.upload_mode.data == "vcs":
-				rel = do_create_vcs_release(current_user, package, form.name.data, form.title.data, form.release_notes.data,
+				rel = do_create_vcs_release(current_user, package, form.name.data or "", form.title.data, form.release_notes.data,
 						form.vcs_label.data, form.min_rel.data.get_actual(), form.max_rel.data.get_actual())
 			else:
-				rel = do_create_zip_release(current_user, package, form.name.data, form.title.data, form.release_notes.data,
+				rel = do_create_zip_release(current_user, package, form.name.data or "", form.title.data, form.release_notes.data,
 						form.file_upload.data, form.min_rel.data.get_actual(), form.max_rel.data.get_actual())
 			return redirect(url_for("tasks.check", id=rel.task_id, r=rel.get_edit_url()))
 		except DomainError as e:
@@ -121,7 +121,7 @@ def download_release(package, id):
 	if ip is not None and not is_user_bot():
 		user_agent = request.headers.get("User-Agent") or ""
 		is_luanti = user_agent.startswith("Luanti") or user_agent.startswith("Minetest")
-		is_v510 = is_luanti and is_luanti_v510(request.headers.get("User-Agent"))
+		is_v510 = is_luanti and is_luanti_v510(user_agent)
 		reason = request.args.get("reason")
 		PackageDailyStats.notify_download(package, is_luanti, is_v510, reason)
 
@@ -129,7 +129,7 @@ def download_release(package, id):
 		if not has_key(key):
 			set_temp_key(key, "true")
 
-			bonus = 0
+			bonus: float = 0
 			if reason == "new":
 				bonus = 1
 			elif reason == "dependency" or reason == "update":
@@ -153,7 +153,7 @@ def download_release(package, id):
 @bp.route("/packages/<author>/<name>/releases/<int:id>/")
 @is_package_page
 def view_release(package, id):
-	release: PackageRelease = PackageRelease.query.get(id)
+	release = PackageRelease.query.get(id)
 	if release is None or release.package != package:
 		abort(404)
 
@@ -164,7 +164,7 @@ def view_release(package, id):
 @login_required
 @is_package_page
 def edit_release(package, id):
-	release: PackageRelease = PackageRelease.query.get(id)
+	release = PackageRelease.query.get(id)
 	if release is None or release.package != package:
 		abort(404)
 
@@ -368,7 +368,7 @@ def bulk_update_config(username=None):
 	if username is None:
 		return redirect(url_for("packages.bulk_update_config", username=current_user.username))
 
-	user: User = User.query.filter_by(username=username).first()
+	user = User.query.filter_by(username=username).first()
 	if not user:
 		abort(404)
 

@@ -71,7 +71,7 @@ def report():
 
 			add_replies(thread, current_user, f"**{report.category.title} report created**\n\n{form.message.data}")
 		else:
-			ip_addr = request.headers.get("X-Forwarded-For") or request.remote_addr
+			ip_addr = request.headers.get("X-Forwarded-For") or request.remote_addr or ""
 			report.message = ip_addr + "\n\n" + report.message
 
 		db.session.add(report)

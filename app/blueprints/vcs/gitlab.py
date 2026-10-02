@@ -22,7 +22,7 @@ def webhook_impl():
 	if secret is None:
 		return error(403, "Token required")
 
-	token: APIToken = APIToken.query.filter_by(access_token=secret).first()
+	token = APIToken.query.filter_by(access_token=secret).first()
 	if token is None:
 		return error(403, "Invalid authentication")
 

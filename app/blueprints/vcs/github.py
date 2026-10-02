@@ -6,7 +6,8 @@ import datetime
 import hmac
 
 import requests
-from flask import abort, Response
+from flask import abort
+from werkzeug import Response
 from flask import redirect, url_for, request, flash, jsonify, current_app
 from flask_babel import gettext
 from flask_login import current_user

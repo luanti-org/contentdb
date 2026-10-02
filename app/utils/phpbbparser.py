@@ -8,9 +8,10 @@ import urllib
 import urllib.parse as urlparse
 import urllib.request
 from datetime import datetime
+from typing import Any
 from urllib.parse import urlencode
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, Tag
 
 
 def url_encode_non_ascii(b):
@@ -119,6 +120,18 @@ def get_profile(url, username):
 regex_id = re.compile(r"^.*t=([0-9]+).*$")
 
 
+def _find(el: Tag, *args: Any, **kwargs: Any) -> Tag:
+	res = el.find(*args, **kwargs)
+	assert isinstance(res, Tag), "Unexpected forum page layout"
+	return res
+
+
+def _match_topic_id(href: str) -> str:
+	m = regex_id.match(href)
+	assert m is not None, f"Unable to get topic id from {href}"
+	return m.group(1)
+
+
 def parse_forum_list_page(id, page, out, extra=None):
 	num_per_page = 30
 	start = page*num_per_page+1
@@ -129,21 +142,21 @@ def parse_forum_list_page(id, page, out, extra=None):
 	soup = BeautifulSoup(r, "html.parser")
 
 	for row in soup.find_all("li", class_="row"):
-		classes = row.get("class")
+		classes = row.get_attribute_list("class")
 		if "sticky" in classes or "announce" in classes or "global-announce" in classes:
 			continue
 
-		topic = row.find("dl")
+		topic = _find(row, "dl")
 
 		# Link info
-		link   = topic.find(class_="topictitle")
-		id	   = regex_id.match(link.get("href")).group(1)
+		link   = _find(topic, class_="topictitle")
+		id	   = _match_topic_id(str(link.get("href")))
 		title  = link.find(text=True)
 
 		# Date
-		left   = topic.find(class_="topic-poster")
-		date   = left.find("time").get_text()
-		date   = datetime.strptime(date, "%a %b %d, %Y %H:%M")
+		left   = _find(topic, class_="topic-poster")
+		date_text = _find(left, "time").get_text()
+		date   = datetime.strptime(date_text, "%a %b %d, %Y %H:%M")
 		links  = left.find_all("a")
 		if len(links) == 0:
 			continue
@@ -151,15 +164,15 @@ def parse_forum_list_page(id, page, out, extra=None):
 		author = links[-1].get_text().strip()
 
 		# Get counts
-		posts  = topic.find(class_="posts").find(text=True)
-		views  = topic.find(class_="views").find(text=True)
+		posts  = _find(topic, class_="posts").find(text=True)
+		views  = _find(topic, class_="views").find(text=True)
 
 		if id in out:
 			print("   - got {} again, title: {}".format(id, title), file=sys.stderr)
 			assert title == out[id]['title']
 			return False
 
-		row = {
+		entry: dict[str, Any] = {
 			"id"    : id,
 			"title" : title,
 			"author": author,
@@ -170,9 +183,9 @@ def parse_forum_list_page(id, page, out, extra=None):
 
 		if extra is not None:
 			for key, value in extra.items():
-				row[key] = value
+				entry[key] = value
 
-		out[id] = row
+		out[id] = entry
 
 	return True
 

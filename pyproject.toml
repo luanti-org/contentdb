@@ -70,7 +70,7 @@ dev = [
 [tool.mypy]
 python_version = "3.14"
 files = ["app"]
-check_untyped_defs = false
+check_untyped_defs = true
 
 # Libraries with no published stubs or py.typed marker
 [[tool.mypy.overrides]]
