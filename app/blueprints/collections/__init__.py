@@ -136,8 +136,8 @@ def create_edit(author=None, name=None):
 				form.package_ids.append_entry(item.package.get_id())
 				form.package_removed.append_entry("0")
 		else:
-			form.name = None
-			form.pinned = None
+			setattr(form, "name", None)
+			setattr(form, "pinned", None)
 
 	if form.validate_on_submit():
 		ret = handle_create_edit(collection, form, initial_packages, author)
@@ -148,7 +148,7 @@ def create_edit(author=None, name=None):
 			collection=collection, form=form)
 
 
-def handle_create_edit(collection: Collection, form: CollectionForm,
+def handle_create_edit(collection: typing.Optional[Collection], form: CollectionForm,
 		initial_packages: typing.List[Package], author: User):
 
 	severity = AuditSeverity.NORMAL if author == current_user else AuditSeverity.EDITOR
@@ -186,11 +186,11 @@ def handle_create_edit(collection: Collection, form: CollectionForm,
 		db.session.add(collection)
 
 		for package in initial_packages:
-			link = CollectionPackage()
-			link.package = package
-			link.collection = collection
-			link.order = collection.items.count()
-			db.session.add(link)
+			new_link = CollectionPackage()
+			new_link.package = package
+			new_link.collection = collection
+			new_link.order = collection.items.count()
+			db.session.add(new_link)
 
 		add_audit_log(severity, current_user,
 				f"Created collection {collection.author.username}/{collection.name}",
@@ -357,7 +357,7 @@ def package_toggle_favorite(package):
 @bp.route("/collections/<author>/<name>/clone/", methods=["POST"])
 @login_required
 def clone(author, name):
-	old_collection: typing.Optional[Collection] = Collection.query \
+	old_collection: Collection = Collection.query \
 		.filter(Collection.name == name, Collection.author.has(username=author)) \
 		.one_or_404()
 

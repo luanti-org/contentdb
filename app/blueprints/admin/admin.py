@@ -71,7 +71,7 @@ def send_bulk_notification():
 				"Sent bulk notification", url_for("admin.admin_page"), None, form.title.data)
 
 		users = User.query.filter(User.rank >= UserRank.NEW_MEMBER).all()
-		add_notification(users, get_system_user(), NotificationType.OTHER, form.title.data, form.url.data, None)
+		add_notification(users, get_system_user(), NotificationType.OTHER, form.title.data or "", form.url.data or "", None)
 		db.session.commit()
 
 		return redirect(url_for("admin.admin_page"))
@@ -85,19 +85,19 @@ def restore():
 	if request.method == "POST":
 		target = request.form["submit"]
 		if "Review" in target:
-			target = PackageState.READY_FOR_REVIEW
+			state = PackageState.READY_FOR_REVIEW
 		elif "Changes" in target:
-			target = PackageState.CHANGES_NEEDED
+			state = PackageState.CHANGES_NEEDED
 		else:
-			target = PackageState.WIP
+			state = PackageState.WIP
 
 		package = Package.query.get(request.form["package"])
 		if package is None:
 			flash("Unknown package", "danger")
 		else:
-			package.state = target
+			package.state = state
 
-			add_audit_log(AuditSeverity.EDITOR, current_user, f"Restored package to state {target.value}",
+			add_audit_log(AuditSeverity.EDITOR, current_user, f"Restored package to state {state.value}",
 						  package.get_url("packages.view"), package)
 
 			db.session.commit()

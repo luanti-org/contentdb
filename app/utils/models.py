@@ -42,16 +42,18 @@ def is_package_page(f):
 		if package is None:
 			package = get_package_by_info(author, name + "_game")
 			if package and package.type == PackageType.GAME:
-				args = dict(kwargs)
-				args["name"] = name + "_game"
-				return redirect(url_for(request.endpoint, **args))
+				redirect_args = dict(kwargs)
+				redirect_args["name"] = name + "_game"
+				assert request.endpoint is not None
+				return redirect(url_for(request.endpoint, **redirect_args))
 
 			alias = PackageAlias.query.filter_by(author=author, name=name).first()
 			if alias is not None:
-				args = dict(kwargs)
-				args["author"] = alias.package.author.username
-				args["name"] = alias.package.name
-				return redirect(url_for(request.endpoint, **args))
+				redirect_args = dict(kwargs)
+				redirect_args["author"] = alias.package.author.username
+				redirect_args["name"] = alias.package.name
+				assert request.endpoint is not None
+				return redirect(url_for(request.endpoint, **redirect_args))
 
 			abort(404)
 

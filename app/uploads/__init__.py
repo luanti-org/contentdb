@@ -6,7 +6,7 @@ import magic
 import os
 from werkzeug.datastructures import FileStorage
 
-from flask import redirect
+from flask import redirect, send_from_directory
 from flask_babel import lazy_gettext, LazyString
 from typing import Optional
 

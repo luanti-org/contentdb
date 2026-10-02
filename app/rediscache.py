@@ -25,7 +25,7 @@ def set_temp_key(key, v):
 
 
 def check_and_set_temp_key(key, v):
-	redis_client.setnx(key, v, ex=EXPIRY_TIME_S)
+	return redis_client.set(key, v, ex=EXPIRY_TIME_S, nx=True)
 
 
 def has_key(key):

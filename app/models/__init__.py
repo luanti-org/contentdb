@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 from flask_babel import LazyString
+from typing import Any
 from app import app
 from app.utils.misc import truncate_string
 
@@ -150,7 +151,7 @@ class ReportCategory(enum.Enum):
 
 	@classmethod
 	def choices(cls, with_none):
-		ret = [(choice, choice.title) for choice in cls]
+		ret: list[tuple[Any, str]] = [(choice, choice.title) for choice in cls]
 
 		if with_none:
 			ret.insert(0, (None, ""))

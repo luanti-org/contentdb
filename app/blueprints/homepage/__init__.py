@@ -121,16 +121,17 @@ def home():
 		.select_from(Tag).outerjoin(Tags).join(Package).filter(Package.state == PackageState.APPROVED)\
 		.group_by(Tag.id).order_by(db.asc(Tag.title)).all()
 
-	res = render_template("index.html", count=count, downloads=downloads, tags=tags, spotlight_pkgs=spotlight_pkgs,
+	html = render_template("index.html", count=count, downloads=downloads, tags=tags, spotlight_pkgs=spotlight_pkgs,
 			new=new, updated=updated, pop_mod=pop_mod, pop_txp=pop_txp, pop_gam=pop_gam, high_reviewed=high_reviewed,
 			reviews=reviews)
 
 	if not (flask.session or current_user.is_authenticated or request.headers.get("Authorization")):
-		res = make_response(res)
+		res = make_response(html)
 		res.cache_control.public = True
-		res.cache_control.private = False
+		res.cache_control.private = None
 		res.cache_control.max_age = 300
 		res.cache_control.stale_if_error = 6*60*60
 		res.cache_control.stale_while_revalidate = 30
+		return res
 
-	return res
+	return html

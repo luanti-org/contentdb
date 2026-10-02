@@ -37,9 +37,9 @@ def populate(session):
 			"Mobs and NPCs", "Tools", "Player effects",
 			"Environment", "Transport", "Maintenance", "Plants and farming",
 			"PvP", "PvE", "Survival", "Creative", "Puzzle", "Multiplayer", "Singleplayer"]:
-		row = Tag(tag)
-		tags[row.name] = row
-		session.add(row)
+		tag_row = Tag(tag)
+		tags[tag_row.name] = tag_row
+		session.add(tag_row)
 
 	licenses = {}
 	for license in ["GPLv2.1", "GPLv3", "LGPLv2.1", "LGPLv3", "AGPLv2.1", "AGPLv3",
@@ -400,7 +400,7 @@ Uses the CTF PvP Engine.
 
 	session.commit()
 
-	metas = {}
+	metas: dict[str, MetaPackage] = {}
 	for package in Package.query.filter_by(type=PackageType.MOD).all():
 		try:
 			meta = metas[package.name]

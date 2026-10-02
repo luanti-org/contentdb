@@ -383,8 +383,7 @@ class UserEmailVerification(Model):
 
 	@property
 	def is_expired(self):
-		delta = (datetime.datetime.now() - self.created_at)
-		delta: datetime.timedelta
+		delta: datetime.timedelta = datetime.datetime.now() - self.created_at
 		return delta.total_seconds() > 12 * 60 * 60
 
 

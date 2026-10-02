@@ -43,12 +43,12 @@ def create_edit_version(name=None):
 		if version is None:
 			version = LuantiRelease(form.name.data)
 			db.session.add(version)
-			flash("Created version " + form.name.data, "success")
+			flash("Created version " + version.name, "success")
 
 			add_audit_log(AuditSeverity.MODERATION, current_user, f"Created version {version.name}",
 						  url_for("admin.license_list"))
 		else:
-			flash("Updated version " + form.name.data, "success")
+			flash("Updated version " + (form.name.data or ""), "success")
 
 			add_audit_log(AuditSeverity.MODERATION, current_user, f"Edited version {version.name}",
 						  url_for("admin.version_list"))

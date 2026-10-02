@@ -10,7 +10,7 @@ from app.models import User, Package, Permission, PackageType
 bp = Blueprint("packages", __name__)
 
 
-def get_package_tabs(user: User, package: Package):
+def get_package_tabs(user: User, package: Package | None):
 	if package is None or not package.check_perm(user, Permission.EDIT_PACKAGE):
 		return []
 

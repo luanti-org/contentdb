@@ -37,11 +37,11 @@ def abs_url_samesite(path):
 
 
 def url_current(abs=False):
-	if request.args is None or request.view_args is None:
+	if request.args is None or request.view_args is None or request.endpoint is None:
 		return None
 
 	args = MultiDict(request.args)
-	dargs = dict(args.lists())
+	dargs: dict[str, typing.Any] = dict(args.lists())
 	dargs.update(request.view_args)
 	if abs:
 		return abs_url_for(request.endpoint, **dargs)
@@ -53,7 +53,7 @@ def url_clear_query():
 	if request.endpoint is None:
 		return None
 
-	dargs = dict()
+	dargs: dict[str, typing.Any] = dict()
 	if request.view_args:
 		dargs.update(request.view_args)
 
@@ -61,9 +61,10 @@ def url_clear_query():
 
 
 def url_set_anchor(anchor):
+	assert request.endpoint is not None
 	args = MultiDict(request.args)
-	dargs = dict(args.lists())
-	dargs.update(request.view_args)
+	dargs: dict[str, typing.Any] = dict(args.lists())
+	dargs.update(request.view_args or {})
 	return url_for(request.endpoint, **dargs) + "#" + anchor
 
 
@@ -95,7 +96,7 @@ def url_set_query(**kwargs):
 		else:
 			args.setlist(key, [ value ])
 
-	dargs = dict(args.lists())
+	dargs: dict[str, typing.Any] = dict(args.lists())
 	if request.view_args:
 		dargs.update(request.view_args)
 

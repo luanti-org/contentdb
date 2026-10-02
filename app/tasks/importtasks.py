@@ -586,7 +586,7 @@ def check_update_config_impl(package):
 
 @celery.task(bind=True, rate_limit="60/m")
 def check_update_config(self, package_id):
-	package: Package = Package.query.get(package_id)
+	package = Package.query.get(package_id)
 	if package is None:
 		raise TaskError("No such package!")
 	elif package.update_config is None:
@@ -624,8 +624,6 @@ def check_for_updates():
 		return
 
 	for update_config in PackageUpdateConfig.query.all():
-		update_config: PackageUpdateConfig
-
 		if not update_config.package.approved:
 			continue
 

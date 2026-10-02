@@ -3,6 +3,7 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 from unittest.mock import MagicMock, patch
+from typing import cast
 
 from app.domain import package_approval
 from app.models import Package, PackageType, ReleaseState
@@ -24,7 +25,7 @@ class MockPackageHelper:
 		self.package.releases.count.return_value = 0
 		self.package.releases.order_by.return_value.first.return_value = None
 		self.package.get_url.return_value = "hi"
-		self.package.screenshots.count.return_value = 0
+		cast(MagicMock, self.package.screenshots.count).return_value = 0
 
 	def add_release(self):
 		self.package.releases.filter.return_value.count.return_value = 1
@@ -39,12 +40,12 @@ class MockPackageHelper:
 		self.package.releases.order_by.return_value.first.return_value = latest_release
 
 	def add_screenshot(self):
-		self.package.screenshots.count.return_value = 1
+		cast(MagicMock, self.package.screenshots.count).return_value = 1
 
 	def add_missing_hard_deps(self):
 		mod_name = MagicMock()
 		mod_name.name = "missing"
-		self.package.get_missing_hard_dependencies_query.return_value.all.return_value = [mod_name]
+		cast(MagicMock, self.package.get_missing_hard_dependencies_query).return_value.all.return_value = [mod_name]
 
 	def set_no_game_support(self):
 		assert self.package.type != PackageType.GAME

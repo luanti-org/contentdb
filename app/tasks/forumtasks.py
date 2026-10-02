@@ -6,7 +6,7 @@ import json
 import re
 import sys
 import urllib.request
-from typing import Optional
+from typing import Any, Optional
 from urllib.parse import urljoin
 
 from sqlalchemy import or_
@@ -145,7 +145,7 @@ def get_links_from_mod_search():
 def import_topic_list():
 	links_by_id = get_links_from_mod_search()
 
-	info_by_id = {}
+	info_by_id: dict[str, dict[str, Any]] = {}
 	get_topics_from_forum(15, out=info_by_id, extra={'type': PackageType.GAME, 'wip': False})
 	get_topics_from_forum(50, out=info_by_id, extra={'type': PackageType.GAME, 'wip': True})
 	get_topics_from_forum(11, out=info_by_id, extra={'type': PackageType.MOD, 'wip': False})
@@ -153,7 +153,7 @@ def import_topic_list():
 	get_topics_from_forum(4, out=info_by_id, extra={'type': PackageType.TXP, 'wip': False})
 
 	# Caches
-	username_to_user = {}
+	username_to_user: dict[str, User] = {}
 	topics_by_id     = {}
 	for topic in ForumTopic.query.all():
 		if topic.topic_id in info_by_id:

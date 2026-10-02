@@ -13,11 +13,12 @@ from flask_login import login_required, current_user
 from flask_wtf import FlaskForm
 from jinja2.utils import markupsafe
 from sqlalchemy import func, or_, and_, select
-from sqlalchemy.orm import joinedload, subqueryload, Session
+from sqlalchemy.orm import joinedload, subqueryload
 from wtforms import SelectField, StringField, TextAreaField, IntegerField, SubmitField, BooleanField
 from wtforms.validators import InputRequired, Length, Regexp, DataRequired, Optional, URL, NumberRange, ValidationError
 from wtforms_sqlalchemy.fields import QuerySelectField, QuerySelectMultipleField
 
+from app import login_manager
 from app.domain.DomainError import DomainError
 from app.domain.packages import do_edit_package
 from app.querybuilder import QueryBuilder
@@ -28,7 +29,7 @@ from app.tasks.pkgtasks import check_package_on_submit
 from app.tasks.webhooktasks import post_discord_webhook
 
 from . import bp, get_package_tabs
-from app.models import Package, Tag, db, User, Tags, PackageState, Permission, PackageType, MetaPackage, ForumTopic, \
+from app.models import AnySession, Package, Tag, db, User, Tags, PackageState, Permission, PackageType, MetaPackage, ForumTopic, \
 	Dependency, Thread, UserRank, PackageReview, PackageDevState, ContentWarning, License, AuditSeverity, \
 	PackageScreenshot, NotificationType, AuditLogEntry, PackageAlias, PackageProvides, PackageGameSupport, \
 	PackageDailyStats, Collection, ReleaseState, PackageAIDisclosure, LuantiRelease, PackageRelease
@@ -50,7 +51,7 @@ def list_all():
 	title = qb.title
 
 	if qb.requires_login and not current_user.is_authenticated:
-		return current_app.login_manager.unauthorized()
+		return login_manager.unauthorized()
 
 	query = query.options(
 			joinedload(Package.license),
@@ -115,7 +116,7 @@ def user_redirect(author):
 	return redirect(url_for("users.profile", username=author))
 
 
-def get_latest_releases_per_version(session: Session, package_id: int):
+def get_latest_releases_per_version(session: AnySession, package_id: int):
 	ranked = (
 		select(
 			LuantiRelease.id,
@@ -399,7 +400,8 @@ def create_edit(author=None, name=None):
 			form.name.data = request.args.get("bname")
 			form.title.data = request.args.get("title")
 			form.repo.data = request.args.get("repo")
-			form.forums.data = request.args.get("forums")
+			forums = request.args.get("forums")
+			form.forums.data = int(forums) if forums and forums.isdigit() else None
 			form.license.data = None
 			form.media_license.data = None
 		else:
@@ -597,7 +599,7 @@ def edit_maintainers(package):
 		form.maintainers_str.data = ", ".join([ x.username for x in package.maintainers if x != package.author ])
 
 	if form.validate_on_submit():
-		usernames = [x.strip().lower() for x in form.maintainers_str.data.split(",")]
+		usernames = [x.strip().lower() for x in (form.maintainers_str.data or "").split(",")]
 		users = User.query.filter(func.lower(User.username).in_(usernames)).all()
 
 		thread = package.threads.filter_by(author=get_system_user()).first()
@@ -806,8 +808,8 @@ def game_support(package):
 			form.supported.data = ", ".join([x.game.name for x in manual_supported_games if x.supports])
 			form.unsupported.data = ", ".join([x.game.name for x in manual_supported_games if not x.supports])
 		else:
-			form.supported = None
-			form.unsupported = None
+			setattr(form, "supported", None)
+			setattr(form, "unsupported", None)
 
 	if form and form.validate_on_submit():
 		detect_update_needed = False
@@ -893,7 +895,6 @@ def stats_csv(package):
 	result = "Date, " + ", ".join(columns) + "\n"
 
 	for stat in stats:
-		stat: PackageDailyStats
 		result += stat.date.isoformat()
 		for i, key in enumerate(columns):
 			result += ", " + str(getattr(stat, key))

@@ -174,7 +174,7 @@ def user_editor_delete():
 	confirmed = request.form.get("confirm", None)
 	if confirmed:
 		for username in selected:
-			user: User = User.query.filter_by(username=username).first()
+			user = User.query.filter_by(username=username).first()
 			if user is None:
 				continue
 
