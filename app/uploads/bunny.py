@@ -46,7 +46,7 @@ def _download_file(upload_path: str) -> str:
 	)
 	response.raise_for_status()
 	with open(download_path, "wb") as f:
-		f.write(r.content)
+		f.write(response.content)
 	return download_path
 
 

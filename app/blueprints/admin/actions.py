@@ -362,7 +362,7 @@ def check_releases():
 
 	tasks = []
 	for release in releases:
-		tasks.append(check_zip_release.s(release.id, release.file_path))
+		tasks.append(check_zip_release.s(release.id,))
 
 	result = group(tasks).apply_async()
 
@@ -379,7 +379,7 @@ def reimport_packages():
 	for package in Package.query.filter(Package.state == PackageState.APPROVED).all():
 		release = package.releases.first()
 		if release:
-			tasks.append(check_zip_release.s(release.id, release.file_path))
+			tasks.append(check_zip_release.s(release.id,))
 
 	result = group(tasks).apply_async()
 

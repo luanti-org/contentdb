@@ -79,7 +79,7 @@ def do_create_zip_release(user: User, package: Package, name: str, title: Option
 		if not (len(commit_hash) == 40 and re.match(r"^[0-9a-f]+$", commit_hash)):
 			raise DomainError(400, lazy_gettext("Invalid commit hash; it must be a 40 character long base16 string"))
 
-	uploaded_url, uploaded_path = upload_file(file, "zip", "a zip file")
+	uploaded_url, _ = upload_file(file, "zip", "a zip file")
 
 	rel = PackageRelease()
 	rel.package = package
@@ -101,6 +101,6 @@ def do_create_zip_release(user: User, package: Package, name: str, title: Option
 
 	db.session.commit()
 
-	check_zip_release.apply_async((rel.id, uploaded_path), task_id=rel.task_id)
+	check_zip_release.apply_async((rel.id,), task_id=rel.task_id)
 
 	return rel

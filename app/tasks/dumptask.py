@@ -15,7 +15,7 @@ def create_database_dump():
 	date = datetime.datetime.utcnow().strftime("%Y-%m-%d")
 	with get_temp_dir() as tmp_dir:
 		tmp_path = os.path.join(tmp_dir, f"backup-{date}.zip")
-		with zipfile.ZipFile(dest_path, "w", zipfile.ZIP_DEFLATED) as zipf:
+		with zipfile.ZipFile(tmp_path, "w", zipfile.ZIP_DEFLATED) as zipf:
 			zipf.writestr("backup/index.json", json.dumps({ "created_at": datetime.datetime.utcnow().isoformat() }, indent=4))
 
 			users = User.query.filter(User.packages.any(state=PackageState.APPROVED)).all()

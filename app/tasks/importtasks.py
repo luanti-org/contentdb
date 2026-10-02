@@ -337,7 +337,7 @@ def _safe_extract_zip(temp_dir: str, archive_path: str) -> bool:
 
 
 @celery.task(bind=True)
-def check_zip_release(self, id, path):
+def check_zip_release(self, id):
 	release = PackageRelease.query.get(id)
 	if release is None:
 		raise TaskError("No such release!")
@@ -345,6 +345,7 @@ def check_zip_release(self, id, path):
 		raise TaskError("No package attached to release")
 
 	try:
+		path = release.file_path
 		with get_temp_dir() as temp:
 			if not _safe_extract_zip(temp, path):
 				release.state = ReleaseState.FAILED
@@ -436,6 +437,7 @@ def make_vcs_release(self, id, branch):
 				release.commit_hash = repo.head.object.hexsha
 				post_release_check_update(self, release, repo.working_tree_dir)
 
+				filename = random_string(10) + ".zip"
 				dest_path = os.path.join(tmp_dir, filename)
 
 				assert not os.path.isfile(dest_path)
