@@ -167,23 +167,23 @@ def test_packages_with_protocol_engine_ver(client):
 def test_packages_with_protocol_exact(client):
 	"""Start with a blank database."""
 
-	make_package("Bob", [("5.0", "5.0")])
+	make_package("Bob", [("5.5", "5.5")])
 	db.session.commit()
-
-	packages = parse_json(client.get("/api/packages/?protocol_version=20").data)
-	assert len(packages) == 0
-
-	packages = parse_json(client.get("/api/packages/?protocol_version=32").data)
-	assert len(packages) == 0
-
-	packages = parse_json(client.get("/api/packages/?protocol_version=37").data)
-	assert len(packages) == 1
-	assert packages[0]["name"] == "bob"
 
 	packages = parse_json(client.get("/api/packages/?protocol_version=38").data)
 	assert len(packages) == 0
 
+	packages = parse_json(client.get("/api/packages/?protocol_version=39").data)
+	assert len(packages) == 0
+
 	packages = parse_json(client.get("/api/packages/?protocol_version=40").data)
+	assert len(packages) == 1
+	assert packages[0]["name"] == "bob"
+
+	packages = parse_json(client.get("/api/packages/?protocol_version=41").data)
+	assert len(packages) == 0
+
+	packages = parse_json(client.get("/api/packages/?protocol_version=42").data)
 	assert len(packages) == 0
 
 	validate_package_list(packages, True)
@@ -192,13 +192,8 @@ def test_packages_with_protocol_exact(client):
 def test_packages_with_protocol_options(client):
 	"""Start with a blank database."""
 
-	rels = make_package("Bob", [(None, "5.0"), ("5.2", "5.2")])
+	rels = make_package("Bob", [(None, "5.1"), ("5.5", "5.5")])
 	db.session.commit()
-
-	packages = parse_json(client.get("/api/packages/?protocol_version=20").data)
-	assert len(packages) == 1
-	assert packages[0]["name"] == "bob"
-	assert packages[0]["release"] == rels[0]
 
 	packages = parse_json(client.get("/api/packages/?protocol_version=37").data)
 	assert len(packages) == 1
@@ -206,14 +201,19 @@ def test_packages_with_protocol_options(client):
 	assert packages[0]["release"] == rels[0]
 
 	packages = parse_json(client.get("/api/packages/?protocol_version=38").data)
-	assert len(packages) == 0
+	assert len(packages) == 1
+	assert packages[0]["name"] == "bob"
+	assert packages[0]["release"] == rels[0]
 
 	packages = parse_json(client.get("/api/packages/?protocol_version=39").data)
+	assert len(packages) == 0
+
+	packages = parse_json(client.get("/api/packages/?protocol_version=40").data)
 	assert len(packages) == 1
 	assert packages[0]["name"] == "bob"
 	assert packages[0]["release"] == rels[1]
 
-	packages = parse_json(client.get("/api/packages/?protocol_version=40").data)
+	packages = parse_json(client.get("/api/packages/?protocol_version=41").data)
 	assert len(packages) == 0
 
 	validate_package_list(packages, True)

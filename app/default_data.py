@@ -28,6 +28,9 @@ def populate(session):
 	session.add(LuantiRelease("5.1", 38))
 	session.add(LuantiRelease("5.2", 39))
 	session.add(LuantiRelease("5.3", 39))
+	session.add(LuantiRelease("5.4", 39))
+	session.add(LuantiRelease("5.5", 40))
+	session.add(LuantiRelease("5.6", 41))
 
 	tags = {}
 	for tag in ["Inventory", "Mapgen", "Building",
