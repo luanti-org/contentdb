@@ -111,7 +111,7 @@ def package_view_client(package: Package):
 
 	data = package.as_dict(current_app.config["BASE_URL"], version, lang=lang, screenshots_dict=True)
 
-	formspec_version = get_int_or_abort(request.args["formspec_version"])
+	formspec_version = get_int_or_abort(request.args.get("formspec_version"))
 	if formspec_version is None:
 		error(400, "formspec_version is required")
 	include_images = is_yes(request.args.get("include_images", "true"))
@@ -141,7 +141,7 @@ def package_view_client(package: Package):
 @cors_allowed
 @cached(300)
 def package_view_client_reviews(package: Package):
-	formspec_version = get_int_or_abort(request.args["formspec_version"])
+	formspec_version = get_int_or_abort(request.args.get("formspec_version"))
 	if formspec_version is None:
 		error(400, "formspec_version is required")
 	data = package_reviews_as_hypertext(package, formspec_version)
@@ -156,7 +156,7 @@ def package_view_client_reviews(package: Package):
 @cors_allowed
 @cached(300)
 def package_hypertext(package):
-	formspec_version = get_int_or_abort(request.args["formspec_version"])
+	formspec_version = get_int_or_abort(request.args.get("formspec_version"))
 	if formspec_version is None:
 		error(400, "formspec_version is required")
 	include_images = is_yes(request.args.get("include_images", "true"))
@@ -862,7 +862,7 @@ def json_schema():
 @csrf.exempt
 @cors_allowed
 def hypertext():
-	formspec_version = get_int_or_abort(request.args["formspec_version"])
+	formspec_version = get_int_or_abort(request.args.get("formspec_version"))
 	if formspec_version is None:
 		error(400, "formspec_version is required")
 	include_images = is_yes(request.args.get("include_images", "true"))
