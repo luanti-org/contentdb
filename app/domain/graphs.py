@@ -4,10 +4,10 @@
 
 import datetime
 from datetime import timedelta
-from typing import Optional
+from typing import Any, Optional
 
 from app.models import User, Package, PackageDailyStats, db, PackageState
-from sqlalchemy import func
+from sqlalchemy import func, Row
 
 
 def daterange(start_date, end_date):
@@ -101,7 +101,7 @@ def get_package_overview_for_user(user: Optional[User], start_date: datetime.dat
 		.order_by(db.asc(PackageDailyStats.package_id), db.asc(PackageDailyStats.date)) \
 		.all()
 
-	stats_by_package: dict[int, list[PackageDailyStats]] = {}
+	stats_by_package: dict[int, list[Row[Any]]] = {}
 	for stat in all_stats:
 		bucket = stats_by_package.get(stat.package_id, [])
 		stats_by_package[stat.package_id] = bucket
@@ -129,7 +129,7 @@ def get_package_overview_for_user(user: Optional[User], start_date: datetime.dat
 
 			stat = stats[i]
 			if stat.date == date:
-				row.append(stat.platform_minetest + stat.platform_other)
+				row.append(stat.downloads)
 				i += 1
 			elif stat.date > date:
 				row.append(0)
