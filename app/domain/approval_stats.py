@@ -8,6 +8,10 @@ from typing import Dict, Optional
 from sqlalchemy import or_
 
 from app.models import AuditLogEntry, db, PackageState
+from app.rediscache import get_json_key, set_json_key
+
+PUBLIC_APPROVAL_STATS_CACHE_KEY = "public_approval_stats"
+PUBLIC_APPROVAL_STATS_CACHE_EXPIRY_S = 24 * 60 * 60  # 1 day
 
 
 class PackageInfo:
@@ -137,3 +141,26 @@ def get_approval_statistics(start_date: Optional[datetime.datetime] = None, end_
 	).order_by(db.asc(AuditLogEntry.created_at)).all()
 
 	return _get_approval_statistics(entries, start_date, end_date)
+
+
+def _compute_public_approval_statistics() -> dict:
+	now = datetime.datetime.utcnow()
+	result = {}
+	for period_name, days in (("7d", 7), ("30d", 30)):
+		stats = get_approval_statistics(now - datetime.timedelta(days=days), now)
+		result[period_name] = {
+			"total_submitted": len(stats.packages_info),
+			"avg_turnaround_days": stats.avg_turnaround_time / (60 * 60 * 24),
+		}
+
+	return result
+
+
+def get_public_approval_statistics() -> dict:
+	cached = get_json_key(PUBLIC_APPROVAL_STATS_CACHE_KEY)
+	if cached is not None:
+		return cached
+
+	stats = _compute_public_approval_statistics()
+	set_json_key(PUBLIC_APPROVAL_STATS_CACHE_KEY, stats, PUBLIC_APPROVAL_STATS_CACHE_EXPIRY_S)
+	return stats
