@@ -13,6 +13,9 @@ celerybeat-schedule
 .idea
 *.mo
 !utils/ci/.env
+node_modules
+/cypress/videos
+/cypress/screenshots
 
 # Created by https://www.gitignore.io/api/linux,macos,python,windows
 

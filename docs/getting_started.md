@@ -8,6 +8,7 @@ This is not required, but having the dependencies installed will make your code 
 * Install UV
 * `uv sync`
 * `source .venv/bin/activate`
+* (Optional) Install Node.js 24+ and run `npm install`. This is only needed to run the e2e UI tests.
 
 ## Set up docker
 

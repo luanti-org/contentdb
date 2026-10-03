@@ -6,3 +6,5 @@ uploads
 env
 venv
 .venv
+node_modules
+cypress
