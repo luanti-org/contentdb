@@ -21,3 +21,35 @@ jobs:
       run: ./utils/tests_cov.sh
     - name: Stop Docker
       run: docker compose down
+
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Copy config
+      run: cp utils/ci/.env . && cp utils/ci/config.cfg .
+    - name: Build the Docker image
+      run: docker compose build
+    - name: Start Docker
+      run: docker compose up -d
+    - name: Run migrations
+      run: ./utils/run_migrations.sh
+    - name: Create test data
+      run: docker compose exec -T app python utils/setup.py -t
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 24
+    - name: Run Cypress
+      uses: cypress-io/github-action@v6
+      with:
+        browser: chrome
+        wait-on: http://localhost:5123
+    - name: Upload screenshots
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+    - name: Stop Docker
+      if: always()
+      run: docker compose down

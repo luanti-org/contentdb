@@ -30,6 +30,13 @@ See [Developer Intro](docs/dev_intro.md) for an overview of the code organisatio
 # Create new migration
 ./utils/create_migration.sh
 
+# Run e2e UI tests (needs Node.js, and CDB to be running)
+npm install
+npm run e2e
+
+# Open the Cypress test runner
+npm run e2e:open
+
 # Delete database
 docker compose down && sudo rm -rf data/db
 ```

@@ -1,0 +1,12 @@
+{
+	"name": "contentdb",
+	"private": true,
+	"license": "AGPL-3.0-or-later",
+	"scripts": {
+		"e2e": "cypress run",
+		"e2e:open": "cypress open"
+	},
+	"devDependencies": {
+		"cypress": "^16.1.1"
+	}
+}
