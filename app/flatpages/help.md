@@ -41,4 +41,3 @@ toc: False
 * [OAuth2 Applications](oauth/)
 * [Prometheus Metrics](metrics/)
 * [Daily ContentDB database dump](backups/)
-* [Approval Stats](/stats/approval/)
