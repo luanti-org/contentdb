@@ -11,7 +11,7 @@ from app.models import AuditLogEntry, db, PackageState
 from app.rediscache import get_json_key, set_json_key
 
 PUBLIC_APPROVAL_STATS_CACHE_KEY = "public_approval_stats"
-PUBLIC_APPROVAL_STATS_CACHE_EXPIRY_S = 24 * 60 * 60  # 1 day
+PUBLIC_APPROVAL_STATS_CACHE_EXPIRY_S = 25 * 60 * 60  # in seconds
 
 
 class PackageInfo:
@@ -134,20 +134,23 @@ def _get_approval_statistics(entries: list[AuditLogEntry], start_date: Optional[
 	return Result(editor_approvals, packages_info_2, avg_turnaround_time, max_turnaround_time)
 
 
-def get_approval_statistics(start_date: Optional[datetime.datetime] = None, end_date: Optional[datetime.datetime] = None) -> Result:
-	entries = AuditLogEntry.query.filter(AuditLogEntry.package).filter(or_(
+def _get_approval_entries() -> list[AuditLogEntry]:
+	return AuditLogEntry.query.filter(AuditLogEntry.package).filter(or_(
 		AuditLogEntry.title.like("Approved %"),
 		AuditLogEntry.title.like("Marked %"))
 	).order_by(db.asc(AuditLogEntry.created_at)).all()
 
-	return _get_approval_statistics(entries, start_date, end_date)
+
+def get_approval_statistics(start_date: Optional[datetime.datetime] = None, end_date: Optional[datetime.datetime] = None) -> Result:
+	return _get_approval_statistics(_get_approval_entries(), start_date, end_date)
 
 
 def _compute_public_approval_statistics() -> dict:
 	now = datetime.datetime.utcnow()
+	entries = _get_approval_entries()
 	result = {}
 	for period_name, days in (("7d", 7), ("30d", 30)):
-		stats = get_approval_statistics(now - datetime.timedelta(days=days), now)
+		stats = _get_approval_statistics(entries, now - datetime.timedelta(days=days), now)
 		result[period_name] = {
 			"total_submitted": len(stats.packages_info),
 			"avg_turnaround_days": stats.avg_turnaround_time / (60 * 60 * 24),
@@ -156,11 +159,10 @@ def _compute_public_approval_statistics() -> dict:
 	return result
 
 
-def get_public_approval_statistics() -> dict:
-	cached = get_json_key(PUBLIC_APPROVAL_STATS_CACHE_KEY)
-	if cached is not None:
-		return cached
+def get_public_approval_statistics() -> Optional[dict]:
+	return get_json_key(PUBLIC_APPROVAL_STATS_CACHE_KEY)
 
+
+def update_public_approval_statistics():
 	stats = _compute_public_approval_statistics()
 	set_json_key(PUBLIC_APPROVAL_STATS_CACHE_KEY, stats, PUBLIC_APPROVAL_STATS_CACHE_EXPIRY_S)
-	return stats
