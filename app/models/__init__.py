@@ -39,7 +39,9 @@ class APIToken(Model):
 		if self.package and self.package != package:
 			return False
 
-		return package.author == self.owner
+		# Maintainers may release and edit the package on the website, so their tokens may too.
+		# Each endpoint still checks the owner's permission for the action with check_perm.
+		return package.author == self.owner or self.owner in package.maintainers
 
 
 class AuditSeverity(enum.Enum):
