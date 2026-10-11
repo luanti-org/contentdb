@@ -15,6 +15,7 @@ import urllib3
 from app import app
 from sqlalchemy import or_, and_
 
+from app.domain.approval_stats import update_public_approval_statistics
 from app.markdown import get_links, render_markdown
 from app.models import db, Package, PackageState, PackageRelease, PackageScreenshot, AuditLogEntry
 from app.tasks import celery, TaskError
@@ -30,6 +31,11 @@ def update_package_scores():
 		package.recalculate_score()
 
 	db.session.commit()
+
+
+@celery.task()
+def update_public_approval_stats():
+	update_public_approval_statistics()
 
 
 def desc_contains(desc: str, search_str: str):

@@ -7,6 +7,7 @@
 {% block content %}
 <h1>{{ self.title() }}</h1>
 
+{% if stats %}
 {% for period_name, period_label in [("7d", "Last 7 days"), ("30d", "Last 30 days")] %}
 <h2>{{ period_label }}</h2>
 
@@ -38,6 +39,11 @@
 	</div>
 </div>
 {% endfor %}
+{% else %}
+<p class="alert alert-secondary">
+	Not available yet
+</p>
+{% endif %}
 
 <p class="text-muted">
 	Turnaround: how long after clicking "Ready for Review" does the package receive a response. A package can be

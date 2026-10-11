@@ -101,6 +101,10 @@ CELERYBEAT_SCHEDULE = {
 		'task': 'app.tasks.dumptask.create_database_dump',
 		'schedule': crontab(minute=0, hour=5),  # 0510
 	},
+	'update_public_approval_stats': {
+		'task': 'app.tasks.pkgtasks.update_public_approval_stats',
+		'schedule': crontab(minute=10, hour=4),  # 0410
+	},
 }
 celery.conf.beat_schedule = CELERYBEAT_SCHEDULE
 
