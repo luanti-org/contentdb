@@ -7,6 +7,12 @@ from unittest.mock import MagicMock
 from app.models import APIToken
 
 
+def make_user(is_banned=False):
+	user = MagicMock()
+	user.is_banned = is_banned
+	return user
+
+
 def make_package(author, maintainers=None):
 	package = MagicMock()
 	package.author = author
@@ -27,26 +33,26 @@ def can_operate(token, package) -> bool:
 
 
 def test_author_can_operate():
-	author = MagicMock()
+	author = make_user()
 	package = make_package(author)
 
 	assert can_operate(make_token(author), package)
 	assert can_operate(make_token(author, package=package), package)
 
 
-def test_maintainer_can_operate():
-	author = MagicMock()
-	maintainer = MagicMock()
+def test_maintainer_needs_scoped_token():
+	author = make_user()
+	maintainer = make_user()
 	package = make_package(author, [maintainer])
 
-	assert can_operate(make_token(maintainer), package)
+	assert not can_operate(make_token(maintainer), package)
 	assert can_operate(make_token(maintainer, package=package), package)
 
 
 def test_other_user_cannot_operate():
-	author = MagicMock()
-	maintainer = MagicMock()
-	other = MagicMock()
+	author = make_user()
+	maintainer = make_user()
+	other = make_user()
 	package = make_package(author, [maintainer])
 
 	assert not can_operate(make_token(other), package)
@@ -54,8 +60,8 @@ def test_other_user_cannot_operate():
 
 
 def test_token_scoped_to_other_package():
-	author = MagicMock()
-	maintainer = MagicMock()
+	author = make_user()
+	maintainer = make_user()
 	package = make_package(author, [maintainer])
 	other_package = make_package(author, [maintainer])
 
@@ -63,9 +69,19 @@ def test_token_scoped_to_other_package():
 	assert not can_operate(make_token(maintainer, package=other_package), package)
 
 
+def test_banned_user_cannot_operate():
+	author = make_user(is_banned=True)
+	maintainer = make_user(is_banned=True)
+	package = make_package(author, [maintainer])
+
+	assert not can_operate(make_token(author), package)
+	assert not can_operate(make_token(author, package=package), package)
+	assert not can_operate(make_token(maintainer, package=package), package)
+
+
 def test_oauth_client_token_cannot_operate():
-	author = MagicMock()
-	maintainer = MagicMock()
+	author = make_user()
+	maintainer = make_user()
 	package = make_package(author, [maintainer])
 
 	assert not can_operate(make_token(author, client=MagicMock()), package)
