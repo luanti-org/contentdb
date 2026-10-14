@@ -268,6 +268,9 @@ def post_release_check_update(self, release: PackageRelease, path):
 			errors = game_support_update(db.session, package, old_provided_names)
 			if len(errors) != 0:
 				raise TaskError("Error validating game support:\n\n" + "\n".join([f"- {x}" for x in errors]))
+	elif package.type == PackageType.GAME:
+		# The mod names a game provides decide which games depending packages support
+		game_support_update(db.session, package, old_provided_names)
 
 	return tree
 
