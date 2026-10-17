@@ -378,7 +378,8 @@ class QueryBuilder:
 			else:
 				abort(400)
 
-			query = query.order_by(to_order)
+			# Break ties (e.g. equal scores) by id, so that pages of a paginated list don't overlap or skip packages
+			query = query.order_by(to_order, db.asc(Package.id))
 
 		return query
 
