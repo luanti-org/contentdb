@@ -917,8 +917,13 @@ class Package(Model):
 
 		return states
 
-	def as_score_dict(self):
-		reviews = self.get_review_summary()
+	def as_score_dict(self, reviews: list[int] | None = None):
+		"""
+		:param reviews: [positive, neutral, negative] review counts, if already known
+			(see get_review_summaries), otherwise they're queried.
+		"""
+		if reviews is None:
+			reviews = self.get_review_summary()
 		return {
 			"author": self.author.username,
 			"name": self.name,
@@ -945,26 +950,34 @@ class Package(Model):
 		elif self.type == PackageType.GAME:
 			return "game.conf"
 
-	def get_review_summary(self):
+	def get_review_summary(self) -> list[int]:
+		return Package.get_review_summaries([self.id])[self.id]
+
+	@staticmethod
+	def get_review_summaries(package_ids: list[int]) -> dict[int, list[int]]:
+		"""
+		[positive, neutral, negative] review counts for each package, in one query.
+		"""
 		from app.models import PackageReview
-		rows = (db.session.query(PackageReview.rating, func.count(PackageReview.id))
+		summaries = {id_: [0, 0, 0] for id_ in package_ids}
+		if not package_ids:
+			return summaries
+
+		rows = (db.session.query(PackageReview.package_id, PackageReview.rating, func.count(PackageReview.id))
 			.select_from(PackageReview)
-			.where(PackageReview.package_id == self.id)
-			.group_by(PackageReview.rating)
+			.where(PackageReview.package_id.in_(package_ids))
+			.group_by(PackageReview.package_id, PackageReview.rating)
 			.all())
 
-		negative = 0
-		neutral = 0
-		positive = 0
-		for rating, count in rows:
+		for package_id, rating, count in rows:
 			if rating > 3:
-				positive += count
+				summaries[package_id][0] += count
 			elif rating == 3:
-				neutral += count
+				summaries[package_id][1] += count
 			else:
-				negative += count
+				summaries[package_id][2] += count
 
-		return [positive, neutral, negative]
+		return summaries
 
 	def get_review_descriptor(self):
 		[positive, neutral, negative] = self.get_review_summary()
