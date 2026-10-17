@@ -4,7 +4,7 @@
 
 
 from app.default_data import populate_test_data
-from app.models import db, Package, PackageState
+from app.models import db, Package, PackageState, Dependency, MetaPackage
 from .utils import parse_json, validate_package_list
 from .utils import client # noqa
 
@@ -63,3 +63,18 @@ def test_dependencies(client):
 	assert not deps[0]["is_optional"]
 	assert len(deps[0]["packages"]) == 1
 	assert deps[0]["packages"][0] == "rubenwardy/food"
+
+
+def test_dependencies_only_hard(client):
+	populate_test_data(db.session)
+	food_sweet = Package.query.filter_by(name="food_sweet").one()
+	db.session.add(Dependency(food_sweet, meta=MetaPackage("sfinv"), optional=True))
+	db.session.commit()
+
+	def dep_names(query: str) -> list[str]:
+		deps = parse_json(client.get(f"/api/packages/rubenwardy/food_sweet/dependencies/{query}").data)
+		return sorted(x["name"] for x in deps["rubenwardy/food_sweet"])
+
+	assert dep_names("") == ["food", "sfinv"]
+	assert dep_names("?only_hard") == ["food"]
+	assert dep_names("?only_hard=1") == ["food"]
