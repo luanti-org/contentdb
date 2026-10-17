@@ -3,7 +3,9 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 import pytest, json
-from sqlalchemy import text
+from typing import Callable
+
+from sqlalchemy import event, text
 
 from app import app
 from app.models import db, User
@@ -22,6 +24,21 @@ def recreate_db():
 	clear_data(db.session)
 	populate(db.session)
 	db.session.commit()
+
+
+def count_queries(fn: Callable[[], object]) -> int:
+	count = 0
+
+	def on_execute(*_args, **_kwargs):
+		nonlocal count
+		count += 1
+
+	event.listen(db.engine, "before_cursor_execute", on_execute)
+	try:
+		fn()
+	finally:
+		event.remove(db.engine, "before_cursor_execute", on_execute)
+	return count
 
 
 def parse_json(b):
