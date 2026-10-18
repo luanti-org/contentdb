@@ -138,7 +138,10 @@ def check_for_ban():
 				current_user.rank = models.UserRank.MEMBER
 			models.db.session.commit()
 		elif current_user.is_banned:
-			if current_user.ban:
+			if current_user.ban and current_user.ban.expires_at:
+				flash(gettext("Banned until %(date)s:", date=current_user.ban.expires_at.strftime("%Y-%m-%d")) +
+					  " " + current_user.ban.message, "danger")
+			elif current_user.ban:
 				flash(gettext("Banned:") + " " + current_user.ban.message, "danger")
 			else:
 				flash(gettext("You have been banned."), "danger")
