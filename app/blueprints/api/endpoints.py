@@ -222,7 +222,8 @@ def resolve_package_deps(out: dict[str, list[dict[str, Any]]], package, only_har
 @cors_allowed
 @cached(300)
 def package_dependencies(package):
-	only_hard = request.args.get("only_hard")
+	# Documented as "if present": a bare `?only_hard` has an empty, falsy value
+	only_hard = "only_hard" in request.args
 
 	out: dict[str, list[dict[str, Any]]] = {}
 	resolve_package_deps(out, package, only_hard)
