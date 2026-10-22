@@ -21,6 +21,9 @@ from app.utils.files import get_temp_dir
 
 GIT_ENV = {
 	"GIT_TERMINAL_PROMPT": "0",
+	"GIT_CONFIG_COUNT": "1",
+	"GIT_CONFIG_KEY_0": "core.symlinks",
+	"GIT_CONFIG_VALUE_0": "false",
 }
 
 
@@ -51,6 +54,7 @@ def clone_repo(url_str, ref=None, recursive=False):
 			assert ref != ""
 
 			repo = git.Repo.init(git_dir)
+			repo.git.update_environment(**GIT_ENV)
 			origin = repo.create_remote("origin", url=git_url)
 			assert origin.exists()
 			origin.fetch()

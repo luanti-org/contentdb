@@ -3,9 +3,12 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 import os
+
+import git
 import pytest
 
 from app.tasks import TaskError
+from app.utils import git as git_utils
 from app.utils.git import get_latest_tag, get_latest_commit, clone_repo, get_commit_list
 
 test_repo = "https://codeberg.org/rubenwardy/testmod"
@@ -86,3 +89,69 @@ def test_git_clone_private_repo():
 	with pytest.raises(TaskError):
 		with clone_repo(test_private_repo, recursive=True) as repo:
 			assert False
+
+
+@pytest.fixture
+def symlink_repo(tmp_path, monkeypatch):
+	"""
+	Creates a local repo containing a symlink to a file outside the repo, and a
+	submodule which also contains such a symlink.
+	"""
+	secret = tmp_path / "secret.txt"
+	secret.write_text("secret")
+
+	def make_repo(name: str) -> git.Repo:
+		repo = git.Repo.init(tmp_path / name)
+		with repo.config_writer() as cw:
+			cw.set_value("user", "name", "Test")
+			cw.set_value("user", "email", "test@example.com")
+		(tmp_path / name / "init.lua").write_text("")
+		os.symlink(secret, tmp_path / name / "README.md")
+		repo.index.add(["init.lua", "README.md"])
+		repo.index.commit("Initial commit")
+		return repo
+
+	make_repo("sub")
+	main = make_repo("main")
+	main.git.update_environment(GIT_CONFIG_COUNT="1",
+			GIT_CONFIG_KEY_0="protocol.file.allow", GIT_CONFIG_VALUE_0="always")
+	main.git.submodule("add", (tmp_path / "sub").as_uri(), "sub")
+	main.index.commit("Add submodule")
+
+	# Allow cloning from local paths, including submodules
+	monkeypatch.setattr(git_utils, "generate_git_url", lambda url: url)
+	monkeypatch.setitem(git_utils.GIT_ENV, "GIT_CONFIG_COUNT", "2")
+	monkeypatch.setitem(git_utils.GIT_ENV, "GIT_CONFIG_KEY_1", "protocol.file.allow")
+	monkeypatch.setitem(git_utils.GIT_ENV, "GIT_CONFIG_VALUE_1", "always")
+
+	return (tmp_path / "main").as_uri(), main.head.commit.hexsha
+
+
+def assert_no_symlinks(working_tree_dir: str):
+	for path in [os.path.join(working_tree_dir, "README.md"), os.path.join(working_tree_dir, "sub", "README.md")]:
+		assert os.path.lexists(path)
+		assert not os.path.islink(path)
+		with open(path, "r") as f:
+			assert f.read() != "secret"
+
+
+def test_symlink_repo_fixture_has_symlinks(symlink_repo, tmp_path):
+	# Control: check that a normal clone does create symlinks, so the tests below are meaningful
+	url, _ = symlink_repo
+	repo = git.Repo.clone_from(url, tmp_path / "control", multi_options=["--recurse-submodules"],
+			env={"GIT_CONFIG_COUNT": "1", "GIT_CONFIG_KEY_0": "protocol.file.allow", "GIT_CONFIG_VALUE_0": "always"})
+	assert os.path.islink(os.path.join(repo.working_tree_dir, "README.md"))
+	assert os.path.islink(os.path.join(repo.working_tree_dir, "sub", "README.md"))
+
+
+def test_git_clone_head_no_symlinks(symlink_repo):
+	url, _ = symlink_repo
+	with clone_repo(url, recursive=True) as repo:
+		assert_no_symlinks(repo.working_tree_dir)
+
+
+def test_git_clone_ref_no_symlinks(symlink_repo):
+	url, commit = symlink_repo
+	with clone_repo(url, commit, recursive=True) as repo:
+		assert repo.head.commit.hexsha == commit
+		assert_no_symlinks(repo.working_tree_dir)
