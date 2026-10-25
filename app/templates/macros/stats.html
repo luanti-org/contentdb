@@ -124,14 +124,16 @@
 		</p>
 		<canvas id="chart-views" class="chart"></canvas>
 
+		{% if config.MONTORING_URL %}
 		<h3 style="margin-top: 6em;">{{ _("Need more stats?") }}</h3>
 		<p>
 			{{ _("Check out the ContentDB Grafana dashboard for CDB-wide stats") }}
 		</p>
 		<p>
-			<a href="https://monitor.rubenwardy.com/d/3ELzFy3Wz/contentdb" class="btn btn-primary">
+			<a href="{{ config.MONTORING_URL }}" class="btn btn-primary">
 				{{ _("ContentDB Grafana") }}
 			</a>
 		</p>
+		{% endif %}
 	</div>
 {% endmacro %}
