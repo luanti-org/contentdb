@@ -38,6 +38,9 @@ from app.utils.image import get_image_size
 from app.uploads import copy_to_uploads
 
 
+GIT_RELEASES_ENABLED = False
+
+
 @celery.task()
 def get_meta(urlstr, author):
 	with clone_repo(urlstr, recursive=True) as repo:
@@ -435,6 +438,9 @@ def make_vcs_release(self, id, branch):
 		raise TaskError("No package attached to release")
 
 	try:
+		if not GIT_RELEASES_ENABLED:
+			raise TaskError("Creating releases from Git is temporarily disabled")
+
 		with get_temp_dir() as tmp_dir:
 			with clone_repo(release.package.repo, ref=branch, recursive=True) as repo:
 				release.commit_hash = repo.head.object.hexsha
@@ -543,7 +549,7 @@ def check_update_config_impl(package):
 	if package.releases.filter_by(commit_hash=commit).count() > 0:
 		return
 
-	if config.make_release:
+	if config.make_release and GIT_RELEASES_ENABLED:
 		rel = PackageRelease()
 		rel.package = package
 		rel.name = tag if tag else datetime.datetime.utcnow().strftime("%Y-%m-%d")

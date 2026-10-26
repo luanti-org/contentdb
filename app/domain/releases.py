@@ -12,7 +12,7 @@ from flask_babel import lazy_gettext
 from app.domain.DomainError import DomainError
 from app.uploads import upload_file
 from app.models import PackageRelease, db, Permission, User, Package, LuantiRelease, AuditSeverity
-from app.tasks.importtasks import make_vcs_release, check_zip_release
+from app.tasks.importtasks import make_vcs_release, check_zip_release, GIT_RELEASES_ENABLED
 from app.utils.models import add_audit_log
 from app.utils.misc import nonempty_or_none, normalize_line_endings
 
@@ -39,6 +39,9 @@ def check_can_create_release(user: User, package: Package, name: str, title: str
 
 def do_create_vcs_release(user: User, package: Package, name: str, title: Optional[str], release_notes: Optional[str], ref: Optional[str],
 		min_v: LuantiRelease | None = None, max_v: LuantiRelease | None = None, reason: str | None = None):
+	if not GIT_RELEASES_ENABLED:
+		raise DomainError(503, lazy_gettext("Creating releases from Git is temporarily disabled, please upload a .zip file instead"))
+
 	check_can_create_release(user, package, name, title or name)
 
 	rel = PackageRelease()

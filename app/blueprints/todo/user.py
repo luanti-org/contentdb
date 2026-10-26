@@ -14,7 +14,7 @@ from wtforms.validators import InputRequired, NoneOf
 
 from app.models import User, Package, PackageState, PackageScreenshot, PackageUpdateConfig, ForumTopic, db, \
 	PackageRelease, Permission, NotificationType, AuditSeverity, UserRank, PackageType, PackageAIDisclosure
-from app.tasks.importtasks import make_vcs_release
+from app.tasks.importtasks import make_vcs_release, GIT_RELEASES_ENABLED
 from app.utils.models import add_notification, add_audit_log
 from . import bp
 
@@ -94,6 +94,10 @@ def apply_all_updates(username):
 
 	if current_user != user and not current_user.rank.at_least(UserRank.EDITOR):
 		abort(403)
+
+	if not GIT_RELEASES_ENABLED:
+		flash(gettext("Creating releases from Git is temporarily disabled"), "danger")
+		return redirect(url_for("todo.view_user", username=username))
 
 	outdated_packages = user.maintained_packages \
 		.filter(Package.state != PackageState.DELETED,
