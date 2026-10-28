@@ -128,6 +128,7 @@ def symlink_repo(tmp_path, monkeypatch):
 def allow_local_clones(monkeypatch):
 	# Allow cloning from local paths, including submodules
 	monkeypatch.setattr(git_utils, "generate_git_url", lambda url: url)
+	monkeypatch.setattr(git_utils, "_check_submodule_url", lambda path, url: None)
 	monkeypatch.setitem(git_utils.GIT_ENV, "GIT_ALLOW_PROTOCOL", "file")
 
 
@@ -218,10 +219,19 @@ def assert_not_pwned(*dirs):
 
 def test_submodule_repo_fixture(submodule_repo, tmp_path):
 	# Control: check that a recursive clone fetches both submodules, so the tests below are meaningful
-	with clone_repo(submodule_repo, recursive=True) as repo:
-		for path in GAME_SUBMODULE_PATHS:
-			assert os.path.isfile(os.path.join(repo.working_tree_dir, path, "init.lua"))
-		assert_not_pwned(repo.working_tree_dir, tmp_path)
+	control_dir = tmp_path / "control"
+	git.Repo.clone_from(submodule_repo, control_dir, multi_options=["--recurse-submodules"],
+			env={"GIT_CONFIG_COUNT": "1", "GIT_CONFIG_KEY_0": "protocol.file.allow", "GIT_CONFIG_VALUE_0": "always"})
+	for path in GAME_SUBMODULE_PATHS:
+		assert os.path.isfile(control_dir / path / "init.lua")
+	assert_not_pwned(tmp_path)
+
+
+def test_git_clone_recursive_rejects_evil_submodule(submodule_repo, tmp_path):
+	with pytest.raises(TaskError, match="path is not allowed"):
+		with clone_repo(submodule_repo, recursive=True):
+			pass
+	assert_not_pwned(tmp_path)
 
 
 def test_git_clone_skips_submodules_by_default(submodule_repo, tmp_path):
