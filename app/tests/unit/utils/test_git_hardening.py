@@ -326,7 +326,7 @@ def make_repo(path: Path) -> git.Repo:
 
 
 def add_submodule(repo: git.Repo, sub: git.Repo, path: str):
-	repo.git.submodule("add", Path(sub.working_tree_dir).as_uri(), path)
+	repo.git.submodule("add", Path(sub.working_dir).as_uri(), path)
 	repo.index.commit("Add " + path)
 
 
@@ -446,9 +446,9 @@ def test_clone_rejects_payload_before_fetching(local_repo, allow_file_protocol, 
 
 @pytest.mark.parametrize("ref", [None, "master"])
 def test_clone_rejects_nested_payload(tmp_path, allow_file_protocol, monkeypatch, ref):
-	leaf = make_repo(tmp_path / "leaf")
+	make_repo(tmp_path / "leaf")
 	mid = make_repo(tmp_path / "mid")
-	set_gitmodule(mid, "evil", "a;touch evil", Path(leaf.working_tree_dir).as_uri())
+	set_gitmodule(mid, "evil", "a;touch evil", (tmp_path / "leaf").as_uri())
 	add_gitlink(mid, "a;touch evil")
 	top = make_repo(tmp_path / "top")
 	add_submodule(top, mid, "mid")
