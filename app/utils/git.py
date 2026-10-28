@@ -10,10 +10,13 @@ import git
 import gitdb
 import os
 import shutil
+import signal
+import subprocess
 import tempfile
 from urllib.parse import urlsplit
 
 from git import GitCommandError
+from git.util import remove_password_if_present
 
 from app.tasks import TaskError
 from app.utils.misc import random_string, normalize_line_endings
@@ -25,6 +28,8 @@ GIT_ENV = {
 	"GIT_CONFIG_GLOBAL": "/dev/null",
 	# Overrides any protocol.*.allow config, and is inherited by submodule clones
 	"GIT_ALLOW_PROTOCOL": "http:https",
+	"GIT_HTTP_LOW_SPEED_LIMIT": "1000",
+	"GIT_HTTP_LOW_SPEED_TIME": "30",
 	"GIT_CONFIG_COUNT": "1",
 	"GIT_CONFIG_KEY_0": "core.symlinks",
 	"GIT_CONFIG_VALUE_0": "false",
@@ -32,7 +37,30 @@ GIT_ENV = {
 
 # Seconds before a git network operation is killed
 GIT_TIMEOUT = 15
-GIT_FETCH_TIMEOUT = 120
+GIT_FETCH_TIMEOUT = 300
+
+
+# GitPython's kill_after_timeout misses git's helper processes, so kill the whole group instead
+def _run_git(args: List[str], timeout: int, cwd: Optional[str] = None) -> str:
+	command = remove_password_if_present(["git"] + args)
+	env = {**os.environ, **GIT_ENV, "LANGUAGE": "C", "LC_ALL": "C"}
+	proc = subprocess.Popen(["git"] + args, cwd=cwd, env=env, stdin=subprocess.DEVNULL,
+			stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, start_new_session=True)
+
+	try:
+		stdout, stderr = proc.communicate(timeout=timeout)
+	except subprocess.TimeoutExpired:
+		raise GitCommandError(command, "timeout", f"Timed out after {timeout} seconds") from None
+	finally:
+		if proc.returncode is None:
+			with contextlib.suppress(ProcessLookupError):
+				os.killpg(proc.pid, signal.SIGKILL)
+			proc.communicate()
+
+	if proc.returncode != 0:
+		raise GitCommandError(command, proc.returncode, stderr)
+
+	return stdout
 
 
 def generate_git_url(urlstr: str) -> str:
@@ -56,8 +84,10 @@ def clone_repo(url_str, ref=None, recursive=False):
 		print("Cloning from " + git_url)
 
 		if ref is None:
-			repo = git.Repo.clone_from(git_url, git_dir,
-					progress=None, env=GIT_ENV, depth=1, recursive=recursive, kill_after_timeout=GIT_TIMEOUT)
+			_run_git(["clone", "--depth=1"] + (["--recurse-submodules"] if recursive else []) + ["--", git_url, git_dir],
+					GIT_FETCH_TIMEOUT)
+			repo = git.Repo(git_dir)
+			repo.git.update_environment(**GIT_ENV)
 		else:
 			assert ref != ""
 
@@ -65,10 +95,10 @@ def clone_repo(url_str, ref=None, recursive=False):
 			repo.git.update_environment(**GIT_ENV)
 			origin = repo.create_remote("origin", url=git_url)
 			assert origin.exists()
-			origin.fetch(kill_after_timeout=GIT_FETCH_TIMEOUT)
+			_run_git(["fetch", "origin"], GIT_FETCH_TIMEOUT, cwd=git_dir)
 			repo.git.checkout("--end-of-options", ref, "--")
 
-			repo.git.submodule('update', '--init', kill_after_timeout=GIT_FETCH_TIMEOUT)
+			_run_git(["submodule", "update", "--init"], GIT_FETCH_TIMEOUT, cwd=git_dir)
 
 		yield repo
 		return
@@ -96,11 +126,8 @@ def get_latest_commit(git_url, ref_name=None):
 	else:
 		ref_name = "HEAD"
 
-	g = git.cmd.Git()
-	g.update_environment(**GIT_ENV)
-
 	remote_refs = {}
-	for ref in str(g.ls_remote(git_url, kill_after_timeout=GIT_TIMEOUT)).split('\n'):
+	for ref in _run_git(["ls-remote", "--", git_url], GIT_TIMEOUT).splitlines():
 		hash_ref_list = ref.split('\t')
 		remote_refs[hash_ref_list[1]] = hash_ref_list[0]
 
@@ -115,7 +142,7 @@ def get_latest_tag(git_url) -> Tuple[Optional[str], Optional[str], Optional[str]
 		repo = git.Repo.init(git_dir)
 		repo.git.update_environment(**GIT_ENV)
 		origin = repo.create_remote("origin", url=git_url)
-		origin.fetch(kill_after_timeout=GIT_FETCH_TIMEOUT)
+		_run_git(["fetch", "origin"], GIT_FETCH_TIMEOUT, cwd=git_dir)
 
 		refs = repo.git.for_each_ref(sort="creatordate", format="%(objectname)\t%(refname)").split("\n")
 		refs = [ref for ref in refs if "refs/tags/" in ref]
@@ -147,7 +174,7 @@ def get_commit_list(git_url: str, start: str, end: str) -> List[str]:
 		repo = git.Repo.init(git_dir)
 		repo.git.update_environment(**GIT_ENV)
 		origin = repo.create_remote("origin", url=git_url)
-		origin.fetch(kill_after_timeout=GIT_FETCH_TIMEOUT)
+		_run_git(["fetch", "origin"], GIT_FETCH_TIMEOUT, cwd=git_dir)
 
 		commits = repo.iter_commits(f"{start}..{end}")
 		ret = [str(commit.summary) for commit in commits]
