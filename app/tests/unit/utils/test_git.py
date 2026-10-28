@@ -128,9 +128,7 @@ def symlink_repo(tmp_path, monkeypatch):
 def allow_local_clones(monkeypatch):
 	# Allow cloning from local paths, including submodules
 	monkeypatch.setattr(git_utils, "generate_git_url", lambda url: url)
-	monkeypatch.setitem(git_utils.GIT_ENV, "GIT_CONFIG_COUNT", "2")
-	monkeypatch.setitem(git_utils.GIT_ENV, "GIT_CONFIG_KEY_1", "protocol.file.allow")
-	monkeypatch.setitem(git_utils.GIT_ENV, "GIT_CONFIG_VALUE_1", "always")
+	monkeypatch.setitem(git_utils.GIT_ENV, "GIT_ALLOW_PROTOCOL", "file")
 
 
 def assert_no_symlinks(working_tree_dir: str):

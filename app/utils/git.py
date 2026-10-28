@@ -21,10 +21,18 @@ from app.utils.files import get_temp_dir
 
 GIT_ENV = {
 	"GIT_TERMINAL_PROMPT": "0",
+	"GIT_CONFIG_NOSYSTEM": "1",
+	"GIT_CONFIG_GLOBAL": "/dev/null",
+	# Overrides any protocol.*.allow config, and is inherited by submodule clones
+	"GIT_ALLOW_PROTOCOL": "http:https",
 	"GIT_CONFIG_COUNT": "1",
 	"GIT_CONFIG_KEY_0": "core.symlinks",
 	"GIT_CONFIG_VALUE_0": "false",
 }
+
+# Seconds before a git network operation is killed
+GIT_TIMEOUT = 15
+GIT_FETCH_TIMEOUT = 120
 
 
 def generate_git_url(urlstr: str) -> str:
@@ -49,7 +57,7 @@ def clone_repo(url_str, ref=None, recursive=False):
 
 		if ref is None:
 			repo = git.Repo.clone_from(git_url, git_dir,
-					progress=None, env=GIT_ENV, depth=1, recursive=recursive, kill_after_timeout=15)
+					progress=None, env=GIT_ENV, depth=1, recursive=recursive, kill_after_timeout=GIT_TIMEOUT)
 		else:
 			assert ref != ""
 
@@ -57,13 +65,12 @@ def clone_repo(url_str, ref=None, recursive=False):
 			repo.git.update_environment(**GIT_ENV)
 			origin = repo.create_remote("origin", url=git_url)
 			assert origin.exists()
-			origin.fetch()
-			repo.git.checkout(ref)
+			origin.fetch(kill_after_timeout=GIT_FETCH_TIMEOUT)
+			repo.git.checkout("--end-of-options", ref, "--")
 
-			repo.git.submodule('update', '--init')
+			repo.git.submodule('update', '--init', kill_after_timeout=GIT_FETCH_TIMEOUT)
 
 		yield repo
-		shutil.rmtree(git_dir)
 		return
 
 	except GitCommandError as e:
@@ -71,7 +78,10 @@ def clone_repo(url_str, ref=None, recursive=False):
 		err = e.stderr
 
 	except gitdb.exc.BadName as e:
-		err = "Unable to find the reference " + (ref or "?") + "\n" + e.stderr
+		err = "Unable to find the reference " + (ref or "?") + "\n" + str(e)
+
+	finally:
+		shutil.rmtree(git_dir, ignore_errors=True)
 
 	raise TaskError(err.replace("stderr: ", "") \
 			.replace("Cloning into '" + git_dir + "'...", "") \
@@ -87,9 +97,10 @@ def get_latest_commit(git_url, ref_name=None):
 		ref_name = "HEAD"
 
 	g = git.cmd.Git()
+	g.update_environment(**GIT_ENV)
 
 	remote_refs = {}
-	for ref in str(g.ls_remote(git_url)).split('\n'):
+	for ref in str(g.ls_remote(git_url, kill_after_timeout=GIT_TIMEOUT)).split('\n'):
 		hash_ref_list = ref.split('\t')
 		remote_refs[hash_ref_list[1]] = hash_ref_list[0]
 
@@ -98,10 +109,13 @@ def get_latest_commit(git_url, ref_name=None):
 
 # @returns (tag_name, commit_hash, tag_message)
 def get_latest_tag(git_url) -> Tuple[Optional[str], Optional[str], Optional[str]]:
+	git_url = generate_git_url(git_url)
+
 	with get_temp_dir() as git_dir:
 		repo = git.Repo.init(git_dir)
+		repo.git.update_environment(**GIT_ENV)
 		origin = repo.create_remote("origin", url=git_url)
-		origin.fetch()
+		origin.fetch(kill_after_timeout=GIT_FETCH_TIMEOUT)
 
 		refs = repo.git.for_each_ref(sort="creatordate", format="%(objectname)\t%(refname)").split("\n")
 		refs = [ref for ref in refs if "refs/tags/" in ref]
@@ -127,10 +141,13 @@ def get_latest_tag(git_url) -> Tuple[Optional[str], Optional[str], Optional[str]
 
 
 def get_commit_list(git_url: str, start: str, end: str) -> List[str]:
+	git_url = generate_git_url(git_url)
+
 	with (get_temp_dir() as git_dir):
 		repo = git.Repo.init(git_dir)
+		repo.git.update_environment(**GIT_ENV)
 		origin = repo.create_remote("origin", url=git_url)
-		origin.fetch()
+		origin.fetch(kill_after_timeout=GIT_FETCH_TIMEOUT)
 
 		commits = repo.iter_commits(f"{start}..{end}")
 		ret = [str(commit.summary) for commit in commits]
