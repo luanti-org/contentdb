@@ -2,8 +2,14 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2026 Zenon Seth <Zenon.Seth@gmail.com>
 
+import contextlib
 import os
+import socket
+import subprocess
 import tempfile
+import threading
+import time
+from typing import List
 
 import git
 import pytest
@@ -178,9 +184,101 @@ def test_get_temp_dir_cleans_up_when_body_raises(temp_root):
 	assert os.listdir(temp_root) == []
 
 
+@pytest.fixture
+def stall_server():
+	"""
+	Accepts connections and never replies. Returns its http:// URL.
+	"""
+	server = socket.socket()
+	server.bind(("127.0.0.1", 0))
+	server.listen(50)
+	conns = []
+
+	def accept():
+		with contextlib.suppress(OSError):
+			while True:
+				conns.append(server.accept()[0])
+
+	threading.Thread(target=accept, daemon=True).start()
+	yield f"http://127.0.0.1:{server.getsockname()[1]}/repo"
+
+	server.close()
+	for conn in conns:
+		conn.close()
+
+
+@pytest.fixture
+def short_timeouts(monkeypatch):
+	monkeypatch.setattr(git_utils, "GIT_TIMEOUT", 2)
+	monkeypatch.setattr(git_utils, "GIT_FETCH_TIMEOUT", 2)
+	monkeypatch.delitem(git_utils.GIT_ENV, "GIT_HTTP_LOW_SPEED_LIMIT")
+	monkeypatch.delitem(git_utils.GIT_ENV, "GIT_HTTP_LOW_SPEED_TIME")
+
+
+def processes_using(url: str) -> List[str]:
+	ret = []
+	for pid in filter(str.isdigit, os.listdir("/proc")):
+		with contextlib.suppress(OSError):
+			with open(f"/proc/{pid}/cmdline", "rb") as f:
+				cmdline = f.read().decode(errors="replace")
+			if url in cmdline:
+				ret.append(cmdline.replace("\0", " "))
+	return ret
+
+
+def assert_times_out(func, url: str):
+	start = time.monotonic()
+	with pytest.raises((TaskError, git.GitCommandError), match="Timed out after 2 seconds"):
+		func()
+	assert time.monotonic() - start < 15
+	assert processes_using(url) == []
+
+
+def test_stalled_server_times_out(stall_server, short_timeouts, temp_root, monkeypatch):
+	monkeypatch.setattr(git_utils, "generate_git_url", lambda url: url)
+
+	def clone(ref=None):
+		with clone_repo(stall_server, ref):
+			pass
+
+	assert_times_out(lambda: get_latest_commit(stall_server), stall_server)
+	assert_times_out(lambda: get_latest_tag(stall_server), stall_server)
+	assert_times_out(lambda: get_commit_list(stall_server, "a", "b"), stall_server)
+	assert_times_out(clone, stall_server)
+	assert_times_out(lambda: clone("master"), stall_server)
+	assert os.listdir(temp_root) == []
+
+
+def test_stalled_submodule_times_out(local_repo, stall_server, short_timeouts, tmp_path, monkeypatch):
+	url, _, _ = local_repo
+	monkeypatch.setitem(git_utils.GIT_ENV, "GIT_ALLOW_PROTOCOL", "file:http")
+
+	repo = git.Repo(tmp_path / "origin")
+	(tmp_path / "origin" / ".gitmodules").write_text(f'[submodule "sub"]\n\tpath = sub\n\turl = {stall_server}\n')
+	repo.git.update_index("--add", "--cacheinfo", f"160000,{repo.head.commit.hexsha},sub")
+	repo.index.add([".gitmodules"])
+	repo.index.commit("Add submodule")
+
+	def clone(ref=None):
+		with clone_repo(url, ref, recursive=True):
+			pass
+
+	assert_times_out(clone, stall_server)
+	assert_times_out(lambda: clone("master"), stall_server)
+
+
+def test_low_speed_limit_is_used(stall_server, monkeypatch):
+	monkeypatch.setattr(git_utils, "generate_git_url", lambda url: url)
+	monkeypatch.setitem(git_utils.GIT_ENV, "GIT_HTTP_LOW_SPEED_TIME", "1")
+
+	with pytest.raises(git.GitCommandError, match="too slow"):
+		get_latest_commit(stall_server)
+
+
 def test_git_never_uses_shell(local_repo, allow_file_protocol, monkeypatch):
 	url, first, second = local_repo
 	real_popen = git.cmd.safer_popen
+	real_subprocess_popen = subprocess.Popen
 	commands = []
 
 	def checked_popen(*args, **kwargs):
@@ -188,7 +286,13 @@ def test_git_never_uses_shell(local_repo, allow_file_protocol, monkeypatch):
 		commands.append(args[0])
 		return real_popen(*args, **kwargs)
 
+	def checked_subprocess_popen(*args, **kwargs):
+		assert not kwargs.get("shell")
+		commands.append(args[0])
+		return real_subprocess_popen(*args, **kwargs)
+
 	monkeypatch.setattr(git.cmd, "safer_popen", checked_popen)
+	monkeypatch.setattr(subprocess, "Popen", checked_subprocess_popen)
 
 	with clone_repo(url):
 		pass
