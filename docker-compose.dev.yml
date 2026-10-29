@@ -5,11 +5,12 @@
 services:
   app:
     volumes:
-      # Copied into the container by utils/reload.sh for hot reloading
-      - "./app:/source/app"
-      - "./utils:/source/utils"
-      - "./migrations:/source/migrations"
+      # For hot reloading during development
+      - "./app:/home/cdb/app"
+      - "./utils:/home/cdb/utils"
+      - "./migrations:/home/cdb/migrations"
 
   worker:
     volumes:
+      # For hot reloading during development
       - "./app:/home/cdb/app"

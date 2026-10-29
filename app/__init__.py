@@ -4,6 +4,7 @@
 
 import datetime
 import os
+import tempfile
 import redis
 import flask
 
@@ -107,7 +108,7 @@ login_manager.login_view = "users.login"
 
 
 from .sass import init_app as sass
-sass(app)
+sass(app, cache_dir=os.path.join(tempfile.gettempdir(), "contentdb-sass"))
 
 
 from . import models, template_filters

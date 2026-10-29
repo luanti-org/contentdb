@@ -2,7 +2,7 @@
 
 #
 # Call from a docker host to rebuild and update running instances of CDB.
-#    This is for production use. See reload.sh for debug mode hot/live reloading.
+#    This is for production use. In debug mode, code changes are hot reloaded (see docker-compose.dev.yml).
 #
 
 set -e

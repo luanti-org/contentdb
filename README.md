@@ -15,9 +15,6 @@ See [Developer Intro](docs/dev_intro.md) for an overview of the code organisatio
 ## How-tos
 
 ```sh
-# Hot/live reload (only works with FLASK_DEBUG=1)
-./utils/reload.sh
-
 # Cold update a running version of CDB with minimal downtime (production)
 ./utils/update.sh
 

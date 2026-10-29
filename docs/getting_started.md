@@ -70,10 +70,7 @@ In the future, starting CDB is as simple as:
 
 	docker compose up --build
 
-To hot/live update CDB whilst it is running, use:
-
-	./utils/reload.sh
-
-This will only work with python code and templates, it won't update tasks or config.
+With `FLASK_DEBUG=1` and `docker-compose.dev.yml` enabled, changes to python code and templates
+are hot reloaded. Restart the worker to update tasks, and restart CDB to update config.
 
 Now consider reading the [Developer Introduction](dev_intro.md).
