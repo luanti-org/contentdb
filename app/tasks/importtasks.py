@@ -27,8 +27,7 @@ from app.utils.files import get_temp_dir
 from app.utils.misc import random_string, truncate_string
 from app.utils.models import post_bot_message, add_system_notification, add_system_audit_log, \
 	get_games_from_list, add_audit_log
-from app.utils.git import clone_repo, get_latest_tag, get_latest_commit, get_temp_dir, get_release_notes, \
-	remove_submodule_dirs
+from app.utils.git import clone_repo, get_latest_tag, get_latest_commit, get_temp_dir, get_release_notes
 from .luanticheck import build_tree, LuantiCheckError, ContentType, PackageTreeNode
 from .webhooktasks import post_discord_webhook
 from app import app
@@ -45,9 +44,8 @@ GIT_RELEASES_ENABLED = False
 @celery.task()
 def get_meta(urlstr, author):
 	with clone_repo(urlstr) as repo:
-		remove_submodule_dirs(repo)
 		try:
-			tree = build_tree(repo.working_tree_dir, author=author, repo=urlstr)
+			tree = build_tree(repo.working_tree_dir, author=author, repo=urlstr, include_children=False)
 		except LuantiCheckError as err:
 			raise TaskError(str(err))
 

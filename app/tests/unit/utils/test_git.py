@@ -11,7 +11,7 @@ import pytest
 from app.tasks import TaskError
 from app.tasks.importtasks import get_meta
 from app.utils import git as git_utils
-from app.utils.git import get_latest_tag, get_latest_commit, clone_repo, get_commit_list, remove_submodule_dirs
+from app.utils.git import get_latest_tag, get_latest_commit, clone_repo, get_commit_list
 
 test_repo = "https://codeberg.org/rubenwardy/testmod"
 test_private_repo = "https://github.com/luanti-org/discussions"
@@ -164,15 +164,21 @@ def test_git_clone_ref_no_symlinks(symlink_repo):
 		assert_no_symlinks(repo.working_tree_dir)
 
 
-EVIL_SUBMODULE_PATH = "mods/evil$(touch pwned)`touch pwned`"
+EVIL_SUBMODULE_NAME = "evil$(touch pwned)`touch pwned`"
+GAME_SUBMODULE_PATHS = ["mods/foo", "mods/" + EVIL_SUBMODULE_NAME]
 
 
 @pytest.fixture
-def submodule_game_repo(tmp_path, monkeypatch):
+def submodule_repo(tmp_path, monkeypatch, request):
 	"""
-	Creates a local game repo whose mods are submodules, one of them with a
-	path that runs a command if it ever reaches a shell.
+	Creates a local game (or modpack, if parametrized with "modpack") repo whose
+	mods are submodules, one of them with a path that runs a command if it ever
+	reaches a shell.
 	"""
+	is_game = getattr(request, "param", "game") == "game"
+	conf_file = "game.conf" if is_game else "modpack.conf"
+	mods_dir = "mods/" if is_game else ""
+
 	def init_repo(name: str) -> git.Repo:
 		repo = git.Repo.init(tmp_path / name)
 		with repo.config_writer() as cw:
@@ -187,20 +193,23 @@ def submodule_game_repo(tmp_path, monkeypatch):
 	sub_sha = sub.head.commit.hexsha
 	sub_url = (tmp_path / "sub").as_uri()
 
-	game = init_repo("game")
-	(tmp_path / "game" / "game.conf").write_text("title = Test Game\n")
-	(tmp_path / "game" / ".gitmodules").write_text(
-			f"[submodule \"foo\"]\n\tpath = mods/foo\n\turl = {sub_url}\n"
-			f"[submodule \"evil\"]\n\tpath = {EVIL_SUBMODULE_PATH}\n\turl = {sub_url}\n")
-	game.git.add("game.conf", ".gitmodules")
-	for path in ["mods/foo", EVIL_SUBMODULE_PATH]:
-		game.git.update_index("--add", "--cacheinfo", f"160000,{sub_sha},{path}")
-	game.git.commit("-m", "Initial commit")
+	foo_path = mods_dir + "foo"
+	evil_path = mods_dir + EVIL_SUBMODULE_NAME
+
+	main = init_repo("main")
+	(tmp_path / "main" / conf_file).write_text("title = Test\n")
+	(tmp_path / "main" / ".gitmodules").write_text(
+			f"[submodule \"foo\"]\n\tpath = {foo_path}\n\turl = {sub_url}\n"
+			f"[submodule \"evil\"]\n\tpath = {evil_path}\n\turl = {sub_url}\n")
+	main.git.add(conf_file, ".gitmodules")
+	for path in [foo_path, evil_path]:
+		main.git.update_index("--add", "--cacheinfo", f"160000,{sub_sha},{path}")
+	main.git.commit("-m", "Initial commit")
 
 	allow_local_clones(monkeypatch)
 	monkeypatch.chdir(tmp_path)
 
-	return (tmp_path / "game").as_uri()
+	return (tmp_path / "main").as_uri()
 
 
 def assert_not_pwned(*dirs):
@@ -209,17 +218,17 @@ def assert_not_pwned(*dirs):
 			assert "pwned" not in files
 
 
-def test_submodule_game_repo_fixture(submodule_game_repo, tmp_path):
+def test_submodule_repo_fixture(submodule_repo, tmp_path):
 	# Control: check that a recursive clone fetches both submodules, so the tests below are meaningful
-	with clone_repo(submodule_game_repo, recursive=True) as repo:
-		assert os.path.isfile(os.path.join(repo.working_tree_dir, "mods", "foo", "init.lua"))
-		assert os.path.isfile(os.path.join(repo.working_tree_dir, EVIL_SUBMODULE_PATH, "init.lua"))
+	with clone_repo(submodule_repo, recursive=True) as repo:
+		for path in GAME_SUBMODULE_PATHS:
+			assert os.path.isfile(os.path.join(repo.working_tree_dir, path, "init.lua"))
 		assert_not_pwned(repo.working_tree_dir, tmp_path)
 
 
-def test_git_clone_skips_submodules_by_default(submodule_game_repo, tmp_path):
-	with clone_repo(submodule_game_repo) as repo:
-		for path in ["mods/foo", EVIL_SUBMODULE_PATH]:
+def test_git_clone_skips_submodules_by_default(submodule_repo, tmp_path):
+	with clone_repo(submodule_repo) as repo:
+		for path in GAME_SUBMODULE_PATHS:
 			path = os.path.join(repo.working_tree_dir, path)
 			assert os.path.isdir(path)
 			assert os.listdir(path) == []
@@ -227,25 +236,13 @@ def test_git_clone_skips_submodules_by_default(submodule_game_repo, tmp_path):
 		assert_not_pwned(repo.working_tree_dir, tmp_path)
 
 
-def test_remove_submodule_dirs(submodule_game_repo, tmp_path):
-	with clone_repo(submodule_game_repo) as repo:
-		remove_submodule_dirs(repo)
-		assert os.listdir(os.path.join(repo.working_tree_dir, "mods")) == []
-		assert os.path.isfile(os.path.join(repo.working_tree_dir, "game.conf"))
-		assert_not_pwned(repo.working_tree_dir, tmp_path)
-
-
-def test_remove_submodule_dirs_without_submodules(submodule_game_repo, tmp_path):
-	with clone_repo((tmp_path / "sub").as_uri()) as repo:
-		remove_submodule_dirs(repo)
-		assert sorted(os.listdir(repo.working_tree_dir)) == [".git", "init.lua"]
-
-
-def test_get_meta_game_with_submodule_mods(submodule_game_repo, tmp_path):
+@pytest.mark.parametrize("submodule_repo, expected_type", [("game", "GAME"), ("modpack", "MODPACK")],
+		indirect=["submodule_repo"])
+def test_get_meta_with_submodule_mods(submodule_repo, expected_type, tmp_path):
 	# Any attempt to fetch a submodule will now fail
 	shutil.rmtree(tmp_path / "sub")
 
-	result = get_meta(submodule_game_repo, "test")
-	assert result["type"] == "GAME"
-	assert result["title"] == "Test Game"
+	result = get_meta(submodule_repo, "test")
+	assert result["type"] == expected_type
+	assert result["title"] == "Test"
 	assert_not_pwned(tmp_path)

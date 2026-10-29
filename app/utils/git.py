@@ -78,17 +78,6 @@ def clone_repo(url_str, ref=None, recursive=False):
 			.strip())
 
 
-# Removes the empty directories left by submodules that weren't cloned
-def remove_submodule_dirs(repo: git.Repo):
-	working_tree_dir = repo.working_tree_dir
-	assert working_tree_dir is not None
-
-	for entry in repo.git.ls_files("-z", "--stage").split("\0"):
-		if entry.startswith("160000 "):
-			path = entry.split("\t", 1)[1]
-			os.rmdir(os.path.join(working_tree_dir, path))
-
-
 def get_latest_commit(git_url, ref_name=None):
 	git_url = generate_git_url(git_url)
 

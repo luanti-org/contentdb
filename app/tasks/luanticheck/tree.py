@@ -84,7 +84,7 @@ class PackageTreeNode:
 	def __init__(self, base_dir: str, relative: str,
 			author: Optional[str] = None,
 			repo: Optional[str] = None, name: Optional[str] = None,
-			strict: bool = True):
+			strict: bool = True, include_children: bool = True):
 		self.baseDir = base_dir
 		self.relative = relative
 		self.author = author
@@ -103,7 +103,8 @@ class PackageTreeNode:
 		if self.type == ContentType.GAME:
 			if not os.path.isdir(os.path.join(base_dir, "mods")):
 				raise LuantiCheckError("Game at {} does not have a mods/ folder".format(self.relative))
-			self._add_children_from_mod_dir("mods")
+			if include_children:
+				self._add_children_from_mod_dir("mods")
 		elif self.type == ContentType.MOD:
 			if self.name and not basenamePattern.match(self.name):
 				raise LuantiCheckError(f"Invalid base name for mod {self.name} at {self.relative}, names must only contain a-z0-9_.")
@@ -112,7 +113,7 @@ class PackageTreeNode:
 				raise LuantiCheckError(f"Forbidden mod name '{self.name}' used at {self.relative}")
 
 			self._check_dir_casing(["textures", "media", "sounds", "models", "locale"])
-		elif self.type == ContentType.MODPACK:
+		elif self.type == ContentType.MODPACK and include_children:
 			self._add_children_from_mod_dir(None)
 
 	def find_license_file(self) -> Optional[str]:
