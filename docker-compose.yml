@@ -28,9 +28,6 @@ services:
       - "./config.cfg:/run/config/config.cfg:ro"
       - "$UPLOADS_DIR:/var/cdb/uploads"
       - "./data/logs:/var/cdb/logs"
-      - "./app:/source/app"
-      - "./utils:/source/utils"
-      - "./migrations:/source/migrations"
     depends_on:
       - db
       - redis
@@ -44,7 +41,6 @@ services:
     volumes:
       - "./config.cfg:/run/config/config.cfg:ro"
       - "$UPLOADS_DIR:/var/cdb/uploads"
-      - "./app:/home/cdb/app"
     depends_on:
       - redis
 

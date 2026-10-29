@@ -1,0 +1,15 @@
+# Enable this by adding to your .env:
+#
+#     COMPOSE_FILE=docker-compose.yml:docker-compose.dev.yml
+
+services:
+  app:
+    volumes:
+      # Copied into the container by utils/reload.sh for hot reloading
+      - "./app:/source/app"
+      - "./utils:/source/utils"
+      - "./migrations:/source/migrations"
+
+  worker:
+    volumes:
+      - "./app:/home/cdb/app"

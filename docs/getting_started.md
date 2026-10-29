@@ -40,6 +40,10 @@ Docker is the recommended way to develop and deploy ContentDB.
 		POSTGRES_DB=contentdb
 		FLASK_DEBUG=1
 		UPLOADS_DIR=./data/uploads
+		COMPOSE_FILE=docker-compose.yml:docker-compose.dev.yml
+
+	`COMPOSE_FILE` enables `docker-compose.dev.yml`, which mounts the source code for hot reloading.
+	Leave it out in production.
 
 6. Start docker images:
 
