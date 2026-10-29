@@ -12,7 +12,8 @@ WORKDIR /home/cdb
 
 ENV UV_PYTHON_DOWNLOADS=never \
     UV_PYTHON=python3 \
-    UV_PROJECT_ENVIRONMENT=/home/cdb/.venv
+    UV_PROJECT_ENVIRONMENT=/home/cdb/.venv \
+    UV_COMPILE_BYTECODE=1
 
 COPY pyproject.toml uv.lock ./
 RUN uv sync --locked --no-install-project
@@ -32,18 +33,22 @@ RUN addgroup --gid 5123 cdb && \
 
 RUN apk add --no-cache postgresql-libs git bash unzip libmagic libstdc++
 
-RUN mkdir /var/cdb && chown cdb:cdb /var/cdb
+# Writable locations
+RUN mkdir -p /var/cdb/thumbnails /var/cdb/beat && chown -R cdb:cdb /var/cdb
 
 WORKDIR /home/cdb
 
 ENV PATH=/home/cdb/.venv/bin:$PATH \
     FLASK_CONFIG=/run/config/config.cfg
 
-COPY --from=builder --chown=cdb:cdb /home/cdb/.venv .venv
+COPY --from=builder /home/cdb/.venv .venv
 
-COPY --chown=cdb:cdb utils utils
-COPY --chown=cdb:cdb migrations migrations
-COPY --chown=cdb:cdb app app
-COPY --from=builder --chown=cdb:cdb /home/cdb/translations translations
+COPY utils utils
+COPY migrations migrations
+COPY app app
+COPY --from=builder /home/cdb/translations translations
+
+# Python can't write __pycache__ at runtime
+RUN python -m compileall -q app migrations utils
 
 USER cdb
