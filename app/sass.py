@@ -53,13 +53,18 @@ def init_app(app, input_dir='scss', dest='static', force=False, cache_dir="publi
 		scss_file = "%s/%s.scss" % (input_dir, filepath)
 		cache_file = "%s/%s.css" % (cache_dir, filepath)
 
-		# Source file exists, and needs regenerating
-		if os.path.isfile(scss_file) and (force or not os.path.isfile(cache_file) or
-					os.path.getmtime(scss_file) > os.path.getmtime(cache_file)):
-			_convert(input_dir, scss_file, cache_file)
-			app.logger.debug('Compiled %s into %s' % (scss_file, cache_file))
+		if os.path.isfile(scss_file):
+			if force or not os.path.isfile(cache_file) or \
+					os.path.getmtime(scss_file) > os.path.getmtime(cache_file):
+				_convert(input_dir, scss_file, cache_file)
+				app.logger.debug('Compiled %s into %s' % (scss_file, cache_file))
 
-		res = send_from_directory(cache_dir, filepath + ".css")
+			res = send_from_directory(cache_dir, filepath + ".css")
+		else:
+			# Not generated from SCSS, such as CSS from libraries
+			res = send_from_directory(app.static_folder, filepath + ".css")
+
+
 		res.headers["Cache-Control"] = "max-age=604800"  # 1 week
 		return res
 
