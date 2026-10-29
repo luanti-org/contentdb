@@ -26,7 +26,7 @@ services:
     ports:
       - "127.0.0.1:5123:5123"
     tmpfs:
-      - /tmp
+      - /tmp:size=1g
     volumes:
       - "./config.cfg:/run/config/config.cfg:ro"
       - "$UPLOADS_DIR:/var/cdb/uploads"
@@ -43,11 +43,11 @@ services:
     read_only: true
     env_file:
       - .env
+    tmpfs:
+      - /tmp:size=2g
     volumes:
       - "./config.cfg:/run/config/config.cfg:ro"
       - "$UPLOADS_DIR:/var/cdb/uploads"
-      # Disk-backed rather than tmpfs, as Git clones can be large
-      - "worker-tmp:/tmp"
     depends_on:
       - redis
 
@@ -59,7 +59,7 @@ services:
     env_file:
       - .env
     tmpfs:
-      - /tmp
+      - /tmp:size=64m
     volumes:
       - "./config.cfg:/run/config/config.cfg:ro"
       - "beat:/var/cdb/beat"
@@ -78,5 +78,4 @@ services:
 
 volumes:
   thumbnails:
-  worker-tmp:
   beat:
