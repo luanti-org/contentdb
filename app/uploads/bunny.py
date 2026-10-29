@@ -8,6 +8,7 @@ import tempfile
 
 from app import app
 import shutil
+from app.utils.files import prune_dir
 from app.utils.misc import random_string
 from typing import Optional
 
@@ -17,6 +18,9 @@ storage_name = app.config["UPLOAD_BUNNY_STORAGE"]
 access_key = app.config["UPLOAD_BUNNY_ACCESS_KEY"]
 cache_dir_path = os.path.join(tempfile.gettempdir(), "contentdb-uploads")
 os.makedirs(cache_dir_path, exist_ok=True)
+
+# Cached files that haven't been used for this long are deleted when a new file is cached
+CACHE_MAX_AGE = 24 * 60 * 60
 
 
 def _upload_file(filepath: str) -> str:
@@ -37,6 +41,7 @@ def _upload_file(filepath: str) -> str:
 
 
 def _download_file(upload_path: str) -> str:
+	prune_dir(cache_dir_path, CACHE_MAX_AGE)
 	download_path = os.path.join(cache_dir_path, os.path.basename(upload_path))
 	url = f"https://storage.bunnycdn.com/{storage_name}/{upload_path}"
 	response = requests.get(
@@ -46,8 +51,17 @@ def _download_file(upload_path: str) -> str:
 		}
 	)
 	response.raise_for_status()
-	with open(download_path, "wb") as f:
-		f.write(response.content)
+
+	# Write to a temporary name first so other processes never see a partial file
+	partial_path = f"{download_path}.{random_string(10)}.partial"
+	try:
+		with open(partial_path, "wb") as f:
+			f.write(response.content)
+		os.replace(partial_path, download_path)
+	finally:
+		if os.path.exists(partial_path):
+			os.remove(partial_path)
+
 	return download_path
 
 
@@ -63,6 +77,7 @@ def _delete_file(upload_path: str):
 
 
 def backend_upload_file(file, file_type: str, ext: str, length: int=10) -> str:
+	prune_dir(cache_dir_path, CACHE_MAX_AGE)
 	filename = f"{random_string(length)}.{ext}"
 	file_path = os.path.join(cache_dir_path, filename)
 	file.save(file_path)
@@ -70,6 +85,7 @@ def backend_upload_file(file, file_type: str, ext: str, length: int=10) -> str:
 
 
 def backend_copy_upload(filepath: str) -> str:
+	prune_dir(cache_dir_path, CACHE_MAX_AGE)
 	ext = os.path.splitext(filepath)[1][1:]
 	filename = f"{random_string(10)}.{ext}"
 	cache_file_path = os.path.join(cache_dir_path, filename)
@@ -84,9 +100,12 @@ def backend_get_public_upload_url(upload_path: str) -> str:
 
 def backend_get_upload_local_path(upload_path: str) -> Optional[str]:
 	file_path = os.path.join(cache_dir_path, os.path.basename(upload_path))
-	if os.path.exists(file_path):
+	try:
+		# Mark as recently used, so it isn't pruned
+		os.utime(file_path)
 		return file_path
-	return _download_file(upload_path)
+	except FileNotFoundError:
+		return _download_file(upload_path)
 
 
 LEVELS = [
