@@ -8,3 +8,4 @@ venv
 .venv
 node_modules
 cypress
+config.cfg

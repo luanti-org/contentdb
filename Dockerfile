@@ -19,13 +19,13 @@ COPY uv.lock uv.lock
 
 ENV UV_PYTHON_DOWNLOADS=never \
     UV_PYTHON=python3 \
-    UV_PROJECT_ENVIRONMENT=/home/cdb/.venv
+    UV_PROJECT_ENVIRONMENT=/home/cdb/.venv \
+    FLASK_CONFIG=/run/config/config.cfg
 
 RUN uv sync --locked --no-install-project
 ENV PATH=/home/cdb/.venv/bin:$PATH
 
 COPY utils utils
-COPY config.cfg config.cfg
 COPY migrations migrations
 COPY app app
 COPY translations translations

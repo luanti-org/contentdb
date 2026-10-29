@@ -25,6 +25,7 @@ services:
     ports:
       - "127.0.0.1:5123:5123"
     volumes:
+      - "./config.cfg:/run/config/config.cfg:ro"
       - "$UPLOADS_DIR:/var/cdb/uploads"
       - "./data/logs:/var/cdb/logs"
       - "./app:/source/app"
@@ -40,9 +41,8 @@ services:
     command: celery -A app.tasks.celery worker --concurrency 1
     env_file:
       - .env
-    environment:
-      - FLASK_CONFIG=../config.cfg
     volumes:
+      - "./config.cfg:/run/config/config.cfg:ro"
       - "$UPLOADS_DIR:/var/cdb/uploads"
       - "./app:/home/cdb/app"
     depends_on:
@@ -54,8 +54,8 @@ services:
     command: celery -A app.tasks.celery beat
     env_file:
       - .env
-    environment:
-      - FLASK_CONFIG=../config.cfg
+    volumes:
+      - "./config.cfg:/run/config/config.cfg:ro"
     depends_on:
       - redis
 
