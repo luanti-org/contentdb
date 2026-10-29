@@ -43,9 +43,9 @@ GIT_RELEASES_ENABLED = False
 
 @celery.task()
 def get_meta(urlstr, author):
-	with clone_repo(urlstr, recursive=True) as repo:
+	with clone_repo(urlstr) as repo:
 		try:
-			tree = build_tree(repo.working_tree_dir, author=author, repo=urlstr)
+			tree = build_tree(repo.working_tree_dir, author=author, repo=urlstr, include_children=False)
 		except LuantiCheckError as err:
 			raise TaskError(str(err))
 

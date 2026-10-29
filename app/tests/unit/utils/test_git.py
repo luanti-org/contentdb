@@ -3,11 +3,13 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 import os
+import shutil
 
 import git
 import pytest
 
 from app.tasks import TaskError
+from app.tasks.importtasks import get_meta
 from app.utils import git as git_utils
 from app.utils.git import get_latest_tag, get_latest_commit, clone_repo, get_commit_list
 
@@ -118,13 +120,17 @@ def symlink_repo(tmp_path, monkeypatch):
 	main.git.submodule("add", (tmp_path / "sub").as_uri(), "sub")
 	main.index.commit("Add submodule")
 
+	allow_local_clones(monkeypatch)
+
+	return (tmp_path / "main").as_uri(), main.head.commit.hexsha
+
+
+def allow_local_clones(monkeypatch):
 	# Allow cloning from local paths, including submodules
 	monkeypatch.setattr(git_utils, "generate_git_url", lambda url: url)
 	monkeypatch.setitem(git_utils.GIT_ENV, "GIT_CONFIG_COUNT", "2")
 	monkeypatch.setitem(git_utils.GIT_ENV, "GIT_CONFIG_KEY_1", "protocol.file.allow")
 	monkeypatch.setitem(git_utils.GIT_ENV, "GIT_CONFIG_VALUE_1", "always")
-
-	return (tmp_path / "main").as_uri(), main.head.commit.hexsha
 
 
 def assert_no_symlinks(working_tree_dir: str):
@@ -156,3 +162,87 @@ def test_git_clone_ref_no_symlinks(symlink_repo):
 	with clone_repo(url, commit, recursive=True) as repo:
 		assert repo.head.commit.hexsha == commit
 		assert_no_symlinks(repo.working_tree_dir)
+
+
+EVIL_SUBMODULE_NAME = "evil$(touch pwned)`touch pwned`"
+GAME_SUBMODULE_PATHS = ["mods/foo", "mods/" + EVIL_SUBMODULE_NAME]
+
+
+@pytest.fixture
+def submodule_repo(tmp_path, monkeypatch, request):
+	"""
+	Creates a local game (or modpack, if parametrized with "modpack") repo whose
+	mods are submodules, one of them with a path that runs a command if it ever
+	reaches a shell.
+	"""
+	is_game = getattr(request, "param", "game") == "game"
+	conf_file = "game.conf" if is_game else "modpack.conf"
+	mods_dir = "mods/" if is_game else ""
+
+	def init_repo(name: str) -> git.Repo:
+		repo = git.Repo.init(tmp_path / name)
+		with repo.config_writer() as cw:
+			cw.set_value("user", "name", "Test")
+			cw.set_value("user", "email", "test@example.com")
+		return repo
+
+	sub = init_repo("sub")
+	(tmp_path / "sub" / "init.lua").write_text("")
+	sub.git.add("init.lua")
+	sub.git.commit("-m", "Initial commit")
+	sub_sha = sub.head.commit.hexsha
+	sub_url = (tmp_path / "sub").as_uri()
+
+	foo_path = mods_dir + "foo"
+	evil_path = mods_dir + EVIL_SUBMODULE_NAME
+
+	main = init_repo("main")
+	(tmp_path / "main" / conf_file).write_text("title = Test\n")
+	(tmp_path / "main" / ".gitmodules").write_text(
+			f"[submodule \"foo\"]\n\tpath = {foo_path}\n\turl = {sub_url}\n"
+			f"[submodule \"evil\"]\n\tpath = {evil_path}\n\turl = {sub_url}\n")
+	main.git.add(conf_file, ".gitmodules")
+	for path in [foo_path, evil_path]:
+		main.git.update_index("--add", "--cacheinfo", f"160000,{sub_sha},{path}")
+	main.git.commit("-m", "Initial commit")
+
+	allow_local_clones(monkeypatch)
+	monkeypatch.chdir(tmp_path)
+
+	return (tmp_path / "main").as_uri()
+
+
+def assert_not_pwned(*dirs):
+	for dir in dirs:
+		for _, _, files in os.walk(dir):
+			assert "pwned" not in files
+
+
+def test_submodule_repo_fixture(submodule_repo, tmp_path):
+	# Control: check that a recursive clone fetches both submodules, so the tests below are meaningful
+	with clone_repo(submodule_repo, recursive=True) as repo:
+		for path in GAME_SUBMODULE_PATHS:
+			assert os.path.isfile(os.path.join(repo.working_tree_dir, path, "init.lua"))
+		assert_not_pwned(repo.working_tree_dir, tmp_path)
+
+
+def test_git_clone_skips_submodules_by_default(submodule_repo, tmp_path):
+	with clone_repo(submodule_repo) as repo:
+		for path in GAME_SUBMODULE_PATHS:
+			path = os.path.join(repo.working_tree_dir, path)
+			assert os.path.isdir(path)
+			assert os.listdir(path) == []
+
+		assert_not_pwned(repo.working_tree_dir, tmp_path)
+
+
+@pytest.mark.parametrize("submodule_repo, expected_type", [("game", "GAME"), ("modpack", "MODPACK")],
+		indirect=["submodule_repo"])
+def test_get_meta_with_submodule_mods(submodule_repo, expected_type, tmp_path):
+	# Any attempt to fetch a submodule will now fail
+	shutil.rmtree(tmp_path / "sub")
+
+	result = get_meta(submodule_repo, "test")
+	assert result["type"] == expected_type
+	assert result["title"] == "Test"
+	assert_not_pwned(tmp_path)
