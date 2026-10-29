@@ -89,7 +89,7 @@ def get_latest_commit(git_url, ref_name=None):
 	g = git.cmd.Git()
 
 	remote_refs = {}
-	for ref in g.ls_remote(git_url).split('\n'):
+	for ref in str(g.ls_remote(git_url)).split('\n'):
 		hash_ref_list = ref.split('\t')
 		remote_refs[hash_ref_list[1]] = hash_ref_list[0]
 

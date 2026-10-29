@@ -138,10 +138,11 @@ def assert_no_symlinks(working_tree_dir: str):
 def test_symlink_repo_fixture_has_symlinks(symlink_repo, tmp_path):
 	# Control: check that a normal clone does create symlinks, so the tests below are meaningful
 	url, _ = symlink_repo
-	repo = git.Repo.clone_from(url, tmp_path / "control", multi_options=["--recurse-submodules"],
+	control_dir = tmp_path / "control"
+	git.Repo.clone_from(url, control_dir, multi_options=["--recurse-submodules"],
 			env={"GIT_CONFIG_COUNT": "1", "GIT_CONFIG_KEY_0": "protocol.file.allow", "GIT_CONFIG_VALUE_0": "always"})
-	assert os.path.islink(os.path.join(repo.working_tree_dir, "README.md"))
-	assert os.path.islink(os.path.join(repo.working_tree_dir, "sub", "README.md"))
+	assert os.path.islink(control_dir / "README.md")
+	assert os.path.islink(control_dir / "sub" / "README.md")
 
 
 def test_git_clone_head_no_symlinks(symlink_repo):

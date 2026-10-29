@@ -1,4 +1,4 @@
-FROM python:3.14.5-alpine
+FROM python:3.14.9-alpine
 
 RUN addgroup --gid 5123 cdb && \
     adduser --uid 5123 -S cdb -G cdb
