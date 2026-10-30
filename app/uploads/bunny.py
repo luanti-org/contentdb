@@ -110,3 +110,23 @@ def backend_get_thumbnail_url(upload_path: str, thumbnail_level: int, format: Op
 
 def backend_delete_upload(upload_path: str) -> None:
 	_delete_file(upload_path)
+
+
+def backend_get_checksums(upload_paths: list[str]) -> dict[str, str]:
+	url = f"https://storage.bunnycdn.com/{storage_name}/uploads/"
+	response = requests.get(
+		url,
+		headers={
+			"AccessKey": access_key,
+			"Accept": "application/json",
+		},
+		timeout=300,
+	)
+	response.raise_for_status()
+
+	checksums = {}
+	for obj in response.json():
+		if not obj["IsDirectory"] and obj["Checksum"]:
+			checksums[f"/uploads/{obj['ObjectName']}"] = obj["Checksum"].lower()
+
+	return {path: checksums[path] for path in upload_paths if path in checksums}

@@ -259,6 +259,7 @@ Format query parameters:
         * `min_minetest_version`: dict or null, minimum supported Luanti version (inclusive).
         * `max_minetest_version`: dict or null, minimum supported Luanti version (inclusive).
         * `size`: size of zip file, in bytes.
+        * `sha256`: SHA-256 of the zip file as lowercase hex, or null if not yet calculated.
         * `package`
             * `author`: author username
             * `name`: technical name

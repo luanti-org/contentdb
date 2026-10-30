@@ -21,7 +21,8 @@ from app.tasks.forumtasks import import_topic_list, check_all_forum_accounts as 
 from app.tasks.importtasks import import_repo_screenshot, check_zip_release, check_for_updates, update_all_game_support, \
 	import_languages, check_all_zip_files, update_all_release_permissions
 from app.tasks.usertasks import import_github_user_ids
-from app.tasks.pkgtasks import notify_about_git_forum_links, clear_removed_packages, check_package_for_broken_links, update_file_size_bytes
+from app.tasks.pkgtasks import notify_about_git_forum_links, clear_removed_packages, check_package_for_broken_links, update_file_size_bytes, \
+	update_release_sha256
 from app.tasks.dumptask import create_database_dump
 from app.utils.models import add_notification, get_system_user, add_audit_log
 from app.uploads import delete_upload
@@ -328,6 +329,13 @@ def do_check_all_zip_files():
 def do_update_file_size_bytes():
 	task_id = uuid()
 	update_file_size_bytes.apply_async((), task_id=task_id)
+	return redirect(url_for("tasks.check", id=task_id, r=url_for("admin.admin_page")))
+
+
+@action("Update release SHA-256 hashes")
+def do_update_release_sha256():
+	task_id = uuid()
+	update_release_sha256.apply_async((), task_id=task_id)
 	return redirect(url_for("tasks.check", id=task_id, r=url_for("admin.admin_page")))
 
 

@@ -6,6 +6,7 @@ import os
 import shutil
 
 from app import app
+from app.utils.files import sha256_file
 from app.utils.misc import random_string
 from typing import Optional
 
@@ -55,3 +56,12 @@ def backend_get_thumbnail_url(upload_path: str, thumbnail_level: int, format: Op
 def backend_delete_upload(upload_path: str) -> None:
 	filename = os.path.basename(upload_path)
 	os.remove(os.path.join(upload_dir, filename))
+
+
+def backend_get_checksums(upload_paths: list[str]) -> dict[str, str]:
+	checksums = {}
+	for upload_path in upload_paths:
+		path = backend_get_upload_local_path(upload_path)
+		if path is not None:
+			checksums[upload_path] = sha256_file(path)
+	return checksums

@@ -4,6 +4,7 @@
 
 import user_agents
 
+from app.utils.files import sha256_file
 from app.utils.user import make_valid_username
 
 
@@ -29,3 +30,9 @@ def test_crawlers_are_bots():
 	assert user_agents.parse("Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, "
 			"like Gecko) Chrome/W.X.Y.Z Mobile Safari/537.36 (compatible; Googlebot/2.1; "
 			"+http://www.google.com/bot.html)").is_bot
+
+
+def test_sha256_file(tmp_path):
+	path = tmp_path / "file.txt"
+	path.write_bytes(b"hello")
+	assert sha256_file(str(path)) == "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"

@@ -362,6 +362,7 @@ def check_zip_release(self, id):
 
 			release.task_id = None
 			release.calculate_file_size_bytes()
+			release.calculate_file_sha256()
 			release.state = ReleaseState.UNAPPROVED
 			release.approve(release.package.author)
 			db.session.commit()
@@ -464,6 +465,7 @@ def make_vcs_release(self, id, branch):
 				release.upload_path = url
 				release.task_id = None
 				release.calculate_file_size_bytes()
+				release.calculate_file_sha256()
 				release.state = ReleaseState.UNAPPROVED
 				release.approve(release.package.author)
 				db.session.commit()

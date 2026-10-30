@@ -17,9 +17,9 @@ from app.utils.misc import random_string
 upload_method = app.config["UPLOAD_METHOD"]
 
 if upload_method == "local":
-	from .local import backend_upload_file, backend_copy_upload, backend_get_public_upload_url, backend_get_upload_local_path, backend_get_thumbnail_url, backend_delete_upload
+	from .local import backend_upload_file, backend_copy_upload, backend_get_public_upload_url, backend_get_upload_local_path, backend_get_thumbnail_url, backend_delete_upload, backend_get_checksums
 elif upload_method == "bunny":
-	from .bunny import backend_upload_file, backend_copy_upload, backend_get_public_upload_url, backend_get_upload_local_path, backend_get_thumbnail_url, backend_delete_upload
+	from .bunny import backend_upload_file, backend_copy_upload, backend_get_public_upload_url, backend_get_upload_local_path, backend_get_thumbnail_url, backend_delete_upload, backend_get_checksums
 else:
 	raise Exception("Invalid UPLOAD_METHOD")
 
@@ -91,6 +91,11 @@ def get_legacy_thumbnail_url(upload_path: str, thumbnail_level: int):
 
 def delete_upload(filepath: str):
 	return backend_delete_upload(filepath)
+
+
+# Returns the SHA-256 of each upload as lowercase hex. Uploads that don't exist are left out
+def get_upload_checksums(upload_paths: list[str]) -> dict[str, str]:
+	return backend_get_checksums(upload_paths)
 
 
 def remove_png_hack(upload_path: str) -> str:

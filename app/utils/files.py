@@ -3,6 +3,7 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 import contextlib
+import hashlib
 import os
 import tempfile
 import shutil
@@ -14,3 +15,9 @@ def get_temp_dir():
 	os.makedirs(temp, exist_ok=True)
 	yield temp
 	shutil.rmtree(temp, ignore_errors=True)
+
+
+# Returns the SHA-256 of the file as lowercase hex
+def sha256_file(path: str) -> str:
+	with open(path, "rb") as f:
+		return hashlib.file_digest(f, "sha256").hexdigest()
