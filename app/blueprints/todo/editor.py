@@ -102,7 +102,14 @@ def view_editor():
 			if not can_approve_scn:
 				abort(403)
 
-			PackageScreenshot.query.update({"approved": True})
+			assert screenshots is not None
+			for package in {ss.package for ss in screenshots}:
+				add_audit_log(AuditSeverity.EDITOR, current_user, "Approved screenshots (bulk)",
+						package.get_url("packages.screenshots"), package)
+
+			PackageScreenshot.query \
+				.filter(PackageScreenshot.id.in_([ss.id for ss in screenshots])) \
+				.update({"approved": True}, synchronize_session=False)
 			db.session.commit()
 			return redirect(url_for("todo.view_editor"))
 		else:
@@ -122,8 +129,9 @@ def view_editor():
 		.filter(MetaPackage.dependencies.any(Dependency.depender.has(state=PackageState.APPROVED), optional=False)) \
 		.order_by(db.asc(MetaPackage.name)).count()
 
+	# Exclude comments, as they would push out more important entries
 	audit_log = AuditLogEntry.query \
-		.filter(AuditLogEntry.package.has()) \
+		.filter(AuditLogEntry.package.has(), ~AuditLogEntry.title.startswith("New comment on ")) \
 		.order_by(db.desc(AuditLogEntry.created_at)) \
 		.limit(20).all()
 

@@ -33,7 +33,7 @@ from app.models import AnySession, Package, Tag, db, User, Tags, PackageState, P
 	Dependency, Thread, UserRank, PackageReview, PackageDevState, ContentWarning, License, AuditSeverity, \
 	PackageScreenshot, NotificationType, AuditLogEntry, PackageAlias, PackageProvides, PackageGameSupport, \
 	PackageDailyStats, Collection, ReleaseState, PackageAIDisclosure, LuantiRelease, PackageRelease
-from app.utils.models import is_package_page, add_audit_log, get_package_by_info, \
+from app.utils.models import is_package_page, add_audit_log, add_audit_log_on_package, get_package_by_info, \
 	add_notification, get_system_user, get_games_from_csv, \
 	post_to_approval_thread
 from app.utils.user import rank_required
@@ -466,8 +466,7 @@ def move_to_state(package):
 				package.title, package.short_desc, package.get_thumb_url(2, True, "png"))
 
 	add_notification(package.maintainers, current_user, NotificationType.PACKAGE_APPROVAL, msg, package.get_url("packages.view"), package)
-	severity = AuditSeverity.NORMAL if current_user in package.maintainers else AuditSeverity.EDITOR
-	add_audit_log(severity, current_user, msg, package.get_url("packages.view"), package)
+	add_audit_log_on_package(current_user, msg, package.get_url("packages.view"), package)
 	post_to_approval_thread(package, current_user, msg, True)
 
 	db.session.commit()
@@ -649,8 +648,9 @@ def remove_self_maintainers(package):
 	else:
 		package.maintainers.remove(current_user)
 
-		add_notification(package.author, current_user, NotificationType.MAINTAINER,
-				"Removed themself as a maintainer of {}".format(package.title), package.get_url("packages.view"), package)
+		msg = "Removed themself as a maintainer of {}".format(package.title)
+		add_notification(package.author, current_user, NotificationType.MAINTAINER, msg, package.get_url("packages.view"), package)
+		add_audit_log(AuditSeverity.NORMAL, current_user, msg, package.get_url("packages.view"), package)
 
 		db.session.commit()
 
@@ -702,12 +702,17 @@ def alias_create_edit(package: Package, alias_id: int | None = None):
 
 	form = PackageAliasForm(request.form, obj=alias)
 	if form.validate_on_submit():
+		verb = "Edited" if alias else "Created"
 		if alias is None:
 			alias = PackageAlias()
 			alias.package = package
 			db.session.add(alias)
 
 		form.populate_obj(alias)
+
+		add_audit_log(AuditSeverity.EDITOR, current_user, "{} alias {}/{}".format(verb, alias.author, alias.name),
+				package.get_url("packages.alias_list"), package)
+
 		db.session.commit()
 
 		return redirect(package.get_url("packages.alias_list"))

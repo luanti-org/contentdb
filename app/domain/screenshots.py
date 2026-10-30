@@ -10,7 +10,7 @@ from flask_babel import lazy_gettext
 from app.domain.DomainError import DomainError
 from app.uploads import upload_file
 from app.models import User, Package, PackageScreenshot, Permission, NotificationType, db, AuditSeverity
-from app.utils.models import add_notification, add_audit_log
+from app.utils.models import add_notification, add_audit_log, add_audit_log_on_package
 from app.utils.image import get_image_size
 
 
@@ -59,10 +59,12 @@ def do_create_screenshot(user: User, package: Package, title: str, file, is_cove
 	return ss
 
 
-def do_order_screenshots(_user: User, package: Package, order: list[Any]):
+def do_order_screenshots(user: User, package: Package, order: list[Any]):
 	lookup = {}
 	for screenshot in package.screenshots.all():
 		lookup[screenshot.id] = screenshot
+
+	old_order = {ss_id: ss.order for ss_id, ss in lookup.items()}
 
 	counter = 1
 	for ss_id in order:
@@ -74,10 +76,13 @@ def do_order_screenshots(_user: User, package: Package, order: list[Any]):
 		except (ValueError, TypeError):
 			raise DomainError(400, "Invalid id, not a number: {}".format(json.dumps(ss_id)))
 
+	if any(ss.order != old_order[ss_id] for ss_id, ss in lookup.items()):
+		add_audit_log_on_package(user, "Reordered screenshots", package.get_url("packages.screenshots"), package)
+
 	db.session.commit()
 
 
-def do_set_cover_image(_user: User, package: Package, cover_image):
+def do_set_cover_image(user: User, package: Package, cover_image):
 	try:
 		cover_image = int(cover_image)
 	except (ValueError, TypeError):
@@ -85,7 +90,12 @@ def do_set_cover_image(_user: User, package: Package, cover_image):
 
 	for screenshot in package.screenshots.all():
 		if screenshot.id == cover_image:
-			package.cover_image = screenshot
+			if package.cover_image != screenshot:
+				package.cover_image = screenshot
+
+				add_audit_log_on_package(user, "Set cover image to {}".format(screenshot.title),
+						package.get_url("packages.screenshots"), package)
+
 			db.session.commit()
 			return
 

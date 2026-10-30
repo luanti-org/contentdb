@@ -24,6 +24,10 @@ def admin_page():
 	if request.method == "POST" and current_user.rank.at_least(UserRank.ADMIN):
 		action = request.form["action"]
 		if action in actions:
+			add_audit_log(AuditSeverity.MODERATION, current_user,
+					"Started admin action: " + actions[action]["title"], url_for("admin.admin_page"))
+			db.session.commit()
+
 			ret = actions[action]["func"]()
 			if ret:
 				return ret
@@ -45,9 +49,14 @@ def switch_user():
 	form = SwitchUserForm(formdata=request.form)
 	if form.validate_on_submit():
 		user = User.query.filter_by(username=form.username.data).first()
+		admin = current_user._get_current_object()
 		if user is None:
 			flash("Unable to find user", "danger")
 		elif login_user(user):
+			add_audit_log(AuditSeverity.MODERATION, admin, f"Switched user to {user.username}",
+					url_for("users.profile", username=user.username))
+			db.session.commit()
+
 			return redirect(url_for("users.profile", username=current_user.username))
 		else:
 			flash("Unable to login as user", "danger")

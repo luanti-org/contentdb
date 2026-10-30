@@ -4,6 +4,7 @@
 
 
 from flask import redirect, render_template, abort, url_for, request
+from flask_login import current_user
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SubmitField
 from wtforms.validators import InputRequired, Length, Optional, Regexp
@@ -11,7 +12,8 @@ from wtforms.validators import InputRequired, Length, Optional, Regexp
 from app.utils.user import rank_required
 from app.utils.misc import normalize_line_endings
 from . import bp
-from app.models import UserRank, ContentWarning, db
+from app.models import UserRank, ContentWarning, db, AuditSeverity
+from app.utils.models import add_audit_log
 
 
 @bp.route("/admin/warnings/")
@@ -43,8 +45,15 @@ def create_edit_warning(name=None):
 		if warning is None:
 			warning = ContentWarning(form.title.data, form.description.data)
 			db.session.add(warning)
+
+			add_audit_log(AuditSeverity.EDITOR, current_user, f"Created content warning {warning.name}",
+						  url_for("admin.create_edit_warning", name=warning.name))
 		else:
 			form.populate_obj(warning)
+
+			add_audit_log(AuditSeverity.EDITOR, current_user, f"Edited content warning {warning.name}",
+						  url_for("admin.create_edit_warning", name=warning.name))
+
 		db.session.commit()
 
 		return redirect(url_for("admin.warning_list"))

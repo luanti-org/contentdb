@@ -92,6 +92,12 @@ def add_audit_log(severity: AuditSeverity, causer: User, title: str, url: typing
 	db.session.add(entry)
 
 
+def add_audit_log_on_package(causer: User, title: str, url: typing.Optional[str], package: Package,
+			description: str | None = None):
+	severity = AuditSeverity.NORMAL if causer in package.maintainers else AuditSeverity.EDITOR
+	add_audit_log(severity, causer, title, url, package, description)
+
+
 def clear_notifications(url):
 	if current_user.is_authenticated:
 		with create_session() as session:
@@ -111,7 +117,7 @@ def add_system_notification(target, type: NotificationType, title: str, url: str
 	return add_notification(target, get_system_user(), type, title, url, package)
 
 
-def add_system_audit_log(severity: AuditSeverity, title: str, url: str, package=None, description=None):
+def add_system_audit_log(severity: AuditSeverity, title: str, url: typing.Optional[str], package=None, description=None):
 	return add_audit_log(severity, get_system_user(), title, url, package, description)
 
 

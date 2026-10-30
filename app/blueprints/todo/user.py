@@ -215,7 +215,8 @@ def all_ai_disclosure(username: Optional[str] = None):
 	if form.validate_on_submit():
 		for package in missing_ai_disclosure:
 			package.ai_disclosure = form.ai_disclosure.data
-			add_audit_log(AuditSeverity.NORMAL, current_user, f"Set AI disclosure to None", package.get_url("packages.view"), package)
+			add_audit_log(AuditSeverity.NORMAL, current_user, f"Set AI disclosure to {package.ai_disclosure.value} (bulk)",
+					package.get_url("packages.view"), package)
 		db.session.commit()
 		return redirect(url_for("todo.view_user", username=username))
 

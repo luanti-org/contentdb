@@ -11,7 +11,9 @@ from flask_login import current_user, login_required
 from sqlalchemy import func, text, and_
 from sqlalchemy.sql.functions import coalesce
 
-from app.models import User, db, Package, PackageReview, PackageState, PackageType, UserRank, Collection, Permission
+from app.models import User, db, Package, PackageReview, PackageState, PackageType, UserRank, Collection, Permission, \
+	AuditSeverity
+from app.utils.models import add_audit_log
 from app.utils.flask import get_daterange_options
 from app.tasks.forumtasks import check_forum_account
 
@@ -261,6 +263,10 @@ def user_remove_profile_pic(username):
 	user = User.query.filter_by(username=username).one_or_404()
 	if current_user != user and not current_user.rank.at_least(UserRank.MODERATOR):
 		abort(403)
+
+	severity = AuditSeverity.NORMAL if current_user == user else AuditSeverity.MODERATION
+	add_audit_log(severity, current_user, "Removed {}'s profile picture".format(user.display_name),
+			url_for("users.profile", username=user.username))
 
 	user.profile_pic = None
 	db.session.commit()

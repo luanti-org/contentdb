@@ -279,6 +279,7 @@ def view(id):
 
 		msg = "New comment on '{}'".format(thread.title)
 		add_notification(thread.watchers, current_user, NotificationType.THREAD_REPLY, msg, thread.get_view_url(), thread.package)
+		add_audit_log(AuditSeverity.NORMAL, current_user, msg, thread.get_view_url(), thread.package)
 
 		if thread.author == get_system_user():
 			post_discord_webhook.delay(current_user.display_name,
@@ -391,6 +392,7 @@ def new(author=None, name=None):
 			notif_msg = "New thread '{}'".format(thread.title)
 			if package is not None:
 				add_notification(package.maintainers, current_user, NotificationType.NEW_THREAD, notif_msg, thread.get_view_url(), package)
+			add_audit_log(AuditSeverity.NORMAL, current_user, notif_msg, thread.get_view_url(), package)
 
 			if is_review_thread:
 				post_discord_webhook.delay(current_user.display_name,

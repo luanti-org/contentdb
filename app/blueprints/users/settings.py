@@ -248,6 +248,10 @@ def disconnect_github(username: str):
 		abort(403)
 
 	if user.password and user.email:
+		severity = AuditSeverity.USER if current_user == user else AuditSeverity.MODERATION
+		add_audit_log(severity, current_user, "Removed GitHub account {} from {}".format(user.github_username, user.username),
+				url_for("users.profile", username=user.username))
+
 		user.github_user_id = None
 		user.github_username = None
 		db.session.commit()

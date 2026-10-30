@@ -355,6 +355,8 @@ def unsubscribe_manage(sub: EmailSubscription):
 	if request.method == "POST":
 		if user:
 			user.email = None
+			add_audit_log(AuditSeverity.USER, user, "(Anonymous) blacklisted their email using an unsubscribe link",
+					url_for("users.profile", username=user.username))
 
 		sub.blacklisted = True
 		db.session.commit()
