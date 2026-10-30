@@ -35,6 +35,10 @@
 			{{ _("Commit Hash") }}: {{ release.commit_hash }}<br />
 		{% endif %}
 
+		{% if release.file_sha256 %}
+			{{ _("SHA-256") }}: <code>{{ release.file_sha256 }}</code><br />
+		{% endif %}
+
 		{% if release.task_id %}
 			{{ _("Importing...") }}
 			<a href="{{ url_for('tasks.check', id=release.task_id, r=release.get_edit_url()) }}">{{ _("view task") }}</a><br />

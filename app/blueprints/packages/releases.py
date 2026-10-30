@@ -189,6 +189,8 @@ def edit_release(package, id):
 			release.max_rel = form.max_rel.data.get_actual()
 
 		if package.check_perm(current_user, Permission.CHANGE_RELEASE_URL):
+			if release.upload_path != form.upload_path.data:
+				release.file_sha256 = None
 			release.upload_path = form.upload_path.data
 			release.task_id = form.task_id.data
 			if release.task_id is not None:

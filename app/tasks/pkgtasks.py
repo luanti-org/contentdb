@@ -19,6 +19,7 @@ from app.domain.approval_stats import update_public_approval_statistics
 from app.markdown import get_links, render_markdown
 from app.models import db, Package, PackageState, PackageRelease, PackageScreenshot, AuditLogEntry
 from app.tasks import celery, TaskError
+from app.uploads import get_upload_checksums
 from app.utils.models import post_bot_message, post_to_approval_thread, get_system_user
 
 
@@ -231,3 +232,31 @@ def update_file_size_bytes(self):
 			})
 
 	db.session.commit()
+
+
+@celery.task(bind=True)
+def update_release_sha256(self):
+	releases = PackageRelease.query.filter(
+		PackageRelease.file_sha256.is_(None),
+		PackageRelease.upload_path.like("/uploads/%")).all()
+	total = len(releases)
+	self.update_state(state="PROGRESS", meta={
+		"current": 0,
+		"total": total,
+	})
+
+	checksums = get_upload_checksums([release.upload_path for release in releases])
+
+	missing = []
+	for release in releases:
+		checksum = checksums.get(release.upload_path)
+		if checksum is None:
+			missing.append(release.upload_path)
+		else:
+			release.file_sha256 = checksum
+
+	db.session.commit()
+
+	if missing:
+		print(f"[update_release_sha256] {len(missing)} releases not found in uploads: {', '.join(missing)}",
+				file=sys.stderr)

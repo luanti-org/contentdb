@@ -19,6 +19,7 @@ from app import app
 from .base import db, Model
 from .users import Permission, UserRank, User
 from app.utils.flask import abs_url_for, abs_url
+from app.utils.files import sha256_file
 from app.utils.misc import format_file_size
 
 
@@ -1253,6 +1254,7 @@ class PackageRelease(Model):
 	downloads    = db.Column(db.Integer, nullable=False, default=0)
 	release_notes = db.Column(db.UnicodeText, nullable=True, default=None)
 	file_size_bytes = db.Column(db.Integer, nullable=False, default=0)
+	file_sha256 = db.Column(db.String(64), nullable=True, default=None)
 
 	uses_insecure_env = db.Column(db.Boolean, nullable=True, default=None)
 	uses_http_api = db.Column(db.Boolean, nullable=True, default=None)
@@ -1291,6 +1293,14 @@ class PackageRelease(Model):
 		file_stats = os.stat(path)
 		self.file_size_bytes = file_stats.st_size
 
+	def calculate_file_sha256(self):
+		path = self.file_path
+		if path is None or not os.path.isfile(path):
+			self.file_sha256 = None
+			return
+
+		self.file_sha256 = sha256_file(path)
+
 	@property
 	def file_size(self):
 		size = self.file_size_bytes / 1024
@@ -1312,6 +1322,7 @@ class PackageRelease(Model):
 			"min_minetest_version": self.min_rel and self.min_rel.as_dict(),
 			"max_minetest_version": self.max_rel and self.max_rel.as_dict(),
 			"size": self.file_size_bytes,
+			"sha256": self.file_sha256,
 		}
 
 	def as_long_dict(self):
@@ -1327,6 +1338,7 @@ class PackageRelease(Model):
 			"min_minetest_version": self.min_rel and self.min_rel.as_dict(),
 			"max_minetest_version": self.max_rel and self.max_rel.as_dict(),
 			"size": self.file_size_bytes,
+			"sha256": self.file_sha256,
 			"package": self.package.as_key_dict(),
 		}
 
