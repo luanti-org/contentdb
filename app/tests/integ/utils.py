@@ -11,6 +11,11 @@ from app.default_data import populate
 
 
 def clear_data(session):
+	db_name = db.engine.url.database
+	if not db_name or not db_name.endswith("_test"):
+		pytest.exit(f"Refusing to wipe database '{db_name}': its name must end in _test. "
+				"Run the tests with utils/tests.sh, which uses a throwaway database.", returncode=1)
+
 	meta = db.metadata
 	for table in reversed(meta.sorted_tables):
 		session.execute(text(f'ALTER TABLE "{table.name}" DISABLE TRIGGER ALL;'))

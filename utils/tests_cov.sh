@@ -1,6 +1,7 @@
 #!/bin/bash
 
-set -e
-. "${BASH_SOURCE%/*}/common.sh"
+# Run the tests with coverage in the throwaway test stack.
 
-docker exec "$(container app)" sh -c "FLASK_APP=app/__init__.py COVERAGE_FILE=/tmp/.coverage python -m pytest -p no:cacheprovider app/tests/ --cov=app --disable-warnings"
+set -e
+
+exec "${BASH_SOURCE%/*}/test_stack.sh" test app/tests/ --cov=app "$@"

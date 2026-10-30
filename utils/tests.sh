@@ -1,7 +1,10 @@
 #!/bin/bash
 
-set -e
-. "${BASH_SOURCE%/*}/common.sh"
+# Run the tests in the throwaway test stack. Your dev database is not touched.
+# Pass pytest arguments to run specific tests, for example:
+#
+#     utils/tests.sh app/tests/integ/test_user.py
 
-# To do a specific test file, change the path
-docker exec "$(container app)" sh -c "FLASK_APP=app/__init__.py python -m pytest app/tests --disable-warnings"
+set -e
+
+exec "${BASH_SOURCE%/*}/test_stack.sh" test "$@"

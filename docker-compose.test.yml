@@ -1,0 +1,69 @@
+# Throwaway stack for running tests, isolated from the dev stack.
+#
+# Everything is stored on tmpfs, so each `up` starts from an empty database.
+# Use utils/test_stack.sh rather than running this file directly.
+#
+#   App:     http://localhost:5124
+#   Mailpit: http://localhost:8026
+#
+# app and worker extend docker-compose.yml, so they keep its build, hardening and
+# limits. Anything that could reach dev data (volumes, ports, env_file) is
+# replaced rather than merged.
+
+name: contentdb-test
+
+x-test: &test
+  env_file: !reset []
+  environment:
+    FLASK_DEBUG: 1
+  volumes: !override
+    - "./utils/test/config.cfg:/run/config/config.cfg:ro"
+    # Test the working tree without rebuilding the image
+    - "./app:/home/cdb/app:ro"
+    - "./utils:/home/cdb/utils:ro"
+    - "./migrations:/home/cdb/migrations:ro"
+  tmpfs:
+    - /var/cdb/uploads:uid=5123,gid=5123
+    - /var/cdb/thumbnails:uid=5123,gid=5123
+  depends_on: !override
+    db:
+      condition: service_healthy
+    redis:
+      condition: service_started
+
+services:
+  db:
+    image: "postgres:14"
+    environment:
+      POSTGRES_USER: contentdb
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: contentdb_test
+    tmpfs:
+      - /var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "contentdb", "-d", "contentdb_test"]
+      interval: 1s
+      retries: 30
+
+  redis:
+    image: "redis:6.2-alpine"
+    command: redis-server --save "" --appendonly no
+
+  mailpit:
+    image: "axllent/mailpit:v1.31.6"
+    ports:
+      - "127.0.0.1:8026:8025"
+
+  app:
+    extends:
+      file: docker-compose.yml
+      service: app
+    <<: *test
+    ports: !override
+      - "127.0.0.1:5124:5123"
+
+  worker:
+    extends:
+      file: docker-compose.yml
+      service: worker
+    <<: *test

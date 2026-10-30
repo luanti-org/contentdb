@@ -6,21 +6,14 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - name: Install docker compose
-      run: sudo apt-get install -y docker-compose
     - uses: actions/checkout@v4
-    - name: Copy config
-      run: cp utils/ci/.env . && cp utils/ci/config.cfg .
-    - name: Build the Docker image
-      run: docker compose build
-    - name: Start Docker
-      run: docker compose up -d
-    - name: Run migrations
-      run: ./utils/run_migrations.sh
+    - name: Start test stack
+      run: ./utils/test_stack.sh up
     - name: Run tests
       run: ./utils/tests_cov.sh
-    - name: Stop Docker
-      run: docker compose down
+    - name: Stop test stack
+      if: always()
+      run: ./utils/test_stack.sh down
 
   e2e:
     runs-on: ubuntu-latest

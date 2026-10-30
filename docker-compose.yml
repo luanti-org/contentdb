@@ -39,7 +39,7 @@ services:
       - /tmp:size=1g
     volumes:
       - "./config.cfg:/run/config/config.cfg:ro"
-      - "$UPLOADS_DIR:/var/cdb/uploads"
+      - "${UPLOADS_DIR:-./data/uploads}:/var/cdb/uploads"
       - "./data/logs:/var/cdb/logs"
       - "thumbnails:/var/cdb/thumbnails"
     depends_on:
@@ -63,7 +63,7 @@ services:
       - /tmp:size=2g
     volumes:
       - "./config.cfg:/run/config/config.cfg:ro"
-      - "$UPLOADS_DIR:/var/cdb/uploads"
+      - "${UPLOADS_DIR:-./data/uploads}:/var/cdb/uploads"
     depends_on:
       - redis
 
