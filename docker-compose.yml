@@ -54,6 +54,9 @@ services:
     # Limit includes the /tmp tmpfs.
     mem_limit: 3g
     pids_limit: 256
+    # Per replica
+    cpus: "1.5"
+    cpu_shares: 512
     env_file:
       - .env
     tmpfs:
