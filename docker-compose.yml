@@ -1,5 +1,13 @@
 name: contentdb
 
+x-hardening: &hardening
+  read_only: true
+  init: true
+  cap_drop:
+    - ALL
+  security_opt:
+    - no-new-privileges:true
+
 services:
   db:
     image: "postgres:14"
@@ -20,7 +28,9 @@ services:
     build: .
     restart: unless-stopped
     command: ./utils/entrypoint.sh
-    read_only: true
+    <<: *hardening
+    mem_limit: 3g
+    pids_limit: 256
     env_file:
       - .env
     ports:
@@ -40,7 +50,10 @@ services:
     build: .
     restart: unless-stopped
     command: celery -A app.tasks.celery worker --concurrency 1
-    read_only: true
+    <<: *hardening
+    # Limit includes the /tmp tmpfs.
+    mem_limit: 3g
+    pids_limit: 256
     env_file:
       - .env
     tmpfs:
@@ -55,7 +68,9 @@ services:
     build: .
     restart: unless-stopped
     command: celery -A app.tasks.celery beat --schedule /var/cdb/beat/celerybeat-schedule
-    read_only: true
+    <<: *hardening
+    mem_limit: 512m
+    pids_limit: 64
     env_file:
       - .env
     tmpfs:
