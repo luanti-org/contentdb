@@ -248,7 +248,8 @@ def delete(author, name):
 		abort(403)
 
 	if request.method == "POST":
-		add_audit_log(AuditSeverity.NORMAL, current_user,
+		severity = AuditSeverity.NORMAL if collection.author == current_user else AuditSeverity.EDITOR
+		add_audit_log(severity, current_user,
 				f"Deleted collection {collection.author.username}/{collection.name}",
 				collection.get_url("collections.view"), None)
 

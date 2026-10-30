@@ -71,6 +71,8 @@ def github_callback(oauth_token):
 		if user_by_github is None:
 			current_user.github_username = github_username
 			current_user.github_user_id = user_id
+			add_audit_log(AuditSeverity.USER, current_user, "Linked GitHub account " + github_username,
+					url_for("users.profile", username=current_user.username))
 			db.session.commit()
 			flash(gettext("Linked GitHub to account"), "success")
 			return redirect(redirect_to)

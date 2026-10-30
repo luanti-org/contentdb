@@ -18,7 +18,7 @@ from app.models import Package, db, User, PackageState, Permission, UserRank, Pa
 	PackageRelease, PackageUpdateTrigger, PackageUpdateConfig, ReleaseState
 from app.rediscache import has_key, set_temp_key, make_download_key
 from app.tasks.importtasks import check_update_config
-from app.utils.models import is_package_page
+from app.utils.models import is_package_page, add_audit_log_on_package
 from app.utils.flask import is_user_bot
 from app.utils.misc import nonempty_or_none, normalize_line_endings
 from app.utils.version import is_luanti_v510
@@ -181,6 +181,8 @@ def edit_release(package, id):
 		form.approved.data = release.approved
 
 	if form.validate_on_submit():
+		was_approved = release.approved
+
 		if canEdit:
 			release.name = form.name.data
 			release.title = form.title.data
@@ -201,6 +203,14 @@ def edit_release(package, id):
 				release.approve(current_user)
 			elif release.state == ReleaseState.APPROVED:
 				release.state = ReleaseState.UNAPPROVED
+
+		if release.approved != was_approved:
+			verb = "Approved" if release.approved else "Unapproved"
+			add_audit_log_on_package(current_user,
+					"{} release {}".format(verb, release.title), release.get_edit_url(), package)
+		elif db.session.is_modified(release):
+			add_audit_log_on_package(current_user,
+					"Edited release {}".format(release.title), release.get_edit_url(), package)
 
 		db.session.commit()
 		return redirect(package.get_url("packages.list_releases"))
@@ -241,6 +251,9 @@ def bulk_change_release(package):
 			if form.set_max.data and (not only_change_none or release.max_rel is None):
 				release.max_rel = form.max_rel.data.get_actual()
 
+		add_audit_log_on_package(current_user, "Bulk changed Luanti versions of releases",
+				package.get_url("packages.list_releases"), package)
+
 		db.session.commit()
 
 		return redirect(package.get_url("packages.list_releases"))
@@ -258,6 +271,9 @@ def delete_release(package, id):
 
 	if not release.check_perm(current_user, Permission.DELETE_RELEASE):
 		return redirect(package.get_url("packages.list_releases"))
+
+	add_audit_log_on_package(current_user, "Deleted release {}".format(release.title),
+			package.get_url("packages.list_releases"), package)
 
 	db.session.delete(release)
 	db.session.commit()
@@ -304,6 +320,9 @@ def set_update_config(package, form):
 	package.update_config.outdated_at = None
 	package.update_config.auto_created = False
 
+	msg = "Set update configuration: trigger={}, action={}".format(package.update_config.trigger.to_name(), form.action.data)
+	add_audit_log_on_package(current_user, msg, package.get_url("packages.update_config"), package)
+
 	db.session.commit()
 
 	# if package.update_config.last_commit is None:
@@ -337,6 +356,9 @@ def update_config(package):
 			flash(gettext("Deleted update configuration"), "success")
 			if package.update_config:
 				db.session.delete(package.update_config)
+
+				add_audit_log_on_package(current_user, "Deleted update configuration",
+						package.get_url("packages.update_config"), package)
 			db.session.commit()
 		else:
 			set_update_config(package, form)

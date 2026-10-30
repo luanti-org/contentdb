@@ -7,7 +7,7 @@ import os
 from typing import Any, List
 
 import flask_sqlalchemy
-from flask import request, jsonify, current_app
+from flask import request, jsonify, current_app, url_for
 from flask_babel import gettext
 from sqlalchemy import and_, or_
 from sqlalchemy.orm import joinedload
@@ -18,9 +18,9 @@ from app.domain.graphs import get_package_stats, get_package_stats_for_user, get
 from app.markdown import render_markdown
 from app.models import Tag, PackageState, PackageType, Package, db, PackageRelease, Permission, \
 	LuantiRelease, APIToken, PackageScreenshot, License, ContentWarning, User, PackageReview, Thread, Collection, \
-	PackageAlias, Language, ReleaseState, PackageDailyStats
+	PackageAlias, Language, ReleaseState, PackageDailyStats, AuditSeverity
 from app.querybuilder import QueryBuilder
-from app.utils.models import is_package_page
+from app.utils.models import is_package_page, add_audit_log, add_audit_log_on_package
 from app.utils.flask import get_int_or_abort, url_set_query, abs_url, get_request_date, cached, cors_allowed
 from app.utils.misc import is_yes
 from app.utils.luanti_hypertext import html_to_luanti, package_info_as_hypertext, package_reviews_as_hypertext
@@ -257,6 +257,9 @@ def api_delete_token(token):
 	if token is None:
 		error(404, "Token not found")
 
+	add_audit_log(AuditSeverity.USER, token.owner, "Deleted API token {} (API)".format(token.name),
+			url_for("api.list_tokens", username=token.owner.username))
+
 	db.session.delete(token)
 	db.session.commit()
 
@@ -376,6 +379,9 @@ def delete_release(token: APIToken, package: Package, id: int):
 	if not release.check_perm(token.owner, Permission.DELETE_RELEASE):
 		error(403, "Unable to delete the release, make sure there's a newer release available")
 
+	add_audit_log_on_package(token.owner, "Deleted release {} (API, token={})".format(release.title, token.name),
+			package.get_url("packages.list_releases"), package)
+
 	db.session.delete(release)
 	db.session.commit()
 
@@ -451,6 +457,9 @@ def delete_screenshot(token: APIToken, package: Package, id: int):
 	if package.cover_image == ss:
 		package.cover_image = None
 		db.session.merge(package)
+
+	add_audit_log_on_package(token.owner, "Deleted screenshot {} (API, token={})".format(ss.title, token.name),
+			package.get_url("packages.screenshots"), package)
 
 	db.session.delete(ss)
 	db.session.commit()

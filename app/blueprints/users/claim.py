@@ -7,8 +7,9 @@ from flask_login import current_user
 
 from . import bp
 from flask import redirect, render_template, session, request, flash, url_for
-from app.models import db, User, UserRank
+from app.models import db, User, UserRank, AuditSeverity
 from app.utils.misc import random_string
+from app.utils.models import add_audit_log
 from app.utils.user import login_user_set_active
 from app.tasks.forumtasks import check_forum_account
 from app.utils.phpbbparser import get_profile
@@ -95,6 +96,10 @@ def claim_forums():
 				if ret is None:
 					flash(gettext("Unable to login as user"), "danger")
 					return redirect(url_for("users.claim_forums", username=username))
+
+				add_audit_log(AuditSeverity.USER, user, "Logged in using forum signature",
+						url_for("users.profile", username=user.username))
+				db.session.commit()
 
 				return ret
 

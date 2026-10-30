@@ -137,6 +137,10 @@ def review(package):
 			add_notification(package.maintainers, current_user, type, notif_msg,
 							 url_for("threads.view", id=thread.id), package)
 
+			verb = "Created" if was_new else "Edited"
+			add_audit_log(AuditSeverity.NORMAL, current_user, "{} review of {}: {}".format(verb, package.title, thread.title),
+					thread.get_view_url(), package)
+
 			if was_new:
 				if review.approved:
 					msg = f"Reviewed {package.title} ({review.language.title}): {thread.get_view_url(absolute=True)}"

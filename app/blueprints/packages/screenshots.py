@@ -16,7 +16,7 @@ from app.domain.DomainError import DomainError
 from app.domain.screenshots import do_create_screenshot, do_order_screenshots
 from . import bp, get_package_tabs
 from app.models import Permission, db, PackageScreenshot
-from app.utils.models import is_package_page
+from app.utils.models import is_package_page, add_audit_log_on_package
 
 
 class CreateScreenshotForm(FlaskForm):
@@ -56,7 +56,13 @@ def screenshots(package):
 				flash(e.message, "danger")
 
 		if form.validate_on_submit():
+			old_cover_image = package.cover_image
 			form.populate_obj(package)
+
+			if package.cover_image != old_cover_image:
+				msg = "Set cover image to {}".format(package.cover_image.title if package.cover_image else "None")
+				add_audit_log_on_package(current_user, msg, package.get_url("packages.screenshots"), package)
+
 			db.session.commit()
 
 	return render_template("packages/screenshots.html", package=package, form=form,
@@ -108,6 +114,14 @@ def edit_screenshot(package, id):
 		else:
 			screenshot.approved = was_approved
 
+		if screenshot.approved != was_approved:
+			verb = "Approved" if screenshot.approved else "Unapproved"
+			add_audit_log_on_package(current_user,
+					"{} screenshot {}".format(verb, screenshot.title), package.get_url("packages.screenshots"), package)
+		elif db.session.is_modified(screenshot):
+			add_audit_log_on_package(current_user,
+					"Edited screenshot {}".format(screenshot.title), package.get_url("packages.screenshots"), package)
+
 		db.session.commit()
 		return redirect(package.get_url("packages.screenshots"))
 
@@ -129,6 +143,9 @@ def delete_screenshot(package, id):
 	if package.cover_image == screenshot:
 		package.cover_image = None
 		db.session.merge(package)
+
+	add_audit_log_on_package(current_user, "Deleted screenshot {}".format(screenshot.title),
+			package.get_url("packages.screenshots"), package)
 
 	db.session.delete(screenshot)
 	db.session.commit()

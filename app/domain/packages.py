@@ -12,7 +12,7 @@ from flask_babel import lazy_gettext, LazyString
 from app.domain.DomainError import DomainError
 from app.models import User, Package, PackageType, MetaPackage, Tag, ContentWarning, db, Permission, AuditSeverity, \
 	License, PackageDevState, PackageState, PackageAIDisclosure
-from app.utils.models import add_audit_log
+from app.utils.models import add_audit_log, add_audit_log_on_package
 from app.utils.flask import has_blocked_domains
 from app.utils.difference import diff_dictionaries, describe_difference
 from app.utils.misc import normalize_line_endings
@@ -254,8 +254,7 @@ def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, 
 		if diff_desc:
 			msg += " [" + diff_desc + "]"
 
-		severity = AuditSeverity.NORMAL if user in package.maintainers else AuditSeverity.EDITOR
-		add_audit_log(severity, user, msg, package.get_url("packages.view"), package, json.dumps(diff, indent=4))
+		add_audit_log_on_package(user, msg, package.get_url("packages.view"), package, json.dumps(diff, indent=4))
 
 	if was_modified:
 		db.session.commit()

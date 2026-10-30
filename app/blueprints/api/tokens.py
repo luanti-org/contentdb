@@ -11,8 +11,9 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import InputRequired, Length
 from wtforms_sqlalchemy.fields import QuerySelectField
 
-from app.models import db, User, APIToken, Permission
+from app.models import db, User, APIToken, Permission, AuditSeverity
 from app.utils.misc import random_string
+from app.utils.models import add_audit_log
 from . import bp
 from ..users.settings import get_setting_tabs
 
@@ -74,6 +75,12 @@ def create_edit_token(username, id=None):
 
 		assert token is not None
 		form.populate_obj(token)
+
+		severity = AuditSeverity.USER if current_user == user else AuditSeverity.MODERATION
+		verb = "Created" if is_new else "Edited"
+		add_audit_log(severity, current_user, "{} API token {} for {}".format(verb, token.name, user.username),
+				url_for("api.list_tokens", username=user.username))
+
 		db.session.commit()
 
 		if is_new:
@@ -103,6 +110,10 @@ def reset_token(username, id):
 
 	token.access_token = random_string(32)
 
+	severity = AuditSeverity.USER if current_user == user else AuditSeverity.MODERATION
+	add_audit_log(severity, current_user, "Reset API token {} for {}".format(token.name, user.username),
+			url_for("api.list_tokens", username=user.username))
+
 	db.session.commit() # save
 
 	# Store token so it can be shown in the edit page
@@ -126,6 +137,10 @@ def delete_token(username, id):
 		abort(404)
 	elif token.owner != user:
 		abort(403)
+
+	severity = AuditSeverity.USER if current_user == user else AuditSeverity.MODERATION
+	add_audit_log(severity, current_user, "Deleted API token {} for {}".format(token.name, user.username),
+			url_for("api.list_tokens", username=user.username))
 
 	db.session.delete(token)
 	db.session.commit()
