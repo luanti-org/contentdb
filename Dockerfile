@@ -16,7 +16,7 @@ ENV UV_PYTHON_DOWNLOADS=never \
     UV_COMPILE_BYTECODE=1
 
 COPY pyproject.toml uv.lock ./
-RUN uv sync --locked --no-install-project
+RUN uv sync --locked --no-install-project --no-dev
 
 COPY translations translations
 RUN .venv/bin/pybabel compile -d translations
