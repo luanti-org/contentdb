@@ -48,3 +48,30 @@ def get_forum_id(url: str) -> Optional[int]:
 		return int(values[0]) if values else None
 	except ValueError:
 		return None
+
+
+OAUTH_ALLOWED_CUSTOM_SCHEMES: set[str] = set()
+LOCALHOST_NAMES = {"localhost", "127.0.0.1", "::1"}
+
+def is_valid_oauth_redirect_url(url: str) -> bool:
+	if "\\" in url or any(ord(c) <= 0x20 or ord(c) == 0x7f for c in url):
+		return False
+
+	try:
+		parsed = urlparse.urlparse(url)
+		hostname = parsed.hostname
+	except ValueError:
+		return False
+
+	# Codes are added to the query string, a fragment would hide them
+	if parsed.fragment or url.endswith("#"):
+		return False
+
+	if parsed.scheme in OAUTH_ALLOWED_CUSTOM_SCHEMES:
+		return True
+	elif parsed.scheme == "https":
+		return bool(hostname)
+	elif parsed.scheme == "http":
+		return hostname in LOCALHOST_NAMES
+
+	return False

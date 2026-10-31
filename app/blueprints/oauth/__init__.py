@@ -11,13 +11,14 @@ from flask_babel import lazy_gettext, gettext
 from flask_login import current_user, login_required
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, URLField, SelectField
-from wtforms.validators import InputRequired, Length, Optional
+from wtforms.validators import InputRequired, Length, Optional, ValidationError
 
 from app import csrf
 from app.blueprints.users.settings import get_setting_tabs
 from app.models import db, OAuthClient, User, Permission, APIToken, AuditSeverity, UserRank
 from app.utils.misc import random_string
 from app.utils.models import add_audit_log
+from app.utils.url import is_valid_oauth_redirect_url
 
 bp = Blueprint("oauth", __name__)
 
@@ -163,6 +164,10 @@ class OAuthClientForm(FlaskForm):
 	], coerce=lambda x: x)
 	submit = SubmitField(lazy_gettext("Save"))
 
+	def validate_redirect_url(self, field):
+		if not is_valid_oauth_redirect_url(field.data or ""):
+			raise ValidationError(lazy_gettext("Redirect URL must use https://, or http:// for localhost, and must not contain a fragment"))
+
 
 @bp.route("/users/<username>/apps/new/", methods=["GET", "POST"])
 @bp.route("/users/<username>/apps/<id_>/edit/", methods=["GET", "POST"])
@@ -196,7 +201,15 @@ def create_edit_client(username, id_=None):
 
 
 		assert client is not None
+		old_redirect_url = client.redirect_url
 		form.populate_obj(client)
+
+		# Staff review where codes are sent, so changing it needs approval again
+		if not is_new and client.redirect_url != old_redirect_url and \
+				not current_user.rank.at_least(UserRank.EDITOR) and (client.approved or client.verified):
+			client.approved = False
+			client.verified = False
+			flash(gettext("Changing the redirect URL requires staff to approve your application again"), "warning")
 
 		verb = "Created" if is_new else "Edited"
 		add_audit_log(AuditSeverity.NORMAL, current_user,
