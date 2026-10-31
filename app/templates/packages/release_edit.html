@@ -25,11 +25,7 @@
 			</div>
 		{% endif %}
 
-		{% if package.check_perm(current_user, "CHANGE_RELEASE_URL") %}
-			{{ render_field(form.upload_path) }}
-		{% else %}
-			{{ _("URL") }}: <a href="{{ release.public_url }}">{{ release.upload_path }}</a><br />
-		{% endif %}
+		{{ _("URL") }}: <a href="{{ release.public_url }}">{{ release.upload_path }}</a><br />
 
 		{% if release.commit_hash %}
 			{{ _("Commit Hash") }}: {{ release.commit_hash }}<br />
@@ -42,9 +38,6 @@
 		{% if release.task_id %}
 			{{ _("Importing...") }}
 			<a href="{{ url_for('tasks.check', id=release.task_id, r=release.get_edit_url()) }}">{{ _("view task") }}</a><br />
-			{% if package.check_perm(current_user, "CHANGE_RELEASE_URL") %}
-				{{ render_field(form.task_id) }}
-			{% endif %}
 
 			<br />
 		{% else %}

@@ -892,9 +892,6 @@ class Package(Model):
 		elif perm == Permission.UNAPPROVE_PACKAGE:
 			return is_owner or user.rank.at_least(UserRank.APPROVER)
 
-		elif perm == Permission.CHANGE_RELEASE_URL:
-			return user.rank.at_least(UserRank.MODERATOR)
-
 		else:
 			raise Exception("Permission {} is not related to packages".format(perm.name))
 
