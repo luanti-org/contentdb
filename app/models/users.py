@@ -152,7 +152,6 @@ class User(Model, UserMixin):
 	# User authentication information
 	username     = db.Column(db.String(50, collation="NOCASE"), nullable=False, unique=True, index=True)
 	password     = db.Column(db.String(255), nullable=True, server_default=None)
-	reset_password_token = db.Column(db.String(100), nullable=False, server_default="")
 
 	def get_id(self):
 		return self.username
@@ -163,9 +162,6 @@ class User(Model, UserMixin):
 	github_username = db.Column(db.String(50, collation="NOCASE"), nullable=True, unique=True)
 	github_user_id = db.Column(db.Integer, nullable=True, unique=True)
 	forums_username = db.Column(db.String(50, collation="NOCASE"), nullable=True, unique=True)
-
-	# Access token for webhook setup
-	github_access_token = db.Column(db.String(50), nullable=True, server_default=None)
 
 	# User email information
 	email         = db.Column(db.String(255), nullable=True, unique=True)
