@@ -6,7 +6,7 @@ import urllib.parse as urlparse
 from urllib.parse import urlencode
 
 import typing
-from flask import Blueprint, render_template, redirect, url_for, request, jsonify, abort, make_response, flash
+from flask import Blueprint, render_template, redirect, url_for, request, jsonify, abort, make_response, flash, session
 from flask_babel import lazy_gettext, gettext
 from flask_login import current_user, login_required
 from flask_wtf import FlaskForm
@@ -16,7 +16,7 @@ from wtforms.validators import InputRequired, Length, Optional, ValidationError
 from app import csrf
 from app.blueprints.users.settings import get_setting_tabs
 from app.models import db, OAuthClient, User, Permission, APIToken, AuditSeverity, UserRank
-from app.utils.misc import random_string
+from app.utils.misc import random_string, hash_token
 from app.utils.models import add_audit_log
 from app.utils.url import is_valid_oauth_redirect_url
 
@@ -32,6 +32,13 @@ def build_redirect_url(url: str, code: str, state: typing.Optional[str]):
 	query.update(params)
 	url_parts[4] = urlencode(query)
 	return urlparse.urlunparse(url_parts)
+
+
+# Returns the plaintext auth code. The access token is only replaced when the code is redeemed
+def reset_auth_code(token: APIToken) -> str:
+	auth_code = random_string(32)
+	token.auth_code_hash = hash_token(auth_code)
+	return auth_code
 
 
 @bp.route("/oauth/authorize/", methods=["GET", "POST"])
@@ -64,10 +71,9 @@ def oauth_start():
 
 	token = APIToken.query.filter(APIToken.client == client, APIToken.owner == current_user).first()
 	if token:
-		token.access_token = random_string(32)
-		token.auth_code = random_string(32)
+		auth_code = reset_auth_code(token)
 		db.session.commit()
-		return redirect(build_redirect_url(client.redirect_url, token.auth_code, state))
+		return redirect(build_redirect_url(client.redirect_url, auth_code, state))
 
 	if request.method == "POST":
 		action = request.form["action"]
@@ -76,12 +82,13 @@ def oauth_start():
 
 		elif action == "authorize":
 			token = APIToken()
-			token.access_token = random_string(32)
+			# Can't be used until the code is redeemed
+			token.access_token_hash = hash_token(random_string(32))
+			auth_code = reset_auth_code(token)
 			token.name = f"Token for {client.title} by {client.owner.username}"
 			token.owner = current_user
 			token.client = client
 			assert client is not None
-			token.auth_code = random_string(32)
 			db.session.add(token)
 
 			add_audit_log(AuditSeverity.USER, current_user,
@@ -90,7 +97,7 @@ def oauth_start():
 
 			db.session.commit()
 
-			return redirect(build_redirect_url(client.redirect_url, token.auth_code, state))
+			return redirect(build_redirect_url(client.redirect_url, auth_code, state))
 
 	return render_template("oauth/authorize.html", client=client)
 
@@ -120,20 +127,22 @@ def oauth_grant():
 	if code == "":
 		error(400, "Missing code")
 
-	client = OAuthClient.query.filter_by(id=client_id, secret=client_secret).first()
+	client = OAuthClient.query.filter_by(id=client_id, secret_hash=hash_token(client_secret)).first()
 	if client is None:
 		error(400, "client_id and/or client_secret is incorrect")
 
-	token = APIToken.query.filter_by(auth_code=code).first()
+	token = APIToken.query.filter_by(auth_code_hash=hash_token(code)).first()
 	if token is None or token.client != client:
 		error(400, "Incorrect code. It may have already been redeemed")
 
-	token.auth_code = None
+	access_token = random_string(32)
+	token.access_token_hash = hash_token(access_token)
+	token.auth_code_hash = None
 	db.session.commit()
 
 	return jsonify({
 		"success": True,
-		"access_token": token.access_token,
+		"access_token": access_token,
 		"token_type": "Bearer",
 	})
 
@@ -179,10 +188,13 @@ def create_edit_client(username, id_=None):
 
 	is_new = id_ is None
 	client = None
+	client_secret = None
 	if id_ is not None:
 		client = OAuthClient.query.get_or_404(id_)
 		if client.owner != user:
 			abort(404)
+
+		client_secret = session.pop("oauth_secret_" + client.id, None)
 
 	form = OAuthClientForm(formdata=request.form, obj=client)
 
@@ -196,7 +208,8 @@ def create_edit_client(username, id_=None):
 			db.session.add(client)
 			client.owner = user
 			client.id = random_string(24)
-			client.secret = random_string(32)
+			client_secret = random_string(32)
+			client.secret_hash = hash_token(client_secret)
 			client.approved = current_user.rank.at_least(UserRank.EDITOR)
 
 
@@ -218,9 +231,13 @@ def create_edit_client(username, id_=None):
 
 		db.session.commit()
 
+		if is_new:
+			# Store secret so it can be shown in the edit page
+			session["oauth_secret_" + client.id] = client_secret
+
 		return redirect(url_for("oauth.create_edit_client", username=username, id_=client.id))
 
-	return render_template("oauth/create_edit.html", user=user, form=form, client=client)
+	return render_template("oauth/create_edit.html", user=user, form=form, client=client, client_secret=client_secret)
 
 
 @bp.route("/users/<username>/apps/<id_>/delete/", methods=["POST"])
@@ -263,5 +280,30 @@ def revoke_all(username, id_):
 	db.session.commit()
 
 	flash(gettext("Revoked all user tokens"), "success")
+
+	return redirect(url_for("oauth.create_edit_client", username=client.owner.username, id_=client.id))
+
+
+@bp.route("/users/<username>/apps/<id_>/reset-secret/", methods=["POST"])
+@login_required
+def reset_secret(username, id_):
+	user = User.query.filter_by(username=username).first_or_404()
+	if not user.check_perm(current_user, Permission.CREATE_OAUTH_CLIENT):
+		abort(403)
+
+	client = OAuthClient.query.get(id_)
+	if client is None or client.owner != user:
+		abort(404)
+
+	add_audit_log(AuditSeverity.NORMAL, current_user,
+			f"Reset client_secret for OAuth2 application {client.title} by {client.owner.username} [{client.id}]",
+			url_for("oauth.create_edit_client", username=client.owner.username, id_=client.id))
+
+	client_secret = random_string(32)
+	client.secret_hash = hash_token(client_secret)
+	db.session.commit()
+
+	# Store secret so it can be shown in the edit page
+	session["oauth_secret_" + client.id] = client_secret
 
 	return redirect(url_for("oauth.create_edit_client", username=client.owner.username, id_=client.id))

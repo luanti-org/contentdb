@@ -18,6 +18,7 @@ from app.domain.users import create_user
 from app.models import db, User, APIToken, AuditSeverity
 from app.utils.flask import abs_url_for, is_safe_url
 from app.utils.models import add_audit_log
+from app.utils.tokens import get_github_webhook_secret
 from app.utils.user import login_user_set_active
 from . import bp
 from .common import get_packages_for_vcs_and_token
@@ -120,13 +121,15 @@ def github_callback(oauth_token):
 		return ret
 
 
-def _find_api_token(header_signature: str) -> APIToken:
-	sha_name, signature = header_signature.split('=')
+def _check_api_token(token_id: int, header_signature: str) -> APIToken:
+	sha_name, _, signature = header_signature.partition('=')
 	if sha_name != 'sha1':
 		error(403, "Expected SHA1 payload signature")
 
-	for token in APIToken.query.all():
-		mac = hmac.new(token.access_token.encode("utf-8"), msg=request.data, digestmod='sha1')
+	token = APIToken.query.get(token_id)
+	if token is not None and token.client_id is None:
+		secret = get_github_webhook_secret(token.id, token.access_token_hash)
+		mac = hmac.new(secret.encode("utf-8"), msg=request.data, digestmod='sha1')
 
 		if hmac.compare_digest(str(mac.hexdigest()), signature):
 			return token
@@ -136,14 +139,20 @@ def _find_api_token(header_signature: str) -> APIToken:
 
 @bp.route("/github/webhook/", methods=["POST"])
 @csrf.exempt
-def github_webhook():
+def github_webhook_without_token():
+	error(400, "The payload URL needs to include the API token's id. Copy it from the API token's page on ContentDB")
+
+
+@bp.route("/github/webhook/<int:token_id>/", methods=["POST"])
+@csrf.exempt
+def github_webhook(token_id: int):
 	json = request.json
 
 	header_signature = request.headers.get('X-Hub-Signature')
 	if header_signature is None:
 		return error(403, "Expected payload signature")
 
-	token = _find_api_token(header_signature)
+	token = _check_api_token(token_id, header_signature)
 	packages = get_packages_for_vcs_and_token(token, "github.com/" + json["repository"]["full_name"])
 
 	for package in packages:

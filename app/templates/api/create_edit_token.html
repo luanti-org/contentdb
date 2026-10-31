@@ -47,6 +47,21 @@
 					</form>
 				</div>
 			</div>
+			{% if github_webhook_secret %}
+				<div class="card mb-3">
+					<div class="card-header">{{ _("GitHub Webhook") }}</div>
+					<div class="card-body">
+						<p>
+							{{ _("Use these when creating a GitHub webhook. See <a href='/help/release_webhooks/'>Creating Releases using Webhooks</a>.") }}
+							{{ _("Resetting the access token changes the secret.") }}
+						</p>
+						<label class="form-label" for="github_webhook_url">{{ _("Payload URL") }}</label>
+						<input class="form-control mb-3" type="text" id="github_webhook_url" readonly value="{{ github_webhook_url }}">
+						<label class="form-label" for="github_webhook_secret">{{ _("Secret") }}</label>
+						<input class="form-control mb-3" type="text" id="github_webhook_secret" readonly value="{{ github_webhook_secret }}">
+					</div>
+				</div>
+			{% endif %}
 		{% endif %}
 	{% endif %}
 

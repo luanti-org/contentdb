@@ -17,6 +17,10 @@ OAuth2 applications can currently only access public user data, using the whoami
 
 Go to Settings > [OAuth2 Applications](/user/apps/) > Create
 
+The client secret is only shown once, after creating the application. If you lose it,
+use "Reset client_secret" on the application's page to get a new one. This
+invalidates the old secret.
+
 
 ## Obtaining access tokens
 
@@ -74,6 +78,10 @@ If successful, you'll receive:
     "token_type": "Bearer"
 }
 ```
+
+Each auth code can only be redeemed once, and the access token is only returned
+at this point. If the user authorizes your application again, their previous
+access token keeps working until you redeem the new code, which replaces it.
 
 If there's an error, you'll receive a standard API error message:
 
