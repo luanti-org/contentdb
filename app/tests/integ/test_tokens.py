@@ -78,11 +78,12 @@ def test_api_token_reset(client):
 	assert whoami(client, new_token).status_code == 200
 
 
-def post_github_webhook(client, url, key):
+def post_github_webhook(client, url, key, algorithm="sha256"):
 	data = json.dumps({"repository": {"full_name": "example/repo"}}).encode("utf-8")
-	signature = hmac.new(key.encode("utf-8"), msg=data, digestmod="sha1").hexdigest()
+	signature = hmac.new(key.encode("utf-8"), msg=data, digestmod=algorithm).hexdigest()
+	header = "X-Hub-Signature-256" if algorithm == "sha256" else "X-Hub-Signature"
 	return client.post(url, data=data, content_type="application/json",
-			headers={"X-Hub-Signature": f"sha1={signature}"})
+			headers={header: f"{algorithm}={signature}"})
 
 
 def get_secret(token_id):
@@ -135,6 +136,11 @@ def test_github_webhook_secret(client):
 	rv = post_github_webhook(client, "/github/webhook/", secret)
 	assert rv.status_code == 400
 	assert b"needs to include the API token's id" in rv.data
+
+	# The legacy SHA-1 signature is not accepted
+	rv = post_github_webhook(client, url, secret, algorithm="sha1")
+	assert rv.status_code == 403
+	assert b"X-Hub-Signature-256" in rv.data
 
 
 def test_github_webhook_secret_changes_on_reset(client):
