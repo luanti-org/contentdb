@@ -14,6 +14,7 @@ from wtforms_sqlalchemy.fields import QuerySelectField
 from app.models import db, User, APIToken, Permission, AuditSeverity
 from app.utils.misc import random_string
 from app.utils.models import add_audit_log
+from app.utils.tokens import get_github_webhook_secret
 from . import bp
 from ..users.settings import get_setting_tabs
 
@@ -89,7 +90,9 @@ def create_edit_token(username, id=None):
 
 		return redirect(url_for("api.create_edit_token", username=username, id=token.id))
 
-	return render_template("api/create_edit_token.html", user=user, form=form, token=token, access_token=access_token)
+	github_webhook_secret = get_github_webhook_secret(token.id) if token and token.client is None else None
+	return render_template("api/create_edit_token.html", user=user, form=form, token=token, access_token=access_token,
+			github_webhook_secret=github_webhook_secret)
 
 
 @bp.route("/users/<username>/tokens/<int:id>/reset/", methods=["POST"])

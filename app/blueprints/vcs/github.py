@@ -18,6 +18,7 @@ from app.domain.users import create_user
 from app.models import db, User, APIToken, AuditSeverity
 from app.utils.flask import abs_url_for, is_safe_url
 from app.utils.models import add_audit_log
+from app.utils.tokens import get_github_webhook_secret
 from app.utils.user import login_user_set_active
 from . import bp
 from .common import get_packages_for_vcs_and_token
@@ -125,8 +126,9 @@ def _find_api_token(header_signature: str) -> APIToken:
 	if sha_name != 'sha1':
 		error(403, "Expected SHA1 payload signature")
 
-	for token in APIToken.query.all():
-		mac = hmac.new(token.access_token.encode("utf-8"), msg=request.data, digestmod='sha1')
+	for token in APIToken.query.filter(APIToken.client_id.is_(None)).all():
+		secret = get_github_webhook_secret(token.id)
+		mac = hmac.new(secret.encode("utf-8"), msg=request.data, digestmod='sha1')
 
 		if hmac.compare_digest(str(mac.hexdigest()), signature):
 			return token
