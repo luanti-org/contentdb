@@ -52,7 +52,7 @@ class PackageInfo:
 		self.events.append((created_at.isoformat(), causer, title))
 
 
-PACKAGE_PAGE_URL = re.compile(r"^(https?://[^/]+)?/packages/[^/]+/[^/]+/$")
+PACKAGE_PAGE_URL = re.compile(r"^/packages/[^/]+/[^/]+/$")
 
 
 def is_state_change_entry(entry: AuditLogEntry) -> bool:

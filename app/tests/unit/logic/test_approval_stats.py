@@ -116,7 +116,7 @@ def test_renamed_package():
 	package_1 = "user1/new_name"
 	stats = _get_approval_statistics([
 		make_entry("2023-04-03T12:00:00Z", package_1, "user1", "Marked Title as Ready for Review", "/packages/user1/old_name/"),
-		make_entry("2023-04-08T12:00:00Z", package_1, "reviewer", "Approved Title", "https://content.luanti.org/packages/old_user/new_name/"),
+		make_entry("2023-04-08T12:00:00Z", package_1, "reviewer", "Approved Title", "/packages/old_user/new_name/"),
 	])
 
 	assert dict(stats.editor_approvals) == {"reviewer": 1}
