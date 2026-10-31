@@ -10,7 +10,7 @@ import flask_sqlalchemy
 from flask import request, jsonify, current_app
 from flask_babel import gettext
 from sqlalchemy import and_, or_
-from sqlalchemy.orm import joinedload
+from sqlalchemy.orm import aliased, joinedload, selectinload
 from sqlalchemy.sql.expression import func
 
 from app import csrf
@@ -18,7 +18,7 @@ from app.domain.graphs import get_package_stats, get_package_stats_for_user, get
 from app.markdown import render_markdown
 from app.models import Tag, PackageState, PackageType, Package, db, PackageRelease, Permission, \
 	LuantiRelease, APIToken, PackageScreenshot, License, ContentWarning, User, PackageReview, Thread, Collection, \
-	PackageAlias, Language, ReleaseState, PackageDailyStats
+	PackageAlias, Language, ReleaseState, PackageDailyStats, Dependency, MetaPackage
 from app.querybuilder import QueryBuilder
 from app.utils.models import is_package_page
 from app.utils.flask import get_int_or_abort, url_set_query, abs_url, get_request_date, cached, cors_allowed
@@ -671,26 +671,56 @@ def languages():
 	return jsonify([x.as_dict() for x in Language.query.all()])
 
 
+def get_dependency_names(package_ids: list[int]) -> dict[int, tuple[list[str], list[str]]]:
+	"""
+	(depends, optional_depends) for each package, formatted like `str(Dependency)`,
+	in one query rather than several per package.
+	"""
+	ret: dict[int, tuple[list[str], list[str]]] = {id_: ([], []) for id_ in package_ids}
+	if not package_ids:
+		return ret
+
+	dep_package = aliased(Package)
+	dep_author = aliased(User)
+	rows = (db.session.query(Dependency.depender_id, Dependency.optional, MetaPackage.name,
+				dep_author.username, dep_package.name)
+			.outerjoin(MetaPackage, Dependency.meta_package_id == MetaPackage.id)
+			.outerjoin(dep_package, Dependency.package_id == dep_package.id)
+			.outerjoin(dep_author, dep_package.author_id == dep_author.id)
+			.filter(Dependency.depender_id.in_(package_ids))
+			.order_by(Dependency.id)
+			.all())
+
+	for depender_id, optional, meta_name, author, package_name in rows:
+		name = f"{author}/{package_name}" if package_name is not None else meta_name
+		ret[depender_id][1 if optional else 0].append(name)
+
+	return ret
+
+
 @bp.route("/api/dependencies/")
 @cors_allowed
 @cached(300)
 def all_deps():
 	qb = QueryBuilder(request.args)
-	query = qb.build_package_query()
+	query = qb.build_package_query().options(selectinload(Package.provides))
+
+	page = get_int_or_abort(request.args.get("page"), 1)
+	num = min(get_int_or_abort(request.args.get("n"), 100), 300)
+	pagination: flask_sqlalchemy.Pagination = query.paginate(page=page, per_page=num)
+	dependencies = get_dependency_names([pkg.id for pkg in pagination.items])
 
 	def format_pkg(pkg: Package):
+		depends, optional_depends = dependencies[pkg.id]
 		return {
 			"type": pkg.type.to_name(),
 			"author": pkg.author.username,
 			"name": pkg.name,
 			"provides": [x.name for x in pkg.provides],
-			"depends": [str(x) for x in pkg.dependencies if not x.optional],
-			"optional_depends": [str(x) for x in pkg.dependencies if x.optional],
+			"depends": depends,
+			"optional_depends": optional_depends,
 		}
 
-	page = get_int_or_abort(request.args.get("page"), 1)
-	num = min(get_int_or_abort(request.args.get("n"), 100), 300)
-	pagination: flask_sqlalchemy.Pagination = query.paginate(page=page, per_page=num)
 	return jsonify({
 		"page": pagination.page,
 		"per_page": pagination.per_page,
