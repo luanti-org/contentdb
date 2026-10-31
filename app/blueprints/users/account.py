@@ -271,6 +271,29 @@ def set_password():
 	return render_template("users/change_set_password.html", form=form)
 
 
+def confirm_email_verification(ver: UserEmailVerification) -> bool:
+	user = ver.user
+	if ver.email and user.email != ver.email:
+		if User.query.filter_by(email=ver.email).count() > 0:
+			flash(gettext("Another user is already using that email"), "danger")
+			return False
+
+		flash(gettext("Confirmed email change"), "success")
+
+		if user.email:
+			send_user_email.delay(user.email,
+					user.locale or "en",
+					gettext("Email address changed"),
+					gettext("Your email address has changed. If you didn't request this, please contact an administrator."))
+
+	user.is_active = True
+	user.email = ver.email
+
+	db.session.delete(ver)
+	db.session.commit()
+	return True
+
+
 @bp.route("/user/verify/")
 def verify_email():
 	token = request.args.get("token")
@@ -292,24 +315,8 @@ def verify_email():
 
 	was_activating = not user.is_active
 
-	if ver.email and user.email != ver.email:
-		if User.query.filter_by(email=ver.email).count() > 0:
-			flash(gettext("Another user is already using that email"), "danger")
-			return redirect(url_for("homepage.home"))
-
-		flash(gettext("Confirmed email change"), "success")
-
-		if user.email:
-			send_user_email.delay(user.email,
-					user.locale or "en",
-					gettext("Email address changed"),
-					gettext("Your email address has changed. If you didn't request this, please contact an administrator."))
-
-	user.is_active = True
-	user.email = ver.email
-
-	db.session.delete(ver)
-	db.session.commit()
+	if not confirm_email_verification(ver):
+		return redirect(url_for("homepage.home"))
 
 	if ver.is_password_reset:
 		login_user(user)
