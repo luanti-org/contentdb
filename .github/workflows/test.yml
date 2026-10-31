@@ -2,11 +2,52 @@ name: Tests
 
 on: [push, pull_request]
 
+permissions:
+  contents: read
+
+env:
+  IMAGE: ghcr.io/luanti-org/contentdb
+  CDB_TAG: ${{ github.sha }}
+
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
+    outputs:
+      image-sha256: ${{ steps.hash.outputs.sha256 }}
     steps:
     - uses: actions/checkout@v4
+    - uses: docker/setup-buildx-action@v3
+    - name: Build the Docker image
+      uses: docker/build-push-action@v6
+      with:
+        context: .
+        tags: ${{ env.IMAGE }}:${{ env.CDB_TAG }}
+        outputs: type=docker,dest=${{ runner.temp }}/image.tar
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+    - name: Hash the Docker image
+      id: hash
+      run: echo "sha256=$(sha256sum "$RUNNER_TEMP/image.tar" | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+    - uses: actions/upload-artifact@v4
+      with:
+        name: image
+        path: ${{ runner.temp }}/image.tar
+        retention-days: 1
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      # Job env can't use the env context, so this repeats IMAGE and CDB_TAG
+      CDB_TEST_IMAGE: ghcr.io/luanti-org/contentdb:${{ github.sha }}
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/download-artifact@v4
+      with:
+        name: image
+        path: ${{ runner.temp }}
+    - name: Load the Docker image
+      run: docker load -i ${{ runner.temp }}/image.tar
     - name: Create empty .env
       run: touch .env
     - name: Start test stack
@@ -48,3 +89,45 @@ jobs:
     - name: Stop Docker
       if: always()
       run: docker compose down
+
+  publish:
+    needs: [build, test, e2e]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'luanti-org/contentdb'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: publish
+      cancel-in-progress: false
+    permissions:
+      contents: read
+      packages: write
+    steps:
+    - uses: actions/download-artifact@v4
+      with:
+        name: image
+        path: ${{ runner.temp }}
+    - name: Verify the Docker image
+      env:
+        IMAGE_SHA256: ${{ needs.build.outputs.image-sha256 }}
+      run: |
+        test -n "$IMAGE_SHA256"
+        echo "$IMAGE_SHA256  $RUNNER_TEMP/image.tar" | sha256sum -c -
+    - name: Load the Docker image
+      run: docker load -i ${{ runner.temp }}/image.tar
+    - uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Push
+      run: |
+        docker push "$IMAGE:$CDB_TAG"
+
+        # An older run can finish last, so only move latest if this is still the tip of master
+        tip=$(git ls-remote "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY" refs/heads/master | cut -f1)
+        if [ "$tip" != "$GITHUB_SHA" ]; then
+          echo "::notice::Not tagging latest, master has moved on to $tip"
+          exit 0
+        fi
+
+        docker tag "$IMAGE:$CDB_TAG" "$IMAGE:latest"
+        docker push "$IMAGE:latest"
