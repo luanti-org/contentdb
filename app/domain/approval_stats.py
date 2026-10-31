@@ -3,6 +3,7 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 import datetime
+import re
 from collections import namedtuple, defaultdict
 from typing import Dict, Optional
 from sqlalchemy import or_
@@ -51,6 +52,13 @@ class PackageInfo:
 		self.events.append((created_at.isoformat(), causer, title))
 
 
+PACKAGE_PAGE_URL = re.compile(r"^(https?://[^/]+)?/packages/[^/]+/[^/]+/$")
+
+
+def is_state_change_entry(entry: AuditLogEntry) -> bool:
+	return entry.url is not None and PACKAGE_PAGE_URL.match(entry.url) is not None
+
+
 def get_state(title: str) -> Optional[PackageState]:
 	if title.startswith("Approved "):
 		return PackageState.APPROVED
@@ -80,6 +88,9 @@ def _get_approval_statistics(entries: list[AuditLogEntry], start_date: Optional[
 	turnaround_times: list[int] = []
 
 	for entry in entries:
+		if not is_state_change_entry(entry):
+			continue
+
 		package_id = str(entry.package.get_id())
 		if package_id in ignored_packages:
 			continue

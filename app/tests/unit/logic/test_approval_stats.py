@@ -3,7 +3,7 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 import datetime
-from typing import cast
+from typing import cast, Optional
 from app.domain.approval_stats import _get_approval_statistics
 from app.models import AuditLogEntry, User
 
@@ -17,7 +17,7 @@ class MockPackage:
 
 
 class MockEntry:
-	def __init__(self, date: str, package_id: str, username: str, title: str):
+	def __init__(self, date: str, package_id: str, username: str, title: str, url: Optional[str]):
 		causer = User()
 		causer.username = username
 
@@ -25,12 +25,15 @@ class MockEntry:
 		self.created_at = datetime.datetime.strptime(date, "%Y-%m-%dT%H:%M:%S%z")
 		self.title = title
 		self.description = None
+		self.url = url
 		self.package = MockPackage(package_id)
 
 
 # noinspection PyTypeChecker
-def make_entry(date: str, package_id: str, username: str, title: str) -> AuditLogEntry:
-	return cast(AuditLogEntry, MockEntry(date, package_id, username, title))
+def make_entry(date: str, package_id: str, username: str, title: str, url: Optional[str] = None) -> AuditLogEntry:
+	if url is None:
+		url = f"/packages/{package_id}/"
+	return cast(AuditLogEntry, MockEntry(date, package_id, username, title, url))
 
 
 def test_empty():
@@ -84,3 +87,37 @@ def test_editor_counts():
 	assert len(stats.editor_approvals) == 2
 	assert stats.editor_approvals["reviewer"] == 2
 	assert stats.editor_approvals["reviewer2"] == 1
+
+
+def test_ignores_other_approvals():
+	package_1 = "user1/one"
+	stats = _get_approval_statistics([
+		make_entry("2023-04-03T12:00:00Z", package_1, "user1", "Marked Title as Ready for Review"),
+		make_entry("2023-04-04T12:00:00Z", package_1, "editor", "Approved screenshot Title",
+				f"/packages/{package_1}/screenshots/"),
+		make_entry("2023-04-04T12:00:00Z", package_1, "editor", "Approved screenshots (bulk)",
+				f"/packages/{package_1}/screenshots/"),
+		make_entry("2023-04-05T12:00:00Z", package_1, "editor", "Approved release 1.0",
+				f"/packages/{package_1}/releases/1/edit/"),
+		make_entry("2023-04-05T12:00:00Z", package_1, "mod", "Approved review by user2",
+				f"/packages/{package_1}/review/"),
+		make_entry("2023-04-05T12:00:00Z", package_1, "editor", "Marked approval thread as stale", "/threads/1/"),
+		cast(AuditLogEntry, MockEntry("2023-04-05T12:00:00Z", package_1, "editor", "Marked as something", None)),
+		make_entry("2023-04-08T12:00:00Z", package_1, "reviewer", "Approved Title"),
+	])
+
+	assert dict(stats.editor_approvals) == {"reviewer": 1}
+	assert stats.packages_info[package_1].approved_at == datetime.datetime.strptime("2023-04-08T12:00:00Z", "%Y-%m-%dT%H:%M:%S%z")
+	assert stats.packages_info[package_1].wait_time == 5*60*60*24
+	assert [x[2] for x in stats.packages_info[package_1].events] == ["Ready for Review", "Approved"]
+
+
+def test_renamed_package():
+	package_1 = "user1/new_name"
+	stats = _get_approval_statistics([
+		make_entry("2023-04-03T12:00:00Z", package_1, "user1", "Marked Title as Ready for Review", "/packages/user1/old_name/"),
+		make_entry("2023-04-08T12:00:00Z", package_1, "reviewer", "Approved Title", "https://content.luanti.org/packages/old_user/new_name/"),
+	])
+
+	assert dict(stats.editor_approvals) == {"reviewer": 1}
+	assert stats.packages_info[package_1].wait_time == 5*60*60*24
