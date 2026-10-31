@@ -9,7 +9,7 @@ from app import csrf
 from app.models import UserRank
 from app.tasks import celery
 from app.tasks.importtasks import get_meta
-from app.utils.flask import should_return_json
+from app.utils.flask import should_return_json, is_safe_url
 
 bp = Blueprint("tasks", __name__)
 
@@ -60,7 +60,7 @@ def check(id):
 		return jsonify(info)
 	else:
 		r = request.args.get("r")
-		if r is not None and status == "SUCCESS":
+		if r is not None and status == "SUCCESS" and is_safe_url(r):
 			return redirect(r)
 		else:
 			return render_template("tasks/view.html", info=info)

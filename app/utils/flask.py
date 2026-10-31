@@ -14,6 +14,10 @@ from werkzeug.datastructures import MultiDict
 
 
 def is_safe_url(target):
+	# Browsers treat `\` as `/` and strip control characters, so `/\evil.com` becomes `//evil.com`
+	if "\\" in target or any(ord(c) < 0x20 or ord(c) == 0x7f for c in target):
+		return False
+
 	ref_url = urlparse(request.host_url)
 	test_url = urlparse(urljoin(request.host_url, target))
 	return test_url.scheme in ('http', 'https') and \
