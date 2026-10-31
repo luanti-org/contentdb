@@ -577,9 +577,10 @@ def all_package_stats():
 @cached(900)
 def package_scores():
 	qb = QueryBuilder(request.args)
-	query = qb.build_package_query()
+	packages = qb.build_package_query().all()
+	reviews = Package.get_review_summaries([package.id for package in packages])
 
-	pkgs = [package.as_score_dict() for package in query.all()]
+	pkgs = [package.as_score_dict(reviews[package.id]) for package in packages]
 	return jsonify(pkgs)
 
 
