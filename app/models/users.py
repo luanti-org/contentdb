@@ -647,7 +647,7 @@ class OAuthClient(Model):
 	id = db.Column(db.String(24), primary_key=True)
 	title = db.Column(db.String(64), unique=True, nullable=False)
 	description = db.Column(db.String(300), nullable=True)
-	secret = db.Column(db.String(32), nullable=False)
+	secret_hash = db.Column(db.String(64), nullable=False, unique=True)
 	redirect_url = db.Column(db.String(128), nullable=False)
 	approved = db.Column(db.Boolean, nullable=False, default=False)
 	verified = db.Column(db.Boolean, nullable=False, default=False)
