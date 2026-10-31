@@ -1,3 +1,9 @@
+# Production deployments download this file at the commit they deploy, rather than
+# checking out the code, so keep it generic. Put host-specific changes in
+# docker-compose.override.yml. See docs/deploying.md
+#
+# CDB_TAG is the full commit SHA of the image to run.
+
 name: contentdb
 
 x-hardening: &hardening
@@ -25,7 +31,7 @@ services:
       - './data/redis:/data'
 
   app:
-    build: .
+    image: "ghcr.io/luanti-org/contentdb:${CDB_TAG:-latest}"
     restart: unless-stopped
     command: ./utils/entrypoint.sh
     <<: *hardening
@@ -47,7 +53,7 @@ services:
       - redis
 
   worker:
-    build: .
+    image: "ghcr.io/luanti-org/contentdb:${CDB_TAG:-latest}"
     restart: unless-stopped
     command: celery -A app.tasks.celery worker --concurrency 1
     <<: *hardening
@@ -68,7 +74,7 @@ services:
       - redis
 
   beat:
-    build: .
+    image: "ghcr.io/luanti-org/contentdb:${CDB_TAG:-latest}"
     restart: unless-stopped
     command: celery -A app.tasks.celery beat --schedule /var/cdb/beat/celerybeat-schedule
     <<: *hardening

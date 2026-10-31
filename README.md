@@ -4,7 +4,8 @@
 A content database for Luanti mods, games, and more.\
 Developed by rubenwardy, license AGPLv3.0+.
 
-See [Getting Started](docs/getting_started.md) for setting up a development/prodiction environment.
+See [Getting Started](docs/getting_started.md) for setting up a development environment,
+and [Deploying](docs/deploying.md) for production.
 
 See [Developer Intro](docs/dev_intro.md) for an overview of the code organisation.
 
@@ -15,9 +16,6 @@ See [Developer Intro](docs/dev_intro.md) for an overview of the code organisatio
 ## How-tos
 
 ```sh
-# Cold update a running version of CDB with minimal downtime (production)
-./utils/update.sh
-
 # Enter docker
 ./utils/bash.sh
 
