@@ -9,12 +9,12 @@
 	{{ _("We're sorry to see you go. You just need to do one more thing before your email is blacklisted.") }}
 </p>
 
-<a class="btn" href="{{ abs_url_for('users.unsubscribe', token=sub.token) }}">
+<a class="btn" href="{{ sub.url }}">
 	{{ _("Unsubscribe") }}
 </a>
 
 <p style="font-size: 80%;">
-	{{ _("Or paste this into your browser:") }} <code>{{ abs_url_for('users.unsubscribe', token=sub.token) }}</code>
+	{{ _("Or paste this into your browser:") }} <code>{{ sub.url }}</code>
 <p>
 
 {% endblock %}

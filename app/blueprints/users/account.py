@@ -14,7 +14,8 @@ from wtforms import StringField, SubmitField, BooleanField, PasswordField, valid
 from wtforms.validators import InputRequired, Length, Regexp, DataRequired, Optional, Email, EqualTo
 
 from app.tasks.emails import send_verify_email, send_anon_email, send_unsubscribe_verify, send_user_email
-from app.utils.misc import random_string, nonempty_or_none
+from app.utils.misc import random_string, nonempty_or_none, hash_token
+from app.utils.tokens import load_unsubscribe_token
 from app.utils.models import add_audit_log
 from app.utils.user import make_flask_login_password, is_safe_url, check_password_hash, post_login
 from . import bp
@@ -120,7 +121,7 @@ def handle_register(form):
 
 	ver = UserEmailVerification()
 	ver.user = user
-	ver.token = token
+	ver.token_hash = hash_token(token)
 	ver.email = form.email.data
 	db.session.add(ver)
 	db.session.commit()
@@ -160,7 +161,7 @@ def forgot_password():
 
 			ver = UserEmailVerification()
 			ver.user = user
-			ver.token = token
+			ver.token_hash = hash_token(token)
 			ver.email = email
 			ver.is_password_reset = True
 			db.session.add(ver)
@@ -221,7 +222,7 @@ def handle_set_password(form):
 
 				ver = UserEmailVerification()
 				ver.user = current_user
-				ver.token = token
+				ver.token_hash = hash_token(token)
 				ver.email = new_email
 				db.session.add(ver)
 				db.session.commit()
@@ -270,10 +271,33 @@ def set_password():
 	return render_template("users/change_set_password.html", form=form)
 
 
+def confirm_email_verification(ver: UserEmailVerification) -> bool:
+	user = ver.user
+	if ver.email and user.email != ver.email:
+		if User.query.filter_by(email=ver.email).count() > 0:
+			flash(gettext("Another user is already using that email"), "danger")
+			return False
+
+		flash(gettext("Confirmed email change"), "success")
+
+		if user.email:
+			send_user_email.delay(user.email,
+					user.locale or "en",
+					gettext("Email address changed"),
+					gettext("Your email address has changed. If you didn't request this, please contact an administrator."))
+
+	user.is_active = True
+	user.email = ver.email
+
+	db.session.delete(ver)
+	db.session.commit()
+	return True
+
+
 @bp.route("/user/verify/")
 def verify_email():
 	token = request.args.get("token")
-	ver = UserEmailVerification.query.filter_by(token=token).first()
+	ver = UserEmailVerification.query.filter_by(token_hash=hash_token(token)).first() if token else None
 	if ver is None:
 		flash(gettext("Unknown verification token!"), "danger")
 		return redirect(url_for("homepage.home"))
@@ -291,24 +315,8 @@ def verify_email():
 
 	was_activating = not user.is_active
 
-	if ver.email and user.email != ver.email:
-		if User.query.filter_by(email=ver.email).count() > 0:
-			flash(gettext("Another user is already using that email"), "danger")
-			return redirect(url_for("homepage.home"))
-
-		flash(gettext("Confirmed email change"), "success")
-
-		if user.email:
-			send_user_email.delay(user.email,
-					user.locale or "en",
-					gettext("Email address changed"),
-					gettext("Your email address has changed. If you didn't request this, please contact an administrator."))
-
-	user.is_active = True
-	user.email = ver.email
-
-	db.session.delete(ver)
-	db.session.commit()
+	if not confirm_email_verification(ver):
+		return redirect(url_for("homepage.home"))
 
 	if ver.is_password_reset:
 		login_user(user)
@@ -339,9 +347,8 @@ def unsubscribe_verify():
 		if not sub:
 			sub = EmailSubscription(email)
 			db.session.add(sub)
+			db.session.commit()
 
-		sub.token = random_string(32)
-		db.session.commit()
 		send_unsubscribe_verify.delay(form.email.data, get_locale().language)
 
 		return redirect(url_for("users.email_sent"))
@@ -371,9 +378,13 @@ def unsubscribe_manage(sub: EmailSubscription):
 def unsubscribe():
 	token = request.args.get("token")
 	if token:
-		sub = EmailSubscription.query.filter_by(token=token).first()
+		sub_id = load_unsubscribe_token(token)
+		sub = EmailSubscription.query.get(sub_id) if sub_id is not None else None
 		if sub:
 			return unsubscribe_manage(sub)
+
+		if request.method == "GET":
+			flash(gettext("This unsubscribe link is invalid or has expired. Enter your email address to get a new one."), "danger")
 
 	return unsubscribe_verify()
 

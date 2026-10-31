@@ -15,11 +15,12 @@ from app.models import User, AuditSeverity, db, UserRank, PackageAlias, EmailSub
 	UserEmailVerification, Permission, NotificationType, UserBan
 from app.tasks.emails import send_verify_email
 from app.tasks.usertasks import update_github_user_id
-from app.utils.misc import nonempty_or_none, random_string
+from app.utils.misc import nonempty_or_none, random_string, hash_token
 from app.utils.models import add_audit_log
 from app.utils.user import rank_required
 from app.utils.flask import has_blocked_domains
 from . import bp
+from .account import confirm_email_verification
 
 
 def get_setting_tabs(user):
@@ -175,7 +176,7 @@ def handle_email_notifications(user, prefs: UserNotificationPreferences, is_new,
 
 			ver = UserEmailVerification()
 			ver.user = user
-			ver.token = token
+			ver.token_hash = hash_token(token)
 			ver.email = newEmail
 			db.session.add(ver)
 			db.session.commit()
@@ -401,7 +402,7 @@ def modtools_set_email(username):
 
 	ver = UserEmailVerification()
 	ver.user = user
-	ver.token = token
+	ver.token_hash = hash_token(token)
 	ver.email = user.email
 	ver.is_password_reset = True
 	db.session.add(ver)
@@ -410,6 +411,30 @@ def modtools_set_email(username):
 	send_verify_email.delay(user.email, token, user.locale or "en")
 
 	flash(f"Set email and sent a password reset on {user.username}", "success")
+	return redirect(url_for("users.modtools", username=username))
+
+
+@bp.route("/users/<username>/modtools/verify-email/<int:ver_id>/", methods=["POST"])
+@rank_required(UserRank.MODERATOR)
+def modtools_verify_email(username, ver_id):
+	user = User.query.filter_by(username=username).first()
+	if not user:
+		abort(404)
+
+	if not user.check_perm(current_user, Permission.CHANGE_EMAIL):
+		abort(403)
+
+	ver = UserEmailVerification.query.get(ver_id)
+	if ver is None or ver.user != user or ver.is_expired:
+		abort(404)
+
+	email = ver.email
+	if confirm_email_verification(ver):
+		add_audit_log(AuditSeverity.MODERATION, current_user, f"Confirmed email {email} for {user.username}",
+				url_for("users.profile", username=user.username), None)
+		db.session.commit()
+		flash(f"Confirmed email {email} for {user.username}", "success")
+
 	return redirect(url_for("users.modtools", username=username))
 
 

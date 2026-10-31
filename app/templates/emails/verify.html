@@ -29,7 +29,7 @@
 {% block footer %}
 	{{ _("You are receiving this email because someone (hopefully you) entered your email address as a user's email.") }}
 	<br>
-	<a href="{{ abs_url_for('users.unsubscribe', token=sub.token) }}">
+	<a href="{{ sub.url }}">
 		{{ _("Unsubscribe") }}
 	</a>
 {% endblock %}
