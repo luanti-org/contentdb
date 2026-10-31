@@ -1,9 +1,14 @@
 # Enable this by adding to your .env:
 #
 #     COMPOSE_FILE=docker-compose.yml:docker-compose.dev.yml
+#
+# The image is built locally as contentdb:dev, so it can't be mixed up with the published image.
 
 services:
   app:
+    image: "contentdb:dev"
+    build: .
+    pull_policy: build
     volumes:
       # For hot reloading during development
       - "./app:/home/cdb/app"
@@ -11,6 +16,14 @@ services:
       - "./migrations:/home/cdb/migrations"
 
   worker:
+    image: "contentdb:dev"
+    build: .
+    pull_policy: build
     volumes:
       # For hot reloading during development
       - "./app:/home/cdb/app"
+
+  beat:
+    image: "contentdb:dev"
+    build: .
+    pull_policy: build

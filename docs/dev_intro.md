@@ -41,7 +41,7 @@ which is used to generate SQLAlachemy queries for packages and topics.
 * `cypress` contains the end-to-end UI tests.
 * `migrations` contains code to manage database updates.
 * `translations` contains user-maintained translations / locales.
-* `utils` contains bash scripts to aid development and deployment.
+* `utils` contains bash scripts to aid development.
 
 
 ## How to find stuff

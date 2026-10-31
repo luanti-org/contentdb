@@ -42,8 +42,9 @@ Docker is the recommended way to develop and deploy ContentDB.
 		UPLOADS_DIR=./data/uploads
 		COMPOSE_FILE=docker-compose.yml:docker-compose.dev.yml
 
-	`COMPOSE_FILE` enables `docker-compose.dev.yml`, which mounts the source code for hot reloading.
-	Leave it out in production.
+	`COMPOSE_FILE` enables `docker-compose.dev.yml`, which builds the image locally as `contentdb:dev`
+	and mounts the source code for hot reloading.
+	Leave it out in production, see [Deploying](deploying.md).
 
 6. Start docker images:
 
