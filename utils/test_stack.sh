@@ -7,6 +7,8 @@
 #   utils/test_stack.sh test [args]   Run pytest in the stack, starting it if needed
 #   utils/test_stack.sh down          Stop the stack and discard all of its data
 #
+# Builds the working tree as contentdb:test, unless CDB_TEST_IMAGE is set.
+#
 
 set -e
 
@@ -17,7 +19,11 @@ compose() {
 }
 
 up() {
-	compose up -d --build --wait
+	if [ -n "$CDB_TEST_IMAGE" ]; then
+		compose up -d --no-build --wait
+	else
+		compose up -d --build --wait
+	fi
 	compose exec -T app sh -c "FLASK_APP=app/__init__.py flask db upgrade"
 }
 
