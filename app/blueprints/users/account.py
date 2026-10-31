@@ -15,6 +15,7 @@ from wtforms.validators import InputRequired, Length, Regexp, DataRequired, Opti
 
 from app.tasks.emails import send_verify_email, send_anon_email, send_unsubscribe_verify, send_user_email
 from app.utils.misc import random_string, nonempty_or_none
+from app.utils.tokens import load_unsubscribe_token
 from app.utils.models import add_audit_log
 from app.utils.user import make_flask_login_password, is_safe_url, check_password_hash, post_login
 from . import bp
@@ -339,9 +340,8 @@ def unsubscribe_verify():
 		if not sub:
 			sub = EmailSubscription(email)
 			db.session.add(sub)
+			db.session.commit()
 
-		sub.token = random_string(32)
-		db.session.commit()
 		send_unsubscribe_verify.delay(form.email.data, get_locale().language)
 
 		return redirect(url_for("users.email_sent"))
@@ -371,9 +371,13 @@ def unsubscribe_manage(sub: EmailSubscription):
 def unsubscribe():
 	token = request.args.get("token")
 	if token:
-		sub = EmailSubscription.query.filter_by(token=token).first()
+		sub_id = load_unsubscribe_token(token)
+		sub = EmailSubscription.query.get(sub_id) if sub_id is not None else None
 		if sub:
 			return unsubscribe_manage(sub)
+
+		if request.method == "GET":
+			flash(gettext("This unsubscribe link is invalid or has expired. Enter your email address to get a new one."), "danger")
 
 	return unsubscribe_verify()
 
