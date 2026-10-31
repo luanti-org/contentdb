@@ -118,8 +118,11 @@
 {% for ver in user.email_verifications %}
 	{% if not ver.is_expired %}
 	<li>
-		{{ ver.email }}, {{ ver.created_at | full_datetime }}:
-		<a href="{{ url_for('users.verify_email', token=ver.token) }}">verify</a>
+		<form method="POST" action="{{ url_for('users.modtools_verify_email', username=user.username, ver_id=ver.id) }}">
+			<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+			{{ ver.email }}, {{ ver.created_at | full_datetime }}:
+			<input type="submit" value="{{ _('Verify') }}" class="btn btn-sm btn-secondary" />
+		</form>
 	</li>
 	{% endif %}
 {% endfor %}
