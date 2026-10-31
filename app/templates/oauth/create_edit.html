@@ -45,12 +45,19 @@
 				</div>
 				<div class="form-group">
 					<label class="form-label" for="client_secret">client_secret</label>
-					<input class="form-control" type="text" id="client_secret" name="client_secret" value="{{ client.secret }}" readonly>
+					{% if client_secret %}
+						<input class="form-control" type="text" id="client_secret" name="client_secret" value="{{ client_secret }}" readonly>
+					{% endif %}
 					<p class="form-text text-muted">
+						{{ _("For security reasons, the client secret will only be shown once. Reset the secret if it is lost.") }}
 						{% if not client.is_clientside %}
 							{{ _("You must keep the secret safe. If you are unable, set the app type to 'client-side'.") }}
 						{% endif %}
 					</p>
+					<form method="POST" action="{{ url_for('oauth.reset_secret', username=client.owner.username, id_=client.id) }}">
+						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+						<input class="btn btn-primary" type="submit" value="{{ _('Reset client_secret') }}">
+					</form>
 				</div>
 				<div class="form-group">
 					<label class="form-label" for="authorize_url">{{ _("Example Authorize URL") }}</label>

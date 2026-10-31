@@ -110,7 +110,7 @@ def make_token(owner: User, kind: str) -> str:
 		oauth_client = OAuthClient()
 		oauth_client.id = random_string(24)
 		oauth_client.title = "Third party app"
-		oauth_client.secret = random_string(32)
+		oauth_client.secret_hash = hash_token(random_string(32))
 		oauth_client.redirect_url = "https://example.com/callback"
 		oauth_client.owner = make_user("app_developer")
 		oauth_client.approved = True
