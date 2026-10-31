@@ -28,6 +28,10 @@ RUN .venv/bin/pybabel compile -d translations
 
 FROM ${PYTHON_IMAGE}
 
+LABEL org.opencontainers.image.source=https://github.com/luanti-org/contentdb
+LABEL org.opencontainers.image.description="Luanti ContentDB"
+LABEL org.opencontainers.image.licenses=AGPL-3.0-or-later
+
 RUN addgroup --gid 5123 cdb && \
     adduser --uid 5123 -S cdb -G cdb
 
