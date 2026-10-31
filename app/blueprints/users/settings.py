@@ -15,7 +15,7 @@ from app.models import User, AuditSeverity, db, UserRank, PackageAlias, EmailSub
 	UserEmailVerification, Permission, NotificationType, UserBan
 from app.tasks.emails import send_verify_email
 from app.tasks.usertasks import update_github_user_id
-from app.utils.misc import nonempty_or_none, random_string
+from app.utils.misc import nonempty_or_none, random_string, hash_token
 from app.utils.models import add_audit_log
 from app.utils.user import rank_required
 from app.utils.flask import has_blocked_domains
@@ -176,7 +176,7 @@ def handle_email_notifications(user, prefs: UserNotificationPreferences, is_new,
 
 			ver = UserEmailVerification()
 			ver.user = user
-			ver.token = token
+			ver.token_hash = hash_token(token)
 			ver.email = newEmail
 			db.session.add(ver)
 			db.session.commit()
@@ -402,7 +402,7 @@ def modtools_set_email(username):
 
 	ver = UserEmailVerification()
 	ver.user = user
-	ver.token = token
+	ver.token_hash = hash_token(token)
 	ver.email = user.email
 	ver.is_password_reset = True
 	db.session.add(ver)
