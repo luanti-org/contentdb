@@ -7,6 +7,7 @@ from functools import wraps
 from flask import request, abort
 
 from app.models import APIToken
+from app.utils.misc import hash_token
 from .support import error
 
 
@@ -23,7 +24,7 @@ def is_api_authd(f):
 			if len(access_token) < 10:
 				error(400, "API token is too short")
 
-			token = APIToken.query.filter_by(access_token=access_token).first()
+			token = APIToken.query.filter_by(access_token_hash=hash_token(access_token)).first()
 			if token is None:
 				error(403, "Unknown API token")
 			if token.owner.is_banned:

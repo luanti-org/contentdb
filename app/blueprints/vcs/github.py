@@ -121,13 +121,14 @@ def github_callback(oauth_token):
 		return ret
 
 
-def _find_api_token(header_signature: str) -> APIToken:
-	sha_name, signature = header_signature.split('=')
+def _check_api_token(token_id: int, header_signature: str) -> APIToken:
+	sha_name, _, signature = header_signature.partition('=')
 	if sha_name != 'sha1':
 		error(403, "Expected SHA1 payload signature")
 
-	for token in APIToken.query.filter(APIToken.client_id.is_(None)).all():
-		secret = get_github_webhook_secret(token.id)
+	token = APIToken.query.get(token_id)
+	if token is not None and token.client_id is None:
+		secret = get_github_webhook_secret(token.id, token.access_token_hash)
 		mac = hmac.new(secret.encode("utf-8"), msg=request.data, digestmod='sha1')
 
 		if hmac.compare_digest(str(mac.hexdigest()), signature):
@@ -138,14 +139,20 @@ def _find_api_token(header_signature: str) -> APIToken:
 
 @bp.route("/github/webhook/", methods=["POST"])
 @csrf.exempt
-def github_webhook():
+def github_webhook_without_token():
+	error(400, "The payload URL needs to include the API token's id. Copy it from the API token's page on ContentDB")
+
+
+@bp.route("/github/webhook/<int:token_id>/", methods=["POST"])
+@csrf.exempt
+def github_webhook(token_id: int):
 	json = request.json
 
 	header_signature = request.headers.get('X-Hub-Signature')
 	if header_signature is None:
 		return error(403, "Expected payload signature")
 
-	token = _find_api_token(header_signature)
+	token = _check_api_token(token_id, header_signature)
 	packages = get_packages_for_vcs_and_token(token, "github.com/" + json["repository"]["full_name"])
 
 	for package in packages:

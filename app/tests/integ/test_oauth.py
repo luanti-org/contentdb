@@ -3,10 +3,12 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 import datetime
+import urllib.parse as urlparse
 
-from app.models import db, User, UserRank, OAuthClient
+from app.models import db, User, UserRank, OAuthClient, APIToken
+from app.utils.misc import hash_token
 from app.utils.user import make_flask_login_password
-from .utils import login
+from .utils import login, parse_json
 from .utils import client # noqa
 
 
@@ -126,3 +128,91 @@ def test_oauth_editor_edit_redirect_url_keeps_approval(client):
 	assert oauth_client.redirect_url == "https://new.example.com/callback/"
 	assert oauth_client.approved
 	assert oauth_client.verified
+
+
+def authorize(client, oauth_client):
+	rv = client.post("/oauth/authorize/", query_string=dict(
+		response_type="code",
+		client_id=oauth_client.id,
+		redirect_uri=oauth_client.redirect_url,
+		state="abc",
+	), data=dict(action="authorize"))
+	assert rv.status_code == 302
+	location = urlparse.urlparse(rv.headers["Location"])
+	query = dict(urlparse.parse_qsl(location.query))
+	assert query["state"] == "abc"
+	return query["code"]
+
+
+def redeem(client, client_secret, code):
+	return client.post("/oauth/token/", data=dict(
+		client_id="testclient",
+		client_secret=client_secret,
+		code=code,
+	))
+
+
+def test_oauth_flow(client):
+	owner = make_user("owner", UserRank.MEMBER)
+	oauth_client = make_oauth_client(owner)
+	make_user("member", UserRank.MEMBER)
+	login(client, "member", "password123")
+
+	code = authorize(client, oauth_client)
+	token = APIToken.query.filter_by(client_id="testclient").one()
+	assert token.auth_code == code
+
+	# Not usable until the code is redeemed
+	assert APIToken.query.filter_by(access_token_hash=hash_token(code)).count() == 0
+
+	assert redeem(client, "wrong", code).status_code == 400
+
+	rv = redeem(client, "secret", code)
+	assert rv.status_code == 200
+	access_token = parse_json(rv.data)["access_token"]
+
+	db.session.expire_all()
+	token = APIToken.query.filter_by(client_id="testclient").one()
+	assert token.access_token_hash == hash_token(access_token)
+	assert token.auth_code is None
+
+	rv = client.get("/api/whoami/", headers={"Authorization": f"Bearer {access_token}"})
+	assert rv.status_code == 200
+	assert parse_json(rv.data)["username"] == "member"
+
+	# Code can only be used once
+	assert redeem(client, "secret", code).status_code == 400
+
+	# Authorizing again doesn't revoke the old token until the new code is redeemed
+	code = authorize(client, oauth_client)
+	rv = client.get("/api/whoami/", headers={"Authorization": f"Bearer {access_token}"})
+	assert rv.status_code == 200
+
+	rv = redeem(client, "secret", code)
+	assert rv.status_code == 200
+	new_access_token = parse_json(rv.data)["access_token"]
+
+	rv = client.get("/api/whoami/", headers={"Authorization": f"Bearer {access_token}"})
+	assert rv.status_code == 403
+	rv = client.get("/api/whoami/", headers={"Authorization": f"Bearer {new_access_token}"})
+	assert rv.status_code == 200
+
+
+def test_oauth_get_authorize_does_not_revoke_token(client):
+	owner = make_user("owner", UserRank.MEMBER)
+	oauth_client = make_oauth_client(owner)
+	make_user("member", UserRank.MEMBER)
+	login(client, "member", "password123")
+
+	access_token = parse_json(redeem(client, "secret", authorize(client, oauth_client)).data)["access_token"]
+
+	# A plain GET, like a link or image elsewhere, only issues a new code
+	rv = client.get("/oauth/authorize/", query_string=dict(
+		response_type="code",
+		client_id=oauth_client.id,
+		redirect_uri=oauth_client.redirect_url,
+	))
+	assert rv.status_code == 302
+
+	rv = client.get("/api/whoami/", headers={"Authorization": f"Bearer {access_token}"})
+	assert rv.status_code == 200

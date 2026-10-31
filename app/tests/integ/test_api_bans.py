@@ -8,7 +8,7 @@ import pytest
 
 from app.default_data import populate_test_data
 from app.models import db, User, UserRank, UserBan, APIToken, Package, Permission
-from app.utils.misc import random_string
+from app.utils.misc import hash_token, random_string
 from .utils import client # noqa
 
 
@@ -23,11 +23,12 @@ def owner_token(client):
 	token = APIToken()
 	token.name = "test"
 	token.owner = owner
-	token.access_token = random_string(32)
+	access_token = random_string(32)
+	token.access_token_hash = hash_token(access_token)
 	db.session.add(token)
 	db.session.commit()
 
-	return owner, token.access_token
+	return owner, access_token
 
 
 def ban(user: User, expires_at: datetime.datetime | None):

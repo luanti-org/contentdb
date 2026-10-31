@@ -16,7 +16,7 @@ from wtforms.validators import InputRequired, Length, Optional, ValidationError
 from app import csrf
 from app.blueprints.users.settings import get_setting_tabs
 from app.models import db, OAuthClient, User, Permission, APIToken, AuditSeverity, UserRank
-from app.utils.misc import random_string
+from app.utils.misc import random_string, hash_token
 from app.utils.models import add_audit_log
 from app.utils.url import is_valid_oauth_redirect_url
 
@@ -32,6 +32,12 @@ def build_redirect_url(url: str, code: str, state: typing.Optional[str]):
 	query.update(params)
 	url_parts[4] = urlencode(query)
 	return urlparse.urlunparse(url_parts)
+
+
+# Returns the auth code. The access token is only replaced when the code is redeemed
+def reset_auth_code(token: APIToken) -> str:
+	token.auth_code = random_string(32)
+	return token.auth_code
 
 
 @bp.route("/oauth/authorize/", methods=["GET", "POST"])
@@ -64,10 +70,9 @@ def oauth_start():
 
 	token = APIToken.query.filter(APIToken.client == client, APIToken.owner == current_user).first()
 	if token:
-		token.access_token = random_string(32)
-		token.auth_code = random_string(32)
+		auth_code = reset_auth_code(token)
 		db.session.commit()
-		return redirect(build_redirect_url(client.redirect_url, token.auth_code, state))
+		return redirect(build_redirect_url(client.redirect_url, auth_code, state))
 
 	if request.method == "POST":
 		action = request.form["action"]
@@ -76,12 +81,13 @@ def oauth_start():
 
 		elif action == "authorize":
 			token = APIToken()
-			token.access_token = random_string(32)
+			# Can't be used until the code is redeemed
+			token.access_token_hash = hash_token(random_string(32))
+			auth_code = reset_auth_code(token)
 			token.name = f"Token for {client.title} by {client.owner.username}"
 			token.owner = current_user
 			token.client = client
 			assert client is not None
-			token.auth_code = random_string(32)
 			db.session.add(token)
 
 			add_audit_log(AuditSeverity.USER, current_user,
@@ -90,7 +96,7 @@ def oauth_start():
 
 			db.session.commit()
 
-			return redirect(build_redirect_url(client.redirect_url, token.auth_code, state))
+			return redirect(build_redirect_url(client.redirect_url, auth_code, state))
 
 	return render_template("oauth/authorize.html", client=client)
 
@@ -128,12 +134,14 @@ def oauth_grant():
 	if token is None or token.client != client:
 		error(400, "Incorrect code. It may have already been redeemed")
 
+	access_token = random_string(32)
+	token.access_token_hash = hash_token(access_token)
 	token.auth_code = None
 	db.session.commit()
 
 	return jsonify({
 		"success": True,
-		"access_token": token.access_token,
+		"access_token": access_token,
 		"token_type": "Bearer",
 	})
 

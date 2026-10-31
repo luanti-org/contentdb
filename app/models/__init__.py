@@ -16,7 +16,7 @@ from .collections import *
 
 class APIToken(Model):
 	id           = db.Column(db.Integer, primary_key=True)
-	access_token = db.Column(db.String(34), unique=True, nullable=False)
+	access_token_hash = db.Column(db.String(64), unique=True, nullable=False)
 
 	name         = db.Column(db.String(100), nullable=False)
 

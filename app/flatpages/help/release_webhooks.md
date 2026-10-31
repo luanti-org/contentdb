@@ -37,11 +37,12 @@ Tag-based webhooks are accepted on any branch.
 ### GitHub
 
 1. Create a ContentDB API Token at [Profile > API Tokens: Manage](/user/tokens/).
-2. Copy the "GitHub Webhook Secret" shown on the token's page. This is different to the access token.
+2. On the token's page, find the "GitHub Webhook" payload URL and secret. The secret is different
+   to the access token, and changes if you reset the token.
 3. Go to the Github repository's settings > Webhooks > Add Webhook.
-4. Set the payload URL to `https://content.luanti.org/github/webhook/`
+4. Set the payload URL to the one shown on the token's page, such as `https://content.luanti.org/github/webhook/123/`
 5. Set the content type to JSON.
-6. Set the secret to the GitHub webhook secret that you copied.
+6. Set the secret to the one shown on the token's page.
 7. Set the events
     * If you want a rolling release, choose "just the push event".
     * Or if you want a stable release cycle based on tags, choose "Let me select" > Branch or tag creation.
