@@ -14,7 +14,7 @@ from app.utils.flask import get_int_or_abort
 from sqlalchemy import func
 from . import bp
 from .actions import actions
-from app.models import UserRank, Package, db, PackageState, PackageRelease, PackageScreenshot, User, AuditSeverity, NotificationType, PackageAlias
+from app.models import UserRank, Package, db, PackageState, PackageRelease, PackageScreenshot, User, AuditSeverity, NotificationType, PackageAlias, APIToken
 from ...querybuilder import QueryBuilder
 
 
@@ -143,6 +143,9 @@ def perform_transfer(form: TransferPackageForm):
 		return
 
 	for package in packages:
+		# The old author's tokens stop working after a transfer, even if they stay a maintainer
+		APIToken.query.filter_by(owner_id=package.author_id, package_id=package.id).delete()
+
 		if form.remove_maintainer.data:
 			package.maintainers.remove(package.author)
 		package.author = new_user

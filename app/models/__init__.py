@@ -39,7 +39,14 @@ class APIToken(Model):
 		if self.package and self.package != package:
 			return False
 
-		return package.author == self.owner
+		if self.owner.is_banned:
+			return False
+
+		if package.author == self.owner:
+			return True
+
+		# Maintainers need a token explicitly scoped to the package
+		return self.package == package and self.owner in package.maintainers
 
 
 class AuditSeverity(enum.Enum):
