@@ -2,10 +2,12 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
+import re
 import time
 
 from flask import Flask
 
+from app.utils.misc import hash_token
 from app.utils.tokens import make_unsubscribe_token, load_unsubscribe_token, UNSUBSCRIBE_TOKEN_MAX_AGE_S
 
 
@@ -13,6 +15,12 @@ def make_app(secret_key="secret"):
 	app = Flask(__name__)
 	app.config["SECRET_KEY"] = secret_key
 	return app
+
+
+def test_hash_token():
+	assert re.fullmatch(r"[0-9a-f]{64}", hash_token("abc"))
+	assert hash_token("abc") == hash_token("abc")
+	assert hash_token("abc") != hash_token("abd")
 
 
 def test_unsubscribe_token():

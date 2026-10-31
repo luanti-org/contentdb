@@ -372,7 +372,7 @@ class UserEmailVerification(Model):
 	id      = db.Column(db.Integer, primary_key=True)
 	user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
 	email   = db.Column(db.String(100), nullable=False)
-	token   = db.Column(db.String(32), nullable=True)
+	token_hash = db.Column(db.String(64), nullable=True, unique=True)
 	user    = db.relationship("User", foreign_keys=[user_id], back_populates="email_verifications")
 	is_password_reset = db.Column(db.Boolean, nullable=False, default=False)
 	created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)

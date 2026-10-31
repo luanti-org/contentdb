@@ -6,7 +6,7 @@ import datetime
 import time
 
 from app.models import db, User, UserRank, EmailSubscription, UserEmailVerification
-from app.utils.misc import random_string
+from app.utils.misc import hash_token, random_string
 from app.utils.tokens import UNSUBSCRIBE_TOKEN_MAX_AGE_S
 from app.utils.user import make_flask_login_password
 from .utils import login
@@ -64,7 +64,7 @@ def make_email_verification(user, email):
 	ver = UserEmailVerification()
 	ver.user = user
 	ver.email = email
-	ver.token = random_string(32)
+	ver.token_hash = hash_token(random_string(32))
 	db.session.add(ver)
 	db.session.commit()
 	return ver.id
