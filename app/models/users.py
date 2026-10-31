@@ -246,18 +246,16 @@ class User(Model, UserMixin):
 
 	def get_profile_pic_url(self, absolute: bool = False):
 		if self.profile_pic:
-			if absolute:
-				return current_app.config["BASE_URL"] + self.profile_pic
-			else:
-				return self.profile_pic
+			url = self.profile_pic
 		elif self.rank == UserRank.BOT:
-			if absolute:
-				return current_app.config["BASE_URL"] + "/static/bot_avatar.png"
-			else:
-				return "/static/bot_avatar.png"
+			url = "/static/bot_avatar.png"
 		else:
-			from app.utils.gravatar import get_gravatar
-			return get_gravatar(self.email or f"{self.username}@content.luanti.org")
+			url = "/static/default_avatar.png"
+
+		if absolute:
+			return current_app.config["BASE_URL"] + url
+		else:
+			return url
 
 	def check_perm(self, user, perm):
 		if user is None or not user.is_authenticated:

@@ -68,7 +68,7 @@ def home():
 	def review_load(query):
 		return query.options(
 			load_only(PackageReview.id, PackageReview.rating, PackageReview.created_at, PackageReview.language_id, PackageReview.approved, raiseload=True),
-			joinedload(PackageReview.author).load_only(User.username, User.rank, User.email, User.display_name, User.profile_pic, User.is_active, raiseload=True),
+			joinedload(PackageReview.author).load_only(User.username, User.rank, User.display_name, User.profile_pic, User.is_active, raiseload=True),
 			joinedload(PackageReview.votes),
 			joinedload(PackageReview.language).load_only(Language.title, raiseload=True),
 			joinedload(PackageReview.thread).load_only(Thread.title, Thread.replies_count, raiseload=True).subqueryload(Thread.first_reply),

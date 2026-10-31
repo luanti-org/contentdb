@@ -12,11 +12,9 @@
 	<div class="col-md-2">
 		{% if user.forums_username %}
 			<a href="https://forum.luanti.org/ucp.php?i=profile&mode=avatar">
-		{% elif user.email %}
-			<a href="https://en.gravatar.com/">
 		{% endif %}
 		<img class="img-fluid user-photo img-thumbnail  img-thumbnail-1" src="{{ user.get_profile_pic_url() }}">
-		{% if user.forums_username or user.email %}
+		{% if user.forums_username %}
 			</a>
 		{% endif %}
 	</div>
@@ -32,17 +30,6 @@
 				<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 				<input type="submit" class="btn btn-secondary" value="{{  _('Remove profile picture') }}" />
 			</form>
-		{% elif user.email %}
-			<a class="btn btn-primary" href="https://en.gravatar.com/">
-				Gravatar
-			</a>
-		{% else %}
-			<a class="btn btn-secondary disabled"
-					data-toggle="tooltip" data-placement="bottom"
-					title="Please add an email address to use Gravatar"
-					style="pointer-events: all;">
-				Gravatar
-			</a>
 		{% endif %}
 	</div>
 </div>
