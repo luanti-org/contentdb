@@ -76,6 +76,7 @@ class AuditLogEntry(Model):
 
 	title      = db.Column(db.String(100), nullable=False)
 	url        = db.Column(db.String(200), nullable=True)
+	url_is_path = db.CheckConstraint("url IS NULL OR (url LIKE '/%' AND url NOT LIKE '//%')")
 
 	package_id = db.Column(db.Integer, db.ForeignKey("package.id"), nullable=True)
 	package    = db.relationship("Package", foreign_keys=[package_id], back_populates="audit_log_entries")

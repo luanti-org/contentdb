@@ -6,9 +6,10 @@ import typing
 import datetime
 from functools import wraps
 from typing import List
+from urllib.parse import urlparse, urlunparse
 
 import sqlalchemy.orm
-from flask import abort, redirect, url_for, request
+from flask import abort, redirect, url_for, request, current_app
 from flask_login import current_user
 from sqlalchemy import or_, and_
 from sqlalchemy.orm import sessionmaker
@@ -86,9 +87,25 @@ def add_notification(target, causer: User, type: NotificationType, title: str, u
 		session.add(notif)
 
 
+# url_for returns absolute URLs outside of requests, such as in tasks
+def get_url_path(url: typing.Optional[str]) -> typing.Optional[str]:
+	if url is None:
+		return None
+
+	parsed = urlparse(url)
+	server_name = current_app.config["SERVER_NAME"].lower()
+	if parsed.scheme in ("http", "https") and parsed.netloc.lower() == server_name:
+		url = urlunparse(parsed._replace(scheme="", netloc="", path=parsed.path or "/"))
+
+	if not url.startswith("/") or url.startswith("//"):
+		raise ValueError(f"Expected a path on this site, got {url!r}")
+
+	return url
+
+
 def add_audit_log(severity: AuditSeverity, causer: User, title: str, url: typing.Optional[str],
 			package: Package | None = None, description: str | None = None):
-	entry = AuditLogEntry(causer, severity, title, url, package, description)
+	entry = AuditLogEntry(causer, severity, title, get_url_path(url), package, description)
 	db.session.add(entry)
 
 
