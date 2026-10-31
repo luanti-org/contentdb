@@ -29,21 +29,22 @@ def test_hash_token():
 
 def test_github_webhook_secret():
 	with make_app().app_context():
-		secret = get_github_webhook_secret(1)
+		secret = get_github_webhook_secret(1, "hash")
 		assert re.fullmatch(r"[0-9a-f]{64}", secret)
-		assert get_github_webhook_secret(1) == secret
-		assert get_github_webhook_secret(2) != secret
+		assert get_github_webhook_secret(1, "hash") == secret
+		assert get_github_webhook_secret(2, "hash") != secret
+		assert get_github_webhook_secret(1, "other_hash") != secret
 
 	with make_app(webhook_secret_key="other").app_context():
-		assert get_github_webhook_secret(1) != secret
+		assert get_github_webhook_secret(1, "hash") != secret
 
 	# Rotating the session secret key doesn't change webhook secrets
 	with make_app(secret_key="other").app_context():
-		assert get_github_webhook_secret(1) == secret
+		assert get_github_webhook_secret(1, "hash") == secret
 
 	with make_app(webhook_secret_key="").app_context():
 		with pytest.raises(RuntimeError):
-			get_github_webhook_secret(1)
+			get_github_webhook_secret(1, "hash")
 
 
 def test_unsubscribe_token():

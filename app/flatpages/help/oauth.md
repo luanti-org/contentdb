@@ -75,6 +75,10 @@ If successful, you'll receive:
 }
 ```
 
+Each auth code can only be redeemed once, and the access token is only returned
+at this point. If the user authorizes your application again, their previous
+access token keeps working until you redeem the new code, which replaces it.
+
 If there's an error, you'll receive a standard API error message:
 
 ```json

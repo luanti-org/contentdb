@@ -47,14 +47,24 @@
 					</form>
 				</div>
 			</div>
-			{% if github_webhook_secret %}
+			{% if github_webhook_url %}
 				<div class="card mb-3">
-					<div class="card-header">{{ _("GitHub Webhook Secret") }}</div>
+					<div class="card-header">{{ _("GitHub Webhook") }}</div>
 					<div class="card-body">
 						<p>
-							{{ _("Use this as the secret when creating a GitHub webhook. See <a href='/help/release_webhooks/'>Creating Releases using Webhooks</a>.") }}
+							{{ _("Use these when creating a GitHub webhook. See <a href='/help/release_webhooks/'>Creating Releases using Webhooks</a>.") }}
+							{{ _("Resetting the access token changes the secret.") }}
 						</p>
-						<input class="form-control my-3" type="text" readonly value="{{ github_webhook_secret }}">
+						<label class="form-label" for="github_webhook_url">{{ _("Payload URL") }}</label>
+						<input class="form-control mb-3" type="text" id="github_webhook_url" readonly value="{{ github_webhook_url }}">
+						<label class="form-label" for="github_webhook_secret">{{ _("Secret") }}</label>
+						{% if github_webhook_secret %}
+							<input class="form-control mb-3" type="text" id="github_webhook_secret" readonly value="{{ github_webhook_secret }}">
+						{% else %}
+							<p class="text-muted" id="github_webhook_secret">
+								{{ _("For security reasons, the secret will only be shown once. Reset the token if it is lost.") }}
+							</p>
+						{% endif %}
 					</div>
 				</div>
 			{% endif %}

@@ -9,6 +9,7 @@ from flask import request, jsonify
 from app import csrf
 from app.blueprints.api.support import error, api_create_vcs_release
 from app.models import APIToken
+from app.utils.misc import hash_token
 
 from . import bp
 from .common import get_packages_for_vcs_and_token
@@ -22,7 +23,7 @@ def webhook_impl():
 	if secret is None:
 		return error(403, "Token required")
 
-	token = APIToken.query.filter_by(access_token=secret).first()
+	token = APIToken.query.filter_by(access_token_hash=hash_token(secret)).first()
 	if token is None:
 		return error(403, "Invalid authentication")
 

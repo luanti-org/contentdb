@@ -10,13 +10,16 @@ from flask import current_app
 from itsdangerous import URLSafeTimedSerializer, BadSignature
 
 
-# Uses its own key so that rotating SECRET_KEY doesn't break every webhook
-def get_github_webhook_secret(token_id: int) -> str:
+# Uses its own key so that rotating SECRET_KEY doesn't break every webhook.
+# Includes the token's hash, so resetting the token changes the secret
+def get_github_webhook_secret(token_id: int, access_token_hash: str) -> str:
 	key = current_app.config.get("WEBHOOK_SECRET_KEY")
 	if not key:
 		raise RuntimeError("WEBHOOK_SECRET_KEY must be set in config.cfg")
 
-	return hmac.new(key.encode("utf-8"), f"github-webhook:{token_id}".encode("utf-8"), hashlib.sha256).hexdigest()
+	key = key.encode("utf-8")
+	msg = f"github-webhook:{token_id}:{access_token_hash}".encode("utf-8")
+	return hmac.new(key, msg, hashlib.sha256).hexdigest()
 
 
 # Unsubscribe links can't be revoked, so they expire instead.

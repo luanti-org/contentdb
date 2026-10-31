@@ -12,7 +12,7 @@ from app.models import db, User, UserRank, APIToken, EmailSubscription, UserEmai
 from app.utils.misc import hash_token, random_string
 from app.utils.tokens import get_github_webhook_secret, UNSUBSCRIBE_TOKEN_MAX_AGE_S
 from app.utils.user import make_flask_login_password
-from .utils import login
+from .utils import login, parse_json
 from .utils import client # noqa
 
 
@@ -37,29 +37,132 @@ def create_api_token(client, username):
 	return match.group(1).decode("utf-8")
 
 
-def post_github_webhook(client, key):
+def whoami(client, access_token):
+	return client.get("/api/whoami/", headers={"Authorization": f"Bearer {access_token}"})
+
+
+def test_api_token_hashed(client):
+	make_user("member", UserRank.MEMBER)
+	login(client, "member", "password123")
+
+	access_token = create_api_token(client, "member")
+
+	token = APIToken.query.one()
+	assert token.access_token_hash == hash_token(access_token)
+
+	# Only shown once
+	rv = client.get(f"/users/member/tokens/{token.id}/edit/")
+	assert access_token.encode("utf-8") not in rv.data
+
+	rv = whoami(client, access_token)
+	assert rv.status_code == 200
+	assert parse_json(rv.data)["username"] == "member"
+
+	rv = whoami(client, token.access_token_hash)
+	assert rv.status_code == 403
+
+
+def test_api_token_reset(client):
+	make_user("member", UserRank.MEMBER)
+	login(client, "member", "password123")
+
+	old_token = create_api_token(client, "member")
+	token = APIToken.query.one()
+
+	rv = client.post(f"/users/member/tokens/{token.id}/reset/", follow_redirects=True)
+	match = re.search(rb'readonly value="([0-9a-f]{32})"', rv.data)
+	assert match
+	new_token = match.group(1).decode("utf-8")
+
+	assert whoami(client, old_token).status_code == 403
+	assert whoami(client, new_token).status_code == 200
+
+
+def post_github_webhook(client, url, key):
 	data = json.dumps({"repository": {"full_name": "example/repo"}}).encode("utf-8")
 	signature = hmac.new(key.encode("utf-8"), msg=data, digestmod="sha1").hexdigest()
-	return client.post("/github/webhook/", data=data, content_type="application/json",
+	return client.post(url, data=data, content_type="application/json",
 			headers={"X-Hub-Signature": f"sha1={signature}"})
+
+
+def get_secret(token_id):
+	db.session.expire_all()
+	token = APIToken.query.get(token_id)
+	assert token is not None
+	return get_github_webhook_secret(token.id, token.access_token_hash)
 
 
 def test_github_webhook_secret(client):
 	make_user("member", UserRank.MEMBER)
 	login(client, "member", "password123")
 
-	access_token = create_api_token(client, "member")
+	rv = client.post("/users/member/tokens/new/", data=dict(name="Test", package=""), follow_redirects=True)
+	match = re.search(rb'readonly value="([0-9a-f]{32})"', rv.data)
+	assert match
+	access_token = match.group(1).decode("utf-8")
 	token = APIToken.query.one()
+	url = f"/github/webhook/{token.id}/"
+	secret = get_secret(token.id)
 
+	# The secret is shown once after creating the token
+	assert secret.encode("utf-8") in rv.data
+	assert f"http://localhost:5124{url}".encode("utf-8") in rv.data
+
+	# But not after that, though the URL is
 	rv = client.get(f"/users/member/tokens/{token.id}/edit/")
-	assert get_github_webhook_secret(token.id).encode("utf-8") in rv.data
+	assert secret.encode("utf-8") not in rv.data
+	assert b"the secret will only be shown once" in rv.data
+	assert f"http://localhost:5124{url}".encode("utf-8") in rv.data
+
+	# Resetting shows the new secret once
+	rv = client.post(f"/users/member/tokens/{token.id}/reset/", follow_redirects=True)
+	new_secret = get_secret(token.id)
+	assert new_secret != secret
+	assert new_secret.encode("utf-8") in rv.data
+	rv = client.get(f"/users/member/tokens/{token.id}/edit/")
+	assert new_secret.encode("utf-8") not in rv.data
+	secret = new_secret
 
 	# Valid signature, so it fails later on finding the package
-	rv = post_github_webhook(client, get_github_webhook_secret(token.id))
+	rv = post_github_webhook(client, url, secret)
 	assert rv.status_code == 400
 	assert b"Could not find package" in rv.data
 
-	rv = post_github_webhook(client, access_token)
+	assert post_github_webhook(client, url, access_token).status_code == 401
+	assert post_github_webhook(client, url, token.access_token_hash).status_code == 401
+	assert post_github_webhook(client, f"/github/webhook/{token.id + 100}/", secret).status_code == 401
+
+	rv = post_github_webhook(client, "/github/webhook/", secret)
+	assert rv.status_code == 400
+	assert b"needs to include the API token's id" in rv.data
+
+
+def test_github_webhook_secret_changes_on_reset(client):
+	make_user("member", UserRank.MEMBER)
+	login(client, "member", "password123")
+
+	create_api_token(client, "member")
+	token_id = APIToken.query.one().id
+	url = f"/github/webhook/{token_id}/"
+	old_secret = get_secret(token_id)
+
+	client.post(f"/users/member/tokens/{token_id}/reset/")
+	new_secret = get_secret(token_id)
+	assert new_secret != old_secret
+
+	assert post_github_webhook(client, url, old_secret).status_code == 401
+	assert post_github_webhook(client, url, new_secret).status_code == 400
+
+
+def test_github_webhook_rejects_other_tokens_secret(client):
+	make_user("member", UserRank.MEMBER)
+	login(client, "member", "password123")
+
+	create_api_token(client, "member")
+	create_api_token(client, "member")
+	token_1, token_2 = APIToken.query.order_by(APIToken.id).all()
+
+	rv = post_github_webhook(client, f"/github/webhook/{token_1.id}/", get_secret(token_2.id))
 	assert rv.status_code == 401
 
 

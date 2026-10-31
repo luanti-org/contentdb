@@ -6,7 +6,7 @@ import pytest
 
 from app.default_data import populate_test_data
 from app.models import db, User, UserRank, Package, PackageState, Collection, CollectionPackage, APIToken, OAuthClient
-from app.utils.misc import random_string
+from app.utils.misc import hash_token, random_string
 from app.utils.user import make_flask_login_password
 from .utils import login
 from .utils import client # noqa
@@ -103,7 +103,8 @@ def make_token(owner: User, kind: str) -> str:
 	token = APIToken()
 	token.name = kind
 	token.owner = owner
-	token.access_token = random_string(32)
+	access_token = random_string(32)
+	token.access_token_hash = hash_token(access_token)
 
 	if kind == "oauth":
 		oauth_client = OAuthClient()
@@ -120,7 +121,7 @@ def make_token(owner: User, kind: str) -> str:
 
 	db.session.add(token)
 	db.session.commit()
-	return token.access_token
+	return access_token
 
 
 def api_view(client, access_token: str | None = None):

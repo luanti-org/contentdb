@@ -12,7 +12,8 @@ from wtforms.validators import InputRequired, Length
 from wtforms_sqlalchemy.fields import QuerySelectField
 
 from app.models import db, User, APIToken, Permission, AuditSeverity
-from app.utils.misc import random_string
+from app.utils.misc import random_string, hash_token
+from app.utils.flask import abs_url_for
 from app.utils.models import add_audit_log
 from app.utils.tokens import get_github_webhook_secret
 from . import bp
@@ -72,7 +73,8 @@ def create_edit_token(username, id=None):
 			token = APIToken()
 			db.session.add(token)
 			token.owner = user
-			token.access_token = random_string(32)
+			access_token = random_string(32)
+			token.access_token_hash = hash_token(access_token)
 
 		assert token is not None
 		form.populate_obj(token)
@@ -86,13 +88,21 @@ def create_edit_token(username, id=None):
 
 		if is_new:
 			# Store token so it can be shown in the edit page
-			session["token_" + str(token.id)] = token.access_token
+			session["token_" + str(token.id)] = access_token
 
 		return redirect(url_for("api.create_edit_token", username=username, id=token.id))
 
-	github_webhook_secret = get_github_webhook_secret(token.id) if token and token.client is None else None
+	github_webhook_url = None
+	github_webhook_secret = None
+	if token and token.client is None:
+		github_webhook_url = abs_url_for("vcs.github_webhook", token_id=token.id)
+
+		# Like the access token, the secret is only shown once after creating or resetting the token
+		if access_token:
+			github_webhook_secret = get_github_webhook_secret(token.id, token.access_token_hash)
+
 	return render_template("api/create_edit_token.html", user=user, form=form, token=token, access_token=access_token,
-			github_webhook_secret=github_webhook_secret)
+			github_webhook_url=github_webhook_url, github_webhook_secret=github_webhook_secret)
 
 
 @bp.route("/users/<username>/tokens/<int:id>/reset/", methods=["POST"])
@@ -111,7 +121,8 @@ def reset_token(username, id):
 	elif token.owner != user:
 		abort(403)
 
-	token.access_token = random_string(32)
+	access_token = random_string(32)
+	token.access_token_hash = hash_token(access_token)
 
 	severity = AuditSeverity.USER if current_user == user else AuditSeverity.MODERATION
 	add_audit_log(severity, current_user, "Reset API token {} for {}".format(token.name, user.username),
@@ -120,7 +131,7 @@ def reset_token(username, id):
 	db.session.commit() # save
 
 	# Store token so it can be shown in the edit page
-	session["token_" + str(token.id)] = token.access_token
+	session["token_" + str(token.id)] = access_token
 
 	return redirect(url_for("api.create_edit_token", username=username, id=token.id))
 
