@@ -16,7 +16,6 @@ from app.models import Notification, db, EmailSubscription, User
 from app.rediscache import increment_key
 from app.tasks import celery
 from app.utils.flask import abs_url_for, abs_url
-from app.utils.misc import random_string
 
 
 reply_to = app.config.get("MAIL_REPLY_TO", None)
@@ -27,7 +26,6 @@ def get_email_subscription(email):
 	ret = EmailSubscription.query.filter_by(email=email).first()
 	if not ret:
 		ret = EmailSubscription(email)
-		ret.token = random_string(32)
 		db.session.add(ret)
 		db.session.commit()
 
@@ -80,7 +78,7 @@ def send_unsubscribe_verify(email, locale):
 					We're sorry to see you go. You just need to do one more thing before your email is blacklisted.
 					
 					Click this link to blacklist email: {} 
-				""".format(abs_url_for('users.unsubscribe', token=sub.token))
+				""".format(sub.url)
 
 		msg.html = render_template("emails/verify_unsubscribe.html", sub=sub)
 		mail.send(msg)
@@ -133,7 +131,7 @@ def send_single_email(notification, locale):
 				Unsubscribe: {}
 			""".format(notification.title, abs_url(notification.url),
 						abs_url_for("users.email_notifications", username=notification.user.username),
-						abs_url_for("users.unsubscribe", token=sub.token))
+						sub.url)
 
 		msg.html = render_template("emails/notification.html", notification=notification, sub=sub)
 		mail.send(msg)
@@ -156,7 +154,7 @@ def send_notification_digest(notifications: typing.List[Notification], locale):
 				gettext("Manage email settings"),
 				abs_url_for("users.email_notifications", username=user.username),
 				gettext("Unsubscribe"),
-				abs_url_for("users.unsubscribe", token=sub.token))
+				sub.url)
 
 		msg.html = render_template("emails/notification_digest.html", notifications=notifications, user=user, sub=sub)
 		mail.send(msg)

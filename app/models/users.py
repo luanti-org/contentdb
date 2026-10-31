@@ -13,6 +13,7 @@ from sqlalchemy import desc, text
 from .base import db, Model
 from app.utils.misc import truncate_string
 from app.utils.flask import abs_url_for
+from app.utils.tokens import make_unsubscribe_token
 
 
 class UserRank(enum.Enum):
@@ -386,16 +387,15 @@ class EmailSubscription(Model):
 	id          = db.Column(db.Integer, primary_key=True)
 	email       = db.Column(db.String(100), nullable=False, unique=True)
 	blacklisted = db.Column(db.Boolean, nullable=False, default=False)
-	token       = db.Column(db.String(32), nullable=True, default=None)
 
 	def __init__(self, email):
 		self.email = email
 		self.blacklisted = False
-		self.token = None
 
 	@property
 	def url(self):
-		return abs_url_for('users.unsubscribe', token=self.token)
+		assert self.id is not None
+		return abs_url_for('users.unsubscribe', token=make_unsubscribe_token(self.id))
 
 
 class NotificationType(enum.Enum):
