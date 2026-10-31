@@ -4,6 +4,7 @@
 
 import datetime
 
+from markupsafe import Markup
 from flask import redirect, abort, render_template, flash, request, url_for
 from werkzeug import Response
 from flask_babel import gettext, get_locale, lazy_gettext
@@ -41,6 +42,20 @@ def handle_login(form):
 	user = User.query.filter(or_(User.username == username, User.email == username)).first()
 	if user is None:
 		return show_safe_err(gettext(u"User %(username)s does not exist", username=username))
+
+	if user.is_password_reset_required:
+		if not check_password_hash(user.old_password, form.password.data):
+			return show_safe_err(gettext(u"Incorrect password. Did you set one?"))
+
+		if user.email and username == user.email:
+			send_password_reset_email(user, user.email)
+			flash(gettext("You need to reset your password. We've sent you an email with a link to do so."), "danger")
+			return redirect(url_for("users.email_sent"))
+
+		flash(Markup(gettext("You need to reset your password. Use \"Forgot my password\" or sign in with GitHub. "
+				"If you need help, <a href=\"%(url)s\">contact us</a>.",
+				url=url_for("flatpage", path="help/contact_us"))), "danger")
+		return
 
 	if not check_password_hash(user.password, form.password.data):
 		return show_safe_err(gettext(u"Incorrect password. Did you set one?"))
@@ -147,27 +162,32 @@ class ForgotPasswordForm(FlaskForm):
 	submit = SubmitField(lazy_gettext("Reset Password"))
 
 
+def send_password_reset_email(user: User, email: str):
+	token = random_string(32)
+
+	add_audit_log(AuditSeverity.USER, user, "(Anonymous) requested a password reset",
+				  url_for("users.profile", username=user.username), None)
+
+	ver = UserEmailVerification()
+	ver.user = user
+	ver.token_hash = hash_token(token)
+	ver.email = email
+	ver.is_password_reset = True
+	db.session.add(ver)
+	db.session.commit()
+
+	send_verify_email.delay(email, token, get_locale().language)
+
+
 @bp.route("/user/forgot-password/", methods=["GET", "POST"])
 def forgot_password():
 	form = ForgotPasswordForm(request.form)
 	if form.validate_on_submit():
 		email = form.email.data
+		assert email is not None
 		user = User.query.filter_by(email=email).first()
 		if user:
-			token = random_string(32)
-
-			add_audit_log(AuditSeverity.USER, user, "(Anonymous) requested a password reset",
-						  url_for("users.profile", username=user.username), None)
-
-			ver = UserEmailVerification()
-			ver.user = user
-			ver.token_hash = hash_token(token)
-			ver.email = email
-			ver.is_password_reset = True
-			db.session.add(ver)
-			db.session.commit()
-
-			send_verify_email.delay(form.email.data, token, get_locale().language)
+			send_password_reset_email(user, email)
 		else:
 			html = render_template("emails/unable_to_find_account.html")
 			send_anon_email.delay(email, get_locale().language, gettext("Unable to find account"),
@@ -201,6 +221,10 @@ def handle_set_password(form):
 		flash(gettext("Passwords do not match"), "danger")
 		return
 
+	if check_password_hash(current_user.old_password, one):
+		flash(gettext("You cannot reuse your previous password"), "danger")
+		return
+
 	add_audit_log(AuditSeverity.USER, current_user, "Changed their password", url_for("users.profile", username=current_user.username))
 
 	current_user.password = make_flask_login_password(form.password.data)
@@ -229,6 +253,7 @@ def handle_set_password(form):
 
 				send_verify_email.delay(form.email.data, token, get_locale().language)
 
+			db.session.commit()
 			flash(gettext("Your password has been changed successfully."), "success")
 			return redirect(url_for("users.email_sent"))
 

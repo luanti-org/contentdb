@@ -7,8 +7,9 @@ from unittest.mock import MagicMock
 from flask import url_for
 
 from app.blueprints.users import account
-from app.models import User, UserEmailVerification
+from app.models import User, UserEmailVerification, UserRank, db
 from app.utils.misc import hash_token
+from app.utils.user import make_flask_login_password
 from .utils import login, logout, is_logged_in
 from .utils import client # noqa
 
@@ -111,3 +112,132 @@ def test_register_flow(client, monkeypatch):
 	rv = login(client, username, password)
 	assert b"Sign out" in rv.data
 	assert is_logged_in(rv)
+
+
+def set_password(client, password):
+	return client.post("/user/set-password/", data=dict(
+			password=password,
+			password2=password,
+	), follow_redirects=True)
+
+
+def test_require_password_reset(client, monkeypatch):
+	send_verify_email = MagicMock()
+	monkeypatch.setattr(account, "send_verify_email", send_verify_email)
+
+	old_password = "OldPasswordLeaked"
+	new_password = "VYjNnjdDPhCVUZx"
+
+	user = User.query.filter_by(username="rubenwardy").one()
+	user.email = "rubenwardy@example.com"
+	user.password = make_flask_login_password(old_password)
+	db.session.commit()
+
+	rv = login(client, "rubenwardy", old_password)
+	assert is_logged_in(rv)
+
+	rv = client.post("/admin/", data=dict(action="require_password_reset"), follow_redirects=True)
+	assert b"Required 1 users to reset their password" in rv.data
+
+	user = User.query.filter_by(username="rubenwardy").one()
+	assert user.password is None
+	assert user.old_password is not None
+	assert user.is_password_reset_required
+
+	# Existing sessions are forced to the set password page
+	rv = client.get("/")
+	assert rv.status_code == 302
+	assert rv.headers["Location"].endswith("/user/set-password/")
+
+	# Static files and stylesheets are still served
+	assert client.get("/static/custom.css").status_code == 200
+	assert client.get("/static/libs/bootstrap.min.css").status_code == 200
+
+	# Help pages are still accessible
+	assert client.get("/help/contact_us/").status_code == 200
+
+	# An incorrect password gives the usual error, so a reset isn't leaked
+	logout(client)
+	rv = login(client, "rubenwardy", "IncorrectPassword")
+	assert b"Incorrect password. Did you set one?" in rv.data
+	assert b"You need to reset your password" not in rv.data
+	assert not is_logged_in(rv)
+
+	rv = login(client, user.email, "IncorrectPassword")
+	assert b"Incorrect email or password" in rv.data
+	assert b"You need to reset your password" not in rv.data
+	assert UserEmailVerification.query.filter_by(user_id=user.id).count() == 0
+
+	# Password login is blocked, even with the correct old password
+	rv = login(client, "rubenwardy", old_password)
+	assert b"You need to reset your password" in rv.data
+	assert b'<a href="/help/contact_us/">contact us</a>' in rv.data
+	assert not is_logged_in(rv)
+	assert UserEmailVerification.query.filter_by(user_id=user.id).count() == 0
+
+	# Logging in with the email and correct old password sends a reset email
+	rv = client.post("/user/login/", data=dict(username=user.email, password=old_password))
+	assert rv.status_code == 302
+	assert rv.headers["Location"].endswith("/email_sent/")
+	rv = client.get(rv.headers["Location"])
+	assert b"sent you an email with a link" in rv.data
+	assert not is_logged_in(rv)
+	ver = UserEmailVerification.query.filter_by(user_id=user.id, is_password_reset=True).one()
+	assert ver.email == user.email
+
+	send_verify_email.delay.assert_called_once()
+	assert send_verify_email.delay.call_args.args[0] == user.email
+	token = send_verify_email.delay.call_args.args[1]
+	assert ver.token_hash == hash_token(token)
+
+	rv = client.get(url_for("users.verify_email", token=token))
+	assert rv.status_code == 302
+	assert rv.headers["Location"].endswith("/user/set-password/")
+
+	rv = set_password(client, old_password)
+	assert b"You cannot reuse your previous password" in rv.data
+	assert User.query.filter_by(username="rubenwardy").one().is_password_reset_required
+
+	rv = set_password(client, new_password)
+	assert b"Your password has been changed successfully." in rv.data
+
+	user = User.query.filter_by(username="rubenwardy").one()
+	assert not user.is_password_reset_required
+	assert user.old_password is not None
+
+	rv = client.get("/")
+	assert rv.status_code == 200
+
+	logout(client)
+	rv = login(client, "rubenwardy", new_password)
+	assert is_logged_in(rv)
+
+
+def test_set_password_with_email_in_use(client):
+	password = "VYjNnjdDPhCVUZx"
+
+	other = User("other_user", active=True, email="taken@example.com")
+	other.rank = UserRank.MEMBER
+	db.session.add(other)
+
+	user = User.query.filter_by(username="rubenwardy").one()
+	user.password = make_flask_login_password("tuckfrump")
+	db.session.commit()
+
+	login(client, "rubenwardy", "tuckfrump")
+	user.password = None
+	db.session.commit()
+
+	rv = client.post("/user/set-password/", data=dict(
+			email="taken@example.com",
+			password=password,
+			password2=password,
+	), follow_redirects=True)
+	assert b"Your password has been changed successfully." in rv.data
+
+	# Discard anything that wasn't committed
+	db.session.rollback()
+
+	user = User.query.filter_by(username="rubenwardy").one()
+	assert user.password is not None
+	assert user.email is None

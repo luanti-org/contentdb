@@ -460,3 +460,19 @@ def old_package_ai_disclosure():
 	db.session.commit()
 
 	return redirect(url_for("admin.admin_page"))
+
+
+@action("DANGER: Require all users to reset their password")
+def require_password_reset():
+	count = User.query.filter(User.password.isnot(None), User.password != "") \
+		.update({
+			User.old_password: User.password,
+			User.password: None,
+		}, synchronize_session=False)
+
+	add_audit_log(AuditSeverity.MODERATION, current_user, f"Required {count} users to reset their password",
+			url_for("admin.admin_page"))
+	db.session.commit()
+
+	flash(f"Required {count} users to reset their password", "success")
+	return redirect(url_for("admin.admin_page"))
