@@ -12,10 +12,12 @@ import os
 import re
 import shutil
 import signal
+import stat
 import subprocess
 import tempfile
 import time
 from urllib.parse import urlsplit
+from zipfile import ZipFile, ZipInfo, ZIP_DEFLATED
 
 from git import GitCommandError
 from git.util import remove_password_if_present
@@ -32,9 +34,13 @@ GIT_ENV = {
 	"GIT_ALLOW_PROTOCOL": "https",
 	"GIT_HTTP_LOW_SPEED_LIMIT": "1000",
 	"GIT_HTTP_LOW_SPEED_TIME": "30",
-	"GIT_CONFIG_COUNT": "1",
+	"GIT_ATTR_NOSYSTEM": "1",
+	"GIT_CONFIG_COUNT": "2",
 	"GIT_CONFIG_KEY_0": "core.symlinks",
 	"GIT_CONFIG_VALUE_0": "false",
+	# GIT_CONFIG_GLOBAL doesn't stop ~/.config/git/attributes being read
+	"GIT_CONFIG_KEY_1": "core.attributesFile",
+	"GIT_CONFIG_VALUE_1": "/dev/null",
 }
 
 # Hosts that package repos and submodules may be fetched from
@@ -79,6 +85,10 @@ ALLOWED_GIT_HOSTS = frozenset({
 
 MAX_SUBMODULE_DEPTH = 5
 MAX_SUBMODULES = 200
+MAX_ARCHIVE_FILES = 50000
+
+# 1980-01-01, the earliest time a zip can store
+ZIP_MIN_TIME = 315532800
 
 # Seconds before a git network operation is killed
 GIT_TIMEOUT = 15
@@ -86,14 +96,15 @@ GIT_FETCH_TIMEOUT = 300
 
 
 # GitPython's kill_after_timeout misses git's helper processes, so kill the whole group instead
-def _run_git(args: List[str], timeout: float, cwd: Optional[str] = None) -> str:
+def _run_git(args: List[str], timeout: float, cwd: Optional[str] = None, input: Optional[str] = None) -> str:
 	command = remove_password_if_present(["git"] + args)
 	env = {**os.environ, **GIT_ENV, "LANGUAGE": "C", "LC_ALL": "C"}
-	proc = subprocess.Popen(["git"] + args, cwd=cwd, env=env, stdin=subprocess.DEVNULL,
+	proc = subprocess.Popen(["git"] + args, cwd=cwd, env=env,
+			stdin=subprocess.DEVNULL if input is None else subprocess.PIPE,
 			stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, start_new_session=True)
 
 	try:
-		stdout, stderr = proc.communicate(timeout=timeout)
+		stdout, stderr = proc.communicate(input=input, timeout=timeout)
 	except subprocess.TimeoutExpired:
 		raise GitCommandError(command, "timeout", f"Timed out after {timeout:.0f} seconds") from None
 	finally:
@@ -182,13 +193,16 @@ def _check_submodules(modules: Dict[str, Dict[str, str]]) -> List[str]:
 	return paths
 
 
-def _get_gitlinks(repo_dir: str) -> Set[str]:
-	ret = set()
+def _ls_files(repo_dir: str) -> List[Tuple[str, str]]:
+	ret = []
 	for entry in filter(None, _git_in(repo_dir).ls_files("-z", "--stage").split("\0")):
 		info, _, path = entry.partition("\t")
-		if info.startswith("160000 "):
-			ret.add(path)
+		ret.append((info.split(" ")[0], path))
 	return ret
+
+
+def _get_gitlinks(repo_dir: str) -> Set[str]:
+	return {path for mode, path in _ls_files(repo_dir) if mode == "160000"}
 
 
 # Each level is validated before it is fetched, so nested .gitmodules are checked too
@@ -340,3 +354,118 @@ def get_release_notes(git_url: str, start: str, end: str) -> Optional[str]:
 
 	text = "\n".join(map(lambda x: f"- {x}", commits)) + f"\n<!-- auto from {start[0:5]} to {end[0:5]} -->"
 	return normalize_line_endings(text)
+
+
+# Dirs are queried with a trailing slash, as that is how `dir/` patterns match, like in git archive
+def _get_export_ignored(repo_dir: str, entries: List[Tuple[str, str]]) -> Set[str]:
+	def queries_for(mode: str, path: str) -> List[str]:
+		parts = path.split("/")
+		ret = [path] + ["/".join(parts[:i]) + "/" for i in range(1, len(parts))]
+		if mode == "160000":
+			ret.append(path + "/")
+		return ret
+
+	queries = {query for mode, path in entries for query in queries_for(mode, path)}
+	if len(queries) == 0:
+		return set()
+
+	output = _run_git(["check-attr", "-z", "--stdin", "export-ignore"], GIT_TIMEOUT, cwd=repo_dir,
+			input="\0".join(queries) + "\0").split("\0")
+	ignored = {output[i] for i in range(0, len(output) - 2, 3) if output[i + 2] == "set"}
+
+	return {path for mode, path in entries if any(query in ignored for query in queries_for(mode, path))}
+
+
+# Returns (full path, path in archive, git mode) for each file in the repo and its checked out submodules
+def _list_archive_files(root: str, repo_dir: str, base: str) -> List[Tuple[str, str, str]]:
+	entries = _ls_files(repo_dir)
+	for _, path in entries:
+		try:
+			path.encode("utf-8")
+		except UnicodeEncodeError:
+			raise TaskError(f"File name is not valid UTF-8: {base + path!r}") from None
+	ignored = _get_export_ignored(repo_dir, entries)
+
+	ret = []
+	for mode, path in entries:
+		if path in ignored:
+			continue
+
+		name = base + path
+		full_path = os.path.join(repo_dir, path)
+		if re.search(r"[\x00-\x1f\x7f\\]", path):
+			raise TaskError(f"File name contains a backslash or control character: {name!r}")
+		if os.path.commonpath([root, os.path.realpath(full_path)]) != root:
+			raise TaskError(f"File is outside the repository: {name!r}")
+
+		if mode == "160000":
+			if os.path.exists(os.path.join(full_path, ".git")):
+				ret.extend(_list_archive_files(root, full_path, name + "/"))
+		elif mode == "120000":
+			raise TaskError(f"Symlinks are not supported: {name!r}")
+		elif mode in ("100644", "100755"):
+			ret.append((full_path, name, mode))
+		else:
+			raise TaskError(f"Unsupported file type {mode}: {name!r}")
+
+	return ret
+
+
+def _check_case_collisions(names: List[str]):
+	seen: Dict[str, str] = {}
+	dirs: Dict[str, str] = {}
+	for name in names:
+		parts = name.split("/")
+		for i in range(1, len(parts)):
+			dirs.setdefault("/".join(parts[:i]).lower(), "/".join(parts[:i]))
+
+	for name in names:
+		other = seen.get(name.lower()) or dirs.get(name.lower())
+		if other is not None:
+			raise TaskError(f"File names only differ by case: {other!r} and {name!r}")
+		seen[name.lower()] = name
+
+
+# Zips the repo and its checked out submodules, like git archive.
+# Throws `TaskError` on failure, without leaving a file at dest_path.
+def create_archive(repo_dir: str, prefix: str, dest_path: str, max_size: int):
+	root = os.path.realpath(repo_dir)
+	files = _list_archive_files(root, root, "")
+	if len(files) > MAX_ARCHIVE_FILES:
+		raise TaskError(f"Too many files, the limit is {MAX_ARCHIVE_FILES}")
+	_check_case_collisions([name for _, name, _ in files])
+
+	# Commit time rather than checkout time, so the same commit gives the same zip
+	commit_time = int(_git_in(root).show("-s", "--format=%ct", "HEAD"))
+	date_time = time.gmtime(max(commit_time, ZIP_MIN_TIME))[:6]
+
+	total_size = 0
+	zf = ZipFile(dest_path, "x", ZIP_DEFLATED)
+	try:
+		with zf:
+			for full_path, name, mode in files:
+				try:
+					# O_NONBLOCK so a FIFO can't block the open before the fstat check
+					fd = os.open(full_path, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK)
+				except OSError as e:
+					raise TaskError(f"Unable to read {name!r}: {e.strerror}") from None
+
+				with os.fdopen(fd, "rb") as f:
+					st = os.fstat(f.fileno())
+					if not stat.S_ISREG(st.st_mode):
+						raise TaskError(f"Not a regular file: {name!r}")
+
+					info = ZipInfo(prefix + "/" + name, date_time)
+					info.compress_type = ZIP_DEFLATED
+					info.external_attr = (0o100755 if mode == "100755" else 0o100644) << 16
+
+					with zf.open(info, "w") as out:
+						while chunk := f.read(1024 * 1024):
+							total_size += len(chunk)
+							if total_size > max_size:
+								raise TaskError(f"The files from Git are too large - needs to be less than {max_size // (1024 * 1024)}MB")
+							out.write(chunk)
+	except BaseException:
+		with contextlib.suppress(FileNotFoundError):
+			os.remove(dest_path)
+		raise

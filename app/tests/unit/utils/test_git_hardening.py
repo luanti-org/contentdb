@@ -5,13 +5,15 @@
 import contextlib
 import os
 import re
+import shutil
 import socket
 import subprocess
 import tempfile
 import threading
 import time
 from pathlib import Path
-from typing import List
+from typing import Dict, List, Optional
+from zipfile import ZipFile, ZipInfo
 
 import git
 import pytest
@@ -19,7 +21,7 @@ import pytest
 from app.tasks import TaskError
 from app.utils import git as git_utils
 from app.utils.files import get_temp_dir
-from app.utils.git import clone_repo, get_latest_commit, get_latest_tag, get_commit_list
+from app.utils.git import clone_repo, create_archive, get_latest_commit, get_latest_tag, get_commit_list
 
 
 @pytest.fixture
@@ -554,7 +556,256 @@ def test_low_speed_limit_is_used(stall_server, monkeypatch):
 		get_latest_commit(stall_server)
 
 
-def test_git_never_uses_shell(local_repo, allow_file_protocol, monkeypatch):
+def commit_files(repo: git.Repo, files: dict):
+	if len(files) == 0:
+		return
+	for path, content in files.items():
+		full_path = Path(repo.working_dir) / path
+		full_path.parent.mkdir(parents=True, exist_ok=True)
+		if isinstance(content, tuple) and content[0] == "link":
+			os.symlink(content[1], full_path)
+		elif isinstance(content, tuple) and content[0] == "exec":
+			full_path.write_text(content[1])
+			full_path.chmod(0o755)
+		else:
+			full_path.write_text(content)
+	repo.git.add("-A")
+	repo.git.commit("-m", "Add files")
+
+
+def build_repo(tmp_path: Path, files: dict, sub_files: Optional[dict] = None, sub_path: str = "mods/sub") -> str:
+	top = make_repo(tmp_path / "top")
+	commit_files(top, files)
+	if sub_files is not None:
+		sub = make_repo(tmp_path / "sub")
+		commit_files(sub, sub_files)
+		add_submodule(top, sub, sub_path)
+	return (tmp_path / "top").as_uri()
+
+
+@pytest.fixture
+def allow_local_urls(allow_file_protocol, monkeypatch):
+	monkeypatch.setattr(git_utils, "generate_git_url", lambda url: url)
+	monkeypatch.setattr(git_utils, "_check_submodule_url", lambda path, url: None)
+
+
+@pytest.fixture
+def archive_repo(tmp_path, allow_local_urls):
+	"""
+	top has an executable, export-ignored files and dirs, the submodule mods/sub
+	with its own .gitattributes, the export-ignored submodule skip, and a gitlink with no .gitmodules entry.
+	Returns top's file:// URL.
+	"""
+	url = build_repo(tmp_path, {
+		"script.sh": ("exec", "echo hi"),
+		"docs/readme.txt": "readme",
+		"ignored.txt": "",
+		"ignored_dir/a/x.txt": "",
+		"ignored_dir2/x.txt": "",
+		".gitattributes": "ignored.txt export-ignore\nignored_dir/ export-ignore\nignored_dir2 export-ignore\n" +
+				"skip export-ignore\nmods/slashed/ export-ignore\n",
+	}, {
+		"sub.lua": "sub",
+		"secret.txt": "",
+		".gitattributes": "secret.txt export-ignore\n",
+	})
+	top = git.Repo(tmp_path / "top")
+	top.git.update_environment(GIT_CONFIG_COUNT="1",
+			GIT_CONFIG_KEY_0="protocol.file.allow", GIT_CONFIG_VALUE_0="always")
+	skip = make_repo(tmp_path / "skip")
+	add_submodule(top, skip, "skip")
+	add_submodule(top, skip, "mods/slashed")
+	add_gitlink(top, "orphan")
+	return url
+
+
+def make_archive(url: str, dest: Path, max_size: int = 1024 * 1024, recursive: bool = True,
+		before=None) -> Dict[str, ZipInfo]:
+	with clone_repo(url, recursive=recursive) as repo:
+		if before is not None:
+			before(Path(repo.working_dir))
+		create_archive(repo.working_dir, "pkg", str(dest), max_size)
+
+	with ZipFile(dest) as zf:
+		return {info.filename: info for info in zf.infolist()}
+
+
+def test_archive_contents(archive_repo, tmp_path):
+	dest = tmp_path / "out.zip"
+	entries = make_archive(archive_repo, dest)
+
+	assert set(entries.keys()) == {
+		"pkg/.gitattributes",
+		"pkg/.gitmodules",
+		"pkg/init.lua",
+		"pkg/script.sh",
+		"pkg/docs/readme.txt",
+		"pkg/mods/sub/.gitattributes",
+		"pkg/mods/sub/init.lua",
+		"pkg/mods/sub/sub.lua",
+	}
+	for name, info in entries.items():
+		expected = 0o100755 if name == "pkg/script.sh" else 0o100644
+		assert info.external_attr >> 16 == expected, name
+
+	with ZipFile(dest) as zf:
+		assert zf.read("pkg/docs/readme.txt") == b"readme"
+		assert zf.read("pkg/mods/sub/sub.lua") == b"sub"
+
+
+def test_archive_ignores_user_attributes(archive_repo, tmp_path, monkeypatch):
+	home = tmp_path / "home"
+	(home / ".config" / "git").mkdir(parents=True)
+	(home / ".config" / "git" / "attributes").write_text("*.lua export-ignore\n")
+	monkeypatch.setenv("HOME", str(home))
+	monkeypatch.delenv("XDG_CONFIG_HOME", raising=False)
+
+	entries = make_archive(archive_repo, tmp_path / "out.zip")
+	assert "pkg/init.lua" in entries
+	assert "pkg/mods/sub/sub.lua" in entries
+
+
+def test_archive_is_reproducible(archive_repo, tmp_path):
+	def touch_all(root: Path):
+		for path in root.rglob("*"):
+			os.utime(path, (1000000000, 1000000000), follow_symlinks=False)
+
+	make_archive(archive_repo, tmp_path / "a.zip")
+	entries = make_archive(archive_repo, tmp_path / "b.zip", before=touch_all)
+
+	assert (tmp_path / "a.zip").read_bytes() == (tmp_path / "b.zip").read_bytes()
+	# Zip times have a 2 second resolution
+	commit_time = git.Repo(tmp_path / "top").head.commit.committed_date // 2 * 2
+	assert entries["pkg/init.lua"].date_time == time.gmtime(commit_time)[:6]
+
+
+def test_archive_file_limit(archive_repo, tmp_path, monkeypatch):
+	monkeypatch.setattr(git_utils, "MAX_ARCHIVE_FILES", 8)
+	assert len(make_archive(archive_repo, tmp_path / "exact.zip")) == 8
+
+	monkeypatch.setattr(git_utils, "MAX_ARCHIVE_FILES", 7)
+	dest = tmp_path / "out.zip"
+	with pytest.raises(TaskError, match="Too many files"):
+		make_archive(archive_repo, dest)
+	assert not dest.exists()
+
+
+@pytest.mark.parametrize("name", ["a\\b.lua", "..\\..\\evil.lua", "a\rb.lua", "a\tb.lua", "a\nb.lua", "a\x7fb.lua"])
+def test_archive_rejects_bad_names(tmp_path, allow_local_urls, name):
+	url = build_repo(tmp_path, {name: ""})
+	dest = tmp_path / "out.zip"
+	with pytest.raises(TaskError, match="backslash or control character"):
+		make_archive(url, dest)
+	assert not dest.exists()
+
+
+def test_archive_skips_submodules_not_checked_out(archive_repo, tmp_path):
+	entries = make_archive(archive_repo, tmp_path / "out.zip", recursive=False)
+	assert "pkg/init.lua" in entries
+	assert not any(name.startswith("pkg/mods/") for name in entries)
+
+
+def test_archive_size_limit(archive_repo, tmp_path):
+	total = sum(info.file_size for info in make_archive(archive_repo, tmp_path / "full.zip").values())
+
+	assert len(make_archive(archive_repo, tmp_path / "exact.zip", max_size=total)) > 0
+
+	dest = tmp_path / "out.zip"
+	with pytest.raises(TaskError, match="too large"):
+		make_archive(archive_repo, dest, max_size=total - 1)
+	assert not dest.exists()
+
+
+@pytest.mark.parametrize("files, sub_files", [
+	({"link.lua": ("link", "init.lua")}, None),
+	({"link": ("link", "/etc")}, None),
+	({}, {"link.lua": ("link", "../../init.lua")}),
+])
+def test_archive_rejects_symlinks(tmp_path, allow_local_urls, files, sub_files):
+	url = build_repo(tmp_path, files, sub_files)
+	dest = tmp_path / "out.zip"
+	with pytest.raises(TaskError, match="Symlinks are not supported"):
+		make_archive(url, dest)
+	assert not dest.exists()
+
+
+@pytest.mark.parametrize("files, sub_files, sub_path", [
+	({"Foo.lua": "", "foo.lua": ""}, None, "mods/sub"),
+	({"Docs": "", "docs/readme.txt": ""}, None, "mods/sub"),
+	({"SUB/init.lua": ""}, {}, "sub"),
+])
+def test_archive_rejects_case_collisions(tmp_path, allow_local_urls, files, sub_files, sub_path):
+	url = build_repo(tmp_path, files, sub_files, sub_path)
+	dest = tmp_path / "out.zip"
+	with pytest.raises(TaskError, match="only differ by case"):
+		make_archive(url, dest)
+	assert not dest.exists()
+
+
+def test_archive_rejects_path_outside_tree(tmp_path, allow_local_urls):
+	url = build_repo(tmp_path, {"docs/readme.txt": ""})
+	outside = tmp_path / "outside"
+	outside.mkdir()
+	(outside / "readme.txt").write_text("secret")
+
+	def replace_docs(root: Path):
+		shutil.rmtree(root / "docs")
+		os.symlink(outside, root / "docs")
+
+	dest = tmp_path / "out.zip"
+	with pytest.raises(TaskError, match="outside the repository"):
+		make_archive(url, dest, before=replace_docs)
+	assert not dest.exists()
+
+
+def test_archive_does_not_follow_symlinks(tmp_path, allow_local_urls):
+	url = build_repo(tmp_path, {"docs/readme.txt": ""})
+
+	def replace_init(root: Path):
+		(root / "init.lua").unlink()
+		os.symlink("docs/readme.txt", root / "init.lua")
+
+	dest = tmp_path / "out.zip"
+	with pytest.raises(TaskError, match="Unable to read 'init.lua'"):
+		make_archive(url, dest, before=replace_init)
+	assert not dest.exists()
+
+
+def test_archive_does_not_block_on_fifo(tmp_path, allow_local_urls):
+	url = build_repo(tmp_path, {})
+
+	def replace_init(root: Path):
+		(root / "init.lua").unlink()
+		os.mkfifo(root / "init.lua")
+
+	dest = tmp_path / "out.zip"
+	with pytest.raises(TaskError, match="Not a regular file: 'init.lua'"):
+		make_archive(url, dest, before=replace_init)
+	assert not dest.exists()
+
+
+def test_archive_rejects_non_utf8_names(tmp_path, allow_local_urls):
+	top = make_repo(tmp_path / "top")
+	with open(os.path.join(os.fsencode(top.working_dir), b"caf\xe9.lua"), "w"):
+		pass
+	commit_files(top, {"ok.lua": ""})
+
+	dest = tmp_path / "out.zip"
+	with pytest.raises(TaskError, match="not valid UTF-8"):
+		make_archive((tmp_path / "top").as_uri(), dest)
+	assert not dest.exists()
+
+
+def test_archive_keeps_existing_dest(tmp_path, allow_local_urls):
+	url = build_repo(tmp_path, {})
+	dest = tmp_path / "out.zip"
+	dest.write_text("keep")
+	with pytest.raises(FileExistsError):
+		make_archive(url, dest)
+	assert dest.read_text() == "keep"
+
+
+def test_git_never_uses_shell(local_repo, allow_file_protocol, tmp_path, monkeypatch):
 	url, first, second = local_repo
 	real_popen = git.cmd.safer_popen
 	real_subprocess_popen = subprocess.Popen
@@ -573,8 +824,8 @@ def test_git_never_uses_shell(local_repo, allow_file_protocol, monkeypatch):
 	monkeypatch.setattr(git.cmd, "safer_popen", checked_popen)
 	monkeypatch.setattr(subprocess, "Popen", checked_subprocess_popen)
 
-	with clone_repo(url):
-		pass
+	with clone_repo(url) as repo:
+		create_archive(repo.working_dir, "pkg", str(tmp_path / "out.zip"), 1024 * 1024)
 	with clone_repo(url, "test-branch", recursive=True):
 		pass
 	get_latest_commit(url)
