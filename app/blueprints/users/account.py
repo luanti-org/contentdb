@@ -14,7 +14,7 @@ from wtforms import StringField, SubmitField, BooleanField, PasswordField, valid
 from wtforms.validators import InputRequired, Length, Regexp, DataRequired, Optional, Email, EqualTo
 
 from app.tasks.emails import send_verify_email, send_anon_email, send_unsubscribe_verify, send_user_email
-from app.utils.misc import random_string, nonempty_or_none
+from app.utils.misc import random_string, nonempty_or_none, hash_token
 from app.utils.tokens import load_unsubscribe_token
 from app.utils.models import add_audit_log
 from app.utils.user import make_flask_login_password, is_safe_url, check_password_hash, post_login
@@ -121,7 +121,7 @@ def handle_register(form):
 
 	ver = UserEmailVerification()
 	ver.user = user
-	ver.token = token
+	ver.token_hash = hash_token(token)
 	ver.email = form.email.data
 	db.session.add(ver)
 	db.session.commit()
@@ -161,7 +161,7 @@ def forgot_password():
 
 			ver = UserEmailVerification()
 			ver.user = user
-			ver.token = token
+			ver.token_hash = hash_token(token)
 			ver.email = email
 			ver.is_password_reset = True
 			db.session.add(ver)
@@ -222,7 +222,7 @@ def handle_set_password(form):
 
 				ver = UserEmailVerification()
 				ver.user = current_user
-				ver.token = token
+				ver.token_hash = hash_token(token)
 				ver.email = new_email
 				db.session.add(ver)
 				db.session.commit()
@@ -297,7 +297,7 @@ def confirm_email_verification(ver: UserEmailVerification) -> bool:
 @bp.route("/user/verify/")
 def verify_email():
 	token = request.args.get("token")
-	ver = UserEmailVerification.query.filter_by(token=token).first()
+	ver = UserEmailVerification.query.filter_by(token_hash=hash_token(token)).first() if token else None
 	if ver is None:
 		flash(gettext("Unknown verification token!"), "danger")
 		return redirect(url_for("homepage.home"))

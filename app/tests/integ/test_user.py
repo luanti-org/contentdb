@@ -2,9 +2,13 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
+from unittest.mock import MagicMock
+
 from flask import url_for
 
+from app.blueprints.users import account
 from app.models import User, UserEmailVerification
+from app.utils.misc import hash_token
 from .utils import login, logout, is_logged_in
 from .utils import client # noqa
 
@@ -64,7 +68,10 @@ def test_register(client):
 	assert b"Only alphabetic letters (A-Za-z), numbers (0-9), underscores (_), minuses (-), and periods (.) allowed</p>" in rv.data
 
 
-def test_register_flow(client):
+def test_register_flow(client, monkeypatch):
+	send_verify_email = MagicMock()
+	monkeypatch.setattr(account, "send_verify_email", send_verify_email)
+
 	username = "testuser123"
 	password = "VYjNnjdDPhCVUZx"
 
@@ -88,7 +95,16 @@ def test_register_flow(client):
 	email = UserEmailVerification.query.filter_by(user_id=user.id).first()
 	assert email is not None
 
-	rv = client.get(url_for('users.verify_email', token=email.token), follow_redirects=True)
+	# Only the hash is stored, the token is sent by email
+	send_verify_email.delay.assert_called_once()
+	token = send_verify_email.delay.call_args.args[1]
+	assert email.token_hash == hash_token(token)
+	assert token not in email.token_hash
+
+	rv = client.get(url_for('users.verify_email', token="wrong" + token), follow_redirects=True)
+	assert b"Unknown verification token!" in rv.data
+
+	rv = client.get(url_for('users.verify_email', token=token), follow_redirects=True)
 	assert b"You may now log in" in rv.data
 
 	assert b"Sign out" not in rv.data

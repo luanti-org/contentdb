@@ -3,6 +3,7 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 from typing import Optional
+import hashlib
 import secrets
 
 def truncate_string(value: Optional[str], max_length: int) -> Optional[str]:
@@ -42,6 +43,11 @@ def normalize_line_endings(value: Optional[str]) -> Optional[str]:
 
 def random_string(n):
 	return secrets.token_hex(int(n / 2))
+
+
+# Only for random tokens, use a slow hash for passwords
+def hash_token(token: str) -> str:
+	return hashlib.sha256(token.encode("utf-8")).hexdigest()
 
 
 def format_file_size(bytes: int) -> str:
