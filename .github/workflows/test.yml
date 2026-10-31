@@ -7,6 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    - name: Create empty .env
+      run: touch .env
     - name: Start test stack
       run: ./utils/test_stack.sh up
     - name: Run tests
