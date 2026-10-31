@@ -17,6 +17,10 @@ OAuth2 applications can currently only access public user data, using the whoami
 
 Go to Settings > [OAuth2 Applications](/user/apps/) > Create
 
+The client secret is only shown once, after creating the application. If you lose it,
+use "Reset client_secret" on the application's page to get a new one. This
+invalidates the old secret.
+
 
 ## Obtaining access tokens
 

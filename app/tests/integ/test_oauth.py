@@ -3,6 +3,7 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 import datetime
+import re
 import urllib.parse as urlparse
 
 from app.models import db, User, UserRank, OAuthClient, APIToken
@@ -26,7 +27,7 @@ def make_user(username, rank):
 def make_oauth_client(owner, redirect_url="https://example.com/callback/"):
 	oauth_client = OAuthClient()
 	oauth_client.id = "testclient"
-	oauth_client.secret = "secret"
+	oauth_client.secret_hash = hash_token("secret")
 	oauth_client.title = "Test App"
 	oauth_client.redirect_url = redirect_url
 	oauth_client.approved = True
@@ -160,7 +161,7 @@ def test_oauth_flow(client):
 
 	code = authorize(client, oauth_client)
 	token = APIToken.query.filter_by(client_id="testclient").one()
-	assert token.auth_code == code
+	assert token.auth_code_hash == hash_token(code)
 
 	# Not usable until the code is redeemed
 	assert APIToken.query.filter_by(access_token_hash=hash_token(code)).count() == 0
@@ -174,7 +175,7 @@ def test_oauth_flow(client):
 	db.session.expire_all()
 	token = APIToken.query.filter_by(client_id="testclient").one()
 	assert token.access_token_hash == hash_token(access_token)
-	assert token.auth_code is None
+	assert token.auth_code_hash is None
 
 	rv = client.get("/api/whoami/", headers={"Authorization": f"Bearer {access_token}"})
 	assert rv.status_code == 200
@@ -216,3 +217,35 @@ def test_oauth_get_authorize_does_not_revoke_token(client):
 
 	rv = client.get("/api/whoami/", headers={"Authorization": f"Bearer {access_token}"})
 	assert rv.status_code == 200
+
+
+def test_oauth_secret_shown_once_and_reset(client):
+	user = make_user("member", UserRank.MEMBER)
+	login(client, "member", "password123")
+
+	rv = client.post("/users/member/apps/new/", data=dict(
+		title="Test App",
+		description="",
+		redirect_url="https://example.com/callback/",
+		app_type="server",
+	), follow_redirects=True)
+	match = re.search(rb'id="client_secret" name="client_secret" value="([0-9a-f]{32})"', rv.data)
+	assert match
+	client_secret = match.group(1).decode("utf-8")
+
+	oauth_client = OAuthClient.query.filter_by(owner=user).one()
+	assert oauth_client.secret_hash == hash_token(client_secret)
+
+	rv = client.get(f"/users/member/apps/{oauth_client.id}/edit/")
+	assert client_secret.encode("utf-8") not in rv.data
+
+	rv = client.post(f"/users/member/apps/{oauth_client.id}/reset-secret/", follow_redirects=True)
+	match = re.search(rb'id="client_secret" name="client_secret" value="([0-9a-f]{32})"', rv.data)
+	assert match
+	new_secret = match.group(1).decode("utf-8")
+	assert new_secret != client_secret
+
+	db.session.expire_all()
+	oauth_client = OAuthClient.query.get(oauth_client.id)
+	assert oauth_client is not None
+	assert oauth_client.secret_hash == hash_token(new_secret)
