@@ -2,10 +2,21 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
+import hashlib
+import hmac
 from typing import Optional
 
 from flask import current_app
 from itsdangerous import URLSafeTimedSerializer, BadSignature
+
+
+# Uses its own key so that rotating SECRET_KEY doesn't break every webhook
+def get_github_webhook_secret(token_id: int) -> str:
+	key = current_app.config.get("WEBHOOK_SECRET_KEY")
+	if not key:
+		raise RuntimeError("WEBHOOK_SECRET_KEY must be set in config.cfg")
+
+	return hmac.new(key.encode("utf-8"), f"github-webhook:{token_id}".encode("utf-8"), hashlib.sha256).hexdigest()
 
 
 # Unsubscribe links can't be revoked, so they expire instead.
