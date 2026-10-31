@@ -153,6 +153,7 @@ class User(Model, UserMixin):
 	# User authentication information
 	username     = db.Column(db.String(50, collation="NOCASE"), nullable=False, unique=True, index=True)
 	password     = db.Column(db.String(255), nullable=True, server_default=None)
+	old_password = db.Column(db.String(255), nullable=True, server_default=None)
 
 	def get_id(self):
 		return self.username
@@ -209,6 +210,10 @@ class User(Model, UserMixin):
 	ban = db.relationship("UserBan", foreign_keys="UserBan.user_id", back_populates="user", uselist=False)
 
 	username_valid = db.CheckConstraint("username ~* '^[A-Za-z0-9 ._-]+$'")
+
+	@property
+	def is_password_reset_required(self) -> bool:
+		return self.password is None and self.old_password is not None
 
 	@property
 	def is_banned(self):

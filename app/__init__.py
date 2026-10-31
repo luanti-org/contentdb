@@ -153,6 +153,22 @@ def check_for_ban():
 			models.db.session.commit()
 
 
+PASSWORD_RESET_ALLOWED_ENDPOINTS = {
+	"users.set_password", "users.logout", "users.verify_email", "users.email_sent",
+	"static", "sass", "send_upload",
+}
+
+
+@app.before_request
+def check_for_password_reset():
+	if request.endpoint in PASSWORD_RESET_ALLOWED_ENDPOINTS or request.blueprint == "thumbnails" or \
+			request.path.startswith("/api/") or request.path.startswith("/help/"):
+		return
+
+	if current_user.is_authenticated and current_user.is_password_reset_required:
+		return redirect(url_for("users.set_password"))
+
+
 from app.utils.flask import is_safe_url
 from app.utils.models import clear_notifications, create_session
 

@@ -52,6 +52,8 @@
 <h3>{{ _("Password") }}</h3>
 {% if user.password %}
 	<p>{{ _("Has password") }}</p>
+{% elif user.is_password_reset_required %}
+	<p class="text-danger">{{ _("Password reset required") }}</p>
 {% else %}
 	<p class="text-danger">{{ _("Doesn't have password") }}</p>
 {% endif %}
