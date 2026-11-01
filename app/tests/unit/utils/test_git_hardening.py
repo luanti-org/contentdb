@@ -254,6 +254,7 @@ PAYLOAD_PATHS = [
 	"`touch canary`",
 	"a'b",
 	"a\nb",
+	"sub\r",
 	"a b",
 	"-evil",
 	"--upload-pack=touch canary",
@@ -488,6 +489,96 @@ def test_clone_rejects_nested_payload(tmp_path, allow_file_protocol, monkeypatch
 	monkeypatch.setattr(git_utils, "_check_submodule_url", lambda path, url: None)
 
 	with pytest.raises(TaskError, match="path is not allowed"):
+		with clone_repo((tmp_path / "top").as_uri(), ref, recursive=True):
+			pass
+
+
+# Adapted from git's t7450-bad-git-dotfiles.sh: the git dir of a submodule named "../../modules/evil" is in the work tree
+@pytest.mark.parametrize("ref", [None, "master"])
+def test_clone_rejects_evil_submodule_name(tmp_path, allow_local_urls, ref):
+	canary = tmp_path / "canary"
+	innocent = make_repo(tmp_path / "innocent")
+	top = make_repo(tmp_path / "top")
+	add_submodule(top, innocent, "evil")
+	add_submodule(top, innocent, "another-module")
+
+	modules = Path(top.working_dir) / "modules"
+	shutil.copytree(Path(top.git_dir) / "modules" / "evil", modules / "evil")
+	hook = modules / "evil" / "hooks" / "post-checkout"
+	hook.write_text(f"#!/bin/sh\ntouch {canary}\n")
+	hook.chmod(0o755)
+	top.git.config("-f", ".gitmodules", "submodule.evil.update", "checkout")
+	top.git.config("-f", ".gitmodules", "--rename-section", "submodule.evil", "submodule.../../modules/evil")
+	top.git.add("-A")
+	top.index.commit("evil")
+
+	with pytest.raises(TaskError, match="name is not allowed"):
+		with clone_repo((tmp_path / "top").as_uri(), ref, recursive=True):
+			pass
+
+	assert not canary.exists()
+
+
+# Adapted from t7450: git refuses to check out a symlinked .gitmodules
+@pytest.mark.parametrize("target", ["real_modules", "/etc/hostname"])
+def test_clone_rejects_symlinked_gitmodules(tmp_path, allow_local_urls, target):
+	sub = make_repo(tmp_path / "sub")
+	top = make_repo(tmp_path / "top")
+	config = f'[submodule "sub"]\n\tpath = sub\n\turl = {(tmp_path / "sub").as_uri()}\n'
+
+	def plumbing(*args, stdin=None):
+		return subprocess.run(["git", *args], cwd=top.working_dir, input=stdin, check=True, text=True,
+				capture_output=True).stdout.strip()
+
+	# The index refuses a symlinked .gitmodules, so make the tree directly
+	init_blob = plumbing("rev-parse", "HEAD:init.lua")
+	config_blob = plumbing("hash-object", "-w", "--stdin", stdin=config)
+	target_blob = plumbing("hash-object", "-w", "--stdin", stdin=target)
+	tree = plumbing("mktree", stdin=f"100644 blob {init_blob}\tinit.lua\n100644 blob {config_blob}\treal_modules\n" +
+			f"120000 blob {target_blob}\t.gitmodules\n160000 commit {sub.head.commit.hexsha}\tsub\n")
+	commit = plumbing("commit-tree", tree, "-m", "Symlinked .gitmodules")
+	plumbing("update-ref", "refs/heads/master", commit)
+
+	with pytest.raises(TaskError, match="invalid path .*gitmodules"):
+		with clone_repo((tmp_path / "top").as_uri(), recursive=True):
+			pass
+
+
+# Adapted from t7450: a .gitmodules that is not a blob
+def test_clone_ignores_gitmodules_directory(tmp_path, allow_local_urls):
+	top = make_repo(tmp_path / "top")
+	commit_files(top, {".gitmodules/file": "[submodule \"x\"]\n\tpath = x\n\turl = https://github.com/a/b.git\n"})
+
+	with clone_repo((tmp_path / "top").as_uri(), recursive=True) as repo:
+		assert os.path.isfile(os.path.join(repo.working_tree_dir, "init.lua"))
+
+
+# Adapted from t7450: a corrupt .gitmodules
+@pytest.mark.parametrize("ref", [None, "master"])
+def test_clone_rejects_corrupt_gitmodules(tmp_path, allow_local_urls, ref):
+	top = make_repo(tmp_path / "top")
+	commit_files(top, {".gitmodules": "[broken\n"})
+
+	with pytest.raises(TaskError, match="bad config"):
+		with clone_repo((tmp_path / "top").as_uri(), ref, recursive=True):
+			pass
+
+	with clone_repo((tmp_path / "top").as_uri(), ref) as repo:
+		assert os.path.isfile(os.path.join(repo.working_tree_dir, "init.lua"))
+
+
+# Adapted from t7450: nested git dirs for the submodules "hippo" and "hippo/hooks"
+@pytest.mark.parametrize("ref", [None, "master"])
+def test_clone_rejects_nested_submodule_git_dirs(tmp_path, allow_local_urls, ref):
+	top = make_repo(tmp_path / "top")
+	commit_files(top, {".gitmodules": '[submodule "hippo"]\n\turl = .\n\tpath = thing1\n' +
+			'[submodule "hippo/hooks"]\n\turl = .\n\tpath = thing2\n'})
+	top.git.clone(".", "thing1")
+	top.git.clone(".", "thing2")
+	top.git.add("-A")
+	top.index.commit("nested")
+
+	with pytest.raises(TaskError, match="is inside git dir"):
 		with clone_repo((tmp_path / "top").as_uri(), ref, recursive=True):
 			pass
 
