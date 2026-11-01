@@ -9,7 +9,7 @@ import git
 import pytest
 
 from app.tasks import TaskError
-from app.tasks.importtasks import get_meta
+from app.tasks.importtasks import get_meta_impl
 from app.utils import git as git_utils
 from app.utils.git import get_latest_tag, get_latest_commit, clone_repo, get_commit_list
 
@@ -250,7 +250,7 @@ def test_get_meta_with_submodule_mods(submodule_repo, expected_type, tmp_path):
 	# Any attempt to fetch a submodule will now fail
 	shutil.rmtree(tmp_path / "sub")
 
-	result = get_meta(submodule_repo, "test")
+	result = get_meta_impl(submodule_repo, "test")
 	assert result["type"] == expected_type
 	assert result["title"] == "Test"
 	assert_not_pwned(tmp_path)

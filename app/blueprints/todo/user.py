@@ -5,7 +5,7 @@
 from typing import Optional
 from celery import uuid
 from flask import request, redirect, url_for, abort, render_template, flash
-from flask_babel import gettext, lazy_gettext
+from flask_babel import gettext, lazy_gettext, ngettext
 from flask_login import current_user, login_required
 from sqlalchemy import or_, and_
 from flask_wtf import FlaskForm
@@ -14,7 +14,8 @@ from wtforms.validators import InputRequired, NoneOf
 
 from app.models import User, Package, PackageState, PackageScreenshot, PackageUpdateConfig, ForumTopic, db, \
 	PackageRelease, Permission, NotificationType, AuditSeverity, UserRank, PackageType, PackageAIDisclosure
-from app.tasks.importtasks import make_vcs_release, GIT_RELEASES_ENABLED
+from app.tasks.importtasks import make_vcs_release
+from app.domain.git_access import can_package_use_git, get_git_access, GitAccess
 from app.utils.models import add_notification, add_audit_log
 from . import bp
 
@@ -95,7 +96,7 @@ def apply_all_updates(username):
 	if current_user != user and not current_user.rank.at_least(UserRank.EDITOR):
 		abort(403)
 
-	if not GIT_RELEASES_ENABLED:
+	if get_git_access() == GitAccess.NONE:
 		flash(gettext("Creating releases from Git is temporarily disabled"), "danger")
 		return redirect(url_for("todo.view_user", username=username))
 
@@ -104,8 +105,13 @@ def apply_all_updates(username):
 			Package.update_config.has(PackageUpdateConfig.outdated_at.isnot(None))) \
 		.order_by(db.asc(Package.title)).all()
 
+	skipped_git_disabled = 0
 	for package in outdated_packages:
 		if not package.check_perm(current_user, Permission.MAKE_RELEASE):
+			continue
+
+		if not can_package_use_git(package):
+			skipped_git_disabled += 1
 			continue
 
 		if package.releases.filter(or_(PackageRelease.task_id.isnot(None),
@@ -132,6 +138,11 @@ def apply_all_updates(username):
 				package.get_url("packages.create_edit"), package)
 		add_audit_log(AuditSeverity.NORMAL, current_user, msg, package.get_url("packages.view"), package)
 		db.session.commit()
+
+	if skipped_git_disabled > 0:
+		flash(ngettext("Skipped %(num)d package, as creating releases from Git is temporarily disabled for it",
+				"Skipped %(num)d packages, as creating releases from Git is temporarily disabled for them",
+				skipped_git_disabled), "warning")
 
 	return redirect(url_for("todo.view_user", username=username))
 

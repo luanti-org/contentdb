@@ -824,7 +824,8 @@ def json_schema():
 				"type": ["string", "null"]
 			},
 			"repo": {
-				"description": "Git Repository URL",
+				"description": "Ignored. Change the repository URL on ContentDB instead",
+				"deprecated": True,
 				"type": "string",
 				"format": "uri"
 			},
