@@ -362,6 +362,13 @@ def clone(author, name):
 		.filter(Collection.name == name, Collection.author.has(username=author)) \
 		.one_or_404()
 
+	if not old_collection.check_perm(current_user, Permission.VIEW_COLLECTION):
+		abort(404)
+
+	items = old_collection.items.all()
+	if not old_collection.check_perm(current_user, Permission.EDIT_COLLECTION):
+		items = [x for x in items if x.package.approved]
+
 	index = 0
 	new_name = name
 	new_title = old_collection.title
@@ -383,7 +390,7 @@ def clone(author, name):
 	collection.private = True
 	db.session.add(collection)
 
-	for item in old_collection.items.all():
+	for item in items:
 		new_item = CollectionPackage()
 		new_item.package = item.package
 		new_item.collection = collection
