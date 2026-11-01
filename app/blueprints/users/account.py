@@ -8,7 +8,7 @@ from markupsafe import Markup
 from flask import redirect, abort, render_template, flash, request, url_for
 from werkzeug import Response
 from flask_babel import gettext, get_locale, lazy_gettext
-from flask_login import current_user, login_required, logout_user, login_user
+from flask_login import current_user, login_required
 from flask_wtf import FlaskForm
 from sqlalchemy import or_
 from wtforms import StringField, SubmitField, BooleanField, PasswordField, validators
@@ -18,7 +18,8 @@ from app.tasks.emails import send_verify_email, send_anon_email, send_unsubscrib
 from app.utils.misc import random_string, nonempty_or_none, hash_token
 from app.utils.tokens import load_unsubscribe_token
 from app.utils.models import add_audit_log
-from app.utils.user import make_flask_login_password, is_safe_url, check_password_hash, post_login
+from app.utils.user import make_flask_login_password, is_safe_url, check_password_hash, post_login, \
+	login_user_with_session, logout_current_session, end_user_sessions
 from . import bp
 from app.models import User, AuditSeverity, db, EmailSubscription, UserEmailVerification
 from app.domain.users import create_user
@@ -68,7 +69,7 @@ def handle_login(form):
 				  url_for("users.profile", username=user.username))
 	db.session.commit()
 
-	if not login_user(user, remember=form.remember_me.data):
+	if not login_user_with_session(user, remember=form.remember_me.data):
 		flash(gettext("Login failed"), "danger")
 		return
 
@@ -98,7 +99,7 @@ def login():
 
 @bp.route("/user/logout/", methods=["GET", "POST"])
 def logout():
-	logout_user()
+	logout_current_session()
 	return redirect(url_for("homepage.home"))
 
 
@@ -228,6 +229,7 @@ def handle_set_password(form):
 	add_audit_log(AuditSeverity.USER, current_user, "Changed their password", url_for("users.profile", username=current_user.username))
 
 	current_user.password = make_flask_login_password(form.password.data)
+	end_user_sessions(current_user, keep_current=True)
 
 	if hasattr(form, "email"):
 		new_email = nonempty_or_none(form.email.data)
@@ -346,9 +348,9 @@ def verify_email():
 		return redirect(url_for("homepage.home"))
 
 	if ver.is_password_reset:
-		login_user(user)
+		end_user_sessions(user)
 		user.password = None
-		db.session.commit()
+		login_user_with_session(user)
 
 		return redirect(url_for("users.set_password"))
 

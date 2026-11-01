@@ -4,7 +4,7 @@
 
 from flask import redirect, abort, render_template, request, flash, url_for
 from flask_babel import gettext, get_locale, lazy_gettext
-from flask_login import current_user, login_required, logout_user
+from flask_login import current_user, login_required
 from flask_wtf import FlaskForm
 from kombu import uuid
 from sqlalchemy import or_
@@ -17,7 +17,7 @@ from app.tasks.emails import send_verify_email
 from app.tasks.usertasks import update_github_user_id
 from app.utils.misc import nonempty_or_none, random_string, hash_token
 from app.utils.models import add_audit_log
-from app.utils.user import rank_required
+from app.utils.user import rank_required, end_user_sessions, logout_current_session
 from app.utils.flask import has_blocked_domains
 from . import bp
 from .account import confirm_email_verification
@@ -302,6 +302,7 @@ def delete(username):
 			db.session.delete(token)
 		user.profile_pic = None
 		user.email = None
+		end_user_sessions(user)
 
 		if user.rank != UserRank.BANNED:
 			user.rank = UserRank.NOT_JOINED
@@ -315,7 +316,7 @@ def delete(username):
 	db.session.commit()
 
 	if user == current_user:
-		logout_user()
+		logout_current_session()
 
 	return redirect(url_for("homepage.home"))
 
@@ -374,6 +375,8 @@ def modtools(username):
 			if current_user.rank.at_least(new_rank):
 				if new_rank != user.rank:
 					user.rank = form.rank.data
+					if user.rank == UserRank.BANNED:
+						end_user_sessions(user)
 					msg = "Set rank of {} to {}".format(user.display_name, user.rank.title)
 					add_audit_log(AuditSeverity.MODERATION, current_user, msg,
 								  url_for("users.profile", username=username))
@@ -399,6 +402,7 @@ def modtools_set_email(username):
 
 	user.email = request.form["email"]
 	user.is_active = False
+	end_user_sessions(user)
 
 	token = random_string(32)
 	add_audit_log(AuditSeverity.MODERATION, current_user, f"Set email and sent a password reset on {user.username}",
@@ -462,6 +466,8 @@ def modtools_ban(username):
 		user.ban.expires_at = expires_at
 	else:
 		user.rank = UserRank.BANNED
+
+	end_user_sessions(user)
 
 	add_audit_log(AuditSeverity.MODERATION, current_user, f"Banned {user.username}, expires {user.ban.expires_at or '-'}, message: {message}",
 				  url_for("users.profile", username=user.username), None)
