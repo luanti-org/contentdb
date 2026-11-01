@@ -314,6 +314,35 @@ def test_check_submodules_rejects_entries(modules, match):
 		git_utils._check_submodules(modules)
 
 
+# The name decides where git puts .git/modules/<name>, so ".." in it escapes the git dir
+@pytest.mark.parametrize("name", [
+	"../../modules/evil",
+	"../foo",
+	"/../foo",
+	"..\\foo",
+	"\\..\\foo",
+	"foo/..",
+	"foo/../",
+	"foo\\..",
+	"foo\\..\\",
+	"foo/../bar",
+	"/etc",
+	"a//b",
+	"-evil",
+	"a\nb",
+	"a\rb",
+	"",
+])
+def test_check_submodules_rejects_name(name):
+	with pytest.raises(TaskError, match="name is not allowed"):
+		git_utils._check_submodules({name: {"path": "x", "url": "https://github.com/a/b.git"}})
+
+
+@pytest.mark.parametrize("name", ["valid", "valid/with/paths", "my mod", "a.b", "..foo", "foo..", "a-b_c"])
+def test_check_submodules_accepts_name(name):
+	assert git_utils._check_submodules({name: {"path": "x", "url": "https://github.com/a/b.git"}}) == ["x"]
+
+
 def make_repo(path: Path) -> git.Repo:
 	repo = git.Repo.init(path, initial_branch="master")
 	repo.git.update_environment(GIT_CONFIG_COUNT="1",
@@ -677,6 +706,17 @@ def test_archive_is_reproducible(archive_repo, tmp_path):
 	# Zip times have a 2 second resolution
 	commit_time = git.Repo(tmp_path / "top").head.commit.committed_date // 2 * 2
 	assert entries["pkg/init.lua"].date_time == time.gmtime(commit_time)[:6]
+
+
+# Commit dates are chosen by the repo owner, and a zip can only store up to 2107
+@pytest.mark.parametrize("commit_time", [4354819198, 7258118400, 99999999999])
+def test_archive_clamps_far_future_commit_date(archive_repo, tmp_path, commit_time):
+	top = git.Repo(tmp_path / "top")
+	top.index.commit("Far future", commit_date=f"{commit_time} +0000", author_date=f"{commit_time} +0000")
+
+	entries = make_archive(archive_repo, tmp_path / "out.zip")
+	assert entries["pkg/init.lua"].date_time[0] <= 2107
+	assert (tmp_path / "out.zip").exists()
 
 
 def test_archive_file_limit(archive_repo, tmp_path, monkeypatch):

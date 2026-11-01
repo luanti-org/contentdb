@@ -89,6 +89,8 @@ MAX_ARCHIVE_FILES = 50000
 
 # 1980-01-01, the earliest time a zip can store
 ZIP_MIN_TIME = 315532800
+# 2107-12-31 23:59:58, the latest
+ZIP_MAX_TIME = 4354819198
 
 # Seconds before a git network operation is killed
 GIT_TIMEOUT = 15
@@ -164,6 +166,13 @@ def _check_submodule_path(path: str):
 		raise TaskError(f"Submodule path is not allowed: {path!r}")
 
 
+# Git stores the submodule at .git/modules/<name>, so ".." would escape that dir
+def _check_submodule_name(name: str):
+	if re.search(r"[\x00-\x1f\x7f\\]", name) is not None or name.startswith("-") or \
+			any(part in ("", "..") for part in name.split("/")):
+		raise TaskError(f"Submodule name is not allowed: {name!r}")
+
+
 def _check_submodule_url(path: str, url: str):
 	if not url.startswith("https://"):
 		raise TaskError(f"Submodule '{path}' has a URL that doesn't use https://: {url!r}")
@@ -177,6 +186,7 @@ def _check_submodules(modules: Dict[str, Dict[str, str]]) -> List[str]:
 	paths = []
 	seen: Set[str] = set()
 	for name, fields in modules.items():
+		_check_submodule_name(name)
 		path = fields.get("path")
 		url = fields.get("url")
 		if path is None or url is None:
@@ -437,7 +447,7 @@ def create_archive(repo_dir: str, prefix: str, dest_path: str, max_size: int):
 
 	# Commit time rather than checkout time, so the same commit gives the same zip
 	commit_time = int(_git_in(root).show("-s", "--format=%ct", "HEAD"))
-	date_time = time.gmtime(max(commit_time, ZIP_MIN_TIME))[:6]
+	date_time = time.gmtime(min(max(commit_time, ZIP_MIN_TIME), ZIP_MAX_TIME))[:6]
 
 	total_size = 0
 	zf = ZipFile(dest_path, "x", ZIP_DEFLATED)
