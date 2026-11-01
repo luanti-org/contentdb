@@ -828,6 +828,32 @@ def test_archive_matches_git_archive(tmp_path, allow_local_urls):
 	assert {name: date for name, (_, _, date) in ours.items()} == {name: date for name, (_, _, date) in reference.items()}
 
 
+@pytest.mark.parametrize("attrs, content", [
+	pytest.param("f.txt eol=crlf\n", b"a\nb\n", id="eol-crlf"),
+	pytest.param("f.txt text eol=lf\n", b"a\r\nb\r\n", id="text-eol-lf"),
+	pytest.param("f.txt eol=lf\n", b"a\r\nb\r\n", id="eol-lf"),
+	pytest.param("f.txt text\n", b"a\r\nb\r\n", id="text"),
+	pytest.param("f.txt -text\n", b"a\r\nb\r\n", id="unset-text"),
+	pytest.param("f.txt ident\n", b"$Id$\n", id="ident"),
+])
+def test_archive_applies_checkout_conversions_like_git_archive(tmp_path, allow_local_urls, attrs, content):
+	url = build_repo(tmp_path, {"f.txt": content, ".gitattributes": attrs})
+	make_archive(url, tmp_path / "out.zip")
+
+	ours = read_zip(tmp_path / "out.zip")
+	reference = git_archive_entries(tmp_path / "top", tmp_path / "ref.zip", tmp_path / "home")
+
+	assert ours["pkg/f.txt"][0] == reference["pkg/f.txt"][0]
+
+
+# Unlike git archive, export-subst is not expanded
+def test_archive_does_not_expand_export_subst(tmp_path, allow_local_urls):
+	url = build_repo(tmp_path, {"f.txt": "$Format:%h$\n", ".gitattributes": "f.txt export-subst\n"})
+	make_archive(url, tmp_path / "out.zip")
+
+	assert read_zip(tmp_path / "out.zip")["pkg/f.txt"][0] == b"$Format:%h$\n"
+
+
 # Commit dates are chosen by the repo owner, and a zip can only store up to 2107
 @pytest.mark.parametrize("commit_time", [4354819198, 7258118400, 99999999999])
 def test_archive_clamps_far_future_commit_date(archive_repo, tmp_path, commit_time):
