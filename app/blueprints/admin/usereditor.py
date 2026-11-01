@@ -128,7 +128,10 @@ def calc_spammer_likelihood(user: User) -> float:
 @rank_required(UserRank.MODERATOR)
 def user_editor():
 	form = AuditForm(request.args)
-	query = User.query.filter(and_(User.rank >= form.min_rank.data, User.rank <= form.max_rank.data))
+	query = User.query.filter(and_(
+		User.rank >= form.min_rank.data,
+		User.rank <= form.max_rank.data,
+		User.rank < UserRank.MODERATOR))
 
 	if form.hide_with_anything.data:
 		query = query.filter(and_(
@@ -171,13 +174,11 @@ def user_editor():
 @rank_required(UserRank.MODERATOR)
 def user_editor_delete():
 	selected = request.form.getlist("selected")
+	selected_users = User.query.filter(User.username.in_(selected), User.rank < UserRank.MODERATOR).all()
+
 	confirmed = request.form.get("confirm", None)
 	if confirmed:
-		for username in selected:
-			user = User.query.filter_by(username=username).first()
-			if user is None:
-				continue
-
+		for user in selected_users:
 			msg = f"Deleted user {user.username} as spammer"
 			desc = f"{json.dumps(user.get_dict(), indent=4)}"
 			add_audit_log(AuditSeverity.MODERATION, current_user, msg, None, None, desc)
@@ -189,8 +190,7 @@ def user_editor_delete():
 			db.session.delete(user)
 		db.session.commit()
 
-		flash(f"Deleted {len(selected)} users", "success")
+		flash(f"Deleted {len(selected_users)} users", "success")
 		return redirect(url_for("admin.user_editor"))
 
-	selected_users = User.query.filter(User.username.in_(selected)).all()
 	return render_template("admin/users_delete.html", selected=selected_users)
