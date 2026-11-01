@@ -38,7 +38,7 @@ def _get_dir_path(app, original_path, create=False):
 
 	if not os.path.isdir(path):
 		if create:
-			os.mkdir(path)
+			os.makedirs(path, exist_ok=True)
 		else:
 			raise IOError("Unable to find " + original_path)
 
