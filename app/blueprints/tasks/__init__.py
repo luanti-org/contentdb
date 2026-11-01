@@ -9,6 +9,7 @@ from app import csrf
 from app.models import UserRank
 from app.tasks import celery
 from app.tasks.importtasks import get_meta
+from app.domain.git_access import can_user_use_git
 from app.utils.flask import should_return_json, is_safe_url
 
 bp = Blueprint("tasks", __name__)
@@ -19,9 +20,12 @@ bp = Blueprint("tasks", __name__)
 @login_required
 def start_getmeta():
 	from flask import request
+	if not can_user_use_git(current_user):
+		return jsonify({"success": False, "error": "Importing from Git is temporarily disabled"}), 403
+
 	author = request.args.get("author")
 	author = current_user.forums_username if author is None else author
-	aresult = get_meta.delay(request.args.get("url"), author)
+	aresult = get_meta.delay(request.args.get("url"), author, current_user.id)
 	return jsonify({
 		"poll_url": url_for("tasks.check", id=aresult.id),
 	})

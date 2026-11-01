@@ -18,6 +18,7 @@ from app.models import Package, db, User, PackageState, Permission, UserRank, Pa
 	PackageRelease, PackageUpdateTrigger, PackageUpdateConfig, ReleaseState
 from app.rediscache import has_key, set_temp_key, make_download_key
 from app.tasks.importtasks import check_update_config
+from app.domain.git_access import can_package_use_git
 from app.utils.models import is_package_page, add_audit_log_on_package
 from app.utils.flask import is_user_bot
 from app.utils.misc import nonempty_or_none, normalize_line_endings
@@ -84,10 +85,14 @@ def create_release(package):
 
 	# Initial form class from post data and default data
 	form = CreatePackageReleaseForm()
+	git_enabled = can_package_use_git(package)
 	if package.repo is not None:
-		form.upload_mode.choices = [("vcs", gettext("Import from Git")), ("upload", gettext("Upload .zip file"))]
+		form.upload_mode.choices = [
+			("vcs", gettext("Import from Git"), { "disabled": not git_enabled }),
+			("upload", gettext("Upload .zip file"))]
+
 		if request.method == "GET":
-			form.upload_mode.data = "vcs"
+			form.upload_mode.data = "vcs" if git_enabled else "upload"
 			form.vcs_label.data = request.args.get("ref")
 
 	if request.method == "GET":
@@ -106,7 +111,7 @@ def create_release(package):
 			db.session.rollback()
 			flash(e.message, "danger")
 
-	return render_template("packages/release_new.html", package=package, form=form)
+	return render_template("packages/release_new.html", package=package, form=form, git_enabled=git_enabled)
 
 
 @bp.route("/packages/<author>/<name>/releases/<int:id>/download/")
@@ -316,8 +321,8 @@ def set_update_config(package, form):
 
 	db.session.commit()
 
-	# if package.update_config.last_commit is None:
-	check_update_config.delay(package.id)
+	if can_package_use_git(package):
+		check_update_config.delay(package.id)
 
 
 @bp.route("/packages/<author>/<name>/update-config/", methods=["GET", "POST"])
@@ -360,7 +365,8 @@ def update_config(package):
 
 		return redirect(package.get_url("packages.list_releases"))
 
-	return render_template("packages/update_config.html", package=package, form=form)
+	return render_template("packages/update_config.html", package=package, form=form,
+			git_enabled=can_package_use_git(package))
 
 
 @bp.route("/packages/<author>/<name>/setup-releases/")
