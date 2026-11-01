@@ -225,13 +225,9 @@ def approve_review(package, reviewer):
 	return redirect(review.get_view_url())
 
 
-def handle_review_vote(package: Package, review_id: int) -> typing.Optional[str]:
+def handle_review_vote(package: Package, review: PackageReview) -> typing.Optional[str]:
 	if current_user in package.maintainers:
 		return gettext("You can't vote on the reviews on your own package!")
-
-	review = PackageReview.query.get(review_id)
-	if review is None or review.package != package:
-		abort(404)
 
 	if review.author == current_user:
 		return gettext("You can't vote on your own reviews!")
@@ -259,7 +255,11 @@ def handle_review_vote(package: Package, review_id: int) -> typing.Optional[str]
 @login_required
 @is_package_page
 def review_vote(package, review_id):
-	msg = handle_review_vote(package, review_id)
+	review = PackageReview.query.get(review_id)
+	if review is None or review.package != package:
+		abort(404)
+
+	msg = handle_review_vote(package, review)
 	if should_return_json():
 		if msg:
 			return jsonify({"success": False, "error": msg}), 403
