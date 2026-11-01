@@ -281,7 +281,7 @@ class User(Model, UserMixin):
 			if user == self:
 				return user.rank.at_least(UserRank.NEW_MEMBER)
 			else:
-				return user.rank.at_least(UserRank.MODERATOR) and user.rank.at_least(self.rank)
+				return user.rank.at_least(UserRank.MODERATOR) and not self.rank.at_least(user.rank)
 		elif perm == Permission.LINK_TO_WEBSITE:
 			return user.rank.at_least(UserRank.MEMBER)
 		else:
