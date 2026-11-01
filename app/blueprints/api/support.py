@@ -8,7 +8,7 @@ from flask import jsonify, abort, make_response, url_for, current_app
 from app.domain.packages import do_edit_package
 from app.domain.releases import DomainError, do_create_vcs_release, do_create_zip_release
 from app.domain.screenshots import do_create_screenshot, do_order_screenshots, do_set_cover_image
-from app.models import APIToken, Package, LuantiRelease, PackageScreenshot
+from app.models import APIToken, Package, LuantiRelease, PackageScreenshot, db
 
 
 def error(code: int, msg: str) -> NoReturn:
@@ -21,6 +21,7 @@ def guard(f):
 		try:
 			return f(*args, **kwargs)
 		except DomainError as e:
+			db.session.rollback()
 			error(e.code, e.message)
 
 	return ret

@@ -233,6 +233,7 @@ def handle_set_password(form):
 		new_email = nonempty_or_none(form.email.data)
 		if new_email and new_email != current_user.email:
 			if EmailSubscription.query.filter_by(email=form.email.data, blacklisted=True).count() > 0:
+				db.session.rollback()
 				flash(gettext(u"That email address has been unsubscribed/blacklisted, and cannot be used"), "danger")
 				return
 
@@ -341,6 +342,7 @@ def verify_email():
 	was_activating = not user.is_active
 
 	if not confirm_email_verification(ver):
+		db.session.rollback()
 		return redirect(url_for("homepage.home"))
 
 	if ver.is_password_reset:

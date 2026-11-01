@@ -83,6 +83,7 @@ def handle_profile_edit(form: UserProfileForm, user: User, username: str):
 		if User.query.filter(User.id != user.id,
 				or_(User.username == display_name,
 						User.display_name.ilike(display_name))).count() > 0:
+			db.session.rollback()
 			flash(gettext("A user already has that name"), "danger")
 			return None
 
@@ -90,6 +91,7 @@ def handle_profile_edit(form: UserProfileForm, user: User, username: str):
 		alias_by_name = PackageAlias.query.filter(or_(
 				PackageAlias.author == display_name)).first()
 		if alias_by_name:
+			db.session.rollback()
 			flash(gettext("A user already has that name"), "danger")
 			return
 
@@ -103,6 +105,7 @@ def handle_profile_edit(form: UserProfileForm, user: User, username: str):
 	if user.check_perm(current_user, Permission.CHANGE_PROFILE_URLS):
 		if has_blocked_domains(form.website_url.data, current_user.username, f"{user.username}'s website_url") or \
 				has_blocked_domains(form.donate_url.data, current_user.username, f"{user.username}'s donate_url"):
+			db.session.rollback()
 			flash(gettext("Linking to blocked sites is not allowed"), "danger")
 			return
 
@@ -164,6 +167,7 @@ def handle_email_notifications(user, prefs: UserNotificationPreferences, is_new,
 		newEmail = form.email.data
 		if newEmail and newEmail != user.email and newEmail.strip() != "":
 			if EmailSubscription.query.filter_by(email=form.email.data, blacklisted=True).count() > 0:
+				db.session.rollback()
 				flash(gettext("That email address has been unsubscribed/blacklisted, and cannot be used"), "danger")
 				return
 

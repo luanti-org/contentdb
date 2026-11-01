@@ -6,7 +6,7 @@ import pytest, json
 from sqlalchemy import text
 
 from app import app
-from app.models import db, User
+from app.models import db, User, License, Package, PackageState, PackageType
 from app.default_data import populate
 
 
@@ -27,6 +27,24 @@ def recreate_db():
 	clear_data(db.session)
 	populate(db.session)
 	db.session.commit()
+
+
+def make_package(name: str, author: User | None = None) -> Package:
+	"""Adds an approved mod to the session, without committing"""
+	license = License.query.filter_by(name="MIT").one()
+
+	package = Package()
+	package.state = PackageState.APPROVED
+	package.name = name.lower()
+	package.title = name
+	package.license = license
+	package.media_license = license
+	package.type = PackageType.MOD
+	package.author = author or User.query.first()
+	package.short_desc = "The content library should not be used yet as it is still in alpha"
+	package.desc = "This is the long desc"
+	db.session.add(package)
+	return package
 
 
 def parse_json(b):

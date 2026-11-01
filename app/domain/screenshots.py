@@ -66,15 +66,18 @@ def do_order_screenshots(user: User, package: Package, order: list[Any]):
 
 	old_order = {ss_id: ss.order for ss_id, ss in lookup.items()}
 
-	counter = 1
+	# Look up every ID before changing anything, so that an invalid ID leaves the order unchanged
+	ordered = []
 	for ss_id in order:
 		try:
-			lookup[int(ss_id)].order = counter
-			counter += 1
+			ordered.append(lookup[int(ss_id)])
 		except KeyError:
 			raise DomainError(400, "Unable to find screenshot with id={}".format(ss_id))
 		except (ValueError, TypeError):
 			raise DomainError(400, "Invalid id, not a number: {}".format(json.dumps(ss_id)))
+
+	for counter, screenshot in enumerate(ordered, start=1):
+		screenshot.order = counter
 
 	if any(ss.order != old_order[ss_id] for ss_id, ss in lookup.items()):
 		add_audit_log_on_package(user, "Reordered screenshots", package.get_url("packages.screenshots"), package)
