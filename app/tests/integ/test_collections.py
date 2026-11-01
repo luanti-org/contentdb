@@ -2,8 +2,11 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
+import pytest
+
 from app.default_data import populate_test_data
-from app.models import db, User, UserRank, Package, PackageState, Collection, CollectionPackage
+from app.models import db, User, UserRank, Package, PackageState, Collection, CollectionPackage, APIToken, OAuthClient
+from app.utils.misc import random_string
 from app.utils.user import make_flask_login_password
 from .utils import login
 from .utils import client # noqa
@@ -94,3 +97,68 @@ def test_clone_requires_login(client):
 	rv = clone(client)
 	assert rv.status_code == 302
 	assert "/user/login/" in rv.headers["Location"]
+
+
+def make_token(owner: User, kind: str) -> str:
+	token = APIToken()
+	token.name = kind
+	token.owner = owner
+	token.access_token = random_string(32)
+
+	if kind == "oauth":
+		oauth_client = OAuthClient()
+		oauth_client.id = random_string(24)
+		oauth_client.title = "Third party app"
+		oauth_client.secret = random_string(32)
+		oauth_client.redirect_url = "https://example.com/callback"
+		oauth_client.owner = make_user("app_developer")
+		oauth_client.approved = True
+		db.session.add(oauth_client)
+		token.client = oauth_client
+	elif kind == "package":
+		token.package = Package.query.filter_by(name="mesecons").one()
+
+	db.session.add(token)
+	db.session.commit()
+	return token.access_token
+
+
+def api_view(client, access_token: str | None = None):
+	headers = {"Authorization": f"Bearer {access_token}"} if access_token else {}
+	return client.get("/api/collections/owner/secret/", headers=headers)
+
+
+def test_api_private_collection_with_account_token(client):
+	owner = make_user("owner")
+	make_collection(owner, private=True)
+	access_token = make_token(owner, "account")
+
+	rv = api_view(client, access_token)
+	assert rv.status_code == 200
+	assert sorted(x["package"]["name"] for x in rv.json["items"]) == ["awards", "mesecons"]
+
+
+@pytest.mark.parametrize("kind", ["oauth", "package"])
+def test_api_private_collection_with_limited_token(client, kind):
+	owner = make_user("owner")
+	make_collection(owner, private=True)
+	access_token = make_token(owner, kind)
+
+	assert api_view(client, access_token).status_code == 404
+
+
+@pytest.mark.parametrize("kind", ["oauth", "package"])
+def test_api_public_collection_with_limited_token(client, kind):
+	owner = make_user("owner")
+	make_collection(owner, private=False)
+	access_token = make_token(owner, kind)
+
+	rv = api_view(client, access_token)
+	assert rv.status_code == 200
+	assert [x["package"]["name"] for x in rv.json["items"]] == ["mesecons"]
+
+
+def test_api_private_collection_anonymous(client):
+	make_collection(make_user("owner"), private=True)
+
+	assert api_view(client).status_code == 404

@@ -909,7 +909,9 @@ def collection_list():
 @is_api_authd
 @cors_allowed
 def collection_view(token, author, name):
-	user = token.owner if token else None
+	# OAuth tokens only have the "public" scope, and package tokens are limited to one package,
+	# so only full account tokens can see the owner's private collections
+	user = token.owner if token and token.client is None and token.package is None else None
 
 	collection = Collection.query \
 		.filter(Collection.name == name, Collection.author.has(username=author)) \
