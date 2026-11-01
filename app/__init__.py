@@ -90,6 +90,9 @@ app.config["LANGUAGES"] = {
 
 app.config.from_pyfile(os.environ["FLASK_CONFIG"])
 
+if app.config.get("GIT_ACCESS", "none") not in ["none", "trusted", "trusted_or_approved", "all"]:
+	raise Exception("Invalid config property: GIT_ACCESS must be one of 'none', 'trusted', 'trusted_or_approved', or 'all'")
+
 if not app.config["ADMIN_CONTACT_URL"]:
 	raise Exception("Missing config property: ADMIN_CONTACT_URL")
 

@@ -45,7 +45,11 @@
 
 		<h3 class="mt-5">{{ _("2. Set the content") }}</h3>
 
-		{{ render_radio_field(form.upload_mode) }}
+		{% if package.repo and not git_enabled %}
+			{{ render_radio_field(form.upload_mode, hint=_("Creating releases using Git is temporarily disabled")) }}
+		{% else %}
+			{{ render_radio_field(form.upload_mode) }}
+		{% endif %}
 
 		{% if package.repo %}
 			{{ render_field(form.vcs_label, placeholder=_("Leave blank to use default branch"), class_="mt-3",

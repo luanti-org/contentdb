@@ -21,6 +21,7 @@ from wtforms_sqlalchemy.fields import QuerySelectField, QuerySelectMultipleField
 from app import login_manager
 from app.domain.DomainError import DomainError
 from app.domain.packages import do_edit_package
+from app.domain.git_access import can_user_use_git, can_package_use_git
 from app.querybuilder import QueryBuilder
 from app.rediscache import has_key, set_temp_key
 from app.tasks.importtasks import import_repo_screenshot, check_zip_release, remove_package_game_support, \
@@ -342,7 +343,7 @@ def handle_create_edit(package: typing.Optional[Package], form: PackageForm, aut
 			"translation_url": form.translation_url.data,
 		})
 
-		if wasNew and package.repo is not None:
+		if wasNew and package.repo is not None and can_package_use_git(package):
 			import_repo_screenshot.delay(package.id)
 
 		next_url = package.get_url("packages.view")
@@ -420,7 +421,7 @@ def create_edit(author=None, name=None):
 	if package is not None:
 		package_query = package_query.filter(Package.id != package.id)
 
-	enableWizard = name is None and request.method != "POST"
+	enableWizard = name is None and request.method != "POST" and can_user_use_git(current_user)
 	return render_template("packages/create_edit.html", package=package,
 			form=form, author=author, enable_wizard=enableWizard,
 			packages=package_query.all(),

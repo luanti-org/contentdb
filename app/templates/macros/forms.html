@@ -144,7 +144,7 @@
 		{% for value, label, checked, render_kw in field.iter_choices() %}
 			<div class="form-check my-1">
 				<label class="form-check-label">
-					<input class="form-check-input" type="radio" name="{{ field.id }}" id="{{ field.id }}" value="{{ value }}"{% if checked %} checked{% endif %}>
+					<input class="form-check-input" type="radio" name="{{ field.id }}" id="{{ field.id }}" value="{{ value }}"{% if checked %} checked{% endif %}{% if render_kw and render_kw.disabled %} disabled{% endif %}>
 					{{ label }}
 				</label>
 			</div>
