@@ -12,7 +12,7 @@ import tempfile
 import threading
 import time
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Set
 from zipfile import ZipFile, ZipInfo
 
 import git
@@ -706,6 +706,65 @@ def test_archive_is_reproducible(archive_repo, tmp_path):
 	# Zip times have a 2 second resolution
 	commit_time = git.Repo(tmp_path / "top").head.commit.committed_date // 2 * 2
 	assert entries["pkg/init.lua"].date_time == time.gmtime(commit_time)[:6]
+
+
+def git_archive_names(repo_dir: Path, dest: Path, home: Path) -> Set[str]:
+	env = {**os.environ, "HOME": str(home), "XDG_CONFIG_HOME": str(home),
+			"GIT_CONFIG_NOSYSTEM": "1", "GIT_CONFIG_GLOBAL": os.devnull}
+	subprocess.run(["git", "archive", "--format=zip", "--prefix=pkg/", "-o", str(dest), "HEAD"],
+			cwd=repo_dir, env=env, check=True)
+	with ZipFile(dest) as zf:
+		return {name for name in zf.namelist() if not name.endswith("/")}
+
+
+# From git's t5002-archive-attr-pattern.sh, with .gitattributes instead of .git/info/attributes
+T5002_FILES = [
+	"ignored",
+	"not-ignored-dir/ignored",
+	"not-ignored-dir/ignored-only-if-dir",
+	"ignored-only-if-dir/ignored-by-ignored-dir",
+	"ignored-without-slash/foo",
+	"wildcard-without-slash/foo",
+	"deep/and/slashless/foo",
+	"deep/with/wildcard/foo",
+	"one-level-lower/two-levels-lower/ignored-only-if-dir/ignored-by-ignored-dir",
+	"kept.txt",
+]
+T5002_ATTRS = "ignored export-ignore\nignored-only-if-dir/ export-ignore\nignored-without-slash export-ignore\n" + \
+		"wild*-without-slash export-ignore\ndeep/and/slashless export-ignore\ndeep/*t*/wildcard export-ignore\n"
+
+
+@pytest.mark.parametrize("attrs, files, expected", [
+	pytest.param(T5002_ATTRS, T5002_FILES,
+			{".gitattributes", "not-ignored-dir/ignored-only-if-dir", "kept.txt"}, id="t5002"),
+	pytest.param("*.txt export-ignore\nkeep.txt -export-ignore\n", ["a.txt", "keep.txt", "b.lua"],
+			{".gitattributes", "keep.txt", "b.lua"}, id="unset"),
+	pytest.param("*.txt export-ignore\nkeep.txt !export-ignore\n", ["a.txt", "keep.txt", "b.lua"],
+			{".gitattributes", "keep.txt", "b.lua"}, id="unspecified"),
+	pytest.param("dir/ export-ignore\ndir/keep -export-ignore\n", ["dir/keep", "dir/x", "other"],
+			{".gitattributes", "other"}, id="ignored-dir-beats-unset-child"),
+	pytest.param("name/ export-ignore\n", ["name", "sub/name", "sub2/name/x"],
+			{".gitattributes", "name", "sub/name"}, id="dir-pattern-skips-files"),
+	pytest.param("/top.txt export-ignore\n", ["top.txt", "sub/top.txt"],
+			{".gitattributes", "sub/top.txt"}, id="anchored"),
+	pytest.param("**/gen/** export-ignore\n", ["gen/x", "a/gen/y", "a/gen/b/z", "genx/z"],
+			{".gitattributes", "genx/z"}, id="double-star"),
+	pytest.param("*.tmp export-ignore\n", ["a.tmp", "d/b.tmp", "tmp", "a.tmpx"],
+			{".gitattributes", "tmp", "a.tmpx"}, id="extension-glob"),
+	pytest.param(None, {"sub/.gitattributes": "inner export-ignore\n", "sub/inner": "", "sub/deeper/inner": "", "inner": ""},
+			{"sub/.gitattributes", "inner"}, id="subdir-gitattributes"),
+])
+def test_archive_export_ignore_patterns(tmp_path, allow_local_urls, attrs, files, expected):
+	content = dict(files) if isinstance(files, dict) else {path: path for path in files}
+	if attrs is not None:
+		content[".gitattributes"] = attrs
+
+	url = build_repo(tmp_path, content)
+	names = set(make_archive(url, tmp_path / "out.zip").keys()) - {"pkg/init.lua"}
+
+	assert names == {"pkg/" + name for name in expected}
+	reference = git_archive_names(tmp_path / "top", tmp_path / "ref.zip", tmp_path / "home") - {"pkg/init.lua"}
+	assert names == reference
 
 
 # Commit dates are chosen by the repo owner, and a zip can only store up to 2107
