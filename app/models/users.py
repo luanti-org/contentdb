@@ -270,13 +270,16 @@ class User(Model, UserMixin):
 		if perm == Permission.CHANGE_AUTHOR:
 			return user.rank.at_least(UserRank.EDITOR)
 		elif perm == Permission.CHANGE_USERNAMES:
-			return user.rank.at_least(UserRank.MODERATOR)
+			return user.rank.at_least(UserRank.MODERATOR) and (user == self or not self.rank.at_least(user.rank))
 		elif perm == Permission.CHANGE_RANK:
 			return user.rank.at_least(UserRank.MODERATOR) and not self.rank.at_least(user.rank)
 		elif perm == Permission.CHANGE_EMAIL or perm == Permission.CHANGE_PROFILE_URLS:
 			return user == self or (user.rank.at_least(UserRank.MODERATOR) and not self.rank.at_least(user.rank))
 		elif perm == Permission.CHANGE_DISPLAY_NAME:
-			return user.rank.at_least(UserRank.NEW_MEMBER if user == self else UserRank.MODERATOR)
+			if user == self:
+				return user.rank.at_least(UserRank.NEW_MEMBER)
+			else:
+				return user.rank.at_least(UserRank.MODERATOR) and not self.rank.at_least(user.rank)
 		elif perm == Permission.CREATE_TOKEN or perm == Permission.CREATE_OAUTH_CLIENT:
 			if user == self:
 				return user.rank.at_least(UserRank.NEW_MEMBER)
