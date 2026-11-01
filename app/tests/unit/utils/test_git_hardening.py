@@ -3,6 +3,7 @@
 # Copyright (C) 2026 Zenon Seth <Zenon.Seth@gmail.com>
 
 import contextlib
+import hashlib
 import os
 import re
 import shutil
@@ -12,7 +13,7 @@ import tempfile
 import threading
 import time
 from pathlib import Path
-from typing import Dict, List, Optional, Set
+from typing import Dict, List, Optional, Set, Tuple
 from zipfile import ZipFile, ZipInfo
 
 import git
@@ -585,6 +586,13 @@ def test_low_speed_limit_is_used(stall_server, monkeypatch):
 		get_latest_commit(stall_server)
 
 
+def write_content(path: Path, content):
+	if isinstance(content, bytes):
+		path.write_bytes(content)
+	else:
+		path.write_text(content)
+
+
 def commit_files(repo: git.Repo, files: dict):
 	if len(files) == 0:
 		return
@@ -594,10 +602,10 @@ def commit_files(repo: git.Repo, files: dict):
 		if isinstance(content, tuple) and content[0] == "link":
 			os.symlink(content[1], full_path)
 		elif isinstance(content, tuple) and content[0] == "exec":
-			full_path.write_text(content[1])
+			write_content(full_path, content[1])
 			full_path.chmod(0o755)
 		else:
-			full_path.write_text(content)
+			write_content(full_path, content)
 	repo.git.add("-A")
 	repo.git.commit("-m", "Add files")
 
@@ -708,13 +716,24 @@ def test_archive_is_reproducible(archive_repo, tmp_path):
 	assert entries["pkg/init.lua"].date_time == time.gmtime(commit_time)[:6]
 
 
-def git_archive_names(repo_dir: Path, dest: Path, home: Path) -> Set[str]:
-	env = {**os.environ, "HOME": str(home), "XDG_CONFIG_HOME": str(home),
+# name -> (content, unix mode, zip date_time) for every file in the zip
+def read_zip(path: Path) -> Dict[str, Tuple[bytes, int, Tuple[int, ...]]]:
+	with ZipFile(path) as zf:
+		return {info.filename: (zf.read(info), info.external_attr >> 16, info.date_time)
+				for info in zf.infolist() if not info.filename.endswith("/")}
+
+
+# git archive writes zip times in local time, so pin the zone
+def git_archive_entries(repo_dir: Path, dest: Path, home: Path) -> Dict[str, Tuple[bytes, int, Tuple[int, ...]]]:
+	env = {**os.environ, "HOME": str(home), "XDG_CONFIG_HOME": str(home), "TZ": "UTC",
 			"GIT_CONFIG_NOSYSTEM": "1", "GIT_CONFIG_GLOBAL": os.devnull}
 	subprocess.run(["git", "archive", "--format=zip", "--prefix=pkg/", "-o", str(dest), "HEAD"],
 			cwd=repo_dir, env=env, check=True)
-	with ZipFile(dest) as zf:
-		return {name for name in zf.namelist() if not name.endswith("/")}
+	return read_zip(dest)
+
+
+def git_archive_names(repo_dir: Path, dest: Path, home: Path) -> Set[str]:
+	return set(git_archive_entries(repo_dir, dest, home))
 
 
 # From git's t5002-archive-attr-pattern.sh, with .gitattributes instead of .git/info/attributes
@@ -765,6 +784,48 @@ def test_archive_export_ignore_patterns(tmp_path, allow_local_urls, attrs, files
 	assert names == {"pkg/" + name for name in expected}
 	reference = git_archive_names(tmp_path / "top", tmp_path / "ref.zip", tmp_path / "home") - {"pkg/init.lua"}
 	assert names == reference
+
+
+def differential_files() -> dict:
+	# Incompressible, and deterministic
+	big = b"".join(hashlib.sha256(i.to_bytes(4, "big")).digest() for i in range(96000))
+	files: dict = {
+		"empty": b"",
+		"binary.bin": bytes(range(256)) * 4,
+		"crlf.txt": b"a\r\nb\r\n",
+		"no_newline.txt": b"x",
+		"big.bin": big,
+		"script.sh": ("exec", b"#!/bin/sh\n"),
+		"bin/tool": ("exec", b"\x7fELF" + bytes(100)),
+		"with space/a b.lua": "x",
+		"quote'\"$;#&`.lua": "x",
+		"-rf": "x",
+		".hidden": "x",
+		"mod_\u00e9.lua": "x",
+		"\u65e5\u672c\u8a9e/init.lua": "x",
+		"a/" * 20 + "deep.lua": "x",
+		"n" * 200 + ".lua": "x",
+	}
+	for i in range(300):
+		files[f"many/f{i:03}.lua"] = str(i)
+	return files
+
+
+def test_archive_matches_git_archive(tmp_path, allow_local_urls):
+	url = build_repo(tmp_path, differential_files())
+	make_archive(url, tmp_path / "out.zip", max_size=100 * 1024 * 1024)
+
+	ours = read_zip(tmp_path / "out.zip")
+	reference = git_archive_entries(tmp_path / "top", tmp_path / "ref.zip", tmp_path / "home")
+
+	assert set(ours) == set(reference)
+	assert len(ours) == len(differential_files()) + 1
+	assert {name: data for name, (data, _, _) in ours.items()} == {name: data for name, (data, _, _) in reference.items()}
+	# git archive only records the mode of executables, so compare the executable bit
+	assert {name: bool(mode & 0o111) for name, (_, mode, _) in ours.items()} == \
+			{name: bool(mode & 0o111) for name, (_, mode, _) in reference.items()}
+	assert {name for name, (_, mode, _) in ours.items() if mode & 0o111} == {"pkg/script.sh", "pkg/bin/tool"}
+	assert {name: date for name, (_, _, date) in ours.items()} == {name: date for name, (_, _, date) in reference.items()}
 
 
 # Commit dates are chosen by the repo owner, and a zip can only store up to 2107
