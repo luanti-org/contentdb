@@ -1,26 +1,13 @@
 from typing import List, Tuple, Optional
 
 from app.default_data import populate_test_data
-from app.models import db, License, PackageType, User, Package, PackageState, PackageRelease, LuantiRelease, ReleaseState
-from .utils import parse_json, validate_package_list
+from app.models import db, PackageRelease, LuantiRelease, ReleaseState
+from .utils import parse_json, validate_package_list, make_package
 from .utils import client # noqa
 
 
-def make_package(name: str, versions: List[Tuple[Optional[str], Optional[str]]]) -> List[int]:
-	license = License.query.filter_by(name="MIT").first()
-	author = User.query.first()
-
-	mod = Package()
-	mod.state = PackageState.APPROVED
-	mod.name = name.lower()
-	mod.title = name
-	mod.license = license
-	mod.media_license = license
-	mod.type = PackageType.MOD
-	mod.author = author
-	mod.short_desc = "The content library should not be used yet as it is still in alpha"
-	mod.desc = "This is the long desc"
-	db.session.add(mod)
+def make_package_with_releases(name: str, versions: List[Tuple[Optional[str], Optional[str]]]) -> List[int]:
+	mod = make_package(name)
 
 	rels = []
 
@@ -87,7 +74,7 @@ def test_packages_with_protocol_multi_low(client):
 def test_packages_with_protocol_max_ver(client):
 	"""Start with a blank database."""
 
-	make_package("Bob", [ (None, "5.0") ])
+	make_package_with_releases("Bob", [ (None, "5.0") ])
 	db.session.commit()
 
 	packages = parse_json(client.get("/api/packages/?protocol_version=20").data)
@@ -114,7 +101,7 @@ def test_packages_with_protocol_max_ver(client):
 def test_packages_with_protocol_min_ver(client):
 	"""Start with a blank database."""
 
-	make_package("Bob", [("5.0", None)])
+	make_package_with_releases("Bob", [("5.0", None)])
 	db.session.commit()
 
 	packages = parse_json(client.get("/api/packages/?protocol_version=20").data)
@@ -141,7 +128,7 @@ def test_packages_with_protocol_min_ver(client):
 def test_packages_with_protocol_engine_ver(client):
 	"""Start with a blank database."""
 
-	make_package("Bob", [("5.3", None)])
+	make_package_with_releases("Bob", [("5.3", None)])
 	db.session.commit()
 
 	packages = parse_json(client.get("/api/packages/?protocol_version=20&engine_version=4.0").data)
@@ -167,7 +154,7 @@ def test_packages_with_protocol_engine_ver(client):
 def test_packages_with_protocol_exact(client):
 	"""Start with a blank database."""
 
-	make_package("Bob", [("5.5", "5.5")])
+	make_package_with_releases("Bob", [("5.5", "5.5")])
 	db.session.commit()
 
 	packages = parse_json(client.get("/api/packages/?protocol_version=38").data)
@@ -192,7 +179,7 @@ def test_packages_with_protocol_exact(client):
 def test_packages_with_protocol_options(client):
 	"""Start with a blank database."""
 
-	rels = make_package("Bob", [(None, "5.1"), ("5.5", "5.5")])
+	rels = make_package_with_releases("Bob", [(None, "5.1"), ("5.5", "5.5")])
 	db.session.commit()
 
 	packages = parse_json(client.get("/api/packages/?protocol_version=37").data)

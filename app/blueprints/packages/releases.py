@@ -103,6 +103,7 @@ def create_release(package):
 						form.file_upload.data, form.min_rel.data.get_actual(), form.max_rel.data.get_actual())
 			return redirect(url_for("tasks.check", id=rel.task_id, r=rel.get_edit_url()))
 		except DomainError as e:
+			db.session.rollback()
 			flash(e.message, "danger")
 
 	return render_template("packages/release_new.html", package=package, form=form)

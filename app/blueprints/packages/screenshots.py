@@ -53,7 +53,10 @@ def screenshots(package):
 				do_order_screenshots(current_user, package, order.split(","))
 				return redirect(package.get_url("packages.view"))
 			except DomainError as e:
+				# Don't save the rest of the form, so that the error means nothing was saved
 				flash(e.message, "danger")
+				return render_template("packages/screenshots.html", package=package, form=form,
+						tabs=get_package_tabs(current_user, package), current_tab="screenshots")
 
 		if form.validate_on_submit():
 			old_cover_image = package.cover_image
@@ -83,6 +86,7 @@ def create_screenshot(package):
 			do_create_screenshot(current_user, package, form.title.data or "", form.file_upload.data, False)
 			return redirect(package.get_url("packages.screenshots"))
 		except DomainError as e:
+			db.session.rollback()
 			flash(e.message, "danger")
 
 	return render_template("packages/screenshot_new.html", package=package, form=form)
