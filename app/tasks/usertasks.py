@@ -83,7 +83,6 @@ def set_profile_picture_from_url(username: str, url: str):
 		url = copy_to_uploads(filepath)
 		user.profile_pic = get_public_upload_url(url)
 
-	user.profile_pic = "/uploads/" + filename
 	db.session.commit()
 
 	return filepath
