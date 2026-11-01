@@ -879,7 +879,7 @@ class Package(Model):
 
 		# Anyone can change the package name when not approved
 		elif perm == Permission.CHANGE_NAME:
-			return not self.approved
+			return is_maintainer and not self.approved
 
 		# Editors can change authors and approve new packages
 		elif perm == Permission.APPROVE_NEW or perm == Permission.CHANGE_AUTHOR:
