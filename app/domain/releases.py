@@ -5,6 +5,7 @@
 import datetime
 import re
 from typing import Optional
+from zipfile import ZipFile, BadZipFile
 
 from celery import uuid
 from flask_babel import lazy_gettext
@@ -72,6 +73,16 @@ def do_create_vcs_release(user: User, package: Package, name: str, title: Option
 	return rel
 
 
+def _zip_contains_git_dir(file) -> bool:
+	try:
+		with ZipFile(file.stream, "r") as zf:
+			return any(".git" in name.replace("\\", "/").split("/") for name in zf.namelist())
+	except BadZipFile:
+		return False
+	finally:
+		file.stream.seek(0)
+
+
 def do_create_zip_release(user: User, package: Package, name: str, title: Optional[str], release_notes: Optional[str], file,
 		min_v: LuantiRelease | None = None, max_v: LuantiRelease | None = None, reason: str | None = None,
 		commit_hash: str | None = None):
@@ -81,6 +92,9 @@ def do_create_zip_release(user: User, package: Package, name: str, title: Option
 		commit_hash = commit_hash.lower()
 		if not (len(commit_hash) == 40 and re.match(r"^[0-9a-f]+$", commit_hash)):
 			raise DomainError(400, lazy_gettext("Invalid commit hash; it must be a 40 character long base16 string"))
+
+	if file and _zip_contains_git_dir(file):
+		raise DomainError(400, lazy_gettext("The zip must not contain a .git file/folder."))
 
 	uploaded_url, _ = upload_file(file, "zip", "a zip file")
 
