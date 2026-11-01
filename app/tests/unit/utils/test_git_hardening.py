@@ -583,6 +583,35 @@ def test_clone_rejects_nested_submodule_git_dirs(tmp_path, allow_local_urls, ref
 			pass
 
 
+# Adapted from git's t7406-submodule-update.sh (CVE-2024-32002). On a case-insensitive
+# filesystem the symlink "a" -> ".git" would redirect the submodule "A/modules/x" into the git dir.
+@pytest.mark.parametrize("ref", [None, "master"])
+def test_clone_with_case_colliding_symlink_runs_no_hook(tmp_path, allow_local_urls, ref):
+	canary = tmp_path / "canary"
+	hook_repo = make_repo(tmp_path / "hook")
+	hook = Path(hook_repo.working_dir) / "y" / "hooks" / "post-checkout"
+	hook.parent.mkdir(parents=True)
+	hook.write_text(f"#!/bin/sh\ntouch {canary}\n")
+	hook.chmod(0o755)
+	hook_repo.git.add("-A")
+	hook_repo.index.commit("post-checkout")
+
+	top = make_repo(tmp_path / "top")
+	top.git.submodule("add", "--name", "x/y", (tmp_path / "hook").as_uri(), "A/modules/x")
+	top.index.commit("Add submodule")
+	dotgit = subprocess.run(["git", "hash-object", "-w", "--stdin"], cwd=top.working_dir, input=".git",
+			text=True, capture_output=True, check=True).stdout.strip()
+	top.git.update_index("--add", "--cacheinfo", f"120000,{dotgit},a")
+	top.index.commit("Add symlink")
+
+	with clone_repo((tmp_path / "top").as_uri(), ref, recursive=True) as repo:
+		assert not canary.exists()
+		with pytest.raises(TaskError, match="Symlinks are not supported"):
+			create_archive(repo.working_dir, "pkg", str(tmp_path / "out.zip"), 1024 * 1024)
+
+	assert not canary.exists()
+
+
 @pytest.fixture
 def stall_server():
 	"""
