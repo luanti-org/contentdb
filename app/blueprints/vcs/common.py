@@ -8,6 +8,9 @@ from app.models import Package, APIToken, Permission, PackageState
 
 
 def get_packages_for_vcs_and_token(token: APIToken, repo_url: str) -> list[Package]:
+	if token.owner.is_banned:
+		return error(403, "The API token's owner is banned")
+
 	repo_url = repo_url.replace("https://", "").replace("http://", "").lower()
 	if token.package:
 		packages = [token.package]

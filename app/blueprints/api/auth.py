@@ -26,6 +26,8 @@ def is_api_authd(f):
 			token = APIToken.query.filter_by(access_token=access_token).first()
 			if token is None:
 				error(403, "Unknown API token")
+			if token.owner.is_banned:
+				error(403, "The API token's owner is banned")
 		else:
 			error(403, "Unsupported authentication method")
 

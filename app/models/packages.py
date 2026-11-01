@@ -857,6 +857,9 @@ class Package(Model):
 		if user is None or not user.is_authenticated:
 			return False
 
+		if user.is_banned:
+			return False
+
 		is_owner = user == self.author
 		is_maintainer = is_owner or user.rank.at_least(UserRank.EDITOR) or user in self.maintainers
 		is_approver = user.rank.at_least(UserRank.APPROVER)
