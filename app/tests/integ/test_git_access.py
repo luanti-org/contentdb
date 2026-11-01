@@ -9,11 +9,12 @@ import pytest
 from app import app
 from app.default_data import populate_test_data
 from app.domain.DomainError import DomainError
-from app.domain.git_access import can_user_use_git, can_package_use_git
+from app.domain.git_access import can_user_use_git, can_package_use_git, can_user_change_repo, is_same_repo
+from app.domain.packages import do_edit_package
 from app.domain.releases import do_create_vcs_release
 from app.models import db, User, UserRank, Package, PackageState, PackageUpdateConfig
 from app.tasks import TaskError
-from app.tasks.importtasks import check_update_config
+from app.tasks.importtasks import apply_cdb_json, check_update_config
 from app.utils.user import make_flask_login_password
 from .utils import login
 from .utils import client # noqa
@@ -88,6 +89,45 @@ def test_can_use_git(client, git_access, access, state, author_rank, user_rank, 
 	assert can_package_use_git(package) == can_use_package
 
 
+@pytest.mark.parametrize("access,state,author_rank,user_rank,can_change", [
+	("none", WIP, TRUSTED, MEMBER, False),
+	("none", WIP, TRUSTED, TRUSTED, True),
+	("none", WIP, MEMBER, MEMBER, True),
+	("none", APPROVED, MEMBER, MEMBER, False),
+	("trusted", WIP, TRUSTED, MEMBER, False),
+	("trusted", WIP, TRUSTED, TRUSTED, True),
+	("trusted", WIP, MEMBER, MEMBER, True),
+	("trusted", APPROVED, MEMBER, MEMBER, False),
+	("trusted_or_approved", WIP, TRUSTED, MEMBER, False),
+	("trusted_or_approved", WIP, MEMBER, MEMBER, True),
+	("trusted_or_approved", APPROVED, MEMBER, MEMBER, False),
+	("trusted_or_approved", APPROVED, MEMBER, TRUSTED, True),
+	("all", APPROVED, TRUSTED, MEMBER, True),
+])
+def test_change_repo(client, git_access, access, state, author_rank, user_rank, can_change):
+	git_access(access)
+	package, maintainer = setup_package(author_rank, user_rank, state)
+	old_repo = package.repo
+
+	assert can_user_change_repo(maintainer, package) == can_change
+
+	# Saving other fields with the repo unchanged is always allowed
+	do_edit_package(maintainer, package, False, True, {"title": "New Title", "repo": old_repo})
+	assert package.title == "New Title"
+
+	new_repo = "https://github.com/example/attacker"
+	if can_change:
+		do_edit_package(maintainer, package, False, True, {"repo": new_repo})
+		assert package.repo == new_repo
+	else:
+		with pytest.raises(DomainError) as e:
+			do_edit_package(maintainer, package, False, True, {"repo": new_repo})
+		assert e.value.code == 403
+		db.session.rollback()
+		reloaded = db.session.get(Package, package.id)
+		assert reloaded is not None and reloaded.repo == old_repo
+
+
 @pytest.mark.parametrize("access", ["none", "trusted", "trusted_or_approved"])
 def test_vcs_release_blocked(client, git_access, access):
 	git_access(access)
@@ -154,6 +194,40 @@ def test_release_form(client, git_access, access, enabled):
 	assert (b'value="upload" checked' in rv.data) == (not enabled)
 
 
+@pytest.mark.parametrize("a,b,same", [
+	("https://github.com/user/repo", "https://github.com/user/repo", True),
+	("https://github.com/user/repo", "https://github.com/user/repo/", True),
+	("https://github.com/user/repo", "https://github.com/user/repo.git", True),
+	("https://github.com/user/repo", "http://GitHub.com/user/repo.git/", True),
+	("https://github.com/user/repo", "https://github.com/User/repo", False),
+	("https://github.com/user/repo", "https://github.com/user/other", False),
+	("https://github.com/user/repo", "https://gitlab.com/user/repo", False),
+	("https://github.com/user/repo", None, False),
+	(None, None, True),
+])
+def test_is_same_repo(a, b, same):
+	assert is_same_repo(a, b) == same
+	assert is_same_repo(b, a) == same
+
+
+@pytest.mark.parametrize("user_rank,changed", [
+	(MEMBER, False),
+	(TRUSTED, True),
+])
+def test_change_repo_formatting(client, git_access, user_rank, changed):
+	git_access("trusted")
+	package, maintainer = setup_package(TRUSTED, user_rank)
+	old_repo = "https://github.com/minetest-mods/mesecons"
+	package.repo = old_repo
+	db.session.commit()
+
+	# A formatting-only change doesn't fail the edit, but is only applied for users who may change the repo
+	new_repo = "http://github.com/minetest-mods/mesecons.git/"
+	do_edit_package(maintainer, package, False, True, {"repo": new_repo, "title": "New Title"})
+	assert package.title == "New Title"
+	assert package.repo == (new_repo if changed else old_repo)
+
+
 def test_update_config_warning_uses_author(client, git_access):
 	git_access("trusted")
 	package, _ = setup_package(TRUSTED, MEMBER)
@@ -196,3 +270,16 @@ def test_check_update_config_records_error(client, git_access):
 
 	db.session.refresh(package.update_config)
 	assert package.update_config.task_id is not None
+
+
+@pytest.mark.parametrize("access", ["none", "trusted", "all"])
+def test_cdb_json_ignores_repo(client, git_access, access):
+	git_access(access)
+	package, _ = setup_package(TRUSTED, TRUSTED)
+	old_repo = package.repo
+
+	apply_cdb_json(package, {"repo": "https://github.com/example/attacker", "title": "From cdb.json"})
+
+	# The rest of .cdb.json is still applied
+	assert package.title == "From cdb.json"
+	assert package.repo == old_repo

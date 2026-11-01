@@ -72,7 +72,6 @@ It should be a JSON dictionary with one or more of the following optional keys:
 * `license`: A license name, see [/api/licenses/](/api/licenses/).
 * `media_license`: A license name, see [/api/licenses/](/api/licenses/).
 * `long_description`: Long markdown description.
-* `repo`: Source repository (eg: Git).
 * `website`: Website URL.
 * `issue_tracker`: Issue tracker URL.
 * one of:
@@ -83,6 +82,8 @@ It should be a JSON dictionary with one or more of the following optional keys:
 * `translation_url`: URL to send users interested in translating your package.
 
 Use `null` or `[]` to unset fields where relevant.
+
+The repository URL can't be set using `.cdb.json`; change it on ContentDB instead.
 
 Tip: including a `$schema` will allow your code editor to validate/autocomplete fields.
 

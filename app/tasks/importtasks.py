@@ -147,6 +147,15 @@ def update_all_release_permissions(self):
 	db.session.commit()
 
 
+def apply_cdb_json(package: Package, data: Any):
+	# The repo URL is only set on ContentDB, as Git features clone it. The release's content isn't trusted to change
+	# it, as it may have been uploaded by an untrusted maintainer
+	if isinstance(data, dict):
+		data.pop("repo", None)
+
+	do_edit_package(package.author, package, False, False, data, "Post release hook")
+
+
 def post_release_check_update(self, release: PackageRelease, path):
 	tree: PackageTreeNode = build_tree(path, expected_type=ContentType[release.package.type.name],
 			author=release.package.author.username, name=release.package.name)
@@ -232,7 +241,7 @@ def post_release_check_update(self, release: PackageRelease, path):
 	try:
 		with open(os.path.join(tree.baseDir, ".cdb.json"), "r") as f:
 			data = json.loads(f.read())
-			do_edit_package(package.author, package, False, False, data, "Post release hook")
+			apply_cdb_json(package, data)
 	except DomainError as e:
 		raise TaskError("Whilst applying .cdb.json: " + e.message)
 	except JSONDecodeError as e:

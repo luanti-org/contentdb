@@ -21,7 +21,7 @@ from wtforms_sqlalchemy.fields import QuerySelectField, QuerySelectMultipleField
 from app import login_manager
 from app.domain.DomainError import DomainError
 from app.domain.packages import do_edit_package
-from app.domain.git_access import can_user_use_git, can_package_use_git
+from app.domain.git_access import can_user_use_git, can_user_change_repo, can_package_use_git
 from app.querybuilder import QueryBuilder
 from app.rediscache import has_key, set_temp_key
 from app.tasks.importtasks import import_repo_screenshot, check_zip_release, remove_package_game_support, \
@@ -422,8 +422,9 @@ def create_edit(author=None, name=None):
 		package_query = package_query.filter(Package.id != package.id)
 
 	enableWizard = name is None and request.method != "POST" and can_user_use_git(current_user)
+	can_change_repo = package is None or can_user_change_repo(current_user, package)
 	return render_template("packages/create_edit.html", package=package,
-			form=form, author=author, enable_wizard=enableWizard,
+			form=form, author=author, enable_wizard=enableWizard, can_change_repo=can_change_repo,
 			packages=package_query.all(),
 			modnames=MetaPackage.query.order_by(db.asc(MetaPackage.name)).all(),
 			tabs=get_package_tabs(current_user, package), current_tab="edit")

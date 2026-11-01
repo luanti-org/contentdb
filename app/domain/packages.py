@@ -10,6 +10,7 @@ import validators
 from flask_babel import lazy_gettext, LazyString
 
 from app.domain.DomainError import DomainError
+from app.domain.git_access import can_user_change_repo, is_same_repo
 from app.models import User, Package, PackageType, MetaPackage, Tag, ContentWarning, db, Permission, AuditSeverity, \
 	License, PackageDevState, PackageState, PackageAIDisclosure
 from app.utils.models import add_audit_log, add_audit_log_on_package
@@ -160,6 +161,13 @@ def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, 
 			data[to] = data[alias]
 
 	validate(data)
+
+	if "repo" in data and not can_user_change_repo(user, package):
+		if not is_same_repo(data["repo"], package.repo):
+			raise DomainError(403, lazy_gettext("Only trusted members can change the repository URL of this package"))
+
+		# Keep the stored URL so that its formatting, such as the scheme, can't be changed either
+		del data["repo"]
 
 	for field in ["short_desc", "desc", "website", "issueTracker", "repo", "video_url", "donate_url", "translation_url"]:
 		if field in data and has_blocked_domains(data[field], user.username,
