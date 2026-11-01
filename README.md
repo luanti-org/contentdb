@@ -1,5 +1,5 @@
 # ContentDB
-![Build Status](https://github.com/luanti-org/contentdb/actions/workflows/test.yml/badge.svg)
+![Build Status](https://github.com/luanti-org/contentdb/actions/workflows/build.yml/badge.svg)
 
 A content database for Luanti mods, games, and more.\
 Developed by rubenwardy, license AGPLv3.0+.

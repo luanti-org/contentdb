@@ -1,6 +1,9 @@
-name: Tests
+name: Build
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [master]
+  pull_request:
 
 permissions:
   contents: read
@@ -10,6 +13,18 @@ env:
   CDB_TAG: ${{ github.sha }}
 
 jobs:
+  mypy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install system dependencies
+      run: sudo apt-get install -y libxml2-dev libxslt-dev libjpeg-dev
+    - uses: actions/checkout@v4
+    - uses: astral-sh/setup-uv@v5
+    - name: Install dependencies
+      run: uv sync --locked --group dev
+    - name: Run mypy
+      run: uv run mypy
+
   build:
     runs-on: ubuntu-latest
     outputs:
@@ -96,7 +111,7 @@ jobs:
       run: docker compose down
 
   publish:
-    needs: [build, test, e2e]
+    needs: [build, test, e2e, mypy]
     if: github.event_name == 'push' && github.ref == 'refs/heads/master' && github.repository == 'luanti-org/contentdb'
     runs-on: ubuntu-latest
     concurrency:
