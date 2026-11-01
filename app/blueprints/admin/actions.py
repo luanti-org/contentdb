@@ -14,7 +14,7 @@ from flask_login import current_user
 
 from app.models import PackageRelease, db, Package, PackageState, PackageScreenshot, MetaPackage, User, \
 	NotificationType, PackageUpdateConfig, License, UserRank, PackageType, Thread, AuditLogEntry, ReportAttachment, \
-	PackageAIDisclosure, AuditSeverity
+	PackageAIDisclosure, AuditSeverity, UserSession
 from app.tasks.admintasks import delete_empty_threads
 from app.tasks.emails import send_pending_digests
 from app.tasks.forumtasks import import_topic_list, check_all_forum_accounts as check_all_forum_accounts_task
@@ -464,7 +464,15 @@ def old_package_ai_disclosure():
 
 @action("DANGER: Require all users to reset their password")
 def require_password_reset():
-	count = User.query.filter(User.password.isnot(None), User.password != "") \
+	has_password = and_(User.password.isnot(None), User.password != "")
+
+	sessions = UserSession.query.filter(UserSession.user_id.in_(db.session.query(User.id).filter(has_password)))
+	# Without this check, `id != NULL` would match nothing and no sessions would be ended
+	if current_user._session_id is not None:
+		sessions = sessions.filter(UserSession.id != current_user._session_id)
+	sessions.delete(synchronize_session=False)
+
+	count = User.query.filter(has_password) \
 		.update({
 			User.old_password: User.password,
 			User.password: None,

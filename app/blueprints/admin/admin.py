@@ -3,13 +3,13 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 from flask import redirect, render_template, url_for, request, flash
-from flask_login import current_user, login_user
+from flask_login import current_user
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, BooleanField
 from wtforms.validators import InputRequired, Length, Optional
 from app.utils.models import add_audit_log, add_notification, get_system_user
 from app.utils.misc import nonempty_or_none
-from app.utils.user import rank_required
+from app.utils.user import rank_required, login_user_with_session
 from app.utils.flask import get_int_or_abort
 from sqlalchemy import func
 from . import bp
@@ -52,14 +52,16 @@ def switch_user():
 		admin = current_user._get_current_object()
 		if user is None:
 			flash("Unable to find user", "danger")
-		elif login_user(user):
+		elif not user.is_active:
+			flash("Unable to login as user", "danger")
+		else:
+			login_user_with_session(user)
+
 			add_audit_log(AuditSeverity.MODERATION, admin, f"Switched user to {user.username}",
 					url_for("users.profile", username=user.username))
 			db.session.commit()
 
 			return redirect(url_for("users.profile", username=current_user.username))
-		else:
-			flash("Unable to login as user", "danger")
 
 	# Process GET or invalid POST
 	return render_template("admin/switch_user.html", form=form)

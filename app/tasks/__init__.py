@@ -97,6 +97,10 @@ CELERYBEAT_SCHEDULE = {
 		'task': 'app.tasks.usertasks.delete_old_notifications',
 		'schedule': crontab(minute=10, hour=3),  # 0310
 	},
+	'delete_expired_sessions': {
+		'task': 'app.tasks.usertasks.delete_expired_sessions',
+		'schedule': crontab(minute=20, hour=3),  # 0320
+	},
 	'create_database_dump': {
 		'task': 'app.tasks.dumptask.create_database_dump',
 		'schedule': crontab(minute=0, hour=5),  # 0510

@@ -155,8 +155,17 @@ class User(Model, UserMixin):
 	password     = db.Column(db.String(255), nullable=True, server_default=None)
 	old_password = db.Column(db.String(255), nullable=True, server_default=None)
 
+	# The raw token of the login session this object was loaded or logged in with. Only the hash is stored, in
+	# UserSession, so this is only known for the current user. See app.utils.user.
+	# Type comments rather than annotations, as SQLAlchemy would try to map annotated attributes
+	_session_token = None  # type: str | None
+	_session_id = None  # type: int | None
+
 	def get_id(self):
-		return self.username
+		# Flask-Login stores this in the session and remember cookie
+		if self._session_token is None:
+			raise Exception("User has no login session, use app.utils.user.login_user_with_session")
+		return self._session_token
 
 	rank         = db.Column(db.Enum(UserRank), nullable=False)
 
@@ -200,6 +209,8 @@ class User(Model, UserMixin):
 	reviews       = db.relationship("PackageReview", back_populates="author", order_by=db.desc("package_review_created_at"), cascade="all, delete, delete-orphan")
 	review_votes  = db.relationship("PackageReviewVote", back_populates="user", cascade="all, delete, delete-orphan")
 	tokens        = db.relationship("APIToken", back_populates="owner", lazy="dynamic", cascade="all, delete, delete-orphan")
+	sessions      = db.relationship("UserSession", back_populates="user", lazy="dynamic",
+			cascade="all, delete, delete-orphan", passive_deletes=True)
 	threads       = db.relationship("Thread", back_populates="author", lazy="dynamic", cascade="all, delete, delete-orphan")
 	replies       = db.relationship("ThreadReply", back_populates="author", lazy="dynamic", cascade="all, delete, delete-orphan", order_by=db.desc("created_at"))
 	forum_topics  = db.relationship("ForumTopic", back_populates="author", lazy="dynamic", cascade="all, delete, delete-orphan")
@@ -627,6 +638,39 @@ class UserNotificationPreferences(Model):
 
 		value = 1 if value else 0
 		setattr(self, "pref_" + notification_type.to_name(), value)
+
+
+class UserSession(Model):
+	id = db.Column(db.Integer, primary_key=True)
+
+	user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete="CASCADE"), nullable=False, index=True)
+	user = db.relationship("User", foreign_keys=[user_id], back_populates="sessions")
+
+	token_hash = db.Column(db.String(64), nullable=False, unique=True)
+
+	created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+	last_used_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+
+	MAX_AGE = datetime.timedelta(days=365)
+	IDLE_TIMEOUT = datetime.timedelta(days=90)
+	# Minimum age before updating last_used_at
+	LAST_USED_RESOLUTION = datetime.timedelta(minutes=5)
+
+	@classmethod
+	def _expiry_cutoffs(cls) -> tuple[datetime.datetime, datetime.datetime]:
+		"""Sessions created before the first value, or last used before the second, have expired"""
+		now = datetime.datetime.utcnow()
+		return now - cls.MAX_AGE, now - cls.IDLE_TIMEOUT
+
+	@property
+	def is_expired(self) -> bool:
+		created_cutoff, last_used_cutoff = self._expiry_cutoffs()
+		return self.created_at < created_cutoff or self.last_used_at < last_used_cutoff
+
+	@classmethod
+	def expired_filter(cls):
+		created_cutoff, last_used_cutoff = cls._expiry_cutoffs()
+		return db.or_(cls.created_at < created_cutoff, cls.last_used_at < last_used_cutoff)
 
 
 class UserBan(Model):

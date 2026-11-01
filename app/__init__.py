@@ -12,7 +12,7 @@ from flask import redirect, url_for, render_template, flash, request, Flask, sen
 from flask_babel import Babel, gettext
 from flask_flatpages import FlatPages
 from flask_github import GitHub
-from flask_login import logout_user, current_user, LoginManager
+from flask_login import current_user, LoginManager
 from flask_mail import Mail
 from flask_wtf.csrf import CSRFProtect
 
@@ -115,8 +115,9 @@ from . import models, template_filters
 
 
 @login_manager.user_loader
-def load_user(user_id):
-	return models.User.query.filter_by(username=user_id).first()
+def load_user(session_token):
+	from app.utils.user import load_user_from_session_token
+	return load_user_from_session_token(session_token)
 
 
 from .blueprints import create_blueprints
@@ -128,6 +129,13 @@ def flatpage(path):
 	page = pages.get_or_404(path)
 	template = page.meta.get("template", "flatpage.html")
 	return render_template(template, page=page)
+
+
+# Must be the first before_request hook, see update_user_session
+@app.before_request
+def update_user_session():
+	from app.utils.user import update_user_session
+	update_user_session()
 
 
 @app.before_request
@@ -146,7 +154,8 @@ def check_for_ban():
 				flash(gettext("Banned:") + " " + current_user.ban.message, "danger")
 			else:
 				flash(gettext("You have been banned."), "danger")
-			logout_user()
+			from app.utils.user import logout_current_session
+			logout_current_session()
 			return redirect(url_for("users.login"))
 		elif current_user.rank == models.UserRank.NOT_JOINED:
 			current_user.rank = models.UserRank.NEW_MEMBER
