@@ -124,7 +124,12 @@
 			</div>
 
 			{{ render_field(form.website, class_="pkg_meta") }}
-			{{ render_field(form.repo, class_="pkg_repo", hint=_("HTTP URL to a Git, Mercurial, or other repository")) }}
+			{% if can_change_repo %}
+				{{ render_field(form.repo, class_="pkg_repo", hint=_("HTTP URL to a Git, Mercurial, or other repository")) }}
+			{% else %}
+				{{ render_field(form.repo, class_="pkg_repo", readonly=True,
+						hint=_("Only trusted members can change the repository URL of this package")) }}
+			{% endif %}
 
 			<div class="pkg_wiz_1 d-none">
 				<a id="pkg_wiz_1_next" class="btn btn-primary">{{ _("Next (Autoimport)") }}</a>

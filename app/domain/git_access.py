@@ -4,6 +4,7 @@
 
 import enum
 from typing import Optional
+from urllib.parse import urlsplit
 
 from app import app
 from app.models import User, UserRank, Package
@@ -52,3 +53,32 @@ def can_package_use_git(package: Package) -> bool:
 	return ((GitAccess.TRUSTED_OR_APPROVED == access and package.approved)
 		or can_user_use_git(package.author))
 
+
+def normalize_repo_url(url: Optional[str]) -> Optional[str]:
+	if url is None:
+		return None
+
+	parts = urlsplit(url.strip())
+	path = parts.path.rstrip("/")
+	if path.endswith(".git"):
+		path = path[:-4].rstrip("/")
+
+	query = "?" + parts.query if parts.query else ""
+	return parts.netloc.lower() + path + query
+
+
+def is_same_repo(a: Optional[str], b: Optional[str]) -> bool:
+	return normalize_repo_url(a) == normalize_repo_url(b)
+
+
+def can_user_change_repo(user: Optional[User], package: Package) -> bool:
+	"""
+	The caller is responsible for also checking for EDIT_PACKAGE
+
+	:param user: The user making the change, or None if unknown. An unknown user is treated as untrusted.
+	"""
+	if get_git_access() == GitAccess.ALL:
+		return True
+
+	is_vetted = _is_trusted(package.author) or package.approved
+	return not is_vetted or _is_trusted(user)
