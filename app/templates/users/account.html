@@ -91,6 +91,26 @@
 	</p>
 {% endif %}
 
+<h3 class="mt-5">{{ _("Sessions") }}</h3>
+
+<p>
+	{{ _("Change your password to log out all other sessions.") }}
+</p>
+
+<div class="list-group">
+{% for session in user.sessions %}
+	<div class="list-group-item" title="{{ session.created_at | full_datetime }}">
+		{{ _("Created %(created_ago)s, last used %(last_used_ago)s",
+			created_ago=session.created_at | datetime,
+			last_used_ago=session.last_used_at | datetime) }}
+	</div>
+{% else %}
+	<div class="list-group-item text-muted">
+		<i>{{ _("No active sessions.") }}</i>
+	</div>
+{% endfor %}
+</div>
+
 <h3 class="mt-5">{{ _("Recent Account Actions") }}</h3>
 
 {% from "macros/audit_log.html" import render_audit_log %}
