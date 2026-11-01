@@ -8,6 +8,12 @@
 	<a class="btn btn-secondary float-end" href="/help/update_config/">{{ _("Help") }}</a>
 	<h1>{{ _("Configure Git Update Detection") }}</h1>
 
+	{% if not git_enabled %}
+		<p class="alert alert-warning">
+			{{ _("Git Update Detection is temporarily disabled. Your settings will be kept, and will be used once it is re-enabled.") }}
+		</p>
+	{% endif %}
+
 	<p>
 		{{ _("When you push a change to your Git repository, ContentDB can create a new release automatically or send you a reminder.") }}
 	</p>

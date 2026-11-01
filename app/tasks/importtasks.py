@@ -18,7 +18,7 @@ from sqlalchemy import and_, or_
 from sqlalchemy.dialects.postgresql import insert
 
 from app.models import AuditSeverity, db, NotificationType, PackageRelease, MetaPackage, Dependency, PackageType, \
-	LuantiRelease, Package, PackageState, PackageScreenshot, PackageUpdateTrigger, PackageUpdateConfig, \
+	LuantiRelease, Package, PackageState, User, PackageScreenshot, PackageUpdateTrigger, PackageUpdateConfig, \
 	PackageGameSupport, PackageTranslation, Language, ReleaseState
 from app.tasks import celery, TaskError
 from app.utils.files import get_temp_dir
@@ -31,17 +31,22 @@ from .webhooktasks import post_discord_webhook
 from app import app
 from app.domain.DomainError import DomainError
 from app.domain.packages import do_edit_package, ALIASES
+from app.domain.git_access import can_user_use_git, can_package_use_git, get_git_access, GitAccess
 from app.domain.game_support import game_support_update, game_support_set, game_support_update_all, game_support_remove
 from app.utils.image import get_image_size
 from app.utils.zip import check_zip_file, safe_extract_zip
 from app.uploads import copy_to_uploads
 
 
-GIT_RELEASES_ENABLED = False
-
-
 @celery.task()
-def get_meta(urlstr, author):
+def get_meta(urlstr, author, user_id: int):
+	if not can_user_use_git(User.query.get(user_id)):
+		raise TaskError("Importing from Git is temporarily disabled")
+
+	return get_meta_impl(urlstr, author)
+
+
+def get_meta_impl(urlstr, author):
 	with clone_repo(urlstr) as repo:
 		try:
 			tree = build_tree(repo.working_tree_dir, author=author, repo=urlstr, include_children=False)
@@ -401,7 +406,7 @@ def make_vcs_release(self, id, branch):
 		raise TaskError("No package attached to release")
 
 	try:
-		if not GIT_RELEASES_ENABLED:
+		if not can_package_use_git(release.package):
 			raise TaskError("Creating releases from Git is temporarily disabled")
 
 		with get_temp_dir() as tmp_dir:
@@ -454,6 +459,9 @@ def import_repo_screenshot(id):
 	package = Package.query.get(id)
 	if package is None or package.state == PackageState.DELETED:
 		raise Exception("Unexpected none package")
+
+	if not can_package_use_git(package):
+		return None
 
 	try:
 		with clone_repo(package.repo) as repo:
@@ -513,7 +521,7 @@ def check_update_config_impl(package):
 	if package.releases.filter_by(commit_hash=commit).count() > 0:
 		return
 
-	if config.make_release and GIT_RELEASES_ENABLED:
+	if config.make_release:
 		rel = PackageRelease()
 		rel.package = package
 		rel.name = tag if tag else datetime.datetime.utcnow().strftime("%Y-%m-%d")
@@ -564,6 +572,9 @@ def check_update_config(self, package_id):
 
 	err = None
 	try:
+		if not can_package_use_git(package):
+			raise TaskError("Git update detection is temporarily disabled")
+
 		check_update_config_impl(package)
 
 		package.update_config.task_id = None
@@ -590,11 +601,11 @@ def check_update_config(self, package_id):
 
 @celery.task
 def check_for_updates():
-	if not app.config.get("ENABLE_GIT_UPDATE_DETECTION", True):
+	if not app.config.get("ENABLE_GIT_UPDATE_DETECTION", True) or get_git_access() == GitAccess.NONE:
 		return
 
 	for update_config in PackageUpdateConfig.query.all():
-		if not update_config.package.approved:
+		if not update_config.package.approved or not can_package_use_git(update_config.package):
 			continue
 
 		if update_config.package.repo is None:
