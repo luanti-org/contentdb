@@ -61,7 +61,7 @@ class AuditSeverity(enum.Enum):
 
 	@classmethod
 	def coerce(cls, item):
-		return item if type(item) == AuditSeverity else AuditSeverity[item.upper()]
+		return item if isinstance(item, AuditSeverity) else AuditSeverity[item.upper()]
 
 
 class AuditLogEntry(Model):
@@ -98,9 +98,9 @@ class AuditLogEntry(Model):
 		if user is None or not user.is_authenticated:
 			return False
 
-		if type(perm) == str:
+		if isinstance(perm, str):
 			perm = Permission[perm]
-		elif type(perm) != Permission:
+		elif not isinstance(perm, Permission):
 			raise Exception("Unknown permission given to AuditLogEntry.check_perm()")
 
 		if perm == Permission.VIEW_AUDIT_DESCRIPTION:
@@ -163,7 +163,7 @@ class ReportCategory(enum.Enum):
 	def coerce(cls, item):
 		if item is None or (isinstance(item, str) and item.upper() == "NONE"):
 			return None
-		return item if type(item) == ReportCategory else ReportCategory[item.upper()]
+		return item if isinstance(item, ReportCategory) else ReportCategory[item.upper()]
 
 
 class Report(Model):
@@ -187,9 +187,9 @@ class Report(Model):
 	attachments = db.relationship("ReportAttachment", back_populates="report", lazy="dynamic", cascade="all, delete, delete-orphan")
 
 	def check_perm(self, user, perm):
-		if type(perm) == str:
+		if isinstance(perm, str):
 			perm = Permission[perm]
-		elif type(perm) != Permission:
+		elif not isinstance(perm, Permission):
 			raise Exception("Unknown permission given to Report.check_perm()")
 		if user is None or not user.is_authenticated:
 			return False
@@ -269,9 +269,9 @@ class ForumTopic(Model):
 		if user is None or not user.is_authenticated:
 			return False
 
-		if type(perm) == str:
+		if isinstance(perm, str):
 			perm = Permission[perm]
-		elif type(perm) != Permission:
+		elif not isinstance(perm, Permission):
 			raise Exception("Unknown permission given to ForumTopic.check_perm()")
 
 		if perm == Permission.TOPIC_DISCARD:

@@ -66,7 +66,7 @@ class UserRank(enum.Enum):
 
 	@classmethod
 	def coerce(cls, item):
-		return item if type(item) == UserRank else UserRank[item.upper()]
+		return item if isinstance(item, UserRank) else UserRank[item.upper()]
 
 
 class Permission(enum.Enum):
@@ -133,9 +133,9 @@ class Permission(enum.Enum):
 
 	@staticmethod
 	def check_perm(user, perm):
-		if type(perm) == str:
+		if isinstance(perm, str):
 			perm = Permission[perm]
-		elif type(perm) != Permission:
+		elif not isinstance(perm, Permission):
 			raise Exception("Unknown permission given to Permission.check")
 
 		return perm.check(user)
@@ -277,9 +277,9 @@ class User(Model, UserMixin):
 		if user is None or not user.is_authenticated:
 			return False
 
-		if type(perm) == str:
+		if isinstance(perm, str):
 			perm = Permission[perm]
-		elif type(perm) != Permission:
+		elif not isinstance(perm, Permission):
 			raise Exception("Unknown permission given to User.check_perm()")
 
 		# Members can edit their own packages, and editors can edit any packages
@@ -546,7 +546,7 @@ class NotificationType(enum.Enum):
 
 	@classmethod
 	def coerce(cls, item):
-		return item if type(item) == NotificationType else NotificationType[item.upper()]
+		return item if isinstance(item, NotificationType) else NotificationType[item.upper()]
 
 
 class Notification(Model):

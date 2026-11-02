@@ -25,7 +25,7 @@ def check(cond: bool, msg: typing.Union[str, LazyString]):
 
 
 def get_license(name):
-	if type(name) == License:
+	if isinstance(name, License):
 		return name
 
 	license = License.query.filter(License.name.ilike(name)).first()

@@ -79,9 +79,9 @@ class Collection(Model):
 		}
 
 	def check_perm(self, user: User, perm):
-		if type(perm) == str:
+		if isinstance(perm, str):
 			perm = Permission[perm]
-		elif type(perm) != Permission:
+		elif not isinstance(perm, Permission):
 			raise Exception("Unknown permission given to Collection.check_perm()")
 
 		if user is None or not user.is_authenticated:

@@ -22,7 +22,7 @@ reply_to = app.config.get("MAIL_REPLY_TO", None)
 
 
 def get_email_subscription(email):
-	assert type(email) == str
+	assert isinstance(email, str)
 	ret = EmailSubscription.query.filter_by(email=email).first()
 	if not ret:
 		ret = EmailSubscription(email)
