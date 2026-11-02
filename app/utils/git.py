@@ -36,12 +36,15 @@ GIT_ENV = {
 	"GIT_HTTP_LOW_SPEED_LIMIT": "1000",
 	"GIT_HTTP_LOW_SPEED_TIME": "30",
 	"GIT_ATTR_NOSYSTEM": "1",
-	"GIT_CONFIG_COUNT": "2",
+	"GIT_CONFIG_COUNT": "3",
 	"GIT_CONFIG_KEY_0": "core.symlinks",
 	"GIT_CONFIG_VALUE_0": "false",
 	# GIT_CONFIG_GLOBAL doesn't stop ~/.config/git/attributes being read
 	"GIT_CONFIG_KEY_1": "core.attributesFile",
 	"GIT_CONFIG_VALUE_1": "/dev/null",
+	# Redirects could otherwise lead the worker to internal hosts
+	"GIT_CONFIG_KEY_2": "http.followRedirects",
+	"GIT_CONFIG_VALUE_2": "false",
 }
 
 MAX_SUBMODULE_DEPTH = 5

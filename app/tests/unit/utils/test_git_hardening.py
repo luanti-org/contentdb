@@ -4,6 +4,7 @@
 
 import contextlib
 import hashlib
+from http.server import BaseHTTPRequestHandler, HTTPServer
 import os
 import re
 import shutil
@@ -695,6 +696,42 @@ def test_stalled_submodule_times_out(local_repo, stall_server, short_timeouts, t
 
 	assert_times_out(clone, stall_server)
 	assert_times_out(lambda: clone("master"), stall_server)
+
+
+@pytest.mark.parametrize("ref", [None, "master"])
+def test_redirects_are_not_followed(ref, temp_root, monkeypatch):
+	hits = []
+
+	class Target(BaseHTTPRequestHandler):
+		def do_GET(self):
+			hits.append(self.path)
+			self.send_response(404)
+			self.end_headers()
+
+	class Redirector(BaseHTTPRequestHandler):
+		def do_GET(self):
+			self.send_response(302)
+			self.send_header("Location", f"http://127.0.0.1:{target.server_port}{self.path}")
+			self.end_headers()
+
+	target = HTTPServer(("127.0.0.1", 0), Target)
+	redirector = HTTPServer(("127.0.0.1", 0), Redirector)
+	for server in (target, redirector):
+		threading.Thread(target=server.serve_forever, daemon=True).start()
+
+	monkeypatch.setattr(git_utils, "generate_git_url", lambda url: url)
+	monkeypatch.setitem(git_utils.GIT_ENV, "GIT_ALLOW_PROTOCOL", "http")
+
+	try:
+		with pytest.raises(TaskError):
+			with clone_repo(f"http://127.0.0.1:{redirector.server_port}/repo", ref):
+				pass
+	finally:
+		for server in (target, redirector):
+			server.shutdown()
+			server.server_close()
+
+	assert hits == []
 
 
 def test_low_speed_limit_is_used(stall_server, monkeypatch):
