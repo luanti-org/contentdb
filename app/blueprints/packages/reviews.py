@@ -83,6 +83,8 @@ def review(package):
 	elif can_review and form.validate_on_submit():
 		if has_blocked_domains(form.comment.data, current_user.username, f"review of {package.get_id()}"):
 			flash(gettext("Linking to blocked sites is not allowed"), "danger")
+		elif not review and not current_user.get_review_ratelimit().hit():
+			flash(gettext("You've reviewed too many packages recently. Please wait before trying again, and consider making your reviews more detailed"), "danger")
 		else:
 			was_new = False
 			if not review:

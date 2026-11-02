@@ -2,30 +2,28 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
-import datetime
 import re
-from typing import Optional
+from typing import List, Optional
 
 from celery import uuid
 from flask_babel import lazy_gettext
 
 from app.domain.DomainError import DomainError
 from app.uploads import upload_file
-from app.models import PackageRelease, db, Permission, User, Package, LuantiRelease, AuditSeverity
+from app.models import PackageRelease, db, Permission, User, Package, LuantiRelease, AuditSeverity, UserRank
 from app.tasks.importtasks import make_vcs_release, check_zip_release
 from app.domain.git_access import can_package_use_git
 from app.utils.models import add_audit_log
+from app.utils.ratelimit import RateLimit
 from app.utils.misc import nonempty_or_none, normalize_line_endings
 
 
-def check_can_create_release(user: User, package: Package, name: str, title: str):
+def check_can_create_release(user: User, package: Package, name: str, title: str) -> List[RateLimit]:
+	"""
+	Throws `DomainError` if the release can't be created. Returns the rate limits to record once it has been created.
+	"""
 	if not package.check_perm(user, Permission.MAKE_RELEASE):
 		raise DomainError(403, lazy_gettext("You don't have permission to make releases"))
-
-	five_minutes_ago = datetime.datetime.now() - datetime.timedelta(minutes=5)
-	count = package.releases.filter(PackageRelease.created_at > five_minutes_ago).count()
-	if count >= 5:
-		raise DomainError(429, lazy_gettext("You've created too many releases for this package in the last 5 minutes, please wait before trying again"))
 
 	if PackageRelease.query.filter_by(package_id=package.id, name=name).count() > 0:
 		raise DomainError(403, lazy_gettext("A release with this name already exists"))
@@ -37,13 +35,32 @@ def check_can_create_release(user: User, package: Package, name: str, title: str
 	if not release_name_re.match(name):
 		raise DomainError(403, lazy_gettext("Release name must be in the form 1.2.3, v1.2.3, or 2025-02-01"))
 
+	# Only checked here. They're recorded once the release has been created, so rejected requests don't use them up
+	package_limit = RateLimit(f"release/package:{package.id}", ["7 per 5 minutes"])
+	if not package_limit.test():
+		raise DomainError(429, lazy_gettext("You've created too many releases for this package in the last 5 minutes, please wait before trying again"))
+
+	user_limit = RateLimit(f"release/user:{user.id}", [] if user.rank.at_least(UserRank.TRUSTED_MEMBER) else ["30 per hour"])
+	if not user_limit.test():
+		raise DomainError(429, lazy_gettext("You've created too many releases in the last hour, please wait before trying again"))
+
+	return [package_limit, user_limit]
+
+
+def _record_release(limits: List[RateLimit]):
+	"""
+	Records a release against the limits from `check_can_create_release`, once it has been created
+	"""
+	for limit in limits:
+		limit.record()
+
 
 def do_create_vcs_release(user: User, package: Package, name: str, title: Optional[str], release_notes: Optional[str], ref: Optional[str],
 		min_v: LuantiRelease | None = None, max_v: LuantiRelease | None = None, reason: str | None = None):
 	if not can_package_use_git(package):
 		raise DomainError(503, lazy_gettext("Creating releases from Git is temporarily disabled, please upload a .zip file instead"))
 
-	check_can_create_release(user, package, name, title or name)
+	limits = check_can_create_release(user, package, name, title or name)
 
 	rel = PackageRelease()
 	rel.package = package
@@ -63,6 +80,7 @@ def do_create_vcs_release(user: User, package: Package, name: str, title: Option
 	add_audit_log(AuditSeverity.NORMAL, user, msg, package.get_url("packages.view"), package)
 
 	db.session.commit()
+	_record_release(limits)
 
 	ref = nonempty_or_none(ref)
 	if ref:
@@ -76,7 +94,7 @@ def do_create_vcs_release(user: User, package: Package, name: str, title: Option
 def do_create_zip_release(user: User, package: Package, name: str, title: Optional[str], release_notes: Optional[str], file,
 		min_v: LuantiRelease | None = None, max_v: LuantiRelease | None = None, reason: str | None = None,
 		commit_hash: str | None = None):
-	check_can_create_release(user, package, name, title or name)
+	limits = check_can_create_release(user, package, name, title or name)
 
 	if commit_hash:
 		commit_hash = commit_hash.lower()
@@ -104,6 +122,7 @@ def do_create_zip_release(user: User, package: Package, name: str, title: Option
 	add_audit_log(AuditSeverity.NORMAL, user, msg, package.get_url("packages.view"), package)
 
 	db.session.commit()
+	_record_release(limits)
 
 	check_zip_release.apply_async((rel.id,), task_id=rel.task_id)
 

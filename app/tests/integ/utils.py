@@ -9,6 +9,7 @@ from sqlalchemy import text
 from app import app
 from app.models import db, User, License, Package, PackageState, PackageType
 from app.default_data import populate
+from app.utils.ratelimit import storage as ratelimit_storage
 
 
 def clear_data(session):
@@ -76,6 +77,7 @@ def client():
 
 		recreate_db()
 		assert User.query.count() == 2
+		ratelimit_storage.reset()
 
 		with app.test_client() as client:
 			yield client

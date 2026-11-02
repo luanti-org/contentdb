@@ -60,7 +60,9 @@ async function performTask(url) {
 	const startResult = await getJSON(url, "post");
 	console.log(startResult);
 
-	if (typeof startResult.poll_url == "string") {
+	if (typeof startResult.error == "string") {
+		throw startResult.error;
+	} else if (typeof startResult.poll_url == "string") {
 		return await pollTask(startResult.poll_url);
 	} else {
 		throw "Start task didn't return string!";
