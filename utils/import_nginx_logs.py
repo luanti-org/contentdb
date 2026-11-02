@@ -11,7 +11,7 @@ import gzip
 import user_agents
 from urllib.parse import urlparse, parse_qs, unquote
 
-if not "FLASK_CONFIG" in os.environ:
+if "FLASK_CONFIG" not in os.environ:
 	os.environ["FLASK_CONFIG"] = "../config.cfg"
 
 logs_dir = sys.argv[1].strip()

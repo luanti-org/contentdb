@@ -83,7 +83,7 @@ def check_forum_account(forums_username, force_replace_pic=False):
 		pic_needs_replacing = user.profile_pic is None or user.profile_pic == "" or \
 				user.profile_pic.startswith("https://forum.luanti.org") or force_replace_pic
 		if pic_needs_replacing and pic.startswith("https://forum.luanti.org"):
-			print(f"####### Queueing", file=sys.stderr)
+			print("####### Queueing", file=sys.stderr)
 			set_profile_picture_from_url.delay(user.username, pic)
 
 	return needs_saving
@@ -102,7 +102,7 @@ BANNED_NAMES = ["mod", "game", "old", "outdated", "wip", "api", "beta", "alpha",
 
 def get_name_from_taglist(taglist):
 	for tag in reversed(regex_tag.findall(taglist)):
-		if len(tag) < 30 and not tag in BANNED_NAMES and \
+		if len(tag) < 30 and tag not in BANNED_NAMES and \
 				not re.match(r"^[a-z]?[0-9]+$", tag):
 			return tag
 

@@ -2,7 +2,6 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
-import subprocess
 import sys
 from subprocess import Popen, PIPE, TimeoutExpired
 from typing import Optional, List

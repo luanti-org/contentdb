@@ -9,11 +9,11 @@ from typing import Any, List
 import requests
 from celery import group, uuid
 from flask import redirect, url_for, flash, current_app
-from sqlalchemy import or_, and_, not_, func
+from sqlalchemy import or_, and_
 from flask_login import current_user
 
 from app.models import PackageRelease, db, Package, PackageState, PackageScreenshot, MetaPackage, User, \
-	NotificationType, PackageUpdateConfig, License, UserRank, PackageType, Thread, AuditLogEntry, ReportAttachment, \
+	NotificationType, PackageUpdateConfig, License, UserRank, PackageType, ReportAttachment, \
 	PackageAIDisclosure, AuditSeverity, UserSession
 from app.tasks.admintasks import delete_empty_threads
 from app.tasks.emails import send_pending_digests
@@ -455,7 +455,7 @@ def old_package_ai_disclosure():
 	).all()
 	for package in packages:
 		package.ai_disclosure = PackageAIDisclosure.NONE
-		add_audit_log(AuditSeverity.NORMAL, current_user, f"Set AI disclosure to None", package.get_url("packages.view"), package)
+		add_audit_log(AuditSeverity.NORMAL, current_user, "Set AI disclosure to None", package.get_url("packages.view"), package)
 
 	db.session.commit()
 

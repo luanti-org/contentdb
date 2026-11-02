@@ -2,7 +2,6 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
-import datetime
 
 from markupsafe import Markup
 from flask import redirect, abort, render_template, flash, request, url_for
@@ -12,7 +11,7 @@ from flask_login import current_user, login_required
 from flask_wtf import FlaskForm
 from sqlalchemy import or_
 from wtforms import StringField, SubmitField, BooleanField, PasswordField, validators
-from wtforms.validators import InputRequired, Length, Regexp, DataRequired, Optional, Email, EqualTo
+from wtforms.validators import InputRequired, Length, Regexp, Optional, Email, EqualTo
 
 from app.tasks.emails import send_verify_email, send_anon_email, send_unsubscribe_verify, send_user_email
 from app.utils.misc import random_string, nonempty_or_none, hash_token

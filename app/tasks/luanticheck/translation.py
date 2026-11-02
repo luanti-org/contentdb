@@ -3,7 +3,6 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 import os
-import re
 
 
 class Translation:

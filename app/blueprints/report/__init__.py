@@ -127,7 +127,7 @@ def view(rid: str):
 				add_audit_log(AuditSeverity.MODERATION, current_user, f"Reopened report \"{report.title}\"", url)
 
 				if report.thread:
-					add_replies(report.thread, current_user, f"Reopened report", is_status_update=True)
+					add_replies(report.thread, current_user, "Reopened report", is_status_update=True)
 
 				db.session.commit()
 		else:

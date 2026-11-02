@@ -7,7 +7,7 @@ import typing
 from urllib.parse import quote as urlescape
 
 from celery import uuid
-from flask import render_template, make_response, request, redirect, flash, url_for, abort, current_app
+from flask import render_template, make_response, request, redirect, flash, url_for, abort
 from flask_babel import gettext, lazy_gettext
 from flask_login import login_required, current_user
 from flask_wtf import FlaskForm
@@ -604,14 +604,14 @@ def edit_maintainers(package):
 		thread = package.threads.filter_by(author=get_system_user()).first()
 
 		for user in users:
-			if not user in package.maintainers:
+			if user not in package.maintainers:
 				if thread and user not in thread.watchers:
 					thread.watchers.append(user)
 				add_notification(user, current_user, NotificationType.MAINTAINER,
 						"Added you as a maintainer of {}".format(package.title), package.get_url("packages.view"), package)
 
 		for user in package.maintainers:
-			if user != package.author and not user in users:
+			if user != package.author and user not in users:
 				add_notification(user, current_user, NotificationType.MAINTAINER,
 						"Removed you as a maintainer of {}".format(package.title), package.get_url("packages.view"), package)
 
@@ -639,7 +639,7 @@ def edit_maintainers(package):
 @login_required
 @is_package_page
 def remove_self_maintainers(package):
-	if not current_user in package.maintainers:
+	if current_user not in package.maintainers:
 		flash(gettext("You are not a maintainer"), "danger")
 
 	elif current_user == package.author:

@@ -5,7 +5,6 @@
 import datetime
 import json
 import os
-import shutil
 import sys
 from json import JSONDecodeError
 from typing import Any
@@ -241,7 +240,7 @@ def post_release_check_update(self, release: PackageRelease, path):
 			previous_release = package.releases.filter(PackageRelease.id != release.id).first()
 			if previous_release and previous_release.commit_hash:
 				release.release_notes = get_release_notes(package.repo, previous_release.commit_hash, release.commit_hash)
-	except Exception as e:
+	except Exception:
 		# Gracefully just skip making release notes
 		pass
 

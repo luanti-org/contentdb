@@ -6,7 +6,6 @@ from datetime import datetime as dt
 from datetime import timedelta as datetime_timedelta
 from urllib.parse import urlparse
 
-from flask import request, has_request_context
 from flask_babel import format_timedelta, gettext, get_locale, format_decimal
 from flask_login import current_user
 from markupsafe import Markup

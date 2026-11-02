@@ -65,6 +65,7 @@ dev = [
     "types-pygments>=2.21.0.20260819",
     "types-flask-migrate>=4.1.0.20260508",
     "types-libsass>=0.23.0.20260211",
+    "ruff>=0.17.3",
 ]
 
 [tool.mypy]
@@ -90,3 +91,32 @@ module = [
     "wtforms_sqlalchemy.*",
 ]
 ignore_missing_imports = true
+
+[tool.ruff]
+target-version = "py314"
+src = ["app"]
+extend-exclude = ["migrations"]
+
+[tool.ruff.format]
+indent-style = "tab"
+
+[tool.ruff.lint]
+select = [
+    "E4", "E7", "E9", # pycodestyle errors that don't conflict with tab indentation
+    "F",              # pyflakes
+    "B",              # flake8-bugbear
+    "S",              # flake8-bandit (security)
+]
+ignore = [
+    "S101", # assert is used for invariants, and Python is never run with -O
+    "E711", # == None is needed in SQLAlchemy filters
+    "E712", # == True/False is needed in SQLAlchemy filters
+    "E402", # Flask blueprints import their views after creating the blueprint
+    "B010", # setattr removes a WTForms field without upsetting mypy
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"] # Imports are used to register views, tasks, and re-export
+"app/models/__init__.py" = ["F403", "F405"]
+"app/tests/**" = ["F811", "S105", "S106", "S107", "S108", "S311", "S603", "S607", "B008"]
+"utils/**" = ["S603", "S607"]

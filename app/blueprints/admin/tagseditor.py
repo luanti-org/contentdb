@@ -6,7 +6,7 @@
 from flask import redirect, render_template, abort, url_for, request
 from flask_login import current_user, login_required
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, BooleanField, SubmitField
+from wtforms import StringField, TextAreaField, SubmitField
 from wtforms.validators import InputRequired, Length, Optional, Regexp
 
 from . import bp

@@ -4,7 +4,6 @@
 
 from typing import Dict, List, Optional
 import deep_compare
-from flask import current_app
 
 
 def diff_dictionaries(one: Dict, two: Dict) -> List:

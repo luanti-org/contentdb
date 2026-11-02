@@ -349,7 +349,7 @@ def new(author=None, name=None):
 
 	# Validate and submit
 	elif form.validate_on_submit():
-		if has_blocked_domains(form.comment.data, current_user.username, f"new thread"):
+		if has_blocked_domains(form.comment.data, current_user.username, "new thread"):
 			flash(gettext("Linking to blocked sites is not allowed"), "danger")
 		else:
 			thread = Thread()
