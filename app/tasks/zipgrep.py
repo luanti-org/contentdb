@@ -33,7 +33,9 @@ def search_in_releases(self, query: str, file_filter: str, types: List[str]):
 				"running": [package.as_key_dict()],
 			})
 
-			handle = Popen(["zipgrep", query, release.file_path, file_filter], stdout=PIPE, encoding="UTF-8")
+			# -e stops a query starting with "-" from being read as an option
+			handle = Popen(["zipgrep", "-e", query, release.file_path, file_filter],  # noqa: S603, S607 - argument list, no shell
+					stdout=PIPE, encoding="UTF-8")
 
 			try:
 				handle.wait(timeout=45)
