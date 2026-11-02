@@ -442,7 +442,6 @@ dependencies = [
     { name = "flask-migrate" },
     { name = "flask-sqlalchemy" },
     { name = "flask-wtf" },
-    { name = "git-archive-all" },
     { name = "gitdb" },
     { name = "github-flask" },
     { name = "gitpython" },
@@ -506,7 +505,6 @@ requires-dist = [
     { name = "flask-migrate", specifier = ">=4.1.0" },
     { name = "flask-sqlalchemy", specifier = ">=3.1.1" },
     { name = "flask-wtf", specifier = ">=1.3.0" },
-    { name = "git-archive-all", specifier = ">=1.23.1" },
     { name = "gitdb", specifier = ">=4.0.12" },
     { name = "github-flask", specifier = ">=3.2.0" },
     { name = "gitpython", specifier = ">=3.2.1" },
@@ -836,15 +834,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/91/f1/605a56d4ea217b307f3e6f4d663e0351253d85d841edc93ba559f0648e19/flask_wtf-1.3.0.tar.gz", hash = "sha256:61d5dabc50c3df885c297dcbd80810443a5d632106c8a69cab8ce740f0cdd7cc", size = 50414, upload-time = "2026-04-23T07:41:55.096Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/14/d2/97adf2ec7af95522573e6dd5493ee84792d0fbfb2def010c4a581b8d6e5e/flask_wtf-1.3.0-py3-none-any.whl", hash = "sha256:dc5e3a4ce97f75c47bf6c1c72ad2c3b7bdf579a2ed13aebcc5d3d81fe2571160", size = 13959, upload-time = "2026-04-23T07:41:53.828Z" },
-]
-
-[[package]]
-name = "git-archive-all"
-version = "1.23.1"
-source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/99/60/43a37db064499de57423efacf84d33f1cec4cce0ca1e1a37daca30ed2bb4/git-archive-all-1.23.1.tar.gz", hash = "sha256:a42fe0cedd2e0361250a4f3130f3d3543f640d4f1fe28530771df5972108729f", size = 12772, upload-time = "2022-10-03T06:16:08.025Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/62/5f/699a1581fc97e96287f1d1bcbd9757940ff7bc7cc7b1badeff62b8433b48/git_archive_all-1.23.1-py2.py3-none-any.whl", hash = "sha256:d9f9611f2df629de3df1d6f134955ced4c704cbc0e423d769a7c0e55a8484242", size = 10671, upload-time = "2022-10-03T06:16:05.708Z" },
 ]
 
 [[package]]

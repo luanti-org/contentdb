@@ -13,7 +13,6 @@ from zipfile import ZipFile
 import gitdb
 from flask import url_for
 from git import GitCommandError
-from git_archive_all import GitArchiver
 from kombu import uuid
 from sqlalchemy import and_, or_
 from sqlalchemy.dialects.postgresql import insert
@@ -26,7 +25,7 @@ from app.utils.files import get_temp_dir
 from app.utils.misc import random_string, truncate_string
 from app.utils.models import post_bot_message, add_system_notification, add_system_audit_log, \
 	get_games_from_list, add_audit_log
-from app.utils.git import clone_repo, get_latest_tag, get_latest_commit, get_release_notes
+from app.utils.git import clone_repo, create_archive, get_latest_tag, get_latest_commit, get_release_notes
 from .luanticheck import build_tree, LuantiCheckError, ContentType, PackageTreeNode
 from .webhooktasks import post_discord_webhook
 from app import app
@@ -414,8 +413,8 @@ def make_vcs_release(self, id, branch):
 				dest_path = os.path.join(tmp_dir, filename)
 
 				assert not os.path.isfile(dest_path)
-				archiver = GitArchiver(prefix=release.package.name, force_sub=True, main_repo_abspath=repo.working_tree_dir)
-				archiver.create(dest_path)
+
+				create_archive(repo.working_tree_dir, release.package.name, dest_path, 300 * 1024 * 1024)
 				assert os.path.isfile(dest_path)
 
 				file_stats = os.stat(dest_path)
