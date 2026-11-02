@@ -97,7 +97,7 @@ class Permission(enum.Enum):
 	EDIT_REPLY         = "EDIT_REPLY"
 	UNAPPROVE_PACKAGE  = "UNAPPROVE_PACKAGE"
 	TOPIC_DISCARD      = "TOPIC_DISCARD"
-	CREATE_TOKEN       = "CREATE_TOKEN"
+	CREATE_TOKEN       = "CREATE_TOKEN"  # noqa: S105 - a permission name, not a secret
 	EDIT_MAINTAINERS   = "EDIT_MAINTAINERS"
 	SEE_REVIEW         = "SEE_REVIEW"
 	DELETE_REVIEW      = "DELETE_REVIEW"

@@ -161,7 +161,7 @@ def _check_for_dead_links(package: Package) -> dict[str, str]:
 			bad_urls[link] = res
 
 		# Prevent leaking information
-		sleep(random.uniform(0.4, 0.6))
+		sleep(random.uniform(0.4, 0.6))  # noqa: S311 - jitter, not crypto
 
 	return bad_urls
 

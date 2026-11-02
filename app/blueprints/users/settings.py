@@ -311,7 +311,7 @@ def delete(username):
 		flash(msg, "success")
 		add_audit_log(AuditSeverity.MODERATION, current_user, msg, None)
 	else:
-		assert False
+		raise AssertionError("Unreachable")
 
 	db.session.commit()
 

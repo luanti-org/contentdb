@@ -59,7 +59,7 @@ def is_package_page(f):
 
 		del kwargs["author"]
 		del kwargs["name"]
-		return f(package=package, *args, **kwargs)
+		return f(*args, package=package, **kwargs)
 
 	return decorated_function
 

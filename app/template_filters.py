@@ -75,7 +75,7 @@ def throw(err):
 
 
 def persist_safe(ret, original):
-	return Markup(ret) if isinstance(original, Markup) else ret
+	return Markup(ret) if isinstance(original, Markup) else ret  # noqa: S704 - only keeps input that was already Markup
 
 
 @app.template_filter()

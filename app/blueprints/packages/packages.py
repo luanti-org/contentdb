@@ -48,7 +48,6 @@ from app.utils.models import create_session
 def list_all():
 	qb    = QueryBuilder(request.args, cookies=True)
 	query = qb.build_package_query()
-	title = qb.title
 
 	if qb.requires_login and not current_user.is_authenticated:
 		return login_manager.unauthorized()
@@ -901,7 +900,7 @@ def stats_csv(package):
 
 	for stat in stats:
 		result += stat.date.isoformat()
-		for i, key in enumerate(columns):
+		for key in columns:
 			result += ", " + str(getattr(stat, key))
 		result += "\n"
 

@@ -15,7 +15,7 @@ def add_translations_from_api_array(context: str, path: str, fields: List[str]):
 	url = base_url + path
 	req = requests.get(url, timeout=30)
 	json = req.json()
-	for i, row in enumerate(json):
+	for row in json:
 		for field in fields:
 			if row.get(field) is not None:
 				hint = f"{context}: {field} for {row['name']}"

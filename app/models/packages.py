@@ -280,7 +280,7 @@ class PackageAIDisclosure(enum.Enum):
 		elif self == PackageAIDisclosure.GENERATED:
 			return lazy_gettext("AI-generated")
 		else:
-			assert False
+			raise AssertionError(f"Unknown {self}")
 
 	@property
 	def description(self):
@@ -293,7 +293,7 @@ class PackageAIDisclosure(enum.Enum):
 		elif self == PackageAIDisclosure.GENERATED:
 			return lazy_gettext("This package contains AI-generated assets or code")
 		else:
-			assert False
+			raise AssertionError(f"Unknown {self}")
 
 	@classmethod
 	def get(cls, name):
@@ -382,7 +382,7 @@ class Dependency(Model):
 		elif self.package:
 			return self.package.name
 		else:
-			assert False
+			raise AssertionError(f"Unknown {self}")
 
 	def __str__(self):
 		if self.package is not None:
