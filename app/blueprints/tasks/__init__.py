@@ -3,6 +3,7 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 from flask import Blueprint, jsonify, url_for, request, redirect, render_template
+from flask_babel import gettext
 from flask_login import login_required, current_user
 
 from app import csrf
@@ -11,6 +12,7 @@ from app.tasks import celery
 from app.tasks.importtasks import get_meta
 from app.domain.git_access import can_user_use_git
 from app.utils.flask import should_return_json, is_safe_url
+from app.utils.ratelimit import RateLimit
 
 bp = Blueprint("tasks", __name__)
 
@@ -25,6 +27,16 @@ def start_getmeta():
 
 	author = request.args.get("author")
 	author = current_user.forums_username if author is None else author
+
+	# Each import clones a repo, which ties up a worker
+	if current_user.rank.at_least(UserRank.MEMBER):
+		limits = ["5 per minute", "25 per hour"]
+	else:
+		limits = ["3 per minute", "10 per hour"]
+
+	if not RateLimit(f"getmeta/user:{current_user.id}", limits).hit():
+		return jsonify({"error": gettext("Too many imports from Git, please wait before trying again")}), 429
+
 	aresult = get_meta.delay(request.args.get("url"), author, current_user.id)
 	return jsonify({
 		"poll_url": url_for("tasks.check", id=aresult.id),

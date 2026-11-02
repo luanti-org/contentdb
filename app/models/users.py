@@ -4,6 +4,7 @@
 
 import datetime
 import enum
+from typing import TYPE_CHECKING
 
 from flask import current_app
 from flask_babel import lazy_gettext
@@ -14,6 +15,9 @@ from .base import db, Model
 from app.utils.misc import truncate_string
 from app.utils.flask import abs_url_for
 from app.utils.tokens import make_unsubscribe_token
+
+if TYPE_CHECKING:
+	from app.utils.ratelimit import RateLimit
 
 
 class UserRank(enum.Enum):
@@ -306,61 +310,51 @@ class User(Model, UserMixin):
 		else:
 			raise Exception("Permission {} is not related to users".format(perm.name))
 
-	def can_comment_ratelimit(self):
-		from app.models import ThreadReply
+	def get_comment_ratelimit(self) -> "RateLimit":
+		from app.utils.ratelimit import RateLimit
 
 		factor = 1
 		if self.rank.at_least(UserRank.ADMIN):
-			return True
+			return RateLimit("comment", [])
 		elif self.rank.at_least(UserRank.TRUSTED_MEMBER):
 			factor = 3
 		elif self.rank.at_least(UserRank.MEMBER):
 			factor = 2
 
-		one_min_ago = datetime.datetime.utcnow() - datetime.timedelta(minutes=1)
-		if ThreadReply.query.filter_by(author=self) \
-				.filter(ThreadReply.created_at > one_min_ago, ThreadReply.is_status_update == False).count() >= 2 * factor:
-			return False
+		return RateLimit(f"comment/user:{self.id}", [f"{2 * factor} per minute", f"{10 * factor} per hour"])
 
-		hour_ago = datetime.datetime.utcnow() - datetime.timedelta(hours=1)
-		if ThreadReply.query.filter_by(author=self) \
-				.filter(ThreadReply.created_at > hour_ago, ThreadReply.is_status_update == False).count() >= 10 * factor:
-			return False
+	def can_comment_ratelimit(self) -> bool:
+		return self.get_comment_ratelimit().test()
 
-		return True
-
-	def can_open_thread_ratelimit(self):
-		from app.models import Thread
+	def get_open_thread_ratelimit(self) -> "RateLimit":
+		from app.utils.ratelimit import RateLimit
 
 		factor = 1
 		if self.rank.at_least(UserRank.ADMIN):
-			return True
+			return RateLimit("thread", [])
 		elif self.rank.at_least(UserRank.TRUSTED_MEMBER):
 			factor = 5
 		elif self.rank.at_least(UserRank.MEMBER):
 			factor = 2
 
-		hour_ago = datetime.datetime.utcnow() - datetime.timedelta(hours=1)
-		return Thread.query.filter_by(author=self)\
-				.filter(Thread.created_at > hour_ago).count() < 2 * factor
+		return RateLimit(f"thread/user:{self.id}", [f"{2 * factor} per hour"])
 
-	def can_review_ratelimit(self):
-		from app.models import PackageReview
+	def can_open_thread_ratelimit(self) -> bool:
+		return self.get_open_thread_ratelimit().test()
+
+	def get_review_ratelimit(self) -> "RateLimit":
+		from app.utils.ratelimit import RateLimit
 
 		factor = 1
 		if self.rank.at_least(UserRank.ADMIN):
-			return True
+			return RateLimit("review", [])
 		elif self.rank.at_least(UserRank.TRUSTED_MEMBER):
-			factor *= 5
+			factor = 5
 
-		five_mins_ago = datetime.datetime.utcnow() - datetime.timedelta(minutes=5)
-		if PackageReview.query.filter_by(author=self) \
-				.filter(PackageReview.created_at > five_mins_ago).count() > 2 * factor:
-			return False
+		return RateLimit(f"review/user:{self.id}", [f"{2 * factor + 1} per 5 minutes", f"{10 * factor} per hour"])
 
-		hour_ago = datetime.datetime.utcnow() - datetime.timedelta(hours=1)
-		return PackageReview.query.filter_by(author=self) \
-				.filter(PackageReview.created_at > hour_ago).count() < 10 * factor
+	def can_review_ratelimit(self) -> bool:
+		return self.get_review_ratelimit().test()
 
 	def __eq__(self, other):
 		if other is None:

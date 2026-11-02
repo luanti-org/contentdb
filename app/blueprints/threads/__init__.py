@@ -245,13 +245,13 @@ def view(id):
 	if form and form.validate_on_submit() and request.form.get("title") is None:
 		comment = form.comment.data
 
-		if not current_user.can_comment_ratelimit():
-			flash(gettext("Please wait before commenting again"), "danger")
-			return redirect(thread.get_view_url())
-
 		if has_blocked_domains(comment, current_user.username, f"reply to {thread.get_view_url(True)}"):
 			flash(gettext("Linking to blocked sites is not allowed"), "danger")
 			return render_template("threads/view.html", thread=thread, form=form)
+
+		if not current_user.get_comment_ratelimit().hit():
+			flash(gettext("Please wait before commenting again"), "danger")
+			return redirect(thread.get_view_url())
 
 		reply = ThreadReply()
 		reply.author = current_user
@@ -351,6 +351,8 @@ def new(author=None, name=None):
 	elif form.validate_on_submit():
 		if has_blocked_domains(form.comment.data, current_user.username, "new thread"):
 			flash(gettext("Linking to blocked sites is not allowed"), "danger")
+		elif not current_user.get_open_thread_ratelimit().hit():
+			flash(gettext("Please wait before opening another thread"), "danger")
 		else:
 			thread = Thread()
 			thread.author  = current_user
