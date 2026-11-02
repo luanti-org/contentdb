@@ -33,7 +33,7 @@ npm run e2e
 npm run e2e:open
 
 # Delete database
-docker compose down && sudo rm -rf data/db
+docker compose down && sudo rm -rf data/postgres
 ```
 
 
