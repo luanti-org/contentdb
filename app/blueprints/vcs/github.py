@@ -57,7 +57,7 @@ def github_callback(oauth_token):
 
 	# Get GitGub username
 	url = "https://api.github.com/user"
-	r = requests.get(url, headers={"Authorization": "token " + oauth_token})
+	r = requests.get(url, headers={"Authorization": "token " + oauth_token}, timeout=15)
 	json = r.json()
 	user_id = json["id"]
 	github_username = json["login"]
