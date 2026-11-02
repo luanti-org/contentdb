@@ -1,0 +1,89 @@
+# Routine version updates are limited to patch releases, grouped into one monthly
+# PR per ecosystem. Security updates aren't limited by `allow` update-types, so
+# they arrive as soon as an advisory is published, whatever version they need.
+#
+# Security updates need "Dependabot security updates" enabled in the repository's
+# Settings > Advanced Security.
+
+version: 2
+
+updates:
+  - package-ecosystem: uv
+    directory: /
+    schedule:
+      interval: monthly
+    # Wait a week before taking a new release, so a compromised or broken one
+    # is likely to be noticed and pulled first. Doesn't delay security updates.
+    cooldown:
+      default-days: 7
+    allow:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-patch"]
+    groups:
+      patch:
+        applies-to: version-updates
+        patterns: ["*"]
+      security:
+        applies-to: security-updates
+        patterns: ["*"]
+
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    cooldown:
+      default-days: 7
+    allow:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-patch"]
+    groups:
+      patch:
+        applies-to: version-updates
+        patterns: ["*"]
+      security:
+        applies-to: security-updates
+        patterns: ["*"]
+
+  # Actions are pinned to commit hashes. Dependabot updates the hash and the
+  # version comment together.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    cooldown:
+      default-days: 7
+    allow:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-patch"]
+    groups:
+      patch:
+        applies-to: version-updates
+        patterns: ["*"]
+
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: monthly
+    cooldown:
+      default-days: 7
+    allow:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-patch"]
+    groups:
+      patch:
+        applies-to: version-updates
+        patterns: ["*"]
+
+  - package-ecosystem: docker-compose
+    directory: /
+    schedule:
+      interval: monthly
+    cooldown:
+      default-days: 7
+    allow:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-patch"]
+    groups:
+      patch:
+        applies-to: version-updates
+        patterns: ["*"]
