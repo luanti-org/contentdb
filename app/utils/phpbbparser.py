@@ -98,7 +98,7 @@ def get_profile(url, username):
 	url = get_profile_url(url, username)
 
 	try:
-		req = urllib.request.urlopen(url, timeout=15)
+		req = urllib.request.urlopen(url, timeout=15)  # noqa: S310 - callers pass a hardcoded https:// forum URL
 	except urllib.error.HTTPError as e:
 		if e.code == 404:
 			return None

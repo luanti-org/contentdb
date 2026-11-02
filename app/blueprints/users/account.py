@@ -52,7 +52,8 @@ def handle_login(form):
 			flash(gettext("You need to reset your password. We've sent you an email with a link to do so."), "danger")
 			return redirect(url_for("users.email_sent"))
 
-		flash(Markup(gettext("You need to reset your password. Use \"Forgot my password\" or sign in with GitHub. "
+		# Translated string with a fixed URL, no user input
+		flash(Markup(gettext("You need to reset your password. Use \"Forgot my password\" or sign in with GitHub. "  # noqa: S704
 				"If you need help, <a href=\"%(url)s\">contact us</a>.",
 				url=url_for("flatpage", path="help/contact_us"))), "danger")
 		return

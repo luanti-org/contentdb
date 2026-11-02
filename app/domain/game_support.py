@@ -343,6 +343,6 @@ def game_support_set(session, package: Package, game_is_supported: Dict[int, boo
 			lookup.supports = supports
 			lookup.confidence = confidence
 
-	for game, support in previous_supported.items():
+	for support in previous_supported.values():
 		if support.confidence == confidence:
 			session.delete(support)

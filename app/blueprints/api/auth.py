@@ -32,6 +32,6 @@ def is_api_authd(f):
 		else:
 			error(403, "Unsupported authentication method")
 
-		return f(token=token, *args, **kwargs)
+		return f(*args, token=token, **kwargs)
 
 	return decorated_function

@@ -9,7 +9,6 @@ from app.models import db, Thread
 @celery.task
 def delete_empty_threads():
 	query = Thread.query.filter(~Thread.replies.any())
-	count = query.count()
 	for thread in query.all():
 		thread.watchers.clear()
 		db.session.delete(thread)

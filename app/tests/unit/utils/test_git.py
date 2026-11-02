@@ -89,8 +89,8 @@ def test_git_clone_commit():
 
 def test_git_clone_private_repo():
 	with pytest.raises(TaskError):
-		with clone_repo(test_private_repo, recursive=True) as repo:
-			assert False
+		with clone_repo(test_private_repo, recursive=True):
+			pytest.fail("Cloned a private repo")
 
 
 @pytest.fixture

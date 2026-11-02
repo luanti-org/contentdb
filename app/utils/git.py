@@ -101,7 +101,7 @@ GIT_FETCH_TIMEOUT = 300
 def _run_git(args: List[str], timeout: float, cwd: Optional[str] = None, input: Optional[str] = None) -> str:
 	command = remove_password_if_present(["git"] + args)
 	env = {**os.environ, **GIT_ENV, "LANGUAGE": "C", "LC_ALL": "C"}
-	proc = subprocess.Popen(["git"] + args, cwd=cwd, env=env,
+	proc = subprocess.Popen(["git"] + args, cwd=cwd, env=env,  # noqa: S603 - argument list, no shell
 			stdin=subprocess.DEVNULL if input is None else subprocess.PIPE,
 			stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, start_new_session=True)
 
@@ -315,7 +315,7 @@ def get_latest_tag(git_url) -> Tuple[Optional[str], Optional[str], Optional[str]
 	with get_temp_dir() as git_dir:
 		repo = git.Repo.init(git_dir)
 		repo.git.update_environment(**GIT_ENV)
-		origin = repo.create_remote("origin", url=git_url)
+		repo.create_remote("origin", url=git_url)
 		_run_git(["fetch", "origin"], GIT_FETCH_TIMEOUT, cwd=git_dir)
 
 		refs = repo.git.for_each_ref(sort="creatordate", format="%(objectname)\t%(refname)").split("\n")
@@ -347,7 +347,7 @@ def get_commit_list(git_url: str, start: str, end: str) -> List[str]:
 	with (get_temp_dir() as git_dir):
 		repo = git.Repo.init(git_dir)
 		repo.git.update_environment(**GIT_ENV)
-		origin = repo.create_remote("origin", url=git_url)
+		repo.create_remote("origin", url=git_url)
 		_run_git(["fetch", "origin"], GIT_FETCH_TIMEOUT, cwd=git_dir)
 
 		commits = repo.iter_commits(f"{start}..{end}")

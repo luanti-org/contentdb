@@ -26,7 +26,7 @@ from app.utils.files import get_temp_dir
 from app.utils.misc import random_string, truncate_string
 from app.utils.models import post_bot_message, add_system_notification, add_system_audit_log, \
 	get_games_from_list, add_audit_log
-from app.utils.git import clone_repo, get_latest_tag, get_latest_commit, get_temp_dir, get_release_notes
+from app.utils.git import clone_repo, get_latest_tag, get_latest_commit, get_release_notes
 from .luanticheck import build_tree, LuantiCheckError, ContentType, PackageTreeNode
 from .webhooktasks import post_discord_webhook
 from app import app
@@ -242,7 +242,7 @@ def post_release_check_update(self, release: PackageRelease, path):
 				release.release_notes = get_release_notes(package.repo, previous_release.commit_hash, release.commit_hash)
 	except Exception:
 		# Gracefully just skip making release notes
-		pass
+		app.logger.warning("Unable to make release notes", exc_info=True)
 
 	release.uses_insecure_env = tree.lua_includes_string("request_insecure_environment")
 	release.uses_http_api = tree.lua_includes_string("request_http_api")
@@ -352,7 +352,7 @@ def check_all_zip_files():
 	releases = PackageRelease.query.all()
 	for release in releases:
 		with ZipFile(release.file_path, 'r') as zf:
-			if not check_zip_file("/tmp/example", zf):
+			if not check_zip_file("/tmp/example", zf):  # noqa: S108 - only used to resolve paths, nothing is written
 				print(f"Unsafe zip file for {release.package.get_id()} at {release.file_path}", file=sys.stderr)
 				result.append({
 					"package": release.package.get_id(),
