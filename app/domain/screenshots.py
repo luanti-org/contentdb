@@ -73,9 +73,9 @@ def do_order_screenshots(user: User, package: Package, order: list[Any]):
 		try:
 			ordered.append(lookup[int(ss_id)])
 		except KeyError:
-			raise DomainError(400, "Unable to find screenshot with id={}".format(ss_id))
+			raise DomainError(400, "Unable to find screenshot with id={}".format(ss_id)) from None
 		except (ValueError, TypeError):
-			raise DomainError(400, "Invalid id, not a number: {}".format(json.dumps(ss_id)))
+			raise DomainError(400, "Invalid id, not a number: {}".format(json.dumps(ss_id))) from None
 
 	for counter, screenshot in enumerate(ordered, start=1):
 		screenshot.order = counter
@@ -90,7 +90,7 @@ def do_set_cover_image(user: User, package: Package, cover_image):
 	try:
 		cover_image = int(cover_image)
 	except (ValueError, TypeError):
-		raise DomainError(400, "Invalid id, not a number: {}".format(json.dumps(cover_image)))
+		raise DomainError(400, "Invalid id, not a number: {}".format(json.dumps(cover_image))) from None
 
 	for screenshot in package.screenshots.all():
 		if screenshot.id == cover_image:

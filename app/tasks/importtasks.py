@@ -47,7 +47,7 @@ def get_meta(urlstr, author):
 		try:
 			tree = build_tree(repo.working_tree_dir, author=author, repo=urlstr, include_children=False)
 		except LuantiCheckError as err:
-			raise TaskError(str(err))
+			raise TaskError(str(err)) from err
 
 		result = {"name": tree.name, "type": tree.type.name}
 
@@ -69,7 +69,7 @@ def get_meta(urlstr, author):
 						continue
 					result[key] = value
 		except JSONDecodeError as e:
-			raise TaskError("Whilst reading .cdb.json: " + str(e))
+			raise TaskError("Whilst reading .cdb.json: " + str(e)) from e
 		except IOError:
 			pass
 
@@ -228,9 +228,9 @@ def post_release_check_update(self, release: PackageRelease, path):
 			data = json.loads(f.read())
 			do_edit_package(package.author, package, False, False, data, "Post release hook")
 	except DomainError as e:
-		raise TaskError("Whilst applying .cdb.json: " + e.message)
+		raise TaskError("Whilst applying .cdb.json: " + e.message) from e
 	except JSONDecodeError as e:
-		raise TaskError("Whilst reading .cdb.json: " + str(e))
+		raise TaskError("Whilst reading .cdb.json: " + str(e)) from e
 	except IOError:
 		pass
 
@@ -342,7 +342,7 @@ def check_zip_release(self, id):
 		release.state = ReleaseState.FAILED
 		db.session.commit()
 
-		raise TaskError(error_message)
+		raise TaskError(error_message) from err
 
 
 @celery.task()
@@ -390,7 +390,7 @@ def import_languages(self, id, path):
 			post_bot_message(release.package, f"Release {release.title} validation failed", msg)
 			db.session.commit()
 
-			raise TaskError(str(err))
+			raise TaskError(str(err)) from err
 
 
 @celery.task(bind=True)
@@ -447,7 +447,7 @@ def make_vcs_release(self, id, branch):
 		release.state = ReleaseState.FAILED
 		db.session.commit()
 
-		raise TaskError(error_message)
+		raise TaskError(error_message) from err
 
 
 @celery.task()
