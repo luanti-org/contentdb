@@ -166,9 +166,9 @@ def can_move_to_state(package: Package, user: User, new_state: Union[str, Packag
 	if not user.is_authenticated:
 		return False
 
-	if type(new_state) == str:
+	if isinstance(new_state, str):
 		new_state = PackageState[new_state]
-	elif type(new_state) != PackageState:
+	elif not isinstance(new_state, PackageState):
 		raise Exception("Unknown state given to can_move_to_state()")
 
 	if new_state not in PACKAGE_STATE_FLOW[package.state]:

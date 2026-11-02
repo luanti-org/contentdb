@@ -115,7 +115,7 @@ class PackageType(enum.Enum):
 
 	@classmethod
 	def coerce(cls, item):
-		return item if type(item) == PackageType else PackageType[item.upper()]
+		return item if isinstance(item, PackageType) else PackageType[item.upper()]
 
 
 class PackageDevState(enum.Enum):
@@ -198,7 +198,7 @@ class PackageDevState(enum.Enum):
 	def coerce(cls, item):
 		if item is None or (isinstance(item, str) and item.upper() == "NONE"):
 			return None
-		return item if type(item) == PackageDevState else PackageDevState[item.upper()]
+		return item if isinstance(item, PackageDevState) else PackageDevState[item.upper()]
 
 
 class PackageState(enum.Enum):
@@ -250,7 +250,7 @@ class PackageState(enum.Enum):
 
 	@classmethod
 	def coerce(cls, item):
-		return item if type(item) == PackageState else PackageState[item.upper()]
+		return item if isinstance(item, PackageState) else PackageState[item.upper()]
 
 
 class PackageAIDisclosure(enum.Enum):
@@ -316,7 +316,7 @@ class PackageAIDisclosure(enum.Enum):
 	def coerce(cls, item):
 		if item is None or (isinstance(item, str) and item.upper() == "NULL"):
 			return PackageAIDisclosure.UNKNOWN
-		return item if type(item) == PackageAIDisclosure else PackageAIDisclosure[item.upper()]
+		return item if isinstance(item, PackageAIDisclosure) else PackageAIDisclosure[item.upper()]
 
 
 PackageProvides = db.Table("provides",
@@ -827,9 +827,9 @@ class Package(Model):
 			return url_for("thumbnails.youtube", id_=id_)
 
 	def get_set_state_url(self, state):
-		if type(state) == str:
+		if isinstance(state, str):
 			state = PackageState[state]
-		elif type(state) != PackageState:
+		elif not isinstance(state, PackageState):
 			raise Exception("Unknown state given to Package.get_set_state_url()")
 
 		return url_for("packages.move_to_state",
@@ -845,9 +845,9 @@ class Package(Model):
 		return None
 
 	def check_perm(self, user, perm):
-		if type(perm) == str:
+		if isinstance(perm, str):
 			perm = Permission[perm]
-		elif type(perm) != Permission:
+		elif not isinstance(perm, Permission):
 			raise Exception("Unknown permission given to Package.check_perm()")
 
 		if perm == Permission.VIEW_PACKAGE:
@@ -1222,7 +1222,7 @@ class ReleaseState(enum.Enum):
 
 	@classmethod
 	def coerce(cls, item):
-		return item if type(item) == ReleaseState else ReleaseState[item.upper()]
+		return item if isinstance(item, ReleaseState) else ReleaseState[item.upper()]
 
 
 class PackageRelease(Model):
@@ -1390,9 +1390,9 @@ class PackageRelease(Model):
 		if not hasattr(user, "rank") or user.is_banned:
 			return False
 
-		if type(perm) == str:
+		if isinstance(perm, str):
 			perm = Permission[perm]
-		elif type(perm) != Permission:
+		elif not isinstance(perm, Permission):
 			raise Exception("Unknown permission given to PackageRelease.check_perm()")
 
 		is_maintainer = user == self.package.author or user in self.package.maintainers
@@ -1537,7 +1537,7 @@ class PackageUpdateTrigger(enum.Enum):
 
 	@classmethod
 	def coerce(cls, item):
-		return item if type(item) == PackageUpdateTrigger else PackageUpdateTrigger[item.upper()]
+		return item if isinstance(item, PackageUpdateTrigger) else PackageUpdateTrigger[item.upper()]
 
 
 class PackageUpdateConfig(Model):

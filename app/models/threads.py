@@ -77,9 +77,9 @@ class Thread(Model):
 		return url_for("threads.unsubscribe", id=self.id)
 
 	def check_perm(self, user, perm):
-		if type(perm) == str:
+		if isinstance(perm, str):
 			perm = Permission[perm]
-		elif type(perm) != Permission:
+		elif not isinstance(perm, Permission):
 			raise Exception("Unknown permission given to Thread.check_perm()")
 
 		if user is None or not user.is_authenticated:
@@ -153,9 +153,9 @@ class ThreadReply(Model):
 		if user is None or not user.is_authenticated:
 			return False
 
-		if type(perm) == str:
+		if isinstance(perm, str):
 			perm = Permission[perm]
-		elif type(perm) != Permission:
+		elif not isinstance(perm, Permission):
 			raise Exception("Unknown permission given to ThreadReply.check_perm()")
 
 		if perm == Permission.EDIT_REPLY:
@@ -259,9 +259,9 @@ class PackageReview(Model):
 		self.score = 3 * (pos - neg) + 1
 
 	def check_perm(self, user, perm):
-		if type(perm) == str:
+		if isinstance(perm, str):
 			perm = Permission[perm]
-		elif type(perm) != Permission:
+		elif not isinstance(perm, Permission):
 			raise Exception("Unknown permission given to PackageReview.check_perm()")
 
 		if user is None or not user.is_authenticated:
