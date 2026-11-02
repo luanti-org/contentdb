@@ -1,0 +1,50 @@
+name: Audit
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  # New vulnerabilities are published against code that hasn't changed
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  uv-audit:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        persist-credentials: false
+    - uses: astral-sh/setup-uv@v5
+      with:
+        # uv audit is experimental, so pin uv to stop an update changing its behaviour
+        version: "0.13.6"
+    - name: Audit dependencies
+      shell: bash
+      run: uv audit --locked --preview-features audit-command 2>&1 | tee "$RUNNER_TEMP/audit.txt"
+
+    # PRs already show the failure, and PRs from forks don't get secrets
+    - name: Notify Discord
+      if: failure() && github.event_name != 'pull_request'
+      shell: bash
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.AUDIT_DISCORD_WEBHOOK }}
+      run: |
+        if [ -z "$DISCORD_WEBHOOK" ]; then
+          echo "::warning::AUDIT_DISCORD_WEBHOOK is not set, not notifying Discord"
+          exit 0
+        fi
+
+        run_url="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+        # Discord messages are limited to 2000 characters, so keep the end of the output.
+        # Swap backticks so the output can't close the code block early.
+        output=$(tail -c 1500 "$RUNNER_TEMP/audit.txt" 2>/dev/null | tr '`' "'" || true)
+
+        jq -n --arg run_url "$run_url" --arg output "${output:-No output, the job failed before the audit ran}" '{
+          content: ("**Dependency audit failed** for " + env.GITHUB_REPOSITORY + "\n" + $run_url + "\n```\n" + $output + "\n```"),
+          allowed_mentions: { parse: [] }
+        }' | curl --fail-with-body --silent --show-error -H "Content-Type: application/json" -d @- "$DISCORD_WEBHOOK"
