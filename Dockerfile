@@ -1,10 +1,8 @@
-ARG PYTHON_IMAGE=python:3.14.9-alpine
-
 #
 # BUILD
 #
 
-FROM ${PYTHON_IMAGE} AS builder
+FROM python:3.14.9-alpine AS builder
 
 RUN apk add --no-cache uv gcc g++ musl-dev postgresql-dev
 
@@ -26,7 +24,7 @@ RUN .venv/bin/pybabel compile -d translations
 # RUNTIME
 #
 
-FROM ${PYTHON_IMAGE}
+FROM python:3.14.9-alpine
 
 LABEL org.opencontainers.image.source=https://github.com/luanti-org/contentdb
 LABEL org.opencontainers.image.description="Luanti ContentDB"
