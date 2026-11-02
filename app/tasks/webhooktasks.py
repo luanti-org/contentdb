@@ -44,7 +44,7 @@ def post_discord_webhook(username: Optional[str], content: str, is_queue: bool, 
 		json["embeds"] = [embed]
 
 	for url in discord_urls:
-		res = requests.post(url, json=json, headers={"Accept": "application/json"})
+		res = requests.post(url, json=json, headers={"Accept": "application/json"}, timeout=15)
 		if not res.ok:
 			raise Exception(f"Failed to submit Discord webhook {res.json}")
 		res.raise_for_status()

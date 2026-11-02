@@ -13,7 +13,7 @@ translations = []
 def add_translations_from_api_array(context: str, path: str, fields: List[str]):
 	print(f"Extracting translations from {path}")
 	url = base_url + path
-	req = requests.get(url)
+	req = requests.get(url, timeout=30)
 	json = req.json()
 	for i, row in enumerate(json):
 		for field in fields:

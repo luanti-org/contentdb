@@ -212,7 +212,7 @@ def import_licenses():
 		License.query.filter_by(name=old_name).update({ "name": new_name })
 
 	r = requests.get(
-			"https://raw.githubusercontent.com/spdx/license-list-data/master/json/licenses.json")
+			"https://raw.githubusercontent.com/spdx/license-list-data/master/json/licenses.json", timeout=30)
 	licenses = r.json()["licenses"]
 
 	existing_licenses = {}

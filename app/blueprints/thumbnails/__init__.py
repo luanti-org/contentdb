@@ -128,7 +128,7 @@ def youtube(id_: str):
 
 	url = f"https://img.youtube.com/vi/{id_}/0.jpg"
 
-	response = requests.get(url, stream=True)
+	response = requests.get(url, stream=True, timeout=15)
 	if response.status_code != 200:
 		abort(response.status_code)
 

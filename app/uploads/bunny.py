@@ -23,6 +23,10 @@ os.makedirs(cache_dir_path, exist_ok=True)
 CACHE_MAX_AGE = 24 * 60 * 60
 
 
+# (connect, read) in seconds. The read timeout is per socket read, not for the whole transfer
+BUNNY_TIMEOUT = (10, 120)
+
+
 def _upload_file(filepath: str) -> str:
 	filename = os.path.basename(filepath)
 	upload_path = f"/uploads/{filename}"
@@ -35,6 +39,7 @@ def _upload_file(filepath: str) -> str:
 				"Content-Type": "application/octet-stream"
 			},
 			data=f.read(),
+			timeout=BUNNY_TIMEOUT,
 		)
 		response.raise_for_status()
 	return upload_path
@@ -48,7 +53,8 @@ def _download_file(upload_path: str) -> str:
 		url,
 		headers={
 			"AccessKey": access_key,
-		}
+		},
+		timeout=BUNNY_TIMEOUT,
 	)
 	response.raise_for_status()
 
@@ -71,7 +77,8 @@ def _delete_file(upload_path: str):
 		url,
 		headers={
 			"AccessKey": access_key,
-		}
+		},
+		timeout=BUNNY_TIMEOUT,
 	)
 	response.raise_for_status()
 
