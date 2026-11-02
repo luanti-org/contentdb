@@ -18,8 +18,8 @@ jobs:
     steps:
     - name: Install system dependencies
       run: sudo apt-get install -y libxml2-dev libxslt-dev libjpeg-dev
-    - uses: actions/checkout@v4
-    - uses: astral-sh/setup-uv@v5
+    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+    - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5.4.2
     - name: Install dependencies
       run: uv sync --locked --group dev
     - name: Run mypy
@@ -28,8 +28,8 @@ jobs:
   ruff:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: astral-sh/setup-uv@v5
+    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+    - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5.4.2
     - name: Run ruff
       run: uv run --locked --only-group dev ruff check --output-format=github app utils
 
@@ -38,10 +38,10 @@ jobs:
     outputs:
       image-sha256: ${{ steps.hash.outputs.sha256 }}
     steps:
-    - uses: actions/checkout@v4
-    - uses: docker/setup-buildx-action@v3
+    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+    - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3.12.0
     - name: Build the Docker image
-      uses: docker/build-push-action@v6
+      uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6.19.2
       with:
         context: .
         tags: ${{ env.IMAGE }}:${{ env.CDB_TAG }}
@@ -51,7 +51,7 @@ jobs:
     - name: Hash the Docker image
       id: hash
       run: echo "sha256=$(sha256sum "$RUNNER_TEMP/image.tar" | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
       with:
         name: image
         path: ${{ runner.temp }}/image.tar
@@ -64,8 +64,8 @@ jobs:
       # Job env can't use the env context, so this repeats IMAGE and CDB_TAG
       CDB_TEST_IMAGE: ghcr.io/luanti-org/contentdb:${{ github.sha }}
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/download-artifact@v4
+    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+    - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
       with:
         name: image
         path: ${{ runner.temp }}
@@ -85,8 +85,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/download-artifact@v4
+    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+    - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
       with:
         name: image
         path: ${{ runner.temp }}
@@ -100,17 +100,17 @@ jobs:
       run: ./utils/run_migrations.sh
     - name: Create test data
       run: docker compose exec -T app python utils/setup.py -t
-    - uses: actions/setup-node@v4
+    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
       with:
         node-version: 24
     - name: Run Cypress
-      uses: cypress-io/github-action@v6
+      uses: cypress-io/github-action@f790eee7a50d9505912f50c2095510be7de06aa7 # v6.10.9
       with:
         browser: chrome
         wait-on: http://localhost:5123
     - name: Upload screenshots
       if: failure()
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
       with:
         name: cypress-screenshots
         path: cypress/screenshots
@@ -129,7 +129,7 @@ jobs:
       contents: read
       packages: write
     steps:
-    - uses: actions/download-artifact@v4
+    - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
       with:
         name: image
         path: ${{ runner.temp }}
@@ -141,7 +141,7 @@ jobs:
         echo "$IMAGE_SHA256  $RUNNER_TEMP/image.tar" | sha256sum -c -
     - name: Load the Docker image
       run: docker load -i ${{ runner.temp }}/image.tar
-    - uses: docker/login-action@v3
+    - uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3.7.0
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
