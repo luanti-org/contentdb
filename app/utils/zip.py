@@ -42,6 +42,6 @@ def safe_extract_zip(temp_dir: str, archive_path: str) -> bool:
 			for member in zf.infolist():
 				zf.extract(member, temp_dir)
 	except BadZipFile as e:
-		raise TaskError(str(e))
+		raise TaskError(str(e)) from e
 
 	return True

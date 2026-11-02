@@ -103,7 +103,7 @@ def get_profile(url, username):
 		if e.code == 404:
 			return None
 
-		raise IOError(e)
+		raise IOError(e) from e
 
 	contents = req.read().decode("utf-8")
 	soup = BeautifulSoup(contents, "lxml")

@@ -162,7 +162,7 @@ class PackageTreeNode:
 					for key, value in conf.items():
 						result[key] = value
 			except SyntaxError as e:
-				raise LuantiCheckError("Error while reading {}: {}".format(meta_file_rel , e.msg))
+				raise LuantiCheckError("Error while reading {}: {}".format(meta_file_rel , e.msg)) from e
 			except IOError:
 				pass
 
@@ -337,7 +337,7 @@ class PackageTreeNode:
 				ret.append(parse_tr(name))
 			except SyntaxError as e:
 				relative_path = os.path.join(self.relative, os.path.relpath(name, self.baseDir))
-				raise LuantiCheckError(f"Syntax error whilst reading {relative_path}: {e}")
+				raise LuantiCheckError(f"Syntax error whilst reading {relative_path}: {e}") from e
 
 		return ret
 
