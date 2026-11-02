@@ -15,7 +15,7 @@ from app.utils.misc import is_yes
 from app.utils.user import rank_required
 from app.utils.models import add_audit_log
 from . import bp
-from sqlalchemy import select, and_
+from sqlalchemy import select
 
 
 def get_unanswered_approval_threads():
@@ -280,7 +280,7 @@ def mark_approval_thread_stale():
 	if package:
 		package.approval_thread_stale = True
 
-		msg = f"Marked approval thread as stale"
+		msg = "Marked approval thread as stale"
 		add_audit_log(AuditSeverity.EDITOR, current_user, msg, url_for("threads.view", id=package.review_thread_id), package)
 
 		db.session.commit()

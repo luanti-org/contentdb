@@ -8,7 +8,7 @@ import os
 import sys
 
 
-if not "FLASK_CONFIG" in os.environ:
+if "FLASK_CONFIG" not in os.environ:
 	os.environ["FLASK_CONFIG"] = "../config.cfg"
 
 create_db = not (len(sys.argv) >= 2 and sys.argv[1].strip() == "-o")

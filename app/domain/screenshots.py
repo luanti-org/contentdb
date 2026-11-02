@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
-import datetime, json
+import datetime
+import json
 from typing import Any
 
 from flask_babel import lazy_gettext

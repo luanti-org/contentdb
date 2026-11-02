@@ -11,7 +11,6 @@ from sqlalchemy.orm import column_property
 
 from .base import db, Model
 from .users import Permission, UserRank, User
-from .packages import Package
 from app.utils.flask import abs_url_for
 
 

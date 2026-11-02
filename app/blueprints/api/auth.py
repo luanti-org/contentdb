@@ -4,7 +4,7 @@
 
 from functools import wraps
 
-from flask import request, abort
+from flask import request
 
 from app.models import APIToken
 from app.utils.misc import hash_token

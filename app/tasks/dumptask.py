@@ -5,7 +5,10 @@
 from . import celery
 from app import app
 from app.models import User, Package, PackageState
-import json, os, zipfile, datetime
+import json
+import os
+import zipfile
+import datetime
 from app.uploads import copy_to_uploads
 from app.utils.files import get_temp_dir
 

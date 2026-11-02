@@ -3,12 +3,13 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 
-import datetime, requests
+import datetime
+import requests
 import os
 import sys
 
 from flask import url_for
-from sqlalchemy import or_, and_, not_, func
+from sqlalchemy import or_, and_
 
 from app import app
 from app.models import User, db, UserRank, Thread, Package, Notification, NotificationType, UserSession

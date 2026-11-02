@@ -4,7 +4,7 @@
 
 from typing import Optional
 from celery import uuid
-from flask import request, redirect, url_for, abort, render_template, flash
+from flask import redirect, url_for, abort, render_template, flash
 from flask_babel import gettext, lazy_gettext
 from flask_login import current_user, login_required
 from sqlalchemy import or_, and_

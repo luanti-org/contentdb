@@ -196,7 +196,7 @@ def cors_allowed(f):
 
 def should_return_json():
 	return "application/json" in request.accept_mimetypes and \
-			not "text/html" in request.accept_mimetypes
+			"text/html" not in request.accept_mimetypes
 
 
 def has_blocked_domains(text: typing.Optional[str], username: str, location: str) -> bool:

@@ -10,7 +10,6 @@ import os
 import typing
 from flask import url_for
 from flask_babel import lazy_gettext, get_locale, gettext, pgettext
-from flask_sqlalchemy.query import Query
 from sqlalchemy import or_, func
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy_utils.types import TSVectorType

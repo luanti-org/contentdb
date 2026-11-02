@@ -8,7 +8,6 @@ from functools import wraps
 from typing import List
 from urllib.parse import urlparse, urlunparse
 
-import sqlalchemy.orm
 from flask import abort, redirect, url_for, request, current_app
 from flask_login import current_user
 from sqlalchemy import or_, and_
