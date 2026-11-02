@@ -22,6 +22,7 @@ from zipfile import ZipFile, ZipInfo, ZIP_DEFLATED
 from git import GitCommandError
 from git.util import remove_password_if_present
 
+from app import app
 from app.tasks import TaskError
 from app.utils.misc import random_string, normalize_line_endings
 from app.utils.files import get_temp_dir
@@ -42,46 +43,6 @@ GIT_ENV = {
 	"GIT_CONFIG_KEY_1": "core.attributesFile",
 	"GIT_CONFIG_VALUE_1": "/dev/null",
 }
-
-# Hosts that package repos and submodules may be fetched from
-ALLOWED_GIT_HOSTS = frozenset({
-	"github.com",
-	"codeberg.org",
-	"gitlab.com",
-	"bitbucket.org",
-	"git.minetest.land",
-	"gitgud.io",
-	"notabug.org",
-	"git.0x7be.net",
-	"gitea.your-land.de",
-	"cheapiesystems.com",
-	"repo.or.cz",
-	"git.sr.ht",
-	"git.bananach.space",
-	"forge.apps.education.fr",
-	"git.noordstar.me",
-	"minecaptain.com",
-	"invent.kde.org",
-	"gitoverit.ofafox.com",
-	"gitea.com",
-	"git.sp-codes.de",
-	"forge.tedomum.net",
-	"git.brn.systems",
-	"bugs.1f616emo.xyz",
-	"git.icynet.eu",
-	"git.james-clarke.ynh.fr",
-	"edugit.org",
-	"git.savannah.nongnu.org",
-	"gitea.eom.dev",
-	"git.luanti.ru",
-	"git.gay",
-	"git.phreedom.club",
-	"gitea.polonkai.eu",
-	"git.cubesoftware.xyz",
-	"git.medlab.host",
-	"code.achtarmig.org",
-	"git.tchncs.de",
-})
 
 MAX_SUBMODULE_DEPTH = 5
 MAX_SUBMODULES = 200
@@ -128,7 +89,8 @@ def generate_git_url(urlstr: str) -> str:
 	except ValueError:
 		raise TaskError(f"Git URL is not valid: {urlstr!r}") from None
 
-	if url.hostname is None or url.hostname not in ALLOWED_GIT_HOSTS:
+	allowed_hosts = {host.lower() for host in app.config["ALLOWED_GIT_HOSTS"]}
+	if url.hostname is None or url.hostname not in allowed_hosts:
 		raise TaskError(f"Git host '{url.hostname or urlstr}' is not allowed. Please ask an editor to add it.")
 
 	return "https://" + url.hostname + url.path
