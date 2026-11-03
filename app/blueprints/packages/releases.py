@@ -121,7 +121,7 @@ def download_release(package, id):
 	if release is None or release.package != package:
 		abort(404)
 
-	ip = request.headers.get("X-Forwarded-For") or request.remote_addr
+	ip = request.remote_addr
 	if ip is not None and not is_user_bot():
 		user_agent = request.headers.get("User-Agent") or ""
 		is_luanti = user_agent.startswith("Luanti") or user_agent.startswith("Minetest")
