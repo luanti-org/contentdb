@@ -12,9 +12,12 @@ from app.domain.DomainError import DomainError
 from app.domain.git_access import can_user_use_git, can_package_use_git, can_user_change_repo, is_same_repo
 from app.domain.packages import do_edit_package
 from app.domain.releases import do_create_vcs_release
-from app.models import db, User, UserRank, Package, PackageState, PackageUpdateConfig
+from celery.exceptions import SoftTimeLimitExceeded
+from kombu import uuid
+
+from app.models import db, User, UserRank, Package, PackageState, PackageUpdateConfig, PackageRelease, ReleaseState
 from app.tasks import TaskError
-from app.tasks.importtasks import apply_cdb_json, check_update_config
+from app.tasks.importtasks import apply_cdb_json, check_update_config, get_meta, make_vcs_release, TIMED_OUT_MESSAGE
 from app.utils.user import make_flask_login_password
 from .utils import login
 from .utils import client # noqa
@@ -283,3 +286,52 @@ def test_cdb_json_ignores_repo(client, git_access, access):
 	# The rest of .cdb.json is still applied
 	assert package.title == "From cdb.json"
 	assert package.repo == old_repo
+
+
+def raise_soft_timeout(*args, **kwargs):
+	raise SoftTimeLimitExceeded()
+
+
+def test_get_meta_soft_timeout(client, git_access, monkeypatch):
+	git_access("all")
+	_, maintainer = setup_package(TRUSTED, TRUSTED)
+	monkeypatch.setattr("app.tasks.importtasks.get_meta_impl", raise_soft_timeout)
+
+	with pytest.raises(TaskError, match=TIMED_OUT_MESSAGE):
+		get_meta.apply(args=("https://github.com/minetest-mods/mesecons", "rubenwardy", maintainer.id), throw=True)
+
+
+def test_check_update_config_soft_timeout(client, git_access, monkeypatch):
+	git_access("all")
+	package, _ = setup_package(TRUSTED, TRUSTED, APPROVED)
+	package.update_config = PackageUpdateConfig()
+	db.session.commit()
+	monkeypatch.setattr("app.tasks.importtasks.check_update_config_impl", raise_soft_timeout)
+
+	with pytest.raises(TaskError, match=TIMED_OUT_MESSAGE):
+		check_update_config.apply(args=(package.id,), throw=True)
+
+	db.session.refresh(package.update_config)
+	assert package.update_config.task_id is not None
+
+
+def test_make_vcs_release_soft_timeout_fails_release(client, git_access, monkeypatch):
+	git_access("all")
+	package, _ = setup_package(TRUSTED, TRUSTED)
+
+	release = PackageRelease()
+	release.package = package
+	release.name = "1.0.0"
+	release.title = "1.0.0"
+	release.upload_path = ""
+	release.task_id = uuid()
+	db.session.add(release)
+	db.session.commit()
+	monkeypatch.setattr("app.tasks.importtasks.clone_repo", raise_soft_timeout)
+
+	with pytest.raises(TaskError, match=TIMED_OUT_MESSAGE):
+		make_vcs_release.apply(args=(release.id, "master"), throw=True)
+
+	db.session.refresh(release)
+	assert release.state == ReleaseState.FAILED
+	assert release.task_id is not None
