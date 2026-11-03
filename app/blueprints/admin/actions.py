@@ -442,6 +442,10 @@ def do_delete_empty_threads():
 
 @action("DANGER: Check for broken links in all packages")
 def check_for_broken_links():
+	if not current_app.config.get("ENABLE_BROKEN_LINK_CHECKER", False):
+		flash("The broken link checker is disabled. Set ENABLE_BROKEN_LINK_CHECKER in config.cfg", "danger")
+		return
+
 	for package in Package.query.filter_by(state=PackageState.APPROVED).all():
 		check_package_for_broken_links.delay(package.id)
 

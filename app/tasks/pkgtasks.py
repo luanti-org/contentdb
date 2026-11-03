@@ -167,6 +167,9 @@ def _check_for_dead_links(package: Package) -> dict[str, str]:
 
 
 def _check_package(package: Package) -> Optional[str]:
+	if not app.config.get("ENABLE_BROKEN_LINK_CHECKER", False):
+		return None
+
 	bad_urls = _check_for_dead_links(package)
 	if len(bad_urls) > 0:
 		return ("The following broken links were found on your package:\n\n" +
