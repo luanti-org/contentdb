@@ -15,6 +15,7 @@ from flask_github import GitHub
 from flask_login import current_user, LoginManager
 from flask_mail import Mail
 from flask_wtf.csrf import CSRFProtect
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 from app.markdown import init_markdown, render_markdown
 
@@ -95,6 +96,12 @@ if app.config.get("GIT_ACCESS", "none") not in ["none", "trusted", "trusted_or_a
 
 if not app.config["ADMIN_CONTACT_URL"]:
 	raise Exception("Missing config property: ADMIN_CONTACT_URL")
+
+# Gets the client's IP from X-Forwarded-For, trusting only the values added by our own proxies.
+# Without this, request.remote_addr is the proxy's IP. Reading the header directly would trust values sent by the client.
+_proxy_count = app.config.get("TRUSTED_PROXY_COUNT", 1)
+if _proxy_count > 0:
+	app.wsgi_app = ProxyFix(app.wsgi_app, x_for=_proxy_count)  # type: ignore[method-assign]
 
 redis_client = redis.Redis.from_url(app.config["REDIS_URL"])
 

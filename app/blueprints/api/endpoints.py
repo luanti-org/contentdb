@@ -91,7 +91,7 @@ def package_view(package):
 @cached(300)
 @cors_allowed
 def package_view_client(package: Package):
-	ip = request.headers.get("X-Forwarded-For") or request.remote_addr
+	ip = request.remote_addr
 	if ip is not None and (request.headers.get("User-Agent") or "").startswith("Luanti"):
 		key = make_view_key(ip, package)
 		if not has_key(key):
