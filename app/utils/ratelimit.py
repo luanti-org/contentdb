@@ -2,7 +2,10 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2026 rubenwardy <rw@rubenwardy>
 
+import ipaddress
 from typing import List
+
+from flask import request
 
 from limits import parse
 from limits.errors import StorageError
@@ -59,3 +62,63 @@ class RateLimit:
 		except StorageError:
 			app.logger.warning("Unable to update rate limit %s", self.key, exc_info=True)
 			return True
+
+
+def hit_all(*limits: RateLimit) -> bool:
+	"""
+	Records the action against all the limits, but only if none of them are full. Returns False if any are full.
+	"""
+	if not all(limit.test() for limit in limits):
+		return False
+
+	# A list rather than a generator, so every limit is recorded
+	return all([limit.record() for limit in limits])
+
+
+def get_client_ip_key() -> str:
+	"""
+	Identifies the client's IP for rate limiting. IPv6 addresses are grouped by /64, as one client is usually
+	given a whole /64.
+	"""
+	addr = request.remote_addr or "unknown"
+	try:
+		ip = ipaddress.ip_address(addr)
+	except ValueError:
+		return addr
+
+	if isinstance(ip, ipaddress.IPv6Address):
+		if ip.ipv4_mapped:
+			return str(ip.ipv4_mapped)
+		return str(ipaddress.ip_network(f"{ip}/64", strict=False))
+
+	return str(ip)
+
+
+def _get_email_ratelimits(email: str) -> List[RateLimit]:
+	recipient = email.strip().lower()
+	ip = get_client_ip_key()
+	return [
+		RateLimit(f"email/to:{recipient}/ip:{ip}", ["5 per hour"]),
+		# Anyone can use this up, stopping emails to that address. It's high enough that doing so is the same
+		# amount of email the limit is preventing.
+		RateLimit(f"email/to:{recipient}", ["20 per day"]),
+		RateLimit(f"email/ip:{ip}", ["10 per hour", "30 per day"]),
+	]
+
+
+def can_send_email(email: str) -> bool:
+	"""
+	Whether an email may be sent to `email` because of the current request, without recording anything.
+	Use this to refuse a request early, then call `hit_email_ratelimit` when the email is sent.
+	"""
+	return all(limit.test() for limit in _get_email_ratelimits(email))
+
+
+def hit_email_ratelimit(email: str) -> bool:
+	"""
+	Records an email being sent to `email` because of the current request. Returns False, without recording,
+	if too many emails have been sent to that address or because of requests from this client.
+
+	Call this before deciding which email to send, so the result doesn't reveal whether an account exists.
+	"""
+	return hit_all(*_get_email_ratelimits(email))

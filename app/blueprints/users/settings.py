@@ -17,6 +17,7 @@ from app.tasks.emails import send_verify_email
 from app.tasks.usertasks import update_github_user_id
 from app.utils.misc import nonempty_or_none, random_string, hash_token
 from app.utils.models import add_audit_log
+from app.utils.ratelimit import hit_email_ratelimit
 from app.utils.user import rank_required, end_user_sessions, logout_current_session
 from app.utils.flask import has_blocked_domains
 from . import bp
@@ -169,6 +170,11 @@ def handle_email_notifications(user, prefs: UserNotificationPreferences, is_new,
 			if EmailSubscription.query.filter_by(email=form.email.data, blacklisted=True).count() > 0:
 				db.session.rollback()
 				flash(gettext("That email address has been unsubscribed/blacklisted, and cannot be used"), "danger")
+				return
+
+			if not hit_email_ratelimit(newEmail):
+				db.session.rollback()
+				flash(gettext("Too many emails have been sent recently, please wait before trying again"), "danger")
 				return
 
 			token = random_string(32)

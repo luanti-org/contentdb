@@ -5,7 +5,7 @@
 import math
 from typing import Optional, Tuple, List
 
-from flask import redirect, url_for, abort, render_template, request
+from flask import redirect, url_for, abort, render_template, request, flash
 from flask_babel import gettext
 from flask_login import current_user, login_required
 from sqlalchemy import func, text, and_
@@ -14,6 +14,7 @@ from sqlalchemy.sql.functions import coalesce
 from app.models import User, db, Package, PackageReview, PackageState, PackageType, UserRank, Collection, Permission, \
 	AuditSeverity
 from app.utils.models import add_audit_log
+from app.utils.ratelimit import RateLimit
 from app.utils.flask import get_daterange_options
 from app.tasks.forumtasks import check_forum_account
 
@@ -250,6 +251,10 @@ def user_check_forums(username):
 
 	if user.forums_username is None:
 		abort(404)
+
+	if not RateLimit(f"forum-check/user:{user.id}", ["5 per hour"]).hit():
+		flash(gettext("Too many attempts, please wait before trying again"), "danger")
+		return redirect(url_for("users.profile", username=username))
 
 	task = check_forum_account.delay(user.forums_username, force_replace_pic=True)
 	next_url = url_for("users.profile", username=username)
