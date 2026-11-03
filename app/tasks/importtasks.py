@@ -11,6 +11,7 @@ from typing import Any
 from zipfile import ZipFile
 
 import gitdb
+from celery.exceptions import SoftTimeLimitExceeded
 from flask import url_for
 from git import GitCommandError
 from kombu import uuid
@@ -38,12 +39,25 @@ from app.utils.zip import check_zip_file, safe_extract_zip
 from app.uploads import copy_to_uploads
 
 
-@celery.task()
+# Soft limits raise inside the task so temp dirs are cleaned up, the hard limit is a backstop.
+# They need to allow for the fetch timeouts in app.utils.git.
+GIT_TASK_SOFT_LIMIT = 400
+GIT_TASK_HARD_LIMIT = GIT_TASK_SOFT_LIMIT + 30
+GIT_RELEASE_SOFT_LIMIT = 900
+GIT_RELEASE_HARD_LIMIT = GIT_RELEASE_SOFT_LIMIT + 30
+
+TIMED_OUT_MESSAGE = "Timed out whilst processing the Git repository"
+
+
+@celery.task(soft_time_limit=GIT_TASK_SOFT_LIMIT, time_limit=GIT_TASK_HARD_LIMIT)
 def get_meta(urlstr, author, user_id: int):
 	if not can_user_use_git(User.query.get(user_id)):
 		raise TaskError("Importing from Git is temporarily disabled")
 
-	return get_meta_impl(urlstr, author)
+	try:
+		return get_meta_impl(urlstr, author)
+	except SoftTimeLimitExceeded:
+		raise TaskError(TIMED_OUT_MESSAGE) from None
 
 
 def get_meta_impl(urlstr, author):
@@ -406,7 +420,7 @@ def import_languages(self, id, path):
 			raise TaskError(str(err)) from err
 
 
-@celery.task(bind=True)
+@celery.task(bind=True, soft_time_limit=GIT_RELEASE_SOFT_LIMIT, time_limit=GIT_RELEASE_HARD_LIMIT)
 def make_vcs_release(self, id, branch):
 	release = PackageRelease.query.get(id)
 	if release is None:
@@ -447,10 +461,13 @@ def make_vcs_release(self, id, branch):
 				db.session.commit()
 
 				return release.upload_path
-	except (LuantiCheckError, TaskError, DomainError) as err:
+	except (LuantiCheckError, TaskError, DomainError, SoftTimeLimitExceeded) as err:
 		db.session.rollback()
 
-		error_message = err.value if hasattr(err, "value") else str(err)
+		if isinstance(err, SoftTimeLimitExceeded):
+			error_message = TIMED_OUT_MESSAGE
+		else:
+			error_message = err.value if hasattr(err, "value") else str(err)
 
 		task_url = url_for('tasks.check', id=self.request.id)
 		msg = f"{error_message}\n\n[View Release]({release.get_edit_url()}) | [View Task]({task_url})"
@@ -463,7 +480,7 @@ def make_vcs_release(self, id, branch):
 		raise TaskError(error_message) from err
 
 
-@celery.task()
+@celery.task(soft_time_limit=GIT_TASK_SOFT_LIMIT, time_limit=GIT_TASK_HARD_LIMIT)
 def import_repo_screenshot(id):
 	package = Package.query.get(id)
 	if package is None or package.state == PackageState.DELETED:
@@ -493,7 +510,7 @@ def import_repo_screenshot(id):
 
 					return url
 
-	except TaskError as e:
+	except (TaskError, SoftTimeLimitExceeded) as e:
 		# ignore download errors
 		print(e)
 		pass
@@ -571,7 +588,7 @@ def check_update_config_impl(package):
 	config.last_tag = tag
 
 
-@celery.task(bind=True, rate_limit="60/m")
+@celery.task(bind=True, rate_limit="60/m", soft_time_limit=GIT_TASK_SOFT_LIMIT, time_limit=GIT_TASK_HARD_LIMIT)
 def check_update_config(self, package_id):
 	package = Package.query.get(package_id)
 	if package is None:
@@ -596,6 +613,8 @@ def check_update_config(self, package_id):
 		err = "Unable to find the reference " + (package.update_config.ref or "?") + "\n" + e.stderr
 	except TaskError as e:
 		err = e.value
+	except SoftTimeLimitExceeded:
+		err = TIMED_OUT_MESSAGE
 
 	if err:
 		err = err.replace("stderr: ", "") \
