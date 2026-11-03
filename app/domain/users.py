@@ -10,6 +10,7 @@ from sqlalchemy import or_
 from werkzeug import Response
 
 from app.models import User, UserRank, PackageAlias, EmailSubscription, UserNotificationPreferences, db
+from app.utils.ratelimit import hit_email_ratelimit
 from app.utils.user import is_username_valid
 from app.tasks.emails import send_anon_email
 
@@ -47,9 +48,12 @@ def create_user(username: str, display_name: str, email: Optional[str], oauth_pr
 	if email:
 		user_by_email = User.query.filter_by(email=email).first()
 		if user_by_email:
-			send_anon_email.delay(email, get_locale().language, gettext("Email already in use"),
-				gettext("We were unable to create the account as the email is already in use by %(display_name)s. Try a different email address.",
-						display_name=user_by_email.display_name))
+			# Registration checks the limit before calling this. If it has filled up since then, the email is
+			# skipped rather than shown as an error, so the response doesn't reveal that the account exists.
+			if hit_email_ratelimit(email):
+				send_anon_email.delay(email, get_locale().language, gettext("Email already in use"),
+					gettext("We were unable to create the account as the email is already in use by %(display_name)s. Try a different email address.",
+							display_name=user_by_email.display_name))
 			return redirect(url_for("users.email_sent"))
 		elif EmailSubscription.query.filter_by(email=email, blacklisted=True).count() > 0:
 			flash(gettext("That email address has been unsubscribed/blacklisted, and cannot be used"), "danger")

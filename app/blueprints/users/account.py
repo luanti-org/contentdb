@@ -17,6 +17,7 @@ from app.tasks.emails import send_verify_email, send_anon_email, send_unsubscrib
 from app.utils.misc import random_string, nonempty_or_none, hash_token
 from app.utils.tokens import load_unsubscribe_token
 from app.utils.models import add_audit_log
+from app.utils.ratelimit import RateLimit, get_client_ip_key, hit_email_ratelimit, can_send_email
 from app.utils.user import make_flask_login_password, is_safe_url, check_password_hash, post_login, \
 	login_user_with_session, logout_current_session, end_user_sessions
 from . import bp
@@ -39,15 +40,39 @@ def handle_login(form):
 			flash(err, "danger")
 
 	username = form.username.data.strip()
+
+	ip = get_client_ip_key()
+
+	# Every attempt on an account from this IP is counted, and recorded before the password is checked, so that
+	# requests made at the same time can't all get past the limit. There's deliberately no limit on an account
+	# alone, as that would let anyone lock someone out of their account.
+	attempt_limit = RateLimit(f"login/ip:{ip}/user:{username.lower()}", ["10 per 15 minutes", "20 per hour"])
+
+	# Only failed attempts are counted per IP, so that many people signing in from one shared IP aren't limited
+	failed_limit = RateLimit(f"login-failed/ip:{ip}", ["30 per hour", "100 per day"])
+
+	if not failed_limit.test() or not attempt_limit.hit():
+		flash(gettext("Too many failed sign in attempts, please wait before trying again"), "danger")
+		return
+
+	def fail(err):
+		# Already checked above, so this only needs to record
+		failed_limit.record()
+		return show_safe_err(err)
+
 	user = User.query.filter(or_(User.username == username, User.email == username)).first()
 	if user is None:
-		return show_safe_err(gettext(u"User %(username)s does not exist", username=username))
+		return fail(gettext(u"User %(username)s does not exist", username=username))
 
 	if user.is_password_reset_required:
 		if not check_password_hash(user.old_password, form.password.data):
-			return show_safe_err(gettext(u"Incorrect password. Did you set one?"))
+			return fail(gettext(u"Incorrect password. Did you set one?"))
 
 		if user.email and username == user.email:
+			if not hit_email_ratelimit(user.email):
+				flash(gettext("Too many emails have been sent recently, please wait before trying again"), "danger")
+				return
+
 			send_password_reset_email(user, user.email)
 			flash(gettext("You need to reset your password. We've sent you an email with a link to do so."), "danger")
 			return redirect(url_for("users.email_sent"))
@@ -59,7 +84,7 @@ def handle_login(form):
 		return
 
 	if not check_password_hash(user.password, form.password.data):
-		return show_safe_err(gettext(u"Incorrect password. Did you set one?"))
+		return fail(gettext(u"Incorrect password. Did you set one?"))
 
 	if not user.is_active:
 		flash(gettext("You need to confirm the registration email"), "danger")
@@ -120,6 +145,11 @@ def handle_register(form):
 		flash(gettext("Incorrect captcha answer"), "danger")
 		return
 
+	# Only checked here, as the registration may still be rejected. It's recorded when an email is sent.
+	if not can_send_email(form.email.data):
+		flash(gettext("Too many emails have been sent recently, please wait before trying again"), "danger")
+		return
+
 	user = create_user(form.username.data, form.display_name.data, form.email.data)
 	if isinstance(user, Response):
 		return user
@@ -142,6 +172,7 @@ def handle_register(form):
 	db.session.add(ver)
 	db.session.commit()
 
+	hit_email_ratelimit(form.email.data)
 	send_verify_email.delay(form.email.data, token, get_locale().language)
 
 	return redirect(url_for("users.email_sent"))
@@ -186,6 +217,10 @@ def forgot_password():
 	if form.validate_on_submit():
 		email = form.email.data
 		assert email is not None
+		if not hit_email_ratelimit(email):
+			flash(gettext("Too many emails have been sent recently, please wait before trying again"), "danger")
+			return render_template("users/forgot_password.html", form=form)
+
 		user = User.query.filter_by(email=email).first()
 		if user:
 			send_password_reset_email(user, email)
@@ -237,6 +272,11 @@ def handle_set_password(form):
 			if EmailSubscription.query.filter_by(email=form.email.data, blacklisted=True).count() > 0:
 				db.session.rollback()
 				flash(gettext(u"That email address has been unsubscribed/blacklisted, and cannot be used"), "danger")
+				return
+
+			if not hit_email_ratelimit(new_email):
+				db.session.rollback()
+				flash(gettext("Too many emails have been sent recently, please wait before trying again"), "danger")
 				return
 
 			user_by_email = User.query.filter_by(email=form.email.data).first()
@@ -372,6 +412,11 @@ def unsubscribe_verify():
 	form = UnsubscribeForm(request.form)
 	if form.validate_on_submit():
 		email = form.email.data
+		assert email is not None
+		if not hit_email_ratelimit(email):
+			flash(gettext("Too many emails have been sent recently, please wait before trying again"), "danger")
+			return render_template("users/unsubscribe.html", form=form)
+
 		sub = EmailSubscription.query.filter_by(email=email).first()
 		if not sub:
 			sub = EmailSubscription(email)

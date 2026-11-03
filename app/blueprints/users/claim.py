@@ -10,6 +10,7 @@ from flask import redirect, render_template, session, request, flash, url_for
 from app.models import db, User, UserRank, AuditSeverity
 from app.utils.misc import random_string
 from app.utils.models import add_audit_log
+from app.utils.ratelimit import RateLimit, get_client_ip_key
 from app.utils.user import login_user_set_active
 from app.tasks.forumtasks import check_forum_account
 from app.utils.phpbbparser import get_profile
@@ -51,6 +52,12 @@ def claim_forums():
 	if request.method == "POST":
 		ctype = request.form.get("claim_type")
 		username = request.form.get("username")
+
+		# Both claim types fetch the user's profile from the forums. This is only limited by IP, as a limit on the
+		# forum username would let anyone stop that user from claiming their account.
+		if not RateLimit(f"forum-check/ip:{get_client_ip_key()}", ["5 per minute", "20 per hour"]).hit():
+			flash(gettext("Too many attempts, please wait before trying again"), "danger")
+			return redirect(url_for("users.claim_forums", username=username))
 
 		if User.query.filter(User.username == username, User.forums_username.is_(None)).first():
 			flash(gettext("A ContentDB user with that name already exists. Please contact an admin to link to your forum account"), "danger")
