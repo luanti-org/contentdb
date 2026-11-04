@@ -3,6 +3,7 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 import datetime
+from unittest.mock import MagicMock
 
 import pytest
 
@@ -16,7 +17,7 @@ from celery.exceptions import SoftTimeLimitExceeded
 from kombu import uuid
 
 from app.models import db, User, UserRank, Package, PackageState, PackageUpdateConfig, PackageRelease, ReleaseState
-from app.tasks import TaskError
+from app.tasks import TaskError, importtasks
 from app.tasks.importtasks import apply_cdb_json, check_update_config, get_meta, make_vcs_release, TIMED_OUT_MESSAGE
 from app.utils.user import make_flask_login_password
 from .utils import login
@@ -335,3 +336,40 @@ def test_make_vcs_release_soft_timeout_fails_release(client, git_access, monkeyp
 	db.session.refresh(release)
 	assert release.state == ReleaseState.FAILED
 	assert release.task_id is not None
+
+
+@pytest.mark.parametrize("access,makes_notes", [
+	("none", False),
+	("trusted", False),
+	("all", True),
+])
+def test_zip_release_notes_require_git_access(client, git_access, monkeypatch, tmp_path, access, makes_notes):
+	"""Zip releases can be given a commit hash through the API, which would otherwise fetch the repo"""
+	git_access(access)
+	package, _ = setup_package(MEMBER, MEMBER)
+	package.repo = "https://github.com/minetest-mods/mesecons"
+
+	for name, commit_hash in [("v1", "a" * 40), ("v2", "b" * 40)]:
+		release = PackageRelease()
+		release.package = package
+		release.name = name
+		release.title = name
+		release.commit_hash = commit_hash
+		db.session.add(release)
+	db.session.commit()
+
+	get_release_notes = MagicMock(return_value="- Change")
+	monkeypatch.setattr(importtasks, "get_release_notes", get_release_notes)
+
+	(tmp_path / "mod.conf").write_text("name = mesecons\n")
+	(tmp_path / "init.lua").write_text("")
+	(tmp_path / "LICENSE.txt").write_text("MIT")
+	release = PackageRelease.query.filter_by(package_id=package.id, name="v2").one()
+	importtasks.post_release_check_update(None, release, str(tmp_path))
+
+	if makes_notes:
+		get_release_notes.assert_called_once_with(package.repo, "a" * 40, "b" * 40)
+		assert release.release_notes == "- Change"
+	else:
+		get_release_notes.assert_not_called()
+		assert release.release_notes is None

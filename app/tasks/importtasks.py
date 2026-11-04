@@ -261,9 +261,10 @@ def post_release_check_update(self, release: PackageRelease, path):
 	except IOError:
 		pass
 
-	# Build release notes from git log
+	# Build release notes from git log. Zip releases reach here too, with a commit hash given through the API, so
+	# git access must be checked
 	try:
-		if release.commit_hash and release.release_notes is None:
+		if release.commit_hash and release.release_notes is None and package.repo and can_package_use_git(package):
 			previous_release = package.releases.filter(PackageRelease.id != release.id).first()
 			if previous_release and previous_release.commit_hash:
 				release.release_notes = get_release_notes(package.repo, previous_release.commit_hash, release.commit_hash)
