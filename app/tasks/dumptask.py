@@ -19,6 +19,10 @@ from app.uploads import copy_to_uploads
 from app.utils.files import get_temp_dir
 
 
+# Increase this when the dump format changes in a way that importers need to know about
+DUMP_FORMAT_VERSION = 1
+
+
 def get_dependency_names() -> dict[int, dict[str, list[str]]]:
 	"""
 	Returns the hard and optional dependencies of every package as mod names, keyed by package id.
@@ -100,7 +104,10 @@ def create_database_dump():
 	with get_temp_dir() as tmp_dir:
 		tmp_path = os.path.join(tmp_dir, f"backup-{date}.zip")
 		with zipfile.ZipFile(tmp_path, "w", zipfile.ZIP_DEFLATED) as zipf:
-			zipf.writestr("backup/index.json", json.dumps({ "created_at": datetime.datetime.utcnow().isoformat() }, indent=4))
+			zipf.writestr("backup/index.json", json.dumps({
+				"version": DUMP_FORMAT_VERSION,
+				"created_at": datetime.datetime.utcnow().isoformat(),
+			}, indent=4))
 
 			for name, rows in get_lookup_tables().items():
 				zipf.writestr(f"backup/{name}.json", json.dumps(rows, indent=4))

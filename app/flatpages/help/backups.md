@@ -11,7 +11,7 @@ Note: this is experimental, the format and filename may change without notice.
 ## Structure
 
 * `backup/`
-  * index.json - `created_at` iso timestamp
+  * index.json - `version` of the dump format, currently 1, and `created_at` iso timestamp
   * licenses.json - `name`, `is_foss`, and `url` of each license
   * tags.json - `name`, `title`, `description`, `background_color`, and `text_color` of each tag
   * content_warnings.json - `name`, `title`, and `description` of each content warning

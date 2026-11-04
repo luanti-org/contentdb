@@ -34,7 +34,9 @@ def test_database_dump_uses_documented_name(client, upload_dir):
 	assert os.listdir(upload_dir) == [f"backup-{date}.zip"]
 
 	with zipfile.ZipFile(upload_dir / f"backup-{date}.zip") as zipf:
-		assert "created_at" in json.loads(zipf.read("backup/index.json"))
+		index = json.loads(zipf.read("backup/index.json"))
+		assert index["version"] == 1
+		assert "created_at" in index
 		assert any(name.endswith("/mesecons/index.json") for name in zipf.namelist())
 
 
