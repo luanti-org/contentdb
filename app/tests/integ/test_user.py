@@ -174,17 +174,21 @@ def test_require_password_reset(client, monkeypatch):
 	assert b"You need to reset your password" not in rv.data
 	assert UserEmailVerification.query.filter_by(user_id=user.id).count() == 0
 
-	# Password login is blocked, even with the correct old password
-	rv = login(client, "rubenwardy", old_password)
-	assert b"You need to reset your password" in rv.data
-	assert b'<a href="/help/contact_us/">contact us</a>' in rv.data
+	# Password login is blocked, even with the correct old password, and the user is sent to a help page
+	rv = client.post("/user/login/", data=dict(username="rubenwardy", password=old_password))
+	assert rv.status_code == 302
+	assert rv.headers["Location"].endswith("/help/password_reset/")
+	rv = client.get(rv.headers["Location"])
+	assert rv.status_code == 200
+	assert b"Password Reset Required" in rv.data
+	assert b"You need to reset your password" not in rv.data
 	assert not is_logged_in(rv)
 	assert UserEmailVerification.query.filter_by(user_id=user.id).count() == 0
 
 	# Logging in with the email and correct old password sends a reset email
 	rv = client.post("/user/login/", data=dict(username=user.email, password=old_password))
 	assert rv.status_code == 302
-	assert rv.headers["Location"].endswith("/email_sent/")
+	assert rv.headers["Location"].endswith("/help/password_reset/")
 	rv = client.get(rv.headers["Location"])
 	assert b"sent you an email with a link" in rv.data
 	assert not is_logged_in(rv)
@@ -483,9 +487,8 @@ def test_unblock_password_reset(client):
 	db.session.commit()
 	assert target.is_password_login_blocked
 
-	rv = login(client, "target_user", old_password)
-	assert b"You need to reset your password" in rv.data
-	assert not is_logged_in(rv)
+	rv = client.post("/user/login/", data=dict(username="target_user", password=old_password))
+	assert rv.headers["Location"].endswith("/help/password_reset/")
 
 	# A moderator unblocks password login
 	rv = login(client, "rubenwardy", "tuckfrump")

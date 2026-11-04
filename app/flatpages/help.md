@@ -17,6 +17,7 @@ toc: False
 * [Why WTFPL is a terrible license](wtfpl/)
 * [Ranks and Permissions](ranks_permissions/)
 * [Contact Us](contact_us/)
+* [Password Reset Required](password_reset/)
 * [Top Packages Algorithm](top_packages/)
 * [Feeds](feeds/)
 

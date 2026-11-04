@@ -3,7 +3,6 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 
-from markupsafe import Markup
 from flask import redirect, abort, render_template, flash, request, url_for
 from werkzeug import Response
 from flask_babel import gettext, get_locale, lazy_gettext
@@ -74,14 +73,8 @@ def handle_login(form):
 				return
 
 			send_password_reset_email(user, user.email)
-			flash(gettext("You need to reset your password. We've sent you an email with a link to do so."), "danger")
-			return redirect(url_for("users.email_sent"))
 
-		# Translated string with a fixed URL, no user input
-		flash(Markup(gettext("You need to reset your password. Use \"Forgot my password\" or sign in with GitHub. "  # noqa: S704
-				"If you need help, <a href=\"%(url)s\">contact us</a>.",
-				url=url_for("flatpage", path="help/contact_us"))), "danger")
-		return
+		return redirect(url_for("flatpage", path="help/password_reset"))
 
 	if not check_password_hash(user.password, form.password.data):
 		return fail(gettext(u"Incorrect password. Did you set one?"))
