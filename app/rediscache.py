@@ -59,10 +59,9 @@ def increment_download_event(reason: str | None, is_luanti: bool):
 
 def get_download_events() -> list[tuple[str, str, int]]:
 	"""Returns a list of (reason, platform, count)"""
-	ret = []
+	ret: list[tuple[str, str, int]] = []
 	for field, value in redis_client.hgetall(DOWNLOAD_EVENTS_KEY).items():
-		field = field.decode() if isinstance(field, bytes) else field
-		reason, _, platform = field.partition(":")
+		reason, _, platform = field.decode().partition(":")
 		ret.append((reason, platform, int(value)))
 	return sorted(ret)
 
