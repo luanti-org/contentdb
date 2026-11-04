@@ -174,7 +174,7 @@ def handle_email_notifications(user, prefs: UserNotificationPreferences, is_new,
 						url_for("users.profile", username=user.username))
 				user.email = newEmail
 		elif newEmail:
-			if EmailSubscription.query.filter_by(email=newEmail, blacklisted=True).count() > 0:
+			if EmailSubscription.query_by_email(newEmail).filter_by(blacklisted=True).count() > 0:
 				db.session.rollback()
 				flash(gettext("That email address has been unsubscribed/blacklisted, and cannot be used"), "danger")
 				return

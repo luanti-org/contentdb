@@ -23,7 +23,7 @@ reply_to = app.config.get("MAIL_REPLY_TO", None)
 
 def get_email_subscription(email):
 	assert isinstance(email, str)
-	ret = EmailSubscription.query.filter_by(email=email).first()
+	ret = EmailSubscription.query_by_email(email).first()
 	if not ret:
 		ret = EmailSubscription(email)
 		db.session.add(ret)

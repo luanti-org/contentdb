@@ -4,12 +4,13 @@
 
 import datetime
 import enum
+import hashlib
 from typing import TYPE_CHECKING, Optional
 
 from flask import current_app
 from flask_babel import lazy_gettext
 from flask_login import UserMixin
-from sqlalchemy import desc, text
+from sqlalchemy import desc, text, func
 from sqlalchemy.dialects.postgresql import CITEXT
 
 from .base import db, Model
@@ -400,14 +401,30 @@ class UserEmailVerification(Model):
 		return delta.total_seconds() > 12 * 60 * 60
 
 
+def hash_email(email: str) -> str:
+	return hashlib.sha256(email.lower().encode("utf-8")).hexdigest()
+
+
+def sql_hash_email(column):
+	return func.encode(func.sha256(func.convert_to(func.lower(column), "UTF8")), "hex")
+
+
 class EmailSubscription(Model):
 	id          = db.Column(db.Integer, primary_key=True)
-	email       = db.Column(CITEXT, nullable=False, unique=True)
+
+	email_hash  = db.Column(db.String(64), nullable=False, unique=True)
 	blacklisted = db.Column(db.Boolean, nullable=False, default=False)
 
-	def __init__(self, email):
-		self.email = email
+	def __init__(self, email: str):
+		self.email_hash = hash_email(email)
 		self.blacklisted = False
+
+	@classmethod
+	def query_by_email(cls, email: str):
+		return cls.query.filter_by(email_hash=hash_email(email))
+
+	def find_user(self) -> Optional["User"]:
+		return User.query.filter(User.email.is_not(None), sql_hash_email(User.email) == self.email_hash).first()
 
 	@property
 	def url(self):

@@ -275,7 +275,7 @@ def handle_set_password(form):
 						url_for("users.profile", username=current_user.username))
 				current_user.email = new_email
 		elif new_email:
-			if EmailSubscription.query.filter_by(email=new_email, blacklisted=True).count() > 0:
+			if EmailSubscription.query_by_email(new_email).filter_by(blacklisted=True).count() > 0:
 				db.session.rollback()
 				flash(gettext(u"That email address has been unsubscribed/blacklisted, and cannot be used"), "danger")
 				return
@@ -423,7 +423,7 @@ def unsubscribe_verify():
 			flash(gettext("Too many emails have been sent recently, please wait before trying again"), "danger")
 			return render_template("users/unsubscribe.html", form=form)
 
-		sub = EmailSubscription.query.filter_by(email=email).first()
+		sub = EmailSubscription.query_by_email(email).first()
 		if not sub:
 			sub = EmailSubscription(email)
 			db.session.add(sub)
@@ -437,7 +437,7 @@ def unsubscribe_verify():
 
 
 def unsubscribe_manage(sub: EmailSubscription):
-	user = User.query.filter_by(email=sub.email).first()
+	user = sub.find_user()
 
 	if request.method == "POST":
 		if user:

@@ -55,7 +55,7 @@ def create_user(username: str, display_name: str, email: Optional[str], oauth_pr
 					gettext("We were unable to create the account as the email is already in use by %(display_name)s. Try a different email address.",
 							display_name=user_by_email.display_name))
 			return redirect(url_for("users.email_sent"))
-		elif EmailSubscription.query.filter_by(email=email, blacklisted=True).count() > 0:
+		elif EmailSubscription.query_by_email(email).filter_by(blacklisted=True).count() > 0:
 			flash(gettext("That email address has been unsubscribed/blacklisted, and cannot be used"), "danger")
 			return None
 
