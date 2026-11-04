@@ -165,9 +165,16 @@ def handle_email_notifications(user, prefs: UserNotificationPreferences, is_new,
 		db.session.add(prefs)
 
 	if user.check_perm(current_user, Permission.CHANGE_EMAIL):
-		newEmail = form.email.data
-		if newEmail and newEmail != user.email and newEmail.strip() != "":
-			if EmailSubscription.query.filter_by(email=form.email.data, blacklisted=True).count() > 0:
+		newEmail = (form.email.data or "").strip()
+		if newEmail and user.has_email(newEmail):
+			# Only the casing has changed, so there's no need to verify the address again
+			if newEmail != user.email:
+				severity = AuditSeverity.NORMAL if current_user == user else AuditSeverity.MODERATION
+				add_audit_log(severity, current_user, f"Changed the casing of the email of {user.display_name}",
+						url_for("users.profile", username=user.username))
+				user.email = newEmail
+		elif newEmail:
+			if EmailSubscription.query.filter_by(email=newEmail, blacklisted=True).count() > 0:
 				db.session.rollback()
 				flash(gettext("That email address has been unsubscribed/blacklisted, and cannot be used"), "danger")
 				return
@@ -406,7 +413,12 @@ def modtools_set_email(username):
 	if not user.check_perm(current_user, Permission.CHANGE_EMAIL):
 		abort(403)
 
-	user.email = request.form["email"]
+	email = request.form["email"].strip()
+	if User.query.filter(User.email == email, User.id != user.id).count() > 0:
+		flash("Another user is already using that email", "danger")
+		return redirect(url_for("users.modtools", username=username))
+
+	user.email = email
 	user.is_active = False
 	end_user_sessions(user)
 

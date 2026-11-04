@@ -68,7 +68,7 @@ def handle_login(form):
 		if not check_password_hash(user.old_password, form.password.data):
 			return fail(gettext(u"Incorrect password. Did you set one?"))
 
-		if user.email and username == user.email:
+		if user.has_email(username):
 			if not hit_email_ratelimit(user.email):
 				flash(gettext("Too many emails have been sent recently, please wait before trying again"), "danger")
 				return
@@ -223,7 +223,8 @@ def forgot_password():
 
 		user = User.query.filter_by(email=email).first()
 		if user:
-			send_password_reset_email(user, email)
+			# Use the casing the user has set, rather than what was typed
+			send_password_reset_email(user, user.email)
 		else:
 			html = render_template("emails/unable_to_find_account.html")
 			send_anon_email.delay(email, get_locale().language, gettext("Unable to find account"),
@@ -268,8 +269,13 @@ def handle_set_password(form):
 
 	if hasattr(form, "email"):
 		new_email = nonempty_or_none(form.email.data)
-		if new_email and new_email != current_user.email:
-			if EmailSubscription.query.filter_by(email=form.email.data, blacklisted=True).count() > 0:
+		if new_email and current_user.has_email(new_email):
+			if new_email != current_user.email:
+				add_audit_log(AuditSeverity.USER, current_user, "Changed the casing of their email",
+						url_for("users.profile", username=current_user.username))
+				current_user.email = new_email
+		elif new_email:
+			if EmailSubscription.query.filter_by(email=new_email, blacklisted=True).count() > 0:
 				db.session.rollback()
 				flash(gettext(u"That email address has been unsubscribed/blacklisted, and cannot be used"), "danger")
 				return
@@ -279,7 +285,7 @@ def handle_set_password(form):
 				flash(gettext("Too many emails have been sent recently, please wait before trying again"), "danger")
 				return
 
-			user_by_email = User.query.filter_by(email=form.email.data).first()
+			user_by_email = User.query.filter_by(email=new_email).first()
 			if user_by_email:
 				send_anon_email.delay(form.email.data, get_locale().language, gettext("Email already in use"),
 					gettext(u"We were unable to create the account as the email is already in use by %(display_name)s. Try a different email address.",
@@ -341,8 +347,8 @@ def set_password():
 
 def confirm_email_verification(ver: UserEmailVerification) -> bool:
 	user = ver.user
-	if ver.email and user.email != ver.email:
-		if User.query.filter_by(email=ver.email).count() > 0:
+	if ver.email and not user.has_email(ver.email):
+		if User.query.filter(User.email == ver.email, User.id != user.id).count() > 0:
 			flash(gettext("Another user is already using that email"), "danger")
 			return False
 

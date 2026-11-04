@@ -4,12 +4,13 @@
 
 import datetime
 import enum
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Optional
 
 from flask import current_app
 from flask_babel import lazy_gettext
 from flask_login import UserMixin
 from sqlalchemy import desc, text
+from sqlalchemy.dialects.postgresql import CITEXT
 
 from .base import db, Model
 from app.utils.misc import truncate_string
@@ -155,7 +156,8 @@ class User(Model, UserMixin):
 	created_at = db.Column(db.DateTime, nullable=True, default=datetime.datetime.utcnow)
 
 	# User authentication information
-	username     = db.Column(db.String(50, collation="NOCASE"), nullable=False, unique=True, index=True)
+	# CITEXT columns are compared case-insensitively, including by unique constraints
+	username     = db.Column(CITEXT, nullable=False, unique=True, index=True)
 	password     = db.Column(db.String(255), nullable=True, server_default=None)
 	old_password = db.Column(db.String(255), nullable=True, server_default=None)
 
@@ -174,12 +176,12 @@ class User(Model, UserMixin):
 	rank         = db.Column(db.Enum(UserRank), nullable=False)
 
 	# Account linking
-	github_username = db.Column(db.String(50, collation="NOCASE"), nullable=True, unique=True)
+	github_username = db.Column(CITEXT, nullable=True, unique=True)
 	github_user_id = db.Column(db.Integer, nullable=True, unique=True)
-	forums_username = db.Column(db.String(50, collation="NOCASE"), nullable=True, unique=True)
+	forums_username = db.Column(CITEXT, nullable=True, unique=True)
 
 	# User email information
-	email         = db.Column(db.String(255), nullable=True, unique=True)
+	email         = db.Column(CITEXT, nullable=True, unique=True)
 	email_confirmed_at  = db.Column(db.DateTime(), nullable=True, server_default=None)
 
 	locale = db.Column(db.String(10), nullable=True, default=None)
@@ -260,6 +262,10 @@ class User(Model, UserMixin):
 		self.email = email
 		self.password = password
 		self.rank = UserRank.NOT_JOINED
+
+	def has_email(self, email: Optional[str]) -> bool:
+		"""Whether this user's email is `email`, ignoring case"""
+		return self.email is not None and email is not None and self.email.lower() == email.lower()
 
 	def can_access_todo_list(self):
 		return Permission.APPROVE_NEW.check(self) or Permission.APPROVE_RELEASE.check(self)
@@ -382,7 +388,7 @@ class User(Model, UserMixin):
 class UserEmailVerification(Model):
 	id      = db.Column(db.Integer, primary_key=True)
 	user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
-	email   = db.Column(db.String(100), nullable=False)
+	email   = db.Column(CITEXT, nullable=False)
 	token_hash = db.Column(db.String(64), nullable=True, unique=True)
 	user    = db.relationship("User", foreign_keys=[user_id], back_populates="email_verifications")
 	is_password_reset = db.Column(db.Boolean, nullable=False, default=False)
@@ -396,7 +402,7 @@ class UserEmailVerification(Model):
 
 class EmailSubscription(Model):
 	id          = db.Column(db.Integer, primary_key=True)
-	email       = db.Column(db.String(100), nullable=False, unique=True)
+	email       = db.Column(CITEXT, nullable=False, unique=True)
 	blacklisted = db.Column(db.Boolean, nullable=False, default=False)
 
 	def __init__(self, email):
