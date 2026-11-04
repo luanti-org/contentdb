@@ -230,8 +230,12 @@ class User(Model, UserMixin):
 	username_valid = db.CheckConstraint("username ~* '^[A-Za-z0-9 ._-]+$'")
 
 	@property
-	def is_password_reset_required(self) -> bool:
+	def is_password_login_blocked(self) -> bool:
 		return self.password is None and self.old_password is not None
+
+	@property
+	def is_password_reset_required(self) -> bool:
+		return self.old_password is not None and (self.password is None or self.password == self.old_password)
 
 	@property
 	def is_banned(self):

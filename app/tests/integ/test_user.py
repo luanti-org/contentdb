@@ -468,3 +468,90 @@ def test_modtools_rank_banned_ends_sessions(client):
 	db.session.expire_all()
 	assert User.query.filter_by(username="target_user").one().rank == UserRank.BANNED
 	assert UserSession.query.filter_by(user_id=target.id).count() == 0
+
+
+def test_unblock_password_reset(client):
+	old_password = "OldPasswordLeaked"
+	new_password = "VYjNnjdDPhCVUZx"
+
+	target = User("target_user", active=True)
+	target.rank = UserRank.MEMBER
+	target.old_password = make_flask_login_password(old_password)
+	target.password = None
+	target.email = "target@example.com"
+	db.session.add(target)
+	db.session.commit()
+	assert target.is_password_login_blocked
+
+	rv = login(client, "target_user", old_password)
+	assert b"You need to reset your password" in rv.data
+	assert not is_logged_in(rv)
+
+	# A moderator unblocks password login
+	rv = login(client, "rubenwardy", "tuckfrump")
+	assert is_logged_in(rv)
+	rv = client.get("/users/target_user/modtools/")
+	assert b"Unblock" in rv.data
+
+	rv = client.post("/users/target_user/modtools/unblock-password/", follow_redirects=True)
+	assert b"Unblocked password login on target_user" in rv.data
+
+	target = User.query.filter_by(username="target_user").one()
+	assert not target.is_password_login_blocked
+	assert target.is_password_reset_required
+	assert target.password == target.old_password
+
+	# Unblocking again does nothing
+	rv = client.post("/users/target_user/modtools/unblock-password/", follow_redirects=True)
+	assert b"doesn&#39;t have a forced password reset" in rv.data
+	logout(client)
+
+	# The user can sign in with the old password, but must set a new one before doing anything else
+	rv = client.post("/user/login/", data=dict(username="target_user", password=old_password))
+	assert rv.status_code == 302
+	rv = client.get("/")
+	assert rv.status_code == 302
+	assert rv.headers["Location"].endswith("/user/set-password/")
+	assert client.get("/user/change-password/").headers["Location"].endswith("/user/set-password/")
+	assert client.get("/user/set-password/").status_code == 200
+
+	rv = set_password(client, old_password)
+	assert b"You cannot reuse your previous password" in rv.data
+	assert User.query.filter_by(username="target_user").one().is_password_reset_required
+
+	rv = set_password(client, new_password)
+	assert b"Your password has been changed successfully." in rv.data
+
+	target = User.query.filter_by(username="target_user").one()
+	assert not target.is_password_reset_required
+	assert client.get("/").status_code == 200
+
+	logout(client)
+	assert is_logged_in(login(client, "target_user", new_password))
+
+
+def test_unblock_password_reset_requires_permission(client):
+	target = User("target_user", active=True)
+	target.rank = UserRank.MEMBER
+	target.old_password = make_flask_login_password("OldPasswordLeaked")
+	db.session.add(target)
+
+	moderator = User("moderator_user", active=True)
+	moderator.rank = UserRank.MODERATOR
+	moderator.password = make_flask_login_password("VYjNnjdDPhCVUZx")
+	db.session.add(moderator)
+	db.session.commit()
+
+	# Moderators can't unblock someone of the same rank or above
+	rv = login(client, "moderator_user", "VYjNnjdDPhCVUZx")
+	assert is_logged_in(rv)
+	assert client.post("/users/rubenwardy/modtools/unblock-password/").status_code == 403
+	logout(client)
+
+	# Members aren't moderators
+	moderator.rank = UserRank.MEMBER
+	db.session.commit()
+	login(client, "moderator_user", "VYjNnjdDPhCVUZx")
+	rv = client.post("/users/target_user/modtools/unblock-password/")
+	assert rv.status_code in (302, 403)
+	assert User.query.filter_by(username="target_user").one().is_password_login_blocked

@@ -440,6 +440,29 @@ def modtools_set_email(username):
 	return redirect(url_for("users.modtools", username=username))
 
 
+@bp.route("/users/<username>/modtools/unblock-password/", methods=["POST"])
+@rank_required(UserRank.MODERATOR)
+def modtools_unblock_password(username):
+	user = User.query.filter_by(username=username).first()
+	if not user:
+		abort(404)
+
+	if not user.check_perm(current_user, Permission.CHANGE_EMAIL):
+		abort(403)
+
+	if not user.is_password_login_blocked:
+		flash(f"{user.username} doesn't have a forced password reset", "danger")
+		return redirect(url_for("users.modtools", username=username))
+
+	user.password = user.old_password
+	add_audit_log(AuditSeverity.MODERATION, current_user, f"Unblocked password login on {user.username}",
+			url_for("users.profile", username=user.username), None)
+	db.session.commit()
+
+	flash(f"Unblocked password login on {user.username}", "success")
+	return redirect(url_for("users.modtools", username=username))
+
+
 @bp.route("/users/<username>/modtools/verify-email/<int:ver_id>/", methods=["POST"])
 @rank_required(UserRank.MODERATOR)
 def modtools_verify_email(username, ver_id):

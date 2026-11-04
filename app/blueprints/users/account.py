@@ -64,7 +64,7 @@ def handle_login(form):
 	if user is None:
 		return fail(gettext(u"User %(username)s does not exist", username=username))
 
-	if user.is_password_reset_required:
+	if user.is_password_login_blocked:
 		if not check_password_hash(user.old_password, form.password.data):
 			return fail(gettext(u"Incorrect password. Did you set one?"))
 
@@ -330,7 +330,7 @@ def change_password():
 @bp.route("/user/set-password/", methods=["GET", "POST"])
 @login_required
 def set_password():
-	if current_user.password:
+	if current_user.password and not current_user.is_password_reset_required:
 		return redirect(url_for("users.change_password"))
 
 	form = SetPasswordForm(request.form)
