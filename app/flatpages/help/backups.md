@@ -15,5 +15,5 @@ Note: this is experimental, the format and filename may change without notice.
   * `<username>/`
     * index.json - user information
     * `<package name>/`
-      * index.json
+      * index.json - package information. `provides`, `depends`, and `optional_depends` are lists of mod names
       * releases.json

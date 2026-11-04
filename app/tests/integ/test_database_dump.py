@@ -10,9 +10,10 @@ import zipfile
 import pytest
 
 from app.default_data import populate_test_data
-from app.models import db
+from app.models import db, User, Dependency, MetaPackage
 from app.tasks.dumptask import create_database_dump
 from app.uploads import copy_to_uploads, local
+from .utils import make_package
 from .utils import client # noqa
 
 
@@ -62,3 +63,35 @@ def test_copy_to_uploads_rejects_unsafe_names(client, upload_dir, tmp_path_facto
 	with pytest.raises(ValueError):
 		copy_to_uploads(str(src), filename)
 	assert os.listdir(upload_dir) == []
+
+
+def read_package_index(upload_dir, author: str, name: str) -> dict:
+	date = datetime.datetime.utcnow().strftime("%Y-%m-%d")
+	with zipfile.ZipFile(upload_dir / f"backup-{date}.zip") as zipf:
+		return json.loads(zipf.read(f"backup/{author}/{name}/index.json"))
+
+
+def test_database_dump_includes_dependencies(client, upload_dir):
+	author = User.query.filter_by(username="rubenwardy").one()
+	library = make_package("library_pkg", author)
+	package = make_package("depender_pkg", author)
+	make_package("no_deps_pkg", author)
+
+	package.provides.append(MetaPackage("depender_api"))
+	db.session.add(Dependency(package, meta=MetaPackage("default"), optional=False))
+	db.session.add(Dependency(package, package=library, optional=False))
+	db.session.add(Dependency(package, meta=MetaPackage("mesecons"), optional=True))
+	db.session.add(Dependency(package, meta=MetaPackage("awards"), optional=True))
+	db.session.commit()
+
+	create_database_dump()
+
+	data = read_package_index(upload_dir, "rubenwardy", "depender_pkg")
+	assert data["provides"] == ["depender_api"]
+	assert data["depends"] == ["default", "library_pkg"]
+	assert data["optional_depends"] == ["awards", "mesecons"]
+
+	data = read_package_index(upload_dir, "rubenwardy", "no_deps_pkg")
+	assert data["provides"] == []
+	assert data["depends"] == []
+	assert data["optional_depends"] == []
