@@ -16,7 +16,7 @@ from wtforms_sqlalchemy.fields import QuerySelectField
 from app.domain.releases import do_create_vcs_release, DomainError, do_create_zip_release
 from app.models import Package, db, User, PackageState, Permission, UserRank, PackageDailyStats, LuantiRelease, \
 	PackageRelease, PackageUpdateTrigger, PackageUpdateConfig, ReleaseState
-from app.rediscache import has_key, set_temp_key, make_download_key
+from app.rediscache import check_and_set_temp_key, make_download_key, increment_download_event
 from app.tasks.importtasks import check_update_config
 from app.domain.git_access import can_package_use_git
 from app.utils.models import is_package_page, add_audit_log_on_package
@@ -128,10 +128,10 @@ def download_release(package, id):
 		is_v510 = is_luanti and is_luanti_v510(user_agent)
 		reason = request.args.get("reason")
 		PackageDailyStats.notify_download(package, is_luanti, is_v510, reason)
+		increment_download_event(reason, is_luanti)
 
 		key = make_download_key(ip, release.package)
-		if not has_key(key):
-			set_temp_key(key, "true")
+		if check_and_set_temp_key(key, "true"):
 
 			bonus: float = 0
 			if reason == "new":

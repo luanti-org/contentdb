@@ -10,7 +10,7 @@ from sqlalchemy.sql.expression import func
 
 from app.models import Package, db, User, UserRank, PackageState, PackageReview, ThreadReply, Collection, AuditLogEntry, \
 	PackageTranslation, Language
-from app.rediscache import get_key
+from app.rediscache import get_key, get_download_events
 
 bp = Blueprint("metrics", __name__)
 
@@ -43,9 +43,10 @@ def generate_metrics():
 	users = User.query.filter(User.rank > UserRank.NOT_JOINED, User.rank != UserRank.BOT, User.is_active).count()
 	authors = User.query.filter(User.packages.any(state=PackageState.APPROVED)).count()
 
-	one_day_ago = datetime.datetime.now() - datetime.timedelta(days=1)
-	one_week_ago = datetime.datetime.now() - datetime.timedelta(weeks=1)
-	one_month_ago = datetime.datetime.now() - datetime.timedelta(weeks=4)
+	now = datetime.datetime.utcnow()
+	one_day_ago = now - datetime.timedelta(days=1)
+	one_week_ago = now - datetime.timedelta(weeks=1)
+	one_month_ago = now - datetime.timedelta(days=30)
 
 	active_users_day = User.query.filter(and_(User.rank != UserRank.BOT, or_(
 		User.audit_log_entries.any(AuditLogEntry.created_at > one_day_ago),
@@ -61,47 +62,54 @@ def generate_metrics():
 	comments = ThreadReply.query.count()
 	collections = Collection.query.count()
 
-	score_result = db.session.query(func.sum(Package.score)).one_or_none()
+	score_result = db.session.query(func.sum(Package.score)).filter(Package.state == PackageState.APPROVED).one_or_none()
 	score = 0 if not score_result or not score_result[0] else score_result[0]
 
-	packages_with_translations = (db.session.query(PackageTranslation.package_id)
-			.filter(PackageTranslation.language_id != "en")
-			.group_by(PackageTranslation.package_id).count())
-	packages_with_translations_meta = (db.session.query(PackageTranslation.package_id)
-			.filter(PackageTranslation.short_desc.is_not(None), PackageTranslation.language_id != "en")
-			.group_by(PackageTranslation.package_id).count())
-	languages_packages = (db.session.query(PackageTranslation.language_id, func.count(Package.id))
-			.select_from(PackageTranslation).outerjoin(Package)
+	translations_filter = and_(Package.state == PackageState.APPROVED, PackageTranslation.language_id != "en")
+	translations_meta_filter = and_(translations_filter, PackageTranslation.short_desc.is_not(None))
+
+	packages_with_translations = (db.session.query(func.count(func.distinct(PackageTranslation.package_id)))
+			.select_from(PackageTranslation).join(Package)
+			.filter(translations_filter).scalar())
+	packages_with_translations_meta = (db.session.query(func.count(func.distinct(PackageTranslation.package_id)))
+			.select_from(PackageTranslation).join(Package)
+			.filter(translations_meta_filter).scalar())
+	languages_packages = (db.session.query(PackageTranslation.language_id, func.count(func.distinct(Package.id)))
+			.select_from(PackageTranslation).join(Package)
+			.filter(translations_filter)
 			.order_by(db.asc(PackageTranslation.language_id))
 			.group_by(PackageTranslation.language_id).all())
-	languages_packages_meta = (db.session.query(PackageTranslation.language_id, func.count(Package.id))
-			.select_from(PackageTranslation).outerjoin(Package)
-			.filter(PackageTranslation.short_desc.is_not(None))
+	languages_packages_meta = (db.session.query(PackageTranslation.language_id, func.count(func.distinct(Package.id)))
+			.select_from(PackageTranslation).join(Package)
+			.filter(translations_meta_filter)
 			.order_by(db.asc(PackageTranslation.language_id))
 			.group_by(PackageTranslation.language_id).all())
 
 	ret = ""
-	ret += write_single_stat("contentdb_packages", "Total packages", "gauge", packages)
+	ret += write_single_stat("contentdb_packages", "Number of approved packages", "gauge", packages)
 	ret += write_single_stat("contentdb_users", "Number of registered users", "gauge", users)
 	ret += write_single_stat("contentdb_authors", "Number of users with packages", "gauge", authors)
 	ret += write_single_stat("contentdb_users_active_1d", "Number of daily active registered users", "gauge", active_users_day)
 	ret += write_single_stat("contentdb_users_active_1w", "Number of weekly active registered users", "gauge", active_users_week)
-	ret += write_single_stat("contentdb_users_active_1m", "Number of monthly active registered users", "gauge", active_users_month)
-	ret += write_single_stat("contentdb_downloads", "Total downloads", "gauge", downloads)
-	ret += write_single_stat("contentdb_emails", "Number of emails sent", "counter", int(get_key("emails_sent", "0")))
+	ret += write_single_stat("contentdb_users_active_1m", "Number of registered users active in the last 30 days", "gauge", active_users_month)
+	ret += write_single_stat("contentdb_downloads", "Total downloads, deduplicated by IP", "gauge", downloads)
+	ret += write_array_stat("contentdb_download_events_total",
+			"Number of download events. Resets when Redis does, use rate() or increase()", "counter",
+			[({"reason": reason, "platform": platform}, count) for reason, platform, count in get_download_events()])
+	ret += write_single_stat("contentdb_emails_total", "Number of emails sent", "counter", int(get_key("emails_sent", "0")))
 	ret += write_single_stat("contentdb_reviews", "Number of reviews", "gauge", reviews)
 	ret += write_single_stat("contentdb_comments", "Number of comments", "gauge", comments)
 	ret += write_single_stat("contentdb_collections", "Number of collections", "gauge", collections)
-	ret += write_single_stat("contentdb_score", "Total package score", "gauge", score)
+	ret += write_single_stat("contentdb_score", "Total score of approved packages", "gauge", score)
 	ret += write_single_stat("contentdb_packages_with_translations", "Number of packages with translations", "gauge",
 			packages_with_translations)
 	ret += write_single_stat("contentdb_packages_with_translations_meta", "Number of packages with translated meta",
 			"gauge", packages_with_translations_meta)
 	ret += write_array_stat("contentdb_languages_translated",
-			"Number of packages per language", "gauge",
+			"Number of approved packages with translations per language", "gauge",
 			[({"language": x[0]}, x[1]) for x in languages_packages])
 	ret += write_array_stat("contentdb_languages_translated_meta",
-			"Number of packages with translated short desc per language", "gauge",
+			"Number of approved packages with translated short desc per language", "gauge",
 			[({"language": x[0]}, x[1]) for x in languages_packages_meta])
 
 	return ret
