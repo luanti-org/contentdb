@@ -190,7 +190,7 @@ def test_require_password_reset(client, monkeypatch):
 	assert rv.status_code == 302
 	assert rv.headers["Location"].endswith("/help/password_reset/")
 	rv = client.get(rv.headers["Location"])
-	assert b"sent you an email with a link" in rv.data
+	assert b"Password Reset Required" in rv.data
 	assert not is_logged_in(rv)
 	ver = UserEmailVerification.query.filter_by(user_id=user.id, is_password_reset=True).one()
 	assert ver.email == user.email
