@@ -35,4 +35,4 @@ def create_database_dump():
 				str = json.dumps(releases, indent=4)
 				zipf.writestr(f"backup/{package.author.username}/{package.name}/releases.json", str)
 
-		copy_to_uploads(tmp_path)
+		copy_to_uploads(tmp_path, os.path.basename(tmp_path))

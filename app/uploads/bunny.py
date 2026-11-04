@@ -91,10 +91,11 @@ def backend_upload_file(file, file_type: str, ext: str, length: int=10) -> str:
 	return _upload_file(file_path)
 
 
-def backend_copy_upload(filepath: str) -> str:
+def backend_copy_upload(filepath: str, filename: Optional[str] = None) -> str:
 	prune_dir(cache_dir_path, CACHE_MAX_AGE)
-	ext = os.path.splitext(filepath)[1][1:]
-	filename = f"{random_string(10)}.{ext}"
+	if filename is None:
+		ext = os.path.splitext(filepath)[1][1:]
+		filename = f"{random_string(10)}.{ext}"
 	cache_file_path = os.path.join(cache_dir_path, filename)
 	shutil.copy(filepath, cache_file_path)
 	return _upload_file(cache_file_path)

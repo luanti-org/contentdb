@@ -4,6 +4,7 @@
 
 import magic
 import os
+import re
 from werkzeug.datastructures import FileStorage
 
 from flask import redirect, send_from_directory
@@ -65,8 +66,14 @@ def upload_file(file: FileStorage, file_type: str, file_type_desc: LazyString | 
 	return result_path, get_upload_local_path(result_path)
 
 
-def copy_to_uploads(filepath: str):
-	return backend_copy_upload(filepath)
+UPLOAD_FILENAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_-]*(\.[A-Za-z0-9_-]+)*$")
+
+
+def copy_to_uploads(filepath: str, filename: Optional[str] = None) -> str:
+	if filename is not None and not UPLOAD_FILENAME_RE.match(filename):
+		raise ValueError(f"Invalid upload filename: {filename}")
+
+	return backend_copy_upload(filepath, filename)
 
 
 def get_public_upload_url(filepath: str):

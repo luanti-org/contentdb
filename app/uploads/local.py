@@ -23,9 +23,10 @@ def backend_upload_file(file, file_type: str, ext: str, length: int=10):
 	return "/uploads/" + filename
 
 
-def backend_copy_upload(filepath: str) -> str:
-	ext = os.path.splitext(filepath)[1][1:]
-	filename = random_string(10) + "." + ext
+def backend_copy_upload(filepath: str, filename: Optional[str] = None) -> str:
+	if filename is None:
+		ext = os.path.splitext(filepath)[1][1:]
+		filename = random_string(10) + "." + ext
 	destPath = os.path.join(upload_dir, filename)
 	shutil.copyfile(filepath, destPath)
 	return "/uploads/" + filename

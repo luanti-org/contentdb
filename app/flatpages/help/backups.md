@@ -4,7 +4,7 @@ You can download a backup of the ContentDB database at `/uploads/backup-YYYY-MM-
 
 This contains all public database information on ContentDB. It does not include uploads such as images or zip files.
 
-This is updated daily at 05:15 UTC.
+This is updated daily at 05:00 UTC.
 
 Note: this is experimental, the format and filename may change without notice.
 

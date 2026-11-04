@@ -103,7 +103,7 @@ CELERYBEAT_SCHEDULE = {
 	},
 	'create_database_dump': {
 		'task': 'app.tasks.dumptask.create_database_dump',
-		'schedule': crontab(minute=0, hour=5),  # 0510
+		'schedule': crontab(minute=0, hour=5),  # 0500
 	},
 	'update_public_approval_stats': {
 		'task': 'app.tasks.pkgtasks.update_public_approval_stats',
