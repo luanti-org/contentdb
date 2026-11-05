@@ -234,7 +234,7 @@ def import_licenses():
 @action("Delete inactive users")
 def delete_inactive_users():
 	users = User.query.filter(User.is_active == False, ~User.packages.any(), ~User.forum_topics.any(),
-			User.rank == UserRank.NOT_JOINED).all()
+			~User.maintained_packages.any(), User.rank == UserRank.NOT_JOINED).all()
 	for user in users:
 		db.session.delete(user)
 	db.session.commit()

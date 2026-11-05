@@ -24,8 +24,9 @@ from app.uploads import copy_to_uploads, get_public_upload_url
 def delete_inactive_users():
 	threshold = datetime.datetime.now() - datetime.timedelta(hours=5)
 
+	# Users that only maintain packages are kept, such as ones created by importing a database dump
 	users = User.query.filter(User.is_active == False, User.packages == None, User.forum_topics == None,
-			User.created_at <= threshold, User.rank == UserRank.NOT_JOINED).all()
+			~User.maintained_packages.any(), User.created_at <= threshold, User.rank == UserRank.NOT_JOINED).all()
 	for user in users:
 		db.session.delete(user)
 

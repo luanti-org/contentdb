@@ -59,6 +59,15 @@ Docker is the recommended way to develop and deploy ContentDB.
 	2. Either `python utils/setup.py -t` or `python utils/setup.py -o`:
 	  	1. `-o` creates just the admin, and static data like tags, and licenses.
 	  	2. `-t` will do `-o` and also create test packages. (Recommended)
+	3. Or, to use real package data: run `python utils/setup.py` with no options, which creates just the admin
+	   and static data, exit the container, then import a
+	   [database dump](https://content.luanti.org/help/backups/) from the host:
+
+			./utils/import_dump.sh path/to/backup-YYYY-MM-DD.zip
+
+	   Add `--dry-run` to see what would be imported first. Packages that already exist are skipped,
+	   and imported users have the rank "Not Joined". Uploads aren't included, so images and release
+	   downloads won't work.
 
 9. Make uploads writable:
 

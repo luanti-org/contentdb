@@ -8,6 +8,9 @@ This is updated daily at 05:00 UTC.
 
 Note: this is experimental, the format and filename may change without notice.
 
+To set up a ContentDB instance with this data, use `./utils/import_dump.sh path/to/backup.zip`.
+See [Getting Started](https://github.com/luanti-org/contentdb/blob/master/docs/getting_started.md).
+
 ## Structure
 
 * `backup/`
@@ -24,6 +27,7 @@ Note: this is experimental, the format and filename may change without notice.
         * `translations` maps a language id to its `title`, `short_desc`, and `desc`
         * `aliases` lists the old `author` and `name` that redirect to this package
         * `game_support` only includes approved games
+        * `score_downloads` is the part of `score` that comes from downloads, as reviews aren't included
       * releases.json - approved releases
       * screenshots.json - approved screenshots, with `title`, `order`, `filename`, `url`, `width`, `height`,
         `file_size_bytes`, `created_at`, and `is_cover_image`

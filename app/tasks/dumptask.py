@@ -136,6 +136,9 @@ def create_database_dump():
 				data["translations"] = translations.get(package.id, {})
 				data["aliases"] = aliases.get(package.id, [])
 
+				# `score` includes reviews, which aren't in the dump, so importers need this to recalculate it
+				data["score_downloads"] = package.score_downloads
+
 				# as_dict includes unapproved screenshots, and games that aren't in the dump
 				data["screenshots"] = [x.public_url for x in package_screenshots]
 				data["game_support"] = [
