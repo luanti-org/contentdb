@@ -9,12 +9,25 @@ from .models import User, UserRank, LuantiRelease, Tag, License, Notification, N
 from .utils.user import make_flask_login_password
 
 
-def populate(session):
-	admin_user = User("rubenwardy")
+DEFAULT_ADMIN_USERNAME = "rubenwardy"
+DEFAULT_ADMIN_PASSWORD = "tuckfrump"  # noqa: S105 - only used for development, tests, and CI
+
+
+def populate(
+		session,
+		admin_username: str = DEFAULT_ADMIN_USERNAME,
+		admin_password: str = DEFAULT_ADMIN_PASSWORD,
+		link_admin_accounts: bool = True):
+	"""
+	Creates the admin user and static data like tags and licenses.
+	`link_admin_accounts` sets the admin's GitHub and forums usernames to its username.
+	"""
+	admin_user = User(admin_username)
 	admin_user.is_active = True
-	admin_user.password = make_flask_login_password("tuckfrump")
-	admin_user.github_username = "rubenwardy"
-	admin_user.forums_username = "rubenwardy"
+	admin_user.password = make_flask_login_password(admin_password)
+	if link_admin_accounts:
+		admin_user.github_username = admin_username
+		admin_user.forums_username = admin_username
 	admin_user.rank = UserRank.ADMIN
 	session.add(admin_user)
 
@@ -59,6 +72,7 @@ def populate_test_data(session):
 	licenses = { x.name : x for x in License.query.all() }
 	tags = { x.name : x for x in Tag.query.all() }
 	admin_user = User.query.filter_by(rank=UserRank.ADMIN).first()
+	assert admin_user is not None, "populate() must be called first"
 	# protocol 32 is no longer present so just reuse the oldest version present
 	v4 = LuantiRelease.query.filter_by(protocol=37).first()
 	v51 = LuantiRelease.query.filter_by(protocol=38).first()
@@ -69,7 +83,7 @@ def populate_test_data(session):
 	ez.rank = UserRank.EDITOR
 	session.add(ez)
 
-	not1 = Notification(admin_user, ez, NotificationType.PACKAGE_APPROVAL, "Awards approved", "/packages/rubenwardy/awards/")
+	not1 = Notification(admin_user, ez, NotificationType.PACKAGE_APPROVAL, "Awards approved", f"/packages/{admin_user.username}/awards/")
 	session.add(not1)
 
 	jeija = User("Jeija")

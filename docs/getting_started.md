@@ -56,25 +56,23 @@ Docker is the recommended way to develop and deploy ContentDB.
 
 8. Create initial data
 	1. `./utils/bash.sh`
-	2. Either `python utils/setup.py -t` or `python utils/setup.py -o`:
-	  	1. `-o` creates just the admin, and static data like tags, and licenses.
-	  	2. `-t` will do `-o` and also create test packages. (Recommended)
-	3. Or, to use real package data: run `python utils/setup.py` with no options, which creates just the admin
-	   and static data, exit the container, then import a
-	   [database dump](https://content.luanti.org/help/backups/) from the host:
+	2. Create data:
+		1. Either: with clean data:  `python utils/setup.py`. Include `-t` to create test users and packages.
+		2. Or run `python utils/setup.py`, exit the container, then import a
+		   [database dump](https://content.luanti.org/help/backups/) from the host:
 
-			./utils/import_dump.sh path/to/backup-YYYY-MM-DD.zip
+				./utils/import_dump.sh path/to/backup-YYYY-MM-DD.zip
 
-	   Add `--dry-run` to see what would be imported first. Packages that already exist are skipped,
-	   and imported users have the rank "Not Joined". Uploads aren't included, so images and release
-	   downloads won't work.
+		   Add `--dry-run` to see what would be imported first. Packages that
+		   already exist are skipped, and imported users have the rank
+		   "Not Joined". Uploads aren't included, so images and release
+		   downloads won't work.
 
 9. Make uploads writable:
 
 		sudo chown $(whoami):5123 -R data/uploads
 
-10. View at <http://localhost:5123>.
-   The admin username is `rubenwardy` and the password is `tuckfrump`.
+10. View at <http://localhost:5123>, and log in using the admin account you created.
 
 In the future, starting CDB is as simple as:
 
