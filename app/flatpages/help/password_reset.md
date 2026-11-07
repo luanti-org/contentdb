@@ -6,10 +6,9 @@ in to your ContentDB account. Your old password will no longer work.
 
 ## If your account has an email address
 
-Use [Forgot my password](/user/forgot-password/) to get a link to reset your password.
-
-If you attempted to log in with your email address, you might have received a
-password reset already.
+Signing in with your old password sends a link to reset your password to your
+email address. You can also use [Forgot my password](/user/forgot-password/) to
+get one.
 
 ## If your account is linked to GitHub
 

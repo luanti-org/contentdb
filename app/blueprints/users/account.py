@@ -67,11 +67,16 @@ def handle_login(form):
 		if not check_password_hash(user.old_password, form.password.data):
 			return fail(gettext(u"Incorrect password. Did you set one?"))
 
-		if user.email and hit_email_ratelimit(user.email):
-			send_password_reset_email(user, user.email)
-			return redirect(url_for("flatpage", path="email_sent"))
-		else:
+		if not user.email:
 			return redirect(url_for("flatpage", path="help/password_reset"))
+
+		# The correct password was given, so it's safe to say that an email wasn't sent
+		if not hit_email_ratelimit(user.email):
+			flash(gettext("Too many emails have been sent recently, please wait before trying again"), "danger")
+			return redirect(url_for("flatpage", path="help/password_reset"))
+
+		send_password_reset_email(user, user.email)
+		return redirect(url_for("users.email_sent"))
 
 	if not check_password_hash(user.password, form.password.data):
 		return fail(gettext(u"Incorrect password. Did you set one?"))

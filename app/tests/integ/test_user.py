@@ -174,31 +174,23 @@ def test_require_password_reset(client, monkeypatch):
 	assert b"You need to reset your password" not in rv.data
 	assert UserEmailVerification.query.filter_by(user_id=user.id).count() == 0
 
-	# Password login is blocked, even with the correct old password, and the user is sent to a help page
-	rv = client.post("/user/login/", data=dict(username="rubenwardy", password=old_password))
-	assert rv.status_code == 302
-	assert rv.headers["Location"].endswith("/help/password_reset/")
-	rv = client.get(rv.headers["Location"])
-	assert rv.status_code == 200
-	assert b"Password Reset Required" in rv.data
-	assert b"You need to reset your password" not in rv.data
-	assert not is_logged_in(rv)
-	assert UserEmailVerification.query.filter_by(user_id=user.id).count() == 0
+	# Password login is blocked, even with the correct old password. A reset email is sent instead, whether the
+	# username or email was used.
+	for i, username in enumerate(["rubenwardy", user.email]):
+		rv = client.post("/user/login/", data=dict(username=username, password=old_password))
+		assert rv.status_code == 302
+		assert rv.headers["Location"].endswith("/email_sent/")
+		rv = client.get(rv.headers["Location"])
+		assert rv.status_code == 200
+		assert not is_logged_in(rv)
+		assert UserEmailVerification.query.filter_by(user_id=user.id, is_password_reset=True).count() == i + 1
+		assert send_verify_email.delay.call_count == i + 1
+		assert send_verify_email.delay.call_args.args[0] == user.email
 
-	# Logging in with the email and correct old password sends a reset email
-	rv = client.post("/user/login/", data=dict(username=user.email, password=old_password))
-	assert rv.status_code == 302
-	assert rv.headers["Location"].endswith("/help/password_reset/")
-	rv = client.get(rv.headers["Location"])
-	assert b"Password Reset Required" in rv.data
-	assert not is_logged_in(rv)
-	ver = UserEmailVerification.query.filter_by(user_id=user.id, is_password_reset=True).one()
-	assert ver.email == user.email
-
-	send_verify_email.delay.assert_called_once()
-	assert send_verify_email.delay.call_args.args[0] == user.email
 	token = send_verify_email.delay.call_args.args[1]
-	assert ver.token_hash == hash_token(token)
+	ver = UserEmailVerification.query.filter_by(token_hash=hash_token(token)).one()
+	assert ver.email == user.email
+	assert ver.is_password_reset
 
 	rv = client.get(url_for("users.verify_email", token=token))
 	assert rv.status_code == 302
@@ -474,7 +466,8 @@ def test_modtools_rank_banned_ends_sessions(client):
 	assert UserSession.query.filter_by(user_id=target.id).count() == 0
 
 
-def test_unblock_password_reset(client):
+def test_unblock_password_reset(client, monkeypatch):
+	monkeypatch.setattr(account, "send_verify_email", MagicMock())
 	old_password = "OldPasswordLeaked"
 	new_password = "VYjNnjdDPhCVUZx"
 
@@ -488,7 +481,7 @@ def test_unblock_password_reset(client):
 	assert target.is_password_login_blocked
 
 	rv = client.post("/user/login/", data=dict(username="target_user", password=old_password))
-	assert rv.headers["Location"].endswith("/help/password_reset/")
+	assert rv.headers["Location"].endswith("/email_sent/")
 
 	# A moderator unblocks password login
 	rv = login(client, "rubenwardy", "tuckfrump")
@@ -531,6 +524,49 @@ def test_unblock_password_reset(client):
 
 	logout(client)
 	assert is_logged_in(login(client, "target_user", new_password))
+
+
+def make_blocked_user(email: str | None) -> User:
+	user = User("target_user", active=True, email=email)
+	user.rank = UserRank.MEMBER
+	user.old_password = make_flask_login_password("OldPasswordLeaked")
+	db.session.add(user)
+	db.session.commit()
+	assert user.is_password_login_blocked
+	return user
+
+
+def test_blocked_login_without_email_shows_help(client, monkeypatch):
+	send_verify_email = MagicMock()
+	monkeypatch.setattr(account, "send_verify_email", send_verify_email)
+	user = make_blocked_user(None)
+
+	rv = client.post("/user/login/", data=dict(username="target_user", password="OldPasswordLeaked"))
+	assert rv.status_code == 302
+	assert rv.headers["Location"].endswith("/help/password_reset/")
+	rv = client.get(rv.headers["Location"])
+	assert b"Password Reset Required" in rv.data
+	assert b"Too many emails" not in rv.data
+	assert not is_logged_in(rv)
+	assert UserEmailVerification.query.filter_by(user_id=user.id).count() == 0
+	send_verify_email.delay.assert_not_called()
+
+
+def test_blocked_login_rate_limited_shows_help(client, monkeypatch):
+	send_verify_email = MagicMock()
+	monkeypatch.setattr(account, "send_verify_email", send_verify_email)
+	monkeypatch.setattr(account, "hit_email_ratelimit", lambda email: False)
+	user = make_blocked_user("target@example.com")
+
+	rv = client.post("/user/login/", data=dict(username="target_user", password="OldPasswordLeaked"))
+	assert rv.status_code == 302
+	assert rv.headers["Location"].endswith("/help/password_reset/")
+	rv = client.get(rv.headers["Location"])
+	assert b"Password Reset Required" in rv.data
+	assert b"Too many emails have been sent recently" in rv.data
+	assert not is_logged_in(rv)
+	assert UserEmailVerification.query.filter_by(user_id=user.id).count() == 0
+	send_verify_email.delay.assert_not_called()
 
 
 def test_unblock_password_reset_requires_permission(client):
