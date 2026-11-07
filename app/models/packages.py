@@ -347,10 +347,10 @@ class Dependency(Model):
 	id              = db.Column(db.Integer, primary_key=True)
 
 	depender_id     = db.Column(db.Integer, db.ForeignKey("package.id"),     nullable=True)
-	depender        = db.relationship("Package", foreign_keys=[depender_id])
+	depender        = db.relationship("Package", foreign_keys=[depender_id], back_populates="dependencies")
 
 	package_id      = db.Column(db.Integer, db.ForeignKey("package.id"),     nullable=True)
-	package         = db.relationship("Package", foreign_keys=[package_id])
+	package         = db.relationship("Package", foreign_keys=[package_id], back_populates="dependents")
 
 	meta_package_id = db.Column(db.Integer, db.ForeignKey("meta_package.id"), nullable=True)
 	meta_package = db.relationship("MetaPackage", foreign_keys=[meta_package_id])
@@ -528,7 +528,12 @@ class Package(Model):
 
 	provides = db.relationship("MetaPackage", secondary=PackageProvides, order_by=db.asc("name"), back_populates="packages")
 
-	dependencies = db.relationship("Dependency", back_populates="depender", lazy="dynamic", foreign_keys=[Dependency.depender_id])
+	dependencies = db.relationship("Dependency", back_populates="depender", lazy="dynamic", foreign_keys=[Dependency.depender_id],
+			cascade="all, delete, delete-orphan")
+
+	# Dependencies of other packages on this package
+	dependents = db.relationship("Dependency", back_populates="package", lazy="dynamic", foreign_keys=[Dependency.package_id],
+			cascade="all, delete, delete-orphan")
 
 	supported_games = db.relationship("PackageGameSupport", back_populates="package", lazy="dynamic",
 			foreign_keys=[PackageGameSupport.package_id], cascade="all, delete, delete-orphan")
@@ -553,7 +558,7 @@ class Package(Model):
 	cover_image_id = db.Column(db.Integer, db.ForeignKey("package_screenshot.id"), nullable=True, default=None)
 	cover_image = db.relationship("PackageScreenshot", uselist=False, foreign_keys=[cover_image_id], post_update=True)
 
-	maintainers = db.relationship("User", secondary=maintainers)
+	maintainers = db.relationship("User", secondary=maintainers, back_populates="maintained_packages")
 
 	threads = db.relationship("Thread", back_populates="package", order_by=db.desc("thread_created_at"),
 			foreign_keys="Thread.package_id", cascade="all, delete, delete-orphan", lazy="dynamic")

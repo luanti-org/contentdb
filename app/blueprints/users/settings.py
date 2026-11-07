@@ -17,6 +17,7 @@ from app.tasks.emails import send_verify_email
 from app.tasks.usertasks import update_github_user_id
 from app.utils.misc import nonempty_or_none, random_string, hash_token
 from app.utils.models import add_audit_log
+from app.domain.user_deletion import delete_user
 from app.utils.ratelimit import hit_email_ratelimit
 from app.utils.user import rank_required, end_user_sessions, logout_current_session
 from app.utils.flask import has_blocked_domains
@@ -299,13 +300,7 @@ def delete(username):
 		msg = "Deleted user {}".format(user.username)
 		flash(msg, "success")
 		add_audit_log(AuditSeverity.MODERATION, current_user, msg, None)
-
-		if current_user.rank.at_least(UserRank.ADMIN):
-			for pkg in user.packages.all():
-				pkg.review_thread = None
-				db.session.delete(pkg)
-
-		db.session.delete(user)
+		delete_user(user)
 	elif "deactivate" in request.form:
 		for reply in user.replies.all():
 			db.session.delete(reply)

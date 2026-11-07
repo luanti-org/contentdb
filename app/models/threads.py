@@ -26,7 +26,9 @@ class Thread(Model):
 	package_id = db.Column(db.Integer, db.ForeignKey("package.id"), nullable=True)
 	package    = db.relationship("Package", foreign_keys=[package_id], back_populates="threads")
 
-	is_review_thread = db.relationship("Package", foreign_keys="Package.review_thread_id", back_populates="review_thread")
+	# post_update on both sides of Package.review_thread, as packages and threads reference each other
+	is_review_thread = db.relationship("Package", foreign_keys="Package.review_thread_id", back_populates="review_thread",
+			post_update=True)
 
 	review_id  = db.Column(db.Integer, db.ForeignKey("package_review.id"), nullable=True)
 	review     = db.relationship("PackageReview", foreign_keys=[review_id], cascade="all, delete")

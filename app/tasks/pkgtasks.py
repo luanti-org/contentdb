@@ -96,7 +96,6 @@ def clear_removed_packages(all_packages: bool):
 
 	count = query.count()
 	for pkg in query.all():
-		pkg.review_thread = None
 		db.session.delete(pkg)
 	db.session.commit()
 

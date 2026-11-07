@@ -25,6 +25,7 @@ from app.tasks.pkgtasks import notify_about_git_forum_links, clear_removed_packa
 	update_release_sha256
 from app.tasks.dumptask import create_database_dump
 from app.utils.models import add_notification, get_system_user, add_audit_log
+from app.domain.user_deletion import delete_user
 from app.uploads import delete_upload
 
 
@@ -236,7 +237,7 @@ def delete_inactive_users():
 	users = User.query.filter(User.is_active == False, ~User.packages.any(), ~User.forum_topics.any(),
 			~User.maintained_packages.any(), User.rank == UserRank.NOT_JOINED).all()
 	for user in users:
-		db.session.delete(user)
+		delete_user(user)
 	db.session.commit()
 
 

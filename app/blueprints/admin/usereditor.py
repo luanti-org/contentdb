@@ -17,6 +17,7 @@ from wtforms.validators import Optional
 from app.models import db, UserRank, User, PackageState, AuditSeverity, AuditLogEntry
 from app.utils.user import rank_required
 from app.utils.models import add_audit_log
+from app.domain.user_deletion import delete_user
 from . import bp
 
 
@@ -182,12 +183,7 @@ def user_editor_delete():
 			msg = f"Deleted user {user.username} as spammer"
 			desc = f"{json.dumps(user.get_dict(), indent=4)}"
 			add_audit_log(AuditSeverity.MODERATION, current_user, msg, None, None, desc)
-
-			for pkg in user.packages.all():
-				pkg.review_thread = None
-				db.session.delete(pkg)
-
-			db.session.delete(user)
+			delete_user(user)
 		db.session.commit()
 
 		flash(f"Deleted {len(selected_users)} users", "success")

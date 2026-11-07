@@ -16,6 +16,7 @@ from app.models import User, db, UserRank, Thread, Package, Notification, Notifi
 	AuditLogEntry, AuditSeverity
 from app.utils.misc import random_string
 from app.utils.models import create_session, add_notification, get_system_user, add_system_audit_log
+from app.domain.user_deletion import delete_user
 from app.tasks import celery, TaskError
 from app.utils.files import get_temp_dir
 from app.uploads import copy_to_uploads, get_public_upload_url
@@ -29,7 +30,7 @@ def delete_inactive_users():
 	users = User.query.filter(User.is_active == False, User.packages == None, User.forum_topics == None,
 			~User.maintained_packages.any(), User.created_at <= threshold, User.rank == UserRank.NOT_JOINED).all()
 	for user in users:
-		db.session.delete(user)
+		delete_user(user)
 
 	db.session.commit()
 
@@ -68,10 +69,7 @@ def delete_unused_users_without_email():
 	for user in users:
 		add_system_audit_log(AuditSeverity.MODERATION, f"Deleted unused user {user.username}",
 				url_for("users.profile", username=user.username))
-
-		# The watchers table has no cascade
-		user.watching.clear()
-		db.session.delete(user)
+		delete_user(user)
 
 	db.session.commit()
 

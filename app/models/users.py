@@ -210,9 +210,12 @@ class User(Model, UserMixin):
 	audit_log_entries = db.relationship("AuditLogEntry", foreign_keys="AuditLogEntry.causer_id", back_populates="causer",
 										order_by=desc("audit_log_entry_created_at"), lazy="dynamic")
 
-	maintained_packages = db.relationship("Package", lazy="dynamic", secondary="maintainers", order_by=db.asc("package_title"))
+	maintained_packages = db.relationship("Package", lazy="dynamic", secondary="maintainers", order_by=db.asc("package_title"),
+			back_populates="maintainers")
 
-	packages      = db.relationship("Package", back_populates="author", lazy="dynamic", order_by=db.asc("package_title"))
+	# No delete-orphan, so that packages can be transferred to another author
+	packages      = db.relationship("Package", back_populates="author", lazy="dynamic", order_by=db.asc("package_title"),
+			cascade="all, delete")
 	reviews       = db.relationship("PackageReview", back_populates="author", order_by=db.desc("package_review_created_at"), cascade="all, delete, delete-orphan")
 	review_votes  = db.relationship("PackageReviewVote", back_populates="user", cascade="all, delete, delete-orphan")
 	tokens        = db.relationship("APIToken", back_populates="owner", lazy="dynamic", cascade="all, delete, delete-orphan")
@@ -223,9 +226,11 @@ class User(Model, UserMixin):
 	forum_topics  = db.relationship("ForumTopic", back_populates="author", lazy="dynamic", cascade="all, delete, delete-orphan")
 	collections = db.relationship("Collection", back_populates="author", lazy="dynamic", cascade="all, delete, delete-orphan", order_by=db.asc("title"))
 	clients = db.relationship("OAuthClient", back_populates="owner", lazy="dynamic", cascade="all, delete, delete-orphan")
-	reports = db.relationship("Report", back_populates="user", lazy="dynamic", cascade="all")
+	# Reports are kept when the user is deleted, with user_id set to NULL
+	reports = db.relationship("Report", back_populates="user", lazy="dynamic")
 
-	ban = db.relationship("UserBan", foreign_keys="UserBan.user_id", back_populates="user", uselist=False)
+	ban = db.relationship("UserBan", foreign_keys="UserBan.user_id", back_populates="user", uselist=False,
+			cascade="all, delete, delete-orphan")
 
 	username_valid = db.CheckConstraint("username ~* '^[A-Za-z0-9 ._-]+$'")
 
