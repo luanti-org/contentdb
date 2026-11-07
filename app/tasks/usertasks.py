@@ -12,9 +12,10 @@ from flask import url_for
 from sqlalchemy import or_, and_
 
 from app import app
-from app.models import User, db, UserRank, Thread, Package, Notification, NotificationType, UserSession
+from app.models import User, db, UserRank, Thread, Package, Notification, NotificationType, UserSession, \
+	AuditLogEntry, AuditSeverity
 from app.utils.misc import random_string
-from app.utils.models import create_session, add_notification, get_system_user
+from app.utils.models import create_session, add_notification, get_system_user, add_system_audit_log
 from app.tasks import celery, TaskError
 from app.utils.files import get_temp_dir
 from app.uploads import copy_to_uploads, get_public_upload_url
@@ -31,6 +32,51 @@ def delete_inactive_users():
 		db.session.delete(user)
 
 	db.session.commit()
+
+
+def get_unused_users_without_email_query():
+	one_year_ago = datetime.datetime.utcnow() - datetime.timedelta(days=365)
+
+	return User.query.filter(
+		User.email.is_(None),
+		User.rank.in_([UserRank.NOT_JOINED, UserRank.NEW_MEMBER, UserRank.MEMBER, UserRank.TRUSTED_MEMBER]),
+		or_(User.created_at.is_(None), User.created_at < one_year_ago),
+		~User.packages.any(),
+		~User.maintained_packages.any(),
+		~User.reviews.any(),
+		~User.replies.any(),
+		~User.threads.any(),
+		~User.collections.any(),
+		~User.tokens.any(),
+		~User.audit_log_entries.any(AuditLogEntry.created_at >= one_year_ago),
+
+		# Deleting the user would cascade to these
+		~User.forum_topics.any(),
+		~User.clients.any(),
+		~User.reports.any(),
+
+		# Logged-in sessions don't create audit log entries
+		~User.sessions.any(),
+
+		# Keep bans, so that the username isn't freed up
+		User.ban == None)
+
+
+@celery.task()
+def delete_unused_users_without_email():
+	users = get_unused_users_without_email_query().all()
+	for user in users:
+		add_system_audit_log(AuditSeverity.MODERATION, f"Deleted unused user {user.username}",
+				url_for("users.profile", username=user.username))
+
+		# The watchers table has no cascade
+		user.watching.clear()
+		db.session.delete(user)
+
+	db.session.commit()
+
+	print(f"Deleted {len(users)} unused users without an email", file=sys.stderr)
+	return len(users)
 
 
 @celery.task()

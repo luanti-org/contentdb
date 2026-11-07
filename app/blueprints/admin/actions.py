@@ -20,7 +20,7 @@ from app.tasks.emails import send_pending_digests
 from app.tasks.forumtasks import import_topic_list, check_all_forum_accounts as check_all_forum_accounts_task
 from app.tasks.importtasks import import_repo_screenshot, check_zip_release, check_for_updates, update_all_game_support, \
 	import_languages, check_all_zip_files, update_all_release_permissions
-from app.tasks.usertasks import import_github_user_ids
+from app.tasks.usertasks import import_github_user_ids, delete_unused_users_without_email
 from app.tasks.pkgtasks import notify_about_git_forum_links, clear_removed_packages, check_package_for_broken_links, update_file_size_bytes, \
 	update_release_sha256
 from app.tasks.dumptask import create_database_dump
@@ -438,6 +438,13 @@ def import_screenshots():
 def do_delete_empty_threads():
 	delete_empty_threads.delay()
 	return redirect(url_for("admin.admin_page"))
+
+
+@action("DANGER: Delete unused users without an email")
+def do_delete_unused_users_without_email():
+	task_id = uuid()
+	delete_unused_users_without_email.apply_async((), task_id=task_id)
+	return redirect(url_for("tasks.check", id=task_id, r=url_for("admin.admin_page")))
 
 
 @action("DANGER: Check for broken links in all packages")
