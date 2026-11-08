@@ -270,7 +270,7 @@ Format query parameters:
         * `protocol_version`:  Only show packages supported by this Luanti protocol version.
         * `engine_version`:  Only show packages supported by this Luanti engine version, eg: `5.3.0`.
 * GET `/api/packages/<username>/<name>/releases/` (List)
-    * Returns array of release dictionaries, see above, but without package info.
+    * Returns array of approved release dictionaries, see above, but without package info.
 * GET `/api/packages/<username>/<name>/releases/<id>/` (Read)
 * POST `/api/packages/<username>/<name>/releases/new/` (Create)
     * Requires authentication.

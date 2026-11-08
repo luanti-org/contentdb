@@ -10,7 +10,7 @@ import io
 import os
 
 from app.models import db, PackageRelease, ReleaseState, AuditLogEntry, Package
-from ..factories import create_user, create_package, create_token, client_request, make_mod_zip
+from ..factories import create_user, create_package, create_release, create_token, client_request, make_mod_zip
 
 
 NEW_URL = "/api/packages/owner/pkg/releases/new/"
@@ -65,3 +65,24 @@ def test_create_zip_release(client, eager_tasks):
 	entry = AuditLogEntry.query.filter(AuditLogEntry.title.like("Created release%")).one()
 	assert entry.title == "Created release First release (API, token=test)"
 	assert entry.package == package
+
+
+def test_list_releases_hides_unapproved(client):
+	"""
+	The list is public, so only shows releases that clients can install, like the website does for visitors.
+	"""
+	package, _ = setup_package()
+	approved = create_release(package, "1.0")
+	create_release(package, "2.0", approved=False)
+	failed = create_release(package, "3.0", approved=False)
+	failed.state = ReleaseState.FAILED
+	processing = create_release(package, "4.0", approved=False)
+	processing.state = ReleaseState.PROCESSING
+	processing.task_id = "running"
+	db.session.commit()
+
+	rv = client_request(client, "GET", "/api/packages/owner/pkg/releases/")
+
+	assert rv.status_code == 200
+	assert rv.json is not None
+	assert [x["id"] for x in rv.json] == [approved.id]
