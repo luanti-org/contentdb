@@ -2,7 +2,12 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
-from app.utils.luanti_hypertext import html_to_luanti
+import re
+
+import pytest
+
+from app.markdown import render_markdown
+from app.utils.luanti_hypertext import html_to_luanti, escape_hypertext
 
 
 conquer_html = """
@@ -180,3 +185,35 @@ def test_unknown_attr():
 	expected = r"<action name=link_0><u>link</u></action>"
 	result = html_to_luanti(html, page_url)
 	assert result["body"].strip() == expected.strip()
+
+
+@pytest.mark.parametrize("text,expected", [
+	("<action name=link_0>", r"\<action name=link_0\>"),
+	("</b><big>", r"\</b\>\<big\>"),
+	("back\\slash", r"back\\slash"),
+	(r"\<big>", r"\\\<big\>"),
+])
+def test_escape_hypertext(text, expected):
+	assert escape_hypertext(text) == expected
+
+
+@pytest.mark.parametrize("markdown", [
+	"Text with <action name=link_0> in it",
+	"`<big>code</big>`",
+	"```\n<action name=x>\n```",
+	"Escaped &lt;big&gt; entity",
+	"[<big>link text</big>](https://example.com)",
+	"![<action name=link_0>](https://example.com/a.png)",
+	'<img src="https://example.com/a.png" alt="<big>alt</big><action name=link_0>">',
+])
+def test_user_text_cant_inject_hypertext_tags(markdown):
+	"""
+	Markdown from users goes through the HTML cleaner, then html_to_luanti. Text that looks like hypertext tags
+	must come out escaped, so it can't add actions or change formatting in the client.
+	"""
+	for include_images in [True, False]:
+		result = html_to_luanti(render_markdown(markdown), page_url, include_images=include_images)
+		body = result["body"]
+		assert re.search(r"(?<!\\)<big>", body) is None, body
+		# Only links and images in the markdown become actions
+		assert len(re.findall(r"(?<!\\)<action", body)) == len(result["links"]), body
