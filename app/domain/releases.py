@@ -3,7 +3,7 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 import re
-from typing import List, Optional
+from typing import List, Optional, Tuple
 
 from celery import uuid
 from flask_babel import lazy_gettext
@@ -56,7 +56,12 @@ def _record_release(limits: List[RateLimit]):
 
 
 def do_create_vcs_release(user: User, package: Package, name: str, title: Optional[str], release_notes: Optional[str], ref: Optional[str],
-		min_v: LuantiRelease | None = None, max_v: LuantiRelease | None = None, reason: str | None = None):
+		min_v: LuantiRelease | None = None, max_v: LuantiRelease | None = None,
+		reason: str | None = None) -> Tuple[PackageRelease, str]:
+	"""
+	Returns the release and the ID of the task that imports it. Use the returned ID rather than `release.task_id`,
+	which the task clears when it finishes, possibly before this returns.
+	"""
 	if not can_package_use_git(package):
 		raise DomainError(503, lazy_gettext("Creating releases from Git is temporarily disabled, please upload a .zip file instead"))
 
@@ -68,7 +73,7 @@ def do_create_vcs_release(user: User, package: Package, name: str, title: Option
 	rel.title   = title or name
 	rel.release_notes = normalize_line_endings(release_notes)
 	rel.upload_path = ""
-	rel.task_id = uuid()
+	task_id = rel.task_id = uuid()
 	rel.min_rel = min_v
 	rel.max_rel = max_v
 	db.session.add(rel)
@@ -86,14 +91,18 @@ def do_create_vcs_release(user: User, package: Package, name: str, title: Option
 	if ref:
 		ref = ref.strip()
 
-	make_vcs_release.apply_async((rel.id, ref), task_id=rel.task_id)
+	make_vcs_release.apply_async((rel.id, ref), task_id=task_id)
 
-	return rel
+	return rel, task_id
 
 
 def do_create_zip_release(user: User, package: Package, name: str, title: Optional[str], release_notes: Optional[str], file,
 		min_v: LuantiRelease | None = None, max_v: LuantiRelease | None = None, reason: str | None = None,
-		commit_hash: str | None = None):
+		commit_hash: str | None = None) -> Tuple[PackageRelease, str]:
+	"""
+	Returns the release and the ID of the task that checks it. Use the returned ID rather than `release.task_id`,
+	which the task clears when it finishes, possibly before this returns.
+	"""
 	limits = check_can_create_release(user, package, name, title or name)
 
 	if commit_hash:
@@ -109,7 +118,7 @@ def do_create_zip_release(user: User, package: Package, name: str, title: Option
 	rel.title   = title or name
 	rel.release_notes = normalize_line_endings(release_notes)
 	rel.upload_path     = uploaded_url
-	rel.task_id = uuid()
+	task_id = rel.task_id = uuid()
 	rel.commit_hash = commit_hash
 	rel.min_rel = min_v
 	rel.max_rel = max_v
@@ -124,6 +133,6 @@ def do_create_zip_release(user: User, package: Package, name: str, title: Option
 	db.session.commit()
 	_record_release(limits)
 
-	check_zip_release.apply_async((rel.id,), task_id=rel.task_id)
+	check_zip_release.apply_async((rel.id,), task_id=task_id)
 
-	return rel
+	return rel, task_id

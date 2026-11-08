@@ -6,23 +6,13 @@
 The check_zip_release task, which validates uploaded release zips.
 """
 
-import io
 import os
-import zipfile
 
 from app import app
 from app.models import db, ReleaseState, PackageRelease
 from app.tasks.importtasks import check_zip_release
 from app.utils.models import get_bot_message_thread
-from ..factories import create_user, create_package, create_release
-
-
-def make_zip(files: dict[str, str]) -> bytes:
-	buf = io.BytesIO()
-	with zipfile.ZipFile(buf, "w") as zf:
-		for name, content in files.items():
-			zf.writestr(name, content)
-	return buf.getvalue()
+from ..factories import create_user, create_package, create_release, make_zip, make_mod_zip
 
 
 def setup_release(data: bytes) -> PackageRelease:
@@ -45,11 +35,7 @@ def run_check(release: PackageRelease):
 
 
 def test_valid_zip(client):
-	release = setup_release(make_zip({
-		"pkg/mod.conf": "name = pkg\n",
-		"pkg/init.lua": "",
-		"pkg/LICENSE.txt": "MIT",
-	}))
+	release = setup_release(make_mod_zip())
 
 	result = run_check(release)
 
