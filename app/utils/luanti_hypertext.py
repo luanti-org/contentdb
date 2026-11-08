@@ -246,7 +246,7 @@ def package_info_as_hypertext(package: Package, formspec_version: int = 7):
 		if len(items) == 0:
 			body += "<i>" + gettext("none") + "</i>"
 
-		body += "</b>\n\n"
+		body += "\n\n"
 
 	add_value(gettext("Type"), package.type.text)
 	add_list(gettext("Tags"), [escape_hypertext(tag.get_translated()["title"]) for tag in package.tags])
