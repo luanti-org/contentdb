@@ -249,7 +249,7 @@ def package_info_as_hypertext(package: Package, formspec_version: int = 7):
 		body += "</b>\n\n"
 
 	add_value(gettext("Type"), package.type.text)
-	add_list(gettext("Tags"), [tag.get_translated()["title"] for tag in package.tags])
+	add_list(gettext("Tags"), [escape_hypertext(tag.get_translated()["title"]) for tag in package.tags])
 
 	if package.type != PackageType.GAME:
 		def make_game_link(game):
@@ -268,12 +268,12 @@ def package_info_as_hypertext(package: Package, formspec_version: int = 7):
 			add_list(gettext("Unsupported Games"), [make_game_link(support.game) for support in supported])
 
 	if package.type != PackageType.TXP:
-		add_list(gettext("Dependencies"), [x.meta_package.name for x in package.get_sorted_hard_dependencies()])
-		add_list(gettext("Optional dependencies"), [x.meta_package.name for x in package.get_sorted_optional_dependencies()])
+		add_list(gettext("Dependencies"), [escape_hypertext(x.meta_package.name) for x in package.get_sorted_hard_dependencies()])
+		add_list(gettext("Optional dependencies"), [escape_hypertext(x.meta_package.name) for x in package.get_sorted_optional_dependencies()])
 
 	languages = [trans.language.title for trans in package.translations]
 	languages.insert(0, "English")
-	add_list(gettext("Languages"), languages)
+	add_list(gettext("Languages"), [escape_hypertext(x) for x in languages])
 
 	if package.license == package.media_license:
 		license = package.license.name
@@ -289,8 +289,9 @@ def package_info_as_hypertext(package: Package, formspec_version: int = 7):
 	if package.ai_disclosure:
 		add_value(gettext("AI Disclosure"), package.ai_disclosure.title)
 	add_value(gettext("Added"), package.created_at.isoformat(timespec="seconds") + "Z")
-	add_list(gettext("Maintainers"), [user.display_name for user in package.maintainers])
-	add_list(gettext("Provides"), [x.name for x in package.provides])
+	# Display names are free text, so could otherwise add actions or formatting
+	add_list(gettext("Maintainers"), [escape_hypertext(user.display_name) for user in package.maintainers])
+	add_list(gettext("Provides"), [escape_hypertext(x.name) for x in package.provides])
 
 	return {
 		"head": HEAD,
