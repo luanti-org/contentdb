@@ -520,7 +520,11 @@ def import_repo_screenshot(id):
 	return None
 
 
-def check_update_config_impl(package):
+def check_update_config_impl(package) -> tuple[PackageRelease, str] | None:
+	"""
+	Returns a release to import from the given commit, which the caller must queue with make_vcs_release once it
+	has committed, so that the task can find the release.
+	"""
 	config = package.update_config
 
 	if config.trigger == PackageUpdateTrigger.COMMIT:
@@ -533,21 +537,22 @@ def check_update_config_impl(package):
 		raise TaskError("Unknown update trigger")
 
 	if commit is None:
-		return
+		return None
 
 	if config.last_commit == commit:
 		if tag and config.last_tag != tag:
 			config.last_tag = tag
-		return
+		return None
 
 	if not config.last_commit:
 		config.last_commit = commit
 		config.last_tag = tag
-		return
+		return None
 
 	if package.releases.filter_by(commit_hash=commit).count() > 0:
-		return
+		return None
 
+	to_import: tuple[PackageRelease, str] | None = None
 	if config.make_release:
 		rel = PackageRelease()
 		rel.package = package
@@ -561,7 +566,7 @@ def check_update_config_impl(package):
 		msg = "Created release {} (Git Update Detection)".format(rel.title)
 		add_system_audit_log(AuditSeverity.NORMAL, msg, package.get_url("packages.view"), package)
 
-		make_vcs_release.apply_async((rel.id, commit), task_id=rel.task_id)
+		to_import = (rel, commit)
 
 	elif config.outdated_at is None:
 		config.set_outdated()
@@ -588,6 +593,8 @@ def check_update_config_impl(package):
 	config.last_commit = commit
 	config.last_tag = tag
 
+	return to_import
+
 
 @celery.task(bind=True, rate_limit="60/m", soft_time_limit=GIT_TASK_SOFT_LIMIT, time_limit=GIT_TASK_HARD_LIMIT)
 def check_update_config(self, package_id):
@@ -602,11 +609,15 @@ def check_update_config(self, package_id):
 		if not can_package_use_git(package):
 			raise TaskError("Git update detection is temporarily disabled")
 
-		check_update_config_impl(package)
+		to_import = check_update_config_impl(package)
 
 		package.update_config.task_id = None
 		package.update_config.last_checked_at = datetime.datetime.now()
 		db.session.commit()
+
+		if to_import:
+			release, commit = to_import
+			make_vcs_release.apply_async((release.id, commit), task_id=release.task_id)
 	except GitCommandError as e:
 		# This is needed to stop the backtrace being weird
 		err = e.stderr
