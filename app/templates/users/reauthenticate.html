@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}
+	{{ _("Confirm it's you") }}
+{% endblock %}
+
+{% block content %}
+{% from "macros/forms.html" import render_field, render_submit_field %}
+
+<div class="card box_grey">
+	<h3 class="card-header">{{ self.title() }}</h3>
+	<div class="card-body">
+		<p>
+			{{ _("For your security, you need to confirm it's you before doing this.") }}
+			{{ _("If you were submitting a form, you'll need to submit it again afterwards.") }}
+		</p>
+
+		{% if current_user.password %}
+			<form method="POST" action="" class="form" role="form">
+				{{ form.hidden_tag() }}
+				{{ render_field(form.password, autocomplete="current-password") }}
+				{{ render_submit_field(form.submit) }}
+			</form>
+		{% endif %}
+
+		{% if current_user.github_user_id %}
+			<p class="mt-4">
+				<a class="btn btn-secondary" href="{{ url_for('vcs.github_start', next=next) }}">
+					<i class="fab fa-github me-1"></i>
+					{{ _("Confirm with GitHub") }}
+				</a>
+			</p>
+		{% endif %}
+
+		<p class="mt-4 text-muted">
+			{{ _("Alternatively, sign out and sign in again.") }}
+			<a href="{{ url_for('users.logout') }}">{{ _("Sign out") }}</a>
+		</p>
+	</div>
+</div>
+{% endblock %}

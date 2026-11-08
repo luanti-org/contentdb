@@ -10,7 +10,7 @@ from wtforms.validators import InputRequired, Length, Optional
 from app.domain.user_deletion import get_pending_deletion_error
 from app.utils.models import add_audit_log, add_notification, get_system_user
 from app.utils.misc import nonempty_or_none
-from app.utils.user import rank_required, login_user_with_session
+from app.utils.user import rank_required, login_user_with_session, fresh_login_required, require_fresh_session
 from app.utils.flask import get_int_or_abort
 from sqlalchemy import func
 from . import bp
@@ -23,6 +23,10 @@ from ...querybuilder import QueryBuilder
 @rank_required(UserRank.EDITOR)
 def admin_page():
 	if request.method == "POST" and current_user.rank.at_least(UserRank.ADMIN):
+		ret = require_fresh_session(url_for("admin.admin_page"))
+		if ret:
+			return ret
+
 		action = request.form["action"]
 		if action in actions:
 			add_audit_log(AuditSeverity.MODERATION, current_user,
@@ -46,6 +50,7 @@ class SwitchUserForm(FlaskForm):
 
 @bp.route("/admin/switchuser/", methods=["GET", "POST"])
 @rank_required(UserRank.ADMIN)
+@fresh_login_required
 def switch_user():
 	form = SwitchUserForm(formdata=request.form)
 	if form.validate_on_submit():
@@ -56,7 +61,7 @@ def switch_user():
 		elif not user.is_active:
 			flash("Unable to login as user", "danger")
 		else:
-			login_user_with_session(user, cancel_deletion=False)
+			login_user_with_session(user, cancel_deletion=False, fresh=False)
 
 			add_audit_log(AuditSeverity.MODERATION, admin, f"Switched user to {user.username}",
 					url_for("users.profile", username=user.username))

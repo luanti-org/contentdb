@@ -16,6 +16,7 @@ from app.utils.misc import random_string, hash_token
 from app.utils.flask import abs_url_for
 from app.utils.models import add_audit_log
 from app.utils.tokens import get_github_webhook_secret
+from app.utils.user import require_fresh_session, fresh_login_required
 from . import bp
 from ..users.settings import get_setting_tabs
 
@@ -55,6 +56,10 @@ def create_edit_token(username, id=None):
 		abort(403)
 
 	is_new = id is None
+	if is_new:
+		ret = require_fresh_session(url_for("api.create_edit_token", username=username))
+		if ret:
+			return ret
 
 	token = None
 	access_token = None
@@ -106,7 +111,7 @@ def create_edit_token(username, id=None):
 
 
 @bp.route("/users/<username>/tokens/<int:id>/reset/", methods=["POST"])
-@login_required
+@fresh_login_required
 def reset_token(username, id):
 	user = User.query.filter_by(username=username).first()
 	if user is None:

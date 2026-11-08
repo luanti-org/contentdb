@@ -15,7 +15,7 @@ from wtforms.fields.datetime import DateField
 from wtforms.validators import Optional
 
 from app.models import db, UserRank, User, PackageState, AuditSeverity, AuditLogEntry
-from app.utils.user import rank_required
+from app.utils.user import rank_required, fresh_login_required
 from app.utils.models import add_audit_log
 from app.domain.user_deletion import delete_user
 from . import bp
@@ -173,6 +173,7 @@ def user_editor():
 
 @bp.route("/admin/users/delete/", methods=["POST"])
 @rank_required(UserRank.MODERATOR)
+@fresh_login_required
 def user_editor_delete():
 	selected = request.form.getlist("selected")
 	selected_users = User.query.filter(User.username.in_(selected), User.rank < UserRank.MODERATOR).all()

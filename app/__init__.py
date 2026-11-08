@@ -174,6 +174,7 @@ def check_for_ban():
 
 PASSWORD_RESET_ALLOWED_ENDPOINTS = {
 	"users.set_password", "users.logout", "users.verify_email", "users.email_sent",
+	"users.reauthenticate", "vcs.github_start", "vcs.github_callback",
 	"static", "sass", "send_upload",
 }
 

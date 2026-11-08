@@ -19,7 +19,7 @@ from app.models import db, User, APIToken, AuditSeverity
 from app.utils.flask import abs_url_for, is_safe_url
 from app.utils.models import add_audit_log
 from app.utils.tokens import get_github_webhook_secret
-from app.utils.user import login_user_set_active
+from app.utils.user import login_user_set_active, require_fresh_session, mark_session_fresh
 from . import bp
 from .common import get_packages_for_vcs_and_token
 
@@ -29,6 +29,11 @@ def github_start():
 	next = request.args.get("next")
 	if next and not is_safe_url(next):
 		abort(400)
+
+	if current_user.is_authenticated and current_user.github_user_id is None:
+		ret = require_fresh_session(url_for("vcs.github_start", next=next))
+		if ret:
+			return ret
 
 	return github.authorize("", redirect_uri=abs_url_for("vcs.github_callback", next=next))
 
@@ -70,6 +75,10 @@ def github_callback(oauth_token):
 	# If logged in, connect
 	if current_user and current_user.is_authenticated:
 		if user_by_github is None:
+			ret = require_fresh_session(url_for("vcs.github_start", next=next))
+			if ret:
+				return ret
+
 			current_user.github_username = github_username
 			current_user.github_user_id = user_id
 			add_audit_log(AuditSeverity.USER, current_user, "Linked GitHub account " + github_username,
@@ -78,6 +87,11 @@ def github_callback(oauth_token):
 			flash(gettext("Linked GitHub to account"), "success")
 			return redirect(redirect_to)
 		elif user_by_github == current_user:
+			# Signing in to the linked GitHub account proves it's them
+			mark_session_fresh()
+			add_audit_log(AuditSeverity.USER, current_user, "Re-authenticated using GitHub OAuth",
+					url_for("users.profile", username=current_user.username))
+			db.session.commit()
 			return redirect(redirect_to)
 		else:
 			flash(gettext("GitHub account is already associated with another user: %(username)s",

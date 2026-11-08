@@ -167,6 +167,7 @@ class User(Model, UserMixin):
 	# Type comments rather than annotations, as SQLAlchemy would try to map annotated attributes
 	_session_token = None  # type: str | None
 	_session_id = None  # type: int | None
+	_session_reauthenticated_at = None  # type: datetime.datetime | None
 
 	def get_id(self):
 		# Flask-Login stores this in the session and remember cookie
@@ -675,11 +676,13 @@ class UserSession(Model):
 
 	created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
 	last_used_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+	reauthenticated_at = db.Column(db.DateTime, nullable=True, default=None)
 
 	MAX_AGE = datetime.timedelta(days=365)
 	IDLE_TIMEOUT = datetime.timedelta(days=90)
 	# Minimum age before updating last_used_at
 	LAST_USED_RESOLUTION = datetime.timedelta(minutes=5)
+	FRESH_FOR = datetime.timedelta(minutes=15)
 
 	@classmethod
 	def _expiry_cutoffs(cls) -> tuple[datetime.datetime, datetime.datetime]:

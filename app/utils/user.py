@@ -10,7 +10,8 @@ from typing import Optional
 from flask_babel import gettext
 from flask_login import login_user, logout_user, current_user
 from passlib.handlers.bcrypt import bcrypt
-from flask import redirect, url_for, abort, flash, g
+from flask import redirect, url_for, abort, flash, g, request
+from werkzeug import Response
 from sqlalchemy.orm import joinedload
 from werkzeug.local import LocalProxy
 
@@ -34,11 +35,13 @@ def _unwrap_user(user: User) -> User:
 	return user
 
 
-def login_user_with_session(user: User, remember: bool = False, force: bool = False, cancel_deletion: bool = True) -> bool:
+def login_user_with_session(user: User, remember: bool = False, force: bool = False, cancel_deletion: bool = True,
+		fresh: bool = True) -> bool:
 	"""
 	Starts a new login session and logs the user into it.
 	Use this instead of flask_login.login_user.
 	Logging in cancels a pending account deletion, unless cancel_deletion is False (such as when an admin switches user).
+	The session is fresh, allowing sensitive actions for UserSession.FRESH_FOR, unless fresh is False.
 	Commits the database session.
 	"""
 	user = _unwrap_user(user)
@@ -53,6 +56,7 @@ def login_user_with_session(user: User, remember: bool = False, force: bool = Fa
 	user_session = UserSession()
 	user_session.user = user
 	user_session.token_hash = hash_token(token)
+	user_session.reauthenticated_at = datetime.datetime.utcnow() if fresh else None
 	db.session.add(user_session)
 
 	if cancel_deletion:
@@ -64,6 +68,7 @@ def login_user_with_session(user: User, remember: bool = False, force: bool = Fa
 
 	user._session_token = token
 	user._session_id = user_session.id
+	user._session_reauthenticated_at = user_session.reauthenticated_at
 	return login_user(user, remember=remember, force=force)
 
 
@@ -90,6 +95,7 @@ def load_user_from_session_token(token: str | None) -> User | None:
 	user = user_session.user
 	user._session_token = token
 	user._session_id = user_session.id
+	user._session_reauthenticated_at = user_session.reauthenticated_at
 	return user
 
 
@@ -113,6 +119,68 @@ def update_user_session():
 		UserSession.query.filter_by(id=stale_id) \
 			.update({"last_used_at": datetime.datetime.utcnow()}, synchronize_session=False)
 		db.session.commit()
+
+
+def is_session_fresh() -> bool:
+	"""
+	Whether the current user logged in or re-authenticated within UserSession.FRESH_FOR.
+	"""
+	if not current_user.is_authenticated:
+		return False
+
+	reauthenticated_at = current_user._session_reauthenticated_at
+	return reauthenticated_at is not None and \
+		reauthenticated_at > datetime.datetime.utcnow() - UserSession.FRESH_FOR
+
+
+def mark_session_fresh():
+	"""
+	Records that the current user has just re-authenticated. The caller must commit.
+	"""
+	now = datetime.datetime.utcnow()
+	UserSession.query.filter_by(id=current_user._session_id) \
+		.update({"reauthenticated_at": now}, synchronize_session=False)
+	current_user._session_reauthenticated_at = now
+
+
+def require_fresh_session(next_url: Optional[str] = None) -> Optional[Response]:
+	"""
+	Returns a redirect to the re-authentication page if the session isn't fresh, otherwise None.
+	Use this before sensitive actions, such as changing the email address.
+
+	`next_url` is where to return to afterwards. It defaults to the current page for GET requests. For other
+	requests, it defaults to the page the form was submitted from, as a POST can't be redirected back to.
+	"""
+	if is_session_fresh():
+		return None
+
+	if next_url is None:
+		if request.method == "GET":
+			next_url = request.full_path.rstrip("?")
+		elif request.referrer and is_safe_url(request.referrer):
+			next_url = request.referrer
+		else:
+			next_url = url_for("homepage.home")
+
+	return redirect(url_for("users.reauthenticate", next=next_url))
+
+
+def fresh_login_required(f):
+	"""
+	Like login_required, but also requires a fresh session. See require_fresh_session.
+	"""
+	@wraps(f)
+	def decorated_function(*args, **kwargs):
+		if not current_user.is_authenticated:
+			return redirect(url_for("users.login", next=request.full_path.rstrip("?")))
+
+		ret = require_fresh_session()
+		if ret:
+			return ret
+
+		return f(*args, **kwargs)
+
+	return decorated_function
 
 
 def logout_current_session():

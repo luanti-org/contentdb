@@ -20,7 +20,8 @@ from app.utils.models import add_audit_log
 from app.domain.user_deletion import delete_user, schedule_user_deletion, send_deletion_scheduled_email, \
 	get_pending_deletion_error, DELETION_PERIODS
 from app.utils.ratelimit import hit_email_ratelimit
-from app.utils.user import rank_required, end_user_sessions, logout_current_session
+from app.utils.user import rank_required, end_user_sessions, logout_current_session, require_fresh_session, \
+	fresh_login_required
 from app.utils.flask import has_blocked_domains
 from . import bp
 from .account import confirm_email_verification
@@ -176,6 +177,11 @@ def handle_email_notifications(user, prefs: UserNotificationPreferences, is_new,
 						url_for("users.profile", username=user.username))
 				user.email = newEmail
 		elif newEmail:
+			ret = require_fresh_session(url_for("users.email_notifications", username=user.username))
+			if ret:
+				db.session.rollback()
+				return ret
+
 			if EmailSubscription.query_by_email(newEmail).filter_by(blacklisted=True).count() > 0:
 				db.session.rollback()
 				flash(gettext("That email address has been unsubscribed/blacklisted, and cannot be used"), "danger")
@@ -261,6 +267,7 @@ def account(username):
 
 
 @bp.route("/users/<username>/settings/account/disconnect-github/", methods=["POST"])
+@fresh_login_required
 def disconnect_github(username: str):
 	user: User = User.query.filter_by(username=username).one_or_404()
 
@@ -302,6 +309,10 @@ def delete(username):
 	if user.rank.at_least(UserRank.MODERATOR):
 		flash(gettext("Users with moderator rank or above cannot be deleted"), "danger")
 		return redirect(url_for("users.account", username=username))
+
+	ret = require_fresh_session(url_for("users.delete", username=username))
+	if ret:
+		return ret
 
 	if user == current_user:
 		return delete_own_account(user)
@@ -388,6 +399,11 @@ def modtools(username):
 
 	form = ModToolsForm(obj=user)
 	if form.validate_on_submit():
+		if user.check_perm(current_user, Permission.CHANGE_RANK) and form.rank.data != user.rank:
+			ret = require_fresh_session(url_for("users.modtools", username=username))
+			if ret:
+				return ret
+
 		severity = AuditSeverity.NORMAL if current_user == user else AuditSeverity.MODERATION
 		add_audit_log(severity, current_user, "Edited {}'s account".format(user.display_name),
 					  url_for("users.profile", username=username))
@@ -443,6 +459,7 @@ def modtools(username):
 
 @bp.route("/users/<username>/modtools/set-email/", methods=["POST"])
 @rank_required(UserRank.MODERATOR)
+@fresh_login_required
 def modtools_set_email(username):
 	user = User.query.filter_by(username=username).first()
 	if not user:
@@ -480,6 +497,7 @@ def modtools_set_email(username):
 
 @bp.route("/users/<username>/modtools/unblock-password/", methods=["POST"])
 @rank_required(UserRank.MODERATOR)
+@fresh_login_required
 def modtools_unblock_password(username):
 	user = User.query.filter_by(username=username).first()
 	if not user:
@@ -503,6 +521,7 @@ def modtools_unblock_password(username):
 
 @bp.route("/users/<username>/modtools/verify-email/<int:ver_id>/", methods=["POST"])
 @rank_required(UserRank.MODERATOR)
+@fresh_login_required
 def modtools_verify_email(username, ver_id):
 	user = User.query.filter_by(username=username).first()
 	if not user:

@@ -19,6 +19,7 @@ from app.blueprints.users.settings import get_setting_tabs
 from app.models import db, OAuthClient, User, Permission, APIToken, AuditSeverity, UserRank
 from app.utils.misc import random_string, hash_token
 from app.utils.models import add_audit_log
+from app.utils.user import require_fresh_session, fresh_login_required
 from app.utils.url import is_valid_oauth_redirect_url
 
 bp = Blueprint("oauth", __name__)
@@ -75,6 +76,11 @@ def oauth_start():
 		auth_code = reset_auth_code(token)
 		db.session.commit()
 		return redirect(build_redirect_url(client.redirect_url, auth_code, state))
+
+	# Granting a new application access to the account
+	ret = require_fresh_session(request.full_path.rstrip("?"))
+	if ret:
+		return ret
 
 	if request.method == "POST":
 		action = request.form["action"]
@@ -190,6 +196,11 @@ def create_edit_client(username, id_=None):
 		abort(403)
 
 	is_new = id_ is None
+	if is_new:
+		ret = require_fresh_session(url_for("oauth.create_edit_client", username=username))
+		if ret:
+			return ret
+
 	client = None
 	client_secret = None
 	if id_ is not None:
@@ -288,7 +299,7 @@ def revoke_all(username, id_):
 
 
 @bp.route("/users/<username>/apps/<id_>/reset-secret/", methods=["POST"])
-@login_required
+@fresh_login_required
 def reset_secret(username, id_):
 	user = User.query.filter_by(username=username).first_or_404()
 	if not user.check_perm(current_user, Permission.CREATE_OAUTH_CLIENT):

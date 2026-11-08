@@ -18,7 +18,8 @@ from app.utils.tokens import load_unsubscribe_token
 from app.utils.models import add_audit_log
 from app.utils.ratelimit import RateLimit, get_client_ip_key, hit_email_ratelimit, can_send_email
 from app.utils.user import make_flask_login_password, is_safe_url, check_password_hash, post_login, \
-	login_user_with_session, logout_current_session, end_user_sessions
+	login_user_with_session, logout_current_session, end_user_sessions, mark_session_fresh, is_session_fresh, \
+	require_fresh_session
 from . import bp
 from app.models import User, AuditSeverity, db, EmailSubscription, UserEmailVerification
 from app.domain.users import create_user
@@ -115,6 +116,40 @@ def login():
 		form.remember_me.data = True
 
 	return render_template("users/login.html", form=form, next=next)
+
+
+class ReauthenticateForm(FlaskForm):
+	password = PasswordField(lazy_gettext("Password"), [InputRequired(), Length(6, 100)])
+	submit = SubmitField(lazy_gettext("Confirm"))
+
+
+@bp.route("/user/reauthenticate/", methods=["GET", "POST"])
+@login_required
+def reauthenticate():
+	next = request.args.get("next")
+	if not next or not is_safe_url(next):
+		next = url_for("homepage.home")
+
+	if is_session_fresh():
+		return redirect(next)
+
+	form = ReauthenticateForm(request.form)
+	if current_user.password and form.validate_on_submit():
+		attempt_limit = RateLimit(f"reauth/user:{current_user.id}", ["10 per 15 minutes", "20 per hour"])
+		failed_limit = RateLimit(f"login-failed/ip:{get_client_ip_key()}", ["30 per hour", "100 per day"])
+		if not failed_limit.test() or not attempt_limit.hit():
+			flash(gettext("Too many failed attempts, please wait before trying again"), "danger")
+		elif check_password_hash(current_user.password, form.password.data):
+			mark_session_fresh()
+			add_audit_log(AuditSeverity.USER, current_user, "Re-authenticated using password",
+					url_for("users.profile", username=current_user.username))
+			db.session.commit()
+			return redirect(next)
+		else:
+			failed_limit.record()
+			flash(gettext("Incorrect password"), "danger")
+
+	return render_template("users/reauthenticate.html", form=form, next=next)
 
 
 @bp.route("/user/logout/", methods=["GET", "POST"])
@@ -327,6 +362,11 @@ def change_password():
 def set_password():
 	if current_user.password and not current_user.is_password_reset_required:
 		return redirect(url_for("users.change_password"))
+
+	# Adding a password, or an email, adds a way to sign in
+	ret = require_fresh_session(url_for("users.set_password"))
+	if ret:
+		return ret
 
 	form = SetPasswordForm(request.form)
 	if current_user.email is None:
