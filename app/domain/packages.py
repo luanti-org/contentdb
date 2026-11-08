@@ -227,8 +227,9 @@ def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, 
 				tag = Tag.query.get(tag_id)
 			else:
 				tag = Tag.query.filter_by(name=tag_id).first()
-				if tag is None:
-					raise DomainError(400, "Unknown tag: " + tag_id)
+
+			if tag is None:
+				raise DomainError(400, f"Unknown tag: {tag_id}")
 
 			package.tags.append(tag)
 
@@ -236,12 +237,14 @@ def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, 
 		package.content_warnings.clear()
 		for warning_id in (data["content_warnings"] or []):
 			if is_int(warning_id):
-				package.content_warnings.append(ContentWarning.query.get(warning_id))
+				warning = ContentWarning.query.get(warning_id)
 			else:
 				warning = ContentWarning.query.filter_by(name=warning_id).first()
-				if warning is None:
-					raise DomainError(400, "Unknown warning: " + warning_id)
-				package.content_warnings.append(warning)
+
+			if warning is None:
+				raise DomainError(400, f"Unknown warning: {warning_id}")
+
+			package.content_warnings.append(warning)
 
 	was_modified = was_new
 	if was_new:
