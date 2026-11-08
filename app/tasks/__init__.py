@@ -89,6 +89,10 @@ CELERYBEAT_SCHEDULE = {
 		'task': 'app.tasks.usertasks.delete_inactive_users',
 		'schedule': crontab(minute=15), # every hour at quarter past
 	},
+	'process_pending_user_deletions': {
+		'task': 'app.tasks.usertasks.process_pending_user_deletions',
+		'schedule': crontab(minute=30), # every hour at half past
+	},
 	'upgrade_new_members': {
 		'task': 'app.tasks.usertasks.upgrade_new_members',
 		'schedule': crontab(minute=10, hour=3), # 0310

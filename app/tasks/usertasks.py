@@ -5,6 +5,7 @@
 
 import datetime
 import requests
+import sentry_sdk
 import os
 import sys
 
@@ -13,10 +14,10 @@ from sqlalchemy import or_, and_
 
 from app import app
 from app.models import User, db, UserRank, Thread, Package, Notification, NotificationType, UserSession, \
-	AuditLogEntry, AuditSeverity
+	AuditLogEntry, AuditSeverity, PendingUserDeletion
 from app.utils.misc import random_string
 from app.utils.models import create_session, add_notification, get_system_user, add_system_audit_log
-from app.domain.user_deletion import delete_user
+from app.domain.user_deletion import delete_user, REMINDER_BEFORE, send_deletion_reminder, process_pending_user_deletion
 from app.tasks import celery, TaskError
 from app.utils.files import get_temp_dir
 from app.uploads import copy_to_uploads, get_public_upload_url
@@ -75,6 +76,36 @@ def delete_unused_users_without_email():
 
 	print(f"Deleted {len(users)} unused users without an email", file=sys.stderr)
 	return len(users)
+
+
+@celery.task()
+def process_pending_user_deletions():
+	now = datetime.datetime.utcnow()
+
+	reminders = PendingUserDeletion.query.filter(
+			PendingUserDeletion.reminder_sent_at.is_(None),
+			PendingUserDeletion.delete_at <= now + REMINDER_BEFORE,
+			PendingUserDeletion.delete_at > now).all()
+	for pending in reminders:
+		send_deletion_reminder(pending.user)
+		db.session.commit()
+
+	due_ids = [x.user_id for x in PendingUserDeletion.query.filter(PendingUserDeletion.delete_at <= now).all()]
+	deleted = 0
+	failed = 0
+	for user_id in due_ids:
+		# One failure shouldn't stop the others. The row is left in place, so it's retried on the next run.
+		try:
+			if process_pending_user_deletion(user_id):
+				deleted += 1
+		except Exception as e:
+			db.session.rollback()
+			sentry_sdk.capture_exception(e)
+			print(f"Failed to delete user {user_id}: {e}", file=sys.stderr)
+			failed += 1
+
+	print(f"Sent {len(reminders)} deletion reminders, deleted {deleted} of {len(due_ids)} due users, "
+			f"{failed} failed", file=sys.stderr)
 
 
 @celery.task()

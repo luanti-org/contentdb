@@ -12,15 +12,22 @@
 		<div class="card-body">
 			<p><b>{{ _("Deleting is permanent") }}</b></p>
 
+			{% if user.pending_deletion %}
+				<p class="alert alert-warning">
+					{{ _("This user asked for their account to be deleted. It will be deleted on %(date)s, unless they sign in first.",
+							date=user.pending_deletion.delete_at.strftime("%Y-%m-%d %H:%M UTC")) }}
+				</p>
+			{% endif %}
+
 			{% if can_delete %}
 				<p>
-					{{ _("This will delete your account, removing %(threads)d threads and %(replies)d replies.",
+					{{ _("This will delete their account, removing %(threads)d threads and %(replies)d replies.",
 							threads=user.threads.count(), replies=user.replies.count()) }}
 				</p>
 			{% else %}
 				<p>
-					{{ _("As you have packages and/or forum threads, your account cannot be fully deleted.") }}
-					{{ _("Instead, your account will be deactivated and all personal information wiped - including %(threads)d threads and %(replies)d replies.",
+					{{ _("As this user has packages, their account cannot be fully deleted.") }}
+					{{ _("Instead, their account will be deactivated and all personal information wiped - including %(threads)d threads and %(replies)d replies.",
 							threads=user.threads.count(), replies=user.replies.count()) }}
 					{{ _("See the privacy policy for more information.") }}
 				</p>

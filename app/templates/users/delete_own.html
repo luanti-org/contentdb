@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}
+	{{ _("Delete your account") }}
+{% endblock %}
+
+{% block content %}
+{% from "macros/forms.html" import render_field, render_submit_field %}
+
+<div class="card box_grey">
+	<h3 class="card-header">{{ self.title() }}</h3>
+	<div class="card-body">
+		{% if not can_delete %}
+			<p>
+				{{ _("Your account can't be deleted while you own packages.") }}
+				{{ _("Transfer your packages to another user or delete them first, or raise a report to ask us for help.") }}
+			</p>
+			<a class="btn btn-secondary me-3" href="{{ url_for('users.account', username=user.username) }}">
+				{{ _("Back") }}
+			</a>
+			<a class="btn btn-secondary" href="{{ url_for('report.report', url=url_current(), title='Delete my account', category='account_deletion') }}">
+				{{ _("Report") }}
+			</a>
+		{% else %}
+			<p>
+				{{ _("Your account will be deleted after %(days)d days. You'll be signed out on all devices now.", days=period_days) }}
+				{{ _("If you sign in again before then, the deletion will be cancelled.") }}
+			</p>
+			<p>
+				{{ _("Deleting is permanent. It removes %(threads)d threads, %(replies)d replies, %(reviews)d reviews and %(collections)d collections.",
+						threads=thread_count, replies=reply_count, reviews=user.reviews | length,
+						collections=user.collections.count()) }}
+			</p>
+			{% if user.email %}
+				<p>
+					{{ _("We'll email %(email)s now, the day before your account is deleted, and once it has been deleted.", email=user.email) }}
+				</p>
+			{% else %}
+				<p class="alert alert-warning">
+					{{ _("Your account doesn't have an email address, so we won't be able to remind you before it's deleted.") }}
+				</p>
+			{% endif %}
+
+			<form method="POST" action="" class="form" role="form">
+				{{ form.hidden_tag() }}
+				{{ render_field(form.username, hint=_("Enter your username, %(username)s, to confirm.", username=user.username)) }}
+				<a class="btn btn-secondary me-3" href="{{ url_for('users.account', username=user.username) }}">
+					{{ _("Cancel") }}
+				</a>
+				{{ render_submit_field(form.submit, class_="btn btn-danger") }}
+			</form>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

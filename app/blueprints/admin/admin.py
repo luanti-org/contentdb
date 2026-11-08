@@ -7,6 +7,7 @@ from flask_login import current_user
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, BooleanField
 from wtforms.validators import InputRequired, Length, Optional
+from app.domain.user_deletion import get_pending_deletion_error
 from app.utils.models import add_audit_log, add_notification, get_system_user
 from app.utils.misc import nonempty_or_none
 from app.utils.user import rank_required, login_user_with_session
@@ -55,7 +56,7 @@ def switch_user():
 		elif not user.is_active:
 			flash("Unable to login as user", "danger")
 		else:
-			login_user_with_session(user)
+			login_user_with_session(user, cancel_deletion=False)
 
 			add_audit_log(AuditSeverity.MODERATION, admin, f"Switched user to {user.username}",
 					url_for("users.profile", username=user.username))
@@ -144,6 +145,11 @@ def perform_transfer(form: TransferPackageForm):
 	new_user = User.query.filter_by(username=form.new_username.data).first()
 	if new_user is None:
 		flash("Unable to find new user", "danger")
+		return
+
+	pending_error = get_pending_deletion_error(new_user)
+	if pending_error:
+		flash(pending_error, "danger")
 		return
 
 	names = [x.name for x in packages]

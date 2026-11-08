@@ -20,6 +20,7 @@ from wtforms_sqlalchemy.fields import QuerySelectField, QuerySelectMultipleField
 
 from app import login_manager
 from app.domain.DomainError import DomainError
+from app.domain.user_deletion import get_pending_deletion_error
 from app.domain.packages import do_edit_package
 from app.domain.git_access import can_user_use_git, can_user_change_repo, can_package_use_git
 from app.querybuilder import QueryBuilder
@@ -295,6 +296,11 @@ class PackageForm(FlaskForm):
 def handle_create_edit(package: typing.Optional[Package], form: PackageForm, author: User):
 	wasNew = False
 	if package is None:
+		pending_error = get_pending_deletion_error(author)
+		if pending_error:
+			flash(pending_error, "danger")
+			return None
+
 		package = Package.query.filter_by(name=form.name.data, author_id=author.id).first()
 		if package is not None:
 			if package.state == PackageState.DELETED:
@@ -381,6 +387,11 @@ def create_edit(author=None, name=None):
 
 			if not author.check_perm(current_user, Permission.CHANGE_AUTHOR):
 				flash(gettext("Permission denied"), "danger")
+				return redirect(url_for("packages.create_edit"))
+
+			pending_error = get_pending_deletion_error(author)
+			if pending_error:
+				flash(pending_error, "danger")
 				return redirect(url_for("packages.create_edit"))
 
 	else:

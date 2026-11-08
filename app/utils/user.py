@@ -34,10 +34,11 @@ def _unwrap_user(user: User) -> User:
 	return user
 
 
-def login_user_with_session(user: User, remember: bool = False, force: bool = False) -> bool:
+def login_user_with_session(user: User, remember: bool = False, force: bool = False, cancel_deletion: bool = True) -> bool:
 	"""
 	Starts a new login session and logs the user into it.
 	Use this instead of flask_login.login_user.
+	Logging in cancels a pending account deletion, unless cancel_deletion is False (such as when an admin switches user).
 	Commits the database session.
 	"""
 	user = _unwrap_user(user)
@@ -53,6 +54,12 @@ def login_user_with_session(user: User, remember: bool = False, force: bool = Fa
 	user_session.user = user
 	user_session.token_hash = hash_token(token)
 	db.session.add(user_session)
+
+	if cancel_deletion:
+		from app.domain.user_deletion import cancel_user_deletion
+		if cancel_user_deletion(user, user):
+			flash(gettext("Your account deletion has been cancelled"), "success")
+
 	db.session.commit()
 
 	user._session_token = token

@@ -9,15 +9,16 @@ from flask_wtf import FlaskForm
 from kombu import uuid
 from sqlalchemy import or_
 from wtforms import StringField, SubmitField, BooleanField, SelectField
-from wtforms.validators import Length, Optional, Email, URL
+from wtforms.validators import Length, Optional, Email, URL, InputRequired
 
-from app.models import User, AuditSeverity, db, UserRank, PackageAlias, EmailSubscription, UserNotificationPreferences, \
-	UserEmailVerification, Permission, NotificationType, UserBan
+from app.models import User, AuditSeverity, db, UserRank, UserDeletionReason, PackageAlias, EmailSubscription, UserNotificationPreferences, \
+	UserEmailVerification, Permission, NotificationType, UserBan, Thread, ThreadReply
 from app.tasks.emails import send_verify_email
 from app.tasks.usertasks import update_github_user_id
 from app.utils.misc import nonempty_or_none, random_string, hash_token
 from app.utils.models import add_audit_log
-from app.domain.user_deletion import delete_user
+from app.domain.user_deletion import delete_user, schedule_user_deletion, send_deletion_scheduled_email, \
+	get_pending_deletion_error, DELETION_PERIODS
 from app.utils.ratelimit import hit_email_ratelimit
 from app.utils.user import rank_required, end_user_sessions, logout_current_session
 from app.utils.flask import has_blocked_domains
@@ -282,16 +283,28 @@ def disconnect_github(username: str):
 	return redirect(url_for("users.account", username=username))
 
 
+class DeleteAccountForm(FlaskForm):
+	username = StringField(lazy_gettext("Username"), [InputRequired(), Length(1, 100)])
+	submit = SubmitField(lazy_gettext("Delete my account"))
+
+
 @bp.route("/users/<username>/delete/", methods=["GET", "POST"])
-@rank_required(UserRank.ADMIN)
+@login_required
 def delete(username):
 	user = User.query.filter_by(username=username).first()
 	if not user:
 		abort(404)
 
+	is_admin = current_user.rank.at_least(UserRank.ADMIN)
+	if user != current_user and not is_admin:
+		abort(403)
+
 	if user.rank.at_least(UserRank.MODERATOR):
 		flash(gettext("Users with moderator rank or above cannot be deleted"), "danger")
 		return redirect(url_for("users.account", username=username))
+
+	if user == current_user:
+		return delete_own_account(user)
 
 	if request.method == "GET":
 		return render_template("users/delete.html", user=user, can_delete=user.can_delete())
@@ -323,10 +336,34 @@ def delete(username):
 
 	db.session.commit()
 
-	if user == current_user:
-		logout_current_session()
-
 	return redirect(url_for("homepage.home"))
+
+
+def delete_own_account(user: User):
+	period_days = DELETION_PERIODS[UserDeletionReason.REQUESTED].days
+	can_delete = user.can_delete()
+
+	form = DeleteAccountForm(request.form)
+	if can_delete and form.validate_on_submit():
+		if (form.username.data or "").strip().lower() != user.username.lower():
+			form.username.errors = [*form.username.errors, gettext("Enter your username to confirm")]
+		else:
+			schedule_user_deletion(user, UserDeletionReason.REQUESTED)
+			delete_at = user.pending_deletion.delete_at
+			db.session.commit()
+			send_deletion_scheduled_email(user)
+			logout_current_session()
+
+			flash(gettext("Your account will be deleted on %(date)s. Sign in before then to cancel the deletion.",
+					date=delete_at.strftime("%Y-%m-%d %H:%M UTC")), "success")
+			return redirect(url_for("homepage.home"))
+
+	# Report threads and the user's comments in them are kept, see delete_user
+	thread_count = user.threads.filter(~Thread.report.any()).count()
+	reply_count = user.replies.filter(~ThreadReply.thread.has(Thread.report.any())).count()
+
+	return render_template("users/delete_own.html", user=user, form=form, can_delete=can_delete,
+			period_days=period_days, thread_count=thread_count, reply_count=reply_count)
 
 
 class ModToolsForm(FlaskForm):
@@ -380,7 +417,13 @@ def modtools(username):
 
 		if user.check_perm(current_user, Permission.CHANGE_RANK):
 			new_rank = form.rank.data
-			if current_user.rank.at_least(new_rank):
+			# These ranks would stop a pending deletion
+			blocks_deletion = new_rank != user.rank and \
+				(new_rank == UserRank.BANNED or new_rank.at_least(UserRank.MODERATOR))
+			pending_error = get_pending_deletion_error(user) if blocks_deletion else None
+			if pending_error:
+				flash(pending_error, "danger")
+			elif current_user.rank.at_least(new_rank):
 				if new_rank != user.rank:
 					user.rank = form.rank.data
 					if user.rank == UserRank.BANNED:
@@ -490,6 +533,11 @@ def modtools_ban(username):
 
 	if not user.check_perm(current_user, Permission.CHANGE_RANK):
 		abort(403)
+
+	pending_error = get_pending_deletion_error(user)
+	if pending_error:
+		flash(pending_error, "danger")
+		return redirect(url_for("users.modtools", username=username))
 
 	message = request.form["message"]
 	expires_at = request.form.get("expires_at")

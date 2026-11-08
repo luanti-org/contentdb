@@ -78,17 +78,12 @@
 
 <h3 class="mt-5">{{ _("Account Deletion and Deactivation") }}</h3>
 
-{% if current_user.rank.at_least(current_user.rank.ADMIN) %}
+{% if user == current_user %}
+	<a class="btn btn-danger" href="{{ url_for('users.delete', username=user.username) }}">
+		{{ _("Delete account") }}</a>
+{% elif current_user.rank.at_least(current_user.rank.ADMIN) %}
 	<a class="btn btn-danger" href="{{ url_for('users.delete', username=user.username) }}">
 		{{ _("Delete or Deactivate") }}</a>
-{% else %}
-	<p>
-		{{ _("Account Deletion and Deactivation isn't available to users yet.") }}
-		{{ _("Please raise a report to request account deletion.") }}
-	</p>
-	<p>
-		<a class="btn btn-secondary" href="{{ url_for('report.report', url=url_current(), title='Delete my account', category='account_deletion') }}">{{ _("Report") }}</a>
-	</p>
 {% endif %}
 
 <h3 class="mt-5">{{ _("Sessions") }}</h3>

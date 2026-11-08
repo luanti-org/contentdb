@@ -231,6 +231,8 @@ class User(Model, UserMixin):
 
 	ban = db.relationship("UserBan", foreign_keys="UserBan.user_id", back_populates="user", uselist=False,
 			cascade="all, delete, delete-orphan")
+	pending_deletion = db.relationship("PendingUserDeletion", back_populates="user", uselist=False,
+			cascade="all, delete, delete-orphan")
 
 	username_valid = db.CheckConstraint("username ~* '^[A-Za-z0-9 ._-]+$'")
 
@@ -389,10 +391,7 @@ class User(Model, UserMixin):
 				self.check_perm(current_user, Permission.CHANGE_RANK)
 
 	def can_delete(self):
-		from app.models import ForumTopic
-		return self.packages.count() == 0 and \
-			ForumTopic.query.filter_by(author=self).count() == 0 and \
-			self.rank != UserRank.BANNED
+		return self.packages.count() == 0 and self.rank != UserRank.BANNED
 
 
 class UserEmailVerification(Model):
@@ -697,6 +696,24 @@ class UserSession(Model):
 	def expired_filter(cls):
 		created_cutoff, last_used_cutoff = cls._expiry_cutoffs()
 		return db.or_(cls.created_at < created_cutoff, cls.last_used_at < last_used_cutoff)
+
+
+class UserDeletionReason(enum.Enum):
+	REQUESTED = "requested"
+	INACTIVE = "inactive"
+
+
+class PendingUserDeletion(Model):
+	"""
+	A user who will be deleted at delete_at, unless they log in first. See app.domain.user_deletion.
+	"""
+	user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete="CASCADE"), primary_key=True)
+	user = db.relationship("User", foreign_keys=[user_id], back_populates="pending_deletion")
+
+	reason = db.Column(db.Enum(UserDeletionReason), nullable=False)
+	created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+	delete_at = db.Column(db.DateTime, nullable=False, index=True)
+	reminder_sent_at = db.Column(db.DateTime, nullable=True, default=None)
 
 
 class UserBan(Model):
