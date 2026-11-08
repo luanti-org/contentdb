@@ -4,11 +4,12 @@
 
 import datetime
 import hmac
+from functools import wraps
 
 import requests
 from flask import abort
 from werkzeug import Response
-from flask import redirect, url_for, request, flash, jsonify, current_app
+from flask import redirect, url_for, request, flash, jsonify, current_app, session
 from flask_babel import gettext
 from flask_login import current_user
 
@@ -17,6 +18,7 @@ from app.blueprints.api.support import error, api_create_vcs_release
 from app.domain.users import create_user
 from app.models import db, User, APIToken, AuditSeverity
 from app.utils.flask import abs_url_for, is_safe_url
+from app.utils.misc import random_string
 from app.utils.models import add_audit_log
 from app.utils.tokens import get_github_webhook_secret
 from app.utils.user import login_user_set_active, require_fresh_session, mark_session_fresh
@@ -35,7 +37,31 @@ def github_start():
 		if ret:
 			return ret
 
-	return github.authorize("", redirect_uri=abs_url_for("vcs.github_callback", next=next))
+	# Checked in the callback, so that a callback can't be started by another site (OAuth CSRF)
+	state = random_string(32)
+	session[OAUTH_STATE_KEY] = state
+	return github.authorize("", redirect_uri=abs_url_for("vcs.github_callback", next=next), state=state)
+
+
+OAUTH_STATE_KEY = "github_oauth_state"
+
+
+def check_oauth_state(f):
+	"""
+	Rejects callbacks whose state doesn't match the one from github_start. This runs before the code is exchanged
+	for a token, so that someone else's code can't be used to log in as them or link their GitHub account.
+	"""
+	@wraps(f)
+	def decorated(*args, **kwargs):
+		expected = session.pop(OAUTH_STATE_KEY, None)
+		actual = request.args.get("state")
+		if not expected or not actual or not hmac.compare_digest(expected, actual):
+			flash(gettext("Authorization failed [err=gh-oauth-state]"), "danger")
+			return redirect(url_for("users.login"))
+
+		return f(*args, **kwargs)
+
+	return decorated
 
 
 @bp.route("/github/view/")
@@ -46,6 +72,7 @@ def github_view_permissions():
 
 
 @bp.route("/github/callback/")
+@check_oauth_state
 @github.authorized_handler
 def github_callback(oauth_token):
 	if oauth_token is None:
