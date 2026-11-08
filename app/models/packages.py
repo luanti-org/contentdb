@@ -954,7 +954,7 @@ class Package(Model):
 		from app.models import PackageReview
 		rows = (db.session.query(PackageReview.rating, func.count(PackageReview.id))
 			.select_from(PackageReview)
-			.where(PackageReview.package_id == self.id)
+			.where(PackageReview.package_id == self.id, PackageReview.approved == True)
 			.group_by(PackageReview.rating)
 			.all())
 
