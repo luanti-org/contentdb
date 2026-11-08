@@ -1,7 +1,7 @@
 title: Privacy Policy
 ---
 
-Last Updated: 2026-05-26
+Last Updated: 2026-11-07
 ([View updates](https://github.com/luanti-org/contentdb/commits/master/app/flatpages/privacy_policy.md))
 
 ## What Information is Collected
@@ -90,25 +90,46 @@ United Kingdom and/or EU.
 
 Logged HTTP requests are automatically deleted within 2 weeks.
 
-Usernames may be kept indefinitely, but other user information will be deleted
-if requested. See below.
+Account information is kept until your account is deleted. See "Deleting your
+account" below.
 
 Whether an IP address has downloaded a package or release is deleted after 14 days.
 
-## Removal Requests
+## Deleting your account
 
-Please [raise a report](/report/?anon=0) if you wish to remove your personal
-information.
+You can delete your account from your account settings, as long as you don't own
+any packages.
+
+Your account will be deleted 7 days after you ask. During that time:
+
+* You'll be signed out on all devices, and your API tokens will stop working.
+* Signing in again cancels the deletion.
+* If your account has an email address, we'll email you when you ask, the day
+  before your account is deleted, and once it has been deleted.
+
+When your account is deleted, we delete your email address, password, profile
+information, login sessions, API tokens, notifications, comments, threads,
+reviews and collections. Threads you started are deleted, including replies from
+other users.
+
+We keep the following, as they're needed for moderation:
+
+* Audit log entries, no longer linked to your account. Some entries contain your
+  username, such as the record that your account was deleted.
+* Reports you made, no longer linked to your account.
 
 ContentDB keeps a record of each username and forum topic on the forums, for use
-in indexing mod/game topics. ContentDB also requires the use of a username to
-uniquely identify a package. Therefore, an author cannot be removed completely
-from ContentDB if they have any packages or mod/game topics on the forum.
+in indexing mod/game topics. If you have mod or game topics on the forums, your
+forum username and topics will be added back as an author who has not yet joined
+ContentDB.
 
-If we are unable to remove your account for one of the above reasons, your user
-account will instead be wiped and deactivated, ending up exactly like an author
-who has not yet joined ContentDB. All personal information will be removed from
-the profile, and any comments or threads will be deleted.
+ContentDB uses usernames to identify packages, so an account that owns packages
+can't be fully deleted. Transfer or delete your packages first, or
+[raise a report](/report/?anon=0) to ask us to remove your personal information.
+If we can't delete your account, it will instead be wiped and deactivated, ending
+up exactly like an author who has not yet joined ContentDB. All personal
+information will be removed from the profile, and any comments or threads will be
+deleted.
 
 ## Future Changes to Privacy Policy
 
