@@ -154,7 +154,8 @@ def create_reply(thread: Thread, author: User, comment: str = "A reply") -> Thre
 	return reply
 
 
-def create_review(author: User, package: Package, rating: int = 5, approved: bool = True) -> PackageReview:
+def create_review(author: User, package: Package, rating: int = 5, approved: bool = True,
+		comment: str = "First comment") -> PackageReview:
 	"""
 	Creates a review with its thread.
 	"""
@@ -165,7 +166,7 @@ def create_review(author: User, package: Package, rating: int = 5, approved: boo
 	review.approved = approved
 	db.session.add(review)
 
-	thread = create_thread(author, package, f"Review by {author.username}", private=not approved)
+	thread = create_thread(author, package, f"Review by {author.username}", private=not approved, comment=comment)
 	thread.review = review
 	package.recalculate_score()
 	db.session.commit()
