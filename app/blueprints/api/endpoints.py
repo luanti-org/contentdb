@@ -301,7 +301,7 @@ def list_all_releases():
 @cors_allowed
 @cached(300)
 def list_releases(package):
-	return jsonify([ rel.as_dict() for rel in package.releases.all() ])
+	return jsonify([ rel.as_dict() for rel in package.releases.filter_by(state=ReleaseState.APPROVED).all() ])
 
 
 @bp.route("/api/packages/<author>/<name>/releases/new/", methods=["POST"])
