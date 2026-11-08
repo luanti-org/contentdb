@@ -14,6 +14,7 @@ from wtforms import StringField, SubmitField, URLField, SelectField
 from wtforms.validators import InputRequired, Length, Optional, ValidationError
 
 from app import csrf
+from app.blueprints.api.support import check_token_owner
 from app.blueprints.users.settings import get_setting_tabs
 from app.models import db, OAuthClient, User, Permission, APIToken, AuditSeverity, UserRank
 from app.utils.misc import random_string, hash_token
@@ -134,6 +135,8 @@ def oauth_grant():
 	token = APIToken.query.filter_by(auth_code_hash=hash_token(code)).first()
 	if token is None or token.client != client:
 		error(400, "Incorrect code. It may have already been redeemed")
+
+	check_token_owner(token)
 
 	access_token = random_string(32)
 	token.access_token_hash = hash_token(access_token)

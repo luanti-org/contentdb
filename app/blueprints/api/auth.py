@@ -8,7 +8,7 @@ from flask import request
 
 from app.models import APIToken
 from app.utils.misc import hash_token
-from .support import error
+from .support import error, check_token_owner
 
 
 def is_api_authd(f):
@@ -27,8 +27,7 @@ def is_api_authd(f):
 			token = APIToken.query.filter_by(access_token_hash=hash_token(access_token)).first()
 			if token is None:
 				error(403, "Unknown API token")
-			if token.owner.is_banned:
-				error(403, "The API token's owner is banned")
+			check_token_owner(token)
 		else:
 			error(403, "Unsupported authentication method")
 

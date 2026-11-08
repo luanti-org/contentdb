@@ -3,13 +3,12 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 
-from app.blueprints.api.support import error
+from app.blueprints.api.support import error, check_token_owner
 from app.models import Package, APIToken, Permission, PackageState
 
 
 def get_packages_for_vcs_and_token(token: APIToken, repo_url: str) -> list[Package]:
-	if token.owner.is_banned:
-		return error(403, "The API token's owner is banned")
+	check_token_owner(token)
 
 	repo_url = repo_url.replace("https://", "").replace("http://", "").lower()
 	if token.package:

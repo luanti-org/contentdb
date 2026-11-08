@@ -10,11 +10,11 @@ from flask import g
 from sqlalchemy import text
 
 from app.domain import user_deletion
-from app.models import db, User, UserRank, UserSession, PendingUserDeletion, UserDeletionReason, AuditLogEntry, \
+from app.models import db, User, UserRank, UserSession, PendingUserDeletion, UserDeletionReason, AuditLogEntry, APIToken, \
 	UserBan, Thread, ThreadReply, Report, ReportCategory
 from app.tasks import emails, webhooktasks, usertasks
 from app.tasks.usertasks import process_pending_user_deletions
-from app.utils.misc import random_string
+from app.utils.misc import hash_token, random_string
 from app.utils.user import make_flask_login_password
 from .utils import login, is_logged_in, make_package
 from .utils import client # noqa
@@ -403,3 +403,55 @@ def test_deletion_page_counts_exclude_report_threads(client, send_user_email):
 	fresh_login(client, "member")
 	rv = fresh_get(client, "/users/member/delete/")
 	assert b"It removes 0 threads, 0 replies" in rv.data
+
+
+def test_api_tokens_are_disabled_while_deletion_is_pending(client, send_user_email):
+	user = make_member()
+	token = APIToken()
+	token.name = "test"
+	token.owner = user
+	access_token = random_string(32)
+	token.access_token_hash = hash_token(access_token)
+	db.session.add(token)
+	db.session.commit()
+	token_id = token.id
+
+	def whoami():
+		g.pop("_login_user", None)
+		return client.get("/api/whoami/", headers={"Authorization": f"Bearer {access_token}"})
+
+	def gitlab_push():
+		return client.post("/gitlab/webhook/", headers={"X-Gitlab-Token": access_token}, json={
+			"event_name": "push",
+			"project": {"web_url": "https://github.com/example/example"},
+			"ref": "refs/heads/main",
+			"after": "0" * 40,
+		})
+
+	assert whoami().status_code == 200
+
+	fresh_login(client, "member")
+	request_deletion(client, "member", "member")
+	assert get_pending("member") is not None
+
+	rv = whoami()
+	assert rv.status_code == 403
+	assert rv.json["error"] == "The API token's owner's account is pending deletion"
+	assert gitlab_push().status_code == 403
+
+	# The token is kept, so it works again once the deletion is cancelled
+	assert APIToken.query.get(token_id) is not None
+	fresh_login(client, "member")
+	assert get_pending("member") is None
+	assert whoami().status_code == 200
+
+	# It's deleted with the user
+	g.pop("_login_user", None)
+	user = User.query.filter_by(username="member").one()
+	user.pending_deletion = PendingUserDeletion()
+	user.pending_deletion.reason = UserDeletionReason.REQUESTED
+	user.pending_deletion.delete_at = datetime.datetime.utcnow() - datetime.timedelta(minutes=1)
+	db.session.commit()
+	process_pending_user_deletions()
+	db.session.expire_all()
+	assert APIToken.query.get(token_id) is None

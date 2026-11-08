@@ -15,6 +15,13 @@ def error(code: int, msg: str) -> NoReturn:
 	abort(make_response(jsonify({ "success": False, "error": msg }), code))
 
 
+def check_token_owner(token: APIToken):
+	if token.owner.is_banned:
+		error(403, "The API token's owner is banned")
+	if token.owner.pending_deletion is not None:
+		error(403, "The API token's owner's account is pending deletion")
+
+
 # Catches DomainErrors and aborts with JSON error
 def guard(f):
 	def ret(*args, **kwargs):
