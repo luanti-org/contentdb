@@ -6,10 +6,8 @@ import pytest
 import json
 from sqlalchemy import text
 
-from app import app
 from app.models import db, User, License, Package, PackageState, PackageType
 from app.default_data import populate
-from app.utils.ratelimit import storage as ratelimit_storage
 
 
 def clear_data(session):
@@ -67,23 +65,6 @@ def is_str(v):
 
 def is_int(v):
 	return is_type(int, v)
-
-
-@pytest.fixture
-def client():
-	with app.app_context():
-		app.config["TESTING"] = True
-		app.config['WTF_CSRF_ENABLED'] = False
-
-		recreate_db()
-		assert User.query.count() == 2
-		ratelimit_storage.reset()
-
-		with app.test_client() as client:
-			yield client
-
-		app.config["TESTING"] = False
-		app.config['WTF_CSRF_ENABLED'] = True
 
 
 def validate_package_list(packages, strict=False):
