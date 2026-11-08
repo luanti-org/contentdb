@@ -785,7 +785,8 @@ class Package(Model):
 	def get_thumb_url(self, level=2, abs=False, format="webp", legacy=False):
 		screenshot = self.main_screenshot
 		url = screenshot.get_thumb_url(level, format, legacy=legacy) if screenshot is not None else None
-		if abs:
+		# abs_url(None) would return the base URL
+		if abs and url is not None:
 			return abs_url(url)
 		else:
 			return url
