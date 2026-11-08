@@ -137,7 +137,7 @@ class PackageDevState(enum.Enum):
 	def title(self):
 		if self == PackageDevState.WIP:
 			# NOTE: Package maintenance state
-			return lazy_gettext("Looking for Maintainer")
+			return lazy_gettext("Work in Progress")
 		elif self == PackageDevState.BETA:
 			# NOTE: Package maintenance state
 			return lazy_gettext("Beta")
