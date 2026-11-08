@@ -19,6 +19,16 @@ class TaskError(Exception):
 		return repr("TaskError: " + self.value)
 
 
+class MaliciousContentError(Exception):
+	"""
+	Content that can't be made by accident.
+	Deliberately not a TaskError, so the reason is never shown to the user.
+	"""
+	def __init__(self, reason: str):
+		super().__init__(reason)
+		self.reason = reason
+
+
 class FlaskCelery(Celery):
 	app: Optional[flask.Flask]
 	Task: Any

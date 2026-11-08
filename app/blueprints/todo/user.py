@@ -130,8 +130,7 @@ def apply_all_updates(username):
 		db.session.add(rel)
 		db.session.commit()
 
-		make_vcs_release.apply_async((rel.id, ref),
-									 task_id=rel.task_id)
+		make_vcs_release.apply_async((rel.id, ref, current_user.id), task_id=rel.task_id)
 
 		msg = "Created release {} (Applied all Git Update Detection)".format(rel.title)
 		add_notification(package.maintainers, current_user, NotificationType.PACKAGE_EDIT, msg,

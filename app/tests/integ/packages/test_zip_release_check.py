@@ -9,6 +9,7 @@ The check_zip_release task, which validates uploaded release zips.
 import os
 
 from app import app
+from app.domain.moderation import REJECTED_MESSAGE
 from app.models import db, ReleaseState, PackageRelease
 from app.tasks.importtasks import check_zip_release
 from app.utils.models import get_bot_message_thread
@@ -80,6 +81,7 @@ def test_unsafe_zip(client):
 	result = run_check(release)
 
 	assert result.failed()
-	assert "Unsafe zip file" in str(result.result)
+	assert REJECTED_MESSAGE in str(result.result)
+	assert "evil" not in str(result.result)
 	assert release.state == ReleaseState.FAILED
 	assert not os.path.exists(os.path.join(os.path.dirname(app.config["UPLOAD_DIR"].rstrip("/")), "evil.lua"))

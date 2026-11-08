@@ -21,7 +21,7 @@ from sqlalchemy.dialects.postgresql import insert
 from app.models import AuditSeverity, db, NotificationType, PackageRelease, MetaPackage, Dependency, PackageType, \
 	LuantiRelease, Package, PackageState, User, PackageScreenshot, PackageUpdateTrigger, PackageUpdateConfig, \
 	PackageGameSupport, PackageTranslation, Language, ReleaseState
-from app.tasks import celery, TaskError
+from app.tasks import celery, TaskError, MaliciousContentError
 from app.utils.files import get_temp_dir
 from app.utils.misc import random_string, truncate_string
 from app.utils.models import post_bot_message, add_system_notification, add_system_audit_log, \
@@ -35,7 +35,8 @@ from app.domain.packages import do_edit_package, ALIASES
 from app.domain.git_access import can_user_use_git, can_package_use_git, get_git_access, GitAccess
 from app.domain.game_support import game_support_update, game_support_set, game_support_update_all, game_support_remove
 from app.utils.image import get_image_size
-from app.utils.zip import check_zip_file, safe_extract_zip
+from app.utils.zip import check_zip_file, safe_extract_zip, ZipCheckResult
+from app.domain.moderation import report_malicious_content
 from app.uploads import copy_to_uploads
 
 
@@ -333,8 +334,31 @@ def update_translations(package: Package, tree: PackageTreeNode):
 			.update(to_update)
 
 
+def handle_malicious_release(self, release: PackageRelease, causer_id: int | None, reason: str) -> TaskError:
+	"""
+	Fails the release and reports it to staff.
+	Returns an error to raise, which doesn't include the reason so that the checks can't be probed.
+	"""
+	db.session.rollback()
+
+	causer = User.query.get(causer_id) if causer_id is not None else None
+	public_message, discord_message = report_malicious_content(causer, release.package, release, reason)
+
+	task_url = url_for('tasks.check', id=self.request.id)
+	msg = f"{public_message}\n\n[View Release]({release.get_edit_url()}) | [View Task]({task_url})"
+	post_bot_message(release.package, f"Release {release.title} validation failed", msg)
+
+	release.task_id = self.request.id
+	release.state = ReleaseState.FAILED
+	db.session.commit()
+
+	post_discord_webhook.delay("ContentDB", discord_message, True)
+
+	return TaskError(public_message)
+
+
 @celery.task(bind=True)
-def check_zip_release(self, id):
+def check_zip_release(self, id, causer_id: int | None = None):
 	release = PackageRelease.query.get(id)
 	if release is None:
 		raise TaskError("No such release!")
@@ -344,10 +368,11 @@ def check_zip_release(self, id):
 	try:
 		path = release.file_path
 		with get_temp_dir() as temp:
-			if not safe_extract_zip(temp, path):
-				release.state = ReleaseState.FAILED
-				db.session.commit()
-				raise Exception(f"Unsafe zip file at {path}")
+			result = safe_extract_zip(temp, path)
+			if result == ZipCheckResult.PATH_TRAVERSAL:
+				raise MaliciousContentError("Uploaded a zip file with path traversal")
+			elif not result.is_ok:
+				raise TaskError(f"Invalid zip file: {result.value}")
 
 			post_release_check_update(self, release, temp)
 
@@ -357,6 +382,8 @@ def check_zip_release(self, id):
 			release.state = ReleaseState.UNAPPROVED
 			release.approve(release.package.author)
 			db.session.commit()
+	except MaliciousContentError as err:
+		raise handle_malicious_release(self, release, causer_id, err.reason) from err
 	except (LuantiCheckError, TaskError, DomainError) as err:
 		db.session.rollback()
 
@@ -380,7 +407,7 @@ def check_all_zip_files():
 	releases = PackageRelease.query.all()
 	for release in releases:
 		with ZipFile(release.file_path, 'r') as zf:
-			if not check_zip_file("/tmp/example", zf):  # noqa: S108 - only used to resolve paths, nothing is written
+			if not check_zip_file("/tmp/example", zf).is_ok:  # noqa: S108 - only used to resolve paths, nothing is written
 				print(f"Unsafe zip file for {release.package.get_id()} at {release.file_path}", file=sys.stderr)
 				result.append({
 					"package": release.package.get_id(),
@@ -399,8 +426,11 @@ def import_languages(self, id, path):
 		raise TaskError("No package attached to release")
 
 	with get_temp_dir() as temp:
-		if not safe_extract_zip(temp, path):
-			raise Exception(f"Unsafe zip file at {path}")
+		result = safe_extract_zip(temp, path)
+		if result == ZipCheckResult.PATH_TRAVERSAL:
+			raise handle_malicious_release(self, release, None, "Found a zip file with path traversal")
+		elif not result.is_ok:
+			raise TaskError(f"Invalid zip file: {result.value}")
 
 		try:
 			tree: PackageTreeNode = build_tree(temp,
@@ -422,7 +452,7 @@ def import_languages(self, id, path):
 
 
 @celery.task(bind=True, soft_time_limit=GIT_RELEASE_SOFT_LIMIT, time_limit=GIT_RELEASE_HARD_LIMIT)
-def make_vcs_release(self, id, branch):
+def make_vcs_release(self, id, branch, causer_id: int | None = None):
 	release = PackageRelease.query.get(id)
 	if release is None:
 		raise TaskError("No such release!")
@@ -462,6 +492,8 @@ def make_vcs_release(self, id, branch):
 				db.session.commit()
 
 				return release.upload_path
+	except MaliciousContentError as err:
+		raise handle_malicious_release(self, release, causer_id, f"Git: {err.reason}") from err
 	except (LuantiCheckError, TaskError, DomainError, SoftTimeLimitExceeded) as err:
 		db.session.rollback()
 

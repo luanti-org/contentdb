@@ -20,7 +20,7 @@ from zipfile import ZipFile, ZipInfo
 import git
 import pytest
 
-from app.tasks import TaskError
+from app.tasks import TaskError, MaliciousContentError
 from app.utils import git as git_utils
 from app.utils.files import get_temp_dir
 from app.utils.git import clone_repo, create_archive, get_latest_commit, get_latest_tag, get_commit_list
@@ -271,31 +271,39 @@ PAYLOAD_PATHS = [
 ]
 
 
+# Can't be made by accident, so staff are alerted
+MALICIOUS_PATHS = {"-evil", "--upload-pack=touch canary", "../evil", "a/../b", ".git", "a/.GIT/hooks"}
+
+
 @pytest.mark.parametrize("path", PAYLOAD_PATHS)
 def test_check_submodules_rejects_path(path):
-	with pytest.raises(TaskError, match="path is not allowed"):
+	expected = MaliciousContentError if path in MALICIOUS_PATHS else TaskError
+	with pytest.raises(expected, match="path is not allowed"):
 		git_utils._check_submodules({"x": {"path": path, "url": "https://github.com/a/b.git"}})
 
 
-@pytest.mark.parametrize("url, match", [
-	("http://github.com/a/b.git", "doesn't use https://"),
-	("git://github.com/a/b.git", "doesn't use https://"),
-	("ssh://git@github.com/a/b.git", "doesn't use https://"),
-	("git@github.com:a/b.git", "doesn't use https://"),
-	("../b.git", "doesn't use https://"),
-	("./b", "doesn't use https://"),
-	("/tmp/b", "doesn't use https://"),
-	("file:///tmp/b", "doesn't use https://"),
-	("ext::sh -c touch% canary", "doesn't use https://"),
-	("https://evil.example/a/b.git", "host 'evil.example' is not allowed"),
-	("https://127.0.0.1/a/b.git", "host '127.0.0.1' is not allowed"),
-	("https://GitHub.com/a/b.git", "Please use 'https://github.com/a/b.git' instead"),
-	("https://user@github.com/a/b.git", "Please use 'https://github.com/a/b.git' instead"),
-	("https://github.com/a/b.git?x=1", "Please use 'https://github.com/a/b.git' instead"),
-	("https://[evil/a", "not valid"),
+@pytest.mark.parametrize("url, expected, match", [
+	("http://github.com/a/b.git", TaskError, "doesn't use https://"),
+	("git://github.com/a/b.git", TaskError, "doesn't use https://"),
+	("ssh://git@github.com/a/b.git", TaskError, "doesn't use https://"),
+	("git@github.com:a/b.git", TaskError, "doesn't use https://"),
+	("../b.git", TaskError, "doesn't use https://"),
+	("./b", TaskError, "doesn't use https://"),
+	("/tmp/b", TaskError, "doesn't use https://"),
+	("file:///tmp/b", MaliciousContentError, "URL that is not allowed"),
+	("FILE:///tmp/b", MaliciousContentError, "URL that is not allowed"),
+	("ext::sh -c touch% canary", MaliciousContentError, "URL that is not allowed"),
+	("fd::17", MaliciousContentError, "URL that is not allowed"),
+	("-uupload-pack=touch canary", MaliciousContentError, "URL that is not allowed"),
+	("https://evil.example/a/b.git", TaskError, "host 'evil.example' is not allowed"),
+	("https://127.0.0.1/a/b.git", TaskError, "host '127.0.0.1' is not allowed"),
+	("https://GitHub.com/a/b.git", TaskError, "Please use 'https://github.com/a/b.git' instead"),
+	("https://user@github.com/a/b.git", TaskError, "Please use 'https://github.com/a/b.git' instead"),
+	("https://github.com/a/b.git?x=1", TaskError, "Please use 'https://github.com/a/b.git' instead"),
+	("https://[evil/a", TaskError, "not valid"),
 ])
-def test_check_submodules_rejects_url(url, match):
-	with pytest.raises(TaskError, match=re.escape(match)):
+def test_check_submodules_rejects_url(url, expected, match):
+	with pytest.raises(expected, match=re.escape(match)):
 		git_utils._check_submodules({"x": {"path": "x", "url": url}})
 
 
@@ -318,26 +326,27 @@ def test_check_submodules_rejects_entries(modules, match):
 
 
 # The name decides where git puts .git/modules/<name>, so ".." in it escapes the git dir
-@pytest.mark.parametrize("name", [
-	"../../modules/evil",
-	"../foo",
-	"/../foo",
-	"..\\foo",
-	"\\..\\foo",
-	"foo/..",
-	"foo/../",
-	"foo\\..",
-	"foo\\..\\",
-	"foo/../bar",
-	"/etc",
-	"a//b",
-	"-evil",
-	"a\nb",
-	"a\rb",
-	"",
+@pytest.mark.parametrize("name, expected", [
+	("../../modules/evil", MaliciousContentError),
+	("../foo", MaliciousContentError),
+	("/../foo", MaliciousContentError),
+	("..\\foo", MaliciousContentError),
+	("\\..\\foo", MaliciousContentError),
+	("foo/..", MaliciousContentError),
+	("foo/../", MaliciousContentError),
+	("foo\\..", MaliciousContentError),
+	("foo\\..\\", MaliciousContentError),
+	("foo/../bar", MaliciousContentError),
+	("-evil", MaliciousContentError),
+	("a\nb", MaliciousContentError),
+	("a\rb", MaliciousContentError),
+	("/etc", TaskError),
+	("a//b", TaskError),
+	("a\\b", TaskError),
+	("", TaskError),
 ])
-def test_check_submodules_rejects_name(name):
-	with pytest.raises(TaskError, match="name is not allowed"):
+def test_check_submodules_rejects_name(name, expected):
+	with pytest.raises(expected, match="name is not allowed"):
 		git_utils._check_submodules({name: {"path": "x", "url": "https://github.com/a/b.git"}})
 
 
@@ -513,7 +522,7 @@ def test_clone_rejects_evil_submodule_name(tmp_path, allow_local_urls, ref):
 	top.git.add("-A")
 	top.index.commit("evil")
 
-	with pytest.raises(TaskError, match="name is not allowed"):
+	with pytest.raises(MaliciousContentError, match="name is not allowed"):
 		with clone_repo((tmp_path / "top").as_uri(), ref, recursive=True):
 			pass
 
@@ -1096,7 +1105,7 @@ def test_archive_rejects_path_outside_tree(tmp_path, allow_local_urls):
 		os.symlink(outside, root / "docs")
 
 	dest = tmp_path / "out.zip"
-	with pytest.raises(TaskError, match="outside the repository"):
+	with pytest.raises(MaliciousContentError, match="outside the repository"):
 		make_archive(url, dest, before=replace_docs)
 	assert not dest.exists()
 
