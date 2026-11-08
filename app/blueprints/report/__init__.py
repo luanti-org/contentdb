@@ -10,6 +10,7 @@ from werkzeug.utils import redirect
 from wtforms import TextAreaField, SubmitField, URLField, StringField, SelectField, FileField
 from wtforms.validators import InputRequired, Length, Optional, DataRequired
 
+from app.domain.DomainError import DomainError
 from app.uploads import upload_file
 from app.models import User, UserRank, Report, db, AuditSeverity, ReportCategory, Thread, Permission, ReportAttachment
 from app.tasks.webhooktasks import post_discord_webhook
@@ -52,6 +53,15 @@ def report():
 		form.title.data = request.args.get("title", "")
 
 	if form and form.validate_on_submit():
+		# Upload the attachment first, so that an invalid file doesn't leave a report behind
+		attachment_path = None
+		if form.file_upload.data:
+			try:
+				attachment_path, _ = upload_file(form.file_upload.data, "image", lazy_gettext("a PNG, JPEG, or WebP image file"))
+			except DomainError as e:
+				flash(e.message, "danger")
+				return render_template("report/report.html", form=form, url=url, is_anon=is_anon, noindex=url is not None)
+
 		report = Report()
 		report.id = random_string(8)
 		report.user = current_user if current_user.is_authenticated else None
@@ -77,11 +87,10 @@ def report():
 		db.session.add(report)
 		db.session.flush()
 
-		if form.file_upload.data:
+		if attachment_path:
 			atmt = ReportAttachment()
 			report.attachments.add(atmt)
-			path, _ = upload_file(form.file_upload.data, "image", lazy_gettext("a PNG, JPEG, or WebP image file"))
-			atmt.upload_path = path
+			atmt.upload_path = attachment_path
 			db.session.add(atmt)
 
 		if current_user.is_authenticated:
