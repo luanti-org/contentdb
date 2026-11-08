@@ -230,6 +230,16 @@ def test_unsafe_next(client, http_stub, next_url):
 	assert client_request(client, "GET", f"/github/start/?next={next_url}").status_code == 400
 
 
+def test_github_api_error(client, http_stub):
+	stub_github(http_stub, status=401)
+
+	rv = callback(client, start(client))
+
+	assert rv.status_code == 302
+	assert rv.headers["Location"] == "/user/login/"
+	assert logged_in_user(client) is None
+
+
 def test_non_int_github_id(client, http_stub):
 	stub_github(http_stub, user_id="1234")
 
