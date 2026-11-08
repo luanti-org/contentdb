@@ -208,8 +208,7 @@ def test_old_audit_log_entries_do_not_block_deletion(client):
 	assert User.query.filter_by(username="unused").count() == 0
 
 	db.session.expire_all()
-	entry = AuditLogEntry.query.get(entry_id)
-	assert entry is not None
+	entry = AuditLogEntry.query.filter_by(id=entry_id).one()
 	assert entry.causer_id is None
 
 
@@ -239,4 +238,4 @@ def test_user_watching_thread_is_deleted(client):
 	assert User.query.filter_by(username="unused").count() == 0
 
 	db.session.expire_all()
-	assert Thread.query.get(thread_id).watchers == []
+	assert Thread.query.filter_by(id=thread_id).one().watchers == []

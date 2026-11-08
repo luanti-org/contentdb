@@ -172,7 +172,10 @@ class Scenario:
 
 
 def make_scenario() -> Scenario:
-	db.session.add(Language(id="de", title="German"))
+	language = Language()
+	language.id = "de"
+	language.title = "German"
+	db.session.add(language)
 
 	victim = make_user("victim")
 	other = make_user("other")
@@ -250,7 +253,7 @@ def make_scenario() -> Scenario:
 def test_delete_user_removes_user_and_packages(client):
 	scenario = make_scenario()
 
-	delete_user(User.query.get(scenario.victim_id))
+	delete_user(User.query.filter_by(id=scenario.victim_id).one())
 	db.session.commit()
 	db.session.expire_all()
 
@@ -288,7 +291,7 @@ def test_delete_user_removes_user_and_packages(client):
 def test_delete_user_keeps_other_users_content(client):
 	scenario = make_scenario()
 
-	delete_user(User.query.get(scenario.victim_id))
+	delete_user(User.query.filter_by(id=scenario.victim_id).one())
 	db.session.commit()
 	db.session.expire_all()
 
@@ -329,7 +332,7 @@ def test_delete_user_keeps_other_users_content(client):
 def test_delete_user_keeps_reports_and_audit_log(client):
 	scenario = make_scenario()
 
-	delete_user(User.query.get(scenario.victim_id))
+	delete_user(User.query.filter_by(id=scenario.victim_id).one())
 	db.session.commit()
 	db.session.expire_all()
 
@@ -443,7 +446,7 @@ def test_delete_user_keeps_bans_they_issued(client):
 def test_hard_delete_package_keeps_other_packages(client):
 	scenario = make_scenario()
 	for package_id in scenario.victim_package_ids:
-		Package.query.get(package_id).state = PackageState.DELETED
+		Package.query.filter_by(id=package_id).one().state = PackageState.DELETED
 	db.session.commit()
 
 	clear_removed_packages(True)
@@ -453,8 +456,8 @@ def test_hard_delete_package_keeps_other_packages(client):
 		assert Package.query.get(package_id) is None
 
 	assert User.query.get(scenario.victim_id) is not None
-	other_mod = Package.query.get(scenario.other_package_id)
+	other_mod = Package.query.filter_by(id=scenario.other_package_id).one()
 	assert other_mod.dependencies.count() == 1
 	assert other_mod.supported_games.count() == 0
-	assert [x.package for x in Collection.query.get(scenario.other_collection_id).items] == [other_mod]
-	assert AuditLogEntry.query.get(scenario.package_audit_id).package is None
+	assert [x.package for x in Collection.query.filter_by(id=scenario.other_collection_id).one().items] == [other_mod]
+	assert AuditLogEntry.query.filter_by(id=scenario.package_audit_id).one().package is None
