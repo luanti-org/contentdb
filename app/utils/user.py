@@ -244,7 +244,9 @@ def post_login(user: User, next_url):
 def login_user_set_active(user: User, next_url: Optional[str] = None, *args, **kwargs):
 	if user.rank == UserRank.NOT_JOINED and user.email is None:
 		user.rank = UserRank.NEW_MEMBER
-		user.notification_preferences = UserNotificationPreferences(user)
+		if user.notification_preferences is None:
+			# Added explicitly, as setting the relationship from the other side doesn't add it to the session
+			db.session.add(UserNotificationPreferences(user))
 		user.is_active = True
 		db.session.commit()
 
