@@ -99,6 +99,21 @@ def test_log_in(client, http_stub):
 	assert AuditLogEntry.query.filter_by(title="Logged in using GitHub OAuth").count() == 1
 
 
+def test_log_in_claims_unjoined_account(client, http_stub):
+	"""
+	Accounts made from forum profiles start as NOT_JOINED, and become members on first login.
+	"""
+	create_user("member", UserRank.NOT_JOINED, email=None, password=None, github_user_id=1234)
+	stub_github(http_stub)
+
+	callback(client, start(client))
+
+	user = get_user("member")
+	assert logged_in_user(client) == user
+	assert user.rank == UserRank.NEW_MEMBER
+	assert user.notification_preferences is not None
+
+
 def test_link_account(client, http_stub):
 	user = create_user("member")
 	login_as(client, user)
