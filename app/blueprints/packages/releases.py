@@ -101,12 +101,12 @@ def create_release(package):
 	if form.validate_on_submit():
 		try:
 			if form.upload_mode.data == "vcs":
-				rel = do_create_vcs_release(current_user, package, form.name.data or "", form.title.data, form.release_notes.data,
+				rel, task_id = do_create_vcs_release(current_user, package, form.name.data or "", form.title.data, form.release_notes.data,
 						form.vcs_label.data, form.min_rel.data.get_actual(), form.max_rel.data.get_actual())
 			else:
-				rel = do_create_zip_release(current_user, package, form.name.data or "", form.title.data, form.release_notes.data,
+				rel, task_id = do_create_zip_release(current_user, package, form.name.data or "", form.title.data, form.release_notes.data,
 						form.file_upload.data, form.min_rel.data.get_actual(), form.max_rel.data.get_actual())
-			return redirect(url_for("tasks.check", id=rel.task_id, r=rel.get_edit_url()))
+			return redirect(url_for("tasks.check", id=task_id, r=rel.get_edit_url()))
 		except DomainError as e:
 			db.session.rollback()
 			flash(e.message, "danger")

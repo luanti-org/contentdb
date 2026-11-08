@@ -41,11 +41,11 @@ def api_create_vcs_release(token: APIToken, package: Package, name: str, title: 
 
 	reason += ", token=" + token.name
 
-	rel = guard(do_create_vcs_release)(token.owner, package, name, title, release_notes, ref, min_v, max_v, reason)
+	rel, task_id = guard(do_create_vcs_release)(token.owner, package, name, title, release_notes, ref, min_v, max_v, reason)
 
 	return jsonify({
 		"success": True,
-		"task": url_for("tasks.check", id=rel.task_id),
+		"task": url_for("tasks.check", id=task_id),
 		"release": rel.as_dict()
 	})
 
@@ -57,11 +57,11 @@ def api_create_zip_release(token: APIToken, package: Package, name: str, title: 
 
 	reason += ", token=" + token.name
 
-	rel = guard(do_create_zip_release)(token.owner, package, name, title, release_notes, file, min_v, max_v, reason, commit_hash)
+	rel, task_id = guard(do_create_zip_release)(token.owner, package, name, title, release_notes, file, min_v, max_v, reason, commit_hash)
 
 	return jsonify({
 		"success": True,
-		"task": url_for("tasks.check", id=rel.task_id),
+		"task": url_for("tasks.check", id=task_id),
 		"release": rel.as_dict()
 	})
 

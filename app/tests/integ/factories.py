@@ -10,6 +10,8 @@ Pass the returned objects to other factories to build up a scenario.
 """
 
 import datetime
+import io
+import zipfile
 from typing import Any
 
 from flask import g
@@ -244,3 +246,22 @@ def create_report(user: User | None, thread: Thread | None = None, category: Rep
 	db.session.add(report)
 	db.session.commit()
 	return report
+
+
+def make_zip(files: dict[str, str]) -> bytes:
+	buf = io.BytesIO()
+	with zipfile.ZipFile(buf, "w") as zf:
+		for name, content in files.items():
+			zf.writestr(name, content)
+	return buf.getvalue()
+
+
+def make_mod_zip(name: str = "pkg") -> bytes:
+	"""
+	A minimal valid mod, which passes the release checks for a mod package called `name`.
+	"""
+	return make_zip({
+		f"{name}/mod.conf": f"name = {name}\n",
+		f"{name}/init.lua": "",
+		f"{name}/LICENSE.txt": "MIT",
+	})
