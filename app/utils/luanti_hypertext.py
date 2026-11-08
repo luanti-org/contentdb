@@ -264,8 +264,9 @@ def package_info_as_hypertext(package: Package, formspec_version: int = 7):
 		else:
 			add_list(gettext("Supported Games"), [make_game_link(support.game) for support in supported])
 
+		# We only list unsupported games as an exception if the package supports all games
 		if unsupported and supports_all_games:
-			add_list(gettext("Unsupported Games"), [make_game_link(support.game) for support in supported])
+			add_list(gettext("Unsupported Games"), [make_game_link(support.game) for support in unsupported])
 
 	if package.type != PackageType.TXP:
 		add_list(gettext("Dependencies"), [escape_hypertext(x.meta_package.name) for x in package.get_sorted_hard_dependencies()])
