@@ -15,11 +15,8 @@ from app.models import db, User, UserRank, UserSession, PendingUserDeletion, Use
 from app.tasks import emails, webhooktasks, usertasks
 from app.tasks.usertasks import process_pending_user_deletions
 from app.utils.misc import hash_token, random_string
-from app.utils.user import make_flask_login_password
+from ..factories import DEFAULT_PASSWORD, create_user, client_request
 from ..utils import login, is_logged_in, make_package
-
-
-PASSWORD = "VYjNnjdDPhCVUZx"
 
 
 @pytest.fixture
@@ -38,24 +35,9 @@ def staff_alerts(monkeypatch):
 	return discord, sentry
 
 
-def make_member(username: str = "member", email: str | None = "member@example.com") -> User:
-	user = User(username, active=True, email=email, password=make_flask_login_password(PASSWORD))
-	user.rank = UserRank.MEMBER
-	db.session.add(user)
-	db.session.commit()
-	return user
-
-
-def fresh_get(client, url):
-	# The client fixture keeps one app context for the whole test, so Flask-Login's cached user in g would
-	# otherwise survive between requests
-	g.pop("_login_user", None)
-	return client.get(url)
-
-
 def fresh_login(client, username):
 	g.pop("_login_user", None)
-	return login(client, username, PASSWORD)
+	return login(client, username, DEFAULT_PASSWORD)
 
 
 def request_deletion(client, username: str, confirm: str):
@@ -79,10 +61,10 @@ def sent_subjects(mock: MagicMock) -> list[str]:
 
 
 def test_request_deletion(client, send_user_email):
-	make_member()
+	create_user("member")
 	fresh_login(client, "member")
 
-	rv = fresh_get(client, "/users/member/delete/")
+	rv = client_request(client, "GET", "/users/member/delete/")
 	assert rv.status_code == 200
 	assert b"Your account will be deleted after 7 days" in rv.data
 	assert b"member@example.com" in rv.data
@@ -115,10 +97,10 @@ def test_request_deletion(client, send_user_email):
 
 
 def test_request_deletion_without_email(client, send_user_email):
-	make_member(email=None)
+	create_user("member", email=None)
 	fresh_login(client, "member")
 
-	rv = fresh_get(client, "/users/member/delete/")
+	rv = client_request(client, "GET", "/users/member/delete/")
 	assert b"have an email address, so we won" in rv.data
 
 	request_deletion(client, "member", "member")
@@ -127,12 +109,12 @@ def test_request_deletion_without_email(client, send_user_email):
 
 
 def test_package_owner_cannot_request_deletion(client, send_user_email):
-	user = make_member()
+	user = create_user("member")
 	make_package("owned", user)
 	db.session.commit()
 	fresh_login(client, "member")
 
-	rv = fresh_get(client, "/users/member/delete/")
+	rv = client_request(client, "GET", "/users/member/delete/")
 	assert b"be deleted while you own packages" in rv.data
 	assert b"Delete my account" not in rv.data
 
@@ -142,28 +124,28 @@ def test_package_owner_cannot_request_deletion(client, send_user_email):
 
 
 def test_cannot_delete_other_users(client):
-	make_member("victim")
-	make_member("member", email="other@example.com")
+	create_user("victim")
+	create_user("member", email="other@example.com")
 	fresh_login(client, "member")
 
-	assert fresh_get(client, "/users/victim/delete/").status_code == 403
+	assert client_request(client, "GET", "/users/victim/delete/").status_code == 403
 	g.pop("_login_user", None)
 	assert client.post("/users/victim/delete/", data=dict(username="victim")).status_code == 403
 	assert get_pending("victim") is None
 
 
 def test_admin_sees_admin_options(client):
-	make_member()
+	create_user("member")
 	login(client, "rubenwardy", "tuckfrump")
 
-	rv = fresh_get(client, "/users/member/delete/")
+	rv = client_request(client, "GET", "/users/member/delete/")
 	assert rv.status_code == 200
 	assert b"Deleting is permanent" in rv.data
 	assert b'name="delete"' in rv.data
 
 
 def test_logging_in_cancels_deletion(client, send_user_email):
-	make_member()
+	create_user("member")
 	fresh_login(client, "member")
 	request_deletion(client, "member", "member")
 	assert get_pending("member") is not None
@@ -175,7 +157,7 @@ def test_logging_in_cancels_deletion(client, send_user_email):
 
 
 def test_switch_user_does_not_cancel_deletion(client, send_user_email):
-	make_member()
+	create_user("member")
 	fresh_login(client, "member")
 	request_deletion(client, "member", "member")
 
@@ -197,7 +179,7 @@ def schedule(username: str, delete_in: datetime.timedelta) -> int:
 
 
 def test_reminder_is_sent_once_the_day_before(client, send_user_email):
-	make_member()
+	create_user("member")
 	schedule("member", datetime.timedelta(days=3))
 
 	process_pending_user_deletions()
@@ -217,7 +199,7 @@ def test_reminder_is_sent_once_the_day_before(client, send_user_email):
 
 
 def test_due_deletion_deletes_user(client, send_user_email):
-	make_member()
+	create_user("member")
 	user_id = schedule("member", -datetime.timedelta(minutes=1))
 
 	process_pending_user_deletions()
@@ -234,7 +216,7 @@ def test_due_deletion_deletes_user(client, send_user_email):
 
 
 def test_due_deletion_is_cancelled_for_package_owner(client, send_user_email, staff_alerts):
-	user = make_member()
+	user = create_user("member")
 	make_package("owned", user)
 	db.session.commit()
 	schedule("member", -datetime.timedelta(minutes=1))
@@ -256,7 +238,7 @@ def test_due_deletion_is_cancelled_for_package_owner(client, send_user_email, st
 
 
 def test_expired_ban_does_not_block_deletion(client, send_user_email, staff_alerts):
-	user = make_member()
+	user = create_user("member")
 	user_ban = UserBan()
 	user_ban.banned_by = User.query.filter_by(username="rubenwardy").one()
 	user_ban.message = "test"
@@ -273,8 +255,8 @@ def test_expired_ban_does_not_block_deletion(client, send_user_email, staff_aler
 
 
 def test_one_failed_deletion_does_not_stop_others(client, send_user_email, monkeypatch):
-	make_member("broken", email="broken@example.com")
-	make_member("member")
+	create_user("broken", email="broken@example.com")
+	create_user("member")
 	broken_id = schedule("broken", -datetime.timedelta(minutes=2))
 	member_id = schedule("member", -datetime.timedelta(minutes=1))
 
@@ -298,7 +280,7 @@ def test_one_failed_deletion_does_not_stop_others(client, send_user_email, monke
 
 def test_deletion_cancelled_after_listing_is_not_processed(client, send_user_email, monkeypatch):
 	# The task lists due users, then the user signs in, which cancels the deletion in another transaction
-	make_member()
+	create_user("member")
 	user_id = schedule("member", -datetime.timedelta(minutes=1))
 
 	real_process = usertasks.process_pending_user_deletion
@@ -320,7 +302,7 @@ def test_deletion_cancelled_after_listing_is_not_processed(client, send_user_ema
 
 
 def test_scheduled_email_is_sent_after_commit(client, send_user_email, monkeypatch):
-	make_member()
+	create_user("member")
 	fresh_login(client, "member")
 
 	events = []
@@ -341,8 +323,8 @@ def test_scheduled_email_is_sent_after_commit(client, send_user_email, monkeypat
 
 
 def test_actions_that_block_deletion_are_refused(client, send_user_email):
-	make_member()
-	other = make_member("other", email="other@example.com")
+	create_user("member")
+	other = create_user("other", email="other@example.com")
 	make_package("other_mod", other)
 	db.session.commit()
 	schedule("member", datetime.timedelta(days=3))
@@ -379,7 +361,7 @@ def test_actions_that_block_deletion_are_refused(client, send_user_email):
 
 
 def test_deletion_page_counts_exclude_report_threads(client, send_user_email):
-	user = make_member()
+	user = create_user("member")
 	thread = Thread()
 	thread.title = "Report"
 	thread.author = user
@@ -400,12 +382,12 @@ def test_deletion_page_counts_exclude_report_threads(client, send_user_email):
 	db.session.commit()
 
 	fresh_login(client, "member")
-	rv = fresh_get(client, "/users/member/delete/")
+	rv = client_request(client, "GET", "/users/member/delete/")
 	assert b"It removes 0 threads, 0 replies" in rv.data
 
 
 def test_api_tokens_are_disabled_while_deletion_is_pending(client, send_user_email):
-	user = make_member()
+	user = create_user("member")
 	token = APIToken()
 	token.name = "test"
 	token.owner = user
