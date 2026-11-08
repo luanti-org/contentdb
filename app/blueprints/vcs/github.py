@@ -90,10 +90,14 @@ def github_callback(oauth_token):
 	# Get GitGub username
 	url = "https://api.github.com/user"
 	r = requests.get(url, headers={"Authorization": "token " + oauth_token}, timeout=15)
+	if r.status_code != 200:
+		flash(gettext("Authorization failed [err=gh-api-%(status)d]", status=r.status_code), "danger")
+		return redirect(url_for("users.login"))
+
 	json = r.json()
-	user_id = json["id"]
-	github_username = json["login"]
-	if type(user_id) is not int:
+	user_id = json.get("id")
+	github_username = json.get("login")
+	if type(user_id) is not int or not isinstance(github_username, str):
 		abort(400)
 
 	# Get user by GitHub user ID
