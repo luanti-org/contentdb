@@ -2,12 +2,12 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
-from unittest.mock import MagicMock
 from zipfile import ZipFile, ZipInfo
 
 import pytest
 
 from app.tasks import TaskError
+from app.utils import zip as zip_utils
 from app.utils.zip import check_zip_file, safe_extract_zip
 
 
@@ -34,15 +34,22 @@ def check_zip(tmp_path, *filenames):
 
 
 def check_zip_sizes(tmp_path, *sizes):
-	infos = []
-	for i, size in enumerate(sizes):
-		info = ZipInfo(f"file{i}.txt")
-		info.file_size = size
-		infos.append(info)
+	archive = make_zip(tmp_path, {f"file{i}.txt": "" for i in range(len(sizes))})
+	with ZipFile(archive, "r") as zf:
+		for info, size in zip(zf.infolist(), sizes, strict=True):
+			info.file_size = size
+		return check_zip_file(str(make_temp_dir(tmp_path)), zf)
 
-	zf = MagicMock()
-	zf.infolist.return_value = infos
-	return check_zip_file(str(make_temp_dir(tmp_path)), zf)
+
+def check_patched_zip(tmp_path, files, patch):
+	archive = tmp_path / "test.zip"
+	with ZipFile(archive, "w") as zf:
+		for filename, content in files.items():
+			zf.writestr(filename, content)
+		patch(zf.filelist)
+
+	with ZipFile(archive, "r") as zf:
+		return check_zip_file(str(make_temp_dir(tmp_path)), zf)
 
 
 def test_check_zip_file_allows_inside(tmp_path):
@@ -66,6 +73,106 @@ def test_check_zip_file_rejects_newline(tmp_path):
 	assert not check_zip(tmp_path, "mod.conf", "bad\nname.txt")
 
 
+def test_check_zip_file_rejects_control_characters(tmp_path):
+	assert not check_zip(tmp_path, "mod.conf", "bad\tname.txt")
+
+
+def test_check_zip_file_rejects_nul(tmp_path):
+	# ZipInfo truncates names at NUL when writing, so patch the bytes
+	archive = make_zip(tmp_path, {"mod.conf": "", "badXname.txt": ""})
+	archive.write_bytes(archive.read_bytes().replace(b"badXname.txt", b"bad\x00name.txt"))
+
+	with ZipFile(archive, "r") as zf:
+		assert not check_zip_file(str(make_temp_dir(tmp_path)), zf)
+
+
+def test_check_zip_file_backslashes(tmp_path):
+	assert check_zip(tmp_path, "textures\\a.png")
+	assert not check_zip(tmp_path, "..\\evil.txt")
+	assert not check_zip(tmp_path, "a/..\\..\\evil.txt")
+	assert not check_zip(tmp_path, "\\evil.txt")
+
+
+def test_check_zip_file_rejects_drive_letter(tmp_path):
+	assert not check_zip(tmp_path, "C:/evil.txt")
+	assert not check_zip(tmp_path, "C:\\evil.txt")
+
+
+def test_check_zip_file_rejects_symlink_and_special(tmp_path):
+	for mode in (0o120777, 0o010644, 0o060644):
+		info = ZipInfo("link")
+		info.create_system = 3
+		info.external_attr = mode << 16
+		archive = tmp_path / "test.zip"
+		with ZipFile(archive, "w") as zf:
+			zf.writestr(info, "target")
+		with ZipFile(archive, "r") as zf:
+			assert not check_zip_file(str(make_temp_dir(tmp_path)), zf)
+
+
+def test_check_zip_file_allows_regular_modes(tmp_path):
+	for mode in (0o100644, 0o100755, 0o040755):
+		info = ZipInfo("file")
+		info.create_system = 3
+		info.external_attr = mode << 16
+		archive = tmp_path / "test.zip"
+		with ZipFile(archive, "w") as zf:
+			zf.writestr(info, "")
+		with ZipFile(archive, "r") as zf:
+			assert check_zip_file(str(make_temp_dir(tmp_path)), zf)
+
+
+def test_check_zip_file_rejects_encrypted(tmp_path):
+	def patch(infos):
+		infos[0].flag_bits |= 0x1
+
+	assert not check_patched_zip(tmp_path, {"a.txt": "a"}, patch)
+
+
+def test_check_zip_file_entry_limit(tmp_path, monkeypatch):
+	monkeypatch.setattr(zip_utils, "MAX_ARCHIVE_FILES", 2)
+	assert check_zip(tmp_path, "a", "b")
+	assert not check_zip(tmp_path, "a", "b", "c")
+
+
+def test_check_zip_file_rejects_local_header_name_mismatch(tmp_path):
+	archive = make_zip(tmp_path, {"aaaa.txt": "a", "other.txt": "b"})
+	data = archive.read_bytes()
+	archive.write_bytes(data.replace(b"aaaa.txt", b"bbbb.txt", 1))
+
+	with ZipFile(archive, "r") as zf:
+		assert not check_zip_file(str(make_temp_dir(tmp_path)), zf)
+
+
+def test_check_zip_file_rejects_overlapping_entries(tmp_path, capsys):
+	def patch(infos):
+		infos[1].header_offset = infos[0].header_offset
+
+	archive = tmp_path / "test.zip"
+	with ZipFile(archive, "w") as zf, pytest.warns(UserWarning):
+		zf.writestr("a.txt", "a" * 100)
+		zf.writestr("a.txt", "b" * 100)
+		patch(zf.filelist)
+
+	with ZipFile(archive, "r") as zf:
+		assert not check_zip_file(str(make_temp_dir(tmp_path)), zf)
+	assert "overlaps" in capsys.readouterr().err
+
+
+def test_check_zip_file_rejects_entry_running_into_directory(tmp_path):
+	def patch(infos):
+		infos[0].compress_size += 1
+
+	assert not check_patched_zip(tmp_path, {"a.txt": "a"}, patch)
+
+
+def test_check_zip_file_rejects_entry_past_end(tmp_path):
+	def patch(infos):
+		infos[0].compress_size += 1000
+
+	assert not check_patched_zip(tmp_path, {"a.txt": "a"}, patch)
+
+
 def test_check_zip_file_size_limit(tmp_path):
 	limit = 300 * 1024 * 1024
 	assert check_zip_sizes(tmp_path, limit)
@@ -81,7 +188,7 @@ def test_safe_extract_zip_extracts(tmp_path):
 		"textures/a.png": "png",
 	})
 
-	assert safe_extract_zip(str(temp_dir), str(archive))
+	safe_extract_zip(str(temp_dir), str(archive))
 	assert (temp_dir / "mod.conf").read_text() == "name = mymod\n"
 	assert (temp_dir / "textures" / "a.png").read_text() == "png"
 
@@ -93,7 +200,10 @@ def test_safe_extract_zip_rejects_unsafe_without_extracting(tmp_path):
 		"../abcd/evil.txt": "evil",
 	})
 
-	assert not safe_extract_zip(str(temp_dir), str(archive))
+	with pytest.raises(TaskError) as exc_info:
+		safe_extract_zip(str(temp_dir), str(archive))
+
+	assert exc_info.value.value == "Invalid zip"
 	assert list(temp_dir.iterdir()) == []
 	assert not (tmp_path / "abcd").exists()
 
@@ -103,5 +213,20 @@ def test_safe_extract_zip_bad_zip(tmp_path):
 	archive = tmp_path / "test.zip"
 	archive.write_text("not a zip file")
 
-	with pytest.raises(TaskError):
+	with pytest.raises(TaskError) as exc_info:
 		safe_extract_zip(str(temp_dir), str(archive))
+
+	assert exc_info.value.value == "Invalid zip"
+
+
+def test_safe_extract_zip_unsupported_compression(tmp_path):
+	temp_dir = make_temp_dir(tmp_path)
+	archive = tmp_path / "test.zip"
+	with ZipFile(archive, "w") as zf:
+		zf.writestr("a.txt", "a")
+		zf.filelist[0].compress_type = 99
+
+	with pytest.raises(TaskError) as exc_info:
+		safe_extract_zip(str(temp_dir), str(archive))
+
+	assert exc_info.value.value == "Invalid zip"

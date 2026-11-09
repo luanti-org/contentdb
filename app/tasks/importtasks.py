@@ -344,10 +344,7 @@ def check_zip_release(self, id):
 	try:
 		path = release.file_path
 		with get_temp_dir() as temp:
-			if not safe_extract_zip(temp, path):
-				release.state = ReleaseState.FAILED
-				db.session.commit()
-				raise Exception(f"Unsafe zip file at {path}")
+			safe_extract_zip(temp, path)
 
 			post_release_check_update(self, release, temp)
 
@@ -399,8 +396,7 @@ def import_languages(self, id, path):
 		raise TaskError("No package attached to release")
 
 	with get_temp_dir() as temp:
-		if not safe_extract_zip(temp, path):
-			raise Exception(f"Unsafe zip file at {path}")
+		safe_extract_zip(temp, path)
 
 		try:
 			tree: PackageTreeNode = build_tree(temp,
