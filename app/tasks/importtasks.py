@@ -231,7 +231,7 @@ def post_release_check_update(self, release: PackageRelease, path):
 
 	if package.state != PackageState.APPROVED and tree.find_license_file() is None:
 		raise LuantiCheckError(
-			"You need to add a LICENSE.txt/.md or COPYING file to your package. See the 'Copyright Guide' for more info")
+			"You need to add a LICENSE.txt/.md file to your package. See the 'Copyright Guide' for more info")
 
 	# Add dependencies
 	for meta in get_meta_packages(depends):
