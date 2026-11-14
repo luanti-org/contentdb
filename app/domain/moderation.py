@@ -5,6 +5,7 @@
 from typing import Optional
 
 from app.models import User, PackageRelease, AuditSeverity
+from app.utils.discord import inline_code
 from app.utils.flask import abs_url
 from app.utils.models import add_system_audit_log
 
@@ -32,8 +33,8 @@ def report_malicious_content(causer: Optional[User], release: PackageRelease, re
 			f"{reason}\n\n{links}")
 
 	causer_desc = causer.username if causer else "unknown"
-	discord_message = (f":warning: Malicious content detected in release {release.title} of {package.get_id()}, "
-			f"triggered by {causer_desc}\n"
-			f"Reason: {reason}\n{links}")
+	discord_message = (f":warning: Malicious content detected in release {inline_code(release.title)} of "
+			f"{package.get_id()}, triggered by {causer_desc}\n"
+			f"Reason: {inline_code(reason)}\n{links}")
 
 	return discord_message

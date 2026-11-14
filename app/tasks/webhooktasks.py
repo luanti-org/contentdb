@@ -22,6 +22,7 @@ def post_discord_webhook(username: Optional[str], content: str, is_queue: bool, 
 
 	json: dict[str, Any] = {
 		"content": content[0:2000],
+		"allowed_mentions": {"parse": []},
 	}
 
 	if username:

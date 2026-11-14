@@ -177,6 +177,24 @@ def test_git_without_causer(client, webhook, malicious_git):
 	assert_alerted(webhook, REASON, "triggered by unknown")
 
 
+def test_alert_escapes_user_content(client, webhook, monkeypatch):
+	def clone_repo(*args, **kwargs):
+		raise MaliciousContentError("URL not allowed: '-`[click](https://evil.example)`'")
+
+	monkeypatch.setattr(importtasks, "can_package_use_git", lambda package: True)
+	monkeypatch.setattr(importtasks, "clone_repo", clone_repo)
+	causer, release = setup(PackageState.WIP)
+	release.title = "v1 [click](https://evil.example)"
+	db.session.commit()
+
+	run(importtasks.make_vcs_release, release.id, None, causer.id)
+
+	# Inline code, with backticks replaced so that they can't end it early
+	assert_alerted(webhook,
+			"release `v1 [click](https://evil.example)` of",
+			"Reason: `Git: URL not allowed: '-'[click](https://evil.example)''`\n")
+
+
 def test_task_page_hides_malicious_reason(client, monkeypatch):
 	result = MagicMock()
 	result.status = "FAILURE"
