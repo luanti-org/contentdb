@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}
+	{{ _("Create an account") }}
+{% endblock %}
+
+{% block content %}
+{% from "macros/forms.html" import render_submit_field %}
+
+<div class="card box_grey">
+	<h3 class="card-header">{{ self.title() }}</h3>
+	<div class="card-body">
+		<p>
+			{{ _("There's no ContentDB account linked to the GitHub account %(username)s.", username=github_username|e) }}
+			{{ _("Do you want to create a new account with the username %(username)s?", username=github_username|e) }}
+		</p>
+		<p>
+			{{ _("If you already have an account, cancel and sign in with your password instead. You can then link GitHub from your account settings.") }}
+		</p>
+
+		<form method="POST" action="" class="form" role="form">
+			{{ form.hidden_tag() }}
+			{{ render_submit_field(form.submit) }}
+			{{ render_submit_field(form.cancel, class_="btn btn-secondary ms-2") }}
+		</form>
+	</div>
+</div>
+{% endblock %}

@@ -15,10 +15,14 @@ from app.utils.user import is_username_valid
 from app.tasks.emails import send_anon_email
 
 
-def create_user(username: str, display_name: str, email: Optional[str], oauth_provider: Optional[str] = None) -> None | Response | User:
+def check_username_available(username: str, display_name: str, oauth_provider: Optional[str] = None) -> bool | Response:
+	"""
+	Checks that a new account can use this username and display name. Returns True if it can. Otherwise, flashes the
+	reason and returns False, or a redirect.
+	"""
 	if not is_username_valid(username):
 		flash(gettext("Username is invalid"))
-		return None
+		return False
 
 	user_by_name = User.query.filter(or_(
 			User.username == username,
@@ -33,16 +37,26 @@ def create_user(username: str, display_name: str, email: Optional[str], oauth_pr
 		elif oauth_provider:
 			flash(gettext("Unable to create an account as the username is already taken. "
 					"If you meant to log in, you need to connect %(provider)s to your account first", provider=oauth_provider), "danger")
-			return None
+			return False
 		else:
 			flash(gettext("That username/display name is already in use, please choose another."), "danger")
-			return None
+			return False
 
 	alias_by_name = (PackageAlias.query
 			.filter(or_(PackageAlias.author == username, PackageAlias.author == display_name))
 			.first())
 	if alias_by_name:
 		flash(gettext("Unable to create an account as the username was used in the past."), "danger")
+		return False
+
+	return True
+
+
+def create_user(username: str, display_name: str, email: Optional[str], oauth_provider: Optional[str] = None) -> None | Response | User:
+	available = check_username_available(username, display_name, oauth_provider)
+	if isinstance(available, Response):
+		return available
+	elif not available:
 		return None
 
 	if email:

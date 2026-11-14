@@ -5,17 +5,20 @@
 import datetime
 import hmac
 from functools import wraps
+from typing import Optional
 
 import requests
 from flask import abort
 from werkzeug import Response
-from flask import redirect, url_for, request, flash, jsonify, current_app, session
-from flask_babel import gettext
+from flask import redirect, url_for, request, flash, jsonify, current_app, session, render_template
+from flask_babel import gettext, lazy_gettext
+from flask_wtf import FlaskForm
+from wtforms import SubmitField
 from flask_login import current_user
 
 from app import github, csrf
 from app.blueprints.api.support import error, api_create_vcs_release
-from app.domain.users import create_user
+from app.domain.users import create_user, check_username_available
 from app.models import db, User, APIToken, AuditSeverity
 from app.utils.flask import abs_url_for, is_safe_url
 from app.utils.misc import random_string
@@ -142,28 +145,89 @@ def github_callback(oauth_token):
 		db.session.commit()
 		return ret
 
-	# Sign up
+	# Ask before creating a new account, as the user may have meant to log in to an existing one
 	else:
-		user = create_user(github_username, github_username, None, "GitHub")
-		if isinstance(user, Response):
-			return user
-		elif user is None:
+		available = check_username_available(github_username, github_username, "GitHub")
+		if isinstance(available, Response):
+			return available
+		elif not available:
 			return redirect(url_for("users.login"))
 
-		user.github_username = github_username
-		user.github_user_id = user_id
+		session[SIGNUP_KEY] = {
+			"github_user_id": user_id,
+			"github_username": github_username,
+			"next": next,
+			"expires_at": (datetime.datetime.utcnow() + SIGNUP_TIMEOUT).timestamp(),
+		}
+		return redirect(url_for("vcs.github_register"))
 
-		add_audit_log(AuditSeverity.USER, user, "Registered with GitHub, display name=" + user.display_name,
-				url_for("users.profile", username=user.username))
 
-		db.session.commit()
+SIGNUP_KEY = "github_signup"
+SIGNUP_TIMEOUT = datetime.timedelta(minutes=15)
 
-		ret = login_user_set_active(user, next, remember=True)
-		if ret is None:
-			flash(gettext("Authorization failed [err=gh-login-failed]"), "danger")
-			return redirect(url_for("users.login"))
 
-		return ret
+class GitHubRegisterForm(FlaskForm):
+	submit = SubmitField(lazy_gettext("Create account"))
+	cancel = SubmitField(lazy_gettext("Cancel"))
+
+
+def get_pending_signup() -> Optional[dict]:
+	pending = session.get(SIGNUP_KEY)
+	if not isinstance(pending, dict) or pending.get("expires_at", 0) < datetime.datetime.utcnow().timestamp():
+		session.pop(SIGNUP_KEY, None)
+		return None
+
+	return pending
+
+
+@bp.route("/github/register/", methods=["GET", "POST"])
+def github_register():
+	if current_user.is_authenticated:
+		session.pop(SIGNUP_KEY, None)
+		return redirect(url_for("homepage.home"))
+
+	pending = get_pending_signup()
+	if pending is None:
+		flash(gettext("Your GitHub sign in has expired, please try again"), "danger")
+		return redirect(url_for("users.login"))
+
+	form = GitHubRegisterForm()
+	if not form.validate_on_submit():
+		return render_template("vcs/github_register.html", form=form, github_username=pending["github_username"])
+
+	session.pop(SIGNUP_KEY, None)
+	if form.cancel.data:
+		return redirect(url_for("users.login"))
+
+	github_username = pending["github_username"]
+	user_id = pending["github_user_id"]
+	next = pending["next"]
+
+	# The account may have been created or linked since the callback
+	if User.query.filter(User.github_user_id == user_id).count() > 0:
+		flash(gettext("GitHub account is already associated with another user"), "danger")
+		return redirect(url_for("users.login"))
+
+	user = create_user(github_username, github_username, None, "GitHub")
+	if isinstance(user, Response):
+		return user
+	elif user is None:
+		return redirect(url_for("users.login"))
+
+	user.github_username = github_username
+	user.github_user_id = user_id
+
+	add_audit_log(AuditSeverity.USER, user, "Registered with GitHub, display name=" + user.display_name,
+			url_for("users.profile", username=user.username))
+
+	db.session.commit()
+
+	ret = login_user_set_active(user, next, remember=True)
+	if ret is None:
+		flash(gettext("Authorization failed [err=gh-login-failed]"), "danger")
+		return redirect(url_for("users.login"))
+
+	return ret
 
 
 def _check_api_token(token_id: int, header_signature: str) -> APIToken:

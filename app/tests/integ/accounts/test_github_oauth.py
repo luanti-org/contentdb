@@ -58,10 +58,31 @@ def logged_in_user(client) -> User | None:
 	return user_session.user if user_session else None
 
 
-def test_sign_up(client, http_stub):
+def confirm_sign_up(client, action: str = "submit"):
+	return client_request(client, "POST", "/github/register/", data={action: "x"})
+
+
+def test_sign_up_asks_for_confirmation(client, http_stub):
 	stub_github(http_stub)
 
 	rv = callback(client, start(client))
+
+	assert rv.status_code == 302
+	assert rv.headers["Location"] == "/github/register/"
+	assert User.query.filter_by(github_user_id=1234).count() == 0
+	assert logged_in_user(client) is None
+
+	rv = client_request(client, "GET", "/github/register/")
+	assert rv.status_code == 200
+	assert "Do you want to create a new account with the username octocat?" in rv.data.decode("utf-8")
+	assert User.query.filter_by(github_user_id=1234).count() == 0
+
+
+def test_sign_up(client, http_stub):
+	stub_github(http_stub)
+	callback(client, start(client))
+
+	rv = confirm_sign_up(client)
 
 	assert rv.status_code == 302
 	user = get_user("octocat")
@@ -73,11 +94,129 @@ def test_sign_up(client, http_stub):
 	assert AuditLogEntry.query.filter_by(title="Registered with GitHub, display name=octocat").count() == 1
 
 
+def test_sign_up_keeps_next(client, http_stub):
+	stub_github(http_stub)
+	callback(client, start(client, "/packages/"), "/packages/")
+
+	rv = confirm_sign_up(client)
+
+	assert rv.status_code == 302
+	assert rv.headers["Location"] == "/packages/"
+	assert logged_in_user(client) == get_user("octocat")
+
+
+def test_sign_up_cancelled(client, http_stub):
+	stub_github(http_stub)
+	callback(client, start(client))
+
+	rv = confirm_sign_up(client, "cancel")
+
+	assert rv.status_code == 302
+	assert rv.headers["Location"] == "/user/login/"
+	assert User.query.filter_by(github_user_id=1234).count() == 0
+	assert logged_in_user(client) is None
+
+	# The pending sign up is forgotten
+	confirm_sign_up(client)
+	assert User.query.filter_by(github_user_id=1234).count() == 0
+
+
+def test_sign_up_confirmation_only_works_once(client, http_stub):
+	stub_github(http_stub)
+	callback(client, start(client))
+	confirm_sign_up(client)
+	client_request(client, "POST", "/user/logout/")
+
+	rv = confirm_sign_up(client)
+
+	assert rv.status_code == 302
+	assert rv.headers["Location"] == "/user/login/"
+	assert User.query.filter_by(github_user_id=1234).count() == 1
+
+
+@pytest.mark.parametrize("method", ["GET", "POST"])
+def test_sign_up_without_github_callback(client, method):
+	user_count = User.query.count()
+
+	rv = client_request(client, method, "/github/register/", data={"submit": "x"})
+
+	assert rv.status_code == 302
+	assert rv.headers["Location"] == "/user/login/"
+	assert User.query.count() == user_count
+
+
+def test_sign_up_confirmation_expires(client, http_stub):
+	stub_github(http_stub)
+	callback(client, start(client))
+	with client.session_transaction() as sess:
+		sess["github_signup"]["expires_at"] = 0
+		sess.modified = True
+
+	rv = confirm_sign_up(client)
+
+	assert rv.status_code == 302
+	assert rv.headers["Location"] == "/user/login/"
+	assert User.query.filter_by(github_user_id=1234).count() == 0
+
+
+def test_sign_up_after_github_linked_elsewhere(client, http_stub):
+	stub_github(http_stub)
+	callback(client, start(client))
+	create_user("member", github_user_id=1234)
+
+	rv = confirm_sign_up(client)
+
+	assert rv.status_code == 302
+	assert rv.headers["Location"] == "/user/login/"
+	assert User.query.filter_by(username="octocat").count() == 0
+	assert logged_in_user(client) is None
+
+
+def get_flashes(client) -> list[str]:
+	with client.session_transaction() as sess:
+		return [message for _, message in sess.get("_flashes", [])]
+
+
 def test_sign_up_with_taken_username(client, http_stub):
+	"""
+	Registration isn't offered when it would fail, so the user goes straight back to the login page.
+	"""
 	create_user("octocat")
 	stub_github(http_stub)
 
 	rv = callback(client, start(client))
+
+	assert rv.status_code == 302
+	assert rv.headers["Location"] == "/user/login/"
+	assert any("username is already taken" in x for x in get_flashes(client))
+	assert User.query.filter_by(github_user_id=1234).count() == 0
+	assert logged_in_user(client) is None
+
+	# There's no pending sign up to confirm
+	rv = confirm_sign_up(client)
+	assert rv.headers["Location"] == "/user/login/"
+	assert User.query.filter_by(github_user_id=1234).count() == 0
+
+
+def test_sign_up_with_unclaimed_forum_username(client, http_stub):
+	user = create_user("octocat", UserRank.NOT_JOINED, email=None, password=None, active=False)
+	user.forums_username = "octocat"
+	db.session.commit()
+	stub_github(http_stub)
+
+	rv = callback(client, start(client))
+
+	assert rv.status_code == 302
+	assert rv.headers["Location"] == "/user/claim-forums/?username=octocat"
+	assert User.query.filter_by(github_user_id=1234).count() == 0
+
+
+def test_sign_up_username_taken_after_confirmation_shown(client, http_stub):
+	stub_github(http_stub)
+	callback(client, start(client))
+	create_user("octocat")
+
+	rv = confirm_sign_up(client)
 
 	assert rv.status_code == 302
 	assert rv.headers["Location"] == "/user/login/"
