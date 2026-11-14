@@ -144,9 +144,9 @@ def _check_submodule_name(name: str):
 
 
 def _check_submodule_url(path: str, url: str):
-	# Option injection, local files, and git's transport helpers such as ext::
-	if url.startswith("-") or url.lower().startswith("file:") or \
-			re.match(r"[A-Za-z][A-Za-z0-9+.-]*::", url) is not None:
+	# Option injection and git's transport helpers such as ext::
+	# file: URLs aren't included, as `git submodule add` with a local path makes one by accident
+	if url.startswith("-") or re.match(r"[A-Za-z][A-Za-z0-9+.-]*::", url) is not None:
 		raise MaliciousContentError(f"Submodule '{path}' has a URL that is not allowed: {url!r}")
 
 	if not url.startswith("https://"):

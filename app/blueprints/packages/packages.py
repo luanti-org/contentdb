@@ -864,7 +864,7 @@ def game_support(package):
 			release = package.releases.first()
 			if release:
 				task_id = uuid()
-				check_zip_release.apply_async((release.id,), task_id=task_id)
+				check_zip_release.apply_async((release.id, current_user.id), task_id=task_id)
 				next_url = url_for("tasks.check", id=task_id, r=next_url)
 
 		return redirect(next_url)

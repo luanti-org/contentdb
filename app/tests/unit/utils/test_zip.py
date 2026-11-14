@@ -7,8 +7,8 @@ from zipfile import ZipFile, ZipInfo
 
 import pytest
 
-from app.tasks import TaskError
-from app.utils.zip import check_zip_file, safe_extract_zip, ZipCheckResult
+from app.tasks import TaskError, MaliciousContentError
+from app.utils.zip import check_zip_file, safe_extract_zip
 
 
 def make_temp_dir(tmp_path):
@@ -46,32 +46,32 @@ def check_zip_sizes(tmp_path, *sizes):
 
 
 def test_check_zip_file_allows_inside(tmp_path):
-	assert check_zip(tmp_path, "mod.conf", "textures/a.png", "a/../b.txt") == ZipCheckResult.OK
+	check_zip(tmp_path, "mod.conf", "textures/a.png", "a/../b.txt")
 
 
 def test_check_zip_file_allows_empty(tmp_path):
-	assert check_zip(tmp_path) == ZipCheckResult.OK
+	check_zip(tmp_path)
 
 
-def test_check_zip_file_rejects_outside(tmp_path):
-	assert check_zip(tmp_path, "../evil.txt") == ZipCheckResult.PATH_TRAVERSAL
-	assert check_zip(tmp_path, "/etc/evil.txt") == ZipCheckResult.PATH_TRAVERSAL
-
-
-def test_check_zip_file_rejects_sibling_prefix(tmp_path):
-	assert check_zip(tmp_path, "../abcd/evil.txt") == ZipCheckResult.PATH_TRAVERSAL
+@pytest.mark.parametrize("filename", ["../evil.txt", "/etc/evil.txt", "../abcd/evil.txt"])
+def test_check_zip_file_rejects_outside(tmp_path, filename):
+	with pytest.raises(MaliciousContentError, match="path traversal"):
+		check_zip(tmp_path, filename)
 
 
 def test_check_zip_file_rejects_newline(tmp_path):
-	assert check_zip(tmp_path, "mod.conf", "bad\nname.txt") == ZipCheckResult.INVALID_NAME
+	with pytest.raises(TaskError, match="invalid characters"):
+		check_zip(tmp_path, "mod.conf", "bad\nname.txt")
 
 
 def test_check_zip_file_size_limit(tmp_path):
 	limit = 300 * 1024 * 1024
-	assert check_zip_sizes(tmp_path, limit) == ZipCheckResult.OK
-	assert check_zip_sizes(tmp_path, limit // 2, limit // 2) == ZipCheckResult.OK
-	assert check_zip_sizes(tmp_path, limit + 1) == ZipCheckResult.TOO_LARGE
-	assert check_zip_sizes(tmp_path, limit // 2, limit // 2, 1) == ZipCheckResult.TOO_LARGE
+	check_zip_sizes(tmp_path, limit)
+	check_zip_sizes(tmp_path, limit // 2, limit // 2)
+	with pytest.raises(TaskError, match="too large"):
+		check_zip_sizes(tmp_path, limit + 1)
+	with pytest.raises(TaskError, match="too large"):
+		check_zip_sizes(tmp_path, limit // 2, limit // 2, 1)
 
 
 def test_safe_extract_zip_extracts(tmp_path):
@@ -81,7 +81,7 @@ def test_safe_extract_zip_extracts(tmp_path):
 		"textures/a.png": "png",
 	})
 
-	assert safe_extract_zip(str(temp_dir), str(archive)) == ZipCheckResult.OK
+	safe_extract_zip(str(temp_dir), str(archive))
 	assert (temp_dir / "mod.conf").read_text() == "name = mymod\n"
 	assert (temp_dir / "textures" / "a.png").read_text() == "png"
 
@@ -93,7 +93,8 @@ def test_safe_extract_zip_rejects_unsafe_without_extracting(tmp_path):
 		"../abcd/evil.txt": "evil",
 	})
 
-	assert safe_extract_zip(str(temp_dir), str(archive)) == ZipCheckResult.PATH_TRAVERSAL
+	with pytest.raises(MaliciousContentError):
+		safe_extract_zip(str(temp_dir), str(archive))
 	assert list(temp_dir.iterdir()) == []
 	assert not (tmp_path / "abcd").exists()
 

@@ -39,12 +39,13 @@ class GitStub:
 		return self.commit
 
 	def apply_async(self, args, task_id):
-		release_id, commit = args
+		release_id, commit, causer_id = args
 		# Look from a separate connection, which only sees committed rows
 		with db.engine.connect() as conn:
 			committed = conn.execute(text("SELECT count(*) FROM package_release WHERE id = :id"),
 					{"id": release_id}).scalar() == 1
-		self.queued.append({"release_id": release_id, "commit": commit, "task_id": task_id, "committed": committed})
+		self.queued.append({"release_id": release_id, "commit": commit, "causer_id": causer_id, "task_id": task_id,
+				"committed": committed})
 
 
 @pytest.fixture
@@ -71,8 +72,8 @@ def setup(trigger=PackageUpdateTrigger.COMMIT, make_release=False, last_commit: 
 	return package
 
 
-def check(package: Package) -> PackageUpdateConfig:
-	result = importtasks.check_update_config.apply(args=[package.id])
+def check(package: Package, causer_id: int | None = None) -> PackageUpdateConfig:
+	result = importtasks.check_update_config.apply(args=[package.id, causer_id])
 	assert result.successful(), result.traceback
 	db.session.expire_all()
 	config = PackageUpdateConfig.query.get(package.id)
@@ -195,8 +196,19 @@ def test_make_release(client, git, trigger, name, notes):
 	assert queued["release_id"] == release.id
 	assert queued["commit"] == NEW
 	assert queued["task_id"] == release.task_id
+	assert queued["causer_id"] is None
 	# The import task must be able to find the release
 	assert queued["committed"]
+
+
+def test_make_release_passes_causer(client, git):
+	package = setup(make_release=True)
+
+	check(package, package.author.id)
+
+	[queued] = git.queued
+	# Shown in malicious content alerts
+	assert queued["causer_id"] == package.author.id
 
 
 def test_git_disabled(client, git, monkeypatch):
@@ -215,9 +227,10 @@ def test_git_disabled(client, git, monkeypatch):
 
 
 @pytest.fixture
-def queued_checks(monkeypatch) -> list[int]:
-	calls: list[int] = []
-	monkeypatch.setattr(release_routes.check_update_config, "delay", lambda package_id: calls.append(package_id))
+def queued_checks(monkeypatch) -> list[tuple[int, int | None]]:
+	calls: list[tuple[int, int | None]] = []
+	monkeypatch.setattr(release_routes.check_update_config, "delay",
+			lambda package_id, causer_id=None: calls.append((package_id, causer_id)))
 	return calls
 
 
@@ -247,7 +260,7 @@ def test_set_update_config(client, queued_checks, trigger, action, make_release)
 	assert config.ref is None
 	# New commits are compared against the last release, and tags against ones made after this
 	assert config.last_commit == (OLD if trigger == "COMMIT" else None)
-	assert queued_checks == [package.id]
+	assert queued_checks == [(package.id, owner.id)]
 
 
 def test_disable_update_config(client, queued_checks):

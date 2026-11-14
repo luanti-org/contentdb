@@ -141,14 +141,14 @@ def test_zip_other_failure_isnt_malicious(client, webhook, tmp_path, monkeypatch
 	error = run(importtasks.check_zip_release, release.id, causer.id)
 
 	# An ordinary failure, so the reason is shown to the user
-	assert "invalid name" in error.value
+	assert "invalid characters" in error.value
 	assert str(archive) not in error.value
 
 	db.session.refresh(release)
 	assert release.state == ReleaseState.FAILED
 	replies = ThreadReply.query.filter_by(author=get_system_user()).all()
 	assert len(replies) == 1
-	assert "invalid name" in replies[0].comment
+	assert "invalid characters" in replies[0].comment
 
 	webhook.assert_not_called()
 	assert AuditLogEntry.query.filter(AuditLogEntry.title.like("Malicious content detected%")).count() == 0
