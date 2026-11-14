@@ -536,7 +536,7 @@ def modtools_verify_email(username, ver_id):
 
 	email = ver.email
 	if confirm_email_verification(ver):
-		add_audit_log(AuditSeverity.MODERATION, current_user, f"Confirmed email {email} for {user.username}",
+		add_audit_log(AuditSeverity.MODERATION, current_user, f"Confirmed email for {user.username}",
 				url_for("users.profile", username=user.username), None)
 		db.session.commit()
 
