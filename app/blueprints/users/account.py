@@ -266,11 +266,14 @@ def forgot_password():
 
 
 class SetPasswordForm(FlaskForm):
-	email = StringField(lazy_gettext("Email"), [Optional(), Email()])
 	password = PasswordField(lazy_gettext("New password"), [InputRequired(), Length(12, 100)])
 	password2 = PasswordField(lazy_gettext("Verify password"), [InputRequired(), Length(12, 100),
 			EqualTo('password', message=lazy_gettext('Passwords must match'))])
 	submit = SubmitField(lazy_gettext("Save"))
+
+
+class SetPasswordWithEmailForm(SetPasswordForm):
+	email = StringField(lazy_gettext("Email"), [InputRequired(), Email()])
 
 
 class ChangePasswordForm(FlaskForm):
@@ -299,12 +302,7 @@ def handle_set_password(form):
 
 	if hasattr(form, "email"):
 		new_email = nonempty_or_none(form.email.data)
-		if new_email and current_user.has_email(new_email):
-			if new_email != current_user.email:
-				add_audit_log(AuditSeverity.USER, current_user, "Changed the casing of their email",
-						url_for("users.profile", username=current_user.username))
-				current_user.email = new_email
-		elif new_email:
+		if new_email:
 			if EmailSubscription.query_by_email(new_email).filter_by(blacklisted=True).count() > 0:
 				db.session.rollback()
 				flash(gettext(u"That email address has been unsubscribed/blacklisted, and cannot be used"), "danger")
@@ -368,9 +366,8 @@ def set_password():
 	if ret:
 		return ret
 
-	form = SetPasswordForm(request.form)
-	if current_user.email is None:
-		form.email.validators = [InputRequired(), Email()]
+	form_class = SetPasswordWithEmailForm if current_user.email is None else SetPasswordForm
+	form = form_class(request.form)
 
 	if form.validate_on_submit():
 		ret = handle_set_password(form)

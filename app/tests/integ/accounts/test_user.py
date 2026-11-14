@@ -17,6 +17,7 @@ from app.tasks.usertasks import delete_expired_sessions
 from app.utils.misc import hash_token
 from app.utils.user import make_flask_login_password
 from ..utils import login, logout, is_logged_in
+from ..factories import create_user, login_as, get_user
 
 
 def test_login_logout(client):
@@ -212,6 +213,35 @@ def test_require_password_reset(client, monkeypatch):
 	logout(client)
 	rv = login(client, "rubenwardy", new_password)
 	assert is_logged_in(rv)
+
+
+def test_set_password_shows_email_as_required(client):
+	user = create_user("no_email", email=None, password=None)
+	login_as(client, user)
+
+	rv = client.get("/user/set-password/")
+	assert rv.status_code == 200
+	html = rv.data.decode("utf-8")
+	email_label = html.index('<label for="email"')
+	password_label = html.index('<label for="password"')
+	assert "Required" in html[email_label:password_label]
+	assert 'id="email" name="email" required' in html
+
+	rv = set_password(client, "VYjNnjdDPhCVUZx")
+	assert b"This field is required." in rv.data
+	assert get_user("no_email").password is None
+
+
+def test_set_password_email_is_optional_if_user_has_one(client):
+	user = create_user("has_email", password=None)
+	login_as(client, user)
+
+	html = client.get("/user/set-password/").data.decode("utf-8")
+	assert 'name="email"' not in html
+
+	rv = set_password(client, "VYjNnjdDPhCVUZx")
+	assert b"Your password has been changed successfully." in rv.data
+	assert get_user("has_email").password is not None
 
 
 def test_set_password_with_email_in_use(client):
