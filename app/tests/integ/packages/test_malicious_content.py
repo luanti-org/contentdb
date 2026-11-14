@@ -195,6 +195,26 @@ def test_alert_escapes_user_content(client, webhook, monkeypatch):
 			"Reason: `Git: URL not allowed: '-'[click](https://evil.example)''`\n")
 
 
+def test_import_languages_leaves_stored_release(client, webhook, evil_zip):
+	causer, release = setup(PackageState.APPROVED)
+	release.state = ReleaseState.APPROVED
+	release.task_id = None
+	db.session.commit()
+
+	error = run(importtasks.import_languages, release.id, str(evil_zip))
+
+	# An admin action on an existing release, so neither the release nor the maintainers are affected
+	db.session.refresh(release)
+	assert release.state == ReleaseState.APPROVED
+	assert release.task_id is None
+	assert ThreadReply.query.filter_by(author=get_system_user()).count() == 0
+	assert "reported to staff" in error.value
+
+	assert AuditLogEntry.query.filter_by(package=release.package).count() == 0
+	assert AuditLogEntry.query.filter(AuditLogEntry.title.like("Malicious content detected%")).count() == 1
+	assert_alerted(webhook, "Found by Import Translations", "path traversal")
+
+
 def test_task_page_hides_malicious_reason(client, monkeypatch):
 	result = MagicMock()
 	result.status = "FAILURE"

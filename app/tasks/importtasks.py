@@ -352,18 +352,24 @@ def fail_release(task_id: str, release: PackageRelease, error_message: str) -> T
 	return TaskError(error_message)
 
 
+def alert_staff_of_malicious_release(release: PackageRelease, causer_id: int | None, reason: str):
+	"""
+	Records malicious content in the audit log and posts it to the staff queue. Commits.
+	"""
+	causer = User.query.get(causer_id) if causer_id is not None else None
+	discord_message = report_malicious_content(causer, release, reason)
+	db.session.commit()
+
+	post_discord_webhook.delay("ContentDB", discord_message, True)
+
+
 def handle_malicious_release(self, release: PackageRelease, causer_id: int | None, reason: str) -> TaskError:
 	"""
 	Fails the release and reports it to staff.
 	Returns an error to raise, which doesn't include the reason so that the checks can't be probed.
 	"""
 	error = fail_release(self.request.id, release, REJECTED_MESSAGE)
-
-	causer = User.query.get(causer_id) if causer_id is not None else None
-	discord_message = report_malicious_content(causer, release, reason)
-	db.session.commit()
-
-	post_discord_webhook.delay("ContentDB", discord_message, True)
+	alert_staff_of_malicious_release(release, causer_id, reason)
 	return error
 
 
@@ -425,7 +431,11 @@ def import_languages(self, id, path):
 		try:
 			safe_extract_zip(temp, path)
 		except MaliciousContentError as err:
-			raise handle_malicious_release(self, release, None, err.reason) from err
+			# This is an admin action on a stored release, rather than a new upload, so the release and its
+			# maintainers are left alone. Staff should still know the release has it.
+			db.session.rollback()
+			alert_staff_of_malicious_release(release, None, f"Found by Import Translations: {err.reason}")
+			raise TaskError("Release contains malicious content, reported to staff") from err
 
 		try:
 			tree: PackageTreeNode = build_tree(temp,
