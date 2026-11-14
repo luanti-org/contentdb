@@ -684,7 +684,7 @@ class UserSession(Model):
 	user_agent = db.Column(db.String(USER_AGENT_MAX_LENGTH), nullable=True)
 
 	MAX_AGE = datetime.timedelta(days=365)
-	IDLE_TIMEOUT = datetime.timedelta(days=90)
+	IDLE_TIMEOUT = datetime.timedelta(days=30)
 	# Minimum age before updating last_used_at
 	LAST_USED_RESOLUTION = datetime.timedelta(minutes=5)
 	FRESH_FOR = datetime.timedelta(minutes=15)

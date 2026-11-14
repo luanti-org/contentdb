@@ -102,7 +102,7 @@ account" below.
 Whether an IP address has downloaded a package or release is deleted after 14 days.
 
 Sessions, including their IP address, platform, and operating system, are deleted when you
-log out, when you change your password, or when they expire. Sessions expire after 90 days
+log out, when you change your password, or when they expire. Sessions expire after 30 days
 without being used, or a year after you logged in.
 
 ## Deleting your account
