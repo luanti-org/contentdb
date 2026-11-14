@@ -51,6 +51,7 @@ def get_unused_users_without_email_query():
 		~User.collections.any(),
 		~User.tokens.any(),
 		~User.audit_log_entries.any(AuditLogEntry.created_at >= one_year_ago),
+		~User.audit_log_entries.any(AuditLogEntry.title.like("Granted \"%\" to OAuth2 application %")),
 
 		# Deleting the user would cascade to these
 		~User.forum_topics.any(),

@@ -211,6 +211,18 @@ def test_old_audit_log_entries_do_not_block_deletion(client):
 	assert entry.causer_id is None
 
 
+def test_user_who_granted_oauth_client_long_ago_is_kept(client):
+	user = make_unused_user("used")
+	entry = AuditLogEntry(user, AuditSeverity.USER,
+			"Granted \"public\" to OAuth2 application \"Client Name\" by someone [abcdef] ", None)
+	entry.created_at = TWO_YEARS_AGO
+	db.session.add(entry)
+	db.session.commit()
+
+	assert delete_unused_users_without_email() == 0
+	assert User.query.filter_by(username="used").count() == 1
+
+
 def test_user_with_review_votes_is_deleted(client):
 	user = make_unused_user("unused")
 	review = make_review(get_admin())
