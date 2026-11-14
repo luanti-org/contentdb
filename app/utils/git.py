@@ -23,7 +23,7 @@ from git import GitCommandError
 from git.util import remove_password_if_present
 
 from app import app
-from app.tasks import TaskError
+from app.tasks import TaskError, MaliciousContentError
 from app.utils.misc import random_string, normalize_line_endings
 from app.utils.files import get_temp_dir
 
@@ -126,19 +126,29 @@ def _read_gitmodules(repo_dir: str) -> Dict[str, Dict[str, str]]:
 
 def _check_submodule_path(path: str):
 	parts = path.split("/")
-	if re.fullmatch(r"[A-Za-z0-9._/-]+", path) is None or path.startswith("-") or \
-			any(part in ("", ".", "..") or part.lower() == ".git" for part in parts):
+	if path.startswith("-") or any(part == ".." or part.lower() == ".git" for part in parts):
+		raise MaliciousContentError(f"Submodule path is not allowed: {path!r}")
+
+	if re.fullmatch(r"[A-Za-z0-9._/-]+", path) is None or any(part in ("", ".") for part in parts):
 		raise TaskError(f"Submodule path is not allowed: {path!r}")
 
 
 # Git stores the submodule at .git/modules/<name>, so ".." would escape that dir
 def _check_submodule_name(name: str):
-	if re.search(r"[\x00-\x1f\x7f\\]", name) is not None or name.startswith("-") or \
-			any(part in ("", "..") for part in name.split("/")):
+	if re.search(r"[\x00-\x1f\x7f]", name) is not None or name.startswith("-") or \
+			any(part == ".." for part in re.split(r"[/\\]", name)):
+		raise MaliciousContentError(f"Submodule name is not allowed: {name!r}")
+
+	if "\\" in name or any(part == "" for part in name.split("/")):
 		raise TaskError(f"Submodule name is not allowed: {name!r}")
 
 
 def _check_submodule_url(path: str, url: str):
+	# Option injection and git's transport helpers such as ext::
+	# file: URLs aren't included, as `git submodule add` with a local path makes one by accident
+	if url.startswith("-") or re.match(r"[A-Za-z][A-Za-z0-9+.-]*::", url) is not None:
+		raise MaliciousContentError(f"Submodule '{path}' has a URL that is not allowed: {url!r}")
+
 	if not url.startswith("https://"):
 		raise TaskError(f"Submodule '{path}' has a URL that doesn't use https://: {url!r}")
 
@@ -371,7 +381,7 @@ def _list_archive_files(root: str, repo_dir: str, base: str) -> List[Tuple[str, 
 		if re.search(r"[\x00-\x1f\x7f\\]", path):
 			raise TaskError(f"File name contains a backslash or control character: {name!r}")
 		if os.path.commonpath([root, os.path.realpath(full_path)]) != root:
-			raise TaskError(f"File is outside the repository: {name!r}")
+			raise MaliciousContentError(f"File is outside the repository: {name!r}")
 
 		if mode == "160000":
 			if os.path.exists(os.path.join(full_path, ".git")):

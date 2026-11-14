@@ -91,7 +91,7 @@ def do_create_vcs_release(user: User, package: Package, name: str, title: Option
 	if ref:
 		ref = ref.strip()
 
-	make_vcs_release.apply_async((rel.id, ref), task_id=task_id)
+	make_vcs_release.apply_async((rel.id, ref, user.id), task_id=task_id)
 
 	return rel, task_id
 
@@ -133,6 +133,6 @@ def do_create_zip_release(user: User, package: Package, name: str, title: Option
 	db.session.commit()
 	_record_release(limits)
 
-	check_zip_release.apply_async((rel.id,), task_id=task_id)
+	check_zip_release.apply_async((rel.id, user.id), task_id=task_id)
 
 	return rel, task_id

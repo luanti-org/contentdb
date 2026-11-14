@@ -322,7 +322,7 @@ def set_update_config(package, form):
 	db.session.commit()
 
 	if can_package_use_git(package):
-		check_update_config.delay(package.id)
+		check_update_config.delay(package.id, current_user.id)
 
 
 @bp.route("/packages/<author>/<name>/update-config/", methods=["GET", "POST"])

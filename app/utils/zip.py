@@ -3,45 +3,43 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 import os
-import sys
 from zipfile import ZipFile, BadZipFile
 
-from app.tasks import TaskError
+from app.tasks import TaskError, MaliciousContentError
 
 
-def check_zip_file(temp_dir: str, zf: ZipFile) -> bool:
+def check_zip_file(temp_dir: str, zf: ZipFile):
+	"""
+	:raises MaliciousContentError: for path traversal, as it can't be made by accident
+	:raises TaskError: for other problems
+	"""
 	# No more than 300MB
 	total_size = sum(e.file_size for e in zf.infolist())
 	if total_size > 300 * 1024 * 1024:
-		print(f"zip file is too large: {total_size} bytes", file=sys.stderr)
-		return False
+		raise TaskError(f"Zip file is too large: {total_size} bytes")
 
 	# Check paths
 	real_temp_dir = os.path.realpath(temp_dir)
 	for member in zf.infolist():
 		# We've had cases of newlines in filenames
 		if "\n" in member.filename:
-			print("zip file member contains invalid characters", file=sys.stderr)
-			return False
+			raise TaskError(f"Zip file member contains invalid characters: {member.filename!r}")
 
 		file_path = os.path.realpath(os.path.join(temp_dir, member.filename))
 		if os.path.commonpath([real_temp_dir, file_path]) != real_temp_dir:
-			print(f"zip file contains path out-of-bounds: {file_path}", file=sys.stderr)
-			return False
-
-	return True
+			raise MaliciousContentError(f"Zip file has path traversal: {member.filename!r}")
 
 
-def safe_extract_zip(temp_dir: str, archive_path: str) -> bool:
+def safe_extract_zip(temp_dir: str, archive_path: str):
+	"""
+	Checks the zip with check_zip_file, and extracts it if it's safe.
+	"""
 	try:
 		with ZipFile(archive_path, 'r') as zf:
-			if not check_zip_file(temp_dir, zf):
-				return False
+			check_zip_file(temp_dir, zf)
 
 			# Extract all
 			for member in zf.infolist():
 				zf.extract(member, temp_dir)
 	except BadZipFile as e:
 		raise TaskError(str(e)) from e
-
-	return True
