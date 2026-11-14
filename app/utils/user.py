@@ -29,6 +29,14 @@ def make_valid_username(username: str) -> str:
 	return re.sub(r"[^A-Za-z0-9._-]+", "_", username)
 
 
+def _request_client_info() -> tuple[str | None, str | None]:
+	"""
+	Returns the IP address and user agent of the current request, for recording on its UserSession.
+	"""
+	user_agent = request.user_agent.string or None
+	return request.remote_addr, user_agent[:UserSession.USER_AGENT_MAX_LENGTH] if user_agent else None
+
+
 def _unwrap_user(user: User) -> User:
 	if isinstance(user, LocalProxy):
 		return user._get_current_object()
@@ -57,6 +65,7 @@ def login_user_with_session(user: User, remember: bool = False, force: bool = Fa
 	user_session.user = user
 	user_session.token_hash = hash_token(token)
 	user_session.reauthenticated_at = datetime.datetime.utcnow() if fresh else None
+	user_session.ip_address, user_session.user_agent = _request_client_info()
 	db.session.add(user_session)
 
 	if cancel_deletion:
@@ -116,8 +125,12 @@ def update_user_session():
 
 	stale_id = g.pop("stale_user_session_id", None)
 	if stale_id is not None:
-		UserSession.query.filter_by(id=stale_id) \
-			.update({"last_used_at": datetime.datetime.utcnow()}, synchronize_session=False)
+		ip_address, user_agent = _request_client_info()
+		UserSession.query.filter_by(id=stale_id).update({
+			"last_used_at": datetime.datetime.utcnow(),
+			"ip_address": ip_address,
+			"user_agent": user_agent,
+		}, synchronize_session=False)
 		db.session.commit()
 
 

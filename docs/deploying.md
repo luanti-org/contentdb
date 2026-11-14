@@ -36,3 +36,34 @@ content.luanti.org is deployed with Ansible, which pins the commit and creates t
 		docker compose up -d --scale worker=4
 
 To roll back, deploy an earlier commit. This doesn't undo migrations.
+
+## Session locations (optional)
+
+Users' account pages show the approximate location of each login session, looked up
+in a local copy of MaxMind's GeoLite2 City database. IP addresses aren't sent to MaxMind.
+Without the database, sessions are shown without a location.
+
+1. Create a free [MaxMind account](https://www.maxmind.com/en/geolite2/signup) and a license key.
+
+2. Add MaxMind's updater and the mount to `docker-compose.override.yml`:
+
+		services:
+		  geoipupdate:
+		    image: ghcr.io/maxmind/geoipupdate:v7
+		    restart: unless-stopped
+		    environment:
+		      GEOIPUPDATE_ACCOUNT_ID: "<account id>"
+		      GEOIPUPDATE_LICENSE_KEY: "<license key>"
+		      GEOIPUPDATE_EDITION_IDS: GeoLite2-City
+		      GEOIPUPDATE_FREQUENCY: 72
+		    volumes:
+		      - "./data/geoip:/usr/share/GeoIP"
+
+		  app:
+		    volumes:
+		      - "./data/geoip:/var/cdb/geoip:ro"
+
+3. Set `GEOIP_CITY_DATABASE = "/var/cdb/geoip/GeoLite2-City.mmdb"` in `config.cfg`, and restart.
+
+The updater replaces the file every few days, and ContentDB picks up the new file without
+restarting. The GeoLite2 EULA requires the attribution in the privacy policy.

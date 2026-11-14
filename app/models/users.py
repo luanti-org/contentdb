@@ -678,6 +678,11 @@ class UserSession(Model):
 	last_used_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
 	reauthenticated_at = db.Column(db.DateTime, nullable=True, default=None)
 
+	# Where the session was last used from
+	USER_AGENT_MAX_LENGTH = 512
+	ip_address = db.Column(db.String(45), nullable=True)
+	user_agent = db.Column(db.String(USER_AGENT_MAX_LENGTH), nullable=True)
+
 	MAX_AGE = datetime.timedelta(days=365)
 	IDLE_TIMEOUT = datetime.timedelta(days=90)
 	# Minimum age before updating last_used_at

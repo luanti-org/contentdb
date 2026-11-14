@@ -1,7 +1,7 @@
 title: Privacy Policy
 ---
 
-Last Updated: 2026-11-07
+Last Updated: 2026-11-14
 ([View updates](https://github.com/luanti-org/contentdb/commits/master/app/flatpages/privacy_policy.md))
 
 ## What Information is Collected
@@ -23,6 +23,7 @@ Last Updated: 2026-11-07
 * Profile information, such as website URLs and donation URLs
 * Comments, threads, and reviews
 * Audit log actions (such as edits and logins) and their time stamps
+* The IP address, platform, and operating system of your session
 
 ContentDB collects usernames of content creators from the forums,
 as this is required to index forum topics.
@@ -49,7 +50,9 @@ Please avoid giving other personal information as we do not want it.
 * Whether an IP address has viewed or downloaded a package or release is cached to prevent
   view or downloads from being counted multiple times per IP address, but this
   information is deleted after 14 days.
-* IP addresses are used to monitor and combat abuse.
+* IP addresses, platform, and operating system are used to monitor and combat abuse.
+* The platform, operating system, and approximate location of your sessions are shown on your
+  account settings page, so that you can recognise them.
 * Other information is displayed as part of ContentDB's service.
 
 ## Who has access
@@ -69,6 +72,9 @@ Please avoid giving other personal information as we do not want it.
   Users may see their own audit log actions on their account settings page.
   Owners, maintainers, and editors can see the actions on a package.
 * Preferred language can only be viewed by those with access to the database or a backup.
+* The platform, operating system, and approximate location of your sessions are visible to you,
+  moderators, and the admin. Session IP addresses are not shown on the website, and can only be viewed by those
+  with access to the database or a backup.
 * We may be required to share information with law enforcement.
 
 ## Third-parties
@@ -94,6 +100,10 @@ Account information is kept until your account is deleted. See "Deleting your
 account" below.
 
 Whether an IP address has downloaded a package or release is deleted after 14 days.
+
+Sessions, including their IP address, platform, and operating system, are deleted when you
+log out, when you change your password, or when they expire. Sessions expire after 90 days
+without being used, or a year after you logged in.
 
 ## Deleting your account
 

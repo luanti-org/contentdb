@@ -18,6 +18,7 @@ from app.models import db, Permission, Package, PackageState, PackageRelease, Re
 from app.utils.flask import abs_url_for, url_set_query, url_set_anchor, url_current, abs_url as do_abs_url
 from app.utils.luanti_hypertext import normalize_whitespace as do_normalize_whitespace
 from app.utils.misc import format_file_size as format_file_size_impl
+from app.utils.sessions import describe_platform, describe_location
 
 
 @app.context_processor
@@ -67,6 +68,16 @@ def inject_bigotry_troll():
 		.count())
 
 	return dict(bigotry_troll=count > 5)
+
+
+@app.template_filter()
+def session_platform(user_session):
+	return describe_platform(user_session.user_agent)
+
+
+@app.template_filter()
+def session_location(user_session):
+	return describe_location(user_session.ip_address)
 
 
 @app.template_filter()
