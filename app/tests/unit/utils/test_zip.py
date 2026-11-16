@@ -158,7 +158,7 @@ def test_check_zip_file_rejects_overlapping_entries(tmp_path):
 
 def test_check_zip_file_raises_malicious_for_traversal(tmp_path):
 	archive = make_zip(tmp_path, {"../evil.txt": ""})
-	with ZipFile(archive, "r") as zf, pytest.raises(MaliciousContentError, match="out-of-bounds"):
+	with ZipFile(archive, "r") as zf, pytest.raises(MaliciousContentError, match="path traversal"):
 		check_zip_file(str(make_temp_dir(tmp_path)), zf)
 
 

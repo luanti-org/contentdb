@@ -55,7 +55,7 @@ def _member_problem(temp_dir: str, real_temp_dir: str, member: ZipInfo) -> Optio
 	for candidate in (name, normalized):
 		file_path = os.path.realpath(os.path.join(temp_dir, candidate))
 		if os.path.commonpath([real_temp_dir, file_path]) != real_temp_dir:
-			return ZipCheckResult.PATH_TRAVERSAL, "is out-of-bounds"
+			return ZipCheckResult.PATH_TRAVERSAL, "has path traversal"
 
 	return None
 
