@@ -2,10 +2,11 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
+import datetime
 
 from app.default_data import populate_test_data
 from app.models import db, Package, PackageState, DashboardWidgetType
-from ..factories import create_dashboard
+from ..factories import create_dashboard, create_package, create_release, create_user
 from ..utils import parse_json, validate_package_list
 
 
@@ -86,3 +87,35 @@ def test_dashboards(client):
 			],
 		},
 	]
+
+
+def test_packages_sort_last_release(client):
+	"""Packages are listed once each, by their newest approved release"""
+	author = create_user("author")
+	old = create_package("old", author)
+	new = create_package("new", author)
+	unapproved = create_package("unapproved", author)
+	create_package("no_releases", author)
+
+	now = datetime.datetime.now()
+
+	def release(package, name, days_ago, approved=True):
+		r = create_release(package, name, approved=approved)
+		r.created_at = now - datetime.timedelta(days=days_ago)
+		db.session.commit()
+
+	# Several releases each, so that joining on releases without grouping would list them more than once
+	release(old, "1.0", 10)
+	release(old, "1.1", 5)
+	release(new, "1.0", 8)
+	release(new, "1.1", 1)
+	release(unapproved, "1.0", 7)
+	release(unapproved, "1.1", 0, approved=False)
+
+	rv = client.get("/api/packages/?sort=last_release&order=desc")
+	assert rv.status_code == 200
+	# unapproved's newest release is unapproved, so it's ordered by its 7 day old one
+	assert [package["name"] for package in parse_json(rv.data)] == ["new", "old", "unapproved"]
+
+	rv = client.get("/api/packages/?sort=last_release&order=asc&limit=2")
+	assert [package["name"] for package in parse_json(rv.data)] == ["unapproved", "old"]

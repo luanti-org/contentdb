@@ -7,6 +7,7 @@ from flask import abort, current_app, request, make_response
 from flask_babel import lazy_gettext, gettext, get_locale
 from sqlalchemy import or_, and_
 from sqlalchemy.orm import subqueryload, joinedload
+from sqlalchemy.sql import Subquery
 from sqlalchemy.sql.expression import func
 from sqlalchemy_searchable import search
 from urllib.parse import urlparse
@@ -41,6 +42,8 @@ class QueryBuilder:
 	version: Optional[LuantiRelease]
 	not_version: Optional[LuantiRelease]
 	has_lang: Optional[str]
+	# Set by build_package_query when sorting by last_release, for order_package_query
+	_last_release: Optional[Subquery] = None
 
 	@property
 	def title(self):
@@ -238,10 +241,17 @@ class QueryBuilder:
 		return [to_json(pkg) for pkg in packages]
 
 	def build_package_query(self):
+		query = Package.query
 		if self.order_by == "last_release":
-			query = db.session.query(Package).select_from(PackageRelease).join(Package)
-		else:
-			query = Package.query
+			# One row per package, so packages with several releases aren't listed more than once.
+			# Packages without an approved release are left out.
+			self._last_release = (db.session.query(
+						PackageRelease.package_id,
+						func.max(PackageRelease.created_at).label("created_at"))
+					.filter(PackageRelease.state == ReleaseState.APPROVED)
+					.group_by(PackageRelease.package_id)
+					.subquery())
+			query = query.join(self._last_release, self._last_release.c.package_id == Package.id)
 
 		if self.only_approved:
 			query = query.filter(Package.state == PackageState.APPROVED)
@@ -366,7 +376,8 @@ class QueryBuilder:
 		elif self.order_by == "approved_at" or self.order_by == "date":
 			to_order = Package.approved_at
 		elif self.order_by == "last_release":
-			to_order = PackageRelease.created_at
+			assert self._last_release is not None, "last_release requires the query from build_package_query"
+			to_order = self._last_release.c.created_at
 		else:
 			abort(400)
 
