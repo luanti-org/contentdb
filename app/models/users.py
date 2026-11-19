@@ -115,6 +115,7 @@ class Permission(enum.Enum):
 	VIEW_COLLECTION = "VIEW_COLLECTION"
 	CREATE_OAUTH_CLIENT = "CREATE_OAUTH_CLIENT"
 	SEE_REPORT = "SEE_REPORT"
+	EDIT_DASHBOARD = "EDIT_DASHBOARD"
 
 	# Only return true if the permission is valid for *all* contexts
 	# See Package.check_perm for package-specific contexts

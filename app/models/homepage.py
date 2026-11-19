@@ -1,0 +1,100 @@
+# ContentDB
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
+
+
+import datetime
+import enum
+from typing import TYPE_CHECKING
+from urllib.parse import parse_qsl
+
+from flask import url_for
+from werkzeug.datastructures import MultiDict
+
+from .base import db, Model
+from .users import Permission, UserRank
+
+if TYPE_CHECKING:
+	from app.querybuilder import QueryBuilder
+
+
+class DashboardWidgetType(enum.Enum):
+	SPOTLIGHT = "Spotlight"
+	ROW = "Row"
+	TAGS = "Tags"
+	REVIEWS = "Reviews"
+
+	def to_name(self):
+		return self.name.lower()
+
+	def __str__(self):
+		return self.name
+
+	@classmethod
+	def get(cls, name):
+		try:
+			return DashboardWidgetType[name.upper()]
+		except KeyError:
+			return None
+
+	@classmethod
+	def choices(cls):
+		ret = [(choice, choice) for choice in cls]
+		return ret
+
+	@classmethod
+	def coerce(cls, item):
+		return item if isinstance(item, DashboardWidgetType) else DashboardWidgetType[item.upper()]
+
+
+class Dashboard(Model):
+	id         = db.Column(db.Integer, primary_key=True)
+	title      = db.Column(db.String(100), nullable=False)
+	created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+
+	widgets    = db.relationship("DashboardWidget", back_populates="dashboard", lazy="dynamic",
+			order_by="DashboardWidget.order", cascade="all, delete, delete-orphan")
+
+	def check_perm(self, user, perm):
+		if isinstance(perm, str):
+			perm = Permission[perm]
+		elif not isinstance(perm, Permission):
+			raise Exception("Unknown permission given to Dashboard.check_perm()")
+
+		if user is None or not user.is_authenticated:
+			return False
+
+		if perm == Permission.EDIT_DASHBOARD:
+			return user.rank.at_least(UserRank.EDITOR)
+
+		else:
+			raise Exception("Permission {} is not related to dashboards".format(perm.name))
+
+
+class DashboardWidget(Model):
+	id = db.Column(db.Integer, primary_key=True)
+
+	dashboard_id = db.Column(db.Integer, db.ForeignKey("dashboard.id"), nullable=False)
+	dashboard = db.relationship("Dashboard", back_populates="widgets", foreign_keys=[dashboard_id])
+
+	type = db.Column(db.Enum(DashboardWidgetType), nullable=False, default=DashboardWidgetType.ROW)
+
+	title = db.Column(db.String(100), nullable=True)
+	order = db.Column(db.Integer, nullable=False)
+
+	created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+
+	# Package list query, in the same format as /packages/'s URL query string, e.g. "type=game&sort=score".
+	# Not called `query`, as that would shadow Model.query.
+	query_string = db.Column(db.String(512), nullable=True)
+	limit = db.Column(db.Integer, nullable=True, default=8)
+
+	def get_query_builder(self) -> "QueryBuilder":
+		# Imported here, as app.querybuilder imports app.models
+		from app.querybuilder import QueryBuilder
+
+		args = MultiDict(parse_qsl(self.query_string or "", keep_blank_values=True))
+		return QueryBuilder(args, emit_http_errors=False)
+
+	def get_see_more_url(self):
+		return url_for("packages.list_all") + "?" + (self.query_string or "")

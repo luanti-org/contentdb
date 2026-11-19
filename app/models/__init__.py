@@ -12,6 +12,7 @@ from .packages import *
 from .users import *
 from .threads import *
 from .collections import *
+from .homepage import *
 
 
 class APIToken(Model):
