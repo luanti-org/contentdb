@@ -1,0 +1,73 @@
+{% if packages %}
+	<div id="spotlight-{{ widget.id }}" class="carousel slide mt-0 mb-5" data-bs-ride="carousel" data-bs-interval="7500">
+		<div class="carousel-indicators">
+			{% for package in packages %}
+				<button
+						data-bs-target="#spotlight-{{ widget.id }}"
+						data-bs-slide-to="{{ loop.index - 1 }}"
+						{% if loop.index == 1 %}class="active" aria-current="true"{% endif %}></button>
+			{% endfor %}
+		</div>
+		<div class="carousel-inner">
+			{% for package in packages %}
+				{% set meta = package.get_translated(load_desc=False) %}
+				{% set cover_image = package.get_cover_image_url() %}
+				{% set tags =  package.tags | sort(attribute="views", reverse=True) %}
+				<div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
+					<a href="{{ package.get_url('packages.view') }}">
+						<div class="ratio ratio-16x9">
+							<img src="{{ cover_image }}"
+								alt="{{ _('%(title)s by %(author)s', title=meta.title, author=package.author.display_name) }}">
+						</div>
+						<div class="carousel-caption text-shadow">
+							<h3 class="mt-0 mb-3">
+								{% if package.author %}
+									{{ _('<strong>%(title)s</strong> by %(author)s', title=meta.title, author=package.author.display_name) }}
+								{% else %}
+									<strong>{{ meta.title }}</strong>
+								{% endif %}
+							</h3>
+							<p>
+								{{ meta.short_desc }}
+							</p>
+							{% if package.author %}
+								<div class="d-none d-md-block">
+									<span class="me-2">
+										{{ package.type.text }}
+									</span>
+									{% for warning in package.content_warnings %}
+										<span class="badge bg-warning" title="{{ warning.description }}">
+											<i class="fas fa-exclamation-circle" style="margin-right: 0.3em;"></i>
+											{{ warning.title }}
+										</span>
+									{% endfor %}
+									{% for tag in tags[:3] %}
+										{% set trans = tag.get_translated() %}
+										<span class="badge bg-primary" title="{{ trans.description or '' }}">
+											{{ trans.title }}
+										</span>
+									{% endfor %}
+									<span class="btn" title="{{ _('Reviews') }}">
+										<i class="fas fa-star-half-alt"></i>
+										<span class="count">
+											{% set summary = package.get_review_summary() %}
+											+{{ summary[0] }} / {{ summary[1] }} / -{{ summary[2] }}
+										</span>
+									</span>
+								</div>
+							{% endif %}
+						</div>
+					</a>
+				</div>
+			{% endfor %}
+		</div>
+		<button class="carousel-control-prev" role="button" data-bs-target="#spotlight-{{ widget.id }}" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">{{ _("Previous") }}</span>
+		</button>
+		<button class="carousel-control-next" role="button" data-bs-target="#spotlight-{{ widget.id }}" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">{{ _("Next") }}</span>
+		</button>
+	</div>
+{% endif %}

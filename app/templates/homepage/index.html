@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ _("Welcome") }}
+{% endblock %}
+
+{% block description %}
+{{ _("Welcome to the best place to find Luanti mods, games, and texture packs") }}
+{% endblock %}
+
+{% block scriptextra %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "url": "https://content.luanti.org/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://content.luanti.org/packages?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+{% for script in scripts %}
+	<script src="{{ script }}"></script>
+{% endfor %}
+{% endblock %}
+
+{% block content %}
+	{% for html in widgets %}
+		{{ html }}
+	{% endfor %}
+
+	<div class="text-center mt-5">
+		<small>
+			{{ _("CDB has %(count)d packages, with a total of %(downloads)d downloads.", count=count, downloads=downloads) }}
+		</small>
+	</div>
+{% endblock %}

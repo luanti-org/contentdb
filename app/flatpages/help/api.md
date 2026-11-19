@@ -544,6 +544,21 @@ Supported query parameters:
         * `title`:  human-readable title
         * `description`:  tag description or null
 
+### Dashboards
+
+Dashboards are the curated layouts of the homepage.
+
+* GET `/api/dashboards/` ([View](/api/dashboards/))
+    * List of objects with:
+        * `id`: dashboard id.
+        * `title`: dashboard title.
+        * `widgets`: ordered list of objects with:
+            * `id`: widget id.
+            * `type`: one of `spotlight`, `row`, `tags`, `reviews`.
+            * `title`: title, or null.
+            * `query_string`: for `row`, a [package list query](#packages) in URL query string format, or null.
+            * `limit`: maximum number of items, or null.
+
 ### Licenses
 
 * GET `/api/licenses/` ([View](/api/licenses/))

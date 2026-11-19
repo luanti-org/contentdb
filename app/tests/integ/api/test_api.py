@@ -4,7 +4,8 @@
 
 
 from app.default_data import populate_test_data
-from app.models import db, Package, PackageState
+from app.models import db, Package, PackageState, DashboardWidgetType
+from ..factories import create_dashboard
 from ..utils import parse_json, validate_package_list
 
 
@@ -62,3 +63,26 @@ def test_dependencies(client):
 	assert not deps[0]["is_optional"]
 	assert len(deps[0]["packages"]) == 1
 	assert deps[0]["packages"][0] == "rubenwardy/food"
+
+
+def test_dashboards(client):
+	"""utils/extract_translations.py reads widget titles from this"""
+	dashboard = create_dashboard([
+		(DashboardWidgetType.SPOTLIGHT, None, None, 6),
+		(DashboardWidgetType.ROW, "Top Games", "type=game&sort=score", 8),
+	])
+	widgets = dashboard.widgets.all()
+
+	rv = client.get("/api/dashboards/")
+	assert rv.status_code == 200
+	assert parse_json(rv.data) == [
+		{
+			"id": dashboard.id,
+			"title": "Home",
+			"widgets": [
+				{"id": widgets[0].id, "type": "spotlight", "title": None, "query_string": None, "limit": 6},
+				{"id": widgets[1].id, "type": "row", "title": "Top Games", "query_string": "type=game&sort=score",
+					"limit": 8},
+			],
+		},
+	]

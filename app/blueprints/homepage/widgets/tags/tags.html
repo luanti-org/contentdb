@@ -1,0 +1,14 @@
+{% if title %}
+	<h2 class="mb-3">{{ title }}</h2>
+{% endif %}
+{% for pair in tags %}
+	{% set count = pair[0] %}
+	{% set tag = pair[1] %}
+
+	<a class="btn btn-sm btn-secondary m-1" rel="nofollow"
+			title="{{ tag.get_translated().description or '' }}"
+			href="{{ url_for('packages.list_all', tag=tag.name) }}">
+		{{ tag.get_translated().title }}
+		<span class="badge rounded-pill bg-light text-dark ms-1">{{ count }}</span>
+	</a>
+{% endfor %}

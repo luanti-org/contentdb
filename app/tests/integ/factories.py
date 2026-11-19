@@ -20,7 +20,7 @@ from werkzeug.test import TestResponse
 
 from app.models import db, User, UserRank, UserSession, Package, PackageState, PackageType, PackageRelease, \
 	ReleaseState, PackageScreenshot, Thread, ThreadReply, PackageReview, PackageReviewVote, APIToken, OAuthClient, \
-	Collection, CollectionPackage, Report, ReportCategory
+	Collection, CollectionPackage, Report, ReportCategory, Dashboard, DashboardWidget, DashboardWidgetType
 from app.utils.misc import hash_token, random_string
 from app.utils.user import make_flask_login_password
 from .utils import make_package
@@ -232,6 +232,27 @@ def create_collection(author: User, packages: list[Package] | None = None, name:
 		db.session.add(item)
 	db.session.commit()
 	return collection
+
+
+def create_dashboard(widgets: list[tuple[DashboardWidgetType, str | None, str | None, int | None]],
+		title: str = "Home") -> Dashboard:
+	"""
+	Creates a dashboard with widgets, in order. Each widget is (type, title, query_string, limit).
+	"""
+	dashboard = Dashboard()
+	dashboard.title = title
+	db.session.add(dashboard)
+	for i, (type_, widget_title, query_string, limit) in enumerate(widgets):
+		widget = DashboardWidget()
+		widget.dashboard = dashboard
+		widget.type = type_
+		widget.title = widget_title
+		widget.query_string = query_string
+		widget.limit = limit
+		widget.order = i
+		db.session.add(widget)
+	db.session.commit()
+	return dashboard
 
 
 def create_report(user: User | None, thread: Thread | None = None, category: ReportCategory = ReportCategory.SPAM,

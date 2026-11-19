@@ -70,6 +70,13 @@ class Dashboard(Model):
 		else:
 			raise Exception("Permission {} is not related to dashboards".format(perm.name))
 
+	def as_dict(self):
+		return {
+			"id": self.id,
+			"title": self.title,
+			"widgets": [widget.as_dict() for widget in self.widgets],
+		}
+
 
 class DashboardWidget(Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -77,7 +84,10 @@ class DashboardWidget(Model):
 	dashboard_id = db.Column(db.Integer, db.ForeignKey("dashboard.id"), nullable=False)
 	dashboard = db.relationship("Dashboard", back_populates="widgets", foreign_keys=[dashboard_id])
 
-	type = db.Column(db.Enum(DashboardWidgetType), nullable=False, default=DashboardWidgetType.ROW)
+	# Stored as a string rather than a native Postgres enum, so adding a widget type doesn't need a migration.
+	# Renaming or removing a member does, as rows with the old name would fail to load.
+	type = db.Column(db.Enum(DashboardWidgetType, native_enum=False, length=32), nullable=False,
+			default=DashboardWidgetType.ROW)
 
 	title = db.Column(db.String(100), nullable=True)
 	order = db.Column(db.Integer, nullable=False)
@@ -88,6 +98,15 @@ class DashboardWidget(Model):
 	# Not called `query`, as that would shadow Model.query.
 	query_string = db.Column(db.String(512), nullable=True)
 	limit = db.Column(db.Integer, nullable=True, default=8)
+
+	def as_dict(self):
+		return {
+			"id": self.id,
+			"type": self.type.to_name(),
+			"title": self.title,
+			"query_string": self.query_string,
+			"limit": self.limit,
+		}
 
 	def get_query_builder(self) -> "QueryBuilder":
 		# Imported here, as app.querybuilder imports app.models

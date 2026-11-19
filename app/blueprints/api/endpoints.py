@@ -18,7 +18,7 @@ from app.domain.graphs import get_package_stats, get_package_stats_for_user, get
 from app.markdown import render_markdown
 from app.models import Tag, PackageState, PackageType, Package, db, PackageRelease, Permission, \
 	LuantiRelease, APIToken, PackageScreenshot, License, ContentWarning, User, PackageReview, Thread, Collection, \
-	PackageAlias, Language, ReleaseState, PackageDailyStats, AuditSeverity
+	PackageAlias, Language, ReleaseState, PackageDailyStats, AuditSeverity, Dashboard
 from app.querybuilder import QueryBuilder
 from app.utils.models import is_package_page, add_audit_log, add_audit_log_on_package
 from app.utils.flask import get_int_or_abort, url_set_query, abs_url, get_request_date, cached, cors_allowed
@@ -604,6 +604,13 @@ def tags():
 @cached(60*60)
 def content_warnings():
 	return jsonify([warning.as_dict() for warning in ContentWarning.query.order_by(db.asc(ContentWarning.name)).all() ])
+
+
+@bp.route("/api/dashboards/")
+@cors_allowed
+@cached(60*60)
+def dashboards():
+	return jsonify([dashboard.as_dict() for dashboard in Dashboard.query.order_by(db.asc(Dashboard.id)).all()])
 
 
 @bp.route("/api/licenses/")

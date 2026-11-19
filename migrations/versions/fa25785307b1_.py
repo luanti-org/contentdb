@@ -26,7 +26,7 @@ def upgrade():
     op.create_table('dashboard_widget',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('dashboard_id', sa.Integer(), nullable=False),
-    sa.Column('type', sa.Enum('SPOTLIGHT', 'ROW', 'TAGS', 'REVIEWS', name='dashboardwidgettype'), nullable=False),
+    sa.Column('type', sa.String(length=32), nullable=False),
     sa.Column('title', sa.String(length=100), nullable=True),
     sa.Column('order', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
@@ -53,7 +53,7 @@ def seed_homepage():
 
     widget = sa.table('dashboard_widget',
         sa.column('dashboard_id', sa.Integer),
-        sa.column('type', sa.Enum('SPOTLIGHT', 'ROW', 'TAGS', 'REVIEWS', name='dashboardwidgettype', create_type=False)),
+        sa.column('type', sa.String),
         sa.column('title', sa.String),
         sa.column('order', sa.Integer),
         sa.column('created_at', sa.DateTime),
@@ -96,4 +96,3 @@ def seed_homepage():
 def downgrade():
     op.drop_table('dashboard_widget')
     op.drop_table('dashboard')
-    sa.Enum(name='dashboardwidgettype').drop(op.get_bind(), checkfirst=True)

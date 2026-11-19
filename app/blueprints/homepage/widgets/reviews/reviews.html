@@ -1,0 +1,11 @@
+{% from "macros/reviews.html" import render_reviews with context %}
+
+<div class="clearfix"></div>
+
+<a href="{{ url_for('packages.list_reviews') }}" class="btn btn-secondary float-end">
+	{{ _("All reviews") }}
+</a>
+{% if title %}
+	<h2 class="my-3">{{ title }}</h2>
+{% endif %}
+{{ render_reviews(reviews, current_user, True) }}
