@@ -1,6 +1,13 @@
 title: How to install mods, games, and texture packs
 description: A guide to installing mods, games, and texture packs in Luanti.
 
+## Installing Luanti
+
+If you don't have Luanti yet, download the latest version for your platform from
+the [Luanti downloads page](https://www.luanti.org/downloads/).
+
+Luanti may not come with a game installed. You can install one using the steps below.
+
 ## Installing from the main menu (recommended)
 
 ### Install
@@ -19,7 +26,7 @@ description: A guide to installing mods, games, and texture packs in Luanti.
         <img class="w-100" src="/static/installing_content_tab.png" alt="Screenshot of the content tab in Luanti">
       </a>
       <figcaption class="text-muted ps-1">
-        1. Click Browser Online Content in the content tab.
+        1. Click "Browse online content" in the content tab.
       </figcaption>
     </figure>
   </div>
