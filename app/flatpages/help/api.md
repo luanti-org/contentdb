@@ -558,7 +558,8 @@ Dashboards are the curated layouts of the homepage.
             * `id`: widget id.
             * `type`: one of `spotlight`, `row`, `tags`, `reviews`.
             * `title`: title, or null.
-            * `query_string`: for `row`, a [package list query](#packages) in URL query string format, or null.
+            * `query_string`: for `row` and `spotlight`, a [package list query](#package-queries) in URL query
+              string format, or null.
             * `limit`: maximum number of items, or null.
 
 ### Licenses
