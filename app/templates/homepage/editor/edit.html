@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}
+	{% if dashboard %}
+		{{ _("Edit") }} - {{ dashboard.title }}
+	{% else %}
+		{{ _("New Dashboard") }}
+	{% endif %}
+{% endblock %}
+
+{% block scriptextra %}
+	<script src="/static/libs/jquery.min.js?v=2"></script>
+	<script src="/static/libs/jquery-ui.min.js?v=2"></script>
+	<script src="/static/js/dashboard_editor.js?v=1"></script>
+{% endblock %}
+
+{% from "macros/forms.html" import render_field, render_submit_field %}
+{% from "homepage/editor/macros.html" import render_widget_card %}
+
+
+{% block content %}
+	<a class="btn btn-secondary mb-4" href="{{ url_for('homepage.dashboard_list') }}">{{ _("Back to list") }}</a>
+
+	<h1>{{ self.title() }}</h1>
+
+	<form method="POST" action="">
+		{{ form.hidden_tag() }}
+
+		{{ render_field(form.title) }}
+
+		<h2>{{ _("Widgets") }}</h2>
+
+		<div id="widget_list" class="sortable">
+			{% for sub, widget_type in widgets %}
+				{% if widget_type %}
+					{{ render_widget_card(sub, widget_classes[widget_type]) }}
+				{% endif %}
+			{% endfor %}
+		</div>
+
+		<div class="dropdown my-3">
+			<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+				<i class="fas fa-plus me-1"></i>
+				{{ _("Add widget") }}
+			</button>
+			<ul class="dropdown-menu">
+				{% for widget_type, sub in widget_templates %}
+					<li>
+						<button class="dropdown-item add-widget" type="button" data-type="{{ widget_type.name }}">
+							{{ widget_classes[widget_type].label }}
+						</button>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+
+		<div class="mt-5">
+			{{ render_submit_field(form.submit) }}
+		</div>
+	</form>
+
+	{% for widget_type, sub in widget_templates %}
+		<template id="widget_template_{{ widget_type.name }}">
+			{{ render_widget_card(sub, widget_classes[widget_type]) }}
+		</template>
+	{% endfor %}
+
+	<span id="confirm_remove" class="d-none">
+		{{ _("Are you sure you want to remove this widget?") }}
+	</span>
+{% endblock %}

@@ -65,7 +65,8 @@ def home():
 	downloads_result = db.session.query(func.sum(Package.downloads)).one_or_none()
 	downloads = 0 if not downloads_result or not downloads_result[0] else downloads_result[0]
 
-	html = render_template("homepage/index.html", widgets=widgets, scripts=scripts, count=count, downloads=downloads)
+	html = render_template("homepage/index.html", dashboard=dashboard, widgets=widgets, scripts=scripts, count=count,
+			downloads=downloads)
 
 	if not (flask.session or current_user.is_authenticated or request.headers.get("Authorization")):
 		res = make_response(html)
@@ -77,3 +78,6 @@ def home():
 		return res
 
 	return html
+
+
+from . import editor  # noqa: E402,F401 - registers the editor's routes on bp

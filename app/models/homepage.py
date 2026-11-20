@@ -12,7 +12,7 @@ from flask import url_for
 from werkzeug.datastructures import MultiDict
 
 from .base import db, Model
-from .users import Permission, UserRank
+from .users import Permission
 
 if TYPE_CHECKING:
 	from app.querybuilder import QueryBuilder
@@ -39,7 +39,7 @@ class DashboardWidgetType(enum.Enum):
 
 	@classmethod
 	def choices(cls):
-		ret = [(choice, choice) for choice in cls]
+		ret = [(choice, choice.value) for choice in cls]
 		return ret
 
 	@classmethod
@@ -65,7 +65,7 @@ class Dashboard(Model):
 			return False
 
 		if perm == Permission.EDIT_DASHBOARD:
-			return user.rank.at_least(UserRank.EDITOR)
+			return Permission.EDIT_DASHBOARD.check(user)
 
 		else:
 			raise Exception("Permission {} is not related to dashboards".format(perm.name))
@@ -97,7 +97,8 @@ class DashboardWidget(Model):
 	# Package list query, in the same format as /packages/'s URL query string, e.g. "type=game&sort=score".
 	# Not called `query`, as that would shadow Model.query.
 	query_string = db.Column(db.String(512), nullable=True)
-	limit = db.Column(db.Integer, nullable=True, default=8)
+	# None uses the widget type's default_limit. No column default, as SQLAlchemy would apply it in place of None.
+	limit = db.Column(db.Integer, nullable=True)
 
 	def as_dict(self):
 		return {

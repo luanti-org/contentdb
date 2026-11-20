@@ -72,6 +72,13 @@
 					</a>
 				{% endif %}
 
+				{% if check_global_perm(current_user, "EDIT_DASHBOARD") %}
+					<a class="list-group-item list-group-item-action" href="{{ url_for('homepage.dashboard_list') }}">
+						<i class="fas fa-th-large me-2"></i>
+						Dashboard Editor
+					</a>
+				{% endif %}
+
 				{% if current_user.rank.at_least(current_user.rank.MODERATOR) %}
 					<a class="list-group-item list-group-item-action" href="{{ url_for('admin.license_list') }}">
 						<i class="fas fa-balance-scale me-2"></i>

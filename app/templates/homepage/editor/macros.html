@@ -1,0 +1,35 @@
+{% from "macros/forms.html" import render_field %}
+
+{# A widget in the dashboard editor. widget_class is the Widget subclass, which says which fields to show. #}
+{% macro render_widget_card(sub, widget_class) %}
+	<article class="card my-3 widget-card">
+		<div class="card-body">
+			<div class="row">
+				<div class="col-auto text-muted pe-2">
+					<i class="fas fa-bars"></i>
+				</div>
+				<div class="col">
+					<button class="btn btn-sm btn-danger remove-widget float-end"
+							type="button" aria-label="{{ _('Remove') }}">
+						<i class="fas fa-trash"></i>
+					</button>
+					<h5 class="widget-label">{{ widget_class.label }}</h5>
+					{{ sub.id() }}
+					{{ sub.type() }}
+					{{ sub.removed() }}
+					{{ sub.order() }}
+					{% if "title" in widget_class.fields %}
+						{{ render_field(sub.title, hint=_("Optional")) }}
+					{% endif %}
+					{% if "query_string" in widget_class.fields %}
+						{{ render_field(sub.query_string,
+								hint=_("Set the filters you want on the <a href='%(url)s' target='_blank'>package list</a>, then paste its URL here.", url=url_for('packages.list_all'))) }}
+					{% endif %}
+					{% if "limit" in widget_class.fields %}
+						{{ render_field(sub.limit, hint=_("Optional"), min=1, max=50, placeholder=widget_class.default_limit or "") }}
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</article>
+{% endmacro %}

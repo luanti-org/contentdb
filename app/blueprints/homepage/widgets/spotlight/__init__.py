@@ -4,6 +4,7 @@
 
 from typing import Any
 
+from flask_babel import lazy_gettext
 from sqlalchemy import and_
 from sqlalchemy.orm import joinedload, load_only, subqueryload
 from sqlalchemy.sql.expression import func
@@ -16,6 +17,9 @@ class SpotlightWidget(Widget):
 	"""A carousel of random packages from the ContentDB/spotlight collection"""
 
 	template = "widgets/spotlight/spotlight.html"
+	label = lazy_gettext("Spotlight carousel")
+	fields = frozenset({"limit"})
+	default_limit = 6
 
 	def get_context(self) -> dict[str, Any]:
 		packages = (Package.query
@@ -33,7 +37,7 @@ class SpotlightWidget(Widget):
 				joinedload(Package.license).load_only(License.name, License.is_foss, raiseload=True),
 				joinedload(Package.media_license).load_only(License.name, License.is_foss, raiseload=True))
 			.order_by(func.random())
-			.limit(self.model.limit or 6)
+			.limit(self.get_limit())
 			.all())
 
 		return {

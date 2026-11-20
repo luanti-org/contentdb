@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ _("Dashboards") }}
+{% endblock %}
+
+{% block content %}
+	<a class="btn btn-primary float-end" href="{{ url_for('homepage.dashboard_edit') }}">{{ _("New Dashboard") }}</a>
+
+	<h1>{{ _("Dashboards") }}</h1>
+
+	<div class="list-group">
+		{% for dashboard in dashboards %}
+			<a class="list-group-item list-group-item-action"
+					href="{{ url_for('homepage.dashboard_edit', id=dashboard.id) }}">
+				<div class="row">
+					<div class="col">
+						{{ dashboard.title }}
+						{% if loop.first %}
+							<span class="badge bg-primary ms-2">{{ _("Homepage") }}</span>
+						{% endif %}
+					</div>
+					<div class="col-auto text-muted">
+						{{ _("%(count)d widgets", count=dashboard.widgets.count()) }}
+					</div>
+				</div>
+			</a>
+		{% else %}
+			<p class="list-group-item"><i>{{ _("No dashboards") }}</i></p>
+		{% endfor %}
+	</div>
+{% endblock %}

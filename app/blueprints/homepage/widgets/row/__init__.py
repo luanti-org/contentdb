@@ -5,6 +5,8 @@
 from functools import cached_property
 from typing import Any
 
+from flask_babel import lazy_gettext
+
 from app.querybuilder import QueryBuilder
 from ..base import Widget
 
@@ -13,11 +15,14 @@ class RowWidget(Widget):
 	"""A row of packages from a package list query, like /packages/"""
 
 	template = "widgets/row/row.html"
+	label = lazy_gettext("Package row")
+	fields = frozenset({"title", "query_string", "limit"})
+	default_limit = 8
 
 	@cached_property
 	def query_builder(self) -> QueryBuilder:
 		qb = self.model.get_query_builder()
-		qb.limit = self.model.limit
+		qb.limit = self.get_limit()
 		return qb
 
 	def get_title(self) -> str | None:

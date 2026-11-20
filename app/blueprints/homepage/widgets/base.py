@@ -5,7 +5,7 @@
 from typing import Any, ClassVar
 
 from flask import render_template
-from flask_babel import gettext
+from flask_babel import gettext, LazyString
 from markupsafe import Markup
 
 from app.models import DashboardWidget
@@ -21,6 +21,15 @@ class Widget:
 
 	template: ClassVar[str]
 
+	# Shown in the dashboard editor
+	label: ClassVar[LazyString]
+
+	# The DashboardWidget fields this widget uses, which the editor shows. One of "title", "query_string", "limit".
+	fields: ClassVar[frozenset[str]] = frozenset({"title", "limit"})
+
+	# Used when the widget's limit isn't set
+	default_limit: ClassVar[int | None] = None
+
 	def __init__(self, model: DashboardWidget):
 		self.model = model
 
@@ -31,6 +40,9 @@ class Widget:
 	def get_scripts(self) -> list[str]:
 		"""URLs of scripts the page needs to include for this widget"""
 		return []
+
+	def get_limit(self) -> int | None:
+		return self.model.limit or self.default_limit
 
 	def get_title(self) -> str | None:
 		# Titles are extracted for translation from /api/dashboards/ by utils/extract_translations.py

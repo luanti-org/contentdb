@@ -4,6 +4,7 @@
 
 from typing import Any
 
+from flask_babel import lazy_gettext
 from sqlalchemy.sql.expression import func
 
 from app.models import Package, PackageState, Tag, Tags, db
@@ -14,6 +15,8 @@ class TagsWidget(Widget):
 	"""Buttons for every tag in use, with package counts"""
 
 	template = "widgets/tags/tags.html"
+	label = lazy_gettext("Tags")
+	fields = frozenset({"title"})
 
 	def get_context(self) -> dict[str, Any]:
 		tags = (db.session.query(func.count(Tags.c.tag_id), Tag)

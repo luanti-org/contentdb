@@ -132,7 +132,7 @@ class Permission(enum.Enum):
 		elif self == Permission.APPROVE_REVIEW:
 			return user.rank.at_least(UserRank.MODERATOR)
 
-		elif self == Permission.EDIT_TAGS or self == Permission.CREATE_TAG:
+		elif self == Permission.EDIT_TAGS or self == Permission.CREATE_TAG or self == Permission.EDIT_DASHBOARD:
 			return user.rank.at_least(UserRank.EDITOR)
 
 		else:

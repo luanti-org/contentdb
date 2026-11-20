@@ -4,6 +4,7 @@
 
 from typing import Any
 
+from flask_babel import lazy_gettext
 from flask_login import current_user
 from sqlalchemy.orm import joinedload, load_only
 
@@ -15,6 +16,8 @@ class ReviewsWidget(Widget):
 	"""Recent positive reviews"""
 
 	template = "widgets/reviews/reviews.html"
+	label = lazy_gettext("Recent reviews")
+	default_limit = 5
 
 	def get_scripts(self) -> list[str]:
 		if current_user.is_authenticated:
@@ -37,7 +40,7 @@ class ReviewsWidget(Widget):
 					.load_only(Package.title, Package.name, raiseload=True)
 					.joinedload(Package.author).load_only(User.username, User.display_name, raiseload=True))
 			.order_by(db.desc(PackageReview.created_at))
-			.limit(self.model.limit or 5)
+			.limit(self.get_limit())
 			.all())
 
 		return {
