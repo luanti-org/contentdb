@@ -45,6 +45,12 @@ def _get_dir_path(app, original_path, create=False):
 	return path
 
 
+def _get_newest_mtime(input_dir: str) -> float:
+	"""Newest modification time of any SCSS file, as files can import each other"""
+	return max((os.path.getmtime(os.path.join(input_dir, name))
+			for name in os.listdir(input_dir) if name.endswith(".scss")), default=0)
+
+
 def init_app(app, input_dir='scss', dest='static', force=False, cache_dir="public/static"):
 	input_dir = _get_dir_path(app, input_dir)
 	cache_dir = _get_dir_path(app, cache_dir or dest, True)
@@ -55,7 +61,7 @@ def init_app(app, input_dir='scss', dest='static', force=False, cache_dir="publi
 
 		if os.path.isfile(scss_file):
 			if force or not os.path.isfile(cache_file) or \
-					os.path.getmtime(scss_file) > os.path.getmtime(cache_file):
+					_get_newest_mtime(input_dir) > os.path.getmtime(cache_file):
 				_convert(input_dir, scss_file, cache_file)
 				app.logger.debug('Compiled %s into %s' % (scss_file, cache_file))
 
