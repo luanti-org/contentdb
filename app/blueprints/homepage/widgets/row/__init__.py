@@ -30,6 +30,6 @@ class RowWidget(Widget):
 
 	def get_context(self) -> dict[str, Any]:
 		return {
-			"packages": self.query_builder.build_package_query().all(),
+			"packages": self.query_builder.build_package_query(for_tiles=True).all(),
 			"see_more_url": self.model.get_see_more_url(),
 		}

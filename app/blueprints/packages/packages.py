@@ -13,7 +13,6 @@ from flask_login import login_required, current_user
 from flask_wtf import FlaskForm
 from jinja2.utils import markupsafe
 from sqlalchemy import func, or_, and_, select
-from sqlalchemy.orm import joinedload, subqueryload
 from wtforms import SelectField, StringField, TextAreaField, IntegerField, SubmitField, BooleanField
 from wtforms.validators import InputRequired, Length, Regexp, DataRequired, Optional, URL, NumberRange, ValidationError
 from wtforms_sqlalchemy.fields import QuerySelectField, QuerySelectMultipleField
@@ -49,15 +48,10 @@ from app.utils.models import create_session
 @bp.route("/packages/")
 def list_all():
 	qb    = QueryBuilder(request.args, cookies=True)
-	query = qb.build_package_query()
+	query = qb.build_package_query(for_tiles=True)
 
 	if qb.requires_login and not current_user.is_authenticated:
 		return login_manager.unauthorized()
-
-	query = query.options(
-			joinedload(Package.license),
-			joinedload(Package.media_license),
-			subqueryload(Package.tags))
 
 	ip = request.remote_addr
 	if ip is not None and not is_user_bot() and len(qb.tags) == 1:

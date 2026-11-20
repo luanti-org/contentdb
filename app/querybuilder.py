@@ -6,7 +6,7 @@ from typing import Optional, List
 from flask import abort, current_app, request, make_response
 from flask_babel import lazy_gettext, gettext, get_locale
 from sqlalchemy import or_, and_
-from sqlalchemy.orm import subqueryload, joinedload
+from sqlalchemy.orm import subqueryload, joinedload, load_only
 from sqlalchemy.sql import Subquery
 from sqlalchemy.sql.expression import func
 from sqlalchemy_searchable import search
@@ -240,7 +240,7 @@ class QueryBuilder:
 
 		return [to_json(pkg) for pkg in packages]
 
-	def build_package_query(self):
+	def build_package_query(self, for_tiles: bool = False):
 		query = Package.query
 		if self.order_by == "last_release":
 			# One row per package, so packages with several releases aren't listed more than once.
@@ -256,11 +256,18 @@ class QueryBuilder:
 		if self.only_approved:
 			query = query.filter(Package.state == PackageState.APPROVED)
 
-		query = query.options(
-			joinedload(Package.author),
-			subqueryload(Package.main_screenshot),
-			subqueryload(Package.aliases),
-		)
+		if for_tiles:
+			query = query.options(
+				load_only(Package.name, Package.title, Package.short_desc, Package.state, raiseload=True),
+				joinedload(Package.author).load_only(User.username, User.display_name, raiseload=True),
+				subqueryload(Package.main_screenshot),
+			)
+		else:
+			query = query.options(
+				joinedload(Package.author),
+				subqueryload(Package.main_screenshot),
+				subqueryload(Package.aliases),
+			)
 
 		query = self.order_package_query(self.filter_package_query(query))
 
