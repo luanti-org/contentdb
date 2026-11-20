@@ -153,6 +153,13 @@ a.badge:hover {
 	user-select: none;
 }
 
+// Bootstrap enables smooth scrolling on :root. jQuery UI sortable scrolls the page in small steps while an item is
+// dragged near the edge of the viewport, and smooth scrolling animates each step, making it crawl (very noticeable in
+// Firefox). The helper only exists while dragging.
+:root:has(.ui-sortable-helper) {
+	scroll-behavior: auto;
+}
+
 blockquote {
 	padding: 0.5em 1em;
 	border-left: 3px solid rgba(255, 255, 255, 0.25);
