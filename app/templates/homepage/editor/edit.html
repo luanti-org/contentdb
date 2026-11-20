@@ -11,7 +11,7 @@
 {% block scriptextra %}
 	<script src="/static/libs/jquery.min.js?v=2"></script>
 	<script src="/static/libs/jquery-ui.min.js?v=2"></script>
-	<script src="/static/js/dashboard_editor.js?v=1"></script>
+	<script src="/static/js/form_list_editor.js?v=1"></script>
 {% endblock %}
 
 {% from "macros/forms.html" import render_field, render_submit_field %}
@@ -30,10 +30,11 @@
 
 		<h2>{{ _("Widgets") }}</h2>
 
-		<div id="widget_list" class="sortable">
-			{% for sub, widget_type in widgets %}
+		<div id="widget_list" class="sortable form-list" data-prefix="widgets"
+				data-confirm-remove="{{ _('Are you sure you want to remove this widget?') }}">
+			{% for sub, widget_type, slides in widgets %}
 				{% if widget_type %}
-					{{ render_widget_card(sub, widget_classes[widget_type]) }}
+					{{ render_widget_card(sub, widget_classes[widget_type], slides) }}
 				{% endif %}
 			{% endfor %}
 		</div>
@@ -46,7 +47,8 @@
 			<ul class="dropdown-menu">
 				{% for widget_type, sub in widget_templates %}
 					<li>
-						<button class="dropdown-item add-widget" type="button" data-type="{{ widget_type.name }}">
+						<button class="dropdown-item form-list-add" type="button" data-list="widget_list"
+								data-template="widget_template_{{ widget_type.name }}">
 							{{ widget_classes[widget_type].label }}
 						</button>
 					</li>
@@ -64,8 +66,4 @@
 			{{ render_widget_card(sub, widget_classes[widget_type]) }}
 		</template>
 	{% endfor %}
-
-	<span id="confirm_remove" class="d-none">
-		{{ _("Are you sure you want to remove this widget?") }}
-	</span>
 {% endblock %}

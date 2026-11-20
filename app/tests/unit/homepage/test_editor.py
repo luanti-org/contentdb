@@ -130,3 +130,89 @@ def test_get_query_error_collection_format():
 	# Rejected before looking anything up, so no database is needed
 	with app.test_request_context("/dashboards/1/edit/"):
 		assert get_query_error("collection=nope") == "Unable to find that collection"
+
+
+@pytest.mark.parametrize("url,valid", [
+	("/gamejam/", True),
+	("/packages/?type=game", True),
+	("https://jam.luanti.org/", True),
+	("http://example.com/path", True),
+	("//example.com/", False),
+	("/\\example.com", False),
+	("javascript:alert(1)", False),
+	("data:text/html,hi", False),
+	("https://", False),
+	("example.com", False),
+	("gamejam/", False),
+])
+def test_is_valid_slide_url(url, valid):
+	from app.blueprints.homepage.editor import is_valid_slide_url
+	assert is_valid_slide_url(url) == valid
+
+
+def post_slides(fields: dict, files: dict | None = None):
+	from app.blueprints.homepage.editor import SlidesForm
+	data = {"slides-0-removed": "0", "slides-0-order": "0", **fields, **(files or {})}
+	ctx = app.test_request_context("/dashboards/1/widgets/1/slides/", method="POST", data=data,
+			content_type="multipart/form-data")
+	ctx.push()
+	form = SlidesForm(meta={"csrf": False})
+	return ctx, form
+
+
+def image_file():
+	import io
+	return (io.BytesIO(b"not checked by the form"), "jam.png")
+
+
+@pytest.mark.parametrize("fields,files,errors", [
+	# New slides need an image
+	({"slides-0-title": "Jam", "slides-0-url": "/gamejam/"}, None, {"image"}),
+	({"slides-0-title": "Jam", "slides-0-url": "/gamejam/"}, {"slides-0-image": image_file}, set()),
+	# Existing slides keep their image
+	({"slides-0-id": "3", "slides-0-title": "Jam", "slides-0-url": "/gamejam/"}, None, set()),
+	({"slides-0-id": "3", "slides-0-title": "", "slides-0-url": "javascript:alert(1)"}, None, {"title", "url"}),
+	({"slides-0-id": "3", "slides-0-title": "Jam", "slides-0-url": "/gamejam/",
+		"slides-0-starts_at": "2026-12-01T00:00", "slides-0-ends_at": "2026-11-01T00:00"}, None, {"ends_at"}),
+	({"slides-0-id": "3", "slides-0-title": "Jam", "slides-0-url": "/gamejam/",
+		"slides-0-starts_at": "2026-11-01T00:00", "slides-0-ends_at": "2026-12-01T00:00"}, None, set()),
+	# Removed slides are deleted, so aren't validated
+	({"slides-0-removed": "1", "slides-0-title": "", "slides-0-url": ""}, None, set()),
+])
+def test_slide_form_validation(fields, files, errors):
+	files = {key: value() for key, value in (files or {}).items()}
+	ctx, form = post_slides(fields, files)
+	try:
+		form.validate()
+		assert set(form.slides.entries[0].form.errors.keys()) == errors
+	finally:
+		ctx.pop()
+
+
+def test_slide_form_parses_dates_and_strips_url():
+	import datetime
+	ctx, form = post_slides({"slides-0-id": "3", "slides-0-title": "Jam", "slides-0-url": "  /gamejam/  ",
+			"slides-0-starts_at": "2026-11-01T09:30"})
+	try:
+		assert form.validate(), form.errors
+		sub = form.slides.entries[0].form
+		assert sub.url.data == "/gamejam/"
+		assert sub.starts_at.data == datetime.datetime(2026, 11, 1, 9, 30)
+		assert sub.ends_at.data is None
+	finally:
+		ctx.pop()
+
+
+def test_slide_card_template():
+	from flask import render_template_string
+	from app.blueprints.homepage.editor import SlideForm
+
+	with app.test_request_context("/"):
+		template = SlideForm(formdata=None, prefix="slides-__index__-", data={"removed": "0"})
+		html = render_template_string(
+				'{% from "homepage/editor/macros.html" import render_slide_card %}{{ render_slide_card(sub) }}',
+				sub=template)
+		for name in ["id", "removed", "order", "title", "description", "label", "url", "image", "starts_at", "ends_at"]:
+			assert f'name="slides-__index__-{name}"' in html, name
+		assert 'type="file"' in html
+		assert 'type="datetime-local"' in html

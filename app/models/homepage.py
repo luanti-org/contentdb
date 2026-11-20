@@ -9,6 +9,7 @@ from typing import TYPE_CHECKING
 from urllib.parse import parse_qsl
 
 from flask import url_for
+from sqlalchemy import and_, or_
 from werkzeug.datastructures import MultiDict
 
 from .base import db, Model
@@ -100,6 +101,10 @@ class DashboardWidget(Model):
 	# None uses the widget type's default_limit. No column default, as SQLAlchemy would apply it in place of None.
 	limit = db.Column(db.Integer, nullable=True)
 
+	# Custom slides, for widget types with Widget.has_slides
+	slides = db.relationship("DashboardWidgetSlide", back_populates="widget", lazy="dynamic",
+			order_by="DashboardWidgetSlide.order", cascade="all, delete, delete-orphan", passive_deletes=True)
+
 	def as_dict(self):
 		return {
 			"id": self.id,
@@ -118,3 +123,46 @@ class DashboardWidget(Model):
 
 	def get_see_more_url(self):
 		return url_for("packages.list_all") + "?" + (self.query_string or "")
+
+
+class DashboardWidgetSlide(Model):
+	"""
+	A custom slide in a carousel widget, such as one promoting a game jam.
+	Shown before the widget's packages, between starts_at and ends_at (UTC). Either can be None for no limit.
+	"""
+
+	id = db.Column(db.Integer, primary_key=True)
+
+	widget_id = db.Column(db.Integer, db.ForeignKey("dashboard_widget.id", ondelete="CASCADE"), nullable=False)
+	widget = db.relationship("DashboardWidget", back_populates="slides", foreign_keys=[widget_id])
+
+	order = db.Column(db.Integer, nullable=False)
+
+	title = db.Column(db.String(100), nullable=False)
+	description = db.Column(db.String(300), nullable=True)
+	# Shown where a package's type would be, e.g. "Competition"
+	label = db.Column(db.String(50), nullable=True)
+	# An http(s) URL or a path on this site
+	url = db.Column(db.String(512), nullable=False)
+	# From app.uploads.upload_file
+	image_path = db.Column(db.String(200), nullable=False)
+
+	starts_at = db.Column(db.DateTime, nullable=True)
+	ends_at = db.Column(db.DateTime, nullable=True)
+
+	created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+
+	def get_image_url(self, level: int = 4) -> str:
+		from app.uploads import get_thumbnail_url
+		return get_thumbnail_url(self.image_path, level, "webp")
+
+	def is_active(self, now: datetime.datetime) -> bool:
+		return (self.starts_at is None or self.starts_at <= now) and (self.ends_at is None or now < self.ends_at)
+
+	@classmethod
+	def active_filter(cls, now: datetime.datetime):
+		"""SQL equivalent of is_active"""
+		return and_(
+			or_(cls.starts_at.is_(None), cls.starts_at <= now),
+			or_(cls.ends_at.is_(None), cls.ends_at > now))
+

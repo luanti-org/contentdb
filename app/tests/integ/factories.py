@@ -16,11 +16,13 @@ from typing import Any
 
 from flask import g
 from flask.testing import FlaskClient
+from PIL import Image
 from werkzeug.test import TestResponse
 
 from app.models import db, User, UserRank, UserSession, Package, PackageState, PackageType, PackageRelease, \
 	ReleaseState, PackageScreenshot, Thread, ThreadReply, PackageReview, PackageReviewVote, APIToken, OAuthClient, \
-	Collection, CollectionPackage, Report, ReportCategory, Dashboard, DashboardWidget, DashboardWidgetType
+	Collection, CollectionPackage, Report, ReportCategory, Dashboard, DashboardWidget, DashboardWidgetType, \
+	DashboardWidgetSlide
 from app.utils.misc import hash_token, random_string
 from app.utils.user import make_flask_login_password
 from .utils import make_package
@@ -267,6 +269,29 @@ def create_report(user: User | None, thread: Thread | None = None, category: Rep
 	db.session.add(report)
 	db.session.commit()
 	return report
+
+
+def create_slide(widget: DashboardWidget, title: str = "Game Jam", order: int = 0,
+		starts_at: datetime.datetime | None = None, ends_at: datetime.datetime | None = None) -> DashboardWidgetSlide:
+	slide = DashboardWidgetSlide()
+	slide.widget = widget
+	slide.title = title
+	slide.description = f"{title} description"
+	slide.label = "Competition"
+	slide.url = "https://jam.example.com/"
+	slide.image_path = f"/uploads/{random_string(10)}.png"
+	slide.order = order
+	slide.starts_at = starts_at
+	slide.ends_at = ends_at
+	db.session.add(slide)
+	db.session.commit()
+	return slide
+
+
+def make_image(fmt: str = "PNG", size: tuple[int, int] = (1280, 720)) -> bytes:
+	buf = io.BytesIO()
+	Image.new("RGB", size, (200, 100, 50)).save(buf, fmt)
+	return buf.getvalue()
 
 
 def make_zip(files: dict[str, str]) -> bytes:

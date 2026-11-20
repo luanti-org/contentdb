@@ -32,6 +32,9 @@ class Widget:
 	# Used when the widget's limit isn't set
 	default_limit: ClassVar[int | None] = None
 
+	# Whether the widget shows custom slides (DashboardWidget.slides), which the editor has a page for
+	has_slides: ClassVar[bool] = False
+
 	def __init__(self, model: DashboardWidget):
 		self.model = model
 

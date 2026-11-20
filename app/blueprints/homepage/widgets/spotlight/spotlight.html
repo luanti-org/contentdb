@@ -1,7 +1,7 @@
-{% if packages %}
+{% if slides %}
 	<div id="spotlight-{{ widget.id }}" class="carousel slide mt-0 mb-5" data-bs-ride="carousel" data-bs-interval="7500">
 		<div class="carousel-indicators">
-			{% for package in packages %}
+			{% for slide in slides %}
 				<button
 						data-bs-target="#spotlight-{{ widget.id }}"
 						data-bs-slide-to="{{ loop.index - 1 }}"
@@ -9,51 +9,52 @@
 			{% endfor %}
 		</div>
 		<div class="carousel-inner">
-			{% for package in packages %}
-				{% set meta = package.get_translated(load_desc=False) %}
-				{% set cover_image = package.get_cover_image_url() %}
-				{% set tags =  package.tags | sort(attribute="views", reverse=True) %}
+			{% for slide in slides %}
 				<div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
-					<a href="{{ package.get_url('packages.view') }}">
+					<a href="{{ slide.url }}">
 						<div class="ratio ratio-16x9">
-							<img src="{{ cover_image }}"
-								alt="{{ _('%(title)s by %(author)s', title=meta.title, author=package.author.display_name) }}">
+							<img src="{{ slide.image_url or '/static/placeholder.png' }}"
+								alt="{% if slide.author %}{{ _('%(title)s by %(author)s', title=slide.title, author=slide.author) }}{% else %}{{ slide.title }}{% endif %}">
 						</div>
 						<div class="carousel-caption text-shadow">
 							<h3 class="mt-0 mb-3">
-								{% if package.author %}
-									{{ _('<strong>%(title)s</strong> by %(author)s', title=meta.title, author=package.author.display_name) }}
+								{% if slide.author %}
+									{{ _('<strong>%(title)s</strong> by %(author)s', title=slide.title, author=slide.author) }}
 								{% else %}
-									<strong>{{ meta.title }}</strong>
+									<strong>{{ slide.title }}</strong>
 								{% endif %}
 							</h3>
-							<p>
-								{{ meta.short_desc }}
-							</p>
-							{% if package.author %}
+							{% if slide.description %}
+								<p>
+									{{ slide.description }}
+								</p>
+							{% endif %}
+							{% if slide.label or slide.warnings or slide.tags or slide.review_summary %}
 								<div class="d-none d-md-block">
-									<span class="me-2">
-										{{ package.type.text }}
-									</span>
-									{% for warning in package.content_warnings %}
+									{% if slide.label %}
+										<span class="me-2">
+											{{ slide.label }}
+										</span>
+									{% endif %}
+									{% for warning in slide.warnings %}
 										<span class="badge bg-warning" title="{{ warning.description }}">
 											<i class="fas fa-exclamation-circle" style="margin-right: 0.3em;"></i>
 											{{ warning.title }}
 										</span>
 									{% endfor %}
-									{% for tag in tags[:3] %}
-										{% set trans = tag.get_translated() %}
-										<span class="badge bg-primary" title="{{ trans.description or '' }}">
-											{{ trans.title }}
+									{% for tag in slide.tags %}
+										<span class="badge bg-primary" title="{{ tag.description or '' }}">
+											{{ tag.title }}
 										</span>
 									{% endfor %}
-									<span class="btn" title="{{ _('Reviews') }}">
-										<i class="fas fa-star-half-alt"></i>
-										<span class="count">
-											{% set summary = package.get_review_summary() %}
-											+{{ summary[0] }} / {{ summary[1] }} / -{{ summary[2] }}
+									{% if slide.review_summary %}
+										<span class="btn" title="{{ _('Reviews') }}">
+											<i class="fas fa-star-half-alt"></i>
+											<span class="count">
+												+{{ slide.review_summary[0] }} / {{ slide.review_summary[1] }} / -{{ slide.review_summary[2] }}
+											</span>
 										</span>
-									</span>
+									{% endif %}
 								</div>
 							{% endif %}
 						</div>

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}
+	{{ _("Custom slides") }} - {{ dashboard.title }}
+{% endblock %}
+
+{% block scriptextra %}
+	<script src="/static/libs/jquery.min.js?v=2"></script>
+	<script src="/static/libs/jquery-ui.min.js?v=2"></script>
+	<script src="/static/js/form_list_editor.js?v=1"></script>
+{% endblock %}
+
+{% from "macros/forms.html" import render_submit_field %}
+{% from "homepage/editor/macros.html" import render_slide_card %}
+
+{% block content %}
+	<a class="btn btn-secondary mb-4" href="{{ url_for('homepage.dashboard_edit', id=dashboard.id) }}">
+		{{ _("Back to %(title)s", title=dashboard.title) }}
+	</a>
+
+	<h1>{{ _("Custom slides") }}</h1>
+
+	<p class="text-muted">
+		{{ _("Shown at the start of the %(widget)s, in this order, between their start and end times. Times are in UTC. Leave them empty to always show the slide.", widget=widget_class.label) }}
+	</p>
+
+	<form method="POST" action="" enctype="multipart/form-data">
+		{{ form.hidden_tag() }}
+
+		<div id="slide_list" class="sortable form-list" data-prefix="slides"
+				data-confirm-remove="{{ _('Are you sure you want to remove this slide?') }}">
+			{% for sub, slide in slides %}
+				{{ render_slide_card(sub, slide) }}
+			{% endfor %}
+		</div>
+
+		<button class="btn btn-secondary my-3 form-list-add" type="button" data-list="slide_list" data-template="slide_template">
+			<i class="fas fa-plus me-1"></i>
+			{{ _("Add slide") }}
+		</button>
+
+		<div class="mt-5">
+			{{ render_submit_field(form.submit) }}
+		</div>
+	</form>
+
+	<template id="slide_template">
+		{{ render_slide_card(template) }}
+	</template>
+{% endblock %}

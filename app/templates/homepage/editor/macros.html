@@ -1,15 +1,18 @@
 {% from "macros/forms.html" import render_field %}
 
-{# A widget in the dashboard editor. widget_class is the Widget subclass, which says which fields to show. #}
-{% macro render_widget_card(sub, widget_class) %}
-	<article class="card my-3 widget-card">
+{#
+	A widget in the dashboard editor. widget_class is the Widget subclass, which says which fields to show.
+	For widgets with slides, slides is (url, count), or None if the widget hasn't been saved yet.
+#}
+{% macro render_widget_card(sub, widget_class, slides=None) %}
+	<article class="card my-3 form-list-item">
 		<div class="card-body">
 			<div class="row">
 				<div class="col-auto text-muted pe-2">
 					<i class="fas fa-bars"></i>
 				</div>
 				<div class="col">
-					<button class="btn btn-sm btn-danger remove-widget float-end"
+					<button class="btn btn-sm btn-danger form-list-remove float-end"
 							type="button" aria-label="{{ _('Remove') }}">
 						<i class="fas fa-trash"></i>
 					</button>
@@ -28,6 +31,55 @@
 					{% if "limit" in widget_class.fields %}
 						{{ render_field(sub.limit, hint=_("Optional"), min=1, max=50, placeholder=widget_class.default_limit or "") }}
 					{% endif %}
+					{% if widget_class.has_slides %}
+						{% if slides %}
+							<a class="btn btn-sm btn-secondary" href="{{ slides[0] }}">
+								<i class="fas fa-images me-1"></i>
+								{{ _("Custom slides (%(count)d)", count=slides[1]) }}
+							</a>
+						{% else %}
+							<p class="form-text text-muted">{{ _("Save the dashboard to add custom slides.") }}</p>
+						{% endif %}
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</article>
+{% endmacro %}
+
+{# A custom slide in the slides editor. slide is the saved DashboardWidgetSlide, or None for a new slide. #}
+{% macro render_slide_card(sub, slide=None) %}
+	<article class="card my-3 form-list-item">
+		<div class="card-body">
+			<div class="row">
+				<div class="col-auto text-muted pe-2">
+					<i class="fas fa-bars"></i>
+				</div>
+				<div class="col">
+					<button class="btn btn-sm btn-danger form-list-remove float-end"
+							type="button" aria-label="{{ _('Remove') }}">
+						<i class="fas fa-trash"></i>
+					</button>
+					{{ sub.id() }}
+					{{ sub.removed() }}
+					{{ sub.order() }}
+					<div class="row">
+						<div class="col-md-8">
+							{{ render_field(sub.title) }}
+							{{ render_field(sub.description, hint=_("Optional")) }}
+							{{ render_field(sub.label, hint=_("Optional. Shown where a package's type would be, such as Competition.")) }}
+							{{ render_field(sub.url, hint=_("An https:// URL, or a path on this site such as /gamejam/")) }}
+						</div>
+						<div class="col-md-4">
+							{% if slide %}
+								<img class="img-fluid mb-2" src="{{ slide.get_image_url(2) }}" alt="">
+							{% endif %}
+							{{ render_field(sub.image, fieldclass="form-control", accept="image/png,image/jpeg,image/webp",
+									hint=_("16:9, such as 1920x1080. Leave empty to keep the current image.") if slide else _("16:9, such as 1920x1080.")) }}
+							{{ render_field(sub.starts_at, hint=_("Optional")) }}
+							{{ render_field(sub.ends_at, hint=_("Optional")) }}
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
