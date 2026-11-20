@@ -66,7 +66,7 @@ def seed_homepage():
 
     # (type, title, query_string, limit)
     widgets = [
-        ('SPOTLIGHT', None, None, 6),
+        ('SPOTLIGHT', None, 'collection=ContentDB/spotlight&random', 6),
         ('ROW', 'Recently Added', 'sort=approved_at&order=desc', 4),
         ('ROW', 'Recently Updated', 'sort=last_release&order=desc', 4),
         ('ROW', 'Top Games', 'type=game&sort=score&order=desc', 8),

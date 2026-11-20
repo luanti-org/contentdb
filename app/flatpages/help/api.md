@@ -220,6 +220,7 @@ Filter query parameters:
 * `hide`:  Hide content based on tags or [Content Flags](/help/content_flags/).
 * `license`: Filter by [license name](#licenses). Multiple licenses are OR-ed together, ie: `&license=MIT&license=LGPL-2.1-only`
 * `game`: Filter by [Game Support](/help/game_support/), ex: `Warr1024/nodecore`. (experimental, doesn't show items that support every game currently).
+* `collection`: Filter to packages in a public [collection](#collections), ex: `ContentDB/spotlight`.
 * `lang`: Filter by translation support, eg: `en`/`de`/`ja`/`zh_TW`.
 * `protocol_version`:  Only show packages supported by this Luanti protocol version.
 * `engine_version`:  Only show packages supported by this Luanti engine version, eg: `5.3.0`.
@@ -227,8 +228,9 @@ Filter query parameters:
 
 Sorting query parameters:
 
-* `sort`:  Sort by (`name`, `title`, `score`, `reviews`, `downloads`, `created_at`, `approved_at`, `last_release`).
-* `order`:  Sort ascending (`asc`) or descending (`desc`).
+* `sort`:  Sort by (`name`, `title`, `score`, `reviews`, `downloads`, `created_at`, `approved_at`, `last_release`,
+  `collection`). Defaults to `collection` when filtering by `collection`, and `score` otherwise.
+* `order`:  Sort ascending (`asc`) or descending (`desc`). Defaults to `desc`, or `asc` for `sort=collection`.
 * `random`:  When present, enable random ordering and ignore `sort`.
 
 Format query parameters:

@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2026 rubenwardy <rw@rubenwardy>
 
+from functools import cached_property
 from typing import Any, ClassVar
 
 from flask import render_template
@@ -9,6 +10,7 @@ from flask_babel import gettext, LazyString
 from markupsafe import Markup
 
 from app.models import DashboardWidget
+from app.querybuilder import QueryBuilder
 
 
 class Widget:
@@ -43,6 +45,13 @@ class Widget:
 
 	def get_limit(self) -> int | None:
 		return self.model.limit or self.default_limit
+
+	@cached_property
+	def query_builder(self) -> QueryBuilder:
+		"""For widgets with "query_string" in fields: the package query, limited to the widget's limit"""
+		qb = self.model.get_query_builder()
+		qb.limit = self.get_limit()
+		return qb
 
 	def get_title(self) -> str | None:
 		# Titles are extracted for translation from /api/dashboards/ by utils/extract_translations.py

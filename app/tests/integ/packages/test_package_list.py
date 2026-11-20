@@ -8,7 +8,8 @@ and other columns raise when accessed, so these render tiles in each state to ca
 """
 
 from app.models import db, Language, PackageState, PackageTranslation, PackageType
-from ..factories import create_package, create_release, create_review, create_screenshot, create_user, login_as
+from ..factories import create_collection, create_package, create_release, create_review, create_screenshot, \
+	create_user, login_as
 
 
 def test_package_list(client):
@@ -90,3 +91,20 @@ def test_package_list_logged_in(client):
 	rv = client.get("/packages/")
 	assert rv.status_code == 200
 	assert b"Some_Mod" in rv.data
+
+
+def test_package_list_collection_order(client):
+	author = create_user("author")
+	first = create_package("Aaa_First", author)
+	second = create_package("Zzz_Second", author)
+	first.score = 1
+	second.score = 2
+	db.session.commit()
+	create_collection(author, [first, second], name="picks")
+
+	html = client.get("/packages/?collection=author/picks").data.decode("utf-8")
+	assert html.index("Aaa_First") < html.index("Zzz_Second")
+
+	html = client.get("/packages/?collection=author/picks&sort=score").data.decode("utf-8")
+	assert html.index("Zzz_Second") < html.index("Aaa_First")
+

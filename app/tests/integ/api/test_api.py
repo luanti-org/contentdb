@@ -6,7 +6,7 @@ import datetime
 
 from app.default_data import populate_test_data
 from app.models import db, Package, PackageState, DashboardWidgetType
-from ..factories import create_dashboard, create_package, create_release, create_user
+from ..factories import create_collection, create_dashboard, create_package, create_release, create_user
 from ..utils import parse_json, validate_package_list
 
 
@@ -119,3 +119,65 @@ def test_packages_sort_last_release(client):
 
 	rv = client.get("/api/packages/?sort=last_release&order=asc&limit=2")
 	assert [package["name"] for package in parse_json(rv.data)] == ["unapproved", "old"]
+
+
+def test_packages_collection(client):
+	author = create_user("author")
+	in_collection = create_package("in_collection", author)
+	create_package("not_in_collection", author)
+	create_collection(author, [in_collection], name="picks")
+	create_collection(author, [in_collection], name="secret", private=True)
+
+	rv = client.get("/api/packages/?collection=author/picks")
+	assert rv.status_code == 200
+	assert [package["name"] for package in parse_json(rv.data)] == ["in_collection"]
+
+	# Collection names are per author
+	assert client.get("/api/packages/?collection=someone_else/picks").status_code == 400
+
+	# Private collections can't be listed by anyone, as API responses are cached publicly
+	rv = client.get("/api/packages/?collection=author/secret")
+	assert rv.status_code == 400
+	assert b"Unable to find that collection" in rv.data
+
+	for key in ["nope", "author/nope", "author/picks/extra", "/picks"]:
+		assert client.get(f"/api/packages/?collection={key}").status_code == 400, key
+
+
+def test_packages_collection_order(client):
+	"""Collections are listed in their curated order by default"""
+	author = create_user("author")
+	first = create_package("first", author)
+	second = create_package("second", author)
+	third = create_package("third", author)
+	create_package("not_in_collection", author)
+	# Scores in the opposite order, so the default sort by score would list them backwards
+	first.score = 1
+	second.score = 2
+	third.score = 3
+	db.session.commit()
+	create_collection(author, [first, second, third], name="picks")
+
+	def names(url):
+		rv = client.get(url)
+		assert rv.status_code == 200, url
+		return [package["name"] for package in parse_json(rv.data)]
+
+	assert names("/api/packages/?collection=author/picks") == ["first", "second", "third"]
+	assert names("/api/packages/?collection=author/picks&sort=collection") == ["first", "second", "third"]
+	assert names("/api/packages/?collection=author/picks&order=desc") == ["third", "second", "first"]
+	assert names("/api/packages/?collection=author/picks&limit=2") == ["first", "second"]
+
+	# Another sort overrides it
+	assert names("/api/packages/?collection=author/picks&sort=score") == ["third", "second", "first"]
+	assert names("/api/packages/?collection=author/picks&sort=name&order=asc") == ["first", "second", "third"]
+
+	# Without a collection, it's unchanged
+	assert names("/api/packages/?sort=score")[:3] == ["third", "second", "first"]
+
+
+def test_packages_sort_collection_needs_collection(client):
+	rv = client.get("/api/packages/?sort=collection")
+	assert rv.status_code == 400
+	assert b"sort=collection needs a collection" in rv.data
+

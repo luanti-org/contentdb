@@ -5,39 +5,26 @@
 from typing import Any
 
 from flask_babel import lazy_gettext
-from sqlalchemy import and_
-from sqlalchemy.orm import joinedload, load_only, subqueryload
-from sqlalchemy.sql.expression import func
+from sqlalchemy.orm import selectinload
 
-from app.models import Collection, License, Package, PackageState, User
+from app.models import Package
 from ..base import Widget
 
 
 class SpotlightWidget(Widget):
-	"""A carousel of random packages from the ContentDB/spotlight collection"""
+	"""A carousel of packages from a package list query, such as "collection=ContentDB/spotlight&random" """
 
 	template = "widgets/spotlight/spotlight.html"
-	label = lazy_gettext("Spotlight carousel")
-	fields = frozenset({"limit"})
+	label = lazy_gettext("Carousel")
+	fields = frozenset({"query_string", "limit"})
 	default_limit = 6
 
 	def get_context(self) -> dict[str, Any]:
-		packages = (Package.query
-			.filter(
-				Package.state == PackageState.APPROVED,
-				Package.collections.any(and_(Collection.name == "spotlight", Collection.author.has(username="ContentDB"))))
+		packages = (self.query_builder.build_package_query()
 			.options(
-				load_only(Package.name, Package.title, Package.type, Package.short_desc, Package.state,
-						Package.cover_image_id, raiseload=True),
-				subqueryload(Package.main_screenshot),
-				joinedload(Package.tags),
-				joinedload(Package.content_warnings),
-				joinedload(Package.author).load_only(User.username, User.display_name, raiseload=True),
-				subqueryload(Package.cover_image),
-				joinedload(Package.license).load_only(License.name, License.is_foss, raiseload=True),
-				joinedload(Package.media_license).load_only(License.name, License.is_foss, raiseload=True))
-			.order_by(func.random())
-			.limit(self.get_limit())
+				selectinload(Package.tags),
+				selectinload(Package.content_warnings),
+				selectinload(Package.cover_image))
 			.all())
 
 		return {

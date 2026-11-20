@@ -124,3 +124,9 @@ def test_widget_card_shows_widget_fields():
 		assert 'name="widgets-__index__-title"' in tags
 		assert "query_string" not in tags
 		assert 'name="widgets-__index__-limit"' not in tags
+
+
+def test_get_query_error_collection_format():
+	# Rejected before looking anything up, so no database is needed
+	with app.test_request_context("/dashboards/1/edit/"):
+		assert get_query_error("collection=nope") == "Unable to find that collection"

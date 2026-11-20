@@ -10,7 +10,7 @@ from ..factories import create_collection, create_dashboard, create_package, cre
 
 # The same as the default homepage, seeded by migration fa25785307b1. recreate_db() deletes it, so tests make their own.
 DEFAULT_WIDGETS = [
-	(DashboardWidgetType.SPOTLIGHT, None, None, 6),
+	(DashboardWidgetType.SPOTLIGHT, None, "collection=ContentDB/spotlight&random", 6),
 	(DashboardWidgetType.ROW, "Recently Added", "sort=approved_at&order=desc", 4),
 	(DashboardWidgetType.ROW, "Recently Updated", "sort=last_release&order=desc", 4),
 	(DashboardWidgetType.ROW, "Top Games", "type=game&sort=score&order=desc", 8),
@@ -61,9 +61,11 @@ def test_homepage_widgets(client):
 	assert rv.status_code == 200
 	html = rv.data.decode("utf-8")
 
-	# Spotlight
+	# Spotlight only contains packages in the ContentDB/spotlight collection
 	spotlight_id = dashboard.widgets.all()[0].id
 	assert f'id="spotlight-{spotlight_id}"' in html
+	spotlight = html[html.index(f'id="spotlight-{spotlight_id}"'):html.index("Recently Added")]
+	assert mod.title in spotlight and game.title not in spotlight
 
 	# Rows only contain packages matching their query
 	top_games = html[html.index("Top Games"):html.index("Top Mods")]
@@ -130,3 +132,18 @@ def test_homepage_reviews_script_when_logged_in(client):
 
 	html = client.get("/").data.decode("utf-8")
 	assert html.count("quick_review_voting.js") == 1
+
+
+def test_homepage_missing_collection_shows_nothing(client):
+	"""A widget whose collection was deleted shows no packages, rather than every package"""
+	author = create_user("author")
+	create_package("SomeMod", author)
+	create_dashboard([
+		(DashboardWidgetType.ROW, "Deleted Collection", "collection=author/deleted", 4),
+	])
+
+	html = client.get("/").data.decode("utf-8")
+	assert "Deleted Collection" in html
+	assert "packagecard" not in html
+	assert "No packages available" in html
+

@@ -5,7 +5,7 @@
 from typing import Optional, List
 from flask import abort, current_app, request, make_response
 from flask_babel import lazy_gettext, gettext, get_locale
-from sqlalchemy import or_, and_
+from sqlalchemy import or_, and_, false
 from sqlalchemy.orm import subqueryload, joinedload, load_only
 from sqlalchemy.sql import Subquery
 from sqlalchemy.sql.expression import func
@@ -13,7 +13,8 @@ from sqlalchemy_searchable import search
 from urllib.parse import urlparse
 
 from .models import db, PackageType, Package, ForumTopic, License, LuantiRelease, PackageRelease, User, Tag, \
-	ContentWarning, PackageState, PackageDevState, ReleaseState, PackageAIDisclosure, PackageTranslation
+	ContentWarning, PackageState, PackageDevState, ReleaseState, PackageAIDisclosure, PackageTranslation, Collection, \
+	CollectionPackage
 from app.utils.misc import is_yes
 from app.utils.flask import get_int_or_abort
 
@@ -29,6 +30,9 @@ class QueryBuilder:
 	tags: List[Tag]
 	hide_tags: List[Tag]
 	game: Optional[Package]
+	collection: Optional[Collection]
+	# A collection was given but doesn't exist or is private. Without emit_http_errors, this matches no packages.
+	collection_missing: bool = False
 	author: Optional[str]
 	random: bool
 	lucky: bool
@@ -67,6 +71,9 @@ class QueryBuilder:
 			meta = self.game.get_translated(load_desc=False)
 			ret = gettext("%(package_type)s for %(game_name)s", package_type=ret, game_name=meta["title"])
 
+		if self.collection:
+			ret = gettext("%(package_type)s in %(collection)s", package_type=ret, collection=self.collection.title)
+
 		return ret
 
 	@property
@@ -77,7 +84,8 @@ class QueryBuilder:
 	def noindex(self):
 		return (self.search is not None or len(self.tags) > 1 or len(self.flags) > 1 or len(self.types) > 1 or
 			len(self.licenses) > 0 or len(self.hide_flags) > 0 or len(self.hide_tags) > 0 or self.random or
-			self.lucky or self.author or self.version or self.not_version or self.game or self.limit is not None)
+			self.lucky or self.author or self.version or self.not_version or self.game or self.collection or
+			self.collection_missing or self.limit is not None)
 
 	@property
 	def requires_login(self):
@@ -196,9 +204,38 @@ class QueryBuilder:
 		else:
 			self.game = None
 
+		self.collection = None
+		collection_key = args.get("collection")
+		if collection_key:
+			self.collection = self.get_collection(collection_key)
+			if self.collection is None:
+				if emit_http_errors:
+					abort(make_response("Unable to find that collection"), 400)
+				self.collection_missing = True
+
+		# Collections are listed in their curated order, unless another sort is asked for
+		if (self.collection or self.collection_missing) and self.order_by is None and not self.search and \
+				not self.random:
+			self.order_by = "collection"
+		if self.order_by == "collection" and "order" not in args:
+			self.order_dir = "asc"
+
 		self.has_lang = args.get("lang")
 		if self.has_lang == "":
 			self.has_lang = None
+
+	@staticmethod
+	def get_collection(key: str) -> Optional[Collection]:
+		"""Finds a public collection from author/name"""
+		parts = key.split("/")
+		if len(parts) != 2:
+			return None
+
+		author, name = parts
+		return Collection.query.filter(
+				Collection.name == name,
+				Collection.author.has(username=author),
+				Collection.private.is_(False)).first()
 
 	def set_sort_if_none(self, name, dir="desc"):
 		if self.order_by is None:
@@ -252,6 +289,10 @@ class QueryBuilder:
 					.group_by(PackageRelease.package_id)
 					.subquery())
 			query = query.join(self._last_release, self._last_release.c.package_id == Package.id)
+		elif self.order_by == "collection" and self.collection:
+			query = query.join(CollectionPackage, and_(
+					CollectionPackage.package_id == Package.id,
+					CollectionPackage.collection_id == self.collection.id))
 
 		if self.only_approved:
 			query = query.filter(Package.state == PackageState.APPROVED)
@@ -289,6 +330,11 @@ class QueryBuilder:
 
 		if self.game:
 			query = query.filter(Package.supported_games.any(game=self.game, supports=True))
+
+		if self.collection:
+			query = query.filter(Package.collections.any(Collection.id == self.collection.id))
+		elif self.collection_missing:
+			query = query.filter(false())
 
 		if self.has_lang and self.has_lang != "en":
 			query = query.filter(Package.translations.any(language_id=self.has_lang))
@@ -385,6 +431,11 @@ class QueryBuilder:
 		elif self.order_by == "last_release":
 			assert self._last_release is not None, "last_release requires the query from build_package_query"
 			to_order = self._last_release.c.created_at
+		elif self.order_by == "collection":
+			if self.collection:
+				to_order = CollectionPackage.order
+			elif not self.collection_missing:
+				abort(make_response("sort=collection needs a collection"), 400)
 		else:
 			abort(400)
 
