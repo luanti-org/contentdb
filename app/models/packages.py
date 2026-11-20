@@ -1096,7 +1096,7 @@ class ContentWarning(Model):
 	def get_translated(self):
 		# Translations are automated on dynamic data using `extract_translations.py`
 		return {
-			"title": pgettext("tags", self.title),
+			"title": pgettext("content_warnings", self.title),
 			"description": pgettext("content_warnings", self.description),
 		}
 
