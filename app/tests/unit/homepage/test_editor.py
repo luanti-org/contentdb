@@ -216,3 +216,10 @@ def test_slide_card_template():
 			assert f'name="slides-__index__-{name}"' in html, name
 		assert 'type="file"' in html
 		assert 'type="datetime-local"' in html
+
+
+@pytest.mark.parametrize("url", ["/\t/example.org", "/\n/example.org", "/\r/example.org", "https://exa mple.org/",
+		"/gamejam/\x00", "/ /example.org"])
+def test_is_valid_slide_url_rejects_whitespace(url):
+	from app.blueprints.homepage.editor import is_valid_slide_url
+	assert not is_valid_slide_url(url)

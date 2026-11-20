@@ -224,6 +224,10 @@ def dashboard_edit(id: Optional[int] = None):
 
 def is_valid_slide_url(url: str) -> bool:
 	"""An http(s) URL, or a path on this site"""
+	# Browsers remove tabs and newlines from URLs, so "/\t/example.com" would become "//example.com"
+	if any(c.isspace() or ord(c) < 32 or ord(c) == 127 for c in url):
+		return False
+
 	if url.startswith("/"):
 		# //example.com is protocol-relative, so would go to another site
 		return not url.startswith("//") and not url.startswith("/\\")
