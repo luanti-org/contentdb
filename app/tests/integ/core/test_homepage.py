@@ -25,8 +25,15 @@ DEFAULT_WIDGETS = [
 
 
 def test_homepage_no_dashboard(client):
+	"""Without a dashboard, the page is shown without widgets. Many tests visit / after recreate_db() deletes it."""
+	author = create_user("author")
+	create_package("SomeMod", author)
+
 	rv = client.get("/")
-	assert rv.status_code == 404
+	assert rv.status_code == 200
+	html = rv.data.decode("utf-8")
+	assert "packagecard" not in html
+	assert "CDB has 1 packages" in html
 
 
 def test_homepage_empty(client):

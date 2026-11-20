@@ -55,10 +55,10 @@ def gamejam():
 @bp.route("/")
 def home():
 	# TODO: get correct dashboard
-	dashboard = Dashboard.query.order_by(db.asc(Dashboard.id)).first_or_404()
+	dashboard = Dashboard.query.order_by(db.asc(Dashboard.id)).first()
 
 	scripts: list[str] = []
-	widgets = [render_widget(widget, scripts) for widget in dashboard.widgets.all()]
+	widgets = [render_widget(widget, scripts) for widget in dashboard.widgets.all()] if dashboard else []
 	widgets = [html for html in widgets if html is not None]
 
 	count = db.session.query(Package.id).filter(Package.state == PackageState.APPROVED).count()

@@ -35,7 +35,7 @@
 		<small>
 			{{ _("CDB has %(count)d packages, with a total of %(downloads)d downloads.", count=count, downloads=downloads) }}
 		</small>
-		{% if dashboard.check_perm(current_user, "EDIT_DASHBOARD") %}
+		{% if dashboard and dashboard.check_perm(current_user, "EDIT_DASHBOARD") %}
 			<p class="mt-3">
 				<a class="btn btn-sm btn-secondary" href="{{ url_for('homepage.dashboard_edit', id=dashboard.id) }}">
 					<i class="fas fa-pen me-1"></i>
