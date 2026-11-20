@@ -6,8 +6,8 @@ import pytest
 
 from app.default_data import populate_test_data
 from app.models import db, DashboardWidgetType, PackageType
-from ..factories import create_collection, create_dashboard, create_package, create_review, create_user, \
-	get_user, login_as
+from ..factories import create_collection, create_dashboard, create_package, create_review, create_screenshot, \
+	create_user, get_user, login_as
 
 
 # The same as the default homepage, seeded by migration fa25785307b1. recreate_db() deletes it, so tests make their own.
@@ -205,3 +205,22 @@ def test_homepage_bad_sort_falls_back(client):
 	html = client.get("/").data.decode("utf-8")
 	assert "Bad Sort" in html
 	assert "packagecard" in html
+
+
+def test_homepage_random_keeps_screenshots(client):
+	"""
+	With subqueryload, the screenshot query re-ran the random query and picked different packages, so some tiles
+	were missing their screenshot.
+	"""
+	author = create_user("author")
+	for i in range(30):
+		create_screenshot(create_package(f"mod{i}", author))
+	create_dashboard([
+		(DashboardWidgetType.ROW, "Random", "random", 3),
+		(DashboardWidgetType.SPOTLIGHT, None, "random", 3),
+	])
+
+	for _ in range(3):
+		html = client.get("/").data.decode("utf-8")
+		assert html.count("packagecard") == 3
+		assert "/static/placeholder.png" not in html

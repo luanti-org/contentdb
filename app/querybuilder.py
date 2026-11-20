@@ -6,7 +6,7 @@ from typing import Optional, List
 from flask import abort, current_app, has_request_context, request, make_response
 from flask_babel import lazy_gettext, gettext, get_locale
 from sqlalchemy import or_, and_, false
-from sqlalchemy.orm import subqueryload, joinedload, load_only
+from sqlalchemy.orm import joinedload, load_only, selectinload
 from sqlalchemy.sql import Subquery
 from sqlalchemy.sql.expression import func
 from sqlalchemy_searchable import search
@@ -339,17 +339,19 @@ class QueryBuilder:
 		if self.only_approved:
 			query = query.filter(Package.state == PackageState.APPROVED)
 
+		# selectinload rather than subqueryload: subqueryload re-runs the main query, which picks different
+		# packages when it's ordered by random(), so they'd be missing their screenshots
 		if for_tiles:
 			query = query.options(
 				load_only(Package.name, Package.title, Package.short_desc, Package.state, raiseload=True),
 				joinedload(Package.author).load_only(User.username, User.display_name, raiseload=True),
-				subqueryload(Package.main_screenshot),
+				selectinload(Package.main_screenshot),
 			)
 		else:
 			query = query.options(
 				joinedload(Package.author),
-				subqueryload(Package.main_screenshot),
-				subqueryload(Package.aliases),
+				selectinload(Package.main_screenshot),
+				selectinload(Package.aliases),
 			)
 
 		query = self.order_package_query(self.filter_package_query(query))
