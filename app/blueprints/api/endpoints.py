@@ -50,11 +50,12 @@ def packages():
 	if "engine_version" in request.args or "protocol_version" in request.args:
 		pkgs = [pkg for pkg in pkgs if pkg.get("release")]
 
-	# Promote featured packages
+	# Promote featured packages, unless listing a collection, which has its own order
 	if "sort" not in request.args and \
 			"order" not in request.args and \
 			"q" not in request.args and \
-			"limit" not in request.args:
+			"limit" not in request.args and \
+			"collection" not in request.args:
 		featured_lut = set()
 		featured = qb.convert_to_dictionary(query.filter(
 			Package.collections.any(and_(Collection.name == "featured", Collection.author.has(username="ContentDB")))).all(),

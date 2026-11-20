@@ -6,7 +6,7 @@ import datetime
 
 from app.default_data import populate_test_data
 from app.models import db, Package, PackageState, DashboardWidgetType
-from ..factories import create_collection, create_dashboard, create_package, create_release, create_user
+from ..factories import create_collection, create_dashboard, create_package, create_release, create_user, get_user
 from ..utils import parse_json, validate_package_list
 
 
@@ -203,3 +203,14 @@ def test_packages_errors_have_status(client):
 	rv = client.get("/api/packages/?game=nobody/nogame")
 	assert rv.status_code == 400
 	assert b"Unable to find that game" in rv.data
+
+
+def test_packages_collection_isnt_reordered_by_featured(client):
+	author = create_user("author")
+	first = create_package("first", author)
+	second = create_package("second", author)
+	create_collection(author, [first, second], name="picks")
+	create_collection(get_user("ContentDB"), [second], name="featured")
+
+	rv = client.get("/api/packages/?collection=author/picks")
+	assert [package["name"] for package in parse_json(rv.data)] == ["first", "second"]
