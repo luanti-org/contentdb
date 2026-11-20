@@ -2,6 +2,8 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2026 rubenwardy <rw@rubenwardy>
 
+import pytest
+
 from app.default_data import populate_test_data
 from app.models import db, DashboardWidgetType, PackageType
 from ..factories import create_collection, create_dashboard, create_package, create_review, create_user, \
@@ -110,10 +112,17 @@ def test_homepage_row_limit(client):
 	assert html.count("packagecard") == 2
 
 
-def test_homepage_broken_widget_is_skipped(client):
-	"""An invalid stored query shouldn't take down the whole homepage."""
+def test_homepage_broken_widget_is_skipped(client, monkeypatch):
+	"""A widget that fails to render is skipped, rather than taking down the whole homepage."""
+	from app.blueprints.homepage.widgets.tags import TagsWidget
+
+	def fail(self):
+		raise Exception("Broken widget")
+
+	# Invalid stored queries fall back rather than failing, see test_homepage_bad_sort_falls_back
+	monkeypatch.setattr(TagsWidget, "get_context", fail)
 	create_dashboard([
-		(DashboardWidgetType.ROW, "Broken Row", "sort=invalid", 4),
+		(DashboardWidgetType.TAGS, "Broken Row", None, None),
 		(DashboardWidgetType.ROW, "Working Row", "type=mod", 4),
 	])
 
@@ -147,3 +156,52 @@ def test_homepage_missing_collection_shows_nothing(client):
 	assert "packagecard" not in html
 	assert "No packages available" in html
 
+
+def test_homepage_amp_in_url(client):
+	"""The &amp bot check is for the page's own query, not the widgets' stored queries"""
+	author = create_user("author")
+	create_package("SomeMod", author)
+	create_dashboard([
+		(DashboardWidgetType.ROW, "Some Row", "type=mod", 4),
+	])
+
+	rv = client.get("/?utm_source=mail&amp;x=1")
+	assert rv.status_code == 200
+	html = rv.data.decode("utf-8")
+	assert "Some Row" in html
+	assert "packagecard" in html
+
+
+@pytest.mark.parametrize("query_string", [
+	"game=nobody/nogame",
+	"author=nobody",
+	"tag=no_such_tag",
+	"type=mod&tag=no_such_tag",
+	"license=No-Such-License",
+])
+def test_homepage_stale_query_shows_nothing(client, query_string):
+	"""A widget whose query refers to something deleted shows no packages, rather than vanishing or showing all"""
+	author = create_user("author")
+	create_package("SomeMod", author)
+	create_dashboard([
+		(DashboardWidgetType.ROW, "Stale Row", query_string, 4),
+	])
+
+	rv = client.get("/")
+	assert rv.status_code == 200
+	html = rv.data.decode("utf-8")
+	assert "Stale Row" in html
+	assert "packagecard" not in html
+	assert "No packages available" in html
+
+
+def test_homepage_bad_sort_falls_back(client):
+	author = create_user("author")
+	create_package("SomeMod", author)
+	create_dashboard([
+		(DashboardWidgetType.ROW, "Bad Sort", "sort=nope&order=sideways&limit=abc", 4),
+	])
+
+	html = client.get("/").data.decode("utf-8")
+	assert "Bad Sort" in html
+	assert "packagecard" in html

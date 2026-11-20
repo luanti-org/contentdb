@@ -181,3 +181,25 @@ def test_packages_sort_collection_needs_collection(client):
 	assert rv.status_code == 400
 	assert b"sort=collection needs a collection" in rv.data
 
+
+def test_packages_errors_have_status(client):
+	"""These used to be returned with a 200 status"""
+	rv = client.get("/api/packages/?type=nope")
+	assert rv.status_code == 400
+	assert b"Unknown type" in rv.data
+
+	rv = client.get("/api/packages/?tag=no_such_tag")
+	assert rv.status_code == 400
+	assert b"Unknown tag" in rv.data
+
+	rv = client.get("/api/packages/?hide=no_such_flag")
+	assert rv.status_code == 400
+	assert b"Unknown tag or content warning" in rv.data
+
+	rv = client.get("/api/packages/?author=nobody")
+	assert rv.status_code == 404
+	assert b"Unable to find that author" in rv.data
+
+	rv = client.get("/api/packages/?game=nobody/nogame")
+	assert rv.status_code == 400
+	assert b"Unable to find that game" in rv.data

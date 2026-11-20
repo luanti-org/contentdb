@@ -3,7 +3,7 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 from typing import Optional, List
-from flask import abort, current_app, request, make_response
+from flask import abort, current_app, has_request_context, request, make_response
 from flask_babel import lazy_gettext, gettext, get_locale
 from sqlalchemy import or_, and_, false
 from sqlalchemy.orm import subqueryload, joinedload, load_only
@@ -16,7 +16,6 @@ from .models import db, PackageType, Package, ForumTopic, License, LuantiRelease
 	ContentWarning, PackageState, PackageDevState, ReleaseState, PackageAIDisclosure, PackageTranslation, Collection, \
 	CollectionPackage
 from app.utils.misc import is_yes
-from app.utils.flask import get_int_or_abort
 
 
 class QueryBuilder:
@@ -33,6 +32,10 @@ class QueryBuilder:
 	collection: Optional[Collection]
 	# A collection was given but doesn't exist or is private. Without emit_http_errors, this matches no packages.
 	collection_missing: bool = False
+	# A filter refers to something that doesn't exist, such as a deleted game, collection, or author. Only happens
+	# without emit_http_errors, such as for homepage widgets, where a stale query should show nothing rather than
+	# everything or an error.
+	match_nothing: bool = False
 	author: Optional[str]
 	random: bool
 	lucky: bool
@@ -85,19 +88,40 @@ class QueryBuilder:
 		return (self.search is not None or len(self.tags) > 1 or len(self.flags) > 1 or len(self.types) > 1 or
 			len(self.licenses) > 0 or len(self.hide_flags) > 0 or len(self.hide_tags) > 0 or self.random or
 			self.lucky or self.author or self.version or self.not_version or self.game or self.collection or
-			self.collection_missing or self.limit is not None)
+			self.match_nothing or self.limit is not None)
 
 	@property
 	def requires_login(self):
 		return len(self.tags) > 1
 
+	VALID_SORTS = {"score", "reviews", "name", "title", "downloads", "created_at", "date", "approved_at", "last_release",
+			"collection"}
+
+	def _error(self, message: str, code: int = 400):
+		"""Aborts with a message if emit_http_errors, otherwise returns so the caller can fall back"""
+		if self.emit_http_errors:
+			abort(make_response(message, code))
+
+	def _get_int(self, args, name: str) -> Optional[int]:
+		value = args.get(name)
+		if value is None or value == "":
+			return None
+
+		try:
+			return int(value)
+		except ValueError:
+			self._error(f"{name} must be an integer")
+			return None
+
 	def __init__(self, args, cookies: bool = False, lang: Optional[str] = None, emit_http_errors: bool = True):
 		self.emit_http_errors = emit_http_errors
 
-		# Block bots that encode incorrectly
-		query_str = urlparse(request.url).query
-		if "&amp" in query_str:
-			abort(400)
+		# Block bots that encode incorrectly. Only checks the request's own query string, as args may come from
+		# elsewhere, such as a homepage widget's stored query.
+		if has_request_context() and args is request.args:
+			query_str = urlparse(request.url).query
+			if "&amp" in query_str:
+				abort(400)
 
 		if lang is None:
 			locale = get_locale()
@@ -109,18 +133,21 @@ class QueryBuilder:
 		# Get request types
 		types = args.getlist("type")
 		types = [PackageType.get(tname) for tname in types]
-		if not emit_http_errors:
+		if any([type is None for type in types]):
+			self._error("Unknown type")
+			# Types are OR-ed, so only match nothing if none of them exist
+			if all([type is None for type in types]):
+				self.match_nothing = True
 			types = [type for type in types if type is not None]
-		elif any([type is None for type in types]):
-			abort(make_response("Unknown type"), 400)
 
 		# Get tags types
 		tags = args.getlist("tag")
 		tags = [Tag.query.filter_by(name=tname).first() for tname in tags]
-		if not emit_http_errors:
+		if any([tag is None for tag in tags]):
+			self._error("Unknown tag")
+			# Tags are AND-ed, so no package has a tag that doesn't exist
+			self.match_nothing = True
 			tags = [tag for tag in tags if tag is not None]
-		elif any([tag is None for tag in tags]):
-			abort(make_response("Unknown tag"), 400)
 
 		# Hide
 		self.hide_flags = set(args.getlist("hide"))
@@ -137,10 +164,14 @@ class QueryBuilder:
 
 		# License
 		licenses = [License.query.filter(func.lower(License.name) == name.lower()).first() for name in args.getlist("license")]
-		if emit_http_errors and any(map(lambda x: x is None, licenses)):
-			all_licenses = db.session.query(License.name).order_by(db.asc(License.name)).all()
-			all_licenses = [x[0] for x in all_licenses]
-			abort(make_response("Unknown license. Expected license name from: " + ", ".join(all_licenses)), 400)
+		if any(map(lambda x: x is None, licenses)):
+			if emit_http_errors:
+				all_licenses = db.session.query(License.name).order_by(db.asc(License.name)).all()
+				all_licenses = [x[0] for x in all_licenses]
+				self._error("Unknown license. Expected license name from: " + ", ".join(all_licenses))
+			# Licenses are OR-ed, so only match nothing if none of them exist
+			if all(map(lambda x: x is None, licenses)):
+				self.match_nothing = True
 		self.licenses = [x for x in licenses if x is not None]
 
 		self.types  = types
@@ -148,11 +179,17 @@ class QueryBuilder:
 
 		self.random = "random" in args
 		self.lucky  = "lucky" in args
-		self.limit  = 1 if self.lucky else get_int_or_abort(args.get("limit"), None)
+		self.limit  = 1 if self.lucky else self._get_int(args, "limit")
 		self.order_by  = args.get("sort")
 		if self.order_by == "":
 			self.order_by = None
+		if self.order_by is not None and self.order_by not in self.VALID_SORTS:
+			self._error("Unknown sort. Expected one of: " + ", ".join(sorted(self.VALID_SORTS)))
+			self.order_by = None
 		self.order_dir = args.get("order") or "desc"
+		if self.order_dir not in ("asc", "desc"):
+			self._error("order must be asc or desc")
+			self.order_dir = "desc"
 
 		if "android_default" in self.hide_flags:
 			self.hide_flags.update(["*", "deprecated"])
@@ -172,7 +209,7 @@ class QueryBuilder:
 		self.search = args.get("q")
 		self.author = args.get("author")
 
-		protocol_version = get_int_or_abort(args.get("protocol_version"))
+		protocol_version = self._get_int(args, "protocol_version")
 		engine_version = args.get("engine_version")
 		invert_version = "not_supported" in args
 		if engine_version == "":
@@ -200,7 +237,8 @@ class QueryBuilder:
 		if self.game:
 			self.game = Package.get_by_key(self.game)
 			if self.game is None:
-				abort(make_response("Unable to find that game"), 400)
+				self._error("Unable to find that game")
+				self.match_nothing = True
 		else:
 			self.game = None
 
@@ -209,9 +247,13 @@ class QueryBuilder:
 		if collection_key:
 			self.collection = self.get_collection(collection_key)
 			if self.collection is None:
-				if emit_http_errors:
-					abort(make_response("Unable to find that collection"), 400)
+				self._error("Unable to find that collection")
 				self.collection_missing = True
+				self.match_nothing = True
+
+		if self.order_by == "collection" and not (self.collection or self.collection_missing):
+			self._error("sort=collection needs a collection")
+			self.order_by = None
 
 		# Collections are listed in their curated order, unless another sort is asked for
 		if (self.collection or self.collection_missing) and self.order_by is None and not self.search and \
@@ -323,17 +365,19 @@ class QueryBuilder:
 
 		if self.author:
 			author = User.query.filter_by(username=self.author).first()
-			if not author:
-				abort(404)
-
-			query = query.filter_by(author=author)
+			if author:
+				query = query.filter_by(author=author)
+			else:
+				self._error("Unable to find that author", 404)
+				query = query.filter(false())
 
 		if self.game:
 			query = query.filter(Package.supported_games.any(game=self.game, supports=True))
 
 		if self.collection:
 			query = query.filter(Package.collections.any(Collection.id == self.collection.id))
-		elif self.collection_missing:
+
+		if self.match_nothing:
 			query = query.filter(false())
 
 		if self.has_lang and self.has_lang != "en":
@@ -360,8 +404,9 @@ class QueryBuilder:
 				warning = ContentWarning.query.filter_by(name=flag).first()
 				if warning:
 					query = query.filter(~ Package.content_warnings.any(ContentWarning.id == warning.id))
-				elif self.emit_http_errors:
-					abort(make_response("Unknown tag or content warning " + flag), 400)
+				else:
+					# Hiding something that doesn't exist hides nothing, so this can be ignored without emit_http_errors
+					self._error("Unknown tag or content warning " + flag)
 
 		flags = set(self.flags)
 		flags.discard("nonfree")
@@ -432,10 +477,9 @@ class QueryBuilder:
 			assert self._last_release is not None, "last_release requires the query from build_package_query"
 			to_order = self._last_release.c.created_at
 		elif self.order_by == "collection":
+			# __init__ makes sure there's a collection. If it's missing, the query matches nothing anyway.
 			if self.collection:
 				to_order = CollectionPackage.order
-			elif not self.collection_missing:
-				abort(make_response("sort=collection needs a collection"), 400)
 		else:
 			abort(400)
 
