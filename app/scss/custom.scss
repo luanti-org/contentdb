@@ -210,7 +210,8 @@ pre {
 	}
 }
 
-#featuredCarousel {
+// Spotlight widget, app/blueprints/homepage/widgets/spotlight/spotlight.html
+.spotlight-carousel {
 	.ratio > * {
 		filter: brightness(0.85);
 		object-fit: cover;
@@ -253,7 +254,7 @@ pre {
 }
 
 @media (min-width: 768px) {
-	#featuredCarousel h3 {
+	.spotlight-carousel h3 {
 		font-size: calc(1.325rem + .9vw) !important;
 	}
 }
