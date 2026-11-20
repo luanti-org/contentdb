@@ -27,8 +27,15 @@ up() {
 	compose exec -T app sh -c "FLASK_APP=app/__init__.py flask db upgrade"
 }
 
+# True if all the services the tests use are running. If the database has stopped but the app hasn't, the app
+# can't resolve its hostname, so check each service rather than just the app.
 is_up() {
-	[ -n "$(compose ps -q --status running app)" ]
+	local service
+	for service in db redis mailpit app; do
+		if [ -z "$(compose ps -q --status running "$service")" ]; then
+			return 1
+		fi
+	done
 }
 
 case "$1" in
