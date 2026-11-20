@@ -227,3 +227,37 @@ def test_homepage_slides_without_packages(client):
 	html = client.get("/").data.decode("utf-8")
 	assert f'id="spotlight-{spotlight.id}"' in html
 	assert "Only Slide" in html
+
+
+def upload_dir_listing() -> set[str]:
+	return set(os.listdir(app.config["UPLOAD_DIR"]))
+
+
+def test_slides_failed_save_leaves_no_uploads(client):
+	dashboard, spotlight, _ = make_dashboard()
+	other, other_spotlight, _ = make_dashboard()
+	other_slide = create_slide(other_spotlight, "Other")
+	login_as(client, create_user("editor", rank=UserRank.EDITOR))
+	before = upload_dir_listing()
+
+	# A valid image followed by an invalid one
+	data = {
+		**slide_fields(0, None, 0, title="Valid"),
+		"slides-0-image": image(),
+		**slide_fields(1, None, 1, title="Invalid"),
+		"slides-1-image": image(b"not an image"),
+	}
+	rv = client.post(slides_url(dashboard, spotlight), data=data, content_type="multipart/form-data")
+	assert rv.status_code == 200
+	assert upload_dir_listing() == before
+
+	# A valid image followed by another widget's slide
+	data = {
+		**slide_fields(0, None, 0, title="Valid"),
+		"slides-0-image": image(),
+		**slide_fields(1, other_slide, 1, title="Hijacked"),
+	}
+	rv = client.post(slides_url(dashboard, spotlight), data=data, content_type="multipart/form-data")
+	assert rv.status_code == 400
+	assert upload_dir_listing() == before
+	assert get_slides(spotlight.id) == []

@@ -20,7 +20,7 @@ from app.domain.DomainError import DomainError
 from app.models import AuditSeverity, Dashboard, DashboardWidget, DashboardWidgetSlide, DashboardWidgetType, \
 	Permission, db
 from app.querybuilder import QueryBuilder
-from app.uploads import upload_file
+from app.uploads import delete_upload, upload_file
 from app.utils.misc import nonempty_or_none
 from app.utils.models import add_audit_log
 from . import bp, WIDGETS
@@ -312,8 +312,8 @@ def save_slides(widget: DashboardWidget, form: SlidesForm):
 
 	entries = sorted(form.slides.entries, key=get_order)
 
-	# Check ids and upload images first, so that an invalid image doesn't leave a half-saved list
-	slides: list[tuple[SlideForm, Optional[DashboardWidgetSlide], Optional[str]]] = []
+	# Check all the ids before uploading anything, so that a bad id doesn't leave uploads behind
+	resolved: list[tuple[SlideForm, Optional[DashboardWidgetSlide]]] = []
 	for entry in entries:
 		sub = entry.form
 		slide: Optional[DashboardWidgetSlide] = None
@@ -324,12 +324,22 @@ def save_slides(widget: DashboardWidget, form: SlidesForm):
 				abort(400)
 			if slide is None:
 				abort(400)
+		resolved.append((sub, slide))
 
-		image_path = None
-		if sub.removed.data != "1" and has_file(sub.image.data):
-			image_path, _ = upload_file(sub.image.data, "image", lazy_gettext("a PNG, JPEG, or WebP image file"))
-
-		slides.append((sub, slide, image_path))
+	# Upload images before changing anything, so that an invalid image doesn't leave a half-saved list
+	uploaded: list[str] = []
+	slides: list[tuple[SlideForm, Optional[DashboardWidgetSlide], Optional[str]]] = []
+	try:
+		for sub, slide in resolved:
+			image_path = None
+			if sub.removed.data != "1" and has_file(sub.image.data):
+				image_path, _ = upload_file(sub.image.data, "image", lazy_gettext("a PNG, JPEG, or WebP image file"))
+				uploaded.append(image_path)
+			slides.append((sub, slide, image_path))
+	except DomainError:
+		for path in uploaded:
+			delete_upload(path)
+		raise
 
 	order = 0
 	for sub, slide, image_path in slides:
