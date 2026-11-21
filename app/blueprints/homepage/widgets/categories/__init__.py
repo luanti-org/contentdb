@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2026 rubenwardy <rw@rubenwardy>
 
+import zlib
 from dataclasses import dataclass
 from typing import Any, Optional
 from urllib.parse import parse_qsl, urlencode
@@ -10,6 +11,7 @@ from flask import url_for
 from flask_babel import lazy_gettext
 
 from app.models import Package, PackageState, Tag, TagKind, Tags, db
+from app.uploads import get_public_upload_url
 from ..base import Widget
 
 
@@ -18,14 +20,26 @@ class CategoryTile:
 	title: str
 	description: Optional[str]
 	url: str
+	# Hue of the tile's gradient, 0-359
+	hue: int
+	# Picture of the category's top packages, made by a scheduled task, or None until then
+	image_url: Optional[str]
+
+
+def get_tag_hue(tag_name: str) -> int:
+	"""A colour for the tag, which is the same on every page and every request"""
+	return zlib.crc32(tag_name.encode("utf-8")) % 360
 
 
 class CategoriesWidget(Widget):
 	"""
-	A tile for each category tag that has packages, showing its title (and its description on hover), linking to those
-	packages. The query string is a base
-	filter for every tile, such as "type=game". Categories are shown in the order they were created, so the order the
-	migration that adds them lists them in.
+	A tile for each category tag that has packages, showing its title over a picture of its top packages and a
+	coloured gradient, with its description on hover, linking to those packages.
+
+	The query string is a base filter for every tile, such as "type=game": it decides which categories are shown and
+	where they link, but not the picture, which is made per tag by app.tasks.collagetasks so that the homepage doesn't
+	load any packages or thumbnails. Categories are shown in the order they were created, so the order the migration
+	that adds them lists them in.
 	"""
 
 	template = "widgets/categories/categories.html"
@@ -48,7 +62,9 @@ class CategoriesWidget(Widget):
 			tiles.append(CategoryTile(
 				title=translated["title"],
 				description=translated["description"] or None,
-				url=url_for("packages.list_all") + "?" + urlencode(base_args + [("tag", tag.name)])))
+				url=url_for("packages.list_all") + "?" + urlencode(base_args + [("tag", tag.name)]),
+				hue=get_tag_hue(tag.name),
+				image_url=get_public_upload_url(tag.collage_path) if tag.collage_path else None))
 
 		return {
 			"tiles": tiles,

@@ -123,6 +123,10 @@ CELERYBEAT_SCHEDULE = {
 		'task': 'app.tasks.dumptask.create_database_dump',
 		'schedule': crontab(minute=0, hour=5),  # 0500
 	},
+	'update_category_collages': {
+		'task': 'app.tasks.collagetasks.update_category_collages',
+		'schedule': crontab(minute=30, hour=4),  # 0430, after package scores are updated at 0110
+	},
 	'update_public_approval_stats': {
 		'task': 'app.tasks.pkgtasks.update_public_approval_stats',
 		'schedule': crontab(minute=10, hour=4),  # 0410
@@ -131,4 +135,4 @@ CELERYBEAT_SCHEDULE = {
 celery.conf.beat_schedule = CELERYBEAT_SCHEDULE
 
 
-from . import importtasks, forumtasks, emails, pkgtasks, usertasks, admintasks, dumptask
+from . import importtasks, forumtasks, emails, pkgtasks, usertasks, admintasks, dumptask, collagetasks

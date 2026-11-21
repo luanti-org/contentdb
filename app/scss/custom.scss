@@ -318,17 +318,54 @@ pre {
 }
 
 .category-tile {
+	--tile-hue: 210;
+
 	.packagecard {
+		position: relative;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		aspect-ratio: 16 / 9;
 		max-width: 100%;
 		text-align: center;
+		background: hsl(var(--tile-hue), 45%, 14%);
+		isolation: isolate;
+
+		// Coloured gradient over the picture, to tell categories apart and keep the title readable
+		&::after {
+			content: "";
+			position: absolute;
+			inset: 0;
+			z-index: 1;
+			background:
+				radial-gradient(ellipse at center, hsla(var(--tile-hue), 70%, 12%, 0.65) 0%, transparent 70%),
+				linear-gradient(135deg,
+					hsla(var(--tile-hue), 85%, 55%, 0.75) 0%,
+					hsla(calc(var(--tile-hue) + 40), 80%, 40%, 0.45) 45%,
+					hsla(calc(var(--tile-hue) + 80), 70%, 25%, 0.2) 100%);
+			transition: opacity 0.3s;
+		}
+
+		// Shows the picture as it is
+		&:hover::after {
+			opacity: 0;
+		}
+	}
+
+	// Server-rendered picture of the category's top packages, app/utils/collage.py
+	.category-image {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
 	}
 
 	.packagecard .body {
+		position: relative;
+		z-index: 2;
 		padding: 1rem 1.25rem;
+		text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
 	}
 
 	// Above the tiles after it, so the description that drops down on hover isn't hidden behind them
@@ -339,5 +376,11 @@ pre {
 	// Without a description there's nothing to drop down, so keep the rounded corners
 	&:not(:has(.info-wrapper)):has(.packagecard:hover) {
 		border-radius: 0.5rem;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.category-tile .packagecard::after {
+		transition: none;
 	}
 }

@@ -5,8 +5,11 @@
 	{# Uses the package tile styles, so the description drops down below the tile on hover like a package's #}
 	<div class="category-grid mb-5">
 		{% for tile in tiles %}
-			<a class="packagetile category-tile" href="{{ tile.url }}">
+			<a class="packagetile category-tile" href="{{ tile.url }}" style="--tile-hue: {{ tile.hue }};">
 				<div class="packagecard">
+					{% if tile.image_url %}
+						<img class="category-image" src="{{ tile.image_url }}" alt="" loading="lazy">
+					{% endif %}
 					<div class="body">
 						<h3>{{ tile.title }}</h3>
 					</div>

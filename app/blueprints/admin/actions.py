@@ -14,7 +14,7 @@ from flask_login import current_user
 
 from app.models import PackageRelease, db, Package, PackageState, PackageScreenshot, MetaPackage, User, \
 	NotificationType, PackageUpdateConfig, License, UserRank, PackageType, ReportAttachment, \
-	PackageAIDisclosure, AuditSeverity, UserSession
+	PackageAIDisclosure, AuditSeverity, UserSession, Tag
 from app.tasks.admintasks import delete_empty_threads
 from app.tasks.emails import send_pending_digests, import_email_bounces
 from app.tasks.forumtasks import import_topic_list, check_all_forum_accounts as check_all_forum_accounts_task
@@ -24,6 +24,7 @@ from app.tasks.usertasks import import_github_user_ids, delete_unused_users_with
 from app.tasks.pkgtasks import notify_about_git_forum_links, clear_removed_packages, check_package_for_broken_links, update_file_size_bytes, \
 	update_release_sha256
 from app.tasks.dumptask import create_database_dump
+from app.tasks.collagetasks import update_category_collages
 from app.utils.models import add_notification, get_system_user, add_audit_log
 from app.domain.user_deletion import delete_user
 from app.uploads import delete_upload
@@ -72,8 +73,9 @@ def clean_uploads():
 		screenshot_urls = get_filenames_from_column(PackageScreenshot.upload_path)
 		attachment_urls = get_filenames_from_column(ReportAttachment.upload_path)
 		pp_urls = get_filenames_from_column(User.profile_pic)
+		collage_urls = get_filenames_from_column(Tag.collage_path)
 
-		db_urls = release_urls.union(screenshot_urls).union(pp_urls).union(attachment_urls)
+		db_urls = release_urls.union(screenshot_urls).union(pp_urls).union(attachment_urls).union(collage_urls)
 		date = datetime.datetime.utcnow().strftime("%Y-%m-%d")
 		db_urls.add(f"/uploads/backup-{date}.zip")
 		unreachable = existing_uploads.difference(db_urls)
@@ -345,6 +347,13 @@ def do_update_release_sha256():
 def do_create_database_dump():
 	task_id = uuid()
 	create_database_dump.apply_async((), task_id=task_id)
+	return redirect(url_for("tasks.check", id=task_id, r=url_for("admin.admin_page")))
+
+
+@action("Update category images")
+def do_update_category_collages():
+	task_id = uuid()
+	update_category_collages.apply_async((), task_id=task_id)
 	return redirect(url_for("tasks.check", id=task_id, r=url_for("admin.admin_page")))
 
 
