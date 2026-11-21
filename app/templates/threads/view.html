@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% set og_type = "article" %}
+{% set canonical_url = thread.get_view_url(absolute=True) %}
+{% set og_image = thread.author.get_profile_pic_url() %}
+
 {% block title %}
 	{%- if thread.package -%}
 		{%- if thread.review -%}
@@ -21,9 +25,6 @@
 	{{ thread.get_description() }}
 {%- endblock %}
 
-{% block headextra %}
-	<meta name="og:image" content="{{ thread.author.get_profile_pic_url() }}"/>
-{% endblock %}
 
 {% block scriptextra %}
 	{% if current_user.is_authenticated %}

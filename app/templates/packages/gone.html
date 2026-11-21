@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 
+{% set og_image = package.get_thumb_url(4, True, "png") %}
+{% set og_image_large = True %}
+
 {% block title %}
 	{{ package.title }}
 {% endblock %}
@@ -8,11 +11,6 @@
 {{ package.short_desc }}
 {% endblock %}
 
-{% block headextra %}
-	{% if package.get_thumb_url(3, True, "png") -%}
-		<meta name="og:image" content="{{ package.get_thumb_url(3, True, "png") }}"/>
-	{%- endif %}
-{% endblock %}
 
 {% block content %}
 	{% if package.approved_at %}

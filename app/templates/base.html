@@ -1,19 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ locale or 'en' }}">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>{{ self.title() | normalize_whitespace }} - {{ config.USER_APP_NAME }}</title>
+	{%- set page_title = self.title() | normalize_whitespace %}
+	{%- set page_description = (self.description() | normalize_whitespace) if self.description is defined else "" %}
+	<title>{{ page_title }} - {{ config.USER_APP_NAME }}</title>
 	<link rel="shortcut icon" href="/favicon-16.png" sizes="16x16">
 	<link rel="icon" href="/favicon-128.png" sizes="128x128">
 	<link rel="icon" href="/favicon-32.png" sizes="32x32">
-	<meta name="og:site_name" content="ContentDB">
-	<meta name="og:title" content="{{ self.title() | normalize_whitespace }}">
-	{% if self.description and self.description != "" -%}
-	<meta name="description" content="{{ self.description() | normalize_whitespace }}">
-	<meta name="og:description" content="{{ self.description() | normalize_whitespace }}">
+	{% if page_description -%}
+	<meta name="description" content="{{ page_description }}">
 	{%- endif %}
+	{% if canonical_url and not noindex -%}
+	<link rel="canonical" href="{{ canonical_url }}">
+	{%- endif %}
+
+	{# Open Graph (Discord, Facebook, Mastodon, etc) and Twitter/X cards #}
+	<meta property="og:site_name" content="{{ config.USER_APP_NAME }}">
+	<meta property="og:type" content="{{ og_type or 'website' }}">
+	<meta property="og:title" content="{{ page_title }}">
+	<meta property="og:url" content="{{ canonical_url or url_current(abs=True) or request.url }}">
+	{% if page_description -%}
+	<meta property="og:description" content="{{ page_description }}">
+	{%- endif %}
+	{% if og_image -%}
+	<meta property="og:image" content="{{ og_image | abs_url }}">
+	<meta property="og:image:alt" content="{{ og_image_alt or page_title }}">
+	{%- endif %}
+	<meta name="twitter:card" content="{{ 'summary_large_image' if og_image and og_image_large else 'summary' }}">
 
 	<link rel="stylesheet" type="text/css" href="/static/libs/bootstrap.min.css?v=4">
 	<link rel="stylesheet" type="text/css" href="/static/custom.css?v=70">

@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 
+{% set og_type = "profile" %}
+{% set canonical_url = abs_url_for("users.profile", username=user.username) %}
+{% set og_image = user.get_profile_pic_url() %}
+{% set og_image_alt = _("Profile picture") %}
+
 {% block title %}
 	{{ user.username }}
 {% endblock %}
 
-{% block headextra %}
-	<meta name="og:image" content="{{ user.get_profile_pic_url() }}"/>
-{% endblock %}
 
 {% block scriptextra %}
 	{% if current_user.is_authenticated %}

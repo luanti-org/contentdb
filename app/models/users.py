@@ -7,7 +7,6 @@ import enum
 import hashlib
 from typing import TYPE_CHECKING, Optional
 
-from flask import current_app
 from flask_babel import lazy_gettext
 from flask_login import UserMixin
 from sqlalchemy import desc, text, func
@@ -15,7 +14,7 @@ from sqlalchemy.dialects.postgresql import CITEXT
 
 from .base import db, Model
 from app.utils.misc import truncate_string
-from app.utils.flask import abs_url_for
+from app.utils.flask import abs_url, abs_url_for
 from app.utils.tokens import make_unsubscribe_token
 
 if TYPE_CHECKING:
@@ -293,7 +292,8 @@ class User(Model, UserMixin):
 			url = "/static/default_avatar.png"
 
 		if absolute:
-			return current_app.config["BASE_URL"] + url
+			# profile_pic may already be absolute, such as when uploads are on a CDN
+			return abs_url(url)
 		else:
 			return url
 

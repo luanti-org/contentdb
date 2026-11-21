@@ -3,6 +3,9 @@
 {% set query=package.name %}
 {% set release = package.get_download_release() %}
 {% set meta = package.get_translated() %}
+{% set canonical_url = package.get_url("packages.view", absolute=True) %}
+{% set og_image = package.get_thumb_url(4, True, "png") %}
+{% set og_image_large = True %}
 
 {% block title %}
 	{{ meta.title }}
@@ -13,9 +16,6 @@
 {% endblock %}
 
 {% block headextra %}
-	{% if package.get_thumb_url(3, True, "png") -%}
-		<meta name="og:image" content="{{ package.get_thumb_url(3, True, "png") }}"/>
-	{%- endif %}
 
 	<link rel="alternate" type="application/json"
 		href="{{ package.get_url('feeds.releases_package_json', absolute=True) }}"

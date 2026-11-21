@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% set canonical_url = package.get_url("packages.game_hub", absolute=True) %}
+{% set og_image = package.get_thumb_url(4, True, "png") %}
+{% set og_image_large = True %}
+
 {% block title %}
 {{ _("Community Hub") }} -
 {{ _('%(title)s by %(author)s', title=package.title, author=package.author.display_name) }}
@@ -9,11 +13,6 @@
 	{{ _('Mods and texture packs for %(title)s', title=package.title) }}
 {% endblock %}
 
-{% block headextra %}
-	{% if package.get_thumb_url(3, True, "png") %}
-		<meta name="og:image" content="{{ package.get_thumb_url(3, True, "png") }}"/>
-	{% endif %}
-{% endblock %}
 
 
 {% block content %}

@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% set canonical_url = collection.get_url("collections.view") | abs_url %}
+{% set og_image = collection.packages and collection.packages[0].get_thumb_url(4, True, "png") %}
+{% set og_image_large = True %}
+
 {% block title %}
 	{{ collection.title }}
 {% endblock %}
@@ -8,12 +12,6 @@
 	{{ collection.short_description }}
 {%- endblock %}
 
-{% block headextra %}
-	{% set thumb_url = collection.packages and collection.packages[0].get_thumb_url(3, True, "png") %}
-	{% if thumb_url -%}
-		<meta name="og:image" content="{{ thumb_url }}">
-	{%- endif %}
-{% endblock %}
 
 {% block author_link -%}
 	<a href="{{ url_for('users.profile', username=collection.author.username) }}">

@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% set canonical_url = abs_url_for("homepage.home") %}
+
 {% block title %}
 {{ _("Welcome") }}
 {% endblock %}
@@ -13,10 +15,11 @@
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "url": "https://content.luanti.org/",
+  "name": {{ config.USER_APP_NAME | tojson }},
+  "url": {{ abs_url_for("homepage.home") | tojson }},
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://content.luanti.org/packages?q={search_term_string}",
+    "target": {{ (abs_url_for("packages.list_all") ~ "?q={search_term_string}") | tojson }},
     "query-input": "required name=search_term_string"
   }
 }
