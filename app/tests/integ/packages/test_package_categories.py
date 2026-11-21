@@ -254,7 +254,7 @@ def test_api_tags_list_kind_and_types(client):
 
 def make_ready_game() -> Package:
 	owner = create_user("owner")
-	create_user("approver", UserRank.APPROVER)
+	create_user("editor", UserRank.EDITOR)
 	package = create_package("pkg", owner, state=PackageState.WIP, type=PackageType.GAME)
 	create_release(package, "1.0")
 	create_screenshot(package, approved=False)

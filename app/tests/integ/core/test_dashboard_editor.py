@@ -38,7 +38,7 @@ def get_widgets(dashboard_id: int) -> list[tuple]:
 
 
 @pytest.mark.parametrize("url", ["/dashboards/", "/dashboards/new/", "/dashboards/{id}/edit/"])
-@pytest.mark.parametrize("rank", [UserRank.MEMBER, UserRank.TRUSTED_MEMBER, UserRank.APPROVER])
+@pytest.mark.parametrize("rank", [UserRank.MEMBER, UserRank.TRUSTED_MEMBER])
 def test_editor_requires_permission(client, url, rank):
 	dashboard = make_dashboard()
 	login_as(client, create_user("user", rank=rank))
@@ -47,6 +47,14 @@ def test_editor_requires_permission(client, url, rank):
 	if url != "/dashboards/":  # GET only
 		assert client.post(url.format(id=dashboard.id), data={"title": "Hacked"}).status_code == 403
 	assert get_widgets(dashboard.id)[1][1] == "Top Games"
+
+
+@pytest.mark.parametrize("url", ["/dashboards/", "/dashboards/new/", "/dashboards/{id}/edit/"])
+def test_curator_can_edit_dashboards(client, url):
+	dashboard = make_dashboard()
+	login_as(client, create_user("curator", rank=UserRank.CURATOR))
+
+	assert client.get(url.format(id=dashboard.id)).status_code == 200
 
 
 def test_editor_requires_login(client):

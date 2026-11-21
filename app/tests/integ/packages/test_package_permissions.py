@@ -12,7 +12,7 @@ from app.models import db, User, UserRank, Package, PackageState, Permission
 	("Jeija", UserRank.MEMBER, True),
 	("maintainer", UserRank.MEMBER, True),
 	("other", UserRank.MEMBER, False),
-	("other", UserRank.APPROVER, False),
+	("other", UserRank.CURATOR, False),
 	("other", UserRank.EDITOR, True),
 ])
 def test_change_name_requires_maintainer(client, username, rank, can_change_name):

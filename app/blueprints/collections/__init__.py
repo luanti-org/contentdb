@@ -109,7 +109,9 @@ def create_edit(author=None, name=None):
 			abort(403)
 	elif "author" in request.args:
 		author = request.args["author"]
-		if author != current_user.username and not current_user.rank.at_least(UserRank.EDITOR):
+		is_contentdb_curator = author == "ContentDB" and current_user.rank.at_least(UserRank.CURATOR)
+		if author != current_user.username and not current_user.rank.at_least(UserRank.EDITOR) and \
+				not is_contentdb_curator:
 			abort(403)
 
 	if author is None:
@@ -244,7 +246,7 @@ def delete(author, name):
 	collection = Collection.query \
 		.filter(Collection.name == name, Collection.author.has(username=author)) \
 		.one_or_404()
-	if not collection.check_perm(current_user, Permission.EDIT_COLLECTION):
+	if not collection.check_perm(current_user, Permission.DELETE_COLLECTION):
 		abort(403)
 
 	if request.method == "POST":
@@ -330,7 +332,7 @@ def package_add(package):
 		return redirect(package.get_url("collections.package_add"))
 
 	collections = current_user.collections.all()
-	if current_user.rank.at_least(UserRank.EDITOR) and current_user.username != "ContentDB":
+	if current_user.rank.at_least(UserRank.CURATOR) and current_user.username != "ContentDB":
 		collections.extend(Collection.query.filter(Collection.author.has(username="ContentDB")).all())
 
 	return render_template("collections/package_add_to.html", package=package, collections=collections)

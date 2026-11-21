@@ -10,7 +10,7 @@ from app.utils.user import rank_required
 
 
 @bp.route("/admin/update_config/")
-@rank_required(UserRank.APPROVER)
+@rank_required(UserRank.EDITOR)
 def update_config():
 	failing_packages = (db.session.query(Package)
 			.select_from(PackageUpdateConfig)

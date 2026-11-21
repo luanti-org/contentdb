@@ -168,7 +168,9 @@ def validate(data: dict):
 def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, data: dict,
 		reason: str | None = None) -> bool:
 	if not package.check_perm(user, Permission.EDIT_PACKAGE):
-		raise DomainError(403, lazy_gettext("You don't have permission to edit this package"))
+		# Curators can change a package's tags, which include its categories, but nothing else
+		if not (set(data.keys()) <= {"tags"} and package.check_perm(user, Permission.EDIT_PACKAGE_TAGS)):
+			raise DomainError(403, lazy_gettext("You don't have permission to edit this package"))
 
 	if "name" in data and package.name != data["name"] and \
 			not package.check_perm(user, Permission.CHANGE_NAME):

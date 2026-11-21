@@ -36,7 +36,7 @@ def view_user(username=None):
 	if not user:
 		abort(404)
 
-	if current_user != user and not current_user.rank.at_least(UserRank.APPROVER):
+	if current_user != user and not current_user.rank.at_least(UserRank.EDITOR):
 		abort(403)
 
 	unapproved_packages = user.packages \

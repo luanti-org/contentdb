@@ -108,7 +108,7 @@ def test_report_with_invalid_attachment(client, data, filename):
 
 def setup_report():
 	reporter = create_user("reporter")
-	create_user("approver", UserRank.APPROVER)
+	create_user("curator", UserRank.CURATOR)
 	create_user("editor", UserRank.EDITOR)
 	thread = create_thread(reporter, title="Report: Spam", private=True)
 	return create_report(reporter, thread, title="Spam package")
@@ -132,7 +132,7 @@ def as_user(client, username: str):
 @pytest.mark.parametrize("username,status", [
 	(None, 404),
 	("reporter", 404),
-	("approver", 404),
+	("curator", 404),
 	("editor", 200),
 ])
 def test_view_report(client, username, status):
@@ -147,7 +147,7 @@ def test_view_report(client, username, status):
 
 @pytest.mark.parametrize("username,status", [
 	("reporter", 403),
-	("approver", 403),
+	("curator", 403),
 	("editor", 200),
 ])
 def test_list_reports(client, username, status):
@@ -195,7 +195,7 @@ def test_resolve_report_without_outcome(client):
 	assert not get_report(report.id).is_resolved
 
 
-@pytest.mark.parametrize("username", ["reporter", "approver"])
+@pytest.mark.parametrize("username", ["reporter", "curator"])
 def test_resolve_report_no_permission(client, username):
 	report = setup_report()
 	as_user(client, username)
@@ -208,7 +208,7 @@ def test_resolve_report_no_permission(client, username):
 
 @pytest.mark.parametrize("username,status", [
 	("reporter", 404),
-	("approver", 404),
+	("curator", 404),
 	("editor", 302),
 ])
 def test_edit_report(client, username, status):

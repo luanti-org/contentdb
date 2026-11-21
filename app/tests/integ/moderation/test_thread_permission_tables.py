@@ -20,9 +20,10 @@ from ..permission_tables import make_roles, assert_permissions
 
 
 THREAD_ROLES = ["anonymous", "stranger", "author", "owner", "maintainer", "watcher",
-		"approver", "editor", "moderator", "admin"]
+		"curator", "editor", "moderator", "admin"]
 EVERYONE = set(THREAD_ROLES)
-STAFF_WHO_SEE_PRIVATE = {"approver", "editor", "moderator", "admin"}
+# Seeing private threads was Approver's, and is now Editor's; Curators don't get it
+STAFF_WHO_SEE_PRIVATE = {"editor", "moderator", "admin"}
 INVOLVED = {"author", "owner", "maintainer", "watcher"}
 MODERATORS = {"moderator", "admin"}
 
@@ -39,7 +40,7 @@ def make_thread_roles() -> tuple[Package, dict[str, Any]]:
 		"owner": UserRank.MEMBER,
 		"maintainer": UserRank.MEMBER,
 		"watcher": UserRank.MEMBER,
-		"approver": UserRank.APPROVER,
+		"curator": UserRank.CURATOR,
 		"editor": UserRank.EDITOR,
 		"moderator": UserRank.MODERATOR,
 		"admin": UserRank.ADMIN,
@@ -118,7 +119,7 @@ def test_maintainers_can_delete_system_threads(client):
 	})
 
 
-REPLY_ROLES = ["anonymous", "stranger", "thread_author", "reply_author", "approver", "editor", "moderator", "admin"]
+REPLY_ROLES = ["anonymous", "stranger", "thread_author", "reply_author", "curator", "editor", "moderator", "admin"]
 
 
 def make_reply_roles():
@@ -128,7 +129,7 @@ def make_reply_roles():
 		"thread_author": UserRank.MEMBER,
 		# The lowest rank that can edit their own replies
 		"reply_author": UserRank.NEW_MEMBER,
-		"approver": UserRank.APPROVER,
+		"curator": UserRank.CURATOR,
 		"editor": UserRank.EDITOR,
 		"moderator": UserRank.MODERATOR,
 		"admin": UserRank.ADMIN,

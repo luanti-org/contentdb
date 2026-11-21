@@ -16,7 +16,7 @@ def test_report(client):
 		"anonymous": None,
 		"reporter": UserRank.MEMBER,
 		"trusted": UserRank.TRUSTED_MEMBER,
-		"approver": UserRank.APPROVER,
+		"curator": UserRank.CURATOR,
 		"editor": UserRank.EDITOR,
 		"moderator": UserRank.MODERATOR,
 		"admin": UserRank.ADMIN,
@@ -36,7 +36,7 @@ def test_audit_log_entry(client):
 		"trusted": UserRank.TRUSTED_MEMBER,
 		"owner": UserRank.MEMBER,
 		"maintainer": UserRank.MEMBER,
-		"approver": UserRank.APPROVER,
+		"curator": UserRank.CURATOR,
 		"editor": UserRank.EDITOR,
 		"moderator": UserRank.MODERATOR,
 		"admin": UserRank.ADMIN,
@@ -50,7 +50,8 @@ def test_audit_log_entry(client):
 	db.session.commit()
 
 	assert_permissions(package_entry, roles, {
-		Permission.VIEW_AUDIT_DESCRIPTION: {"owner", "maintainer", "approver", "editor", "moderator", "admin"},
+		# Was Approver's, and is now Editor's; Curators don't get it
+		Permission.VIEW_AUDIT_DESCRIPTION: {"owner", "maintainer", "editor", "moderator", "admin"},
 	}, "package entry")
 
 	assert_permissions(site_entry, roles, {

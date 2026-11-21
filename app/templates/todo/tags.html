@@ -48,8 +48,14 @@
 			</td>
 			<td class="text-center">
 				{% if package.check_perm(current_user, "EDIT_PACKAGE") %}
-					<a class="btn btn-link btn-sm py-0" href="{{ package.get_url('packages.create_edit') }}">
-						<i class="fas fa-pen"></i>
+					<a class="btn btn-link btn-sm py-0" href="{{ package.get_url('packages.create_edit') }}"
+							title="{{ _('Edit') }}">
+						<i class="fas fa-pen" aria-hidden="true"></i>
+					</a>
+				{% elif package.check_perm(current_user, "EDIT_PACKAGE_TAGS") %}
+					<a class="btn btn-link btn-sm py-0" href="{{ package.get_url('packages.edit_tags') }}"
+							title="{{ _('Edit tags') }}">
+						<i class="fas fa-tags" aria-hidden="true"></i>
 					</a>
 				{% endif %}
 			</td>

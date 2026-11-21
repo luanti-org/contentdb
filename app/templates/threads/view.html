@@ -120,7 +120,7 @@
 		<aside class="row">
 			<div class="col-md-9">
 				<i>
-					{{ _("This thread is only visible to its creator, package maintainers, and users of Approver rank or above.") }}
+					{{ _("This thread is only visible to its creator, package maintainers, and users of Editor rank or above.") }}
 				</i>
 			</div>
 			<div class="col-md-3">
@@ -134,7 +134,7 @@
 								alt="{{ viewer.display_name }}">
 						</a>
 					{% endfor %}
-					<a href="{{ url_for('users.list_all') }}" title="{{ _('Plus approvers and editors') }}">
+					<a href="{{ url_for('users.list_all') }}" title="{{ _('Plus editors') }}">
 						+ <i class="fas fa-user-check"></i>
 					</a>
 				</div>

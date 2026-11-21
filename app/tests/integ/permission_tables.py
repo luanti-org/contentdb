@@ -19,7 +19,7 @@ from .factories import create_user, create_package
 
 # Roles relative to a package. "maintainer" and "banned" are maintainers of the package as well as "owner".
 PACKAGE_ROLES = ["anonymous", "banned", "new_member", "member", "trusted", "maintainer", "owner",
-		"approver", "editor", "moderator", "admin"]
+		"curator", "editor", "moderator", "admin"]
 
 
 def make_roles(ranks: dict[str, UserRank | None]) -> dict[str, Any]:
@@ -46,7 +46,7 @@ def make_package_roles(**package_args) -> tuple[Package, dict[str, Any]]:
 		"trusted": create_user("trusted", UserRank.TRUSTED_MEMBER),
 		"maintainer": maintainer,
 		"owner": owner,
-		"approver": create_user("approver", UserRank.APPROVER),
+		"curator": create_user("curator", UserRank.CURATOR),
 		"editor": create_user("editor", UserRank.EDITOR),
 		"moderator": create_user("moderator", UserRank.MODERATOR),
 		"admin": create_user("admin", UserRank.ADMIN),

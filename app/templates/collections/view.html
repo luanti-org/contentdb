@@ -33,9 +33,11 @@
 			</form>
 		{% endif %}
 		{% if collection.check_perm(current_user, "EDIT_COLLECTION") %}
-			<a class="btn btn-danger ms-2" href="{{ collection.get_url('collections.delete') }}">
-				{{ _("Delete") }}
-			</a>
+			{% if collection.check_perm(current_user, "DELETE_COLLECTION") %}
+				<a class="btn btn-danger ms-2" href="{{ collection.get_url('collections.delete') }}">
+					{{ _("Delete") }}
+				</a>
+			{% endif %}
 			<a class="btn btn-primary ms-2" href="{{ collection.get_url('collections.create_edit') }}">
 				{{ _("Edit") }}
 			</a>

@@ -183,7 +183,7 @@ def test_edit_package(client, username):
 
 def test_edit_package_no_permission(client):
 	package = create_package("pkg", create_user("owner"))
-	login_as(client, create_user("approver", UserRank.APPROVER))
+	login_as(client, create_user("curator", UserRank.CURATOR))
 
 	rv = client_request(client, "POST", "/packages/owner/pkg/edit/", data=edit_form(package, title="New Title"))
 
@@ -246,7 +246,7 @@ def move(client, state: str):
 def lifecycle(client, eager_tasks, http_stub):
 	owner = create_user("owner")
 	create_user("maintainer")
-	create_user("approver", UserRank.APPROVER)
+	create_user("curator", UserRank.CURATOR)
 	create_user("editor", UserRank.EDITOR)
 	create_user("admin", UserRank.ADMIN)
 	package = create_package("pkg", owner, state=PackageState.WIP,
@@ -266,7 +266,7 @@ def test_submit_and_approve(client, lifecycle):
 	notification = Notification.query.filter_by(title="Marked pkg as Ready for Review").one()
 	assert notification.user.username == "maintainer"
 
-	as_user(client, "approver")
+	as_user(client, "editor")
 	rv = move(client, "approved")
 	assert rv.status_code == 302
 	package = get_package()
@@ -325,17 +325,17 @@ def test_changes_needed(client, lifecycle):
 	move(client, "changes_needed")
 	assert get_package().state == PackageState.READY_FOR_REVIEW
 
-	as_user(client, "approver")
+	as_user(client, "editor")
 	rv = move(client, "changes_needed")
 	assert get_package().state == PackageState.CHANGES_NEEDED
-	# There's no approval thread yet, so the approver is asked to start one
+	# There's no approval thread yet, so the editor is asked to start one
 	assert rv.headers["Location"].startswith("/packages/owner/pkg/threads/new/")
 
 
 @pytest.mark.parametrize("username,allowed", [
 	("owner", True),
 	("maintainer", True),
-	("approver", False),
+	("curator", False),
 	# Editors can edit any package, but only maintainers and admins can move it back to draft
 	("editor", False),
 	("admin", True),
@@ -361,7 +361,7 @@ def test_approved_at_kept_on_reapproval(client, lifecycle):
 	lifecycle.state = PackageState.READY_FOR_REVIEW
 	lifecycle.approved_at = first
 	db.session.commit()
-	as_user(client, "approver")
+	as_user(client, "editor")
 
 	move(client, "approved")
 
@@ -374,7 +374,7 @@ def test_approved_at_kept_on_reapproval(client, lifecycle):
 def removable(client, eager_tasks, http_stub):
 	owner = create_user("owner")
 	create_user("editor", UserRank.EDITOR)
-	create_user("approver", UserRank.APPROVER)
+	create_user("curator", UserRank.CURATOR)
 	create_user("stranger")
 	return create_package("pkg", owner, maintainers=[create_user("maintainer")])
 
@@ -418,7 +418,7 @@ def test_delete_package(client, removable, username, allowed):
 
 @pytest.mark.parametrize("username,allowed", [
 	("owner", True),
-	("approver", False),
+	("curator", False),
 	("editor", True),
 	("maintainer", False),
 ])
@@ -428,8 +428,8 @@ def test_unapprove_package(client, removable, username, allowed):
 	rv = remove(client, unapprove="1", reason="Broken")
 
 	package = get_package()
-	if username == "approver":
-		# Approvers have UNAPPROVE_PACKAGE, but can't open the remove page without EDIT_PACKAGE
+	if username == "curator":
+		# Curators can't open the remove page without EDIT_PACKAGE
 		assert rv.status_code == 403
 	if allowed:
 		assert package.state == PackageState.WIP

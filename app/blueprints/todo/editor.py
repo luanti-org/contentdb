@@ -36,7 +36,7 @@ def get_unanswered_approval_threads():
 
 	approvers = (
 		select(User.id)
-		.where(User.rank >= UserRank.APPROVER)
+		.where(User.rank >= UserRank.EDITOR)
 	)
 
 	return (

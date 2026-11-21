@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% from "macros/forms.html" import render_field, render_field_prefix_button, render_submit_field, form_scripts,
-		render_multiselect_field, package_lists, easymde_scripts %}
+		render_multiselect_field, package_lists, easymde_scripts, render_categories_field %}
 
 {% block scriptextra %}
 	{{ form_scripts() }}
@@ -89,24 +89,11 @@
 			{{ render_field(form.ai_disclosure, class_="pkg_meta") }}
 			{# Hidden until editors have created category tags #}
 			{% if form.categories.iter_choices() | list %}
-				<fieldset class="form-group mb-3 pkg_meta not_mod not_txp {% if form.categories.errors %}has-danger{% endif %}">
-					<legend class="form-label fs-6">{{ form.categories.label.text }}</legend>
-					{% for subfield in form.categories %}
-						<div class="form-check">
-							{{ subfield(class_="form-check-input") }}
-							{{ subfield.label(class_="form-check-label") }}
-						</div>
-					{% endfor %}
-					<small class="form-text text-muted">
-						{{ _("Choose one or two. Games need a category to be published.") }}
-						{% if not package %}
-							{{ _("If in doubt, you can leave this blank and ask staff for help later.") }}
-						{% endif %}
-					</small>
-					{% for error in form.categories.errors %}
-						<div class="invalid-feedback d-block">{{ error }}</div>
-					{% endfor %}
-				</fieldset>
+				{% set hint = _("Choose one or two. Games need a category to be published.") %}
+				{% if not package %}
+					{% set hint = hint + " " + _("If in doubt, you can leave this blank and ask staff for help later.") %}
+				{% endif %}
+				{{ render_categories_field(form.categories, hint, class_="pkg_meta not_mod not_txp") }}
 			{% endif %}
 			{{ render_multiselect_field(form.tags, class_="pkg_meta") }}
 			{{ render_multiselect_field(form.content_warnings, class_="pkg_meta") }}

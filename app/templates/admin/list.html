@@ -25,7 +25,7 @@
 						Scheduled user deletions
 					</a>
 				{% endif %}
-				{% if current_user.rank.at_least(current_user.rank.APPROVER) %}
+				{% if current_user.rank.at_least(current_user.rank.EDITOR) %}
 					<a class="list-group-item list-group-item-action" href="{{ url_for('admin.audit') }}">
 						<i class="fas fa-user-clock me-2"></i>
 						{{ _("Audit Log") }}

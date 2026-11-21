@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block container %}
-	{% if current_user.rank.at_least(current_user.rank.APPROVER) %}
+	{% if current_user.rank.at_least(current_user.rank.EDITOR) %}
 		<nav class="pt-4 tabs-container">
 			<div class="container">
 				<ul class="nav nav-tabs">
@@ -41,7 +41,7 @@
 	{% endif %}
 
 	<main class="container mt-5">
-		{% if not current_user.rank.at_least(current_user.rank.APPROVER) %}
+		{% if not current_user.rank.at_least(current_user.rank.EDITOR) %}
 			<h1 class="mb-5">{{ self.title() }}</h1>
 		{% endif %}
 

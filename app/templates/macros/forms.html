@@ -177,3 +177,20 @@
 	<input type="submit" name="{{ field.name }}" value="{{ label }}" class="{{ class_ or 'btn btn-primary' }}"
 			{% if tabindex %}tabindex="{{ tabindex }}"{% endif %}>
 {%- endmacro %}
+
+{# Category checkboxes on the package edit form and the package tags page. Pass the hint as plain text #}
+{% macro render_categories_field(field, hint) -%}
+	<fieldset class="form-group mb-3 {{ kwargs.pop('class_', '') }} {% if field.errors %}has-danger{% endif %}">
+		<legend class="form-label fs-6">{{ field.label.text }}</legend>
+		{% for subfield in field %}
+			<div class="form-check">
+				{{ subfield(class_="form-check-input") }}
+				{{ subfield.label(class_="form-check-label") }}
+			</div>
+		{% endfor %}
+		<small class="form-text text-muted">{{ hint }}</small>
+		{% for error in field.errors %}
+			<div class="invalid-feedback d-block">{{ error }}</div>
+		{% endfor %}
+	</fieldset>
+{%- endmacro %}

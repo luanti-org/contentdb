@@ -21,7 +21,8 @@ def setup_threads():
 	owner = create_user("owner")
 	author = create_user("author")
 	create_user("stranger")
-	create_user("approver", UserRank.APPROVER)
+	create_user("curator", UserRank.CURATOR)
+	create_user("editor", UserRank.EDITOR)
 	maintainer = create_user("maintainer")
 	package = create_package("pkg", owner, maintainers=[maintainer])
 	create_thread(author, package, PUBLIC)
@@ -41,7 +42,8 @@ def view_as(client, username: str | None, url: str):
 	("stranger", False),
 	# The thread list only shows private threads to staff, even to the thread's author
 	("author", False),
-	("approver", True),
+	("curator", False),
+	("editor", True),
 ])
 def test_thread_list_hides_private_threads(client, url, username, sees_private):
 	setup_threads()
@@ -58,7 +60,8 @@ def test_thread_list_hides_private_threads(client, url, username, sees_private):
 	("stranger", False),
 	("author", True),
 	("owner", True),
-	("approver", True),
+	("curator", False),
+	("editor", True),
 ])
 def test_package_page_hides_private_threads(client, username, sees_private):
 	setup_threads()
@@ -76,7 +79,8 @@ def test_package_page_hides_private_threads(client, username, sees_private):
 	("author", 200),
 	("owner", 200),
 	("maintainer", 200),
-	("approver", 200),
+	("curator", 404),
+	("editor", 200),
 ])
 def test_view_private_thread(client, username, status):
 	_, private = setup_threads()
@@ -102,7 +106,8 @@ def test_cant_subscribe_to_private_thread(client):
 	(None, False),
 	("stranger", False),
 	("author", True),
-	("approver", True),
+	("curator", False),
+	("editor", True),
 ])
 def test_user_comments_hide_private_replies(client, username, sees_private):
 	package, private = setup_threads()

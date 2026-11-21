@@ -8,13 +8,15 @@ Permission tables for packages, releases, reviews and collections. See permissio
 
 import pytest
 
-from app.models import db, PackageState, Permission, ReleaseState, UserRank
+from app.models import db, PackageState, Permission, ReleaseState, User, UserRank
 from ..factories import create_release, create_review, create_collection, create_package, create_user
 from ..permission_tables import make_package_roles, assert_permissions, everyone_except, PACKAGE_ROLES, make_roles
 
 
 MAINTAINERS = {"maintainer", "owner", "editor", "moderator", "admin"}
-APPROVERS = {"approver", "editor", "moderator", "admin"}
+APPROVERS = {"editor", "moderator", "admin"}
+# Curators can change any package's tags and categories, but nothing else about it
+TAG_EDITORS = MAINTAINERS | {"curator"}
 LOGGED_IN_UNBANNED = everyone_except("anonymous", "banned")
 
 
@@ -28,6 +30,7 @@ def test_approved_package(client):
 		Permission.MAKE_RELEASE: MAINTAINERS,
 		Permission.ADD_SCREENSHOTS: MAINTAINERS,
 		Permission.EDIT_PACKAGE: MAINTAINERS,
+		Permission.EDIT_PACKAGE_TAGS: TAG_EDITORS,
 		Permission.APPROVE_RELEASE: MAINTAINERS | APPROVERS,
 		# The name can't change once approved, as it's part of the package's URL
 		Permission.CHANGE_NAME: set(),
@@ -46,11 +49,12 @@ def test_unapproved_package(client):
 	assert not package.approved
 
 	assert_permissions(package, roles, {
-		# Approvers can't view packages awaiting review, as VIEW_PACKAGE falls back to EDIT_PACKAGE
+		# Curators can't view packages awaiting review, as VIEW_PACKAGE falls back to EDIT_PACKAGE
 		Permission.VIEW_PACKAGE: MAINTAINERS,
 		Permission.CREATE_THREAD: LOGGED_IN_UNBANNED,
 		Permission.MAKE_RELEASE: MAINTAINERS,
 		Permission.EDIT_PACKAGE: MAINTAINERS,
+		Permission.EDIT_PACKAGE_TAGS: TAG_EDITORS,
 		Permission.CHANGE_NAME: MAINTAINERS,
 		Permission.APPROVE_NEW: APPROVERS,
 		Permission.APPROVE_SCREENSHOT: MAINTAINERS | APPROVERS,
@@ -91,7 +95,7 @@ def test_release_permissions(client):
 
 
 @pytest.mark.parametrize("approved,can_see", [
-	(True, {"anonymous", "stranger", "reviewer", "owner", "approver", "editor", "moderator", "admin"}),
+	(True, {"anonymous", "stranger", "reviewer", "owner", "curator", "editor", "moderator", "admin"}),
 	# Unapproved reviews are held for moderation, and may be spam
 	(False, {"reviewer", "moderator", "admin"}),
 ])
@@ -101,7 +105,7 @@ def test_review(client, approved, can_see):
 		"stranger": UserRank.MEMBER,
 		"reviewer": UserRank.MEMBER,
 		"owner": UserRank.MEMBER,
-		"approver": UserRank.APPROVER,
+		"curator": UserRank.CURATOR,
 		"editor": UserRank.EDITOR,
 		"moderator": UserRank.MODERATOR,
 		"admin": UserRank.ADMIN,
@@ -117,7 +121,7 @@ def test_review(client, approved, can_see):
 
 
 @pytest.mark.parametrize("private,can_view,can_edit", [
-	(False, {"anonymous", "stranger", "author", "approver", "editor", "moderator", "admin"},
+	(False, {"anonymous", "stranger", "author", "curator", "editor", "moderator", "admin"},
 			{"author", "editor", "moderator", "admin"}),
 	# Editors can edit public collections, but can't see private ones
 	(True, {"author", "moderator", "admin"}, {"author", "moderator", "admin"}),
@@ -127,7 +131,7 @@ def test_collection(client, private, can_view, can_edit):
 		"anonymous": None,
 		"stranger": UserRank.MEMBER,
 		"author": UserRank.NEW_MEMBER,
-		"approver": UserRank.APPROVER,
+		"curator": UserRank.CURATOR,
 		"editor": UserRank.EDITOR,
 		"moderator": UserRank.MODERATOR,
 		"admin": UserRank.ADMIN,
@@ -138,4 +142,25 @@ def test_collection(client, private, can_view, can_edit):
 	assert_permissions(collection, roles, {
 		Permission.VIEW_COLLECTION: can_view,
 		Permission.EDIT_COLLECTION: can_edit,
+		Permission.DELETE_COLLECTION: can_edit,
+	})
+
+
+def test_contentdb_collection(client):
+	"""Curators look after ContentDB's own collections, such as the homepage spotlight, but not other users'"""
+	roles = make_roles({
+		"stranger": UserRank.MEMBER,
+		"trusted": UserRank.TRUSTED_MEMBER,
+		"curator": UserRank.CURATOR,
+		"editor": UserRank.EDITOR,
+		"moderator": UserRank.MODERATOR,
+		"admin": UserRank.ADMIN,
+	})
+	package = create_package("pkg", create_user("owner"))
+	contentdb = User.query.filter_by(username="ContentDB").one()
+	collection = create_collection(contentdb, [package], name="spotlight")
+
+	assert_permissions(collection, roles, {
+		Permission.EDIT_COLLECTION: {"curator", "editor", "moderator", "admin"},
+		Permission.DELETE_COLLECTION: {"editor", "moderator", "admin"},
 	})

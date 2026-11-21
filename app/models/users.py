@@ -27,7 +27,7 @@ class UserRank(enum.Enum):
 	NEW_MEMBER     = 2
 	MEMBER         = 3
 	TRUSTED_MEMBER = 4
-	APPROVER       = 5
+	CURATOR        = 5
 	EDITOR         = 6
 	BOT            = 7
 	MODERATOR      = 8
@@ -48,8 +48,8 @@ class UserRank(enum.Enum):
 			return lazy_gettext("Member")
 		elif self == UserRank.TRUSTED_MEMBER:
 			return lazy_gettext("Trusted Member")
-		elif self == UserRank.APPROVER:
-			return lazy_gettext("Approver")
+		elif self == UserRank.CURATOR:
+			return lazy_gettext("Curator")
 		elif self == UserRank.EDITOR:
 			return lazy_gettext("Editor")
 		elif self == UserRank.BOT:
@@ -111,10 +111,12 @@ class Permission(enum.Enum):
 	CHANGE_DISPLAY_NAME = "CHANGE_DISPLAY_NAME"
 	VIEW_AUDIT_DESCRIPTION = "VIEW_AUDIT_DESCRIPTION"
 	EDIT_COLLECTION = "EDIT_COLLECTION"
+	DELETE_COLLECTION = "DELETE_COLLECTION"
 	VIEW_COLLECTION = "VIEW_COLLECTION"
 	CREATE_OAUTH_CLIENT = "CREATE_OAUTH_CLIENT"
 	SEE_REPORT = "SEE_REPORT"
 	EDIT_DASHBOARD = "EDIT_DASHBOARD"
+	EDIT_PACKAGE_TAGS = "EDIT_PACKAGE_TAGS"
 
 	# Only return true if the permission is valid for *all* contexts
 	# See Package.check_perm for package-specific contexts
@@ -126,13 +128,13 @@ class Permission(enum.Enum):
 				self == Permission.APPROVE_RELEASE    or \
 				self == Permission.APPROVE_SCREENSHOT or \
 				self == Permission.SEE_THREAD:
-			return user.rank.at_least(UserRank.APPROVER)
+			return user.rank.at_least(UserRank.EDITOR)
 
 		elif self == Permission.APPROVE_REVIEW:
 			return user.rank.at_least(UserRank.MODERATOR)
 
 		elif self == Permission.EDIT_TAGS or self == Permission.CREATE_TAG or self == Permission.EDIT_DASHBOARD:
-			return user.rank.at_least(UserRank.EDITOR)
+			return user.rank.at_least(UserRank.CURATOR)
 
 		else:
 			raise Exception("Non-global permission checked globally. Use Package.check_perm or User.check_perm instead.")

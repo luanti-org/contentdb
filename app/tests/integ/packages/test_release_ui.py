@@ -106,7 +106,7 @@ def test_create_release_needs_email(client):
 
 def test_create_release_no_permission(client):
 	package = create_package("pkg", create_user("owner"))
-	login_as(client, create_user("approver", UserRank.APPROVER))
+	login_as(client, create_user("curator", UserRank.CURATOR))
 
 	rv = client_request(client, "POST", "/packages/owner/pkg/releases/new/", content_type="multipart/form-data",
 			data=create_form())
@@ -163,18 +163,20 @@ def test_owner_can_unapprove_and_reapprove(client):
 	assert AuditLogEntry.query.filter_by(title="Approved release 1.0").count() == 1
 
 
-def test_approver_can_only_change_approval(client):
+def test_curator_cant_approve_or_edit_release(client):
+	"""Approving releases was Approver's, which Curator replaced; it's now Editor's"""
 	package = create_package("pkg", create_user("owner"))
 	release = create_release(package, "1.0", approved=False)
-	login_as(client, create_user("approver", UserRank.APPROVER))
+	login_as(client, create_user("curator", UserRank.CURATOR))
 
 	rv = client_request(client, "POST", f"/packages/owner/pkg/releases/{release.id}/edit/",
-			data=edit_form(release, title="Changed by approver", approved="y"))
+			data=edit_form(release, title="Changed by curator", approved="y"))
 
 	assert rv.status_code == 302
+	assert rv.headers["Location"] == "/packages/owner/pkg/"
 	[release] = releases(package)
 	assert release.title == "1.0"
-	assert release.approved
+	assert not release.approved
 
 
 @pytest.mark.parametrize("state", [ReleaseState.FAILED, ReleaseState.PROCESSING])

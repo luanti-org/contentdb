@@ -867,7 +867,7 @@ class Package(Model):
 
 		is_owner = user == self.author
 		is_maintainer = is_owner or user.rank.at_least(UserRank.EDITOR) or user in self.maintainers
-		is_approver = user.rank.at_least(UserRank.APPROVER)
+		is_approver = user.rank.at_least(UserRank.EDITOR)
 
 		if perm == Permission.CREATE_THREAD:
 			return user.rank.at_least(UserRank.NEW_MEMBER)
@@ -878,6 +878,9 @@ class Package(Model):
 
 		elif perm == Permission.EDIT_PACKAGE:
 			return is_maintainer and user.rank.at_least(UserRank.NEW_MEMBER)
+
+		elif perm == Permission.EDIT_PACKAGE_TAGS:
+			return self.check_perm(user, Permission.EDIT_PACKAGE) or user.rank.at_least(UserRank.CURATOR)
 
 		elif perm == Permission.APPROVE_RELEASE:
 			return is_maintainer or is_approver
@@ -898,7 +901,7 @@ class Package(Model):
 			return is_owner or user.rank.at_least(UserRank.EDITOR)
 
 		elif perm == Permission.UNAPPROVE_PACKAGE:
-			return is_owner or user.rank.at_least(UserRank.APPROVER)
+			return is_owner or user.rank.at_least(UserRank.EDITOR)
 
 		else:
 			raise Exception("Permission {} is not related to packages".format(perm.name))
@@ -1480,7 +1483,7 @@ class PackageRelease(Model):
 
 			return count > 0
 		elif perm == Permission.APPROVE_RELEASE:
-			return is_maintainer or user.rank.at_least(UserRank.APPROVER)
+			return is_maintainer or user.rank.at_least(UserRank.EDITOR)
 		else:
 			raise Exception("Permission {} is not related to releases".format(perm.name))
 

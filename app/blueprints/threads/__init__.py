@@ -314,7 +314,7 @@ def new(author=None, name=None):
 		if package is None:
 			abort(404)
 
-	if package is None and not current_user.rank.at_least(UserRank.APPROVER):
+	if package is None and not current_user.rank.at_least(UserRank.EDITOR):
 		abort(404)
 
 	is_review_thread = package and not package.approved
@@ -422,7 +422,7 @@ def user_comments(username):
 	# Filter replies the current user can see
 	query = ThreadReply.query.options(selectinload(ThreadReply.thread)).filter_by(author=user)
 	only_public = False
-	if current_user != user and not (current_user.is_authenticated and current_user.rank.at_least(UserRank.APPROVER)):
+	if current_user != user and not (current_user.is_authenticated and current_user.rank.at_least(UserRank.EDITOR)):
 		query = query.filter(ThreadReply.thread.has(private=False))
 		only_public = True
 

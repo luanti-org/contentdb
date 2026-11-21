@@ -66,7 +66,7 @@ def test_ui_create_screenshot(client, user_rank, maintainer, state, approved):
 
 def test_ui_create_screenshot_no_permission(client):
 	package = create_package("pkg", create_user("owner"))
-	login_as(client, create_user("stranger", UserRank.APPROVER))
+	login_as(client, create_user("stranger", UserRank.CURATOR))
 
 	rv = post_ui(client, make_image())
 
@@ -155,7 +155,7 @@ def test_api_create_screenshot_needs_token(client):
 
 def test_api_create_screenshot_no_permission(client):
 	package = create_package("pkg", create_user("owner"))
-	_, access_token = create_token(create_user("stranger", UserRank.APPROVER))
+	_, access_token = create_token(create_user("stranger", UserRank.CURATOR))
 
 	rv = post_api(client, access_token, make_image())
 

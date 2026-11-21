@@ -152,7 +152,7 @@
 					<h2>{% if review_thread.private %}&#x1f512;{% endif %} {{ review_thread.title }}</h2>
 					{% if review_thread.private %}
 						<p><i>
-							{{ _("This thread is only visible to its creator, package maintainers, and users of Approver rank or above.") }}
+							{{ _("This thread is only visible to its creator, package maintainers, and users of Editor rank or above.") }}
 						</i></p>
 					{% endif %}
 
@@ -175,6 +175,11 @@
 				<a class="btn btn-primary" href="{{ package.get_url('packages.create_edit') }}">
 					<i class="fas fa-pen me-1"></i>
 					{{ _("Edit") }}
+				</a>
+			{% elif package.check_perm(current_user, "EDIT_PACKAGE_TAGS") %}
+				<a class="btn btn-primary" href="{{ package.get_url('packages.edit_tags') }}">
+					<i class="fas fa-tags me-1"></i>
+					{{ _("Edit tags") }}
 				</a>
 			{% endif %}
 			{% if package.check_perm(current_user, "MAKE_RELEASE") %}

@@ -172,7 +172,7 @@ def view(package):
 	threads = Thread.query.filter_by(package_id=package.id, review_id=None)
 	if not current_user.is_authenticated:
 		threads = threads.filter_by(private=False)
-	elif not current_user.rank.at_least(UserRank.APPROVER) and not current_user == package.author:
+	elif not current_user.rank.at_least(UserRank.EDITOR) and not current_user == package.author:
 		threads = threads.filter(or_(Thread.private == False, Thread.author == current_user))
 
 	if current_user.is_authenticated:
@@ -458,6 +458,47 @@ def create_edit(author=None, name=None):
 			form=form, author=author, enable_wizard=enableWizard, can_change_repo=can_change_repo,
 			packages=package_query.all(),
 			modnames=MetaPackage.query.order_by(db.asc(MetaPackage.name)).all(),
+			tabs=get_package_tabs(current_user, package), current_tab="edit")
+
+
+class PackageTagsForm(FlaskForm):
+	categories = StrictQuerySelectMultipleField(lazy_gettext("Categories"), get_pk=lambda a: a.id,
+			get_label=make_checkbox_label, widget=ListWidget(prefix_label=False), option_widget=CheckboxInput())
+	tags = StrictQuerySelectMultipleField(lazy_gettext("Tags"), get_pk=lambda a: a.id, get_label=make_label)
+	submit = SubmitField(lazy_gettext("Save"))
+
+
+@bp.route("/packages/<author>/<name>/tags/", methods=["GET", "POST"])
+@login_required
+@is_package_page
+def edit_tags(package):
+	"""Just a package's tags and categories, for curators, who can't edit anything else about a package"""
+	if not package.check_perm(current_user, Permission.EDIT_PACKAGE_TAGS):
+		abort(403)
+
+	form = PackageTagsForm(formdata=request.form)
+	# Only the tags that can be given to this type of package
+	form.categories.query = Tag.query \
+		.filter(Tag.kind == TagKind.CATEGORY, Tag.applies_to_filter(package.type)) \
+		.order_by(db.asc(Tag.title))
+	form.tags.query = Tag.query \
+		.filter(Tag.kind == TagKind.FEATURE, Tag.applies_to_filter(package.type)) \
+		.order_by(db.asc(Tag.name))
+
+	if request.method == "GET":
+		form.categories.data = [tag for tag in package.tags if tag.kind == TagKind.CATEGORY]
+		form.tags.data = [tag for tag in package.tags if tag.kind != TagKind.CATEGORY]
+
+	if form.validate_on_submit():
+		try:
+			do_edit_package(current_user, package, False, True,
+					{"tags": form.tags.raw_data + form.categories.raw_data}, "Tags")
+			return redirect(package.get_url("packages.view"))
+		except DomainError as e:
+			flash(e.message, "danger")
+			db.session.rollback()
+
+	return render_template("packages/edit_tags.html", package=package, form=form,
 			tabs=get_package_tabs(current_user, package), current_tab="edit")
 
 

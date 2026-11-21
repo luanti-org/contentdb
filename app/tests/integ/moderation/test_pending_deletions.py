@@ -35,7 +35,7 @@ def get_rows(client) -> dict[str, BeautifulSoup]:
 	(None, False),
 	(UserRank.MEMBER, False),
 	(UserRank.EDITOR, False),
-	(UserRank.APPROVER, False),
+	(UserRank.CURATOR, False),
 	(UserRank.MODERATOR, True),
 	(UserRank.ADMIN, True),
 ])

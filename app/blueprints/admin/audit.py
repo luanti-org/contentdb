@@ -24,7 +24,7 @@ class AuditForm(FlaskForm):
 
 
 @bp.route("/admin/audit/")
-@rank_required(UserRank.APPROVER)
+@rank_required(UserRank.EDITOR)
 def audit():
 	page = get_int_or_abort(request.args.get("page"), 1)
 	num = min(40, get_int_or_abort(request.args.get("n"), 100))

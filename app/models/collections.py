@@ -91,6 +91,10 @@ class Collection(Model):
 		if perm == Permission.VIEW_COLLECTION:
 			return can_view
 		elif perm == Permission.EDIT_COLLECTION:
+			# Curators look after ContentDB's own collections, such as the homepage spotlight
+			is_contentdb_curator = self.author.username == "ContentDB" and user.rank.at_least(UserRank.CURATOR)
+			return can_view and (self.author == user or user.rank.at_least(UserRank.EDITOR) or is_contentdb_curator)
+		elif perm == Permission.DELETE_COLLECTION:
 			return can_view and (self.author == user or user.rank.at_least(UserRank.EDITOR))
 		else:
 			raise Exception("Permission {} is not related to collections".format(perm.name))

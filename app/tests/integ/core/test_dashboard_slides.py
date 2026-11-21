@@ -58,13 +58,20 @@ def get_slides(widget_id: int) -> list[DashboardWidgetSlide]:
 	return widget.slides.all()
 
 
-@pytest.mark.parametrize("rank", [UserRank.MEMBER, UserRank.APPROVER])
+@pytest.mark.parametrize("rank", [UserRank.MEMBER, UserRank.TRUSTED_MEMBER])
 def test_slides_requires_permission(client, rank):
 	dashboard, spotlight, _ = make_dashboard()
 	login_as(client, create_user("user", rank=rank))
 
 	assert client.get(slides_url(dashboard, spotlight)).status_code == 403
 	assert client.post(slides_url(dashboard, spotlight), data=slide_fields(0, None, 0)).status_code == 403
+
+
+def test_curator_can_edit_slides(client):
+	dashboard, spotlight, _ = make_dashboard()
+	login_as(client, create_user("curator", rank=UserRank.CURATOR))
+
+	assert client.get(slides_url(dashboard, spotlight)).status_code == 200
 
 
 def test_slides_only_for_widgets_with_slides(client):

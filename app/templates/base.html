@@ -192,8 +192,15 @@
 										{{ _("Statistics") }}
 									</a>
 								</li>
-								{% if current_user.rank.at_least(current_user.rank.EDITOR) or check_global_perm(current_user, "CREATE_TAG") %}
+								{% if current_user.rank.at_least(current_user.rank.CURATOR) %}
 									<li class="dropdown-divider"></li>
+								{% endif %}
+								{% if current_user.rank.at_least(current_user.rank.CURATOR) %}
+									<li class="nav-item">
+										<a class="nav-link" href="{{ url_for('todo.tags') }}">
+											{{ _("Package Tags") }}
+										</a>
+									</li>
 								{% endif %}
 								{% if current_user.rank.at_least(current_user.rank.MODERATOR) %}
 									<li class="nav-item">

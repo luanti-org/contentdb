@@ -5,8 +5,9 @@ title: Ranks and Permissions
 * **New Members** - New members, subject to lower commenting ratelimits and other limitations.
 * **Members** - Standard member. New packages and screenshots need approval.
 * **Trusted Members** - Same as above, but have higher rate limits and can post screenshots without approval.
-* **Approvers** - Responsible for approving new packages, screenshots, and releases.
-* **Editors** - Same as above, and can edit any package or release.
+* **Curators** - Same as Trusted Members, and can edit tags and categories (including any package's), homepage
+  dashboards, and ContentDB's collections.
+* **Editors** - Responsible for approving new packages, screenshots, and releases. Can edit any package or release.
 * **Moderators** - Same as above, but can manage users.
 * **Admins** - Full access.
 
@@ -19,7 +20,7 @@ title: Ranks and Permissions
 			<th colspan=2 class="NEW_MEMBER">New Member</th>
 			<th colspan=2 class="MEMBER">Member</th>
 			<th colspan=2 class="TRUSTED_MEMBER">Trusted</th>
-            <th colspan=2 class="APPROVER">Approver</th>
+            <th colspan=2 class="CURATOR">Curator</th>
 			<th colspan=2 class="EDITOR">Editor</th>
 			<th colspan=2 class="MODERATOR">Moderator</th>
 			<th colspan=2 class="ADMIN">Admin</th>
@@ -51,7 +52,7 @@ title: Ranks and Permissions
 			<td></td>
 			<td>✓</td> <!-- trusted member -->
 			<td></td>
-			<td>✓</td> <!-- approver -->
+			<td>✓</td> <!-- curator -->
 			<td></td>
 			<td>✓</td> <!-- editor -->
 			<td>✓</td>
@@ -68,8 +69,8 @@ title: Ranks and Permissions
 			<td></td>
 			<td></td> <!-- trusted member -->
 			<td></td>
-			<td>✓</td> <!-- approver -->
-			<td>✓</td>
+			<td></td> <!-- curator -->
+			<td></td>
 			<td>✓</td> <!-- editor -->
 			<td>✓</td>
 			<td>✓</td> <!-- moderator -->
@@ -85,8 +86,8 @@ title: Ranks and Permissions
 			<td></td>
 			<td>✓</td> <!-- trusted member -->
 			<td></td>
-			<td>✓</td> <!-- approver -->
-			<td>✓</td>
+			<td>✓</td> <!-- curator -->
+			<td></td>
 			<td>✓</td> <!-- editor -->
 			<td>✓</td>
 			<td>✓</td> <!-- moderator -->
@@ -102,8 +103,76 @@ title: Ranks and Permissions
 			<td></td>
 			<td>✓</td> <!-- trusted member -->
 			<td></td>
-			<td>✓</td> <!-- approver -->
+			<td>✓</td> <!-- curator -->
 			<td></td>
+			<td>✓</td> <!-- editor -->
+			<td>✓</td>
+			<td>✓</td> <!-- moderator -->
+			<td>✓</td>
+			<td>✓</td> <!-- admin -->
+			<td>✓</td>
+		</tr>
+		<tr>
+			<td>Edit Package Tags and Categories</td>
+			<td>✓</td> <!-- new -->
+			<td></td>
+			<td>✓</td> <!-- member -->
+			<td></td>
+			<td>✓</td> <!-- trusted member -->
+			<td></td>
+			<td>✓</td> <!-- curator -->
+			<td>✓</td>
+			<td>✓</td> <!-- editor -->
+			<td>✓</td>
+			<td>✓</td> <!-- moderator -->
+			<td>✓</td>
+			<td>✓</td> <!-- admin -->
+			<td>✓</td>
+		</tr>
+		<tr>
+			<td>Edit Tag Definitions</td>
+			<td></td> <!-- new -->
+			<td></td>
+			<td></td> <!-- member -->
+			<td></td>
+			<td></td> <!-- trusted member -->
+			<td></td>
+			<td>✓</td> <!-- curator -->
+			<td>✓</td>
+			<td>✓</td> <!-- editor -->
+			<td>✓</td>
+			<td>✓</td> <!-- moderator -->
+			<td>✓</td>
+			<td>✓</td> <!-- admin -->
+			<td>✓</td>
+		</tr>
+		<tr>
+			<td>Edit Homepage Dashboards</td>
+			<td></td> <!-- new -->
+			<td></td>
+			<td></td> <!-- member -->
+			<td></td>
+			<td></td> <!-- trusted member -->
+			<td></td>
+			<td>✓</td> <!-- curator -->
+			<td>✓</td>
+			<td>✓</td> <!-- editor -->
+			<td>✓</td>
+			<td>✓</td> <!-- moderator -->
+			<td>✓</td>
+			<td>✓</td> <!-- admin -->
+			<td>✓</td>
+		</tr>
+		<tr>
+			<td>Edit ContentDB's Collections</td>
+			<td></td> <!-- new -->
+			<td></td>
+			<td></td> <!-- member -->
+			<td></td>
+			<td></td> <!-- trusted member -->
+			<td></td>
+			<td>✓</td> <!-- curator -->
+			<td>✓</td>
 			<td>✓</td> <!-- editor -->
 			<td>✓</td>
 			<td>✓</td> <!-- moderator -->
@@ -119,7 +188,7 @@ title: Ranks and Permissions
 			<td></td>
 			<td>✓</td> <!-- trusted member -->
 			<td></td>
-			<td>✓</td> <!-- approver -->
+			<td>✓</td> <!-- curator -->
 			<td></td>
 			<td>✓</td> <!-- editor -->
 			<td>✓</td>
@@ -136,7 +205,7 @@ title: Ranks and Permissions
 			<td></td>
 			<td>✓</td> <!-- trusted member -->
 			<td></td>
-			<td>✓</td> <!-- approver -->
+			<td>✓</td> <!-- curator -->
 			<td></td>
 			<td>✓</td> <!-- editor -->
 			<td>✓</td>
@@ -153,8 +222,8 @@ title: Ranks and Permissions
 			<td></td>
 			<td>✓</td> <!-- trusted member -->
 			<td></td>
-			<td>✓</td> <!-- approver -->
-			<td>✓</td>
+			<td>✓</td> <!-- curator -->
+			<td></td>
 			<td>✓</td> <!-- editor -->
 			<td>✓</td>
 			<td>✓</td> <!-- moderator -->
@@ -170,7 +239,7 @@ title: Ranks and Permissions
 			<td></td>
 			<td>✓</td> <!-- trusted member -->
 			<td></td>
-			<td>✓</td> <!-- approver -->
+			<td>✓</td> <!-- curator -->
 			<td></td>
 			<td>✓</td> <!-- editor -->
 			<td>✓</td>
@@ -187,8 +256,8 @@ title: Ranks and Permissions
 			<td></td>
 			<td>✓</td> <!-- trusted member -->
 			<td></td>
-			<td>✓</td> <!-- approver -->
-			<td>✓</td>
+			<td>✓</td> <!-- curator -->
+			<td></td>
 			<td>✓</td> <!-- editor -->
 			<td>✓</td>
 			<td>✓</td> <!-- moderator -->
@@ -204,7 +273,7 @@ title: Ranks and Permissions
 			<td></td>
 			<td></td> <!-- trusted member -->
 			<td></td>
-			<td></td> <!-- approver -->
+			<td></td> <!-- curator -->
 			<td></td>
 			<td></td> <!-- editor -->
 			<td></td>
@@ -221,8 +290,8 @@ title: Ranks and Permissions
 			<td></td>
 			<td>✓</td> <!-- trusted member -->
 			<td></td>
-			<td>✓</td> <!-- approver -->
-			<td>✓</td>
+			<td>✓</td> <!-- curator -->
+			<td></td>
 			<td>✓</td> <!-- editor -->
 			<td>✓</td>
 			<td>✓</td> <!-- moderator -->
@@ -238,7 +307,7 @@ title: Ranks and Permissions
 			<td></td>
 			<td>✓</td> <!-- trusted member -->
 			<td></td>
-			<td>✓</td> <!-- approver -->
+			<td>✓</td> <!-- curator -->
 			<td></td>
 			<td>✓</td> <!-- editor -->
 			<td></td>
@@ -255,7 +324,7 @@ title: Ranks and Permissions
 			<td></td>
 			<td>✓</td> <!-- trusted member -->
 			<td></td>
-			<td>✓</td> <!-- approver -->
+			<td>✓</td> <!-- curator -->
 			<td></td>
 			<td>✓</td> <!-- editor -->
 			<td></td>
@@ -272,7 +341,7 @@ title: Ranks and Permissions
 			<td></td>
 			<td>✓</td> <!-- trusted member -->
 			<td></td>
-			<td>✓</td> <!-- approver -->
+			<td>✓</td> <!-- curator -->
 			<td></td>
 			<td>✓</td> <!-- editor -->
 			<td></td>
@@ -289,7 +358,7 @@ title: Ranks and Permissions
 			<td></td>
 			<td></td> <!-- trusted member -->
 			<td></td>
-			<td></td> <!-- approver -->
+			<td></td> <!-- curator -->
 			<td></td>
 			<td></td> <!-- editor -->
 			<td></td>

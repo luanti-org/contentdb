@@ -1,0 +1,26 @@
+{% extends "packages/package_base.html" %}
+
+{% block title %}
+	{{ _("Edit tags - %(title)s", title=package.title) }}
+{% endblock %}
+
+{% from "macros/forms.html" import render_submit_field, form_scripts, render_multiselect_field, render_categories_field %}
+
+{% block scriptextra %}
+	{{ form_scripts() }}
+{% endblock %}
+
+{% block content %}
+	<h2 class="mt-0">{{ _("Edit tags") }}</h2>
+
+	<form method="POST" action="">
+		{{ form.hidden_tag() }}
+
+		{% if form.categories.iter_choices() | list %}
+			{{ render_categories_field(form.categories, _("Choose one or two.")) }}
+		{% endif %}
+		{{ render_multiselect_field(form.tags) }}
+
+		{{ render_submit_field(form.submit) }}
+	</form>
+{% endblock %}

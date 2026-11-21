@@ -12,7 +12,7 @@ from app.utils.user import rank_required
 
 
 @bp.route("/admin/approval_stats/")
-@rank_required(UserRank.APPROVER)
+@rank_required(UserRank.EDITOR)
 def approval_stats():
 	start_str = request.args.get("start")
 	end_str = request.args.get("end")
@@ -35,7 +35,7 @@ def approval_stats():
 
 
 @bp.route("/admin/approval_stats.json")
-@rank_required(UserRank.APPROVER)
+@rank_required(UserRank.EDITOR)
 def approval_stats_json():
 	start_str = request.args.get("start")
 	end_str = request.args.get("end")

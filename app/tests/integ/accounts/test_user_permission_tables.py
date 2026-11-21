@@ -14,7 +14,7 @@ from ..factories import create_user
 from ..permission_tables import make_roles, assert_permissions
 
 
-MEMBERS_AND_ABOVE = {"member", "trusted", "approver", "editor", "moderator", "admin"}
+MEMBERS_AND_ABOVE = {"member", "trusted", "curator", "editor", "moderator", "admin"}
 
 
 def make_user_roles(target_rank: UserRank):
@@ -23,7 +23,7 @@ def make_user_roles(target_rank: UserRank):
 		"new_member": UserRank.NEW_MEMBER,
 		"member": UserRank.MEMBER,
 		"trusted": UserRank.TRUSTED_MEMBER,
-		"approver": UserRank.APPROVER,
+		"curator": UserRank.CURATOR,
 		"editor": UserRank.EDITOR,
 		"moderator": UserRank.MODERATOR,
 		"admin": UserRank.ADMIN,
