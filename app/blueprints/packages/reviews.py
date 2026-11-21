@@ -90,7 +90,7 @@ def review(package):
 			if not review:
 				has_links = len(get_links(render_markdown(form.comment.data))) > 0
 				needs_approval = ((package.sensitive_package and not current_user.rank.at_least(UserRank.TRUSTED_MEMBER)) or
-								  (has_links and not current_user.rank.at_least(UserRank.MEMBER)))
+								  (has_links and not current_user.check_perm(current_user, Permission.LINK_TO_WEBSITE)))
 				was_new = True
 				review = PackageReview()
 				review.approved = not needs_approval

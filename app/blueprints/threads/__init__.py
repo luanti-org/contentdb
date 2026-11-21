@@ -422,7 +422,7 @@ def user_comments(username):
 	# Filter replies the current user can see
 	query = ThreadReply.query.options(selectinload(ThreadReply.thread)).filter_by(author=user)
 	only_public = False
-	if current_user != user and not (current_user.is_authenticated and current_user.rank.at_least(UserRank.EDITOR)):
+	if current_user != user and not Permission.SEE_THREAD.check(current_user):
 		query = query.filter(ThreadReply.thread.has(private=False))
 		only_public = True
 

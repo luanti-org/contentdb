@@ -9,7 +9,7 @@ Renaming and profile editing are covered by test_user_permissions.py.
 
 import pytest
 
-from app.models import UserRank, Permission
+from app.models import User, UserRank, Permission
 from ..factories import create_user
 from ..permission_tables import make_roles, assert_permissions
 
@@ -59,4 +59,26 @@ def test_user(client, target_rank, managers, link_to_website):
 		Permission.CREATE_TOKEN: self_service | managers,
 		Permission.CREATE_OAUTH_CLIENT: self_service | managers,
 		Permission.LINK_TO_WEBSITE: link_to_website,
+		Permission.MANAGE_USER_PACKAGES: {"self", "editor", "moderator", "admin"},
+		Permission.CREATE_COLLECTION: {"self", "editor", "moderator", "admin"},
+	})
+
+
+def test_contentdb_user(client):
+	roles = make_roles({
+		"anonymous": None,
+		"new_member": UserRank.NEW_MEMBER,
+		"member": UserRank.MEMBER,
+		"trusted": UserRank.TRUSTED_MEMBER,
+		"curator": UserRank.CURATOR,
+		"editor": UserRank.EDITOR,
+		"moderator": UserRank.MODERATOR,
+		"admin": UserRank.ADMIN,
+	})
+	contentdb = User.query.filter_by(username="ContentDB").one()
+
+	assert_permissions(contentdb, roles, {
+		# Curators look after ContentDB's collections
+		Permission.CREATE_COLLECTION: {"curator", "editor", "moderator", "admin"},
+		Permission.MANAGE_USER_PACKAGES: {"editor", "moderator", "admin"},
 	})

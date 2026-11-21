@@ -391,7 +391,7 @@ def bulk_update_config(username=None):
 	if not user:
 		abort(404)
 
-	if current_user != user and not current_user.rank.at_least(UserRank.EDITOR):
+	if not user.check_perm(current_user, Permission.MANAGE_USER_PACKAGES):
 		abort(403)
 
 	form = PackageUpdateConfigFrom()

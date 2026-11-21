@@ -16,7 +16,7 @@
 
 {% block content %}
 	{% if user %}
-		{% if current_user == user or (current_user.is_authenticated and current_user.rank.at_least(current_user.rank.EDITOR)) %}
+		{% if user.check_perm(current_user, "CREATE_COLLECTION") %}
 			<a class="btn btn-primary float-end" href="{{ url_for('collections.create_edit', author=user.username) }}">
 				{{ _("Create") }}
 			</a>

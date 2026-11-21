@@ -13,7 +13,7 @@ from wtforms import SelectField, SubmitField
 from wtforms.validators import InputRequired, NoneOf
 
 from app.models import User, Package, PackageState, PackageScreenshot, PackageUpdateConfig, ForumTopic, db, \
-	PackageRelease, Permission, NotificationType, AuditSeverity, UserRank, PackageType, PackageAIDisclosure
+	PackageRelease, Permission, NotificationType, AuditSeverity, PackageType, PackageAIDisclosure
 from app.tasks.importtasks import make_vcs_release
 from app.domain.git_access import can_package_use_git, get_git_access, GitAccess
 from app.utils.models import add_notification, add_audit_log
@@ -36,7 +36,7 @@ def view_user(username=None):
 	if not user:
 		abort(404)
 
-	if current_user != user and not current_user.rank.at_least(UserRank.EDITOR):
+	if not user.check_perm(current_user, Permission.MANAGE_USER_PACKAGES):
 		abort(403)
 
 	unapproved_packages = user.packages \
@@ -93,7 +93,7 @@ def apply_all_updates(username):
 	if not user:
 		abort(404)
 
-	if current_user != user and not current_user.rank.at_least(UserRank.EDITOR):
+	if not user.check_perm(current_user, Permission.MANAGE_USER_PACKAGES):
 		abort(403)
 
 	if get_git_access() == GitAccess.NONE:
@@ -154,7 +154,7 @@ def all_game_support(username=None):
 		return redirect(url_for("todo.all_game_support", username=current_user.username))
 
 	user: User = User.query.filter_by(username=username).one_or_404()
-	if current_user != user and not current_user.rank.at_least(UserRank.EDITOR):
+	if not user.check_perm(current_user, Permission.MANAGE_USER_PACKAGES):
 		abort(403)
 
 	packages = user.maintained_packages.filter(
@@ -180,7 +180,7 @@ def all_game_support(username=None):
 @login_required
 def confirm_supports_all_games(username=None):
 	user: User = User.query.filter_by(username=username).one_or_404()
-	if current_user != user and not current_user.rank.at_least(UserRank.EDITOR):
+	if not user.check_perm(current_user, Permission.MANAGE_USER_PACKAGES):
 		abort(403)
 
 	packages = user.maintained_packages.filter(
@@ -215,7 +215,7 @@ def all_ai_disclosure(username: Optional[str] = None):
 	if username is None:
 		return redirect(url_for("todo.all_ai_disclosure", username=current_user.username))
 	user: User = User.query.filter_by(username=username).one_or_404()
-	if current_user != user and not current_user.rank.at_least(UserRank.EDITOR):
+	if not user.check_perm(current_user, Permission.MANAGE_USER_PACKAGES):
 		abort(403)
 
 	missing_ai_disclosure = user.maintained_packages.filter_by(state=PackageState.APPROVED,

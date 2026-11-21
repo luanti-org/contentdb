@@ -4,7 +4,7 @@
 
 from flask import Blueprint, request, render_template, url_for, abort, flash
 from flask_babel import lazy_gettext
-from flask_login import current_user
+from flask_login import current_user, login_required
 from flask_wtf import FlaskForm
 from werkzeug.utils import redirect
 from wtforms import TextAreaField, SubmitField, URLField, StringField, SelectField, FileField
@@ -16,7 +16,6 @@ from app.models import User, UserRank, Report, db, AuditSeverity, ReportCategory
 from app.tasks.webhooktasks import post_discord_webhook
 from app.utils.flask import abs_url_samesite, abs_url_for
 from app.utils.misc import is_no, normalize_line_endings, random_string
-from app.utils.user import rank_required
 from app.utils.models import add_audit_log, add_replies
 
 bp = Blueprint("report", __name__)
@@ -116,8 +115,11 @@ def report_received():
 
 
 @bp.route("/admin/reports/")
-@rank_required(UserRank.EDITOR)
+@login_required
 def list_all():
+	if not Permission.SEE_REPORT.check(current_user):
+		abort(403)
+
 	reports = Report.query.order_by(db.asc(Report.is_resolved), db.asc(Report.created_at)).all()
 	return render_template("report/list.html", reports=reports)
 

@@ -172,7 +172,7 @@ def view(package):
 	threads = Thread.query.filter_by(package_id=package.id, review_id=None)
 	if not current_user.is_authenticated:
 		threads = threads.filter_by(private=False)
-	elif not current_user.rank.at_least(UserRank.EDITOR) and not current_user == package.author:
+	elif not Permission.SEE_THREAD.check(current_user) and not current_user == package.author:
 		threads = threads.filter(or_(Thread.private == False, Thread.author == current_user))
 
 	if current_user.is_authenticated:

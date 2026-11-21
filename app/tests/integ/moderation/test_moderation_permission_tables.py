@@ -28,6 +28,10 @@ def test_report(client):
 		Permission.SEE_REPORT: {"editor", "moderator", "admin"},
 	})
 
+	# The report list and work queue use the global check, which must agree with the report's
+	for role, user in roles.items():
+		assert Permission.SEE_REPORT.check(user) == report.check_perm(user, Permission.SEE_REPORT), role
+
 
 def test_audit_log_entry(client):
 	roles = make_roles({

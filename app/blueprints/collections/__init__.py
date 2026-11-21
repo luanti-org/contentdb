@@ -14,7 +14,7 @@ from wtforms.validators import InputRequired, Length, Optional, Regexp
 
 from app import render_markdown
 from app.markdown import get_links
-from app.models import Collection, db, Package, Permission, CollectionPackage, User, UserRank, AuditSeverity, PackageScreenshot
+from app.models import Collection, db, Package, Permission, CollectionPackage, User, AuditSeverity, PackageScreenshot
 from app.tasks.webhooktasks import post_discord_webhook
 from app.utils.misc import nonempty_or_none, normalize_line_endings
 from app.utils.flask import should_return_json, abs_url_for
@@ -101,23 +101,18 @@ class CollectionForm(FlaskForm):
 @login_required
 def create_edit(author=None, name=None):
 	collection: typing.Optional[Collection] = None
+	author_user: User = current_user
 	if author is not None and name is not None:
 		collection = Collection.query \
 			.filter(Collection.name == name, Collection.author.has(username=author)) \
 			.one_or_404()
 		if not collection.check_perm(current_user, Permission.EDIT_COLLECTION):
 			abort(403)
+		author_user = collection.author
 	elif "author" in request.args:
-		author = request.args["author"]
-		is_contentdb_curator = author == "ContentDB" and current_user.rank.at_least(UserRank.CURATOR)
-		if author != current_user.username and not current_user.rank.at_least(UserRank.EDITOR) and \
-				not is_contentdb_curator:
+		author_user = User.query.filter_by(username=request.args["author"]).one_or_404()
+		if not author_user.check_perm(current_user, Permission.CREATE_COLLECTION):
 			abort(403)
-
-	if author is None:
-		author = current_user
-	else:
-		author = User.query.filter_by(username=author).one()
 
 	form = CollectionForm(formdata=request.form, obj=collection)
 
@@ -142,7 +137,7 @@ def create_edit(author=None, name=None):
 			setattr(form, "pinned", None)
 
 	if form.validate_on_submit():
-		ret = handle_create_edit(collection, form, initial_packages, author)
+		ret = handle_create_edit(collection, form, initial_packages, author_user)
 		if ret:
 			return ret
 
@@ -157,7 +152,7 @@ def handle_create_edit(collection: typing.Optional[Collection], form: Collection
 	name = form.name.data if collection else regex_invalid_chars.sub("", (form.title.data or "").lower().replace(" ", "_"))
 
 	links = get_links(render_markdown(form.long_description.data)) if form.long_description.data else set()
-	if not current_user.rank.at_least(UserRank.MEMBER) and len(links) != 0:
+	if not current_user.check_perm(current_user, Permission.LINK_TO_WEBSITE) and len(links) != 0:
 		flash(gettext("New members cannot put links in collection descriptions.") + " " +
 			gettext("To become a full member, create a review, comment, or package and wait 7 days."), "danger")
 
@@ -332,8 +327,10 @@ def package_add(package):
 		return redirect(package.get_url("collections.package_add"))
 
 	collections = current_user.collections.all()
-	if current_user.rank.at_least(UserRank.CURATOR) and current_user.username != "ContentDB":
-		collections.extend(Collection.query.filter(Collection.author.has(username="ContentDB")).all())
+	if current_user.username != "ContentDB":
+		collections.extend(collection for collection in
+				Collection.query.filter(Collection.author.has(username="ContentDB")).all()
+				if collection.check_perm(current_user, Permission.EDIT_COLLECTION))
 
 	return render_template("collections/package_add_to.html", package=package, collections=collections)
 

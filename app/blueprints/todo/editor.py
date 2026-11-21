@@ -137,7 +137,7 @@ def view_editor():
 		.order_by(db.desc(AuditLogEntry.created_at)) \
 		.limit(20).all()
 
-	reports = Report.query.filter_by(is_resolved=False).order_by(db.asc(Report.created_at)).all() if current_user.rank.at_least(UserRank.EDITOR) else None
+	reports = Report.query.filter_by(is_resolved=False).order_by(db.asc(Report.created_at)).all() if Permission.SEE_REPORT.check(current_user) else None
 
 	unanswered_approval_threads = get_unanswered_approval_threads()
 

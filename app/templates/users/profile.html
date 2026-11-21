@@ -242,7 +242,7 @@
 					{{ _("Newest") }}
 				</a>
 			</div>
-			{% if current_user == user or (current_user.is_authenticated and current_user.rank.at_least(current_user.rank.EDITOR)) %}
+			{% if user.check_perm(current_user, "MANAGE_USER_PACKAGES") %}
 				<a class="btn btn-sm btn-secondary me-2"
 						href="{{ url_for('todo.tags', author=user.username) }}">
 					{{ _("View list of tags") }}

@@ -117,6 +117,8 @@ class Permission(enum.Enum):
 	SEE_REPORT = "SEE_REPORT"
 	EDIT_DASHBOARD = "EDIT_DASHBOARD"
 	EDIT_PACKAGE_TAGS = "EDIT_PACKAGE_TAGS"
+	MANAGE_USER_PACKAGES = "MANAGE_USER_PACKAGES"
+	CREATE_COLLECTION = "CREATE_COLLECTION"
 
 	# Only return true if the permission is valid for *all* contexts
 	# See Package.check_perm for package-specific contexts
@@ -127,7 +129,8 @@ class Permission(enum.Enum):
 		if self == Permission.APPROVE_NEW or \
 				self == Permission.APPROVE_RELEASE    or \
 				self == Permission.APPROVE_SCREENSHOT or \
-				self == Permission.SEE_THREAD:
+				self == Permission.SEE_THREAD        or \
+				self == Permission.SEE_REPORT:
 			return user.rank.at_least(UserRank.EDITOR)
 
 		elif self == Permission.APPROVE_REVIEW:
@@ -370,6 +373,13 @@ class User(Model, UserMixin):
 				return user.rank.at_least(UserRank.MODERATOR) and not self.rank.at_least(user.rank)
 		elif perm == Permission.LINK_TO_WEBSITE:
 			return user.rank.at_least(UserRank.MEMBER)
+		elif perm == Permission.MANAGE_USER_PACKAGES:
+			# The user's to do list and bulk actions on their packages
+			return user == self or user.rank.at_least(UserRank.EDITOR)
+		elif perm == Permission.CREATE_COLLECTION:
+			# Curators look after ContentDB's own collections, such as the homepage spotlight
+			is_contentdb_curator = self.username == "ContentDB" and user.rank.at_least(UserRank.CURATOR)
+			return user == self or user.rank.at_least(UserRank.EDITOR) or is_contentdb_curator
 		else:
 			raise Exception("Permission {} is not related to users".format(perm.name))
 

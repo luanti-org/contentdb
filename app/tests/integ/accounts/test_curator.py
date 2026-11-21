@@ -148,6 +148,49 @@ def test_curator_creates_and_edits_contentdb_collections(client):
 	assert db.session.get(Collection, spotlight.id) is not None
 
 
+def test_curator_sees_create_button_on_contentdb_collections(client):
+	login_as(client, create_user("curator", UserRank.CURATOR))
+
+	html = client_request(client, "GET", "/collections/ContentDB/").data.decode("utf-8")
+	assert "/collections/new/?author=ContentDB" in html
+
+	html = client_request(client, "GET", "/collections/curator/").data.decode("utf-8")
+	assert "/collections/new/?author=curator" in html
+
+
+def test_curator_doesnt_see_create_button_on_other_users_collections(client):
+	create_user("other")
+	login_as(client, create_user("curator", UserRank.CURATOR))
+
+	html = client_request(client, "GET", "/collections/other/").data.decode("utf-8")
+	assert "/collections/new/?author=other" not in html
+
+
+def test_create_collection_for_unknown_author_is_404(client):
+	login_as(client, create_user("editor", UserRank.EDITOR))
+	assert client_request(client, "GET", "/collections/new/?author=nobody").status_code == 404
+
+
+def test_editor_sees_contentdb_collections_when_adding_package(client):
+	contentdb = User.query.filter_by(username="ContentDB").one()
+	package = create_package("pkg", create_user("owner"))
+	create_collection(contentdb, [], name="spotlight")
+	login_as(client, create_user("editor", UserRank.EDITOR))
+
+	html = client_request(client, "GET", package.get_url("collections.package_add")).data.decode("utf-8")
+	assert "Spotlight" in html
+
+
+def test_member_doesnt_see_contentdb_collections_when_adding_package(client):
+	contentdb = User.query.filter_by(username="ContentDB").one()
+	package = create_package("pkg", create_user("owner"))
+	create_collection(contentdb, [], name="spotlight")
+	login_as(client, create_user("member", UserRank.MEMBER))
+
+	html = client_request(client, "GET", package.get_url("collections.package_add")).data.decode("utf-8")
+	assert "Spotlight" not in html
+
+
 def test_curator_cant_edit_other_users_collections(client):
 	other = create_user("other")
 	create_collection(other, [], name="mine")
