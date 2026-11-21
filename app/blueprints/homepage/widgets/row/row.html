@@ -1,12 +1,13 @@
 {% from "macros/packagegridtile.html" import render_pkggrid %}
 
-<h2 class="mb-3">{{ title }}</h2>
-{{ render_pkggrid(packages) }}
-<p class="text-center">
-	<a href="{{ see_more_url }}" class="btn btn-secondary">
+<article class="my-5">
+	<a href="{{ see_more_url }}" class="float-end btn btn-secondary">
 		{{ _("See more") }}
 		<span class="sr-only">
 			{{ title }}
 		</span>
+		<i class="fas fa-arrow-right ms-2"></i>
 	</a>
-</p>
+	<h2 class="mt-0 mb-3">{{ title }}</h2>
+	{{ render_pkggrid(packages) }}
+</article>
