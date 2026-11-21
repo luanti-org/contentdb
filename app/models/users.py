@@ -158,7 +158,7 @@ class User(Model, UserMixin):
 
 	# User authentication information
 	# CITEXT columns are compared case-insensitively, including by unique constraints
-	username     = db.Column(CITEXT, nullable=False, unique=True, index=True)
+	username     = db.Column(CITEXT, nullable=False, unique=True)
 	password     = db.Column(db.String(255), nullable=True, server_default=None)
 	old_password = db.Column(db.String(255), nullable=True, server_default=None)
 
