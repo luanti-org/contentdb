@@ -19,7 +19,7 @@
 {% block content %}
 <article class="row mb-5">
 	<div class="col-auto image mx-0">
-		<img class="img-fluid user-photo img-thumbnail img-thumbnail-1" src="{{ user.get_profile_pic_url() }}" alt="{{ _('Profile picture') }}">
+		<img class="img-fluid user-photo user-photo-lg img-thumbnail img-thumbnail-1" src="{{ user.get_profile_pic_url() }}" alt="{{ _('Profile picture') }}">
 	</div>
 	<div class="col">
 		{% if user.can_see_edit_profile(current_user) %}

@@ -190,6 +190,8 @@ class User(Model, UserMixin):
 
 	# User information
 	profile_pic   = db.Column(db.String(255), nullable=True, server_default=None)
+	# Users choose one or the other: set them with set_profile_pic() and set_use_gravatar()
+	use_gravatar  = db.Column(db.Boolean, nullable=False, default=False, server_default="false")
 	is_active     = db.Column("is_active", db.Boolean, nullable=False, server_default="0")
 	display_name  = db.Column(db.String(100), nullable=False, default=display_name_default)
 
@@ -249,13 +251,22 @@ class User(Model, UserMixin):
 	def is_banned(self):
 		return (self.ban and not self.ban.has_expired) or self.rank == UserRank.BANNED
 
-	def get_dict(self):
+	def get_dict(self, include_gravatar: bool = True):
+		"""
+		`include_gravatar=False` gives the stored profile picture, for the database dump, as an importer would
+		otherwise store the URL of this instance's Gravatar proxy as the user's profile picture.
+		"""
 		from app.utils.flask import abs_url_for
+		if include_gravatar and self.is_using_gravatar():
+			profile_pic_url = self.get_profile_pic_url(absolute=True)
+		else:
+			profile_pic_url = self.profile_pic
+
 		return {
 			"username": self.username,
 			"display_name": self.display_name,
 			"rank": self.rank.name.lower(),
-			"profile_pic_url": self.profile_pic,
+			"profile_pic_url": profile_pic_url,
 			"website_url": self.website_url,
 			"donate_url": self.donate_url,
 			"connections": {
@@ -283,13 +294,43 @@ class User(Model, UserMixin):
 	def can_access_todo_list(self):
 		return Permission.APPROVE_NEW.check(self) or Permission.APPROVE_RELEASE.check(self)
 
-	def get_profile_pic_url(self, absolute: bool = False):
+	def set_profile_pic(self, url: Optional[str]):
+		"""
+		Sets the profile picture, such as from the forums. This replaces Gravatar, as users choose one or the other.
+		"""
+		self.profile_pic = url
+		if url:
+			self.use_gravatar = False
+
+	def set_use_gravatar(self, enabled: bool):
+		"""
+		Turning Gravatar on removes the profile picture, as users choose one or the other.
+		"""
+		self.use_gravatar = enabled
+		if enabled:
+			self.profile_pic = None
+
+	def get_fallback_profile_pic_url(self) -> str:
+		"""
+		The profile picture without Gravatar
+		"""
 		if self.profile_pic:
-			url = self.profile_pic
+			return self.profile_pic
 		elif self.rank == UserRank.BOT:
-			url = "/static/bot_avatar.png"
+			return "/static/bot_avatar.png"
 		else:
-			url = "/static/default_avatar.png"
+			return "/static/default_avatar.png"
+
+	def is_using_gravatar(self) -> bool:
+		# A profile picture comes first. Normally only one of them is set.
+		return not self.profile_pic and self.use_gravatar and bool(self.email)
+
+	def get_profile_pic_url(self, absolute: bool = False):
+		if self.is_using_gravatar():
+			from app.utils.gravatar import get_gravatar_proxy_url
+			url = get_gravatar_proxy_url(self)
+		else:
+			url = self.get_fallback_profile_pic_url()
 
 		if absolute:
 			# profile_pic may already be absolute, such as when uploads are on a CDN

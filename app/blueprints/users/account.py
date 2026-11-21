@@ -166,6 +166,7 @@ class RegisterForm(FlaskForm):
 				"Only alphabetic letters (A-Za-z), numbers (0-9), underscores (_), minuses (-), and periods (.) allowed"))])
 	email    = StringField(lazy_gettext("Email"), [InputRequired(), Email()])
 	password = PasswordField(lazy_gettext("Password"), [InputRequired(), Length(12, 100)])
+	use_gravatar = BooleanField(lazy_gettext("Use Gravatar for my profile picture"), default=True)
 	question  = StringField(lazy_gettext("What is the result of the above calculation?"), [InputRequired()])
 	first_name = StringField("First name", [])
 	submit   = SubmitField(lazy_gettext("Register"))
@@ -190,6 +191,7 @@ def handle_register(form):
 		abort(500)
 
 	user.password = make_flask_login_password(form.password.data)
+	user.use_gravatar = bool(form.use_gravatar.data)
 
 	add_audit_log(AuditSeverity.USER, user, "Registered with email, display name=" + user.display_name,
 				  url_for("users.profile", username=user.username))
@@ -211,7 +213,7 @@ def handle_register(form):
 
 @bp.route("/user/register/", methods=["GET", "POST"])
 def register():
-	form = RegisterForm(request.form)
+	form = RegisterForm()
 	if form.validate_on_submit():
 		ret = handle_register(form)
 		if ret:

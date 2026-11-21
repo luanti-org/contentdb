@@ -117,7 +117,7 @@ def create_database_dump():
 					User.packages.any(state=PackageState.APPROVED),
 					User.maintained_packages.any(state=PackageState.APPROVED))).all()
 			for user in users:
-				content = json.dumps(user.get_dict(), indent=4)
+				content = json.dumps(user.get_dict(include_gravatar=False), indent=4)
 				zipf.writestr(f"backup/{user.username}/index.json", content)
 
 			dependency_names = get_dependency_names()

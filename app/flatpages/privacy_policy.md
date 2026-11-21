@@ -1,7 +1,7 @@
 title: Privacy Policy
 ---
 
-Last Updated: 2026-11-14
+Last Updated: 2026-11-21
 ([View updates](https://github.com/luanti-org/contentdb/commits/master/app/flatpages/privacy_policy.md))
 
 ## What Information is Collected
@@ -79,7 +79,12 @@ Please avoid giving other personal information as we do not want it.
 
 ## Third-parties
 
-We do not share any personal information with third parties.
+We do not share any personal information with third parties, except as described below.
+
+If you use <a href="https://gravatar.com/">Gravatar</a> for your profile picture, ContentDB's server sends a hash of
+your email address to Gravatar to fetch the picture. Your browser doesn't contact Gravatar, and the hash isn't shown
+to other users. You can choose whether to use Gravatar when registering, and turn it on or off at any time on your
+profile settings page.
 
 We use <a href="https://sentry.io/">Sentry.io</a> for error logging and performance monitoring.
 

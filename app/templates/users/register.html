@@ -26,6 +26,13 @@
 
 		{{ render_field(form.password, hint=_("Must be at least 12 characters long.")) }}
 
+		<div class="mb-3">
+			{{ render_checkbox_field(form.use_gravatar) }}
+			<small class="form-text text-muted">
+				{{ _("Shows the picture you've set for your email address on gravatar.com. ContentDB fetches it for you, so other users can't see your email address or a hash of it. Gravatar receives a hash of your email address. You can change this later.") }}
+			</small>
+		</div>
+
 		<p>
 			<img src="/static/puzzle.png" />
 		</p>

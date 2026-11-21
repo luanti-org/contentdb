@@ -13,7 +13,7 @@
 		{% if user.forums_username %}
 			<a href="https://forum.luanti.org/ucp.php?i=profile&mode=avatar">
 		{% endif %}
-		<img class="img-fluid user-photo img-thumbnail  img-thumbnail-1" src="{{ user.get_profile_pic_url() }}">
+		<img class="img-fluid user-photo user-photo-lg img-thumbnail img-thumbnail-1" src="{{ user.get_profile_pic_url() }}" alt="{{ _('Profile picture') }}">
 		{% if user.forums_username %}
 			</a>
 		{% endif %}
@@ -30,6 +30,38 @@
 				<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 				<input type="submit" class="btn btn-secondary" value="{{  _('Remove profile picture') }}" />
 			</form>
+		{% endif %}
+		{% if user.use_gravatar %}
+			<form method="post" action="{{ url_for('users.user_set_gravatar', username=user.username) }}" class="me-2" style="display:inline-block;">
+				<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+				<input type="hidden" name="enable" value="0" />
+				<input type="submit" class="btn btn-secondary" value="{{  _('Stop using Gravatar') }}" />
+			</form>
+		{% elif current_user == user %}
+			<form method="post" action="{{ url_for('users.user_set_gravatar', username=user.username) }}" class="me-2" style="display:inline-block;">
+				<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+				<input type="hidden" name="enable" value="1" />
+				<input type="submit" class="btn btn-secondary" value="{{  _('Use Gravatar') }}" {% if not user.email %}disabled{% endif %} />
+			</form>
+		{% endif %}
+
+		{% if current_user == user %}
+			<p class="text-muted mt-3 mb-0" id="gravatar-help">
+				{% if user.use_gravatar %}
+					{{ _("Your profile picture is from Gravatar. To change it, go to gravatar.com.") }}
+					{% if user.forums_username %}
+						{{ _("Importing from the forums will replace it.") }}
+					{% endif %}
+				{% elif user.email %}
+					{{ _("Gravatar shows the picture you've set for your email address on gravatar.com.") }}
+					{% if user.profile_pic %}
+						{{ _("Using Gravatar will remove your current profile picture.") }}
+					{% endif %}
+				{% else %}
+					{{ _("Add an email address to use Gravatar.") }}
+				{% endif %}
+				{{ _("ContentDB fetches the picture for you, so other users can't see your email address or a hash of it. Gravatar receives a hash of your email address.") }}
+			</p>
 		{% endif %}
 	</div>
 </div>

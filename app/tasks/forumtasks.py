@@ -80,11 +80,12 @@ def check_forum_account(forums_username, force_replace_pic=False):
 		print(f"####### Picture: {pic}", file=sys.stderr)
 		print(f"####### User pp {user.profile_pic}", file=sys.stderr)
 
-		pic_needs_replacing = user.profile_pic is None or user.profile_pic == "" or \
-				user.profile_pic.startswith("https://forum.luanti.org") or force_replace_pic
+		# Only replace Gravatar when the user asks, with force_replace_pic, as choosing Gravatar removes the picture
+		pic_needs_replacing = force_replace_pic or (not user.use_gravatar and (user.profile_pic is None or
+				user.profile_pic == "" or user.profile_pic.startswith("https://forum.luanti.org")))
 		if pic_needs_replacing and pic.startswith("https://forum.luanti.org"):
 			print("####### Queueing", file=sys.stderr)
-			set_profile_picture_from_url.delay(user.username, pic)
+			set_profile_picture_from_url.delay(user.username, pic, force_replace_pic)
 
 	return needs_saving
 

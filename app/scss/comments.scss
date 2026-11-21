@@ -39,3 +39,13 @@
 		margin: 0;
 	}
 }
+
+// The large profile picture on profile pages, at a fixed size for a consistent layout. Gravatars are 256px, and
+// smaller forum pictures are scaled up.
+.user-photo-lg {
+	width: 128px;
+	height: 128px;
+	max-width: 100%;
+	object-fit: cover;
+	aspect-ratio: 1;
+}

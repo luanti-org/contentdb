@@ -122,11 +122,20 @@ def upgrade_new_members():
 
 
 @celery.task()
-def set_profile_picture_from_url(username: str, url: str):
+def set_profile_picture_from_url(username: str, url: str, replace_gravatar: bool = False):
+	"""
+	Downloads a profile picture. This turns off Gravatar, but it's skipped for Gravatar users unless
+	`replace_gravatar`, which is set when the user asked for it, so that automatic checks don't undo their choice.
+	"""
 	print("### Setting pp for " + username + " to " + url, file=sys.stderr)
 	user = User.query.filter_by(username=username).first()
 	if user is None:
 		raise TaskError(f"Unable to find user {username}")
+
+	# Checked here as well as when queued, as the user may have turned Gravatar on in between
+	if user.use_gravatar and not replace_gravatar:
+		print(f"### Not replacing Gravatar for {username}", file=sys.stderr)
+		return
 
 	headers = {"Accept": "image/jpeg, image/png, image/webp"}
 	resp = requests.get(url, stream=True, headers=headers, timeout=15)
@@ -159,7 +168,7 @@ def set_profile_picture_from_url(username: str, url: str):
 					f.write(chunk)
 
 		url = copy_to_uploads(filepath)
-		user.profile_pic = get_public_upload_url(url)
+		user.set_profile_pic(get_public_upload_url(url))
 
 	db.session.commit()
 

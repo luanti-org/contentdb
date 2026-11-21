@@ -278,6 +278,36 @@ def user_remove_profile_pic(username):
 	return redirect(url_for("users.profile_edit", username=username))
 
 
+@bp.route("/users/<username>/gravatar/", methods=["POST"])
+@login_required
+def user_set_gravatar(username):
+	"""
+	Only the user can turn Gravatar on, as it sends a hash of their email to Gravatar. This removes their profile
+	picture. Moderators can turn it off, as they can remove profile pictures.
+	"""
+	user = User.query.filter_by(username=username).one_or_404()
+	enable = request.form.get("enable") == "1"
+
+	if enable:
+		if current_user != user:
+			abort(403)
+
+		if not user.email:
+			flash(gettext("You need an email address to use Gravatar"), "danger")
+			return redirect(url_for("users.profile_edit", username=username))
+	elif current_user != user:
+		if not current_user.rank.at_least(UserRank.MODERATOR):
+			abort(403)
+
+		add_audit_log(AuditSeverity.MODERATION, current_user, f"Turned off Gravatar for {user.display_name}",
+				url_for("users.profile", username=user.username))
+
+	# Turning it on removes the profile picture, as users choose one or the other
+	user.set_use_gravatar(enable)
+	db.session.commit()
+	return redirect(url_for("users.profile_edit", username=username))
+
+
 @bp.route("/user/stats/")
 @login_required
 def statistics_redirect():

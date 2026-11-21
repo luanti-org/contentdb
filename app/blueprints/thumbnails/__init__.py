@@ -2,11 +2,20 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
+import io
 import re
+import sys
+import time
+
 import requests
 from flask import abort, send_file, Blueprint, current_app, request, redirect
 import os
 from PIL import Image
+
+from app.models import User
+from app.utils.files import prune_dir
+from app.utils.gravatar import get_gravatar_url, get_gravatar_version
+from app.utils.misc import random_string
 
 
 bp = Blueprint("thumbnails", __name__)
@@ -137,4 +146,108 @@ def youtube(id_: str):
 
 	res = send_file(cache_filepath)
 	res.headers["Cache-Control"] = "max-age=604800"  # 1 week
+	return res
+
+
+GRAVATAR_CACHE_MAX_AGE = 24 * 60 * 60  # 1 day
+GRAVATAR_MAX_BYTES = 1000 * 1000
+GRAVATAR_MAX_DIMENSION = 2048
+
+
+class GravatarError(Exception):
+	pass
+
+
+def _fetch_gravatar(email: str) -> bytes | None:
+	"""
+	Returns the user's Gravatar re-encoded as a PNG, or None if they don't have one
+	"""
+	with requests.get(get_gravatar_url(email), stream=True, timeout=(5, 10)) as response:
+		if response.status_code == 404:
+			return None
+		elif response.status_code != 200:
+			raise GravatarError(f"Gravatar returned {response.status_code}")
+
+		data = b""
+		for chunk in response.iter_content(chunk_size=16 * 1024):
+			data += chunk
+			if len(data) > GRAVATAR_MAX_BYTES:
+				raise GravatarError("Gravatar image is too large")
+
+	# Re-encoding means only a valid image is ever served, whatever Gravatar returned
+	try:
+		with Image.open(io.BytesIO(data)) as source:
+			if source.width > GRAVATAR_MAX_DIMENSION or source.height > GRAVATAR_MAX_DIMENSION:
+				raise GravatarError(f"Gravatar image is too big: {source.width}x{source.height}")
+			image = source.convert("RGBA")
+	except (OSError, ValueError, SyntaxError, Image.DecompressionBombError) as e:
+		raise GravatarError(f"Gravatar returned an invalid image: {e}") from e
+
+	out = io.BytesIO()
+	image.save(out, format="PNG")
+	return out.getvalue()
+
+
+def _is_fresh(path: str) -> bool:
+	try:
+		return time.time() - os.path.getmtime(path) < GRAVATAR_CACHE_MAX_AGE
+	except FileNotFoundError:
+		return False
+
+
+def _write_atomically(path: str, data: bytes):
+	partial_path = f"{path}.{random_string(10)}.partial"
+	with open(partial_path, "wb") as f:
+		f.write(data)
+	os.replace(partial_path, path)
+
+
+def _redirect_to(url: str, max_age: int):
+	res = redirect(url)
+	res.headers["Cache-Control"] = f"public, max-age={max_age}"
+	return res
+
+
+@bp.route("/thumbnails/gravatar/<int:user_id>.png")
+def gravatar(user_id: int):
+	"""
+	A proxy for Gravatar, so that browsers never see the hash of the user's email. See app.utils.gravatar.
+	Without a Gravatar, it redirects to the user's other profile picture.
+	"""
+	user = User.query.get(user_id)
+	if user is None:
+		abort(404)
+
+	fallback_url = user.get_fallback_profile_pic_url()
+	if not user.use_gravatar or not user.email:
+		return _redirect_to(fallback_url, 60 * 60)
+
+	cache_dir = os.path.join(current_app.config["THUMBNAIL_DIR"], "gravatar")
+	os.makedirs(cache_dir, exist_ok=True)
+
+	# Keyed by the version, so changing email doesn't serve the old image
+	image_path = os.path.join(cache_dir, f"{user.id}-{get_gravatar_version(user.email)}.png")
+	missing_path = f"{image_path}.missing"
+
+	if not _is_fresh(image_path):
+		if _is_fresh(missing_path):
+			return _redirect_to(fallback_url, 60 * 60)
+
+		# Longer than the cache time, so a file that was just found to be fresh can't be pruned before it's sent
+		prune_dir(cache_dir, 2 * GRAVATAR_CACHE_MAX_AGE)
+
+		try:
+			data = _fetch_gravatar(user.email)
+		except (requests.RequestException, GravatarError) as e:
+			print(f"Failed to fetch Gravatar for user {user.id}: {e}", file=sys.stderr)
+			return _redirect_to(fallback_url, 5 * 60)
+
+		if data is None:
+			_write_atomically(missing_path, b"")
+			return _redirect_to(fallback_url, 60 * 60)
+
+		_write_atomically(image_path, data)
+
+	res = send_file(image_path, mimetype="image/png")
+	res.headers["Cache-Control"] = f"public, max-age={GRAVATAR_CACHE_MAX_AGE}"
 	return res

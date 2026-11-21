@@ -153,7 +153,7 @@ class _Importer:
 		user.display_name = data["display_name"]
 		user.website_url = data.get("website_url")
 		user.donate_url = data.get("donate_url")
-		user.profile_pic = data.get("profile_pic_url")
+		user.set_profile_pic(data.get("profile_pic_url"))
 
 		connections = data.get("connections") or {}
 		github = connections.get("github")
