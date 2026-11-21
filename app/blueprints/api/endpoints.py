@@ -3,7 +3,6 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 import math
-import os
 from typing import Any, List
 
 import flask_sqlalchemy
@@ -14,6 +13,7 @@ from sqlalchemy.orm import joinedload
 from sqlalchemy.sql.expression import func
 
 from app import csrf
+from app.uploads import delete_upload_after_commit
 from app.domain.graphs import get_package_stats, get_package_stats_for_user, get_all_package_stats
 from app.markdown import render_markdown
 from app.models import Tag, PackageState, PackageType, Package, db, PackageRelease, Permission, \
@@ -383,11 +383,11 @@ def delete_release(token: APIToken, package: Package, id: int):
 	add_audit_log_on_package(token.owner, "Deleted release {} (API, token={})".format(release.title, token.name),
 			package.get_url("packages.list_releases"), package)
 
+	upload_path = release.upload_path
 	db.session.delete(release)
 	db.session.commit()
 
-	if release.file_path and os.path.isfile(release.file_path):
-		os.remove(release.file_path)
+	delete_upload_after_commit(upload_path)
 
 	return jsonify({"success": True})
 
@@ -462,10 +462,11 @@ def delete_screenshot(token: APIToken, package: Package, id: int):
 	add_audit_log_on_package(token.owner, "Deleted screenshot {} (API, token={})".format(ss.title, token.name),
 			package.get_url("packages.screenshots"), package)
 
+	upload_path = ss.upload_path
 	db.session.delete(ss)
 	db.session.commit()
 
-	os.remove(ss.file_path)
+	delete_upload_after_commit(upload_path)
 
 	return jsonify({ "success": True })
 

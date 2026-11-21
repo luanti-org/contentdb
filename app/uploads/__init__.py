@@ -5,6 +5,7 @@
 import magic
 import os
 import re
+import sys
 from werkzeug.datastructures import FileStorage
 
 from flask import redirect, send_from_directory
@@ -98,6 +99,27 @@ def get_legacy_thumbnail_url(upload_path: str, thumbnail_level: int):
 
 def delete_upload(filepath: str):
 	return backend_delete_upload(filepath)
+
+
+def delete_upload_after_commit(upload_path: Optional[str]):
+	"""
+	Deletes the file of a release, screenshot or similar, after its row's deletion has been committed.
+
+	`upload_path` is the stored path, such as `/uploads/abc.zip`. Don't pass the object's `file_path`, which is a
+	local copy of the file when uploads are stored in Bunny. Paths that aren't uploads, such as the external URLs of
+	old releases, are left alone.
+
+	Failures are reported rather than raised, as the row has already been deleted. The file is then left unused.
+	"""
+	if not upload_path or not upload_path.startswith("/uploads/"):
+		return
+
+	try:
+		backend_delete_upload(upload_path)
+	except Exception as e:
+		import sentry_sdk
+		sentry_sdk.capture_exception(e)
+		print(f"Failed to delete upload {upload_path}: {e}", file=sys.stderr)
 
 
 # Returns the SHA-256 of each upload as lowercase hex. Uploads that don't exist are left out

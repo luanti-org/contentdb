@@ -2,8 +2,6 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
-import os
-
 from flask import render_template, request, redirect, flash, url_for, abort
 from flask_babel import lazy_gettext, gettext
 from flask_login import login_required, current_user
@@ -14,6 +12,7 @@ from wtforms.validators import InputRequired, Length, Optional, Regexp
 from wtforms_sqlalchemy.fields import QuerySelectField
 
 from app.domain.releases import do_create_vcs_release, DomainError, do_create_zip_release
+from app.uploads import delete_upload_after_commit
 from app.models import Package, db, User, PackageState, Permission, UserRank, PackageDailyStats, LuantiRelease, \
 	PackageRelease, PackageUpdateTrigger, PackageUpdateConfig, ReleaseState
 from app.rediscache import check_and_set_temp_key, make_download_key, increment_download_event
@@ -271,12 +270,11 @@ def delete_release(package, id):
 	add_audit_log_on_package(current_user, "Deleted release {}".format(release.title),
 			package.get_url("packages.list_releases"), package)
 
+	upload_path = release.upload_path
 	db.session.delete(release)
 	db.session.commit()
 
-	if release.file_path and os.path.isfile(release.file_path):
-		from app.uploads import delete_upload
-		delete_upload(release.file_path)
+	delete_upload_after_commit(upload_path)
 
 	return redirect(package.get_url("packages.view"))
 
