@@ -5,6 +5,7 @@
 import datetime
 import re
 from types import SimpleNamespace
+from urllib.parse import quote
 
 import pytest
 
@@ -15,7 +16,8 @@ from app.rediscache import EMAIL_BOUNCES_LAST_IMPORT_KEY, get_email_bounces_last
 from app.tasks.emails import import_email_bounces, send_user_email, send_verify_email, send_single_email, \
 	send_notification_digest
 from app.utils.scaleway_tem import ScalewayTEMError, PAGE_SIZE
-from ..factories import client_request, create_user, login_as
+from ..factories import client_request, create_user, login_as, DEFAULT_PASSWORD
+from .test_github_oauth import stub_github, start as github_start, callback as github_callback
 
 
 API = "https://api.scaleway.com/transactional-email/v1alpha1/regions/fr-par"
@@ -317,3 +319,78 @@ def test_staff_verifying_doesnt_clear_bounce(client):
 
 	sub = get_sub("dead@example.com")
 	assert sub is not None and sub.bounced_at is not None
+
+
+def password_login(client, username: str = "dead", next_url: str | None = None):
+	url = "/user/login/" + (f"?next={quote(next_url)}" if next_url else "")
+	return client_request(client, "POST", url, data={"username": username, "password": DEFAULT_PASSWORD})
+
+
+def test_login_asks_bounced_user_to_confirm_email(client):
+	create_user("dead", email="dead@example.com")
+	make_bounced("dead@example.com")
+
+	rv = password_login(client)
+	assert rv.status_code == 302
+	assert rv.headers["Location"] == "/user/email-bounced/"
+
+	rv = client_request(client, "GET", "/user/email-bounced/")
+	assert rv.status_code == 200
+	html = rv.data.decode("utf-8")
+	assert "dead@example.com" in html
+	assert 'action="/users/dead/settings/email/verify/"' in html
+	assert 'href="/users/dead/settings/email/"' in html
+	assert "email-bounce-alert" not in html
+
+
+def test_login_doesnt_ask_when_email_works(client):
+	create_user("member", email="member@example.com")
+	make_bounced("someone-else@example.com")
+
+	rv = password_login(client, "member")
+	assert rv.status_code == 302
+	assert rv.headers["Location"] != "/user/email-bounced/"
+
+
+def test_next_link_comes_first(client):
+	"""Like setting a password, the prompt is skipped when logging in to go to a page. The banner is shown there."""
+	create_user("dead", email="dead@example.com")
+	make_bounced("dead@example.com")
+
+	rv = password_login(client, next_url="/packages/")
+	assert rv.status_code == 302
+	assert rv.headers["Location"] == "/packages/"
+
+
+def test_setting_a_password_comes_first(client, http_stub):
+	create_user("dead", email="dead@example.com", password=None, github_user_id=1234)
+	make_bounced("dead@example.com")
+	stub_github(http_stub, login="dead")
+
+	rv = github_callback(client, github_start(client))
+	assert rv.status_code == 302
+	assert rv.headers["Location"] == "/user/set-password/"
+
+
+def test_github_login_asks_bounced_user(client, http_stub):
+	create_user("dead", email="dead@example.com", github_user_id=1234)
+	make_bounced("dead@example.com")
+	stub_github(http_stub, login="dead")
+
+	rv = github_callback(client, github_start(client))
+	assert rv.status_code == 302
+	assert rv.headers["Location"] == "/user/email-bounced/"
+
+
+def test_email_bounced_page_redirects_when_email_works(client):
+	login_as(client, create_user("member", email="member@example.com"))
+
+	rv = client_request(client, "GET", "/user/email-bounced/")
+	assert rv.status_code == 302
+	assert rv.headers["Location"] == "/"
+
+
+def test_email_bounced_page_needs_login(client):
+	rv = client_request(client, "GET", "/user/email-bounced/")
+	assert rv.status_code == 302
+	assert "/user/login/" in rv.headers["Location"]

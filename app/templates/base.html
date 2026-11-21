@@ -253,7 +253,7 @@
 	</nav>
 
 	{% block flash_messages %}
-		{% if current_user.is_authenticated and request.endpoint != "users.email_notifications" and get_current_user_email_bounce() %}
+		{% if current_user.is_authenticated and request.endpoint not in ["users.email_notifications", "users.email_bounced"] and get_current_user_email_bounce() %}
 			<div class="alert alert-warning container mt-3" id="email-bounce-alert">
 				{{ _("We couldn't deliver email to your address, so we've stopped sending you emails.") }}
 				<a href="{{ url_for('users.email_notifications', username=current_user.username) }}" class="alert-link">

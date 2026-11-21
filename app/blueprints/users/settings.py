@@ -254,6 +254,19 @@ def email_notifications(username=None):
 			tabs=get_setting_tabs(user), current_tab="notifications")
 
 
+@bp.route("/user/email-bounced/")
+@login_required
+def email_bounced():
+	"""
+	Shown after logging in when email to the user's address bounces, asking them to confirm or change it
+	"""
+	email_bounce = get_email_bounce(current_user.email)
+	if email_bounce is None:
+		return redirect(url_for("homepage.home"))
+
+	return render_template("users/email_bounced.html", email_bounce=email_bounce)
+
+
 @bp.route("/users/<username>/settings/email/verify/", methods=["POST"])
 @login_required
 def email_reverify(username):

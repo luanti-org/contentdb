@@ -18,6 +18,7 @@ from werkzeug.local import LocalProxy
 from app.utils.flask import is_safe_url
 from app.utils.misc import random_string, hash_token
 from app.models import User, UserRank, UserNotificationPreferences, UserSession, db
+from app.domain.email_bounces import get_email_bounce
 
 
 def is_username_valid(username: str) -> bool:
@@ -240,6 +241,9 @@ def post_login(user: User, next_url):
 
 	if not current_user.password:
 		return redirect(url_for("users.set_password"))
+
+	if get_email_bounce(user.email):
+		return redirect(url_for("users.email_bounced"))
 
 	notif_count = user.notifications.filter_by(read_at=None).count()
 	if notif_count > 0:
