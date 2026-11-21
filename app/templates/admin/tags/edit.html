@@ -12,7 +12,7 @@
 	<a class="btn btn-primary float-end" href="{{ url_for('admin.create_edit_tag') }}">New Tag</a>
 	<a class="btn btn-secondary mb-4" href="{{ url_for('admin.tag_list') }}">Back to list</a>
 
-	{% from "macros/forms.html" import render_field, render_submit_field, render_checkbox_field %}
+	{% from "macros/forms.html" import render_field, render_submit_field, render_radio_field %}
 	<form method="POST" action="" enctype="multipart/form-data">
 		{{ form.hidden_tag() }}
 
@@ -21,6 +21,17 @@
 		{% if tag %}
 			{{ render_field(form.name) }}
 		{% endif %}
+		{{ render_radio_field(form.kind, hint="Categories describe what kind of game a package is. Features describe what a package has or does.") }}
+		<div class="form-group mb-3 {% if form.package_types.errors %}has-danger{% endif %}">
+			<label class="form-label">{{ form.package_types.label.text }}</label>
+			{% for subfield in form.package_types %}
+				<div class="form-check">
+					{{ subfield(class_="form-check-input") }}
+					{{ subfield.label(class_="form-check-label") }}
+				</div>
+			{% endfor %}
+			<small class="form-text text-muted">The types this tag can be given to. Leave all unticked for all types.</small>
+		</div>
 		{{ render_submit_field(form.submit) }}
 		{% if tag %}
 			<a class="ms-5" target="_blank" href="{{ url_for('packages.list_all', tag=tag.name) }}">

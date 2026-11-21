@@ -16,7 +16,8 @@ See [Getting Started](https://github.com/luanti-org/contentdb/blob/master/docs/g
 * `backup/`
   * index.json - `version` of the dump format, currently 1, and `created_at` iso timestamp
   * licenses.json - `name`, `is_foss`, and `url` of each license
-  * tags.json - `name`, `title`, `description`, `background_color`, and `text_color` of each tag
+  * tags.json - `name`, `title`, `description`, `background_color`, `text_color`, `kind` (`FEATURE` or `CATEGORY`),
+    and `package_types` (the types the tag can be given to, such as `GAME`; empty for all) of each tag
   * content_warnings.json - `name`, `title`, and `description` of each content warning
   * languages.json - `id` and `title` of each language
   * `<username>/` - for each author or maintainer of an approved package

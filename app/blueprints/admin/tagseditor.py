@@ -6,11 +6,12 @@
 from flask import redirect, render_template, abort, url_for, request
 from flask_login import current_user, login_required
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField
+from wtforms import StringField, TextAreaField, SubmitField, RadioField, SelectMultipleField
+from wtforms.widgets import CheckboxInput, ListWidget
 from wtforms.validators import InputRequired, Length, Optional, Regexp
 
 from . import bp
-from app.models import Permission, Tag, db, AuditSeverity
+from app.models import Permission, Tag, db, AuditSeverity, TagKind, PackageType
 from app.utils.models import add_audit_log
 from app.utils.misc import normalize_line_endings
 
@@ -31,11 +32,22 @@ def tag_list():
 	return render_template("admin/tags/list.html", tags=query.all())
 
 
+def coerce_package_type(item) -> PackageType:
+	package_type = item if isinstance(item, PackageType) else PackageType.get(item)
+	if package_type is None:
+		# WTForms only turns ValueError into a validation error
+		raise ValueError(f"Unknown package type {item}")
+	return package_type
+
+
 class TagForm(FlaskForm):
 	title = StringField("Title", [InputRequired(), Length(3, 100)])
 	description = TextAreaField("Description", [Optional(), Length(0, 500)], filters=[normalize_line_endings])
 	name = StringField("Name", [Optional(), Length(1, 20), Regexp("^[a-z0-9_]", 0,
 			"Lower case letters (a-z), digits (0-9), and underscores (_) only")])
+	kind = RadioField("Kind", choices=TagKind.choices(), coerce=TagKind.coerce, default=TagKind.FEATURE.name)
+	package_types = SelectMultipleField("Package types", choices=PackageType.choices(), coerce=coerce_package_type,
+			widget=ListWidget(prefix_label=False), option_widget=CheckboxInput())
 	submit = SubmitField("Save")
 
 
@@ -57,6 +69,8 @@ def create_edit_tag(name=None):
 		if tag is None:
 			tag = Tag(form.title.data)
 			tag.description = form.description.data
+			tag.kind = form.kind.data
+			tag.package_types = form.package_types.data
 			db.session.add(tag)
 
 			add_audit_log(AuditSeverity.EDITOR, current_user, f"Created tag {tag.name}",

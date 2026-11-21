@@ -14,7 +14,7 @@ import pytest
 from app.default_data import populate_test_data
 from app.domain.dump_import import import_dump, DumpImportError
 from app.models import db, User, UserRank, Package, PackageType, PackageState, PackageDevState, License, Tag, \
-	ContentWarning, Language, MetaPackage, Dependency, PackageTranslation, PackageAlias, PackageRelease, \
+	TagKind, ContentWarning, Language, MetaPackage, Dependency, PackageTranslation, PackageAlias, PackageRelease, \
 	ReleaseState, PackageScreenshot, PackageGameSupport, LuantiRelease
 from app.tasks.dumptask import create_database_dump
 from app.tasks.usertasks import delete_inactive_users
@@ -55,6 +55,10 @@ def setup_source_data():
 
 	game = make_package("imported_game", admin)
 	game.type = PackageType.GAME
+	category = Tag("Survival Sandbox")
+	category.kind = TagKind.CATEGORY
+	category.package_types = [PackageType.GAME]
+	game.tags.append(category)
 
 	package = make_package("imported_mod", editor)
 	package.title = "Imported Mod"
@@ -181,6 +185,13 @@ def test_round_trip_into_fresh_database(client, upload_dir):
 
 	assert {x.username for x in package.maintainers} == {"editor_user", "maintainer_only"}
 	assert [x.name for x in package.tags] == ["mapgen"]
+	category = Tag.query.filter_by(name="survival_sandbox").one()
+	assert category.kind == TagKind.CATEGORY
+	assert category.package_types == [PackageType.GAME]
+	assert category.packages == [Package.query.filter_by(name="imported_game").one()]
+	mapgen = Tag.query.filter_by(name="mapgen").one()
+	assert mapgen.kind == TagKind.FEATURE
+	assert mapgen.package_types == []
 	assert [x.name for x in package.content_warnings] == ["gore"]
 	assert ContentWarning.query.filter_by(name="gore").one().description == "Contains blood"
 	assert [x.name for x in package.provides] == ["imported_api"]

@@ -11,7 +11,7 @@ import typing
 from flask import url_for
 from flask_babel import lazy_gettext, get_locale, gettext, pgettext
 from sqlalchemy import or_, func
-from sqlalchemy.dialects.postgresql import insert
+from sqlalchemy.dialects.postgresql import ARRAY, insert
 from sqlalchemy_utils.types import TSVectorType
 
 from app import app
@@ -1105,6 +1105,42 @@ class ContentWarning(Model):
 		return { "name": self.name, "title": self.title, "description": description }
 
 
+class TagKind(enum.Enum):
+	"""
+	What a tag describes
+	"""
+
+	# What a package has or does, for example "PvP" or "Crafting"
+	FEATURE = "Feature"
+
+	# What kind of game a package is, for example "Survival Sandbox"
+	CATEGORY = "Category"
+
+	@property
+	def title(self) -> str:
+		if self == TagKind.FEATURE:
+			return lazy_gettext("Feature")
+		elif self == TagKind.CATEGORY:
+			return lazy_gettext("Category")
+		else:
+			raise ValueError("Unknown tag kind")
+
+	@classmethod
+	def choices(cls):
+		return [(choice.name, choice.title) for choice in cls]
+
+	@classmethod
+	def coerce(cls, item):
+		if isinstance(item, TagKind):
+			return item
+
+		try:
+			return TagKind[item]
+		except KeyError as e:
+			# WTForms only turns ValueError into a validation error
+			raise ValueError(f"Unknown tag kind {item}") from e
+
+
 class Tag(Model):
 	id              = db.Column(db.Integer, primary_key=True)
 	name            = db.Column(db.String(100), unique=True, nullable=False)
@@ -1113,6 +1149,13 @@ class Tag(Model):
 	backgroundColor = db.Column(db.String(6), nullable=False)
 	textColor       = db.Column(db.String(6), nullable=False)
 	views           = db.Column(db.Integer, nullable=False, default=0)
+
+	kind            = db.Column(db.Enum(TagKind), nullable=False,
+			default=TagKind.FEATURE, server_default=TagKind.FEATURE.name)
+
+	# The package types this tag can be given to. Empty means all types.
+	package_types   = db.Column(ARRAY(db.Enum(PackageType)), nullable=False,
+			default=list, server_default="{}")
 
 	packages        = db.relationship("Package", back_populates="tags", secondary=Tags)
 
@@ -1124,6 +1167,14 @@ class Tag(Model):
 		import re
 		regex = re.compile("[^a-z_]")
 		self.name = regex.sub("", self.title.lower().replace(" ", "_"))
+
+	def applies_to(self, package_type: PackageType) -> bool:
+		return not self.package_types or package_type in self.package_types
+
+	@staticmethod
+	def applies_to_filter(package_type: PackageType):
+		"""SQL equivalent of applies_to, for Tag.query.filter()"""
+		return or_(func.cardinality(Tag.package_types) == 0, Tag.package_types.any(package_type))
 
 	def get_translated(self):
 		# Translations are automated on dynamic data using `extract_translations.py`

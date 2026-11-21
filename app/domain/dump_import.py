@@ -16,7 +16,7 @@ from dataclasses import dataclass, field
 from typing import Any, Optional
 
 from app.models import db, User, Package, PackageType, PackageState, PackageDevState, PackageAIDisclosure, License, \
-	Tag, ContentWarning, Language, MetaPackage, Dependency, PackageTranslation, PackageAlias, PackageRelease, \
+	Tag, TagKind, ContentWarning, Language, MetaPackage, Dependency, PackageTranslation, PackageAlias, PackageRelease, \
 	ReleaseState, PackageScreenshot, PackageGameSupport, LuantiRelease
 
 
@@ -122,6 +122,9 @@ class _Importer:
 				tag = Tag(row["title"], row["background_color"], row["text_color"])
 				tag.name = row["name"]
 				tag.description = row["description"]
+				# Missing from dumps made before tag kinds were added
+				tag.kind = TagKind[row.get("kind", TagKind.FEATURE.name)]
+				tag.package_types = [PackageType[x] for x in row.get("package_types", [])]
 				db.session.add(tag)
 				self.tags[tag.name] = tag
 

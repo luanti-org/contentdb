@@ -11,7 +11,8 @@ import pytest
 
 from app.default_data import populate_test_data
 from app.models import db, User, UserRank, Dependency, MetaPackage, ContentWarning, Language, PackageAlias, \
-	PackageTranslation, PackageGameSupport, PackageType, PackageState, PackageRelease, ReleaseState, PackageScreenshot, Package
+	PackageTranslation, PackageGameSupport, PackageType, PackageState, PackageRelease, ReleaseState, PackageScreenshot, Package, \
+	Tag, TagKind
 from app.tasks.dumptask import create_database_dump
 from app.uploads import copy_to_uploads, local
 from ..utils import make_package
@@ -123,6 +124,10 @@ def add_game_support(package: Package, game: Package):
 
 def test_database_dump_lookup_tables(client, upload_dir):
 	db.session.add(ContentWarning("Gore", "Contains blood"))
+	category = Tag("Survival Sandbox")
+	category.kind = TagKind.CATEGORY
+	category.package_types = [PackageType.GAME]
+	db.session.add(category)
 	add_language("fr", "Français")
 	db.session.commit()
 
@@ -135,6 +140,10 @@ def test_database_dump_lookup_tables(client, upload_dir):
 	tags = {x["name"]: x for x in read_dump_file(upload_dir, "tags.json")}
 	assert tags["mapgen"]["title"] == "Mapgen"
 	assert len(tags["mapgen"]["background_color"]) == 6
+	assert tags["mapgen"]["kind"] == "FEATURE"
+	assert tags["mapgen"]["package_types"] == []
+	assert tags["survival_sandbox"]["kind"] == "CATEGORY"
+	assert tags["survival_sandbox"]["package_types"] == ["GAME"]
 
 	assert read_dump_file(upload_dir, "content_warnings.json") == [
 		{"name": "gore", "title": "Gore", "description": "Contains blood"}]

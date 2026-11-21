@@ -42,6 +42,11 @@
 				<div class="row">
 					<div class="col-sm-2">
 						{{ t.title }}
+						{% if t.kind.name != "FEATURE" or t.package_types %}
+							<small class="d-block text-muted">
+								{{ t.kind.title }}{% if t.package_types %}: {{ t.package_types | map(attribute="text") | join(", ") }}{% endif %}
+							</small>
+						{% endif %}
 					</div>
 
 					<div class="col-sm">
