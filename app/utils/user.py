@@ -235,15 +235,22 @@ def make_flask_login_password(plaintext):
 	return bcrypt.hash(plaintext.encode("UTF-8"))
 
 
-def post_login(user: User, next_url):
-	if next_url and is_safe_url(next_url):
-		return redirect(next_url)
+def get_safe_next_url(next_url: Optional[str]) -> Optional[str]:
+	return next_url if next_url and is_safe_url(next_url) else None
 
+
+def post_login(user: User, next_url):
+	next_url = get_safe_next_url(next_url)
+
+	# These come before next_url, and go on to it when done
 	if not current_user.password:
-		return redirect(url_for("users.set_password"))
+		return redirect(url_for("users.set_password", next=next_url))
 
 	if get_email_bounce(user.email):
-		return redirect(url_for("users.email_bounced"))
+		return redirect(url_for("users.email_bounced", next=next_url))
+
+	if next_url:
+		return redirect(next_url)
 
 	notif_count = user.notifications.filter_by(read_at=None).count()
 	if notif_count > 0:

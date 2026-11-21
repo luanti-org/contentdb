@@ -21,7 +21,7 @@ from app.domain.user_deletion import delete_user, schedule_user_deletion, send_d
 	get_pending_deletion_error, DELETION_PERIODS
 from app.utils.ratelimit import hit_email_ratelimit
 from app.utils.user import rank_required, end_user_sessions, logout_current_session, require_fresh_session, \
-	fresh_login_required
+	fresh_login_required, get_safe_next_url
 from app.utils.flask import has_blocked_domains
 from . import bp
 from .account import confirm_email_verification
@@ -260,18 +260,22 @@ def email_bounced():
 	"""
 	Shown after logging in when email to the user's address bounces, asking them to confirm or change it
 	"""
+	next_url = get_safe_next_url(request.args.get("next"))
+
 	email_bounce = get_email_bounce(current_user.email)
 	if email_bounce is None:
-		return redirect(url_for("homepage.home"))
+		return redirect(next_url or url_for("homepage.home"))
 
-	return render_template("users/email_bounced.html", email_bounce=email_bounce)
+	return render_template("users/email_bounced.html", email_bounce=email_bounce, next_url=next_url)
 
 
 @bp.route("/users/<username>/settings/email/verify/", methods=["POST"])
 @login_required
 def email_reverify(username):
 	"""
-	Sends a verification email to the user's current address, such as to show that it works after it bounced
+	Sends a verification email to the user's current address, such as to show that it works after it bounced.
+
+	With `next` in the form, such as from the page shown after logging in, it goes on to that page afterwards.
 	"""
 	user = User.query.filter_by(username=username).first()
 	if not user:
@@ -280,17 +284,20 @@ def email_reverify(username):
 	if not user.check_perm(current_user, Permission.CHANGE_EMAIL):
 		abort(403)
 
+	next_url = get_safe_next_url(request.form.get("next"))
+	settings_url = url_for("users.email_notifications", username=user.username)
+
 	if not user.email:
 		flash(gettext("You don't have an email address"), "danger")
-		return redirect(url_for("users.email_notifications", username=user.username))
+		return redirect(settings_url)
 
 	if EmailSubscription.query_by_email(user.email).filter_by(blacklisted=True).count() > 0:
 		flash(gettext("That email address has been unsubscribed/blacklisted, and cannot be used"), "danger")
-		return redirect(url_for("users.email_notifications", username=user.username))
+		return redirect(settings_url)
 
 	if not hit_email_ratelimit(user.email):
 		flash(gettext("Too many emails have been sent recently, please wait before trying again"), "danger")
-		return redirect(url_for("users.email_notifications", username=user.username))
+		return redirect(next_url or settings_url)
 
 	token = random_string(32)
 
@@ -302,6 +309,12 @@ def email_reverify(username):
 	db.session.commit()
 
 	send_verify_email.delay(user.email, token, get_locale().language)
+
+	if next_url:
+		flash(gettext("We've sent a verification email to %(email)s. Click the link in it to confirm your address.",
+				email=user.email), "success")
+		return redirect(next_url)
+
 	return redirect(url_for("users.email_sent"))
 
 

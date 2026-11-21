@@ -21,12 +21,15 @@
 	<div class="d-flex flex-wrap gap-2 mt-4">
 		<form method="POST" action="{{ url_for('users.email_reverify', username=current_user.username) }}">
 			<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+			{% if next_url %}
+				<input type="hidden" name="next" value="{{ next_url }}">
+			{% endif %}
 			<input type="submit" class="btn btn-primary" value="{{ _('Confirm my email address') }}">
 		</form>
 		<a class="btn btn-secondary" href="{{ url_for('users.email_notifications', username=current_user.username) }}">
 			{{ _("Change my email address") }}
 		</a>
-		<a class="btn btn-link" href="{{ url_for('homepage.home') }}">
+		<a class="btn btn-link" href="{{ next_url or url_for('homepage.home') }}">
 			{{ _("Not now") }}
 		</a>
 	</div>

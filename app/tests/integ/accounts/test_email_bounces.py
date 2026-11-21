@@ -8,6 +8,7 @@ from types import SimpleNamespace
 from urllib.parse import quote
 
 import pytest
+from bs4 import BeautifulSoup
 
 from app import app, redis_client
 from app.models import db, EmailSubscription, AuditLogEntry, UserRank, UserEmailVerification
@@ -16,7 +17,7 @@ from app.rediscache import EMAIL_BOUNCES_LAST_IMPORT_KEY, get_email_bounces_last
 from app.tasks.emails import import_email_bounces, send_user_email, send_verify_email, send_single_email, \
 	send_notification_digest
 from app.utils.scaleway_tem import ScalewayTEMError, PAGE_SIZE
-from ..factories import client_request, create_user, login_as, DEFAULT_PASSWORD
+from ..factories import client_request, create_user, login_as, get_user, DEFAULT_PASSWORD
 from .test_github_oauth import stub_github, start as github_start, callback as github_callback
 
 
@@ -339,6 +340,7 @@ def test_login_asks_bounced_user_to_confirm_email(client):
 	html = rv.data.decode("utf-8")
 	assert "dead@example.com" in html
 	assert 'action="/users/dead/settings/email/verify/"' in html
+	assert 'name="next"' not in html
 	assert 'href="/users/dead/settings/email/"' in html
 	assert "email-bounce-alert" not in html
 
@@ -347,29 +349,106 @@ def test_login_doesnt_ask_when_email_works(client):
 	create_user("member", email="member@example.com")
 	make_bounced("someone-else@example.com")
 
-	rv = password_login(client, "member")
+	rv = password_login(client, "member", next_url="/packages/")
 	assert rv.status_code == 302
-	assert rv.headers["Location"] != "/user/email-bounced/"
+	assert rv.headers["Location"] == "/packages/"
 
 
-def test_next_link_comes_first(client):
-	"""Like setting a password, the prompt is skipped when logging in to go to a page. The banner is shown there."""
+def test_bounce_prompt_comes_before_next_link(client):
 	create_user("dead", email="dead@example.com")
 	make_bounced("dead@example.com")
 
 	rv = password_login(client, next_url="/packages/")
 	assert rv.status_code == 302
+	assert rv.headers["Location"] == "/user/email-bounced/?next=/packages/"
+
+	html = client_request(client, "GET", "/user/email-bounced/?next=/packages/").data.decode("utf-8")
+	assert '<input type="hidden" name="next" value="/packages/">' in html
+	assert 'href="/packages/"' in html
+
+
+def test_unsafe_next_link_is_dropped(client):
+	create_user("dead", email="dead@example.com")
+	make_bounced("dead@example.com")
+
+	# The login page already refuses it
+	rv = password_login(client, next_url="https://example.com/")
+	assert rv.status_code == 400
+
+	# The prompt drops it if it's given one directly
+	login_as(client, get_user("dead"))
+	rv = client_request(client, "GET", "/user/email-bounced/?next=https://example.com/")
+	soup = BeautifulSoup(rv.data.decode("utf-8"), "html.parser")
+	main = soup.find("main")
+	assert main is not None
+	assert main.find("input", attrs={"name": "next"}) is None
+	assert main.find("a", href="https://example.com/") is None
+	assert main.find("a", string=re.compile("Not now"), href="/") is not None
+
+
+def test_confirming_from_prompt_goes_on_to_next_link(client, eager_tasks, mailpit):
+	user = create_user("dead", email="dead@example.com")
+	make_bounced("dead@example.com")
+	login_as(client, user)
+
+	rv = client_request(client, "POST", "/users/dead/settings/email/verify/", data={"next": "/packages/"})
+	assert rv.status_code == 302
+	assert rv.headers["Location"] == "/packages/"
+	mailpit.wait_for("dead@example.com")
+
+	rv = client_request(client, "GET", "/packages/")
+	assert b"sent a verification email to dead@example.com" in rv.data
+
+
+def test_confirming_ignores_unsafe_next_link(client, eager_tasks, mailpit):
+	user = create_user("dead", email="dead@example.com")
+	make_bounced("dead@example.com")
+	login_as(client, user)
+
+	rv = client_request(client, "POST", "/users/dead/settings/email/verify/", data={"next": "https://example.com/"})
+	assert rv.status_code == 302
+	assert rv.headers["Location"].endswith("/email_sent/")
+
+
+def test_setting_a_password_comes_before_next_link(client, http_stub):
+	create_user("member", email="member@example.com", password=None, github_user_id=1234)
+	stub_github(http_stub, login="member")
+
+	rv = github_callback(client, github_start(client, "/packages/"), "/packages/")
+	assert rv.status_code == 302
+	assert rv.headers["Location"] == "/user/set-password/?next=/packages/"
+
+	rv = client_request(client, "POST", "/user/set-password/?next=/packages/",
+			data={"password": DEFAULT_PASSWORD, "password2": DEFAULT_PASSWORD})
+	assert rv.status_code == 302
 	assert rv.headers["Location"] == "/packages/"
 
 
-def test_setting_a_password_comes_first(client, http_stub):
+def test_setting_a_password_then_asks_about_bounce(client, http_stub):
+	create_user("dead", email="dead@example.com", password=None, github_user_id=1234)
+	make_bounced("dead@example.com")
+	stub_github(http_stub, login="dead")
+
+	rv = github_callback(client, github_start(client, "/packages/"), "/packages/")
+	assert rv.headers["Location"] == "/user/set-password/?next=/packages/"
+
+	rv = client_request(client, "POST", "/user/set-password/?next=/packages/",
+			data={"password": DEFAULT_PASSWORD, "password2": DEFAULT_PASSWORD})
+	assert rv.status_code == 302
+	assert rv.headers["Location"] == "/user/email-bounced/?next=/packages/"
+
+
+def test_setting_a_password_without_next_link(client, http_stub):
 	create_user("dead", email="dead@example.com", password=None, github_user_id=1234)
 	make_bounced("dead@example.com")
 	stub_github(http_stub, login="dead")
 
 	rv = github_callback(client, github_start(client))
-	assert rv.status_code == 302
 	assert rv.headers["Location"] == "/user/set-password/"
+
+	rv = client_request(client, "POST", "/user/set-password/",
+			data={"password": DEFAULT_PASSWORD, "password2": DEFAULT_PASSWORD})
+	assert rv.headers["Location"] == "/user/email-bounced/"
 
 
 def test_github_login_asks_bounced_user(client, http_stub):
@@ -377,9 +456,9 @@ def test_github_login_asks_bounced_user(client, http_stub):
 	make_bounced("dead@example.com")
 	stub_github(http_stub, login="dead")
 
-	rv = github_callback(client, github_start(client))
+	rv = github_callback(client, github_start(client, "/packages/"), "/packages/")
 	assert rv.status_code == 302
-	assert rv.headers["Location"] == "/user/email-bounced/"
+	assert rv.headers["Location"] == "/user/email-bounced/?next=/packages/"
 
 
 def test_email_bounced_page_redirects_when_email_works(client):
@@ -388,6 +467,9 @@ def test_email_bounced_page_redirects_when_email_works(client):
 	rv = client_request(client, "GET", "/user/email-bounced/")
 	assert rv.status_code == 302
 	assert rv.headers["Location"] == "/"
+
+	rv = client_request(client, "GET", "/user/email-bounced/?next=/packages/")
+	assert rv.headers["Location"] == "/packages/"
 
 
 def test_email_bounced_page_needs_login(client):

@@ -100,8 +100,9 @@ def test_sign_up_keeps_next(client, http_stub):
 
 	rv = confirm_sign_up(client)
 
+	# New accounts don't have a password, so are asked to set one before going on to the next page
 	assert rv.status_code == 302
-	assert rv.headers["Location"] == "/packages/"
+	assert rv.headers["Location"] == "/user/set-password/?next=/packages/"
 	assert logged_in_user(client) == get_user("octocat")
 
 

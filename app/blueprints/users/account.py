@@ -19,11 +19,11 @@ from app.utils.models import add_audit_log
 from app.utils.ratelimit import RateLimit, get_client_ip_key, hit_email_ratelimit, can_send_email
 from app.utils.user import make_flask_login_password, is_safe_url, check_password_hash, post_login, \
 	login_user_with_session, logout_current_session, end_user_sessions, mark_session_fresh, is_session_fresh, \
-	require_fresh_session
+	require_fresh_session, get_safe_next_url
 from . import bp
 from app.models import User, AuditSeverity, db, EmailSubscription, UserEmailVerification
 from app.domain.users import create_user
-from app.domain.email_bounces import clear_bounce
+from app.domain.email_bounces import clear_bounce, get_email_bounce
 
 
 class LoginForm(FlaskForm):
@@ -285,7 +285,7 @@ class ChangePasswordForm(FlaskForm):
 	submit = SubmitField(lazy_gettext("Save"))
 
 
-def handle_set_password(form):
+def handle_set_password(form, done_url: str | None = None):
 	one = form.password.data
 	two = form.password2.data
 	if one != two:
@@ -337,7 +337,7 @@ def handle_set_password(form):
 
 	db.session.commit()
 	flash(gettext("Your password has been changed successfully."), "success")
-	return redirect(url_for("homepage.home"))
+	return redirect(done_url or url_for("homepage.home"))
 
 
 @bp.route("/user/change-password/", methods=["GET", "POST"])
@@ -362,8 +362,10 @@ def set_password():
 	if current_user.password and not current_user.is_password_reset_required:
 		return redirect(url_for("users.change_password"))
 
+	next_url = get_safe_next_url(request.args.get("next"))
+
 	# Adding a password, or an email, adds a way to sign in
-	ret = require_fresh_session(url_for("users.set_password"))
+	ret = require_fresh_session(url_for("users.set_password", next=next_url))
 	if ret:
 		return ret
 
@@ -371,7 +373,12 @@ def set_password():
 	form = form_class(request.form)
 
 	if form.validate_on_submit():
-		ret = handle_set_password(form)
+		# Logging in asks users to set a password before asking about a bounced email
+		done_url = next_url
+		if get_email_bounce(current_user.email):
+			done_url = url_for("users.email_bounced", next=next_url)
+
+		ret = handle_set_password(form, done_url)
 		if ret:
 			return ret
 
