@@ -6,11 +6,13 @@
 from flask import redirect, url_for, abort, render_template, request, flash
 from flask_login import current_user, login_required
 from sqlalchemy import or_, and_
+from sqlalchemy.orm import selectinload
 
 from app.models import Package, PackageState, PackageScreenshot, PackageUpdateConfig, ForumTopic, db, \
 	PackageRelease, Permission, UserRank, License, MetaPackage, Dependency, AuditLogEntry, Tag, LuantiRelease, Report, \
 	ReleaseState, User, ThreadReply, Thread, AuditSeverity, PackageReview
 from app.querybuilder import QueryBuilder
+from app.utils.flask import get_int_or_abort, url_set_query
 from app.utils.misc import is_yes
 from app.utils.user import rank_required
 from app.utils.models import add_audit_log
@@ -147,21 +149,38 @@ def view_editor():
 			unanswered_approval_threads=unanswered_approval_threads)
 
 
+# Packages per page of /todo/tags/
+TAGS_PAGE_SIZE = 100
+
+
 @bp.route("/todo/tags/")
 @login_required
 def tags():
 	qb    = QueryBuilder(request.args, cookies=True)
 	qb.set_sort_if_none("score", "desc")
-	query = qb.build_package_query()
+
+	# Only the columns each row needs (for_tiles), with every row's tags and maintainers (for the edit links'
+	# permission checks) loaded in one query each, rather than one query per row
+	query = qb.build_package_query(for_tiles=True).options(
+		selectinload(Package.tags),
+		selectinload(Package.maintainers).load_only(User.id, raiseload=True))
 
 	only_no_tags = is_yes(request.args.get("no_tags"))
 	if only_no_tags:
-		query = query.filter(Package.tags == None)
+		query = query.filter(~Package.tags.any())
 
-	tags = Tag.query.order_by(db.asc(Tag.title)).all()
+	page = get_int_or_abort(request.args.get("page"), 1)
+	pagination = query.paginate(page=page, per_page=TAGS_PAGE_SIZE)
 
-	return render_template("todo/tags.html", current_tab="tags", packages=query.all(),
-			tags=tags, only_no_tags=only_no_tags)
+	# A badge links to the list filtered by its tag. Worked out once per tag rather than once per badge, as there are
+	# far more badges than tags
+	tag_links = {
+		tag.id: (tag.get_translated()["title"], url_set_query(_add={"tag": tag.name}, page=1))
+		for tag in Tag.query.all()
+	}
+
+	return render_template("todo/tags.html", current_tab="tags", packages=pagination.items, pagination=pagination,
+			tag_links=tag_links, only_no_tags=only_no_tags)
 
 
 @bp.route("/todo/modnames/")

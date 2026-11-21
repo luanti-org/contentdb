@@ -61,10 +61,8 @@
 			</td>
 			<td class="tags">
 				{% for tag in package.tags %}
-					<a class="badge bg-primary me-1"
-							href="{{ url_set_query(_add={ 'tag': tag.name }) }}">
-						{{ tag.get_translated().title }}
-					</a>
+					{% set title, url = tag_links[tag.id] %}
+					<a class="badge bg-primary me-1" href="{{ url }}">{{ title }}</a>
 				{% endfor %}
 				<!-- <a class="badge bg-secondary add-btn px-2" href="#">
 					<i class="fas fa-plus"></i>
@@ -73,5 +71,8 @@
 		</tr>
 	{% endfor %}
 </table>
+
+{% from "macros/pagination.html" import render_pagination %}
+{{ render_pagination(pagination, url_set_query) }}
 
 {% endblock %}
