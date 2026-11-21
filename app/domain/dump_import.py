@@ -125,6 +125,7 @@ class _Importer:
 				# Missing from dumps made before tag kinds were added
 				tag.kind = TagKind[row.get("kind", TagKind.FEATURE.name)]
 				tag.package_types = [PackageType[x] for x in row.get("package_types", [])]
+				tag.icon = row.get("icon")
 				db.session.add(tag)
 				self.tags[tag.name] = tag
 

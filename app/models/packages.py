@@ -1153,6 +1153,9 @@ class Tag(Model):
 	kind            = db.Column(db.Enum(TagKind), nullable=False,
 			default=TagKind.FEATURE, server_default=TagKind.FEATURE.name)
 
+	# Font Awesome 5 icon class, such as "fa-dragon", shown on category tiles. Checked with app.utils.icons.is_icon
+	icon            = db.Column(db.String(50), nullable=True, default=None)
+
 	# Upload path of a picture of the tag's top packages, for its tile on the homepage. Made by
 	# app.tasks.collagetasks.update_category_collages, and None until then.
 	collage_path    = db.Column(db.String(100), nullable=True, default=None)
@@ -1196,6 +1199,7 @@ class Tag(Model):
 			"views": self.views,
 			"kind": self.kind.name.lower(),
 			"package_types": [x.to_name() for x in self.package_types],
+			"icon": self.icon,
 		}
 
 

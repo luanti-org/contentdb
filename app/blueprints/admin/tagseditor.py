@@ -9,13 +9,14 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileRequired
 from wtforms import StringField, TextAreaField, SubmitField, RadioField, SelectMultipleField, FileField
 from wtforms.widgets import CheckboxInput, ListWidget
-from wtforms.validators import InputRequired, Length, Optional, Regexp
+from wtforms.validators import InputRequired, Length, Optional, Regexp, ValidationError
 
 from . import bp
 from app.domain.DomainError import DomainError
 from app.domain.category_import import parse_category_csv, import_categories as do_import_categories
 from app.models import Permission, Tag, db, AuditSeverity, TagKind, PackageType
 from app.utils.models import add_audit_log
+from app.utils.icons import is_icon
 from app.utils.misc import normalize_line_endings
 
 
@@ -51,7 +52,12 @@ class TagForm(FlaskForm):
 	kind = RadioField("Kind", choices=TagKind.choices(), coerce=TagKind.coerce, default=TagKind.FEATURE.name)
 	package_types = SelectMultipleField("Package types", choices=PackageType.choices(), coerce=coerce_package_type,
 			widget=ListWidget(prefix_label=False), option_widget=CheckboxInput())
+	icon = StringField("Icon", [Optional(), Length(1, 50)], filters=[lambda x: x.strip() if x else None])
 	submit = SubmitField("Save")
+
+	def validate_icon(self, field):
+		if field.data and not is_icon(field.data):
+			raise ValidationError("Not a Font Awesome 5 solid icon. Use its class name, such as fa-dragon")
 
 
 @bp.route("/tags/new/", methods=["GET", "POST"])
@@ -74,6 +80,7 @@ def create_edit_tag(name=None):
 			tag.description = form.description.data
 			tag.kind = form.kind.data
 			tag.package_types = form.package_types.data
+			tag.icon = form.icon.data
 			db.session.add(tag)
 
 			add_audit_log(AuditSeverity.EDITOR, current_user, f"Created tag {tag.name}",

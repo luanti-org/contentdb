@@ -106,3 +106,39 @@ def test_applies_to_filter(client):
 	assert names(PackageType.GAME) == ["everything", "game_only"]
 	assert names(PackageType.MOD) == ["everything", "mods_and_packs"]
 	assert names(PackageType.TXP) == ["everything", "mods_and_packs"]
+
+
+def test_edit_tag_icon(client):
+	make_tag("Puzzle Game")
+	login_as(client, create_user("editor", rank=UserRank.EDITOR))
+	data = {"title": "Puzzle Game", "name": "puzzle_game", "kind": "CATEGORY"}
+
+	rv = client.post("/tags/puzzle_game/edit/", data={**data, "icon": " fa-puzzle-piece "})
+	assert rv.status_code == 302
+	assert get_tag("puzzle_game").icon == "fa-puzzle-piece"
+
+	html = client.get("/tags/").data.decode("utf-8")
+	assert '<i class="fas fa-puzzle-piece fa-fw me-1" aria-hidden="true"></i>' in html
+	html = client.get("/tags/puzzle_game/edit/").data.decode("utf-8")
+	assert 'value="fa-puzzle-piece"' in html
+
+	# Not an icon in the bundled Font Awesome
+	for icon in ["fa-screwdriver-wrench", "fa-github", "dragon"]:
+		rv = client.post("/tags/puzzle_game/edit/", data={**data, "icon": icon})
+		assert rv.status_code == 200
+		assert "Not a Font Awesome 5 solid icon" in rv.data.decode("utf-8")
+		assert get_tag("puzzle_game").icon == "fa-puzzle-piece"
+
+	# Blank removes it
+	rv = client.post("/tags/puzzle_game/edit/", data={**data, "icon": ""})
+	assert rv.status_code == 302
+	assert get_tag("puzzle_game").icon is None
+
+
+def test_create_tag_with_icon(client):
+	login_as(client, create_user("editor", rank=UserRank.EDITOR))
+
+	rv = client.post("/tags/new/", data={"title": "Racing", "kind": "CATEGORY", "icon": "fa-flag-checkered"})
+
+	assert rv.status_code == 302
+	assert get_tag("racing").icon == "fa-flag-checkered"

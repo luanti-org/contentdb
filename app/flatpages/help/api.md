@@ -542,6 +542,8 @@ Supported query parameters:
         * `kind`: `feature` for what a package has or does, or `category` for what kind of game a package is.
           Games have at most two categories.
         * `package_types`: list of the package types this tag can be given to, such as `game`. Empty means all types.
+        * `icon`: a [Font Awesome 5](https://fontawesome.com/v5/search?o=r&m=free&s=solid) solid icon class name,
+          such as `fa-dragon`, or null. Set on categories.
 
 ### Content Warnings
 

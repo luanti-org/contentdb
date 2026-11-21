@@ -23,6 +23,7 @@ def test_category_tiles(client):
 	# Created out of alphabetical order, as tiles are in creation order
 	survival = make_category("Survival Sandbox", "Gather & survive")
 	puzzle = make_category("Puzzle Game")
+	puzzle.icon = "fa-puzzle-piece"
 	racing = make_category("Racing")
 	make_category("Strategy")
 	mapgen = Tag.query.filter_by(name="mapgen").one()
@@ -48,6 +49,7 @@ def test_category_tiles(client):
 	# The title, with the description in the drop down shown on hover, like a package tile
 	tile = html[html.index('href="/packages/?type=game&amp;tag=survival_sandbox"'):]
 	tile = tile[:tile.index("</a>")]
+	assert '<i class="fas fa-gamepad category-icon" aria-hidden="true"></i>' in tile, "the default icon"
 	assert '<div class="info-wrapper">' in tile
 	assert "<p>Gather &amp; survive</p>" in tile
 
@@ -55,6 +57,8 @@ def test_category_tiles(client):
 	tile = html[html.index('href="/packages/?type=game&amp;tag=puzzle_game"'):]
 	tile = tile[:tile.index("</a>")]
 	assert "info-wrapper" not in tile
+	# The icon chosen in the tag editor
+	assert '<i class="fas fa-puzzle-piece category-icon" aria-hidden="true"></i>' in tile
 
 
 def test_category_tiles_use_base_query(client):

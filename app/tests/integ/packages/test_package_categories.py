@@ -238,7 +238,9 @@ def test_api_rejects_category_on_mod(client):
 
 
 def test_api_tags_list_kind_and_types(client):
-	make_categories()
+	puzzle, _, _ = make_categories()
+	puzzle.icon = "fa-puzzle-piece"
+	db.session.commit()
 
 	tags = {x["name"]: x for x in client.get("/api/tags/").json}
 
@@ -246,6 +248,8 @@ def test_api_tags_list_kind_and_types(client):
 	assert tags["puzzle_game"]["package_types"] == ["game"]
 	assert tags["mapgen"]["kind"] == "feature"
 	assert tags["mapgen"]["package_types"] == []
+	assert tags["puzzle_game"]["icon"] == "fa-puzzle-piece"
+	assert tags["mapgen"]["icon"] is None
 
 
 def make_ready_game() -> Package:

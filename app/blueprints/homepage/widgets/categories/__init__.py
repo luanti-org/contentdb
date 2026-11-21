@@ -24,7 +24,12 @@ class CategoryTile:
 	hue: int
 	# Picture of the category's top packages, made by a scheduled task, or None until then
 	image_url: Optional[str]
+	# Font Awesome icon class, such as "fa-dragon"
+	icon: str
 
+
+# For categories without an icon, set in the tag editor
+DEFAULT_CATEGORY_ICON = "fa-gamepad"
 
 # Hue of the first category, blue
 FIRST_HUE = 210
@@ -84,7 +89,8 @@ class CategoriesWidget(Widget):
 				description=translated["description"] or None,
 				url=url_for("packages.list_all") + "?" + urlencode(base_args + [("tag", tag.name)]),
 				hue=hues[tag.id],
-				image_url=get_public_upload_url(tag.collage_path) if tag.collage_path else None))
+				image_url=get_public_upload_url(tag.collage_path) if tag.collage_path else None,
+				icon=tag.icon or DEFAULT_CATEGORY_ICON))
 
 		return {
 			"tiles": tiles,

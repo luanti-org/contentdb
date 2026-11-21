@@ -32,6 +32,10 @@
 			{% endfor %}
 			<small class="form-text text-muted">The types this tag can be given to. Leave all unticked for all types.</small>
 		</div>
+		{{ render_field(form.icon, placeholder="fa-dragon", hint="Shown on category tiles on the homepage. A Font Awesome 5 solid icon's class name, from <a href='https://fontawesome.com/v5/search?o=r&amp;m=free&amp;s=solid' target='_blank' rel='noopener'>the icon list</a>.") }}
+		{% if tag and tag.icon %}
+			<p class="text-muted">Preview: <i class="fas {{ tag.icon }} fa-2x ms-2 align-middle" aria-hidden="true"></i></p>
+		{% endif %}
 		{{ render_submit_field(form.submit) }}
 		{% if tag %}
 			<a class="ms-5" target="_blank" href="{{ url_for('packages.list_all', tag=tag.name) }}">

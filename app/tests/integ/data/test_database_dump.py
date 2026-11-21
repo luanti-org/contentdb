@@ -127,6 +127,7 @@ def test_database_dump_lookup_tables(client, upload_dir):
 	category = Tag("Survival Sandbox")
 	category.kind = TagKind.CATEGORY
 	category.package_types = [PackageType.GAME]
+	category.icon = "fa-campground"
 	db.session.add(category)
 	add_language("fr", "Français")
 	db.session.commit()
@@ -144,6 +145,8 @@ def test_database_dump_lookup_tables(client, upload_dir):
 	assert tags["mapgen"]["package_types"] == []
 	assert tags["survival_sandbox"]["kind"] == "CATEGORY"
 	assert tags["survival_sandbox"]["package_types"] == ["GAME"]
+	assert tags["survival_sandbox"]["icon"] == "fa-campground"
+	assert tags["mapgen"]["icon"] is None
 
 	assert read_dump_file(upload_dir, "content_warnings.json") == [
 		{"name": "gore", "title": "Gore", "description": "Contains blood"}]

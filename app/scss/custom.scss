@@ -331,37 +331,38 @@ pre {
 		background: hsl(var(--tile-hue), 45%, 14%);
 		isolation: isolate;
 
-		// One semi-transparent colour per category in the bottom right, fading to nothing in the top left
-		&::after {
-			content: "";
-			position: absolute;
-			inset: 0;
-			z-index: 1;
-			background: linear-gradient(to top left, hsla(var(--tile-hue), 70%, 40%, 0.8) 0%,
-				hsla(var(--tile-hue), 70%, 40%, 0) 100%);
-			transition: opacity 0.3s;
-		}
-
 		// Shows the picture as it is
-		&:hover::after {
-			opacity: 0;
+		&:hover .category-image {
+			filter: none;
 		}
 	}
 
-	// Server-rendered picture of the category's top packages, app/utils/collage.py
+	// Server-rendered picture of the category's top packages, app/utils/collage.py. Dimmed so the title is readable,
+	// until hovered.
 	.category-image {
 		position: absolute;
 		inset: 0;
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+		filter: brightness(0.5);
+		transition: filter 0.3s;
 	}
 
 	.packagecard .body {
 		position: relative;
 		z-index: 2;
 		padding: 1rem 1.25rem;
-		text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+		// A tight outline and a soft halo, so the title reads over bright and busy screenshots
+		text-shadow: 0 0 2px #000, 0 1px 3px rgba(0, 0, 0, 0.9), 0 0 12px rgba(0, 0, 0, 0.8);
+	}
+
+	.category-icon {
+		display: block;
+		margin-bottom: 1rem;
+		color: white;
+		font-size: 2.5rem;
+		line-height: 1;
 	}
 
 	// Above the tiles after it, so the description that drops down on hover isn't hidden behind them
@@ -376,7 +377,7 @@ pre {
 }
 
 @media (prefers-reduced-motion: reduce) {
-	.category-tile .packagecard::after {
+	.category-tile .category-image {
 		transition: none;
 	}
 }

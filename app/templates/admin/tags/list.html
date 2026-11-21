@@ -42,6 +42,7 @@
 					href="{{ url_for('admin.create_edit_tag', name=t.name) }}">
 				<div class="row">
 					<div class="col-sm-2">
+						{% if t.icon %}<i class="fas {{ t.icon }} fa-fw me-1" aria-hidden="true"></i>{% endif %}
 						{{ t.title }}
 						{% if t.kind.name != "FEATURE" or t.package_types %}
 							<small class="d-block text-muted">

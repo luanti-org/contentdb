@@ -58,6 +58,7 @@ def setup_source_data():
 	category = Tag("Survival Sandbox")
 	category.kind = TagKind.CATEGORY
 	category.package_types = [PackageType.GAME]
+	category.icon = "fa-campground"
 	game.tags.append(category)
 
 	package = make_package("imported_mod", editor)
@@ -188,10 +189,12 @@ def test_round_trip_into_fresh_database(client, upload_dir):
 	category = Tag.query.filter_by(name="survival_sandbox").one()
 	assert category.kind == TagKind.CATEGORY
 	assert category.package_types == [PackageType.GAME]
+	assert category.icon == "fa-campground"
 	assert category.packages == [Package.query.filter_by(name="imported_game").one()]
 	mapgen = Tag.query.filter_by(name="mapgen").one()
 	assert mapgen.kind == TagKind.FEATURE
 	assert mapgen.package_types == []
+	assert mapgen.icon is None
 	assert [x.name for x in package.content_warnings] == ["gore"]
 	assert ContentWarning.query.filter_by(name="gore").one().description == "Contains blood"
 	assert [x.name for x in package.provides] == ["imported_api"]

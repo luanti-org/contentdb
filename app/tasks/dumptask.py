@@ -51,7 +51,7 @@ def get_lookup_tables() -> dict[str, list[dict[str, Any]]]:
 				for x in License.query.order_by(License.name).all()],
 		"tags": [{"name": x.name, "title": x.title, "description": x.description,
 				"background_color": x.backgroundColor, "text_color": x.textColor, "kind": x.kind.name,
-				"package_types": [t.name for t in x.package_types]}
+				"package_types": [t.name for t in x.package_types], "icon": x.icon}
 				for x in Tag.query.order_by(Tag.name).all()],
 		"content_warnings": [{"name": x.name, "title": x.title, "description": x.description}
 				for x in ContentWarning.query.order_by(ContentWarning.name).all()],
