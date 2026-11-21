@@ -16,11 +16,11 @@ def clear_data(session):
 		pytest.exit(f"Refusing to wipe database '{db_name}': its name must end in _test. "
 				"Run the tests with utils/tests.sh, which uses a throwaway database.", returncode=1)
 
-	meta = db.metadata
-	for table in reversed(meta.sorted_tables):
-		session.execute(text(f'ALTER TABLE "{table.name}" DISABLE TRIGGER ALL;'))
-		session.execute(table.delete())
-		session.execute(text(f'ALTER TABLE "{table.name}" ENABLE TRIGGER ALL;'))
+	# One TRUNCATE of every table, rather than disabling triggers and deleting from each table, which took three
+	# statements per table for every test. Truncating them all together handles the foreign keys between them, cycles
+	# included. Sequences aren't restarted, as before, so ids keep increasing between tests.
+	tables = ", ".join(f'"{table.name}"' for table in db.metadata.sorted_tables)
+	session.execute(text(f"TRUNCATE {tables}"))
 
 
 def recreate_db():

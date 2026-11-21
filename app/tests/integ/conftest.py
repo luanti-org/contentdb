@@ -16,11 +16,20 @@ import pytest
 import requests
 from requests.structures import CaseInsensitiveDict
 
+from passlib.handlers.bcrypt import bcrypt
+
+import app.utils.user as user_utils
 from app import app
 from app.models import User
 from app.tasks import celery
 from app.utils.ratelimit import storage as ratelimit_storage
 from .utils import recreate_db
+
+
+# Password hashing at bcrypt's default of 12 rounds takes about 0.2s, and most tests hash at least one password (the
+# admin in populate(), and create_user()), which added up to most of the suite's run time. 4 is bcrypt's minimum.
+# Hashes are still real bcrypt hashes, and checking a password reads the rounds from the hash.
+setattr(user_utils, "bcrypt", bcrypt.using(rounds=4))
 
 
 # Saved before http_stub patches it, so Mailpit can still be reached
