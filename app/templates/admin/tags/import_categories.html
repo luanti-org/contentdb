@@ -47,10 +47,7 @@
 	</form>
 
 	{% if result %}
-		<h2>
-			{% if applied %}Changed{% else %}Would change{% endif %}
-			({{ result.changes | length }})
-		</h2>
+		<h2>{% if applied %}Changed{% else %}Would change{% endif %} ({{ result.changes | length }})</h2>
 		{% if result.changes %}
 			<div class="table-responsive">
 				<table class="table">
