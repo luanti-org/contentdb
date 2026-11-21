@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
+import datetime
 import json
 
 from . import redis_client
@@ -40,6 +41,23 @@ def increment_key(key):
 
 def get_key(key, default=None):
 	return redis_client.get(key) or default
+
+
+EMAIL_BOUNCES_LAST_IMPORT_KEY = "email_bounces_last_import"
+
+
+def set_email_bounces_last_import(value: datetime.datetime):
+	"""
+	Records when the last successful bounce import started, as a naive UTC datetime. Kept without expiry.
+	"""
+	redis_client.set(EMAIL_BOUNCES_LAST_IMPORT_KEY, value.isoformat())
+
+
+def get_email_bounces_last_import() -> datetime.datetime | None:
+	value = redis_client.get(EMAIL_BOUNCES_LAST_IMPORT_KEY)
+	if not value:
+		return None
+	return datetime.datetime.fromisoformat(value.decode("utf-8") if isinstance(value, bytes) else value)
 
 
 DOWNLOAD_EVENTS_KEY = "download_events"

@@ -126,6 +126,16 @@
 {% endif %}
 
 
+{% set email_bounce = get_email_bounce(user.email) %}
+{% if email_bounce %}
+	<p class="alert alert-warning mt-3" id="email-bounce-status">
+		Emails to this user's address can't be delivered, so aren't sent, apart from verification emails.
+		Detected {{ email_bounce.bounced_at | full_datetime }}
+		{%- if email_bounce.bounce_reason %} ({{ email_bounce.bounce_reason }}){% endif %}.
+		This is cleared when the user follows a verification or password reset link.
+	</p>
+{% endif %}
+
 <h3>{{ _("Pending email verifications") }}</h3>
 <ul>
 {% for ver in user.email_verifications %}

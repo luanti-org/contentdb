@@ -91,6 +91,10 @@ CELERYBEAT_SCHEDULE = {
 		'task': 'app.tasks.emails.send_pending_notifications',
 		'schedule': crontab(minute='*/15'), # every 15 minutes
 	},
+	'import_email_bounces': {
+		'task': 'app.tasks.emails.import_email_bounces',
+		'schedule': crontab(minute='5,35'), # every 30 minutes
+	},
 	'send_notification_digests': {
 		'task': 'app.tasks.emails.send_pending_digests',
 		'schedule': crontab(minute=0, hour=14), # 1400

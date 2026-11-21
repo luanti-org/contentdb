@@ -23,6 +23,7 @@ from app.utils.user import make_flask_login_password, is_safe_url, check_passwor
 from . import bp
 from app.models import User, AuditSeverity, db, EmailSubscription, UserEmailVerification
 from app.domain.users import create_user
+from app.domain.email_bounces import clear_bounce
 
 
 class LoginForm(FlaskForm):
@@ -377,7 +378,11 @@ def set_password():
 	return render_template("users/change_set_password.html", form=form)
 
 
-def confirm_email_verification(ver: UserEmailVerification) -> bool:
+def confirm_email_verification(ver: UserEmailVerification, proves_delivery: bool = True) -> bool:
+	"""
+	Applies a verification. `proves_delivery` is False when staff verify on the user's behalf, as then nobody has
+	shown that email to the address can be delivered.
+	"""
 	user = ver.user
 	if ver.email and not user.has_email(ver.email):
 		if User.query.filter(User.email == ver.email, User.id != user.id).count() > 0:
@@ -394,6 +399,10 @@ def confirm_email_verification(ver: UserEmailVerification) -> bool:
 
 	user.is_active = True
 	user.email = ver.email
+
+	# Following the link shows that email to the address can be delivered
+	if proves_delivery and ver.email and clear_bounce(ver.email):
+		flash(gettext("Your email address has been confirmed, so emails will be sent to it again"), "success")
 
 	db.session.delete(ver)
 	db.session.commit()

@@ -25,6 +25,7 @@ from app.utils.user import rank_required, end_user_sessions, logout_current_sess
 from app.utils.flask import has_blocked_domains
 from . import bp
 from .account import confirm_email_verification
+from app.domain.email_bounces import get_email_bounce
 
 
 def get_setting_tabs(user):
@@ -249,8 +250,46 @@ def email_notifications(username=None):
 			return ret
 
 	return render_template("users/settings_email.html",
-			form=form, user=user, types=types, is_new=is_new,
+			form=form, user=user, types=types, is_new=is_new, email_bounce=get_email_bounce(user.email),
 			tabs=get_setting_tabs(user), current_tab="notifications")
+
+
+@bp.route("/users/<username>/settings/email/verify/", methods=["POST"])
+@login_required
+def email_reverify(username):
+	"""
+	Sends a verification email to the user's current address, such as to show that it works after it bounced
+	"""
+	user = User.query.filter_by(username=username).first()
+	if not user:
+		abort(404)
+
+	if not user.check_perm(current_user, Permission.CHANGE_EMAIL):
+		abort(403)
+
+	if not user.email:
+		flash(gettext("You don't have an email address"), "danger")
+		return redirect(url_for("users.email_notifications", username=user.username))
+
+	if EmailSubscription.query_by_email(user.email).filter_by(blacklisted=True).count() > 0:
+		flash(gettext("That email address has been unsubscribed/blacklisted, and cannot be used"), "danger")
+		return redirect(url_for("users.email_notifications", username=user.username))
+
+	if not hit_email_ratelimit(user.email):
+		flash(gettext("Too many emails have been sent recently, please wait before trying again"), "danger")
+		return redirect(url_for("users.email_notifications", username=user.username))
+
+	token = random_string(32)
+
+	ver = UserEmailVerification()
+	ver.user = user
+	ver.token_hash = hash_token(token)
+	ver.email = user.email
+	db.session.add(ver)
+	db.session.commit()
+
+	send_verify_email.delay(user.email, token, get_locale().language)
+	return redirect(url_for("users.email_sent"))
 
 
 @bp.route("/users/<username>/settings/account/")
@@ -534,7 +573,7 @@ def modtools_verify_email(username, ver_id):
 	if ver is None or ver.user != user or ver.is_expired:
 		abort(404)
 
-	if confirm_email_verification(ver):
+	if confirm_email_verification(ver, proves_delivery=False):
 		add_audit_log(AuditSeverity.MODERATION, current_user, f"Confirmed email for {user.username}",
 				url_for("users.profile", username=user.username), None)
 		db.session.commit()

@@ -12,6 +12,7 @@ from markupsafe import Markup
 from sqlalchemy import and_
 
 from . import app
+from app.domain.email_bounces import get_email_bounce
 from app.markdown import get_headings
 from app.models import db, Permission, Package, PackageState, PackageRelease, ReleaseState, PackageReview, \
 	PackageReviewVote
@@ -28,11 +29,18 @@ def inject_misc():
 			monitoring_url=app.config.get("MONITORING_URL"))
 
 
+def get_current_user_email_bounce():
+	if not current_user.is_authenticated:
+		return None
+	return get_email_bounce(current_user.email)
+
+
 @app.context_processor
 def inject_functions():
 	check_global_perm = Permission.check_perm
 	return dict(abs_url_for=abs_url_for, url_set_query=url_set_query, url_set_anchor=url_set_anchor,
-			check_global_perm=check_global_perm, get_headings=get_headings, url_current=url_current)
+			check_global_perm=check_global_perm, get_headings=get_headings, url_current=url_current,
+			get_current_user_email_bounce=get_current_user_email_bounce, get_email_bounce=get_email_bounce)
 
 
 @app.context_processor

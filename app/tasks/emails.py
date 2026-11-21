@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
+import datetime
 import smtplib
 import typing
 from typing import Dict
@@ -13,8 +14,10 @@ from markupsafe import escape
 
 from app import mail, app
 from app.models import Notification, db, EmailSubscription, User
-from app.rediscache import increment_key
+from app.rediscache import increment_key, get_email_bounces_last_import, set_email_bounces_last_import
+from app.domain.email_bounces import import_bounces, RETRY_WINDOW
 from app.tasks import celery
+from app.utils import scaleway_tem
 from app.utils.flask import abs_url_for, abs_url
 
 
@@ -89,7 +92,7 @@ def send_unsubscribe_verify(email, locale):
 def send_email_with_reason(email: str, locale: str, subject: str, text: str, html: str,
 		reason: typing.Union[str, LazyString]):
 	sub = get_email_subscription(email)
-	if sub.blacklisted:
+	if not sub.can_send:
 		return
 
 	with force_locale(locale or "en"):
@@ -116,7 +119,7 @@ def send_anon_email(email: str, locale: str, subject: str, text: str, html=None)
 
 def send_single_email(notification, locale):
 	sub = get_email_subscription(notification.user.email)
-	if sub.blacklisted:
+	if not sub.can_send:
 		return
 
 	with force_locale(locale or "en"):
@@ -142,7 +145,7 @@ def send_notification_digest(notifications: typing.List[Notification], locale):
 	user = notifications[0].user
 
 	sub = get_email_subscription(user.email)
-	if sub.blacklisted:
+	if not sub.can_send:
 		return
 
 	with force_locale(locale or "en"):
@@ -200,3 +203,24 @@ def send_pending_notifications():
 				raise Exception(f"Failed to send email to {user.username} due to yandex spam filter") from e
 			else:
 				raise e
+
+
+@celery.task()
+def import_email_bounces(days: int | None = None):
+	"""
+	Records addresses that emails couldn't be delivered to, from Scaleway TEM. Does nothing if TEM isn't configured.
+
+	With `days`, reads failures of emails sent in the last `days` days. Otherwise, continues from the last
+	successful import.
+	"""
+	if not scaleway_tem.is_configured():
+		return
+
+	started_at = datetime.datetime.utcnow()
+	if days is not None:
+		since = started_at - datetime.timedelta(days=days)
+	else:
+		since = (get_email_bounces_last_import() or started_at) - RETRY_WINDOW
+
+	import_bounces(since)
+	set_email_bounces_last_import(started_at)

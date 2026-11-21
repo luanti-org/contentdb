@@ -12,6 +12,23 @@
 	<h2 class="mt-0">{{ _("Email and Notifications") }}</h2>
 
 	{% from "macros/forms.html" import render_field, render_submit_field, render_checkbox_field %}
+	{% if email_bounce %}
+		<div class="alert alert-warning" id="email-bounce-status">
+			<p>
+				{{ _("We couldn't deliver email to %(email)s, so we've stopped sending emails to it.", email=user.email) }}
+				{{ _("Detected: %(date)s", date=email_bounce.bounced_at | full_datetime) }}
+				{%- if email_bounce.bounce_reason %} ({{ email_bounce.bounce_reason }}){% endif %}
+			</p>
+			<p>
+				{{ _("Change your email address below, or, if the address works now, confirm it with a verification email.") }}
+			</p>
+			<form method="POST" action="{{ url_for('users.email_reverify', username=user.username) }}" class="mb-0">
+				<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+				<input type="submit" class="btn btn-secondary" value="{{ _('Send verification email') }}">
+			</form>
+		</div>
+	{% endif %}
+
 	<form action="" method="POST" class="form" role="form">
 		{{ form.hidden_tag() }}
 

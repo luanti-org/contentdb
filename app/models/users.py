@@ -425,9 +425,24 @@ class EmailSubscription(Model):
 	email_hash  = db.Column(db.String(64), nullable=False, unique=True)
 	blacklisted = db.Column(db.Boolean, nullable=False, default=False)
 
+	# Set when the email provider reports that mail to this address can't be delivered, such as a hard bounce.
+	# Emails other than verification emails aren't sent while it's set. See app.domain.email_bounces.
+	bounced_at        = db.Column(db.DateTime, nullable=True, default=None)
+	# Short and without the address, such as "mailbox_not_found (550)", as only the address's hash is stored
+	bounce_reason     = db.Column(db.String(100), nullable=True, default=None)
+	# When the address was last confirmed to work. Failures of emails sent before this are ignored.
+	bounce_cleared_at = db.Column(db.DateTime, nullable=True, default=None)
+
 	def __init__(self, email: str):
 		self.email_hash = hash_email(email)
 		self.blacklisted = False
+
+	@property
+	def can_send(self) -> bool:
+		"""
+		Whether to send emails to this address, other than verification emails that the user asked for
+		"""
+		return not self.blacklisted and self.bounced_at is None
 
 	@classmethod
 	def query_by_email(cls, email: str):

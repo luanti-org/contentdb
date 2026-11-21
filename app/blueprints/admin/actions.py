@@ -16,7 +16,7 @@ from app.models import PackageRelease, db, Package, PackageState, PackageScreens
 	NotificationType, PackageUpdateConfig, License, UserRank, PackageType, ReportAttachment, \
 	PackageAIDisclosure, AuditSeverity, UserSession
 from app.tasks.admintasks import delete_empty_threads
-from app.tasks.emails import send_pending_digests
+from app.tasks.emails import send_pending_digests, import_email_bounces
 from app.tasks.forumtasks import import_topic_list, check_all_forum_accounts as check_all_forum_accounts_task
 from app.tasks.importtasks import import_repo_screenshot, check_zip_release, check_for_updates, update_all_game_support, \
 	import_languages, check_all_zip_files, update_all_release_permissions
@@ -27,6 +27,7 @@ from app.tasks.dumptask import create_database_dump
 from app.utils.models import add_notification, get_system_user, add_audit_log
 from app.domain.user_deletion import delete_user
 from app.uploads import delete_upload
+from app.utils import scaleway_tem
 
 
 actions: dict[str, dict[str, Any]] = {}
@@ -439,6 +440,18 @@ def import_screenshots():
 def do_delete_empty_threads():
 	delete_empty_threads.delay()
 	return redirect(url_for("admin.admin_page"))
+
+
+@action("Import email bounces from the last 60 days")
+def do_import_email_bounces():
+	if not scaleway_tem.is_configured():
+		flash("Scaleway TEM isn't configured. Set SCALEWAY_TEM_SECRET_KEY and SCALEWAY_TEM_PROJECT_ID in config.cfg",
+				"danger")
+		return
+
+	task_id = uuid()
+	import_email_bounces.apply_async((60,), task_id=task_id)
+	return redirect(url_for("tasks.check", id=task_id, r=url_for("admin.audit")))
 
 
 @action("DANGER: Delete unused users without an email")
