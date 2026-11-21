@@ -7,12 +7,12 @@ import re
 import typing
 
 import validators
-from flask_babel import lazy_gettext, LazyString
+from flask_babel import gettext, lazy_gettext, LazyString
 
 from app.domain.DomainError import DomainError
 from app.domain.git_access import can_user_change_repo, is_same_repo
 from app.models import User, Package, PackageType, MetaPackage, Tag, ContentWarning, db, Permission, AuditSeverity, \
-	License, PackageDevState, PackageState, PackageAIDisclosure
+	License, PackageDevState, PackageState, PackageAIDisclosure, TagKind
 from app.utils.models import add_audit_log, add_audit_log_on_package
 from app.utils.flask import has_blocked_domains
 from app.utils.difference import diff_dictionaries, describe_difference
@@ -100,6 +100,31 @@ ALIASES = {
 	"issue_tracker": "issueTracker",
 	"long_description": "desc"
 }
+
+
+MAX_CATEGORIES = 2
+
+
+def validate_package_tags(package: Package, had_categories: bool):
+	"""
+	Checks that the package's tags can be given to its type, and that it doesn't have too many categories.
+
+	Drafts may have no categories, so they can be saved; package_approval requires one before publishing. A published
+	game can't have all its categories removed. Published games from before categories existed may have none, so they can
+	still be edited until editors give them one.
+	"""
+	for tag in package.tags:
+		if not tag.applies_to(package.type):
+			# Not lazy_gettext, as LazyStrings are treated as safe HTML when shown, and the title is written by editors
+			raise DomainError(400, gettext("The tag %(tag)s can't be used on this type of package",
+					tag=tag.get_translated()["title"]))
+
+	categories = [tag for tag in package.tags if tag.kind == TagKind.CATEGORY]
+	if len(categories) > MAX_CATEGORIES:
+		raise DomainError(400, lazy_gettext("Choose at most %(max)d categories", max=MAX_CATEGORIES))
+
+	if had_categories and len(categories) == 0 and package.type == PackageType.GAME and package.state == PackageState.APPROVED:
+		raise DomainError(400, lazy_gettext("Published games need at least one category"))
 
 
 def is_int(val):
@@ -220,6 +245,7 @@ def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, 
 		m = MetaPackage.GetOrCreate(package.name, {})
 		package.provides.append(m)
 
+	old_categories = [tag for tag in package.tags if tag.kind == TagKind.CATEGORY]
 	if "tags" in data:
 		package.tags.clear()
 		for tag_id in (data["tags"] or []):
@@ -232,6 +258,14 @@ def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, 
 				raise DomainError(400, f"Unknown tag: {tag_id}")
 
 			package.tags.append(tag)
+
+		# API clients and .cdb.json files that don't know about categories would otherwise remove them on every edit or
+		# release. The web form always sends the categories, so it can remove them all.
+		if not was_web and not any(tag.kind == TagKind.CATEGORY for tag in package.tags):
+			package.tags.extend(old_categories)
+
+	if "tags" in data or "type" in data:
+		validate_package_tags(package, len(old_categories) > 0)
 
 	if "content_warnings" in data:
 		package.content_warnings.clear()

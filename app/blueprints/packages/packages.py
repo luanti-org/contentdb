@@ -14,6 +14,7 @@ from flask_wtf import FlaskForm
 from jinja2.utils import markupsafe
 from sqlalchemy import func, or_, and_, select
 from wtforms import SelectField, StringField, TextAreaField, IntegerField, SubmitField, BooleanField
+from wtforms.widgets import CheckboxInput, ListWidget
 from wtforms.validators import InputRequired, Length, Regexp, DataRequired, Optional, URL, NumberRange, ValidationError
 from wtforms_sqlalchemy.fields import QuerySelectField, QuerySelectMultipleField
 
@@ -30,7 +31,7 @@ from app.tasks.pkgtasks import check_package_on_submit
 from app.tasks.webhooktasks import post_discord_webhook
 
 from . import bp, get_package_tabs
-from app.models import AnySession, Package, Tag, db, User, Tags, PackageState, Permission, PackageType, MetaPackage, ForumTopic, \
+from app.models import AnySession, Package, Tag, TagKind, db, User, Tags, PackageState, Permission, PackageType, MetaPackage, ForumTopic, \
 	Dependency, Thread, UserRank, PackageReview, PackageDevState, ContentWarning, License, AuditSeverity, \
 	PackageScreenshot, NotificationType, AuditLogEntry, PackageAlias, PackageProvides, PackageGameSupport, \
 	PackageDailyStats, Collection, ReleaseState, PackageAIDisclosure, LuantiRelease, PackageRelease
@@ -256,6 +257,26 @@ def make_label(obj: Tag | ContentWarning):
 		return translated["title"]
 
 
+class StrictQuerySelectMultipleField(QuerySelectMultipleField):
+	"""
+	QuerySelectMultipleField only notices submitted ids that aren't in its query once its data has been read, but
+	pre_validate checks for them before reading it, so they pass validation.
+	"""
+
+	def pre_validate(self, form):
+		_ = self.data
+		super().pre_validate(form)
+
+
+def make_checkbox_label(obj: Tag) -> markupsafe.Markup:
+	"""Like make_label, with the title in bold and the description muted. Escapes both, as editors write them"""
+	translated = obj.get_translated()
+	label = markupsafe.Markup("<strong>{}</strong>").format(translated["title"])
+	if translated["description"]:
+		label += markupsafe.Markup(': <span class="text-muted">{}</span>').format(translated["description"])
+	return label
+
+
 class PackageForm(FlaskForm):
 	type             = SelectField(lazy_gettext("Type"), [InputRequired()], choices=PackageType.choices(), coerce=PackageType.coerce, default=PackageType.MOD)
 	title            = StringField(lazy_gettext("Title (Human-readable)"), [InputRequired(), Length(1, 100)])
@@ -265,7 +286,11 @@ class PackageForm(FlaskForm):
 	dev_state = SelectField(lazy_gettext("Maintenance State"), [DataRequired()], choices=PackageDevState.choices(with_none=True), coerce=PackageDevState.coerce)
 	ai_disclosure = SelectField(lazy_gettext("AI Disclosure"), [DataRequired()], choices=PackageAIDisclosure.choices(), coerce=PackageAIDisclosure.coerce)
 
-	tags             = QuerySelectMultipleField(lazy_gettext('Tags'), query_factory=lambda: Tag.query.order_by(db.asc(Tag.name)), get_pk=lambda a: a.id, get_label=make_label)
+	categories           = StrictQuerySelectMultipleField(lazy_gettext("Categories"),
+			query_factory=lambda: Tag.query.filter_by(kind=TagKind.CATEGORY).order_by(db.asc(Tag.title)),
+			get_pk=lambda a: a.id, get_label=make_checkbox_label,
+			widget=ListWidget(prefix_label=False), option_widget=CheckboxInput())
+	tags             = StrictQuerySelectMultipleField(lazy_gettext('Tags'), query_factory=lambda: Tag.query.filter_by(kind=TagKind.FEATURE).order_by(db.asc(Tag.name)), get_pk=lambda a: a.id, get_label=make_label)
 	content_warnings = QuerySelectMultipleField(lazy_gettext('Content Warnings'), query_factory=lambda: ContentWarning.query.order_by(db.asc(ContentWarning.name)), get_pk=lambda a: a.id, get_label=make_label)
 	license          = QuerySelectField(lazy_gettext("License"), [DataRequired()], allow_blank=True, query_factory=lambda: License.query.order_by(db.asc(License.name)), get_pk=lambda a: a.id, get_label=lambda a: a.name)
 	media_license    = QuerySelectField(lazy_gettext("Media License"), [DataRequired()], allow_blank=True, query_factory=lambda: License.query.order_by(db.asc(License.name)), get_pk=lambda a: a.id, get_label=lambda a: a.name)
@@ -328,7 +353,8 @@ def handle_create_edit(package: typing.Optional[Package], form: PackageForm, aut
 			"short_desc": form.short_desc.data,
 			"dev_state": form.dev_state.data,
 			"ai_disclosure": form.ai_disclosure.data,
-			"tags": form.tags.raw_data,
+			# Categories are tags too. They're only shown for games, so ignore any left ticked after changing type
+			"tags": form.tags.raw_data + (form.categories.raw_data if form.type.data == PackageType.GAME else []),
 			"content_warnings": form.content_warnings.raw_data,
 			"license": form.license.data,
 			"media_license": form.media_license.data,
@@ -410,7 +436,8 @@ def create_edit(author=None, name=None):
 			form.license.data = None
 			form.media_license.data = None
 		else:
-			form.tags.data = package.tags
+			form.tags.data = [tag for tag in package.tags if tag.kind != TagKind.CATEGORY]
+			form.categories.data = [tag for tag in package.tags if tag.kind == TagKind.CATEGORY]
 			form.content_warnings.data = package.content_warnings
 
 	if request.method == "POST" and form.type.data == PackageType.TXP:

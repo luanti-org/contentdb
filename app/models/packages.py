@@ -1190,6 +1190,8 @@ class Tag(Model):
 			"title": self.title,
 			"description": description,
 			"views": self.views,
+			"kind": self.kind.name.lower(),
+			"package_types": [x.to_name() for x in self.package_types],
 		}
 
 

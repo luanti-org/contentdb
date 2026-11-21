@@ -91,7 +91,9 @@ curl -X DELETE https://content.luanti.org/api/delete-token/ \
         * `dev_state`: One of `WIP`, `BETA`, `ACTIVELY_DEVELOPED`, `MAINTENANCE_ONLY`, `AS_IS`, `DEPRECATED`,
             `LOOKING_FOR_MAINTAINER`.
         * `ai_disclosure`: One of `NONE`, `ASSISTED`, `GENERATED`.
-        * `tags`: List of [tag](#tags) names.
+        * `tags`: List of [tag](#tags) names, including categories. Each tag must be usable on the package's type
+            (`package_types`), and games can have at most two categories. Games need at least one category to be published.
+            If the list has no categories, the package's existing categories are kept.
         * `content_warnings`: List of [content warning](#content-warnings) names.
         * `license`: A [license](#licenses) name.
         * `media_license`: A [license](#licenses) name.
@@ -537,6 +539,9 @@ Supported query parameters:
         * `title`:  human-readable title.
         * `description`:  tag description or null.
         * `views`: number of views of this tag.
+        * `kind`: `feature` for what a package has or does, or `category` for what kind of game a package is.
+          Games have at most two categories.
+        * `package_types`: list of the package types this tag can be given to, such as `game`. Empty means all types.
 
 ### Content Warnings
 

@@ -6,7 +6,7 @@ from unittest.mock import MagicMock, patch
 from typing import cast
 
 from app.domain import package_approval
-from app.models import Package, PackageType, ReleaseState
+from app.models import Package, PackageType, ReleaseState, TagKind
 
 
 class MockPackageHelper:
@@ -38,6 +38,11 @@ class MockPackageHelper:
 		latest_release.state = ReleaseState.PROCESSING
 		latest_release.task_id = "task123"
 		self.package.releases.order_by.return_value.first.return_value = latest_release
+
+	def add_category(self):
+		category = MagicMock()
+		category.kind = TagKind.CATEGORY
+		self.package.tags = [category]
 
 	def add_screenshot(self):
 		cast(MagicMock, self.package.screenshots.count).return_value = 1
@@ -145,6 +150,7 @@ def test_games_txp_must_have_unique_name(get_forum_topic):
 	mock_package = MockPackageHelper(PackageType.GAME)
 	mock_package.add_release()
 	mock_package.add_screenshot()
+	mock_package.add_category()
 
 	topic = MagicMock()
 	topic.author = mock_package.package.author
@@ -173,5 +179,32 @@ def test_require_screenshots(get_forum_topic):
 	assert notes[0].message == "You need to add at least one screenshot."
 
 	mock_package.add_screenshot()
+	notes = package_approval.validate_package_for_approval(mock_package.package)
+	assert len(notes) == 0
+
+
+@patch("app.domain.package_approval.is_package_name_taken", MagicMock(return_value=False))
+@patch("app.domain.package_approval.get_conflicting_mod_names", MagicMock(return_value=set()))
+@patch("app.domain.package_approval.count_packages_with_forum_topic", MagicMock(return_value=1))
+@patch("app.domain.package_approval.get_forum_topic")
+def test_games_require_category(get_forum_topic):
+	mock_package = MockPackageHelper(PackageType.GAME)
+	mock_package.add_release()
+	mock_package.add_screenshot()
+
+	topic = MagicMock()
+	topic.author = mock_package.package.author
+	get_forum_topic.return_value = topic
+
+	feature = MagicMock()
+	feature.kind = TagKind.FEATURE
+	mock_package.package.tags = [feature]
+
+	notes = package_approval.validate_package_for_approval(mock_package.package)
+	assert len(notes) == 1
+	assert notes[0].message == "You need to choose at least one category in the edit package form."
+	assert not notes[0].allow_submit and not notes[0].allow_approval
+
+	mock_package.add_category()
 	notes = package_approval.validate_package_for_approval(mock_package.package)
 	assert len(notes) == 0

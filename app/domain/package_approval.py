@@ -9,7 +9,7 @@ from flask_babel import lazy_gettext, LazyString
 from sqlalchemy import and_, or_
 
 from app.models import Package, PackageType, PackageState, PackageRelease, db, MetaPackage, ForumTopic, User, \
-	Permission, UserRank, ReleaseState, PackageAIDisclosure
+	Permission, UserRank, ReleaseState, PackageAIDisclosure, TagKind
 from app.utils.models import get_bot_message_thread
 
 
@@ -110,6 +110,10 @@ def validate_package_for_approval(package: Package) -> List[PackageValidationNot
 
 	if package.screenshots.count() == 0:
 		danger(lazy_gettext("You need to add at least one screenshot."))
+
+	if package.type == PackageType.GAME and not any(tag.kind == TagKind.CATEGORY for tag in package.tags):
+		danger(lazy_gettext("You need to choose at least one category in the edit package form.")) \
+			.add_button(package.get_url("packages.create_edit"), lazy_gettext("Edit package"))
 
 	if package.ai_disclosure == PackageAIDisclosure.UNKNOWN:
 		danger(lazy_gettext("You need to answer the AI Disclosure in the edit package form"))
