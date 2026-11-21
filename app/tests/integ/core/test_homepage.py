@@ -81,8 +81,10 @@ def test_homepage_widgets(client):
 	assert game.title in top_games and mod.title not in top_games
 	assert 'href="/packages/?type=game&amp;sort=score&amp;order=desc"' in html
 
-	# Reviews
+	# Reviews, with the "All reviews" link beside the heading rather than in it
 	assert "This mod is great" in html
+	reviews = html[html.index("<h2>Recent Positive Reviews</h2>"):]
+	assert reviews.index('href="/reviews/"') < reviews.index("</header>")
 
 	# Logged out, so no voting script
 	assert "quick_review_voting.js" not in html
