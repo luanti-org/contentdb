@@ -331,18 +331,14 @@ pre {
 		background: hsl(var(--tile-hue), 45%, 14%);
 		isolation: isolate;
 
-		// Coloured gradient over the picture, to tell categories apart and keep the title readable
+		// One semi-transparent colour per category in the bottom right, fading to nothing in the top left
 		&::after {
 			content: "";
 			position: absolute;
 			inset: 0;
 			z-index: 1;
-			background:
-				radial-gradient(ellipse at center, hsla(var(--tile-hue), 70%, 12%, 0.65) 0%, transparent 70%),
-				linear-gradient(135deg,
-					hsla(var(--tile-hue), 85%, 55%, 0.75) 0%,
-					hsla(calc(var(--tile-hue) + 40), 80%, 40%, 0.45) 45%,
-					hsla(calc(var(--tile-hue) + 80), 70%, 25%, 0.2) 100%);
+			background: linear-gradient(to top left, hsla(var(--tile-hue), 70%, 40%, 0.8) 0%,
+				hsla(var(--tile-hue), 70%, 40%, 0) 100%);
 			transition: opacity 0.3s;
 		}
 

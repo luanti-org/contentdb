@@ -9,7 +9,7 @@ import os
 import pytest
 from PIL import Image
 
-from app.blueprints.homepage.widgets.categories import get_tag_hue
+from app.blueprints.homepage.widgets.categories import get_hues
 from app.models import db, DashboardWidgetType, Package, PackageState, PackageType, Tag, TagKind, User
 from app.tasks.collagetasks import update_category_collages
 from app.uploads import local
@@ -109,7 +109,9 @@ def test_category_tile_shows_collage(client, upload_dir):
 	racing_start = html.rindex("<a ", 0, html.index('tag=racing"'))
 	racing_tile = html[racing_start:]
 	racing_tile = racing_tile[:racing_tile.index("</a>")]
-	assert f"--tile-hue: {get_tag_hue('racing')};" in racing_tile
+	# Each category has its own hue, by its order among all categories
+	assert f"--tile-hue: {get_hues(2)[1]};" in racing_tile
+	assert f"--tile-hue: {get_hues(2)[0]};" in puzzle_tile
 	assert "category-image" not in racing_tile
 	# Only the tag's collage is loaded, not its packages' thumbnails
 	assert "/thumbnails/" not in html[html.index('class="category-grid'):]

@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 # Copyright (C) 2026 rubenwardy <rw@rubenwardy>
 
-import zlib
+import math
 from dataclasses import dataclass
 from typing import Any, Optional
 from urllib.parse import parse_qsl, urlencode
@@ -26,9 +26,25 @@ class CategoryTile:
 	image_url: Optional[str]
 
 
-def get_tag_hue(tag_name: str) -> int:
-	"""A colour for the tag, which is the same on every page and every request"""
-	return zlib.crc32(tag_name.encode("utf-8")) % 360
+# Hue of the first category, blue
+FIRST_HUE = 210
+
+
+def get_hues(count: int) -> list[int]:
+	"""
+	`count` different hues, spread evenly around the colour wheel, in an order where each is far from the one before
+	it, so that neighbouring tiles never look alike
+	"""
+	if count <= 0:
+		return []
+
+	# Step through the evenly spaced hues by a stride that visits each once (coprime with count), about 0.4 of the way
+	# round each time
+	stride = max(1, round(count * 0.4))
+	while math.gcd(stride, count) != 1:
+		stride += 1
+
+	return [(FIRST_HUE + (i * stride % count) * 360 // count) % 360 for i in range(count)]
 
 
 class CategoriesWidget(Widget):
@@ -55,6 +71,10 @@ class CategoriesWidget(Widget):
 			.order_by(db.asc(Tag.id))
 		query = qb.filter_package_query(query)
 
+		# Hues come from every category, not just the ones shown, so a category has the same colour in every widget
+		category_ids = [x[0] for x in db.session.query(Tag.id).filter(Tag.kind == TagKind.CATEGORY).order_by(db.asc(Tag.id))]
+		hues = dict(zip(category_ids, get_hues(len(category_ids)), strict=True))
+
 		base_args = parse_qsl(self.model.query_string or "", keep_blank_values=True)
 		tiles = []
 		for tag in query.all():
@@ -63,7 +83,7 @@ class CategoriesWidget(Widget):
 				title=translated["title"],
 				description=translated["description"] or None,
 				url=url_for("packages.list_all") + "?" + urlencode(base_args + [("tag", tag.name)]),
-				hue=get_tag_hue(tag.name),
+				hue=hues[tag.id],
 				image_url=get_public_upload_url(tag.collage_path) if tag.collage_path else None))
 
 		return {
