@@ -104,7 +104,8 @@ def test_homepage_row_title_defaults_to_query(client):
 	])
 
 	html = client.get("/").data.decode("utf-8")
-	assert "<h2 class=\"mt-0 mb-3\">Games</h2>" in html
+	# Just the title, with the "See more" link beside the heading rather than in it
+	assert '<h2>Games</h2>' in html
 
 
 def test_homepage_row_limit(client):

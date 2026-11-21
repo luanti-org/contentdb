@@ -1,15 +1,16 @@
 {% from "macros/packagegridtile.html" import render_pkggrid %}
 
 <article class="my-5">
-	<h2 class="mt-0 mb-3">{{ title }}
-
-	<a href="{{ see_more_url }}" class="ms-2 btn btn-sm btn-secondary">
-		{{ _("See more") }}
-		<span class="sr-only">
-			{{ title }}
-		</span>
-		<i class="fas fa-arrow-right ms-2"></i>
-	</a>
-	</h2>
+	{# The link is beside the heading rather than in it, so the heading is just the title #}
+	<header class="heading-row">
+		<h2>{{ title }}</h2>
+		<a href="{{ see_more_url }}" class="btn btn-sm btn-secondary">
+			{{ _("See more") }}
+			<span class="visually-hidden">
+				{{ title }}
+			</span>
+			<i class="fas fa-arrow-right ms-2" aria-hidden="true"></i>
+		</a>
+	</header>
 	{{ render_pkggrid(packages) }}
 </article>

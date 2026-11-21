@@ -41,6 +41,25 @@ h2 {
 	border-bottom: 1px solid #444;
 }
 
+// A heading with something beside it, such as a "See more" button. The row takes over the heading's underline, so it
+// spans the full width, and nothing is pushed off centre by the heading's padding.
+.heading-row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.5rem 1rem;
+	// The h2's 0.5em bottom padding, at its 1.8em font size
+	padding-bottom: 0.9em;
+	margin-bottom: 1rem;
+	border-bottom: 1px solid #444;
+
+	h2 {
+		margin: 0;
+		padding: 0;
+		border-bottom: none;
+	}
+}
+
 h3 {
 	font-size: 1.3em;
 	font-weight: bold;
