@@ -7,12 +7,18 @@
 "use strict";
 
 (function($) {
+	// Tag titles and descriptions are written by editors, so they're escaped before going into HTML
+	function escape_html(text) {
+		return $("<div>").text(text).html();
+	}
+
 	function make_bold(text) {
 		const idx = text.indexOf(":");
 		if (idx > 0) {
-			return `<b>${text.substring(0, idx)}</b><span class="text-muted">: ${text.substring(idx + 1)}`;
+			return `<b>${escape_html(text.substring(0, idx))}</b>` +
+				`<span class="text-muted">: ${escape_html(text.substring(idx + 1))}</span>`;
 		} else {
-			return `<b>${text}</b>`;
+			return `<b>${escape_html(text)}</b>`;
 		}
 	}
 

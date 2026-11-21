@@ -25,6 +25,16 @@
 		text-decoration: none !important;
 	}
 
+	// jQuery UI colours links #333 (.ui-widget-content a), the same as the background above, which hid tag titles.
+	// Its stylesheet loads after this one, so this needs to be more specific than that rule.
+	li > a {
+		color: #ddd;
+
+		b {
+			color: white;
+		}
+	}
+
 	a:hover, a:focus, li:focus a {
 		font-weight: normal !important;
 		text-decoration: none;
