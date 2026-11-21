@@ -3,14 +3,17 @@
 # Copyright (C) 2018-2025 rubenwardy <rw@rubenwardy>
 
 
-from flask import redirect, render_template, abort, url_for, request
+from flask import redirect, render_template, abort, url_for, request, flash
 from flask_login import current_user, login_required
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField, RadioField, SelectMultipleField
+from flask_wtf.file import FileRequired
+from wtforms import StringField, TextAreaField, SubmitField, RadioField, SelectMultipleField, FileField
 from wtforms.widgets import CheckboxInput, ListWidget
 from wtforms.validators import InputRequired, Length, Optional, Regexp
 
 from . import bp
+from app.domain.DomainError import DomainError
+from app.domain.category_import import parse_category_csv, import_categories as do_import_categories
 from app.models import Permission, Tag, db, AuditSeverity, TagKind, PackageType
 from app.utils.models import add_audit_log
 from app.utils.misc import normalize_line_endings
@@ -89,3 +92,44 @@ def create_edit_tag(name=None):
 			return redirect(url_for("homepage.home"))
 
 	return render_template("admin/tags/edit.html", tag=tag, form=form)
+
+
+class CategoryImportForm(FlaskForm):
+	file = FileField("CSV file", [FileRequired()])
+	preview = SubmitField("Preview")
+	submit = SubmitField("Import")
+
+
+MAX_CATEGORY_CSV_BYTES = 1024 * 1024
+
+
+@bp.route("/tags/import-categories/", methods=["GET", "POST"])
+@login_required
+def import_categories():
+	if not Permission.EDIT_TAGS.check(current_user):
+		abort(403)
+
+	form = CategoryImportForm()
+	result = None
+	applied = False
+	if form.validate_on_submit():
+		content = form.file.data.read(MAX_CATEGORY_CSV_BYTES + 1)
+		applied = bool(form.submit.data)
+		try:
+			if len(content) > MAX_CATEGORY_CSV_BYTES:
+				raise DomainError(400, "The file is too large")
+
+			rows = parse_category_csv(content)
+			result = do_import_categories(current_user, rows, applied)
+		except DomainError as e:
+			flash(e.message, "danger")
+			applied = False
+
+		if result and applied:
+			add_audit_log(AuditSeverity.EDITOR, current_user,
+					f"Imported categories for {len(result.changes)} games from a CSV file", url_for("admin.import_categories"))
+			db.session.commit()
+			flash(f"Changed the categories of {len(result.changes)} games", "success")
+
+	return render_template("admin/tags/import_categories.html", form=form, result=result, applied=applied,
+			categories=Tag.query.filter_by(kind=TagKind.CATEGORY).order_by(db.asc(Tag.title)).all())

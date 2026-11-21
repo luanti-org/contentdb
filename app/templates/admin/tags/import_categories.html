@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Import categories
+{% endblock %}
+
+{% macro category_list(categories) -%}
+	{% for category in categories %}
+		<span class="badge bg-secondary">{{ category.title }}</span>
+	{% else %}
+		<span class="text-muted">None</span>
+	{% endfor %}
+{%- endmacro %}
+
+{% block content %}
+	<a class="btn btn-secondary mb-4" href="{{ url_for('admin.tag_list') }}">Back to tags</a>
+
+	<h1>Import categories</h1>
+
+	<p>
+		Set the categories of many games at once from a CSV file, such as an export of the category review spreadsheet.
+		Each game's categories are replaced; its other tags are kept. Preview first to see what would change.
+	</p>
+
+	<ul>
+		<li><b>Game</b>: the game's title, or <code>author/name</code>.</li>
+		<li><b>Main category</b>: a category's title or name.</li>
+		<li><b>Second category</b>: optional.</li>
+		<li><b>Link</b>: optional, the game's URL on ContentDB. Used instead of the title when present.</li>
+	</ul>
+
+	<p>
+		Categories:
+		{% for category in categories %}
+			<code>{{ category.title }}</code>{% if not loop.last %}, {% endif %}
+		{% else %}
+			<span class="text-danger">there are no category tags</span>
+		{% endfor %}
+	</p>
+
+	{% from "macros/forms.html" import render_field, render_submit_field %}
+	<form method="POST" action="" enctype="multipart/form-data" class="mb-5">
+		{{ form.hidden_tag() }}
+		{{ render_field(form.file, accept=".csv,text/csv") }}
+		{{ render_submit_field(form.preview, class_="btn btn-secondary me-2") }}
+		{{ render_submit_field(form.submit) }}
+	</form>
+
+	{% if result %}
+		<h2>
+			{% if applied %}Changed{% else %}Would change{% endif %}
+			({{ result.changes | length }})
+		</h2>
+		{% if result.changes %}
+			<div class="table-responsive">
+				<table class="table">
+					<tr><th>Row</th><th>Game</th><th>Categories before</th><th>Categories after</th></tr>
+					{% for change in result.changes %}
+						<tr>
+							<td>{{ change.row }}</td>
+							<td><a href="{{ change.package.get_url('packages.view') }}">{{ change.package.title }}</a>
+								<small class="text-muted">{{ change.package.author.username }}/{{ change.package.name }}</small></td>
+							<td>{{ category_list(change.old_categories) }}</td>
+							<td>{{ category_list(change.new_categories) }}</td>
+						</tr>
+					{% endfor %}
+				</table>
+			</div>
+		{% endif %}
+
+		<h2>Skipped ({{ result.skipped | length }})</h2>
+		{% if result.skipped %}
+			<div class="table-responsive">
+				<table class="table">
+					<tr><th>Row</th><th>Game</th><th>Reason</th></tr>
+					{% for row, game, reason in result.skipped %}
+						<tr><td>{{ row }}</td><td>{{ game }}</td><td>{{ reason }}</td></tr>
+					{% endfor %}
+				</table>
+			</div>
+		{% endif %}
+
+		<h2>Already correct ({{ result.unchanged | length }})</h2>
+		{% if result.unchanged %}
+			<p>
+				{% for change in result.unchanged %}
+					<a href="{{ change.package.get_url('packages.view') }}">{{ change.package.title }}</a>{% if not loop.last %}, {% endif %}
+				{% endfor %}
+			</p>
+		{% endif %}
+	{% endif %}
+{% endblock %}
