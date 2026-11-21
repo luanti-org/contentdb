@@ -561,10 +561,10 @@ Dashboards are the curated layouts of the homepage.
         * `title`: dashboard title.
         * `widgets`: ordered list of objects with:
             * `id`: widget id.
-            * `type`: one of `spotlight`, `row`, `tags`, `reviews`.
+            * `type`: one of `spotlight`, `row`, `tags`, `reviews`, `categories`.
             * `title`: title, or null.
-            * `query_string`: for `row` and `spotlight`, a [package list query](#package-queries) in URL query
-              string format, or null.
+            * `query_string`: for `row`, `spotlight` and `categories`, a [package list query](#package-queries) in URL
+              query string format, or null. For `categories`, it filters the packages counted in each category.
             * `limit`: maximum number of items, or null.
 
 ### Licenses

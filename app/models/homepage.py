@@ -24,6 +24,7 @@ class DashboardWidgetType(enum.Enum):
 	ROW = "Row"
 	TAGS = "Tags"
 	REVIEWS = "Reviews"
+	CATEGORIES = "Categories"
 
 	def to_name(self):
 		return self.name.lower()

@@ -10,6 +10,7 @@ from sqlalchemy.sql.expression import func
 
 from app.models import Dashboard, DashboardWidget, DashboardWidgetType, Package, PackageState, db
 from .widgets.base import Widget
+from .widgets.categories import CategoriesWidget
 from .widgets.reviews import ReviewsWidget
 from .widgets.row import RowWidget
 from .widgets.spotlight import SpotlightWidget
@@ -25,6 +26,7 @@ WIDGETS: dict[DashboardWidgetType, type[Widget]] = {
 	DashboardWidgetType.ROW: RowWidget,
 	DashboardWidgetType.TAGS: TagsWidget,
 	DashboardWidgetType.REVIEWS: ReviewsWidget,
+	DashboardWidgetType.CATEGORIES: CategoriesWidget,
 }
 
 

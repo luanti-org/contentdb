@@ -309,3 +309,35 @@ pre {
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
 }
+
+// Categories widget, app/blueprints/homepage/widgets/categories/categories.html
+.category-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+	gap: 0.75rem;
+}
+
+.category-tile {
+	.packagecard {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		aspect-ratio: 16 / 9;
+		max-width: 100%;
+		text-align: center;
+	}
+
+	.packagecard .body {
+		padding: 1rem 1.25rem;
+	}
+
+	// Above the tiles after it, so the description that drops down on hover isn't hidden behind them
+	&:hover {
+		z-index: 1;
+	}
+
+	// Without a description there's nothing to drop down, so keep the rounded corners
+	&:not(:has(.info-wrapper)):has(.packagecard:hover) {
+		border-radius: 0.5rem;
+	}
+}

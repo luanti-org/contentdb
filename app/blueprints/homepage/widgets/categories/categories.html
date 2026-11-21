@@ -1,0 +1,24 @@
+{% if tiles %}
+	{% if title %}
+		<h2 class="mb-3">{{ title }}</h2>
+	{% endif %}
+	{# Uses the package tile styles, so the description drops down below the tile on hover like a package's #}
+	<div class="category-grid mb-5">
+		{% for tile in tiles %}
+			<a class="packagetile category-tile" href="{{ tile.url }}">
+				<div class="packagecard">
+					<div class="body">
+						<h3>{{ tile.title }}</h3>
+					</div>
+				</div>
+				{% if tile.description %}
+					<div class="info-wrapper">
+						<div class="info">
+							<p>{{ tile.description }}</p>
+						</div>
+					</div>
+				{% endif %}
+			</a>
+		{% endfor %}
+	</div>
+{% endif %}
