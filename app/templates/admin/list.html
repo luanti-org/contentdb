@@ -20,6 +20,10 @@
 						<i class="fas fa-users me-2"></i>
 						Bulk user editor
 					</a>
+					<a class="list-group-item list-group-item-action" href="{{ url_for('admin.pending_deletions') }}">
+						<i class="fas fa-user-times me-2"></i>
+						Scheduled user deletions
+					</a>
 				{% endif %}
 				{% if current_user.rank.at_least(current_user.rank.APPROVER) %}
 					<a class="list-group-item list-group-item-action" href="{{ url_for('admin.audit') }}">

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}
+	Scheduled user deletions
+{% endblock %}
+
+{% block content %}
+	<h1>{{ self.title() }}</h1>
+
+	<p>
+		These users will be deleted at the time shown, unless they log in first.
+		Deletions are processed hourly, at half past.
+	</p>
+
+	<p class="my-4">
+		{{ rows | length }} scheduled.
+	</p>
+
+	{% if rows %}
+		<div class="list-group">
+			<div class="list-group-item">
+				<div class="row">
+					<div class="col-2">Username</div>
+					<div class="col-2">Reason</div>
+					<div class="col-2">Scheduled</div>
+					<div class="col-2">Deletes</div>
+					<div class="col-2">Reminder sent</div>
+					<div class="col"></div>
+				</div>
+			</div>
+
+			{% for row in rows %}
+				{% set user = row.user %}
+				{% set pending = row.pending %}
+				<div class="list-group-item pending-deletion" data-username="{{ user.username }}">
+					<div class="row">
+						<div class="col-2">
+							<a target="_blank" href="{{ url_for('users.profile', username=user.username) }}">
+								{{ user.username }}
+							</a>
+							{% if user.display_name != user.username %}
+								<div class="text-muted">{{ user.display_name }}</div>
+							{% endif %}
+						</div>
+						<div class="col-2">{{ pending.reason.value }}</div>
+						<div class="col-2">{{ pending.created_at | full_datetime }}</div>
+						<div class="col-2">
+							{{ pending.delete_at | full_datetime }}
+							{% if pending.delete_at <= now %}
+								<span class="badge bg-danger">Overdue</span>
+							{% endif %}
+						</div>
+						<div class="col-2">
+							{% if pending.reminder_sent_at %}
+								{{ pending.reminder_sent_at | full_datetime }}
+							{% else %}
+								<span class="text-muted">No</span>
+							{% endif %}
+							{% if not user.email %}
+								<div class="text-muted">No email</div>
+							{% endif %}
+						</div>
+						<div class="col text-end">
+							<a class="btn btn-secondary btn-sm" target="_blank" href="{{ url_for('users.modtools', username=user.username) }}">Modtools</a>
+							<a class="btn btn-secondary btn-sm" target="_blank" href="{{ url_for('admin.audit', username=user.username) }}">Audit log</a>
+						</div>
+					</div>
+					{% if row.blocker %}
+						<div class="alert alert-warning mt-2 mb-0">
+							Can't be deleted, as {{ row.blocker }}. The deletion will be cancelled when it's processed.
+						</div>
+					{% endif %}
+				</div>
+			{% endfor %}
+		</div>
+	{% endif %}
+{% endblock %}
