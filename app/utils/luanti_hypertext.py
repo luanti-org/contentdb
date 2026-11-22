@@ -10,7 +10,7 @@ from urllib.parse import urljoin
 from flask_babel import gettext
 
 from app.markdown import render_markdown
-from app.models import Package, PackageType, PackageReview
+from app.models import Package, PackageType, PackageReview, TagKind
 from app.utils.flask import abs_url_for
 
 
@@ -249,7 +249,11 @@ def package_info_as_hypertext(package: Package, formspec_version: int = 7):
 		body += "\n\n"
 
 	add_value(gettext("Type"), package.type.text)
-	add_list(gettext("Tags"), [escape_hypertext(tag.get_translated()["title"]) for tag in package.tags])
+	categories = [tag for tag in package.tags if tag.kind == TagKind.CATEGORY]
+	if categories:
+		add_list(gettext("Categories"), [escape_hypertext(tag.get_translated()["title"]) for tag in categories])
+	add_list(gettext("Tags"),
+			[escape_hypertext(tag.get_translated()["title"]) for tag in package.tags if tag.kind != TagKind.CATEGORY])
 
 	if package.type != PackageType.GAME:
 		def make_game_link(game):

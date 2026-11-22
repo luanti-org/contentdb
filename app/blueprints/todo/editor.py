@@ -9,7 +9,7 @@ from sqlalchemy import or_, and_
 from sqlalchemy.orm import selectinload
 
 from app.models import Package, PackageState, PackageScreenshot, PackageUpdateConfig, ForumTopic, db, \
-	PackageRelease, Permission, UserRank, License, MetaPackage, Dependency, AuditLogEntry, Tag, LuantiRelease, Report, \
+	PackageRelease, Permission, UserRank, License, MetaPackage, Dependency, AuditLogEntry, Tag, TagKind, LuantiRelease, Report, \
 	ReleaseState, User, ThreadReply, Thread, AuditSeverity, PackageReview
 from app.querybuilder import QueryBuilder
 from app.utils.flask import get_int_or_abort, url_set_query
@@ -124,7 +124,8 @@ def view_editor():
 		.all()
 
 	total_packages = Package.query.filter_by(state=PackageState.APPROVED).count()
-	total_to_tag = Package.query.filter_by(state=PackageState.APPROVED, tags=None).count()
+	# Categories are checked when approving games, so this is about feature tags
+	total_to_tag = Package.query.filter_by(state=PackageState.APPROVED).filter(~has_feature_tag()).count()
 
 	unfulfilled_meta_packages = MetaPackage.query \
 		.filter(~ MetaPackage.packages.any(state=PackageState.APPROVED)) \
@@ -149,6 +150,11 @@ def view_editor():
 			unanswered_approval_threads=unanswered_approval_threads)
 
 
+def has_feature_tag():
+	"""Filter for packages with at least one feature tag. A category alone doesn't count as being tagged"""
+	return Package.tags.any(Tag.kind == TagKind.FEATURE)
+
+
 # Packages per page of /todo/tags/
 TAGS_PAGE_SIZE = 100
 
@@ -167,7 +173,7 @@ def tags():
 
 	only_no_tags = is_yes(request.args.get("no_tags"))
 	if only_no_tags:
-		query = query.filter(~Package.tags.any())
+		query = query.filter(~has_feature_tag())
 
 	page = get_int_or_abort(request.args.get("page"), 1)
 	pagination = query.paginate(page=page, per_page=TAGS_PAGE_SIZE)

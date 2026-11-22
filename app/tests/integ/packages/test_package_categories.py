@@ -280,3 +280,78 @@ def test_game_needs_category_to_be_submitted(client, eager_tasks, http_stub):
 
 	client_request(client, "POST", "/packages/owner/pkg/state/?state=ready_for_review")
 	assert get_package().state == PackageState.READY_FOR_REVIEW
+
+
+def setup_tagged_game() -> tuple[Tag, Tag]:
+	puzzle, _, _ = make_categories()
+	feature = mapgen()
+	game = create_package("Some_Game", create_user("owner"), type=PackageType.GAME)
+	game.tags.extend([puzzle, feature])
+	db.session.commit()
+	return puzzle, feature
+
+
+def section(html: str, id_: str) -> str:
+	"""The contents of the element with this id, which must not contain nested elements of its own tag"""
+	start = html.find(f'id="{id_}"')
+	if start == -1:
+		return ""
+	tag = html[html.rindex("<", 0, start) + 1:].split(" ", 1)[0]
+	return html[start:html.index(f"</{tag}>", start)]
+
+
+def test_list_shows_categories_separately_for_games(client):
+	puzzle, feature = setup_tagged_game()
+
+	html = client.get("/packages/?type=game").data.decode("utf-8")
+	assert puzzle.title in section(html, "category-filters")
+	assert puzzle.title not in section(html, "tag-filters")
+	assert feature.title in section(html, "tag-filters")
+
+
+def test_list_hides_categories_without_game_type(client):
+	puzzle, feature = setup_tagged_game()
+
+	for url in ["/packages/", "/packages/?type=game&type=mod"]:
+		html = client.get(url).data.decode("utf-8")
+		assert 'id="category-filters"' not in html, url
+		assert puzzle.title not in html, url
+		assert feature.title in section(html, "tag-filters"), url
+
+
+def test_list_keeps_selected_category_without_type(client):
+	puzzle, _ = setup_tagged_game()
+
+	html = client.get(f"/packages/?tag={puzzle.name}").data.decode("utf-8")
+	assert puzzle.title in section(html, "category-filters")
+
+
+def test_package_page_shows_categories_first(client):
+	puzzle, feature = setup_tagged_game()
+
+	html = client.get("/packages/owner/some_game/").data.decode("utf-8")
+	categories = section(html, "package-categories")
+	assert puzzle.title in categories and feature.title not in categories
+	assert "/packages/?type=game&amp;tag=puzzle_game" in categories
+	assert "badge-sm" not in categories
+
+	tags = section(html, "package-tags")
+	assert feature.title in tags and puzzle.title not in tags
+	assert "badge badge-sm" in tags
+	assert html.index('id="package-categories"') < html.index('id="package-tags"')
+
+
+def test_advanced_search_groups_categories(client):
+	puzzle, _, _ = make_categories()
+
+	html = client.get("/packages/advanced-search/").data.decode("utf-8")
+
+	categories = html[html.index('<optgroup label="Categories">'):]
+	categories = categories[:categories.index("</optgroup>")]
+	assert f'value="{puzzle.name}"' in categories
+	assert 'value="mapgen"' not in categories
+
+	tags = html[html.index('<optgroup label="Tags">'):]
+	tags = tags[:tags.index("</optgroup>")]
+	assert 'value="mapgen"' in tags
+	assert f'value="{puzzle.name}"' not in tags

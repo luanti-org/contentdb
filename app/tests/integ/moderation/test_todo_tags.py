@@ -9,7 +9,7 @@ from contextlib import contextmanager
 from sqlalchemy import event
 
 from app.blueprints.todo import editor
-from app.models import db, Tag, UserRank
+from app.models import db, PackageType, Tag, TagKind, UserRank
 from ..factories import create_package, create_user, login_as, client_request
 
 
@@ -84,3 +84,51 @@ def test_missing_tags_only(client):
 
 	assert "untagged" in html
 	assert "pkg0" not in html
+
+
+def make_category_only_game() -> Tag:
+	category = Tag("Some Category")
+	category.kind = TagKind.CATEGORY
+	category.package_types = [PackageType.GAME]
+	game = create_package("category_only", create_user("gamedev"), type=PackageType.GAME)
+	game.tags.append(category)
+	db.session.commit()
+	return category
+
+
+def test_missing_tags_only_counts_category_as_missing(client):
+	"""A game with a category but no feature tags still needs tagging"""
+	login_as(client, create_user("curator", UserRank.CURATOR))
+	make_packages(0, 1)
+	make_category_only_game()
+
+	html = client_request(client, "GET", "/todo/tags/?no_tags=1").data.decode("utf-8")
+
+	assert "category_only" in html
+	assert "pkg0" not in html
+
+
+def test_editor_todo_counts_category_as_missing(client):
+	login_as(client, create_user("editor", UserRank.EDITOR))
+	make_packages(0, 1)
+	make_category_only_game()
+
+	html = client_request(client, "GET", "/todo/").data.decode("utf-8")
+
+	assert "1 / 2 packages don't have any tags." in html
+
+
+def test_categories_shown_first(client):
+	login_as(client, create_user("curator", UserRank.CURATOR))
+	category = make_category_only_game()
+	game = db.session.merge(category).packages[0]
+	game.tags.append(Tag.query.filter_by(name="mapgen").one())
+	db.session.commit()
+
+	html = client_request(client, "GET", "/todo/tags/?type=game").data.decode("utf-8")
+
+	category_badge = html.index(f"tag={category.name}&amp;")
+	feature_badge = html.index("tag=mapgen&amp;")
+	assert category_badge < feature_badge
+	assert "badge bg-primary" in html[category_badge - 100:category_badge]
+	assert "badge bg-secondary" in html[feature_badge - 100:feature_badge]

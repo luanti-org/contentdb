@@ -9,7 +9,7 @@ formatting.
 
 import re
 
-from app.models import db
+from app.models import db, PackageType, Tag, TagKind
 from ..factories import create_user, create_package, create_review, client_request
 
 
@@ -55,3 +55,37 @@ def test_reviews_escape_user_text(client):
 	assert r"\<action name=y\>" in body
 	# Leave a review, the reviewer's profile, and the comments link
 	assert len(unescaped_actions(body)) == 3
+
+
+def test_package_info_lists_categories_separately(client):
+	"""Categories get their own line, before the feature tags"""
+	category = Tag("Some Category")
+	category.kind = TagKind.CATEGORY
+	feature = Tag("Some Feature")
+	game = create_package("game", create_user("owner"), type=PackageType.GAME)
+	game.tags.extend([category, feature])
+	db.session.commit()
+
+	rv = client_request(client, "GET", "/api/packages/owner/game/for-client/?formspec_version=7")
+
+	assert rv.status_code == 200
+	assert rv.json is not None
+	body = rv.json["info_hypertext"]["body"]
+	assert "Categories: <b>Some Category</b>\n" in body
+	assert "Tags: <b>Some Feature</b>\n" in body
+	assert body.index("Categories:") < body.index("Tags:")
+
+
+def test_package_info_without_categories(client):
+	feature = Tag("Some Feature")
+	mod = create_package("mod", create_user("owner"))
+	mod.tags.append(feature)
+	db.session.commit()
+
+	rv = client_request(client, "GET", "/api/packages/owner/mod/for-client/?formspec_version=7")
+
+	assert rv.json is not None
+	body = rv.json["info_hypertext"]["body"]
+
+	assert "Categories:" not in body
+	assert "Tags: <b>Some Feature</b>\n" in body

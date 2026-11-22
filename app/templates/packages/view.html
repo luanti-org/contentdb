@@ -258,9 +258,21 @@
 
 				<div style="flex: 1;"></div>
 
-				<p class="mb-0">
-					{% for tag in package.tags %}
-						<a class="badge bg-secondary" rel="nofollow"
+				{% set categories = package.tags | selectattr("kind.name", "equalto", "CATEGORY") | list %}
+				{% if categories %}
+					<p class="mb-2" id="package-categories">
+						{% for tag in categories %}
+							<a class="badge bg-primary" rel="nofollow"
+									title="{{ tag.get_translated().description or '' }}"
+									href="{{ url_for('packages.list_all', type=package.type.to_name(), tag=tag.name) }}">
+								{{ tag.get_translated().title }}
+							</a>
+						{% endfor %}
+					</p>
+				{% endif %}
+				<p class="mb-0" id="package-tags">
+					{% for tag in package.tags if tag not in categories %}
+						<a class="badge badge-sm bg-secondary" rel="nofollow"
 								title="{{ tag.get_translated().description or '' }}"
 								href="{{ url_for('packages.list_all', tag=tag.name) }}">
 							{{ tag.get_translated().title }}

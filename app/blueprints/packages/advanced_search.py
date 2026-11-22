@@ -11,7 +11,7 @@ from wtforms.validators import Optional
 from wtforms_sqlalchemy.fields import QuerySelectMultipleField, QuerySelectField
 
 from . import bp
-from ...models import PackageType, Tag, db, ContentWarning, License, Language, LuantiRelease, Package, PackageState
+from ...models import PackageType, Tag, TagKind, db, ContentWarning, License, Language, LuantiRelease, Package, PackageState
 
 
 def make_label(obj: Tag | ContentWarning):
@@ -38,14 +38,21 @@ def get_hide_choices():
 	return ret
 
 
+def get_tag_choices():
+	"""Categories and feature tags, as separate option groups. Both are searched with tag="""
+	tags = Tag.query.order_by(db.asc(Tag.title)).all()
+	return {
+		gettext("Categories"): [(x.name, make_label(x)) for x in tags if x.kind == TagKind.CATEGORY],
+		gettext("Tags"): [(x.name, make_label(x)) for x in tags if x.kind != TagKind.CATEGORY],
+	}
+
+
 class AdvancedSearchForm(FlaskForm):
 	q = StringField(lazy_gettext("Query"), [Optional()])
 	type = SelectMultipleField(lazy_gettext("Type"), [Optional()],
 			choices=PackageType.choices(), coerce=PackageType.coerce)
 	author = StringField(lazy_gettext("Author"), [Optional()])
-	tag = QuerySelectMultipleField(lazy_gettext('Tags'),
-			query_factory=lambda: Tag.query.order_by(db.asc(Tag.name)),
-			get_pk=lambda a: a.name, get_label=make_label)
+	tag = SelectMultipleField(lazy_gettext("Categories and Tags"), [Optional()])
 	flag = QuerySelectMultipleField(lazy_gettext('Content Warnings'),
 			query_factory=lambda: ContentWarning.query.order_by(db.asc(ContentWarning.name)),
 			get_pk=lambda a: a.name, get_label=make_label)
@@ -89,5 +96,6 @@ class AdvancedSearchForm(FlaskForm):
 @bp.route("/packages/advanced-search/")
 def advanced_search():
 	form = AdvancedSearchForm()
+	form.tag.choices = get_tag_choices()
 	form.hide.choices = get_hide_choices()
 	return render_template("packages/advanced_search.html", form=form)

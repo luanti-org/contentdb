@@ -101,9 +101,17 @@ def list_all():
 
 	selected_tags = set(qb.tags)
 
+	# Categories only make sense when filtering to package types they apply to, but keep selected ones so they can
+	# be removed
+	def show_category(tag: Tag) -> bool:
+		return tag in selected_tags or (len(qb.types) > 0 and all(tag.applies_to(x) for x in qb.types))
+
+	categories = [pair for pair in tags if pair[1].kind == TagKind.CATEGORY and show_category(pair[1])]
+	tags = [pair for pair in tags if pair[1].kind != TagKind.CATEGORY]
+
 	return render_template("packages/list.html",
 			query_hint=qb.query_hint, packages=query.items, pagination=query,
-			query=search, tags=tags, selected_tags=selected_tags, type=type_name,
+			query=search, tags=tags, categories=categories, selected_tags=selected_tags, type=type_name,
 			authors=authors, packages_count=query.total, topics=topics, noindex=qb.noindex)
 
 

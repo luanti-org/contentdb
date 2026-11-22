@@ -60,9 +60,14 @@
 				{% endif %}
 			</td>
 			<td class="tags">
-				{% for tag in package.tags %}
+				{# Categories first and highlighted, like on the package page #}
+				{% for tag in package.tags if tag.kind.name == "CATEGORY" %}
 					{% set title, url = tag_links[tag.id] %}
 					<a class="badge bg-primary me-1" href="{{ url }}">{{ title }}</a>
+				{% endfor %}
+				{% for tag in package.tags if tag.kind.name != "CATEGORY" %}
+					{% set title, url = tag_links[tag.id] %}
+					<a class="badge bg-secondary me-1" href="{{ url }}">{{ title }}</a>
 				{% endfor %}
 				<!-- <a class="badge bg-secondary add-btn px-2" href="#">
 					<i class="fas fa-plus"></i>

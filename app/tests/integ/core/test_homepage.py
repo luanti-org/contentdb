@@ -5,7 +5,7 @@
 import pytest
 
 from app.default_data import populate_test_data
-from app.models import db, DashboardWidgetType, PackageType
+from app.models import db, DashboardWidgetType, PackageType, Tag, TagKind
 from ..factories import create_collection, create_dashboard, create_package, create_review, create_screenshot, \
 	create_user, get_user, login_as
 
@@ -234,3 +234,20 @@ def test_homepage_random_keeps_screenshots(client):
 		html = client.get("/").data.decode("utf-8")
 		assert html.count("packagecard") == 3
 		assert "/static/placeholder.png" not in html
+
+
+def test_homepage_tags_widget_excludes_categories(client):
+	feature = Tag("Some Feature")
+	category = Tag("Some Category")
+	category.kind = TagKind.CATEGORY
+	category.package_types = [PackageType.GAME]
+	game = create_package("SomeGame", create_user("author"), type=PackageType.GAME)
+	game.tags.extend([feature, category])
+	db.session.commit()
+	create_dashboard([
+		(DashboardWidgetType.TAGS, "Search by Tags", None, None),
+	])
+
+	html = client.get("/").data.decode("utf-8")
+	assert "Some Feature" in html
+	assert "Some Category" not in html

@@ -22,10 +22,8 @@
 		</p>
 	{% endif %}
 
-	<aside class="mb-5">
-		<p class="text-muted">{{ _("Filter by tags") }}</p>
-
-		{% for pair in tags %}
+	{% macro render_tag_filters(pairs) %}
+		{% for pair in pairs %}
 			{% set count = pair[0] %}
 			{% set tag = pair[1] %}
 
@@ -45,6 +43,20 @@
 				</a>
 			{% endif %}
 		{% endfor %}
+	{% endmacro %}
+
+	<aside class="mb-5">
+		{% if categories %}
+			<p class="text-muted">{{ _("Filter by category") }}</p>
+			<div class="mb-3" id="category-filters">
+				{{ render_tag_filters(categories) }}
+			</div>
+		{% endif %}
+
+		<p class="text-muted">{{ _("Filter by tags") }}</p>
+		<div id="tag-filters">
+			{{ render_tag_filters(tags) }}
+		</div>
 	</aside>
 
 	{% from "macros/packagegridtile.html" import render_pkggrid %}

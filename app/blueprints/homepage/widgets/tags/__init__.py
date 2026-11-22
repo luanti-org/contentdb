@@ -7,12 +7,12 @@ from typing import Any
 from flask_babel import lazy_gettext
 from sqlalchemy.sql.expression import func
 
-from app.models import Package, PackageState, Tag, Tags, db
+from app.models import Package, PackageState, Tag, TagKind, Tags, db
 from ..base import Widget
 
 
 class TagsWidget(Widget):
-	"""Buttons for every tag in use, with package counts"""
+	"""Buttons for every feature tag in use, with package counts. Categories have their own widget"""
 
 	template = "widgets/tags/tags.html"
 	label = lazy_gettext("Tags")
@@ -21,7 +21,7 @@ class TagsWidget(Widget):
 	def get_context(self) -> dict[str, Any]:
 		tags = (db.session.query(func.count(Tags.c.tag_id), Tag)
 			.select_from(Tag).outerjoin(Tags).join(Package)
-			.filter(Package.state == PackageState.APPROVED)
+			.filter(Package.state == PackageState.APPROVED, Tag.kind == TagKind.FEATURE)
 			.group_by(Tag.id)
 			.order_by(db.asc(Tag.title))
 			.all())
