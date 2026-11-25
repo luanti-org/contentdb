@@ -6,7 +6,7 @@
 				<img src="{{ package.get_thumb_or_placeholder() }}" loading="lazy">
 			</div>
 			<div class="body">
-				<h3>{{ meta.title }}</h3>
+				<h3 title="{{ meta.title }}">{{ meta.title }}</h3>
 				{% if show_author %}
 					<p class="subtitle">
 						{{ package.author.display_name }}

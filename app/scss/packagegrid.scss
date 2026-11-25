@@ -3,6 +3,7 @@
 	margin: 0;
 	padding: 0;
 	position: relative;
+	min-width: 0; // Allow the grid column to be narrower than a long single-line title
 	border-radius: 0.5rem;
 	background: #2d2d2d;
 
@@ -29,6 +30,9 @@
 				font-weight: bold;
 				margin: 0;
 				padding: 0;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
 			}
 
 			.subtitle {
