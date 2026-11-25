@@ -368,7 +368,10 @@ def test_require_password_reset_ends_other_sessions(client):
 	assert rv.status_code == 302
 	assert rv.headers["Location"].endswith("/user/set-password/")
 
-	# Other sessions can't be used to set a new password
+	# Other sessions can't be used to set a new password.
+	# Their Anubis bypass cookie is no longer valid, so is deleted first
+	rv = get_fresh(other, "/user/set-password/")
+	assert rv.status_code == 307
 	rv = get_fresh(other, "/user/set-password/")
 	assert rv.status_code == 302
 	assert "/user/login/" in rv.headers["Location"]

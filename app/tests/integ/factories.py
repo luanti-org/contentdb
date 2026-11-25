@@ -23,6 +23,7 @@ from app.models import db, User, UserRank, UserSession, Package, PackageState, P
 	ReleaseState, PackageScreenshot, Thread, ThreadReply, PackageReview, PackageReviewVote, APIToken, OAuthClient, \
 	Collection, CollectionPackage, Report, ReportCategory, Dashboard, DashboardWidget, DashboardWidgetType, \
 	DashboardWidgetSlide
+from app.utils import bot_check_bypass
 from app.utils.misc import hash_token, random_string
 from app.utils.user import make_flask_login_password
 from .utils import make_package
@@ -73,6 +74,9 @@ def login_as(client: FlaskClient, user: User, fresh: bool = True):
 	with client.session_transaction() as sess:
 		sess["_user_id"] = token
 	g.pop("_login_user", None)
+
+	# A real login's response replaces the previous user's cookie, which would otherwise be rejected
+	client.delete_cookie(bot_check_bypass.COOKIE_NAME, domain="localhost")
 
 
 def make_session_stale(user: User):

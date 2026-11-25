@@ -172,6 +172,19 @@ def check_for_ban():
 			models.db.session.commit()
 
 
+# After check_for_ban, so banned users see why they've been logged out
+@app.before_request
+def reject_invalid_bot_check_bypass():
+	from app.utils.bot_check_bypass import reject_invalid_cookie
+	return reject_invalid_cookie()
+
+
+@app.after_request
+def update_bot_check_bypass(response):
+	from app.utils.bot_check_bypass import update_cookie
+	return update_cookie(response)
+
+
 PASSWORD_RESET_ALLOWED_ENDPOINTS = {
 	"users.set_password", "users.logout", "users.verify_email", "users.email_sent",
 	"users.reauthenticate", "vcs.github_start", "vcs.github_callback",

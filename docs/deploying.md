@@ -67,3 +67,12 @@ Without the database, sessions are shown without a location.
 
 The updater replaces the file every few days, and ContentDB picks up the new file without
 restarting. The GeoLite2 EULA requires the attribution in the privacy policy.
+
+## Letting members skip Anubis (optional)
+
+ContentDB sets a `cdb_bot_check_bypass` cookie for logged-in users ranked Member or above.
+If [Anubis](https://anubis.techaro.lol/) is in front of ContentDB, it can let requests with
+this cookie skip the proof of work. Anubis only needs to check that the cookie is present:
+ContentDB checks it's signed with `SECRET_KEY`, not expired, and belongs to the logged-in user.
+Requests with an invalid cookie are redirected to the same URL with the cookie deleted, so
+they go back through Anubis. See `app/utils/bot_check_bypass.py`.
