@@ -53,4 +53,5 @@ def view(name):
 
 	return render_template("modnames/view.html", modname=modname,
 			dependers=dependers, optional_dependers=optional_dependers,
-			similar_topics=similar_topics)
+			similar_topics=similar_topics,
+			noindex=len(dependers) + len(optional_dependers) < 2)

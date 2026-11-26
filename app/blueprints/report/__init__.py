@@ -59,7 +59,7 @@ def report():
 				attachment_path, _ = upload_file(form.file_upload.data, "image", lazy_gettext("a PNG, JPEG, or WebP image file"))
 			except DomainError as e:
 				flash(e.message, "danger")
-				return render_template("report/report.html", form=form, url=url, is_anon=is_anon, noindex=url is not None)
+				return render_template("report/report.html", form=form, url=url, is_anon=is_anon)
 
 		report = Report()
 		report.id = random_string(8)
@@ -104,7 +104,7 @@ def report():
 
 		return redirect(url_for("report.report_received", rid=report.id))
 
-	return render_template("report/report.html", form=form, url=url, is_anon=is_anon, noindex=url is not None)
+	return render_template("report/report.html", form=form, url=url, is_anon=is_anon)
 
 
 @bp.route("/report/received/")

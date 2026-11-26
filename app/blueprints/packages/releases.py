@@ -19,7 +19,7 @@ from app.rediscache import check_and_set_temp_key, make_download_key, increment_
 from app.tasks.importtasks import check_update_config
 from app.domain.git_access import can_package_use_git
 from app.utils.models import is_package_page, add_audit_log_on_package
-from app.utils.flask import is_user_bot
+from app.utils.flask import is_user_bot, no_index
 from app.utils.misc import nonempty_or_none, normalize_line_endings
 from app.utils.version import is_luanti_v510
 from . import bp, get_package_tabs
@@ -150,7 +150,8 @@ def download_release(package, id):
 
 		db.session.commit()
 
-	return redirect(release.public_url)
+	# Not disallowed in robots.txt, as then search engines would index the URL without seeing this
+	return no_index(redirect(release.public_url))
 
 
 @bp.route("/packages/<author>/<name>/releases/<int:id>/")

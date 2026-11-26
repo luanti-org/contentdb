@@ -39,7 +39,7 @@ from app.utils.models import is_package_page, add_audit_log, add_audit_log_on_pa
 	add_notification, get_system_user, get_games_from_csv, \
 	post_to_approval_thread
 from app.utils.user import rank_required
-from app.utils.flask import is_user_bot, get_int_or_abort, abs_url_for, get_daterange_options
+from app.utils.flask import is_user_bot, no_index, get_int_or_abort, abs_url_for, get_daterange_options
 from app.utils.misc import normalize_line_endings
 from app.domain.package_approval import validate_package_for_approval, can_move_to_state
 from app.domain.game_support import game_support_set
@@ -254,7 +254,7 @@ def download(package):
 			flash(gettext("No download available."), "danger")
 			return redirect(package.get_url("packages.view"))
 	else:
-		return redirect(release.get_download_url())
+		return no_index(redirect(release.get_download_url()))
 
 
 def make_label(obj: Tag | ContentWarning):

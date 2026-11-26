@@ -8,8 +8,11 @@ import os
 from bs4 import BeautifulSoup
 
 from app import app
-from app.models import db
-from ..factories import create_collection, create_package, create_screenshot, create_thread, create_user
+import pytest
+
+from app.models import db, Dependency, MetaPackage
+from ..factories import create_collection, create_package, create_release, create_review, create_screenshot, \
+	create_thread, create_user
 
 
 def get_soup(client, url: str) -> BeautifulSoup:
@@ -74,7 +77,7 @@ def test_package_page_meta_no_screenshot(client):
 
 
 def test_profile_meta_default_avatar(client):
-	create_user("someone")
+	create_package("SomeMod", create_user("someone"))
 
 	soup = get_soup(client, "/users/someone/")
 	assert og(soup, "type") == "profile"
@@ -122,6 +125,112 @@ def test_noindex_page_has_no_canonical(client):
 	assert meta(soup, "robots") == "noindex"
 	assert canonical(soup) is None
 	assert og(soup, "url") == f"{base_url()}/packages/?q=foo"
+
+
+def is_noindex(client, url: str) -> bool:
+	return meta(get_soup(client, url), "robots") == "noindex"
+
+
+@pytest.mark.parametrize("url", ["/user/login/", "/user/login/?next=%2Fpackages%2F", "/user/register/",
+		"/user/forgot-password/", "/report/", "/report/?url=/threads/1/"])
+def test_noindex_utility_pages(client, url):
+	assert is_noindex(client, url)
+
+
+def test_noindex_package_subpages(client):
+	author = create_user("author")
+	package = create_package("SomeMod", author)
+	release = create_release(package)
+
+	assert not is_noindex(client, "/packages/author/somemod/")
+	assert is_noindex(client, "/packages/author/somemod/releases/")
+	assert is_noindex(client, f"/packages/author/somemod/releases/{release.id}/")
+	assert is_noindex(client, "/packages/author/somemod/similar/")
+
+
+def test_noindex_download_redirects(client):
+	author = create_user("author")
+	package = create_package("SomeMod", author)
+	release = create_release(package)
+
+	for url in ["/packages/author/somemod/download/", f"/packages/author/somemod/releases/{release.id}/download/"]:
+		rv = client.get(url)
+		assert rv.status_code == 302, url
+		assert rv.headers.get("X-Robots-Tag") == "noindex", url
+
+
+def test_robots_txt_does_not_hide_noindex_pages():
+	# A disallowed URL can't be crawled, so search engines never see its noindex and index the bare URL
+	with open(os.path.join(app.root_path, "public", "robots.txt")) as f:
+		text = f.read()
+	assert "/report/" not in text
+	assert "/download/" not in text
+
+
+def test_noindex_package_list_sort(client):
+	assert not is_noindex(client, "/packages/")
+	assert not is_noindex(client, "/packages/?type=mod")
+	assert is_noindex(client, "/packages/?type=mod&sort=name")
+	assert is_noindex(client, "/packages/?order=asc")
+
+
+def test_noindex_empty_profile(client):
+	create_user("empty")
+	assert is_noindex(client, "/users/empty/")
+
+
+def test_profile_with_package_is_indexed(client):
+	author = create_user("author")
+	create_package("SomeMod", author)
+	assert not is_noindex(client, "/users/author/")
+
+
+def test_profile_with_review_is_indexed(client):
+	author = create_user("author")
+	reviewer = create_user("reviewer")
+	create_review(reviewer, create_package("SomeMod", author))
+	assert not is_noindex(client, "/users/reviewer/")
+
+
+def test_noindex_modname_with_few_dependers(client):
+	author = create_user("author")
+	meta_package = MetaPackage("somedep")
+	db.session.add(meta_package)
+	db.session.add(Dependency(create_package("ModA", author), meta=meta_package))
+	db.session.commit()
+	assert is_noindex(client, "/modnames/somedep/")
+
+	db.session.add(Dependency(create_package("ModB", author), meta=meta_package, optional=True))
+	db.session.commit()
+	assert not is_noindex(client, "/modnames/somedep/")
+
+
+@pytest.mark.parametrize("url", ["/packages/author/somemod/add-to/", "/packages/author/somemod/threads/new/",
+		"/packages/author/somemod/stats/?start=2026-02-15&end=2026-02-22"])
+def test_noindex_login_redirect(client, url):
+	create_package("SomeMod", create_user("author"))
+
+	rv = client.get(url)
+	assert rv.status_code == 302
+	assert rv.headers["Location"].startswith("/user/login/")
+	assert rv.headers.get("X-Robots-Tag") == "noindex"
+
+
+def test_other_redirects_are_indexable(client):
+	create_package("SomeMod", create_user("author"))
+
+	rv = client.get("/packages/author/")
+	assert 300 <= rv.status_code < 400
+	assert "X-Robots-Tag" not in rv.headers
+
+
+def test_noindex_collections_filtered_by_package(client):
+	author = create_user("author")
+	package = create_package("SomeMod", author)
+	create_collection(author, [package], name="favs")
+
+	assert not is_noindex(client, "/collections/")
+	assert is_noindex(client, "/collections/?package=author/somemod")
 
 
 def test_homepage_structured_data(client):

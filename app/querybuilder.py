@@ -41,6 +41,8 @@ class QueryBuilder:
 	lucky: bool
 	order_dir: str
 	order_by: Optional[str]
+	# Whether sort or order was given in the URL, rather than defaulted
+	explicit_order: bool
 	flags: set[str]
 	hide_flags: set[str]
 	hide_deprecated: bool
@@ -88,7 +90,7 @@ class QueryBuilder:
 		return (self.search is not None or len(self.tags) > 1 or len(self.flags) > 1 or len(self.types) > 1 or
 			len(self.licenses) > 0 or len(self.hide_flags) > 0 or len(self.hide_tags) > 0 or self.random or
 			self.lucky or self.author or self.version or self.not_version or self.game or self.collection or
-			self.match_nothing or self.limit is not None)
+			self.match_nothing or self.limit is not None or self.explicit_order)
 
 	@property
 	def requires_login(self):
@@ -180,6 +182,7 @@ class QueryBuilder:
 		self.random = "random" in args
 		self.lucky  = "lucky" in args
 		self.limit  = 1 if self.lucky else self._get_int(args, "limit")
+		self.explicit_order = bool(args.get("sort") or args.get("order"))
 		self.order_by  = args.get("sort")
 		if self.order_by == "":
 			self.order_by = None

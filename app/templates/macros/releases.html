@@ -32,7 +32,7 @@
 {% macro render_releases_download(releases, package, current_user) %}
 	{% for rel in releases %}
 		{% if rel.approved or package.check_perm(current_user, "MAKE_RELEASE") or rel.check_perm(current_user, "APPROVE_RELEASE")  %}
-			<a class="list-group-item list-group-item-action" href="{{ rel.get_download_url() }}">
+			<a class="list-group-item list-group-item-action" href="{{ rel.get_download_url() }}" rel="nofollow">
 				{{ rel.title }}
 				<span class="text-muted ms-1">
 					{% if rel.min_rel and rel.max_rel %}

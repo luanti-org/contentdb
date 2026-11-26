@@ -5,6 +5,7 @@
 import datetime
 import os
 import tempfile
+from urllib.parse import urlparse
 import redis
 import flask
 
@@ -202,7 +203,7 @@ def check_for_password_reset():
 		return redirect(url_for("users.set_password"))
 
 
-from app.utils.flask import is_safe_url
+from app.utils.flask import is_safe_url, no_index
 from app.utils.models import clear_notifications, create_session
 
 
@@ -224,6 +225,15 @@ def make_sessions_private(response):
 		response.cache_control.public = True
 	response.cache_control.no_cache = True
 
+	return response
+
+
+@app.after_request
+def no_index_login_redirects(response):
+	# Search engines keep the source URL of a temporary redirect in their index, showing the login page's content
+	if 300 <= response.status_code < 400 and response.location and \
+			urlparse(response.location).path == url_for("users.login"):
+		no_index(response)
 	return response
 
 

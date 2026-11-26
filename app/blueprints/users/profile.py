@@ -233,10 +233,14 @@ def profile(username):
 	reviews = [x for x in user.reviews if x.check_perm(current_user, Permission.SEE_REVIEW)]
 
 	unlocked, locked = get_user_medals(user)
-	# Process GET or invalid POST
+
+	# Profiles with nothing to show are thin pages, keep them out of search engines
+	noindex = not (packages or maintained_packages or reviews or pinned_collections)
+
 	return render_template("users/profile.html", user=user,
 			packages=packages, maintained_packages=maintained_packages, reviews=reviews,
-			medals_unlocked=unlocked, medals_locked=locked, pinned_collections=pinned_collections)
+			medals_unlocked=unlocked, medals_locked=locked, pinned_collections=pinned_collections,
+			noindex=noindex)
 
 
 @bp.route("/users/<username>/check-forums/", methods=["POST"])

@@ -47,7 +47,7 @@ def list_all(author=None):
 	collections = [x for x in query.all() if x.check_perm(current_user, Permission.VIEW_COLLECTION)]
 	return render_template("collections/list.html",
 		user=user, collections=collections,
-		noindex=len(collections) == 0)
+		noindex=len(collections) == 0 or "package" in request.args)
 
 
 @bp.route("/collections/<author>/<name>/")

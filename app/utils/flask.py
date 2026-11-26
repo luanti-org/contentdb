@@ -11,6 +11,7 @@ import user_agents
 from flask import request, abort, url_for, Response, current_app
 from flask_babel import LazyString, lazy_gettext
 from werkzeug.datastructures import MultiDict
+from werkzeug.wrappers import Response as BaseResponse
 
 
 def is_safe_url(target):
@@ -132,6 +133,12 @@ def is_user_bot():
 
 	user_agent = user_agents.parse(user_agent)
 	return user_agent.is_bot
+
+
+def no_index(response: BaseResponse) -> BaseResponse:
+	"""Marks a non-HTML response, such as a redirect, as not to be indexed by search engines"""
+	response.headers["X-Robots-Tag"] = "noindex"
+	return response
 
 
 def get_request_date(key: str) -> typing.Optional[datetime.date]:
