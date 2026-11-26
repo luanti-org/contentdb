@@ -3,3 +3,5 @@ User-agent: Meta-ExternalAgent
 User-agent: meta-webindexer
 User-agent: Sogou
 Disallow: /
+
+Sitemap: https://content.luanti.org/sitemap.xml
