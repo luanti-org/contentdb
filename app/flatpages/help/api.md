@@ -95,8 +95,11 @@ curl -X DELETE https://content.luanti.org/api/delete-token/ \
             (`package_types`), and games can have at most two categories. Games need at least one category to be published.
             If the list has no categories, the package's existing categories are kept.
         * `content_warnings`: List of [content warning](#content-warnings) names.
-        * `license`: A [license](#licenses) name.
-        * `media_license`: A [license](#licenses) name.
+        * `licenses`: List of [license](#licenses) names used by the code and media, ex: `["MIT", "CC0-1.0"]`.
+            All of them apply.
+        * `license`, `media_license`: Deprecated, use `licenses`. If `licenses` isn't given and both are, the
+            package's licenses are replaced with these. Just one of them is ignored. If `licenses` is given, they must
+            be in it. Packages return them as null.
         * `long_description`: Long markdown description.
         * `repo`: Source repository (eg: Git)
         * `website`: Website URL.
@@ -198,7 +201,7 @@ Examples:
 # Edit package
 curl -X PUT https://content.luanti.org/api/packages/username/name/ \
     -H "Authorization: Bearer YOURTOKEN" -H "Content-Type: application/json" \
-    -d '{ "title": "Foo bar", "tags": ["pvp", "survival"], "license": "MIT" }'
+    -d '{ "title": "Foo bar", "tags": ["pvp", "survival"], "licenses": ["MIT"] }'
 
 # Remove website URL
 curl -X PUT https://content.luanti.org/api/packages/username/name/ \
@@ -220,7 +223,7 @@ Filter query parameters:
 * `tag`:  Filter by tags. Multiple tags are AND-ed together.
 * `flag`: Filter to show packages with [Content Flags](/help/content_flags/).
 * `hide`:  Hide content based on tags or [Content Flags](/help/content_flags/).
-* `license`: Filter by [license name](#licenses). Multiple licenses are OR-ed together, ie: `&license=MIT&license=LGPL-2.1-only`
+* `license`: Filter by [license name](#licenses), matching any of the package's licenses. Multiple licenses are OR-ed together, ie: `&license=MIT&license=LGPL-2.1-only`
 * `game`: Filter by [Game Support](/help/game_support/), ex: `Warr1024/nodecore`. (experimental, doesn't show items that support every game currently).
 * `collection`: Filter to packages in a public [collection](#collections), ex: `ContentDB/spotlight`.
 * `lang`: Filter by translation support, eg: `en`/`de`/`ja`/`zh_TW`.

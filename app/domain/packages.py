@@ -25,14 +25,20 @@ def check(cond: bool, msg: typing.Union[str, LazyString]):
 		raise DomainError(400, msg)
 
 
-def get_license(name):
-	if isinstance(name, License):
-		return name
+def get_licenses(names: list) -> list[License]:
+	check(all(isinstance(x, str) for x in names), "licenses must be a list of license names")
 
-	license = License.query.filter(License.name.ilike(name)).first()
-	if license is None:
-		raise DomainError(400, "Unknown license " + name)
-	return license
+	# New packages can't be flushed until their fields are set
+	with db.session.no_autoflush:
+		licenses = {x.name.lower(): x for x in License.query.all()}
+
+	found = {}
+	for name in names:
+		license = licenses.get(name.strip().lower())
+		if license is None:
+			raise DomainError(400, "Unknown license " + name)
+		found[license.name] = license
+	return list(found.values())
 
 
 name_re = re.compile("^[a-z0-9_]+$")
@@ -48,8 +54,9 @@ ALLOWED_FIELDS = {
 	"ai_disclosure": AnyType,
 	"tags": list,
 	"content_warnings": list,
-	"license": AnyType,
-	"media_license": AnyType,
+	"licenses": list,
+	"license": str,
+	"media_license": str,
 	"long_description": str,
 	"desc": str,
 	"repo": str,
@@ -84,6 +91,8 @@ IGNORED_FIELDS = {
 NULLABLE = {
 	"tags",
 	"content_warnings",
+	"license",
+	"media_license",
 	"repo",
 	"website",
 	"issue_tracker",
@@ -216,11 +225,15 @@ def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, 
 	if "ai_disclosure" in data:
 		data["ai_disclosure"] = PackageAIDisclosure.coerce(data["ai_disclosure"])
 
-	if "license" in data:
-		data["license"] = get_license(data["license"])
-
-	if "media_license" in data:
-		data["media_license"] = get_license(data["media_license"])
+	# Old clients and .cdb.json files send these, and as_dict returns them as null
+	legacy = {x: get_licenses([data[x]])[0] for x in ["license", "media_license"] if data.get(x) is not None}
+	if "licenses" in data:
+		data["licenses"] = get_licenses(data["licenses"])
+		for key, license in legacy.items():
+			check(license in data["licenses"], f"{key} ({data[key]}) is not in licenses")
+	elif len(legacy) == 2:
+		data["licenses"] = list({x.name: x for x in legacy.values()}.values())
+	# A lone legacy key is ignored, as it can't say which of the package's licenses it replaces
 
 	if "desc" in data:
 		data["desc"] = normalize_line_endings(data["desc"])
@@ -230,7 +243,7 @@ def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, 
 		if "dQw4w9WgXcQ" in data["video_url"]:
 			raise DomainError(403, "Never gonna give you up / Never gonna let you down / Never gonna run around and desert you")
 
-	for key in ["name", "title", "short_desc", "desc", "dev_state", "ai_disclosure", "license", "media_license",
+	for key in ["name", "title", "short_desc", "desc", "dev_state", "ai_disclosure",
 			"repo", "website", "issueTracker", "forums", "video_url", "donate_url", "translation_url"]:
 		if key in data:
 			setattr(package, key, data[key])
@@ -240,8 +253,10 @@ def do_edit_package(user: User, package: Package, was_new: bool, was_web: bool, 
 		package.forums = get_forum_id(forum_url)
 		check(not (package.forums is None and forum_url is not None), lazy_gettext("Invalid forum_url - missing t"))
 
-	if package.type == PackageType.TXP:
-		package.license = package.media_license
+	if "licenses" in data:
+		package.licenses = data["licenses"]
+
+	check(len(package.licenses) > 0, lazy_gettext("At least one license is required"))
 
 	if was_new and package.type == PackageType.MOD:
 		m = MetaPackage.GetOrCreate(package.name, {})

@@ -87,7 +87,7 @@
 						<a href="{{ p.get_url('packages.view') }}" class="list-group-item list-group-item-action">
 							<div class="row align-items-center">
 								<div class="col-3">
-									{% if "Other" in p.license.name or "Other" in p.media_license.name %}
+									{% if "Other" in p.license_names %}
 										<span class="badge bg-info">License</span>
 									{% else %}
 										<span class="badge bg-success">Ready</span>

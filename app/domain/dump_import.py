@@ -186,11 +186,19 @@ class _Importer:
 			self.summary.warnings.append(f"{context}: user {username} isn't in the dump or the database")
 		return user
 
-	def get_license(self, name: str, context: str) -> License:
-		license = self.licenses.get(name)
-		if license is None:
-			raise DumpImportError(f"{context}: unknown license {name}")
-		return license
+	def get_licenses(self, data: dict[str, Any], context: str) -> list[License]:
+		# Dumps from before packages had a list of licenses have a code and a media license instead
+		names = data.get("licenses") or [data[x] for x in ["license", "media_license"] if data.get(x)]
+		if not names:
+			raise DumpImportError(f"{context}: no licenses")
+
+		found = []
+		for name in sorted(set(names)):
+			license = self.licenses.get(name)
+			if license is None:
+				raise DumpImportError(f"{context}: unknown license {name}")
+			found.append(license)
+		return found
 
 	def get_luanti_release(self, data: Optional[dict[str, Any]]) -> Optional[LuantiRelease]:
 		if not data:
@@ -234,8 +242,7 @@ class _Importer:
 				or PackageAIDisclosure.UNKNOWN
 		package.created_at = _parse_datetime(data["created_at"])
 		package.approved_at = _parse_datetime(data.get("approved_at"))
-		package.license = self.get_license(data["license"], context)
-		package.media_license = self.get_license(data["media_license"], context)
+		package.licenses = self.get_licenses(data, context)
 
 		package.repo = data.get("repo")
 		package.website = data.get("website")

@@ -96,8 +96,7 @@ def populate_test_data(session):
 	mod.state = PackageState.APPROVED
 	mod.name = "alpha"
 	mod.title = "Alpha Test"
-	mod.license = licenses["MIT"]
-	mod.media_license = licenses["MIT"]
+	mod.licenses = [licenses["MIT"]]
 	mod.type = PackageType.MOD
 	mod.author = admin_user
 	mod.tags.append(tags["mapgen"])
@@ -122,8 +121,7 @@ def populate_test_data(session):
 	mod1.state = PackageState.APPROVED
 	mod1.name = "awards"
 	mod1.title = "Awards"
-	mod1.license = licenses["LGPLv2.1"]
-	mod1.media_license = licenses["MIT"]
+	mod1.licenses = [licenses["LGPLv2.1"], licenses["MIT"]]
 	mod1.type = PackageType.MOD
 	mod1.author = admin_user
 	mod1.tags.append(tags["player_effects"])
@@ -163,8 +161,7 @@ awards.register_achievement("award_mesefind",{
 	mod2.title = "Mesecons"
 	mod2.tags.append(tags["tools"])
 	mod2.type = PackageType.MOD
-	mod2.license = licenses["LGPLv3"]
-	mod2.media_license = licenses["MIT"]
+	mod2.licenses = [licenses["LGPLv3"], licenses["MIT"]]
 	mod2.author = jeija
 	mod2.repo = "https://github.com/minetest-mods/mesecons/"
 	mod2.issueTracker = "https://github.com/minetest-mods/mesecons/issues"
@@ -251,8 +248,7 @@ No warranty is provided, express or implied, for any part of the project.
 	mod.state = PackageState.APPROVED
 	mod.name = "handholds"
 	mod.title = "Handholds"
-	mod.license = licenses["MIT"]
-	mod.media_license = licenses["MIT"]
+	mod.licenses = [licenses["MIT"]]
 	mod.type = PackageType.MOD
 	mod.author = ez
 	mod.tags.append(tags["player_effects"])
@@ -277,8 +273,7 @@ No warranty is provided, express or implied, for any part of the project.
 	mod.state = PackageState.APPROVED
 	mod.name = "other_worlds"
 	mod.title = "Other Worlds"
-	mod.license = licenses["MIT"]
-	mod.media_license = licenses["MIT"]
+	mod.licenses = [licenses["MIT"]]
 	mod.type = PackageType.MOD
 	mod.author = ez
 	mod.tags.append(tags["mapgen"])
@@ -295,8 +290,7 @@ No warranty is provided, express or implied, for any part of the project.
 	mod.state = PackageState.APPROVED
 	mod.name = "food"
 	mod.title = "Food"
-	mod.license = licenses["LGPLv2.1"]
-	mod.media_license = licenses["MIT"]
+	mod.licenses = [licenses["LGPLv2.1"], licenses["MIT"]]
 	mod.type = PackageType.MOD
 	mod.author = admin_user
 	mod.tags.append(tags["player_effects"])
@@ -312,8 +306,7 @@ No warranty is provided, express or implied, for any part of the project.
 	mod.state = PackageState.APPROVED
 	mod.name = "food_sweet"
 	mod.title = "Sweet Foods"
-	mod.license = licenses["CC0"]
-	mod.media_license = licenses["MIT"]
+	mod.licenses = [licenses["CC0"], licenses["MIT"]]
 	mod.type = PackageType.MOD
 	mod.author = admin_user
 	mod.tags.append(tags["player_effects"])
@@ -331,8 +324,7 @@ No warranty is provided, express or implied, for any part of the project.
 	game1.name = "capturetheflag"
 	game1.title = "Capture The Flag"
 	game1.type = PackageType.GAME
-	game1.license = licenses["LGPLv2.1"]
-	game1.media_license = licenses["MIT"]
+	game1.licenses = [licenses["LGPLv2.1"], licenses["MIT"]]
 	game1.author = admin_user
 	game1.tags.append(tags["pvp"])
 	game1.tags.append(tags["survival"])
@@ -395,8 +387,7 @@ Uses the CTF PvP Engine.
 	mod.state = PackageState.APPROVED
 	mod.name = "pixelbox"
 	mod.title = "PixelBOX Reloaded"
-	mod.license = licenses["CC0"]
-	mod.media_license = licenses["CC0"]
+	mod.licenses = [licenses["CC0"]]
 	mod.type = PackageType.TXP
 	mod.author = admin_user
 	mod.forums = 14132

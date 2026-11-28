@@ -56,7 +56,7 @@ class AdvancedSearchForm(FlaskForm):
 	flag = QuerySelectMultipleField(lazy_gettext('Content Warnings'),
 			query_factory=lambda: ContentWarning.query.order_by(db.asc(ContentWarning.name)),
 			get_pk=lambda a: a.name, get_label=make_label)
-	license = QuerySelectMultipleField(lazy_gettext("License"), [Optional()],
+	license = QuerySelectMultipleField(lazy_gettext("Licenses"), [Optional()],
 			query_factory=lambda: License.query.order_by(db.asc(License.name)),
 			allow_blank=True, blank_value="",
 			get_pk=lambda a: a.name, get_label=lambda a: a.name)

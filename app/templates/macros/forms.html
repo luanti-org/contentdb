@@ -72,7 +72,7 @@
 	<link href="/static/libs/jquery-ui.min.css?v=2" rel="stylesheet" type="text/css">
 	<script src="/static/libs/jquery.min.js?v=2"></script>
 	<script src="/static/libs/jquery-ui.min.js?v=2"></script>
-	<script src="/static/js/tagselector.js?v=2"></script>
+	<script src="/static/js/tagselector.js?v=3"></script>
 {% endmacro %}
 
 {% macro easymde_scripts() %}
@@ -115,7 +115,7 @@
 	</script>
 {% endmacro %}
 
-{% macro render_multiselect_field(field, label=None, label_visible=true, right_url=None, right_label=None) -%}
+{% macro render_multiselect_field(field, label=None, label_visible=true, right_url=None, right_label=None, hint=None) -%}
 	<div class="form-group mb-3 {% if field.errors %}has-danger{% endif %} {{ kwargs.pop('class_', '') }}">
 		{{ render_label(field, label, label_visible) }}
 		<div class="multichoice_selector bulletselector form-control">
@@ -124,6 +124,9 @@
 		</div>
 		<div class="invalid-remaining invalid-feedback"></div>
 		{{ field(class_='form-control', **kwargs) }}
+		{% if hint %}
+			<small class="form-text text-muted">{{ hint | safe }}</small>
+		{% endif %}
 		{{ render_errors(field) }}
 	</div>
 {% endmacro %}

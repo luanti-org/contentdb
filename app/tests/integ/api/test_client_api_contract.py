@@ -193,8 +193,8 @@ HYPERTEXT_KEYS = {"head", "body", "links", "images", "image_tooltips"}
 
 FOR_CLIENT_KEYS = {
 	"author", "maintainers", "state", "dev_state", "ai_disclosure", "name", "title", "short_description",
-	"long_description", "type", "created_at", "approved_at", "license", "media_license", "repo", "website",
-	"issue_tracker", "forums", "forum_url", "video_url", "video_thumbnail_url", "donate_url", "translation_url",
+	"long_description", "type", "created_at", "approved_at", "licenses", "license", "media_license", "repo",
+	"website", "issue_tracker", "forums", "forum_url", "video_url", "video_thumbnail_url", "donate_url", "translation_url",
 	"tags", "content_warnings", "provides", "thumbnail", "screenshots", "url", "release", "score", "downloads",
 	"supports_all_games", "game_support", "info_hypertext", "download_size", "reviews",
 }

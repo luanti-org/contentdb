@@ -35,8 +35,7 @@ def package_form(**extra):
 		"short_desc": "A package",
 		"dev_state": "BETA",
 		"ai_disclosure": "NONE",
-		"license": license_id(),
-		"media_license": license_id(),
+		"licenses": license_id(),
 		"desc": "Long description",
 		**extra,
 	}
@@ -61,16 +60,55 @@ def test_create_package(client):
 	assert AuditLogEntry.query.filter_by(title="Created package owner/pkg").count() == 1
 
 
-def test_create_texture_pack_uses_media_license(client):
+def test_create_texture_pack(client):
 	login_as(client, create_user("owner"))
 
-	client_request(client, "POST", "/packages/new/", data=package_form(type="TXP", license=license_id("GPLv3"),
-			media_license=license_id("CC-BY-SA")))
+	client_request(client, "POST", "/packages/new/", data=package_form(type="TXP", licenses=license_id("CC-BY-SA")))
 
 	package = get_package()
 	assert package.type == PackageType.TXP
-	assert package.license.name == "CC-BY-SA"
+	assert package.license_names == "CC-BY-SA"
 	assert package.provides == []
+
+
+def test_create_and_edit_several_licenses(client):
+	login_as(client, create_user("owner"))
+
+	rv = client_request(client, "POST", "/packages/new/",
+			data=package_form(licenses=[license_id("MIT"), license_id("GPLv3")]))
+
+	assert rv.status_code == 302
+	assert get_package().license_names == "GPLv3, MIT"
+
+	html = client_request(client, "GET", "/packages/owner/pkg/edit/").data.decode("utf-8")
+	select = html.split('id="licenses"')[1].split("</select>")[0]
+	assert select.count("<option selected") == 2
+
+	rv = client_request(client, "POST", "/packages/owner/pkg/edit/",
+			data=package_form(licenses=[license_id("GPLv3"), license_id("CC-BY-SA")]))
+
+	assert rv.status_code == 302
+	assert get_package().license_names == "CC-BY-SA, GPLv3"
+
+
+def test_create_package_without_licenses(client):
+	login_as(client, create_user("owner"))
+
+	rv = client_request(client, "POST", "/packages/new/", data=package_form(licenses=[]))
+
+	assert rv.status_code == 200
+	assert "This field is required" in rv.data.decode("utf-8")
+	assert Package.query.count() == 0
+
+
+def test_create_package_unknown_license_with_valid_one(client):
+	login_as(client, create_user("owner"))
+
+	rv = client_request(client, "POST", "/packages/new/", data=package_form(licenses=[license_id(), "999999"]))
+
+	assert rv.status_code == 200
+	assert "Not a valid choice" in rv.data.decode("utf-8")
+	assert Package.query.count() == 0
 
 
 @pytest.mark.parametrize("name,error", [

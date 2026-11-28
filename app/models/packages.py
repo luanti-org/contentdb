@@ -337,6 +337,11 @@ ContentWarnings = db.Table("content_warnings",
 )
 
 
+PackageLicenses = db.Table("package_license",
+	db.Column("package_id", db.Integer, db.ForeignKey("package.id"), primary_key=True),
+	db.Column("license_id", db.Integer, db.ForeignKey("license.id"), primary_key=True)
+)
+
 maintainers = db.Table("maintainers",
 	db.Column("user_id", db.Integer, db.ForeignKey("user.id"), primary_key=True),
 	db.Column("package_id", db.Integer, db.ForeignKey("package.id"), primary_key=True)
@@ -468,12 +473,7 @@ class Package(Model):
 
 	__table_args__ = (db.UniqueConstraint("author_id", "name", name="_package_uc"),)
 
-	license_id   = db.Column(db.Integer, db.ForeignKey("license.id"), nullable=False, default=1)
-	license      = db.relationship("License", foreign_keys=[license_id])
-	media_license_id = db.Column(db.Integer, db.ForeignKey("license.id"), nullable=False, default=1)
-	media_license    = db.relationship("License", foreign_keys=[media_license_id])
-
-	ck_license_txp = db.CheckConstraint("type != 'TXP' OR license_id = media_license_id")
+	licenses = db.relationship("License", secondary=PackageLicenses)
 
 	state     = db.Column(db.Enum(PackageState), nullable=False, default=PackageState.WIP)
 	dev_state = db.Column(db.Enum(PackageDevState), nullable=True, default=None)
@@ -683,6 +683,18 @@ class Package(Model):
 			"type": self.type.to_name(),
 		}
 
+	@property
+	def sorted_licenses(self) -> list["License"]:
+		return sorted(self.licenses, key=lambda x: x.name.lower())
+
+	@property
+	def license_names(self) -> str:
+		return ", ".join(x.name for x in self.sorted_licenses)
+
+	@property
+	def has_nonfree_license(self) -> bool:
+		return any(not x.is_foss for x in self.licenses)
+
 	def as_short_dict(self, base_url, version=None, release_id=None, no_load=False, lang="en", include_vcs=False,
 				translation: typing.Optional["PackageTranslation"] = None,
 				translations_prefetched: bool = False):
@@ -743,8 +755,10 @@ class Package(Model):
 			"created_at": self.created_at.isoformat(),
 			"approved_at": self.approved_at.isoformat() if self.approved_at else None,
 
-			"license": self.license.name,
-			"media_license": self.media_license.name,
+			"licenses": [x.name for x in self.sorted_licenses],
+			# Replaced by licenses, kept so the keys still exist for old clients
+			"license": None,
+			"media_license": None,
 
 			"repo": self.repo,
 			"website": self.website,

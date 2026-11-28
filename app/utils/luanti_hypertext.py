@@ -7,7 +7,7 @@ import re
 import sys
 from urllib.parse import urljoin
 
-from flask_babel import gettext
+from flask_babel import gettext, ngettext
 
 from app.markdown import render_markdown
 from app.models import Package, PackageType, PackageReview, TagKind
@@ -280,15 +280,7 @@ def package_info_as_hypertext(package: Package, formspec_version: int = 7):
 	languages.insert(0, "English")
 	add_list(gettext("Languages"), [escape_hypertext(x) for x in languages])
 
-	if package.license == package.media_license:
-		license = package.license.name
-	elif package.type == package.type.TXP:
-		license = package.media_license.name
-	else:
-		license = gettext("%(code_license)s for code,<br>%(media_license)s for media.",
-				code_license=package.license.name, media_license=package.media_license.name).replace("<br>", " ")
-
-	add_value(gettext("License"), license)
+	add_value(ngettext("License", "Licenses", len(package.licenses)), package.license_names)
 	if package.dev_state:
 		add_value(gettext("Maintenance State"), package.dev_state.value)
 	if package.ai_disclosure:
