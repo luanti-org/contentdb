@@ -79,6 +79,7 @@ def view_editor():
 	wip_packages = None
 	if can_approve_new:
 		packages = Package.query.filter_by(state=PackageState.READY_FOR_REVIEW) \
+			.options(selectinload(Package.licenses)) \
 			.order_by(db.desc(Package.created_at)).all()
 		wip_packages = Package.query \
 			.filter(or_(Package.state == PackageState.WIP, Package.state == PackageState.CHANGES_NEEDED)) \
@@ -119,8 +120,7 @@ def view_editor():
 
 	license_needed = Package.query \
 		.filter(Package.state.in_([PackageState.READY_FOR_REVIEW, PackageState.APPROVED])) \
-		.filter(or_(Package.license.has(License.name.like("Other %")),
-			Package.media_license.has(License.name.like("Other %")))) \
+		.filter(Package.licenses.any(License.name.like("Other %"))) \
 		.all()
 
 	total_packages = Package.query.filter_by(state=PackageState.APPROVED).count()

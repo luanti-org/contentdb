@@ -820,13 +820,24 @@ def json_schema():
 				},
 				"uniqueItems": True,
 			},
+			"licenses": {
+				"description": "Package Licenses, for both code and media. All of them apply",
+				"type": "array",
+				"items": {
+					"$ref": "#/$defs/license"
+				},
+				"minItems": 1,
+				"uniqueItems": True,
+			},
 			"license": {
-				"description": "Package License",
-				"$ref": "#/$defs/license"
+				"description": "Deprecated, use licenses. Only used if licenses isn't set and both license and media_license are",
+				"deprecated": True,
+				"anyOf": [{"$ref": "#/$defs/license"}, {"type": "null"}]
 			},
 			"media_license": {
-				"description": "Package Media License",
-				"$ref": "#/$defs/license"
+				"description": "Deprecated, use licenses. Only used if licenses isn't set and both license and media_license are",
+				"deprecated": True,
+				"anyOf": [{"$ref": "#/$defs/license"}, {"type": "null"}]
 			},
 			"long_description": {
 				"description": "Package Long Description",

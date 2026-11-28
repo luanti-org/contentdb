@@ -428,10 +428,9 @@ class QueryBuilder:
 				if warning:
 					query = query.filter(Package.content_warnings.any(ContentWarning.id == warning.id))
 
-		licenses = [Package.license_id == license.id for license in self.licenses if license is not None]
-		licenses.extend([Package.media_license_id == license.id for license in self.licenses if license is not None])
-		if len(licenses) > 0:
-			query = query.filter(or_(*licenses))
+		if len(self.licenses) > 0:
+			license_ids = [license.id for license in self.licenses]
+			query = query.filter(Package.licenses.any(License.id.in_(license_ids)))
 
 		if self.hide_wip:
 			query = query.filter(or_(Package.dev_state==None, Package.dev_state != PackageDevState.WIP))

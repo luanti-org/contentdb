@@ -82,7 +82,7 @@
 			input.focusout(function() {
 				const value = input.val().trim();
 				if (value !== "") {
-					show_error(input, "Please select an existing tag, it's not possible to add custom ones.");
+					show_error(input, "Please select one of the suggestions, it's not possible to add custom ones.");
 				}
 			})
 
@@ -94,7 +94,9 @@
 				minLength: 0,
 				source: source,
 				select: function(event, ui) {
-					addTag(ui.item);
+					if (!select.find(`option[value='${ui.item.id}'][selected]`).length) {
+						addTag(ui.item);
+					}
 					input.val("");
 					return false;
 				}

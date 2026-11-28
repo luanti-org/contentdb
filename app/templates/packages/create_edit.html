@@ -97,10 +97,9 @@
 			{% endif %}
 			{{ render_multiselect_field(form.tags, class_="pkg_meta") }}
 			{{ render_multiselect_field(form.content_warnings, class_="pkg_meta") }}
-			<div class="pkg_meta row">
-				{{ render_field(form.license, class_="not_txp col-sm-6") }}
-				{{ render_field(form.media_license, class_="col-sm-6", hint=_("If there is no media, set the Media License to the same as the License.")) }}
-			</div>
+			{# The select is hidden, so the browser's required check would block submitting without showing why #}
+			{{ render_multiselect_field(form.licenses, class_="pkg_meta", required=False,
+				hint=_("Select every license used by any included code and media.")) }}
 			{{ render_field(form.desc, class_="pkg_meta", fieldclass="form-control markdown") }}
 			<p class="form-text text-danger d-none" id="desc_page_link">
 				{{ _("There's no need to link to the package on ContentDB in the long description, the user is already here!") }}

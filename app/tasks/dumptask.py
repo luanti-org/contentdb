@@ -127,7 +127,8 @@ def create_database_dump():
 			aliases = get_aliases()
 			screenshots = get_screenshots()
 
-			packages = Package.query.filter_by(state=PackageState.APPROVED).all()
+			packages = Package.query.filter_by(state=PackageState.APPROVED) \
+				.options(db.selectinload(Package.licenses)).all()
 			for package in packages:
 				package_screenshots = screenshots.get(package.id, [])
 

@@ -45,6 +45,12 @@
 	{% endif %}
 {% endmacro %}
 
+{% macro render_licenses(licenses) -%}
+	{% for license in licenses -%}
+		{{ render_license(license) | trim }}{% if not loop.last %}, {% endif %}
+	{%- endfor %}
+{%- endmacro %}
+
 {% block dependencies %}
 	{% if package.type != package.type.TXP %}
 		<h3>{{ _("Dependencies") }}</h3>
@@ -133,12 +139,8 @@
 {% endblock %}
 
 {% block container %}
-	{% if not package.license.is_foss and not package.media_license.is_foss and package.type != package.type.TXP  %}
-		{% set package_warning=_("Non-free code and media") %}
-	{% elif not package.license.is_foss and package.type != package.type.TXP %}
-		{% set package_warning=_("Non-free code") %}
-	{% elif not package.media_license.is_foss %}
-		{% set package_warning=_("Non-free media") %}
+	{% if package.has_nonfree_license %}
+		{% set package_warning=_("Non-free license") %}
 	{% endif %}
 
 <main>
@@ -243,16 +245,9 @@
 					{% else %}
 						<dd class="text-body-secondary fw-normal"><i>{{ _("Unknown") }}</i></dd>
 					{% endif %}
-					<dt>{{ _("License") }}</dt>
+					<dt>{{ ngettext("License", "Licenses", package.licenses | length) }}</dt>
 					<dd class="text-body-secondary fw-normal">
-						{% if package.license == package.media_license %}
-							{{ render_license(package.license) }}
-						{% elif package.type == package.type.TXP %}
-							{{ render_license(package.media_license) }}
-						{% else %}
-							{{ _("%(code_license)s for code,<br>%(media_license)s for media.",
-									code_license=render_license(package.license), media_license=render_license(package.media_license)) }}
-						{% endif %}
+						{{ render_licenses(package.sorted_licenses) }}
 					</dd>
 				</dl>
 
@@ -839,16 +834,9 @@
 									, {{ translation.language.title }}
 								{%- endfor -%}
 							</dd>
-							<dt>{{ _("License") }}</dt>
+							<dt>{{ ngettext("License", "Licenses", package.licenses | length) }}</dt>
 							<dd>
-								{% if package.license == package.media_license %}
-									{{ render_license(package.license) }}
-								{% elif package.type == package.type.TXP %}
-									{{ render_license(package.media_license) }}
-								{% else %}
-									{{ _("%(code_license)s for code,<br>%(media_license)s for media.",
-											code_license=render_license(package.license), media_license=render_license(package.media_license)) }}
-								{% endif %}
+								{{ render_licenses(package.sorted_licenses) }}
 							</dd>
 							<dt>{{ _("Maintenance State") }}</dt>
 							{% if package.dev_state %}

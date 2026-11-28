@@ -63,6 +63,7 @@ def setup_source_data():
 
 	package = make_package("imported_mod", editor)
 	package.title = "Imported Mod"
+	package.licenses = License.query.filter(License.name.in_(["MIT", "GPLv3"])).all()
 	package.dev_state = PackageDevState.BETA
 	package.created_at = datetime.datetime(2020, 1, 2, 3, 4, 5)
 	package.approved_at = datetime.datetime(2020, 1, 3, 3, 4, 5)
@@ -174,7 +175,7 @@ def test_round_trip_into_fresh_database(client, upload_dir):
 	assert package.dev_state == PackageDevState.BETA
 	assert package.created_at == datetime.datetime(2020, 1, 2, 3, 4, 5)
 	assert package.approved_at == datetime.datetime(2020, 1, 3, 3, 4, 5)
-	assert package.license.name == "MIT"
+	assert package.license_names == "GPLv3, MIT"
 	assert package.repo == "https://github.com/example/imported_mod"
 	assert package.forums == 1234
 	assert package.downloads == 50
@@ -334,6 +335,26 @@ def test_failed_import_changes_nothing(client, upload_dir, tmp_path):
 	assert User.query.filter_by(username="editor_user").count() == 0
 	assert Package.query.filter_by(name="imported_mod").count() == 0
 	assert License.query.count() == licenses_before - 1
+
+
+def test_dump_with_code_and_media_license(client, upload_dir, tmp_path):
+	setup_source_data()
+	path = make_dump(upload_dir)
+	recreate_db()
+
+	# Dumps from before packages had a list of licenses
+	with zipfile.ZipFile(path) as src:
+		files = {name: src.read(name).decode() for name in src.namelist()}
+	index_path = "backup/editor_user/imported_mod/index.json"
+	data = json.loads(files[index_path])
+	del data["licenses"]
+	data.update({"license": "GPLv3", "media_license": "CC-BY-SA"})
+	files[index_path] = json.dumps(data)
+
+	import_dump(write_zip(tmp_path / "old.zip", files))
+	db.session.commit()
+
+	assert Package.query.filter_by(name="imported_mod").one().license_names == "CC-BY-SA, GPLv3"
 
 
 def load_import_script():

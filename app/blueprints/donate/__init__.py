@@ -24,8 +24,7 @@ def donate():
 		).order_by(db.asc(Package.title)).all()
 
 	query = Package.query.filter(
-			Package.license.has(License.is_foss == True),
-			Package.media_license.has(License.is_foss == True),
+			~Package.licenses.any(License.is_foss == False),
 			Package.state == PackageState.APPROVED,
 			or_(Package.donate_url.isnot(None), Package.author.has(User.donate_url.isnot(None)))
 	).order_by(db.desc(Package.score))

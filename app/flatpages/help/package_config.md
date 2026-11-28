@@ -70,8 +70,10 @@ It should be a JSON dictionary with one or more of the following optional keys:
 * `tags`: List of tag names, see [/api/tags/](/api/tags/). Games can include one or two categories (tags with
   `"kind": "category"`); if none are listed, the categories chosen on ContentDB are kept.
 * `content_warnings`: List of content warning names, see [/api/content_warnings/](/api/content_warnings/).
-* `license`: A license name, see [/api/licenses/](/api/licenses/).
-* `media_license`: A license name, see [/api/licenses/](/api/licenses/).
+* `licenses`: List of license names used by the code and media, ex: `["MIT", "CC0-1.0"]`. All of them apply.
+  See [/api/licenses/](/api/licenses/).
+* `license`, `media_license`: Deprecated, use `licenses`. If `licenses` isn't given and both are, the package's
+  licenses are replaced with these. Just one of them is ignored. If `licenses` is given, they must be in it.
 * `long_description`: Long markdown description.
 * `website`: Website URL.
 * `issue_tracker`: Issue tracker URL.
@@ -95,7 +97,7 @@ Example:
     "$schema": "https://content.luanti.org/api/cdb_schema/",
     "title": "Foo bar",
     "tags": ["pvp", "survival"],
-    "license": "MIT",
+    "licenses": ["MIT"],
     "website": null
 }
 ```

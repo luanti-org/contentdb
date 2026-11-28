@@ -16,7 +16,7 @@ from sqlalchemy import func, or_, and_, select
 from wtforms import SelectField, StringField, TextAreaField, IntegerField, SubmitField, BooleanField
 from wtforms.widgets import CheckboxInput, ListWidget
 from wtforms.validators import InputRequired, Length, Regexp, DataRequired, Optional, URL, NumberRange, ValidationError
-from wtforms_sqlalchemy.fields import QuerySelectField, QuerySelectMultipleField
+from wtforms_sqlalchemy.fields import QuerySelectMultipleField
 
 from app import login_manager
 from app.domain.DomainError import DomainError
@@ -300,8 +300,7 @@ class PackageForm(FlaskForm):
 			widget=ListWidget(prefix_label=False), option_widget=CheckboxInput())
 	tags             = StrictQuerySelectMultipleField(lazy_gettext('Tags'), query_factory=lambda: Tag.query.filter_by(kind=TagKind.FEATURE).order_by(db.asc(Tag.name)), get_pk=lambda a: a.id, get_label=make_label)
 	content_warnings = QuerySelectMultipleField(lazy_gettext('Content Warnings'), query_factory=lambda: ContentWarning.query.order_by(db.asc(ContentWarning.name)), get_pk=lambda a: a.id, get_label=make_label)
-	license          = QuerySelectField(lazy_gettext("License"), [DataRequired()], allow_blank=True, query_factory=lambda: License.query.order_by(db.asc(License.name)), get_pk=lambda a: a.id, get_label=lambda a: a.name)
-	media_license    = QuerySelectField(lazy_gettext("Media License"), [DataRequired()], allow_blank=True, query_factory=lambda: License.query.order_by(db.asc(License.name)), get_pk=lambda a: a.id, get_label=lambda a: a.name)
+	licenses         = StrictQuerySelectMultipleField(lazy_gettext("Licenses"), [DataRequired()], query_factory=lambda: License.query.order_by(db.asc(License.name)), get_pk=lambda a: a.id, get_label=lambda a: a.name)
 
 	desc             = TextAreaField(lazy_gettext("Long Description (Markdown)"), [Optional(), Length(0,10000)], filters=[normalize_line_endings])
 
@@ -364,8 +363,7 @@ def handle_create_edit(package: typing.Optional[Package], form: PackageForm, aut
 			# Categories are tags too. They're only shown for games, so ignore any left ticked after changing type
 			"tags": form.tags.raw_data + (form.categories.raw_data if form.type.data == PackageType.GAME else []),
 			"content_warnings": form.content_warnings.raw_data,
-			"license": form.license.data,
-			"media_license": form.media_license.data,
+			"licenses": [x.name for x in form.licenses.data],
 			"desc": form.desc.data,
 			"repo": form.repo.data,
 			"website": form.website.data,
@@ -380,7 +378,7 @@ def handle_create_edit(package: typing.Optional[Package], form: PackageForm, aut
 			import_repo_screenshot.delay(package.id)
 
 		next_url = package.get_url("packages.view")
-		if wasNew and ("WTFPL" in package.license.name or "WTFPL" in package.media_license.name):
+		if wasNew and "WTFPL" in package.license_names:
 			next_url = url_for("flatpage", path="help/wtfpl", r=next_url)
 		elif wasNew:
 			next_url = package.get_url("packages.setup_releases")
@@ -441,15 +439,11 @@ def create_edit(author=None, name=None):
 			form.repo.data = request.args.get("repo")
 			forums = request.args.get("forums")
 			form.forums.data = int(forums) if forums and forums.isdigit() else None
-			form.license.data = None
-			form.media_license.data = None
 		else:
+			form.licenses.data = package.licenses
 			form.tags.data = [tag for tag in package.tags if tag.kind != TagKind.CATEGORY]
 			form.categories.data = [tag for tag in package.tags if tag.kind == TagKind.CATEGORY]
 			form.content_warnings.data = package.content_warnings
-
-	if request.method == "POST" and form.type.data == PackageType.TXP:
-		form.license.data = form.media_license.data
 
 	if form.validate_on_submit():
 		ret = handle_create_edit(package, form, author)
