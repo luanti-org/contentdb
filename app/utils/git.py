@@ -243,7 +243,7 @@ def clone_repo(url_str, ref=None, recursive=False):
 			repo.git.update_environment(**GIT_ENV)
 			origin = repo.create_remote("origin", url=git_url)
 			assert origin.exists()
-			_run_git(["fetch", "origin"], GIT_FETCH_TIMEOUT, cwd=git_dir)
+			_run_git(["fetch", "--tags", "origin"], GIT_FETCH_TIMEOUT, cwd=git_dir)
 			repo.git.checkout("--end-of-options", ref, "--")
 
 		if recursive:
@@ -323,7 +323,7 @@ def get_commit_list(git_url: str, start: str, end: str) -> List[str]:
 		repo = git.Repo.init(git_dir)
 		repo.git.update_environment(**GIT_ENV)
 		repo.create_remote("origin", url=git_url)
-		_run_git(["fetch", "origin"], GIT_FETCH_TIMEOUT, cwd=git_dir)
+		_run_git(["fetch", "--tags", "origin"], GIT_FETCH_TIMEOUT, cwd=git_dir)
 
 		commits = repo.iter_commits(f"{start}..{end}")
 		ret = [str(commit.summary) for commit in commits]

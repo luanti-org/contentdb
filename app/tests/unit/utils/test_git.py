@@ -163,7 +163,33 @@ def test_git_clone_ref_no_symlinks(symlink_repo):
 		assert_no_symlinks(repo.working_tree_dir)
 
 
-EVIL_SUBMODULE_NAME = "evil$(touch pwned)`touch pwned`"
+def test_git_clone_tag_not_on_any_branch(tmp_path, monkeypatch):
+	repo = git.Repo.init(tmp_path / "main")
+	with repo.config_writer() as cw:
+		cw.set_value("user", "name", "Test")
+		cw.set_value("user", "email", "test@example.com")
+	(tmp_path / "main" / "init.lua").write_text("")
+	repo.index.add(["init.lua"])
+	repo.index.commit("Initial commit")
+	default_branch = repo.active_branch.name
+
+	# Tag a commit on a branch, then delete the branch so the tag is only reachable through itself
+	repo.git.checkout("-b", "backport")
+	(tmp_path / "main" / "backport.txt").write_text("")
+	repo.index.add(["backport.txt"])
+	tagged_commit = repo.index.commit("Backport fix").hexsha
+	repo.create_tag("0.99.1")
+	repo.git.checkout(default_branch)
+	repo.git.branch("-D", "backport")
+
+	allow_local_clones(monkeypatch)
+
+	with clone_repo((tmp_path / "main").as_uri(), "0.99.1") as cloned:
+		assert cloned.head.commit.hexsha == tagged_commit
+		assert os.path.isfile(os.path.join(cloned.working_tree_dir, "backport.txt"))
+
+
+EVIL_SUBMODULE_NAME ="evil$(touch pwned)`touch pwned`"
 GAME_SUBMODULE_PATHS = ["mods/foo", "mods/" + EVIL_SUBMODULE_NAME]
 
 
